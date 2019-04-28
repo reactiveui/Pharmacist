@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EventBuilder.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "generate-platform --platforms=\"essentials\" --reference=\"C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/ReferenceAssemblies/Microsoft/Framework\" --output-path=\"C:/source/reactiveui/reactiveui-rewrite/src/ReactiveUI.Events\" --output-prefix=\"Events_\""
+    }
+  }
+}

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="Templates\HeaderTemplate.txt" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="ICSharpCode.Decompiler" Version="4.0.0.4521" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.0.0" />
+    <PackageReference Include="nuget.protocol" Version="5.0.0" />
+    <PackageReference Include="polly" Version="7.1.0" />
+    <PackageReference Include="serilog" Version="2.8.0" />
+    <PackageReference Include="stubble.core" Version="1.2.7" />
+    <PackageReference Include="system.collections.immutable" Version="1.5.0" />
+  </ItemGroup>
+</Project>
