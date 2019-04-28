@@ -29,26 +29,13 @@ namespace EventBuilder.Core.Extractors
         /// <summary>
         /// Extracts the data using the specified target framework.
         /// </summary>
-        /// <param name="targetFrameworkName">The name of the target framework to extract.</param>
-        /// <param name="packages">The packages to extract the information from.</param>
-        /// <param name="supportPackages">The packages for support purposes.</param>
-        /// <returns>A task to monitor the progress.</returns>
-        public Task Extract(string targetFrameworkName, IEnumerable<PackageIdentity> packages, IEnumerable<PackageIdentity> supportPackages = null)
-        {
-            var targetFramework = targetFrameworkName.ToFramework();
-            return Extract(targetFramework, packages, supportPackages);
-        }
-
-        /// <summary>
-        /// Extracts the data using the specified target framework.
-        /// </summary>
         /// <param name="targetFramework">The target framework to extract.</param>
-        /// <param name="packages">The packages to extract the information from.</param>
+        /// <param name="package">The package to extract the information from.</param>
         /// <param name="supportPackages">The packages for support purposes.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public async Task Extract(NuGetFramework targetFramework, IEnumerable<PackageIdentity> packages, IEnumerable<PackageIdentity> supportPackages = null)
+        public async Task Extract(NuGetFramework targetFramework, PackageIdentity package, IEnumerable<PackageIdentity> supportPackages = null)
         {
-            var results = (await NuGetPackageHelper.DownloadPackageAndGetLibFilesAndFolder(packages, supportPackages, targetFramework).ConfigureAwait(false)).ToList();
+            var results = (await NuGetPackageHelper.DownloadPackageAndGetLibFilesAndFolder(package, supportPackages, targetFramework).ConfigureAwait(false)).ToList();
             Assemblies.AddRange(results.SelectMany(x => x.files));
             SearchDirectories.AddRange(results.Select(x => x.folder));
         }

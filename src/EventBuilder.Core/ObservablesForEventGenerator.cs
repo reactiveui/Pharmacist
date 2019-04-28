@@ -10,12 +10,17 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
+using EventBuilder.Core.Extractors;
 using EventBuilder.Core.Extractors.PlatformExtractors;
 using EventBuilder.Core.Reflection;
 using EventBuilder.Core.Reflection.Resolvers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+
+using NuGet.Frameworks;
+using NuGet.Packaging.Core;
+
 using Serilog;
 
 namespace EventBuilder.Core
@@ -23,7 +28,7 @@ namespace EventBuilder.Core
     /// <summary>
     /// Processes the specified platform and saves out a specified template.
     /// </summary>
-    public static class EventGenerator
+    public static class ObservablesForEventGenerator
     {
         private static readonly INamespaceResolver[] _resolvers =
         {
@@ -35,15 +40,12 @@ namespace EventBuilder.Core
         private static readonly IDictionary<AutoPlatform, IPlatformExtractor> _platformExtractors = new IPlatformExtractor[]
         {
             new Android(),
-            new Essentials(),
             new iOS(),
             new Mac(),
-            new Tizen(),
             new TVOS(),
             new UWP(),
             new Winforms(),
             new WPF(),
-            new XamForms(),
         }.ToImmutableDictionary(x => x.Platform);
 
         /// <summary>
@@ -54,7 +56,7 @@ namespace EventBuilder.Core
         /// <param name="defaultReferenceAssemblyLocation">A directory path to where reference assemblies can be located.</param>
         /// <param name="platforms">The platforms to generate for.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public static async Task ExtractEventsFromAssemblies(string outputPath, string prefix, string defaultReferenceAssemblyLocation, IEnumerable<AutoPlatform> platforms)
+        public static async Task ExtractEventsFromPlatforms(string outputPath, string prefix, string defaultReferenceAssemblyLocation, IEnumerable<AutoPlatform> platforms)
         {
             foreach (var platform in platforms)
             {
@@ -62,7 +64,11 @@ namespace EventBuilder.Core
                 var platformExtractor = _platformExtractors[platform];
                 await platformExtractor.Extract(defaultReferenceAssemblyLocation).ConfigureAwait(false);
 
-                await ExtractEventsFromAssemblies(outputPath, prefix + platform, platformExtractor.Assemblies, platformExtractor.SearchDirectories).ConfigureAwait(false);
+                using (var stream = new FileStream(Path.Combine(outputPath, prefix + ".cs"), FileMode.Create, FileAccess.Write))
+                {
+                    await ExtractEventsFromAssemblies(stream, platformExtractor.Assemblies, platformExtractor.SearchDirectories).ConfigureAwait(false);
+                }
+
                 Log.Information("Finished platform {0}", platform);
             }
         }
@@ -70,18 +76,36 @@ namespace EventBuilder.Core
         /// <summary>
         /// Extracts the events and delegates from the specified platform.
         /// </summary>
-        /// <param name="outputPath">The path where to output the files.</param>
-        /// <param name="prefix">The prefix to add to the start of the output file.</param>
+        /// <param name="outputStream">Stream that we should output to.</param>
+        /// <param name="package">The package to process.</param>
+        /// <param name="framework">The framework to generate for.</param>
+        /// <returns>A task to monitor the progress.</returns>
+        public static async Task ExtractEventsFromNuGetPackages(Stream outputStream, PackageIdentity package, NuGetFramework framework)
+        {
+            Log.Information("Processing NuGet package {0}", package);
+
+            var extractor = new NuGetExtractor();
+            await extractor.Extract(framework, package).ConfigureAwait(false);
+
+            await ExtractEventsFromAssemblies(outputStream, extractor.Assemblies, extractor.SearchDirectories).ConfigureAwait(false);
+
+            Log.Information("Finished NuGet package {0}", package);
+        }
+
+        /// <summary>
+        /// Extracts the events and delegates from the specified platform.
+        /// </summary>
+        /// <param name="outputStream">Stream that we should output to.</param>
         /// <param name="assemblyPaths">The paths to the assemblies to extract.</param>
         /// <param name="searchDirectories">Paths to any directories to search for supporting libraries.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public static async Task ExtractEventsFromAssemblies(string outputPath, string prefix, IEnumerable<string> assemblyPaths, IEnumerable<string> searchDirectories)
+        public static async Task ExtractEventsFromAssemblies(Stream outputStream, IEnumerable<string> assemblyPaths, IEnumerable<string> searchDirectories)
         {
             var compilation = RoslynHelpers.GetCompilation(assemblyPaths, searchDirectories);
 
             var compilationOutputSyntax = SyntaxFactory.CompilationUnit().WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))));
 
-            using (StreamWriter streamWriter = new StreamWriter(Path.Combine(outputPath, prefix + ".cs")))
+            using (StreamWriter streamWriter = new StreamWriter(outputStream))
             {
                 await streamWriter.WriteAsync(await TemplateManager.GetTemplateAsync(TemplateManager.HeaderTemplate).ConfigureAwait(false)).ConfigureAwait(false);
                 await streamWriter.WriteAsync(Environment.NewLine).ConfigureAwait(false);

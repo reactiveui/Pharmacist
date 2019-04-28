@@ -50,7 +50,7 @@ namespace EventBuilder.Console
                             _referenceAssembliesLocation = options.ReferenceAssemblies;
                         }
 
-                        await EventGenerator.ExtractEventsFromAssemblies(options.OutputPath, options.OutputPrefix, _referenceAssembliesLocation, options.Platforms).ConfigureAwait(false);
+                        await ObservablesForEventGenerator.ExtractEventsFromPlatforms(options.OutputPath, options.OutputPrefix, _referenceAssembliesLocation, options.Platforms).ConfigureAwait(false);
 
                         return ExitCode.Success;
                     }
@@ -64,7 +64,7 @@ namespace EventBuilder.Console
                 {
                     try
                     {
-                        await EventGenerator.ExtractEventsFromAssemblies(options.OutputPath, options.OutputPrefix, options.Assemblies, options.SearchDirectories).ConfigureAwait(false);
+                        await ObservablesForEventGenerator.ExtractEventsFromPlatforms(options.OutputPath, options.OutputPrefix, options.Assemblies, options.SearchDirectories).ConfigureAwait(false);
 
                         return ExitCode.Success;
                     }

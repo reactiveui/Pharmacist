@@ -70,7 +70,7 @@ namespace EventBuilder.Core.NuGet
         /// </summary>
         /// <param name="framework">The framework to check.</param>
         /// <returns>The package details or null if none is available.</returns>
-        public static PackageIdentity ToPackageIdentity(this NuGetFramework framework)
+        public static IEnumerable<PackageIdentity> GetSupportLibraries(this NuGetFramework framework)
         {
             if (!framework.IsPackageBased)
             {
@@ -79,12 +79,24 @@ namespace EventBuilder.Core.NuGet
 
             if (framework.Framework.StartsWith(".NETStandard", StringComparison.OrdinalIgnoreCase))
             {
-                return new PackageIdentity("NETStandard.Library", new NuGetVersion(framework.Version));
+                return new[] { new PackageIdentity("NETStandard.Library", new NuGetVersion(framework.Version)) };
             }
 
             if (framework.Framework.StartsWith(".NETCoreApp", StringComparison.OrdinalIgnoreCase))
             {
-                return new PackageIdentity("Microsoft.NETCore.App", new NuGetVersion(framework.Version));
+                return new[] { new PackageIdentity("Microsoft.NETCore.App", new NuGetVersion(framework.Version)) };
+            }
+
+            if (framework.Framework.StartsWith("Tizen", StringComparison.OrdinalIgnoreCase))
+            {
+                if (framework.Version == new Version("4.0.0.0"))
+                {
+                    return new[]
+                           {
+                               new PackageIdentity("Tizen.NET.API4", new NuGetVersion("4.0.1.14152")),
+                               new PackageIdentity("NETStandard.Library", new NuGetVersion("2.0.0.0"))
+                           };
+                }
             }
 
             return null;

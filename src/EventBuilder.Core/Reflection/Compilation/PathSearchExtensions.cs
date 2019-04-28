@@ -21,7 +21,7 @@ namespace EventBuilder.Core.Reflection.Compilation
         /// <param name="targetAssemblyDirectories">The directories potentially containing the assemblies.</param>
         /// <param name="parameters">Parameters to provide to the reflection system..</param>
         /// <returns>The assembly definition.</returns>
-        public static PEFile Resolve(this IAssemblyReference reference, IEnumerable<string> targetAssemblyDirectories, PEStreamOptions parameters = PEStreamOptions.PrefetchMetadata)
+        public static PEFile Resolve(this IAssemblyReference reference, IReadOnlyCollection<string> targetAssemblyDirectories, PEStreamOptions parameters = PEStreamOptions.PrefetchMetadata)
         {
             var dllName = reference.Name + ".dll";
 

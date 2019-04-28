@@ -39,6 +39,11 @@ namespace EventBuilder.Core.Reflection.Generators
                 return null;
             }
 
+            return GenerateFromEventPatternAccessor(eventDetails, dataObjectName, eventArgsName);
+        }
+
+        private static PropertyDeclarationSyntax GenerateFromEventPatternAccessor(IEvent eventDetails, string dataObjectName, string eventArgsName)
+        {
             var eventArgsType = IdentifierName(eventArgsName);
             var observableEventArgType = TypeArgumentList(SingletonSeparatedList<TypeSyntax>(eventArgsType)).GenerateObservableType();
 
@@ -59,8 +64,7 @@ namespace EventBuilder.Core.Reflection.Generators
                                         MemberAccessExpression(
                                             SyntaxKind.SimpleMemberAccessExpression,
                                             IdentifierName("System.Reactive.Linq.Observable"),
-                                            GenericName(
-                                                Identifier("FromEventPattern"))
+                                            GenericName(Identifier("FromEventPattern"))
                                             .WithTypeArgumentList(
                                                 TypeArgumentList(
                                                     SeparatedList<TypeSyntax>(

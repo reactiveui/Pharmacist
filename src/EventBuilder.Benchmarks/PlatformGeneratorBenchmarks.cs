@@ -34,7 +34,7 @@ namespace EventBuilder.Benchmarks
         public Task Navigate()
         {
             var platforms = Enum.GetValues(typeof(AutoPlatform)).OfType<AutoPlatform>();
-            return EventGenerator.ExtractEventsFromAssemblies(Path.GetTempPath(), Guid.NewGuid().ToString(), _referenceAssembliesLocation, platforms);
+            return ObservablesForEventGenerator.ExtractEventsFromPlatforms(Path.GetTempPath(), Guid.NewGuid().ToString(), _referenceAssembliesLocation, platforms);
         }
     }
 }

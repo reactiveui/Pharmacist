@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -29,6 +30,8 @@ namespace EventBuilder.Core.NuGet
         private static readonly PackageDownloadContext _downloadContext = new PackageDownloadContext(NullSourceCacheContext.Instance);
         private static readonly List<Lazy<INuGetResourceProvider>> _providers;
 
+        private static readonly IFrameworkNameProvider _frameworkNameProvider = DefaultFrameworkNameProvider.Instance;
+
         static NuGetPackageHelper()
         {
             _providers = new List<Lazy<INuGetResourceProvider>>();
@@ -36,26 +39,31 @@ namespace EventBuilder.Core.NuGet
         }
 
         /// <summary>
+        /// Gets the directory where the packages will be stored.
+        /// </summary>
+        public static string PackageDirectory { get; } = Path.Combine(Path.GetTempPath(), "EventBuilder.NuGet");
+
+        /// <summary>
         /// Downloads the specified packages and returns the files and directories where the package NuGet package lives.
         /// </summary>
-        /// <param name="packageIdentities">The identities of the packages to find.</param>
+        /// <param name="packageIdentity">The identity of the packages to find.</param>
         /// <param name="supportPackageIdentities">Any support libraries where the directories should be included but not the files.</param>
         /// <param name="framework">Optional framework parameter which will force NuGet to evaluate as the specified Framework. If null it will use .NET Standard 2.0.</param>
         /// <param name="nugetSource">Optional v3 nuget source. Will default to default nuget.org servers.</param>
         /// <param name="token">A cancellation token.</param>
         /// <returns>The directory where the NuGet packages are unzipped to.</returns>
-        public static async Task<IEnumerable<(string folder, IEnumerable<string> files)>> DownloadPackageAndGetLibFilesAndFolder(IEnumerable<PackageIdentity> packageIdentities, IEnumerable<PackageIdentity> supportPackageIdentities = null, NuGetFramework framework = null, PackageSource nugetSource = null, CancellationToken token = default)
+        public static async Task<IEnumerable<(string folder, IEnumerable<string> files)>> DownloadPackageAndGetLibFilesAndFolder(PackageIdentity packageIdentity, IEnumerable<PackageIdentity> supportPackageIdentities = null, NuGetFramework framework = null, PackageSource nugetSource = null, CancellationToken token = default)
         {
             // If the user hasn't selected a default framework to extract, select .NET Standard 2.0
             framework = framework ?? FrameworkConstants.CommonFrameworks.NetStandard20;
 
             // Get our support libraries together. We will grab the default for the framework passed in if it's packaged based.
-            var defaultSupportLibrary = framework?.ToPackageIdentity() == null ? Enumerable.Empty<PackageIdentity>() : new[] { framework.ToPackageIdentity() };
+            var defaultSupportLibrary = framework?.GetSupportLibraries() ?? Enumerable.Empty<PackageIdentity>();
             supportPackageIdentities = (supportPackageIdentities ?? Array.Empty<PackageIdentity>()).Concat(defaultSupportLibrary).Distinct();
 
-            // Combine together the primary/secondary packages, boolean value to indicate if we should download.
-            IEnumerable<(PackageIdentity packageIdentity, bool includeFiles)> packagesToDownload = packageIdentities.Select(x => (x, true))
-                .Concat(supportPackageIdentities.Select(x => (x, false)));
+            // Combine together the primary/secondary packages, boolean value to indicate if we should include in our output.
+            var packagesToDownload = new List<(PackageIdentity packageIdentity, bool includeFiles)> { (packageIdentity, true) };
+            packagesToDownload.AddRange(supportPackageIdentities.Select(x => (x, false)));
 
             return await Task.WhenAll(packagesToDownload
                 .Select(x => CopyPackageLibraryItems(x.packageIdentity, nugetSource, framework, x.includeFiles, token)))
@@ -64,13 +72,9 @@ namespace EventBuilder.Core.NuGet
 
         private static async Task<(string folder, IEnumerable<string> files)> CopyPackageLibraryItems(PackageIdentity package, PackageSource nugetSource, NuGetFramework framework, bool includeFilesInOutput, CancellationToken token)
         {
-            var directory = EnsureDirectory(package.ToString());
+            var directory = Path.Combine(PackageDirectory, package.Id, package.Version.ToNormalizedString());
 
-            // If the file already exists (since it has the version number), assumed it was already grabbed previously and use that.
-            if (Directory.Exists(directory))
-            {
-                return (directory, Directory.GetFiles(directory, "*.dll", SearchOption.AllDirectories));
-            }
+            EnsureDirectory(directory);
 
             // Use the provided nuget package source, or use nuget.org
             var source = new SourceRepository(nugetSource ?? new PackageSource("https://api.nuget.org/v3/index.json"), _providers);
@@ -92,7 +96,9 @@ namespace EventBuilder.Core.NuGet
             }
 
             // Get all the folders in our lib and build directory of our nuget. These are the general contents we include in our projects.
-            var groups = (await Task.WhenAll(downloadResults.PackageReader.GetLibItemsAsync(token), downloadResults.PackageReader.GetBuildItemsAsync(token)).ConfigureAwait(false)).SelectMany(x => x);
+            var groups = downloadResults.PackageReader.GetFileGroups(PackagingConstants.Folders.Lib).Concat(
+                              downloadResults.PackageReader.GetFileGroups(PackagingConstants.Folders.Build).Concat(
+                              downloadResults.PackageReader.GetFileGroups(PackagingConstants.Folders.Ref)));
 
             // Select our groups that match our selected framework and have content.
             var groupFiles = groups.Where(x => !x.HasEmptyFolder && x.TargetFramework == framework).SelectMany(x => x.Items).ToList();
@@ -107,16 +113,60 @@ namespace EventBuilder.Core.NuGet
             return (directory, includeFilesInOutput ? outputFiles.Where(x => x.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)) : Enumerable.Empty<string>());
         }
 
-        private static string EnsureDirectory(string subDirectory)
+        private static void EnsureDirectory(string packageUnzipPath)
         {
-            var packageUnzipPath = Path.Combine(Path.GetTempPath(), "EventBuilder.NuGet", subDirectory);
-
             if (!Directory.Exists(packageUnzipPath))
             {
                 Directory.CreateDirectory(packageUnzipPath);
             }
+        }
 
-            return packageUnzipPath;
+        private static IEnumerable<FrameworkSpecificGroup> GetFileGroups(this PackageReaderBase reader, string folder)
+        {
+            Dictionary<NuGetFramework, List<string>> groups = new Dictionary<NuGetFramework, List<string>>(new NuGetFrameworkFullComparer());
+            bool allowSubFolders = true;
+            foreach (string file in reader.GetFiles(folder))
+            {
+                NuGetFramework frameworkFromPath = reader.GetFrameworkFromPath(file, allowSubFolders);
+                if (!groups.TryGetValue(frameworkFromPath, out List<string> stringList))
+                {
+                    stringList = new List<string>();
+                    groups.Add(frameworkFromPath, stringList);
+                }
+
+                stringList.Add(file);
+            }
+
+            foreach (NuGetFramework targetFramework in groups.Keys.OrderBy(e => e, new NuGetFrameworkSorter()))
+            {
+                yield return new FrameworkSpecificGroup(targetFramework, groups[targetFramework].OrderBy(e => e, StringComparer.OrdinalIgnoreCase));
+            }
+        }
+
+        private static NuGetFramework GetFrameworkFromPath(this PackageReaderBase reader, string path, bool allowSubFolders = false)
+        {
+            var nuGetFramework = NuGetFramework.AnyFramework;
+            string[] strArray = path.Split(new char[1] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            if (strArray.Length == 3 || strArray.Length > 3 & allowSubFolders)
+            {
+                string folderName = strArray[1];
+                NuGetFramework folder;
+                try
+                {
+                    folder = NuGetFramework.ParseFolder(folderName, _frameworkNameProvider);
+                }
+                catch (ArgumentException ex)
+                {
+                    throw new PackagingException(string.Format(CultureInfo.CurrentCulture, "There is a invalid project {0}, {1}", path, reader.GetIdentity()), ex);
+                }
+
+                if (folder.IsSpecificFramework)
+                {
+                    nuGetFramework = folder;
+                }
+            }
+
+            return nuGetFramework;
         }
     }
 }

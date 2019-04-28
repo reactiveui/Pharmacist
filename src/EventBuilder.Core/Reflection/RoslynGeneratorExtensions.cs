@@ -53,11 +53,7 @@ namespace EventBuilder.Core.Reflection
 
         public static TypeSyntax GenerateObservableType(this TypeArgumentListSyntax argumentList)
         {
-            return QualifiedName(
-                IdentifierName("System"),
-                GenericName(
-                        Identifier("IObservable"))
-                    .WithTypeArgumentList(argumentList));
+            return QualifiedName(IdentifierName("System"), GenericName(Identifier("IObservable")).WithTypeArgumentList(argumentList));
         }
 
         public static PropertyDeclarationSyntax WithObsoleteAttribute(this PropertyDeclarationSyntax syntax, IEntity eventDetails)

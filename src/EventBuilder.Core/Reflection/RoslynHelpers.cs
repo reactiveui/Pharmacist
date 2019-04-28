@@ -3,7 +3,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection.PortableExecutable;
 using EventBuilder.Core.Reflection.Compilation;
@@ -32,7 +34,17 @@ namespace EventBuilder.Core.Reflection
         {
             var modules = targetAssemblies.Select(x => new PEFile(x, PEStreamOptions.PrefetchMetadata));
 
-            return new EventBuilderCompiler(modules, searchDirectories);
+            var foundDirectories = new HashSet<string>();
+            foreach (var searchDirectory in searchDirectories)
+            {
+                var directoryInfo = new DirectoryInfo(searchDirectory);
+                foundDirectories.UnionWith(
+                    directoryInfo.EnumerateDirectories("*.*", SearchOption.AllDirectories)
+                        .Where(x => x.EnumerateFiles().Any(file => file.FullName.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase) || file.FullName.EndsWith(".winmd", StringComparison.InvariantCultureIgnoreCase)))
+                        .Select(x => x.FullName));
+            }
+
+            return new EventBuilderCompiler(modules, foundDirectories.ToList());
         }
     }
 }
