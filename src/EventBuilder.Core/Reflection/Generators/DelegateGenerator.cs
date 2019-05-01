@@ -116,9 +116,9 @@ namespace EventBuilder.Core.Reflection.Generators
             // Produces:
             // /// <inheritdoc />
             // public override void MethodName(params..) => _methodName.OnNext(...);
-            InvocationExpressionSyntax methodBody = InvocationExpression(MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression, IdentifierName(observableName), IdentifierName("OnNext")));
+            var methodBody = InvocationExpression(MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression, IdentifierName(observableName), IdentifierName("OnNext")));
 
-            var methodParameterList = GenerateMethodParameters(method);
+            var methodParameterList = method.GenerateMethodParameters();
 
             // If we have any members call our observables with the parameters.
             if (method.Parameters.Count > 0)
@@ -146,20 +146,6 @@ namespace EventBuilder.Core.Reflection.Generators
                 .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.OverrideKeyword)))
                 .WithLeadingTrivia(XmlSyntaxFactory.InheritdocSyntax)
                 .WithSemicolonToken(Token(SyntaxKind.SemicolonToken));
-        }
-
-        private static ParameterListSyntax GenerateMethodParameters(IMethod method)
-        {
-            if (method.Parameters.Count == 0)
-            {
-                return ParameterList();
-            }
-
-            return ParameterList(
-                SeparatedList(
-                    method.Parameters.Select(
-                        x => Parameter(Identifier(x.Name))
-                            .WithType(IdentifierName(x.Type.GenerateFullGenericName())))));
         }
     }
 }

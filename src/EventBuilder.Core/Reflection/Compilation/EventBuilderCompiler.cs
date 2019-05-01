@@ -34,10 +34,10 @@ namespace EventBuilder.Core.Reflection.Compilation
             Init(modules, searchDirectories.ToList());
         }
 
-        protected EventBuilderCompiler()
-        {
-        }
-
+        /// <summary>
+        /// Gets the main module we are extracting information from.
+        /// This is mostly just here due to ILDecompile needing it.
+        /// </summary>
         public IModule MainModule
         {
             get
@@ -51,6 +51,9 @@ namespace EventBuilder.Core.Reflection.Compilation
             }
         }
 
+        /// <summary>
+        /// Gets the modules we want to extract events from.
+        /// </summary>
         public IReadOnlyList<IModule> Modules
         {
             get
@@ -64,6 +67,10 @@ namespace EventBuilder.Core.Reflection.Compilation
             }
         }
 
+        /// <summary>
+        /// Gets the referenced modules. These are support modules where we want additional information about types from.
+        /// This will likely be either the system reference libraries or .NET Standard libraries.
+        /// </summary>
         public IReadOnlyList<IModule> ReferencedModules
         {
             get
@@ -77,6 +84,9 @@ namespace EventBuilder.Core.Reflection.Compilation
             }
         }
 
+        /// <summary>
+        /// Gets the root namespace for our assemblies. We can start analyzing from here.
+        /// </summary>
         public INamespace RootNamespace
         {
             get
@@ -96,8 +106,14 @@ namespace EventBuilder.Core.Reflection.Compilation
             }
         }
 
+        /// <summary>
+        /// Gets the comparer we are going to use for comparing names of items. We just compare ordinally.
+        /// </summary>
         public StringComparer NameComparer => StringComparer.Ordinal;
 
+        /// <summary>
+        /// Gets the cache manager. This is mostly here for ILDecompile.
+        /// </summary>
         public CacheManager CacheManager { get; } = new CacheManager();
 
         public virtual INamespace GetNamespaceForExternAlias(string alias)

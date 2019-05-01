@@ -78,7 +78,7 @@ namespace EventBuilder.Core.Reflection
         /// <returns>The name of the items.</returns>
         public static IReadOnlyCollection<ITypeDefinition> GetReferenceTypeDefinitionsWithFullName(this ICompilation compilation, string name)
         {
-            var map = _typeNameMapping.GetOrAdd(compilation, comp => comp.ReferencedModules.Concat(compilation.Modules).SelectMany(x => x.TypeDefinitions).GroupBy(x => x.FullName).ToImmutableDictionary(x => x.Key, x => x.ToImmutableList()));
+            var map = _typeNameMapping.GetOrAdd(compilation, comp => comp.ReferencedModules.Concat(compilation.Modules).SelectMany(x => x.TypeDefinitions).GroupBy(x => x.ReflectionName).ToImmutableDictionary(x => x.Key, x => x.ToImmutableList()));
 
             return map.GetValueOrDefault(name);
         }
@@ -125,7 +125,7 @@ namespace EventBuilder.Core.Reflection
             return sb.ToString();
         }
 
-        public static string GetEventArgsName(this IEvent eventDetails)
+        public static IType GetEventType(this IEvent eventDetails)
         {
             ICompilation compilation = eventDetails.Compilation;
 
@@ -136,11 +136,7 @@ namespace EventBuilder.Core.Reflection
                 return null;
             }
 
-            IType type = eventDetails.ReturnType;
-            if (type is UnknownType)
-            {
-                type = compilation.GetReferenceTypeDefinitionsWithFullName(eventDetails.ReturnType.FullName).FirstOrDefault();
-            }
+            IType type = GetRealType(eventDetails.ReturnType, compilation);
 
             if (type == null)
             {
@@ -148,21 +144,28 @@ namespace EventBuilder.Core.Reflection
                 return null;
             }
 
-            if (type is ParameterizedType genericType)
+            return type;
+        }
+
+        public static IType GetRealType(this IType type, ICompilation compilation)
+        {
+            if (type is UnknownType || type.Kind == TypeKind.Unknown)
             {
-                return genericType.GenerateFullGenericName();
+                if (type.TypeParameterCount == 0)
+                {
+                    type = compilation.GetReferenceTypeDefinitionsWithFullName(type.ReflectionName).FirstOrDefault();
+                }
+                else if (type is ParameterizedType paramType)
+                {
+                    var genericType = compilation.GetReferenceTypeDefinitionsWithFullName(paramType.GenericType.ReflectionName).FirstOrDefault();
+
+                    var typeArguments = type.TypeArguments.Select(x => GetRealType(x, compilation));
+
+                    type = new ParameterizedType(genericType, typeArguments);
+                }
             }
 
-            var invoke = type.GetMethods().First(x => x.Name == "Invoke");
-
-            if (invoke.Parameters.Count != 2)
-            {
-                return null;
-            }
-
-            var param = invoke.Parameters[1];
-
-            return param.Type.GenerateFullGenericName();
+            return type;
         }
 
         private static IImmutableList<ITypeDefinition> GetPublicTypeDefinitionsWithEvents(ICompilation compilation)

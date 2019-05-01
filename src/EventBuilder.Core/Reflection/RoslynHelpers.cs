@@ -15,6 +15,8 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
+
 namespace EventBuilder.Core.Reflection
 {
     /// <summary>
@@ -28,7 +30,12 @@ namespace EventBuilder.Core.Reflection
         /// <summary>
         /// Gets an argument which access System.Reactive.Unit.Default member.
         /// </summary>
-        public static ArgumentListSyntax ReactiveUnitArgumentList { get; } = SyntaxFactory.ArgumentList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.Argument(SyntaxFactory.IdentifierName(ObservableUnitName + ".Default"))));
+        public static ArgumentListSyntax ReactiveUnitArgumentList { get; } = ArgumentList(SingletonSeparatedList(Argument(IdentifierName(ObservableUnitName + ".Default"))));
+
+        /// <summary>
+        /// Gets an type argument which access System.Reactive.Unit.Default member.
+        /// </summary>
+        public static TypeArgumentListSyntax ReactiveUnitTypeArgumentList { get; } = TypeArgumentList(SingletonSeparatedList<TypeSyntax>(IdentifierName(ObservableUnitName)));
 
         public static ICompilation GetCompilation(IEnumerable<string> targetAssemblies, IEnumerable<string> searchDirectories)
         {

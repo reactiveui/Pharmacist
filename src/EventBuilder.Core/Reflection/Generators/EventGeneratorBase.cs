@@ -4,6 +4,8 @@
 // See the LICENSE file in the project root for full license information.
 
 using System.Collections.Generic;
+using System.Linq;
+
 using ICSharpCode.Decompiler.TypeSystem;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -32,22 +34,31 @@ namespace EventBuilder.Core.Reflection.Generators
         {
             // Produces:
             // public System.IObservable<eventArgs, eventHandler> EventName => System.Reactive.Linq.Observable.FromEventPattern();
-            var eventArgsName = eventDetails.GetEventArgsName();
+            var invokeMethod = eventDetails.GetEventType().GetDelegateInvokeMethod();
 
-            if (eventArgsName == null)
+            ArrowExpressionClauseSyntax expressionBody;
+            TypeSyntax observableEventArgType;
+
+            // Events must have a valid return type.
+            if (invokeMethod == null || invokeMethod.ReturnType.FullName != "System.Void")
             {
                 return null;
             }
 
-            return GenerateFromEventPatternAccessor(eventDetails, dataObjectName, eventArgsName);
-        }
+            // If we are using a standard approach of using 2 parameters use the "FromEventPattern", otherwise, use "FromEvent" where we have to use converters.
+            if (invokeMethod.Parameters.Count == 2)
+            {
+                (expressionBody, observableEventArgType) = GenerateFromEventPatternExpressionClauseAndType(eventDetails, dataObjectName, invokeMethod);
+            }
+            else
+            {
+                (expressionBody, observableEventArgType) = GenerateFromEventObservableExpressionClauseAndType(eventDetails, dataObjectName, invokeMethod);
+            }
 
-        private static PropertyDeclarationSyntax GenerateFromEventPatternAccessor(IEvent eventDetails, string dataObjectName, string eventArgsName)
-        {
-            var eventArgsType = IdentifierName(eventArgsName);
-            var observableEventArgType = TypeArgumentList(SingletonSeparatedList<TypeSyntax>(eventArgsType)).GenerateObservableType();
-
-            var returnType = eventDetails.ReturnType.GenerateFullGenericName();
+            if (observableEventArgType == null || expressionBody == null)
+            {
+                return null;
+            }
 
             SyntaxTokenList modifiers = eventDetails.IsStatic
                 ? TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword))
@@ -55,57 +66,163 @@ namespace EventBuilder.Core.Reflection.Generators
 
             return PropertyDeclaration(observableEventArgType, eventDetails.Name)
                 .WithModifiers(modifiers)
-                    .WithExpressionBody(
-                        ArrowExpressionClause(
-                            InvocationExpression(
-                                MemberAccessExpression(
-                                    SyntaxKind.SimpleMemberAccessExpression,
-                                    InvocationExpression(
-                                        MemberAccessExpression(
-                                            SyntaxKind.SimpleMemberAccessExpression,
-                                            IdentifierName("System.Reactive.Linq.Observable"),
-                                            GenericName(Identifier("FromEventPattern"))
-                                            .WithTypeArgumentList(
-                                                TypeArgumentList(
-                                                    SeparatedList<TypeSyntax>(
-                                                        new SyntaxNodeOrToken[]
-                                                        {
-                                                            IdentifierName(returnType),
-                                                            Token(SyntaxKind.CommaToken),
-                                                            eventArgsType
-                                                        })))))
-                                    .WithArgumentList(
-                                        ArgumentList(
-                                            SeparatedList<ArgumentSyntax>(
-                                                new SyntaxNodeOrToken[]
-                                                {
-                                                    GenerateArgumentEventAccessor(SyntaxKind.AddAssignmentExpression, eventDetails.Name, dataObjectName),
-                                                    Token(SyntaxKind.CommaToken),
-                                                    GenerateArgumentEventAccessor(SyntaxKind.SubtractAssignmentExpression, eventDetails.Name, dataObjectName)
-                                                }))),
-                                    IdentifierName("Select")))
-                            .WithArgumentList(
-                                ArgumentList(
-                                    SingletonSeparatedList(
-                                        Argument(
-                                            SimpleLambdaExpression(
-                                                Parameter(
-                                                    Identifier("x")),
-                                                MemberAccessExpression(
-                                                    SyntaxKind.SimpleMemberAccessExpression,
-                                                    IdentifierName("x"),
-                                                    IdentifierName("EventArgs")))))))))
+                .WithExpressionBody(expressionBody)
                 .WithSemicolonToken(Token(SyntaxKind.SemicolonToken))
                 .WithObsoleteAttribute(eventDetails)
                 .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Gets an observable which signals when when the {0} event triggers.", eventDetails.FullName));
+        }
+
+        private static (ArrowExpressionClauseSyntax, TypeSyntax) GenerateFromEventObservableExpressionClauseAndType(IEvent eventDetails, string dataObjectName, IMethod invokeMethod)
+        {
+            var eventType = eventDetails.GetEventType();
+
+            ArrowExpressionClauseSyntax expression;
+            TypeSyntax typeSyntax;
+
+            // If we have no parameters, use the unit version of the arguments.
+            // If we have only one member, just pass that directly, since our observable will have one generic type parameter.
+            // If we have more than one parameter we have to pass them by value tuples, since observables only have one generic type parameter.
+            if (eventType.FullName == "System.Action" && eventType.TypeParameterCount == 0)
+            {
+                typeSyntax = TypeArgumentList(SingletonSeparatedList<TypeSyntax>(IdentifierName(RoslynHelpers.ObservableUnitName))).GenerateObservableType();
+                expression = GenerateUnitFromEventExpression(eventDetails, dataObjectName);
+            }
+            else
+            {
+                (expression, typeSyntax) = GenerateFromEventExpression(eventDetails, invokeMethod, dataObjectName);
+            }
+
+            return (expression, typeSyntax);
+        }
+
+        private static (ArrowExpressionClauseSyntax, TypeSyntax) GenerateFromEventExpression(IEvent eventDetails, IMethod invokeMethod, string dataObjectName)
+        {
+            var returnType = IdentifierName(eventDetails.ReturnType.GenerateFullGenericName());
+
+            ArgumentListSyntax methodParametersArgumentList;
+            TypeSyntax eventArgsType;
+
+            // If we have any members call our observables with the parameters.
+            if (invokeMethod.Parameters.Count > 0)
+            {
+                // If we have only one member, just pass that directly, since our observable will have one generic type parameter.
+                // If we have more than one parameter we have to pass them by value tuples, since observables only have one generic type parameter.
+                methodParametersArgumentList = invokeMethod.Parameters.Count == 1 ? invokeMethod.Parameters[0].GenerateArgumentList() : invokeMethod.Parameters.GenerateTupleArgumentList();
+                eventArgsType = invokeMethod.Parameters.Count == 1 ? IdentifierName(invokeMethod.Parameters[0].Type.GenerateFullGenericName()) : invokeMethod.Parameters.Select(x => x.Type).GenerateTupleType();
+            }
+            else
+            {
+                methodParametersArgumentList = RoslynHelpers.ReactiveUnitArgumentList;
+                eventArgsType = IdentifierName(RoslynHelpers.ObservableUnitName);
+            }
+
+            var eventName = eventDetails.Name;
+
+            var localFunctionExpression = LocalFunctionStatement(
+                                                PredefinedType(Token(SyntaxKind.VoidKeyword)),
+                                                Identifier("Handler"))
+                                            .WithParameterList(invokeMethod.GenerateMethodParameters())
+                                            .WithExpressionBody(
+                                                ArrowExpressionClause(
+                                                    InvocationExpression(IdentifierName("eventHandler"))
+                                                        .WithArgumentList(methodParametersArgumentList)))
+                                            .WithSemicolonToken(Token(SyntaxKind.SemicolonToken));
+
+            var conversionLambdaExpression = SimpleLambdaExpression(
+                Parameter(Identifier("eventHandler")),
+                Block(localFunctionExpression, ReturnStatement(IdentifierName("Handler"))));
+
+            var fromEventTypeParameters = TypeArgumentList(SeparatedList<TypeSyntax>(new SyntaxNodeOrToken[] { returnType, Token(SyntaxKind.CommaToken), eventArgsType }));
+
+            var expression = ArrowExpressionClause(
+                InvocationExpression(
+                    MemberAccessExpression(
+                        SyntaxKind.SimpleMemberAccessExpression,
+                        IdentifierName("System.Reactive.Linq.Observable"),
+                        GenericName(Identifier("FromEvent"))
+                            .WithTypeArgumentList(fromEventTypeParameters)))
+                        .WithArgumentList(
+                            ArgumentList(
+                                SeparatedList<ArgumentSyntax>(
+                                    new SyntaxNodeOrToken[]
+                                    {
+                                            Argument(conversionLambdaExpression),
+                                            Token(SyntaxKind.CommaToken),
+                                            GenerateArgumentEventAccessor(SyntaxKind.AddAssignmentExpression, eventName, dataObjectName),
+                                            Token(SyntaxKind.CommaToken),
+                                            GenerateArgumentEventAccessor(SyntaxKind.SubtractAssignmentExpression, eventName, dataObjectName)
+                                    }))));
+
+            return (expression, eventArgsType.GenerateObservableType());
+        }
+
+        private static ArrowExpressionClauseSyntax GenerateUnitFromEventExpression(IEvent eventDetails, string dataObjectName)
+        {
+            var eventName = eventDetails.Name;
+            return ArrowExpressionClause(
+                InvocationExpression(
+                        MemberAccessExpression(
+                            SyntaxKind.SimpleMemberAccessExpression,
+                            IdentifierName("System.Reactive.Linq.Observable"),
+                            GenericName(Identifier("FromEvent"))))
+                            .WithArgumentList(
+                                ArgumentList(
+                                    SeparatedList<ArgumentSyntax>(
+                                        new SyntaxNodeOrToken[]
+                                        {
+                                            GenerateArgumentEventAccessor(SyntaxKind.AddAssignmentExpression, eventName, dataObjectName),
+                                            Token(SyntaxKind.CommaToken),
+                                            GenerateArgumentEventAccessor(SyntaxKind.SubtractAssignmentExpression, eventName, dataObjectName)
+                                        }))));
+        }
+
+        private static (ArrowExpressionClauseSyntax, TypeSyntax) GenerateFromEventPatternExpressionClauseAndType(IEvent eventDetails, string dataObjectName, IMethod invokeMethod)
+        {
+            var param = invokeMethod.Parameters[1];
+
+            var eventArgsName = param.Type.GenerateFullGenericName();
+            var eventName = eventDetails.Name;
+            var eventArgsType = IdentifierName(eventArgsName);
+            var observableEventArgType = eventArgsType.GenerateObservableType();
+
+            var returnType = IdentifierName(eventDetails.ReturnType.GenerateFullGenericName());
+
+            var expression = ArrowExpressionClause(
+                InvocationExpression(
+                        MemberAccessExpression(
+                            SyntaxKind.SimpleMemberAccessExpression,
+                            InvocationExpression(
+                                MemberAccessExpression(
+                                    SyntaxKind.SimpleMemberAccessExpression,
+                                    IdentifierName("System.Reactive.Linq.Observable"),
+                                    GenericName(Identifier("FromEventPattern"))
+                                        .WithTypeArgumentList(
+                                            TypeArgumentList(
+                                                SeparatedList<TypeSyntax>(new SyntaxNodeOrToken[] { returnType, Token(SyntaxKind.CommaToken), eventArgsType })))))
+                                .WithArgumentList(
+                                    ArgumentList(
+                                        SeparatedList<ArgumentSyntax>(
+                                            new SyntaxNodeOrToken[] { GenerateArgumentEventAccessor(SyntaxKind.AddAssignmentExpression, eventName, dataObjectName), Token(SyntaxKind.CommaToken), GenerateArgumentEventAccessor(SyntaxKind.SubtractAssignmentExpression, eventName, dataObjectName) }))),
+                            IdentifierName("Select")))
+                                .WithArgumentList(
+                                    ArgumentList(
+                                        SingletonSeparatedList(
+                                            Argument(
+                                                SimpleLambdaExpression(
+                                                    Parameter(Identifier("x")),
+                                                    MemberAccessExpression(
+                                                        SyntaxKind.SimpleMemberAccessExpression,
+                                                        IdentifierName("x"),
+                                                        IdentifierName("EventArgs"))))))));
+
+            return (expression, observableEventArgType);
         }
 
         private static ArgumentSyntax GenerateArgumentEventAccessor(SyntaxKind accessor, string eventName, string dataObjectName)
         {
             return Argument(
                 SimpleLambdaExpression(
-                    Parameter(
-                        Identifier("x")),
+                    Parameter(Identifier("x")),
                     AssignmentExpression(
                         accessor,
                         MemberAccessExpression(

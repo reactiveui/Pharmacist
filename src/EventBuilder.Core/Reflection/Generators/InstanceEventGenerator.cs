@@ -19,7 +19,7 @@ namespace EventBuilder.Core.Reflection.Generators
         private const string DataFieldName = "_data";
 
         public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, IEnumerable<IEvent> events)> declarations) => declarations.GroupBy(x => x.typeDefinition.Namespace)
-            .Select(x => NamespaceDeclaration(IdentifierName(x.Key)).WithMembers(List<MemberDeclarationSyntax>(GenerateClasses(x.Key, x))));
+            .Select(x => GenerateNamespace(x.Key, x));
 
         private static ClassDeclarationSyntax GenerateStaticClass(string namespaceName, IEnumerable<ITypeDefinition> declarations)
         {
@@ -86,16 +86,23 @@ namespace EventBuilder.Core.Reflection.Generators
                 .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class which wraps the events contained within the {0} class as observables.", typeDefinition.GenerateFullGenericName()));
         }
 
-        private IEnumerable<ClassDeclarationSyntax> GenerateClasses(string namespaceName, IEnumerable<(ITypeDefinition typeDefinition, IEnumerable<IEvent> events)> declarations)
+        private static NamespaceDeclarationSyntax GenerateNamespace(string namespaceName, IEnumerable<(ITypeDefinition typeDefinition, IEnumerable<IEvent> events)> declarations)
         {
-            var classes = new List<ClassDeclarationSyntax>();
+            var members = new List<ClassDeclarationSyntax>();
 
             var orderedTypeDeclarations = declarations.OrderBy(x => x.typeDefinition.Name).ToList();
 
-            classes.Add(GenerateStaticClass(namespaceName, orderedTypeDeclarations.Select(x => x.typeDefinition)));
-            classes.AddRange(orderedTypeDeclarations.Select(x => GenerateEventWrapperClass(x.typeDefinition, x.events)));
+            members.Add(GenerateStaticClass(namespaceName, orderedTypeDeclarations.Select(x => x.typeDefinition)));
+            members.AddRange(orderedTypeDeclarations.Select(x => GenerateEventWrapperClass(x.typeDefinition, x.events)).Where(x => x != null));
 
-            return classes;
+            var namespaceDeclaration = NamespaceDeclaration(IdentifierName(namespaceName));
+
+            if (members.Count > 0)
+            {
+                return namespaceDeclaration.WithMembers(List<MemberDeclarationSyntax>(members));
+            }
+
+            return namespaceDeclaration;
         }
     }
 }

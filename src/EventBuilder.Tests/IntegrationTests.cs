@@ -5,9 +5,13 @@
 
 using System;
 using System.IO;
+using System.Linq;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 
 using EventBuilder.Core;
+using EventBuilder.Core.NuGet;
+using EventBuilder.IntegrationTest;
 
 using NuGet.Frameworks;
 using NuGet.Packaging.Core;
@@ -37,6 +41,30 @@ namespace EventBuilder.Tests
                 await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, framework).ConfigureAwait(false);
                 memoryStream.Flush();
 
+                using (var sr = new StreamReader(memoryStream))
+                {
+                    var contents = sr.ReadToEnd();
+
+                    contents.ShouldNotBeEmpty();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Tests to make sure the Tizen platform produces the expected results.
+        /// </summary>
+        /// <returns>A task to monitor the progress.</returns>
+        [Fact]
+        public async Task IntegrationTestAssemblyTest()
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                var folders = (await NuGetPackageHelper.DownloadPackageAndGetLibFilesAndFolder(new PackageIdentity("NETStandard.Library", new NuGetVersion("2.0.0"))).ConfigureAwait(false)).Select(x => x.folder);
+
+                await ObservablesForEventGenerator.ExtractEventsFromAssemblies(memoryStream, new[] { typeof(InstanceClass).Assembly.Location }, folders).ConfigureAwait(false);
+                memoryStream.Flush();
+
+                memoryStream.Position = 0;
                 using (var sr = new StreamReader(memoryStream))
                 {
                     var contents = sr.ReadToEnd();

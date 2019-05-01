@@ -105,12 +105,11 @@ namespace EventBuilder.Core
 
             var compilationOutputSyntax = SyntaxFactory.CompilationUnit().WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))));
 
-            using (StreamWriter streamWriter = new StreamWriter(outputStream))
-            {
-                await streamWriter.WriteAsync(await TemplateManager.GetTemplateAsync(TemplateManager.HeaderTemplate).ConfigureAwait(false)).ConfigureAwait(false);
-                await streamWriter.WriteAsync(Environment.NewLine).ConfigureAwait(false);
-                await streamWriter.WriteAsync(compilationOutputSyntax.NormalizeWhitespace(elasticTrivia: true).ToString()).ConfigureAwait(false);
-            }
+            StreamWriter streamWriter = new StreamWriter(outputStream);
+            await streamWriter.WriteAsync(await TemplateManager.GetTemplateAsync(TemplateManager.HeaderTemplate).ConfigureAwait(false)).ConfigureAwait(false);
+            await streamWriter.WriteAsync(Environment.NewLine).ConfigureAwait(false);
+            await streamWriter.WriteAsync(compilationOutputSyntax.NormalizeWhitespace(elasticTrivia: true).ToString()).ConfigureAwait(false);
+            await streamWriter.FlushAsync().ConfigureAwait(false);
         }
     }
 }

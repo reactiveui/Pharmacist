@@ -4,7 +4,9 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -62,7 +64,7 @@ namespace EventBuilder.Core.NuGet
             supportPackageIdentities = (supportPackageIdentities ?? Array.Empty<PackageIdentity>()).Concat(defaultSupportLibrary).Distinct();
 
             // Combine together the primary/secondary packages, boolean value to indicate if we should include in our output.
-            var packagesToDownload = new List<(PackageIdentity packageIdentity, bool includeFiles)> { (packageIdentity, true) };
+            var packagesToDownload = new SortedSet<(PackageIdentity packageIdentity, bool includeFiles)>(NuGetPackageIdentityComparer.Default) { (packageIdentity, true) };
             packagesToDownload.AddRange(supportPackageIdentities.Select(x => (x, false)));
 
             return await Task.WhenAll(packagesToDownload
@@ -167,6 +169,17 @@ namespace EventBuilder.Core.NuGet
             }
 
             return nuGetFramework;
+        }
+
+        private class NuGetPackageIdentityComparer : IComparer<(PackageIdentity, bool)>
+        {
+            public static NuGetPackageIdentityComparer Default { get; } = new NuGetPackageIdentityComparer();
+
+            /// <inheritdoc />
+            public int Compare((PackageIdentity, bool) x, (PackageIdentity, bool) y)
+            {
+                return x.Item1.CompareTo(y.Item1);
+            }
         }
     }
 }

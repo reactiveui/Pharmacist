@@ -5,12 +5,18 @@
 
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
 using CommandLine.Text;
 using EventBuilder.CommandOptions;
 using EventBuilder.Core;
+using EventBuilder.Core.NuGet;
+
+using NuGet.Packaging.Core;
+using NuGet.Versioning;
+
 using Serilog;
 using Serilog.Events;
 using Parser = CommandLine.Parser;
@@ -64,7 +70,29 @@ namespace EventBuilder.Console
                 {
                     try
                     {
-                        await ObservablesForEventGenerator.ExtractEventsFromPlatforms(options.OutputPath, options.OutputPrefix, options.Assemblies, options.SearchDirectories).ConfigureAwait(false);
+                        using (var stream = new FileStream(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs"), FileMode.Create, FileAccess.Write))
+                        {
+                            await ObservablesForEventGenerator.ExtractEventsFromAssemblies(stream, options.Assemblies, options.SearchDirectories).ConfigureAwait(false);
+                        }
+
+                        return ExitCode.Success;
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Fatal(ex.ToString());
+                        return ExitCode.Error;
+                    }
+                },
+                async (NugetCommandLineOptions options) =>
+                {
+                    try
+                    {
+                        using (var stream = new FileStream(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs"), FileMode.Create, FileAccess.Write))
+                        {
+                            var packageIdentity = new PackageIdentity(options.NugetPackageName, new NuGetVersion(options.NugetVersion));
+                            var nugetFramework = options.TargetFramework.ToFramework();
+                            await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, packageIdentity, nugetFramework).ConfigureAwait(false);
+                        }
 
                         return ExitCode.Success;
                     }

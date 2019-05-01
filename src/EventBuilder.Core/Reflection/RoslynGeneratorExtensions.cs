@@ -24,11 +24,33 @@ namespace EventBuilder.Core.Reflection
         public static ArgumentListSyntax GenerateArgumentList(this IParameter parameter) => ArgumentList(SingletonSeparatedList(Argument(IdentifierName(parameter.Name))));
 
         /// <summary>
-        /// Generates a argument list for a single parameter.
+        /// Generates a type argument list for a single type.
+        /// </summary>
+        /// <param name="type">The type to generate the type argument list for.</param>
+        /// <returns>The type argument list.</returns>
+        public static TypeArgumentListSyntax GenerateTypeArgumentList(this IType type) => TypeArgumentList(SingletonSeparatedList<TypeSyntax>(IdentifierName(type.GenerateFullGenericName())));
+
+        /// <summary>
+        /// Generates a argument list for a tuple parameter.
         /// </summary>
         /// <param name="parameters">The parameters to generate the argument list for.</param>
         /// <returns>The argument list.</returns>
         public static ArgumentListSyntax GenerateTupleArgumentList(this IEnumerable<IParameter> parameters) => ArgumentList(SingletonSeparatedList(Argument(TupleExpression(SeparatedList(parameters.Select(x => Argument(IdentifierName(x.Name))))))));
+
+        /// <summary>
+        /// Generates a type argument list for a tuple parameter.
+        /// </summary>
+        /// <param name="types">The types to generate the argument list for.</param>
+        /// <returns>The argument list.</returns>
+        public static TypeArgumentListSyntax GenerateTupleTypeArgumentList(this IEnumerable<IType> types)
+        {
+            return TypeArgumentList(SingletonSeparatedList(types.GenerateTupleType()));
+        }
+
+        public static TypeSyntax GenerateTupleType(this IEnumerable<IType> types)
+        {
+            return TupleType(SeparatedList(types.Select(x => TupleElement(IdentifierName(x.GenerateFullGenericName())))));
+        }
 
         public static TypeArgumentListSyntax GenerateObservableTypeArguments(this IMethod method)
         {
@@ -54,6 +76,11 @@ namespace EventBuilder.Core.Reflection
         public static TypeSyntax GenerateObservableType(this TypeArgumentListSyntax argumentList)
         {
             return QualifiedName(IdentifierName("System"), GenericName(Identifier("IObservable")).WithTypeArgumentList(argumentList));
+        }
+
+        public static TypeSyntax GenerateObservableType(this TypeSyntax argumentList)
+        {
+            return QualifiedName(IdentifierName("System"), GenericName(Identifier("IObservable")).WithTypeArgumentList(TypeArgumentList(SingletonSeparatedList(argumentList))));
         }
 
         public static PropertyDeclarationSyntax WithObsoleteAttribute(this PropertyDeclarationSyntax syntax, IEntity eventDetails)
@@ -90,6 +117,20 @@ namespace EventBuilder.Core.Reflection
             }
 
             return syntax.WithAttributeLists(SingletonList(attribute));
+        }
+
+        public static ParameterListSyntax GenerateMethodParameters(this IMethod method)
+        {
+            if (method.Parameters.Count == 0)
+            {
+                return ParameterList();
+            }
+
+            return ParameterList(
+                SeparatedList(
+                    method.Parameters.Select(
+                        x => Parameter(Identifier(x.Name))
+                            .WithType(IdentifierName(x.Type.GenerateFullGenericName())))));
         }
 
         /// <summary>
