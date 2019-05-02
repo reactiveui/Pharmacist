@@ -46,13 +46,18 @@ namespace EventBuilder.Core.Reflection.Generators
             }
 
             // If we are using a standard approach of using 2 parameters use the "FromEventPattern", otherwise, use "FromEvent" where we have to use converters.
-            if (invokeMethod.Parameters.Count == 2)
+            if (invokeMethod.Parameters.Count == 2 && invokeMethod.Parameters[0].Type.FullName == "System.Object")
             {
                 (expressionBody, observableEventArgType) = GenerateFromEventPatternExpressionClauseAndType(eventDetails, dataObjectName, invokeMethod);
             }
+            else if (invokeMethod.Parameters.Count == 0)
+            {
+                observableEventArgType = IdentifierName(RoslynHelpers.ObservableUnitName).GenerateObservableType();
+                expressionBody = GenerateUnitFromEventExpression(eventDetails, dataObjectName);
+            }
             else
             {
-                (expressionBody, observableEventArgType) = GenerateFromEventObservableExpressionClauseAndType(eventDetails, dataObjectName, invokeMethod);
+                (expressionBody, observableEventArgType) = GenerateFromEventExpression(eventDetails, invokeMethod, dataObjectName);
             }
 
             if (observableEventArgType == null || expressionBody == null)
@@ -70,29 +75,6 @@ namespace EventBuilder.Core.Reflection.Generators
                 .WithSemicolonToken(Token(SyntaxKind.SemicolonToken))
                 .WithObsoleteAttribute(eventDetails)
                 .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Gets an observable which signals when when the {0} event triggers.", eventDetails.FullName));
-        }
-
-        private static (ArrowExpressionClauseSyntax, TypeSyntax) GenerateFromEventObservableExpressionClauseAndType(IEvent eventDetails, string dataObjectName, IMethod invokeMethod)
-        {
-            var eventType = eventDetails.GetEventType();
-
-            ArrowExpressionClauseSyntax expression;
-            TypeSyntax typeSyntax;
-
-            // If we have no parameters, use the unit version of the arguments.
-            // If we have only one member, just pass that directly, since our observable will have one generic type parameter.
-            // If we have more than one parameter we have to pass them by value tuples, since observables only have one generic type parameter.
-            if (eventType.FullName == "System.Action" && eventType.TypeParameterCount == 0)
-            {
-                typeSyntax = TypeArgumentList(SingletonSeparatedList<TypeSyntax>(IdentifierName(RoslynHelpers.ObservableUnitName))).GenerateObservableType();
-                expression = GenerateUnitFromEventExpression(eventDetails, dataObjectName);
-            }
-            else
-            {
-                (expression, typeSyntax) = GenerateFromEventExpression(eventDetails, invokeMethod, dataObjectName);
-            }
-
-            return (expression, typeSyntax);
         }
 
         private static (ArrowExpressionClauseSyntax, TypeSyntax) GenerateFromEventExpression(IEvent eventDetails, IMethod invokeMethod, string dataObjectName)
@@ -164,7 +146,7 @@ namespace EventBuilder.Core.Reflection.Generators
                         MemberAccessExpression(
                             SyntaxKind.SimpleMemberAccessExpression,
                             IdentifierName("System.Reactive.Linq.Observable"),
-                            GenericName(Identifier("FromEvent"))))
+                            IdentifierName("FromEvent")))
                             .WithArgumentList(
                                 ArgumentList(
                                     SeparatedList<ArgumentSyntax>(
