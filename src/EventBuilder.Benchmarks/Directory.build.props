@@ -1,7 +1,0 @@
-<Project>
-  <Import Project="$(MSBuildThisFileDirectory)..\..\..\Directory.build.props" />
-
-  <PropertyGroup>
-    <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
-  </PropertyGroup>
-</Project>
