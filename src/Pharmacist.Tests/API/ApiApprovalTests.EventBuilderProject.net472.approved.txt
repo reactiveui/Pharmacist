@@ -1,0 +1,118 @@
+[assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute("Pharmacist.Benchmarks")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute("Pharmacist.Tests")]
+[assembly: System.Runtime.Versioning.TargetFrameworkAttribute(".NETStandard,Version=v2.0", FrameworkDisplayName="")]
+namespace Pharmacist.Core
+{
+    public enum AutoPlatform
+    {
+        Android = 0,
+        iOS = 1,
+        Mac = 2,
+        Tizen4 = 3,
+        WPF = 4,
+        XamForms = 5,
+        UWP = 6,
+        Winforms = 7,
+        TVOS = 8,
+        Essentials = 9,
+    }
+    public class static ObservablesForEventGenerator
+    {
+        public static System.Threading.Tasks.Task ExtractEventsFromAssemblies(System.IO.Stream outputStream, System.Collections.Generic.IEnumerable<string> assemblyPaths, System.Collections.Generic.IEnumerable<string> searchDirectories) { }
+        public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.Stream outputStream, NuGet.Packaging.Core.PackageIdentity package, NuGet.Frameworks.NuGetFramework framework) { }
+        public static System.Threading.Tasks.Task ExtractEventsFromPlatforms(string outputPath, string prefix, string defaultReferenceAssemblyLocation, System.Collections.Generic.IEnumerable<Pharmacist.Core.AutoPlatform> platforms) { }
+    }
+    public class static PlatformHelper
+    {
+        public static bool IsRunningOnMono() { }
+    }
+}
+namespace Pharmacist.Core.Extractors
+{
+    public interface IExtractor
+    {
+        System.Collections.Generic.List<string> Assemblies { get; }
+        System.Collections.Generic.List<string> SearchDirectories { get; }
+    }
+    public class NuGetExtractor : Pharmacist.Core.Extractors.IExtractor
+    {
+        public NuGetExtractor() { }
+        public System.Collections.Generic.List<string> Assemblies { get; }
+        public System.Collections.Generic.List<string> SearchDirectories { get; }
+        public System.Threading.Tasks.Task Extract(NuGet.Frameworks.NuGetFramework targetFramework, NuGet.Packaging.Core.PackageIdentity package) { }
+    }
+}
+namespace Pharmacist.Core.Extractors.PlatformExtractors
+{
+    public class Android : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public Android() { }
+        public override Pharmacist.Core.AutoPlatform Platform { get; }
+        public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
+    }
+    public abstract class BasePlatform : Pharmacist.Core.Extractors.IExtractor, Pharmacist.Core.Extractors.PlatformExtractors.IPlatformExtractor
+    {
+        protected BasePlatform() { }
+        public System.Collections.Generic.List<string> Assemblies { get; }
+        public abstract Pharmacist.Core.AutoPlatform Platform { get; }
+        public System.Collections.Generic.List<string> SearchDirectories { get; }
+        public abstract System.Threading.Tasks.Task Extract(string referenceAssembliesLocation);
+    }
+    public class iOS : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public iOS() { }
+        public override Pharmacist.Core.AutoPlatform Platform { get; }
+        public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
+    }
+    public interface IPlatformExtractor : Pharmacist.Core.Extractors.IExtractor
+    {
+        Pharmacist.Core.AutoPlatform Platform { get; }
+        System.Threading.Tasks.Task Extract(string referenceAssembliesLocation);
+    }
+    public class Mac : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public Mac() { }
+        public override Pharmacist.Core.AutoPlatform Platform { get; }
+        public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
+    }
+    public class TVOS : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public TVOS() { }
+        public override Pharmacist.Core.AutoPlatform Platform { get; }
+        public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
+    }
+    public class UWP : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public UWP() { }
+        public override Pharmacist.Core.AutoPlatform Platform { get; }
+        public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
+    }
+    public class Winforms : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public Winforms() { }
+        public override Pharmacist.Core.AutoPlatform Platform { get; }
+        public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
+    }
+    public class WPF : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public WPF() { }
+        public override Pharmacist.Core.AutoPlatform Platform { get; }
+        public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
+    }
+}
+namespace Pharmacist.Core.NuGet
+{
+    public class static NuGetFrameworkHelper
+    {
+        public static System.Collections.Generic.IEnumerable<NuGet.Packaging.Core.PackageIdentity> GetSupportLibraries(this NuGet.Frameworks.NuGetFramework framework) { }
+        public static NuGet.Frameworks.NuGetFramework ToFramework(this string frameworkName) { }
+    }
+    public class static NuGetPackageHelper
+    {
+        public static string PackageDirectory { get; }
+        [return: System.Runtime.CompilerServices.TupleElementNamesAttribute(new string[] {
+                "folder",
+                "files"})]
+        public static System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<System.ValueTuple<string, System.Collections.Generic.IEnumerable<string>>>> DownloadPackageAndGetLibFilesAndFolder(NuGet.Packaging.Core.PackageIdentity packageIdentity, NuGet.Frameworks.NuGetFramework framework = null, NuGet.Configuration.PackageSource nugetSource = null, System.Threading.CancellationToken token = null) { }
+    }
+}
