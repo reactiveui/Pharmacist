@@ -102,15 +102,16 @@ namespace Pharmacist.Core
         /// <returns>A task to monitor the progress.</returns>
         public static async Task ExtractEventsFromAssemblies(Stream outputStream, IEnumerable<string> assemblyPaths, IEnumerable<string> searchDirectories)
         {
-            var compilation = RoslynHelpers.GetCompilation(assemblyPaths, searchDirectories);
+            using (var compilation = RoslynHelpers.GetCompilation(assemblyPaths, searchDirectories))
+            {
+                var compilationOutputSyntax = SyntaxFactory.CompilationUnit().WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))));
 
-            var compilationOutputSyntax = SyntaxFactory.CompilationUnit().WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))));
-
-            StreamWriter streamWriter = new StreamWriter(outputStream);
-            await streamWriter.WriteAsync(await TemplateManager.GetTemplateAsync(TemplateManager.HeaderTemplate).ConfigureAwait(false)).ConfigureAwait(false);
-            await streamWriter.WriteAsync(Environment.NewLine).ConfigureAwait(false);
-            await streamWriter.WriteAsync(compilationOutputSyntax.NormalizeWhitespace(elasticTrivia: true).ToString()).ConfigureAwait(false);
-            await streamWriter.FlushAsync().ConfigureAwait(false);
+                StreamWriter streamWriter = new StreamWriter(outputStream);
+                await streamWriter.WriteAsync(await TemplateManager.GetTemplateAsync(TemplateManager.HeaderTemplate).ConfigureAwait(false)).ConfigureAwait(false);
+                await streamWriter.WriteAsync(Environment.NewLine).ConfigureAwait(false);
+                await streamWriter.WriteAsync(compilationOutputSyntax.NormalizeWhitespace(elasticTrivia: true).ToString()).ConfigureAwait(false);
+                await streamWriter.FlushAsync().ConfigureAwait(false);
+            }
         }
     }
 }

@@ -66,9 +66,7 @@ namespace Pharmacist.Core.NuGet
 
             var librariesToCopy = await GetPackagesToCopy(packageIdentity, source, framework, token).ConfigureAwait(false);
 
-            var output = librariesToCopy.Select(x => CopyPackageFiles(x.packageIdentity, x.downloadResourceResult, framework, x.includeFilesInOutput, token));
-
-            return output.ToList();
+            return CopyPackageFiles(librariesToCopy, framework, token);
         }
 
         private static async Task<IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)>> GetPackagesToCopy(PackageIdentity startingPackage, SourceRepository source, NuGetFramework framework, CancellationToken token)
@@ -117,26 +115,38 @@ namespace Pharmacist.Core.NuGet
             return packagesToCopy.Select(x => (x.Value.packageIdentity, x.Value.downloadResourceResult, x.Value.includeFilesInOutput));
         }
 
-        private static (string folder, IEnumerable<string> files) CopyPackageFiles(PackageIdentity package, DownloadResourceResult downloadResults, NuGetFramework framework, bool includeFilesInOutput, CancellationToken token)
+        private static IEnumerable<(string folder, IEnumerable<string> files)> CopyPackageFiles(IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)> packagesToProcess, NuGetFramework framework, CancellationToken token)
         {
-            var directory = Path.Combine(PackageDirectory, package.Id, package.Version.ToNormalizedString());
+            var output = new List<(string folder, IEnumerable<string> files)>();
+            foreach (var packageToProcess in packagesToProcess)
+            {
+                var (packageIdentity, downloadResourceResults, includeFilesInOutput) = packageToProcess;
+                var directory = Path.Combine(PackageDirectory, packageIdentity.Id, packageIdentity.Version.ToNormalizedString());
 
-            EnsureDirectory(directory);
+                EnsureDirectory(directory);
 
-            // Get all the folders in our lib and build directory of our nuget. These are the general contents we include in our projects.
-            var groups = DefaultFoldersToGrab.SelectMany(x => downloadResults.PackageReader.GetFileGroups(x));
+                // Get all the folders in our lib and build directory of our nuget. These are the general contents we include in our projects.
+                var groups = DefaultFoldersToGrab.SelectMany(x => downloadResourceResults.PackageReader.GetFileGroups(x));
 
-            // Select our groups that match our selected framework and have content.
-            var groupFiles = groups.Where(x => !x.HasEmptyFolder && x.TargetFramework.EqualToOrLessThan(framework)).SelectMany(x => x.Items).ToList();
+                // Select our groups that match our selected framework and have content.
+                var groupFiles = groups.Where(x => !x.HasEmptyFolder && x.TargetFramework.EqualToOrLessThan(framework)).SelectMany(x => x.Items).ToList();
 
-            // Extract the files, don't bother copying the XML file contents.
-            var packageFileExtractor = new PackageFileExtractor(groupFiles, XmlDocFileSaveMode.Skip);
+                // Extract the files, don't bother copying the XML file contents.
+                var packageFileExtractor = new PackageFileExtractor(groupFiles, XmlDocFileSaveMode.Skip);
 
-            // Copy the files to our extractor cache directory.
-            var outputFiles = downloadResults.PackageReader.CopyFiles(directory, groupFiles, packageFileExtractor.ExtractPackageFile, _logger, token);
+                // Copy the files to our extractor cache directory.
+                var outputFiles = downloadResourceResults.PackageReader.CopyFiles(directory, groupFiles, packageFileExtractor.ExtractPackageFile, _logger, token)
+                    .Where(x => x.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
+                    .ToList();
 
-            // Return the folder, if we aren't excluding files return all the assemblies.
-            return (directory, includeFilesInOutput ? outputFiles.Where(x => x.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)) : Enumerable.Empty<string>());
+                if (outputFiles.Count > 0)
+                {
+                    // Return the folder, if we aren't excluding files return all the assemblies.
+                    output.Add((directory, includeFilesInOutput ? outputFiles : Enumerable.Empty<string>()));
+                }
+            }
+
+            return output;
         }
 
         /// <summary>

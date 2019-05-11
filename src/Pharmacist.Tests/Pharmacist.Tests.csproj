@@ -15,4 +15,10 @@
     <ProjectReference Include="..\Pharmacist.Core\Pharmacist.Core.csproj" />
     <ProjectReference Include="..\Pharmacist.IntegrationTest\Pharmacist.IntegrationTest.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="xunit.runner.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

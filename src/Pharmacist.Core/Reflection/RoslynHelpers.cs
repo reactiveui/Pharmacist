@@ -37,7 +37,7 @@ namespace Pharmacist.Core.Reflection
         /// </summary>
         public static TypeArgumentListSyntax ReactiveUnitTypeArgumentList { get; } = SyntaxFactory.TypeArgumentList(SyntaxFactory.SingletonSeparatedList<TypeSyntax>(SyntaxFactory.IdentifierName(ObservableUnitName)));
 
-        public static ICompilation GetCompilation(IEnumerable<string> targetAssemblies, IEnumerable<string> searchDirectories)
+        public static EventBuilderCompiler GetCompilation(IEnumerable<string> targetAssemblies, IEnumerable<string> searchDirectories)
         {
             var modules = targetAssemblies.Select(x => new PEFile(x, PEStreamOptions.PrefetchMetadata));
 

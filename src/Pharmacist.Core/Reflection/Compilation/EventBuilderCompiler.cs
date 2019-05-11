@@ -21,7 +21,7 @@ namespace Pharmacist.Core.Reflection.Compilation
     /// <summary>
     /// Simple compilation implementation.
     /// </summary>
-    internal class EventBuilderCompiler : ICompilation
+    internal sealed class EventBuilderCompiler : ICompilation, IDisposable
     {
         private readonly KnownTypeCache _knownTypeCache;
         private readonly List<IModule> _assemblies = new List<IModule>();
@@ -117,7 +117,7 @@ namespace Pharmacist.Core.Reflection.Compilation
         /// </summary>
         public CacheManager CacheManager { get; } = new CacheManager();
 
-        public virtual INamespace GetNamespaceForExternAlias(string alias)
+        public INamespace GetNamespaceForExternAlias(string alias)
         {
             if (string.IsNullOrEmpty(alias))
             {
@@ -133,7 +133,21 @@ namespace Pharmacist.Core.Reflection.Compilation
             return _knownTypeCache.FindType(typeCode);
         }
 
-        protected void Init(IEnumerable<IModuleReference> mainAssemblies, IReadOnlyCollection<string> searchDirectories)
+        /// <inheritdoc />
+        public void Dispose()
+        {
+            foreach (var assembly in _assemblies)
+            {
+                assembly.PEFile.Dispose();
+            }
+
+            foreach (var referenceAssembly in _referencedAssemblies)
+            {
+                referenceAssembly.PEFile.Dispose();
+            }
+        }
+
+        private void Init(IEnumerable<IModuleReference> mainAssemblies, IReadOnlyCollection<string> searchDirectories)
         {
             if (mainAssemblies == null)
             {
@@ -195,7 +209,7 @@ namespace Pharmacist.Core.Reflection.Compilation
             _initialized = true;
         }
 
-        protected virtual INamespace CreateRootNamespace()
+        private INamespace CreateRootNamespace()
         {
             var namespaces = new List<INamespace>();
             foreach (var module in _assemblies)
