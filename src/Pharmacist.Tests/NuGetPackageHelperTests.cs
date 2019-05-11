@@ -114,8 +114,8 @@ namespace Pharmacist.Tests
 
         private static readonly string[] ExpectedTizenDirectories =
         {
-            "NETStandard.Library\\2.0.0",
-            "Tizen.NET.API4\\4.0.1.14152"
+            "NETStandard.Library" + Path.DirectorySeparatorChar + "2.0.0",
+            "Tizen.NET.API4" + Path.DirectorySeparatorChar + "4.0.1.14152"
         };
 
         /// <summary>
