@@ -21,7 +21,7 @@
 
 Pharmacist will convert events within an assembly and create observable wrappers for them. 
 
-It has been called pharmacist since it will generate Rx event subscripts, so it's a play on word about "Rx" which is short for prescriptions.
+It has been called pharmacist since it will generate Reactive Extensions (Rx) Observables for events, so it's a play on word about "Rx" which is short for prescriptions.
 
 It can generate the observables for the following:
 * System Platforms, such as Xamarin (iOS/Android/TVOS), UWP
