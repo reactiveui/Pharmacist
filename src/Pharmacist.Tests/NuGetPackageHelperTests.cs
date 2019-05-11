@@ -3,6 +3,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
+using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -177,8 +179,8 @@ namespace Pharmacist.Tests
 
             var actualFileNames = actualFiles.Select(Path.GetFileName).ToList();
             var actualDirectoryNames = actualDirectories.Select(x => x.Replace(NuGetPackageHelper.PackageDirectory + Path.DirectorySeparatorChar, string.Empty)).ToList();
-            Assert.True(!ExpectedTizenFiles.Except(actualFileNames).Any() && ExpectedTizenFiles.Length == actualFileNames.Count);
-            Assert.True(!ExpectedTizenDirectories.Except(actualDirectoryNames).Any() && ExpectedTizenDirectories.Length == actualDirectoryNames.Count);
+            ExpectedTizenFiles.ShouldHaveSameContents(actualFileNames);
+            ExpectedTizenDirectories.ShouldHaveSameContents(actualDirectoryNames);
         }
     }
 }
