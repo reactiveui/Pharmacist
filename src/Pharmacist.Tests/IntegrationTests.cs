@@ -41,6 +41,7 @@ namespace Pharmacist.Tests
                 await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, framework).ConfigureAwait(false);
                 memoryStream.Flush();
 
+                memoryStream.Position = 0;
                 using (var sr = new StreamReader(memoryStream))
                 {
                     var contents = sr.ReadToEnd();

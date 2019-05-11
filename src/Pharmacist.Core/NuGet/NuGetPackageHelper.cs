@@ -26,6 +26,9 @@ namespace Pharmacist.Core.NuGet
     /// </summary>
     public static class NuGetPackageHelper
     {
+        private const int ProcessingCount = 32;
+        private static readonly string[] DefaultFoldersToGrab = { PackagingConstants.Folders.Lib, PackagingConstants.Folders.Build, PackagingConstants.Folders.Ref };
+
         // Bunch of NuGet based objects we can cache and only create once.
         private static readonly string _globalPackagesPath = SettingsUtility.GetGlobalPackagesFolder(new XPlatMachineWideSetting().Settings);
         private static readonly NuGetLogger _logger = new NuGetLogger();
@@ -76,7 +79,9 @@ namespace Pharmacist.Core.NuGet
             var packagesToCopy = new Dictionary<string, (PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)>(StringComparer.InvariantCultureIgnoreCase);
 
             var stack = new ConcurrentStack<PackageIdentity>(new[] { startingPackage });
-            var currentItems = new PackageIdentity[32];
+            stack.PushRange(framework.GetSupportLibraries().ToArray());
+
+            var currentItems = new PackageIdentity[ProcessingCount];
             while (!stack.IsEmpty)
             {
                 var count = stack.TryPopRange(currentItems);
@@ -119,9 +124,7 @@ namespace Pharmacist.Core.NuGet
             EnsureDirectory(directory);
 
             // Get all the folders in our lib and build directory of our nuget. These are the general contents we include in our projects.
-            var groups = downloadResults.PackageReader.GetFileGroups(PackagingConstants.Folders.Lib).Concat(
-                          downloadResults.PackageReader.GetFileGroups(PackagingConstants.Folders.Build).Concat(
-                          downloadResults.PackageReader.GetFileGroups(PackagingConstants.Folders.Ref)));
+            var groups = DefaultFoldersToGrab.SelectMany(x => downloadResults.PackageReader.GetFileGroups(x));
 
             // Select our groups that match our selected framework and have content.
             var groupFiles = groups.Where(x => !x.HasEmptyFolder && x.TargetFramework.EqualToOrLessThan(framework)).SelectMany(x => x.Items).ToList();
@@ -136,11 +139,27 @@ namespace Pharmacist.Core.NuGet
             return (directory, includeFilesInOutput ? outputFiles.Where(x => x.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)) : Enumerable.Empty<string>());
         }
 
+        /// <summary>
+        /// Gets dependency packages that matches our framework (current version or below).
+        /// </summary>
+        /// <param name="downloadResults">The results where to get the dependencies from.</param>
+        /// <param name="framework">The framework to match dependencies for.</param>
+        /// <returns>The dependencies, or an empty array if there are no dependencies.</returns>
         private static IEnumerable<PackageIdentity> GetDependencyPackages(DownloadResourceResult downloadResults, NuGetFramework framework)
         {
-            return downloadResults.PackageReader.GetPackageDependencies()
+            // Grab the package dependency group that matches is closest to our framework.
+            var highestFramework = downloadResults.PackageReader.GetPackageDependencies()
                 .Where(dependency => dependency.TargetFramework.EqualToOrLessThan(framework))
-                .SelectMany(x => x.Packages.Select(package => new PackageIdentity(package.Id, package.VersionRange.MinVersion)));
+                .OrderByDescending(dependency => dependency.TargetFramework.Version)
+                .FirstOrDefault();
+
+            // If no packages match our framework just return an empty array.
+            if (highestFramework == null)
+            {
+                return Array.Empty<PackageIdentity>();
+            }
+
+            return highestFramework.Packages.Select(package => new PackageIdentity(package.Id, package.VersionRange.MinVersion));
         }
 
         private static void EnsureDirectory(string packageUnzipPath)

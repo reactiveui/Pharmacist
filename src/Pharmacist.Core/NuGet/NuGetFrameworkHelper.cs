@@ -71,11 +71,6 @@ namespace Pharmacist.Core.NuGet
         /// <returns>The package details or null if none is available.</returns>
         public static IEnumerable<PackageIdentity> GetSupportLibraries(this NuGetFramework framework)
         {
-            if (!framework.IsPackageBased)
-            {
-                return null;
-            }
-
             if (framework.Framework.StartsWith(".NETStandard", StringComparison.OrdinalIgnoreCase))
             {
                 return new[] { new PackageIdentity("NETStandard.Library", new NuGetVersion(framework.Version)) };
@@ -98,7 +93,12 @@ namespace Pharmacist.Core.NuGet
                 }
             }
 
-            return null;
+            if (framework.Framework.StartsWith(".NETFramework", StringComparison.OrdinalIgnoreCase))
+            {
+                return new[] { new PackageIdentity("Microsoft.NETFramework.ReferenceAssemblies", new NuGetVersion("1.0.0-preview.1")) };
+            }
+
+            return Array.Empty<PackageIdentity>();
         }
     }
 }
