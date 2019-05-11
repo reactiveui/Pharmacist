@@ -13,6 +13,8 @@ using NuGet.Versioning;
 
 using Pharmacist.Core.NuGet;
 
+using Shouldly;
+
 using Xunit;
 
 namespace Pharmacist.Tests
@@ -144,6 +146,19 @@ namespace Pharmacist.Tests
         {
             await GetAndCheckTizenPackage().ConfigureAwait(false);
             await GetAndCheckTizenPackage().ConfigureAwait(false);
+        }
+
+        [Fact]
+        public async Task CanGetNuGetProtocolAndDependencies()
+        {
+            var package = new PackageIdentity("NuGet.Protocol", new NuGetVersion("5.0.0"));
+            var framework = FrameworkConstants.CommonFrameworks.NetStandard20;
+
+            var result = (await NuGetPackageHelper
+                              .DownloadPackageAndGetLibFilesAndFolder(package, framework: framework)
+                              .ConfigureAwait(false)).ToList();
+
+            result.ShouldNotBeEmpty();
         }
 
         private static async Task GetAndCheckTizenPackage()
