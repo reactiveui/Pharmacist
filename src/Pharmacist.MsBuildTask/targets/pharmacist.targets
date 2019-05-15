@@ -9,8 +9,8 @@
 
   <PropertyGroup>
     <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)obj\$(Configuration)\</IntermediateOutputPath>
-    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildThisFileDirectory)..\..\lib\netstandard2.0\Pharmacist.BuildTasks.dll</PharmacistTaskAssemblyFile>
-    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildThisFileDirectory)..\..\lib\net461\Pharmacist.BuildTasks.dll</PharmacistTaskAssemblyFile>
+    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildThisFileDirectory)..\..\lib\netstandard2.0\Pharmacist.MsBuildTask.dll</PharmacistTaskAssemblyFile>
+    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildThisFileDirectory)..\..\lib\net461\Pharmacist.MsBuildTask.dll</PharmacistTaskAssemblyFile>
 
     <!-- Our default CLI version for error checking purposes -->
     <PharmacistNetCoreAppVersion>$(BundledNETCoreAppTargetFrameworkVersion)</PharmacistNetCoreAppVersion>
