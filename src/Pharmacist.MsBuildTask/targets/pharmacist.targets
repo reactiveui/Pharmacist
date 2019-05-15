@@ -9,10 +9,9 @@
 
   <PropertyGroup>
     <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)obj\$(Configuration)\</IntermediateOutputPath>
-    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)..\..\build\MSBuildCore21\Pharmacist.BuildTasks.dll</PharmacistTaskAssemblyFile>
-    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Core'">$(MSBuildThisFileDirectory)..\..\build\MSBuildFull46\Pharmacist.BuildTasks.dll</PharmacistTaskAssemblyFile>
+    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildThisFileDirectory)..\..\lib\netstandard2.0\Pharmacist.BuildTasks.dll</PharmacistTaskAssemblyFile>
+    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildThisFileDirectory)..\..\lib\net461\Pharmacist.BuildTasks.dll</PharmacistTaskAssemblyFile>
 
-    <PharmacistMinCoreVersionRequired>2.1</PharmacistMinCoreVersionRequired>
     <!-- Our default CLI version for error checking purposes -->
     <PharmacistNetCoreAppVersion>$(BundledNETCoreAppTargetFrameworkVersion)</PharmacistNetCoreAppVersion>
     <PharmacistNetCoreAppVersion Condition="'$(PharmacistNetCoreAppVersion)' == ''">1.0</PharmacistNetCoreAppVersion>
@@ -21,11 +20,6 @@
   <UsingTask TaskName="Pharmacist.MsBuildTask.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
 
   <Target Name="GeneratePharmacist" BeforeTargets="CoreCompile">
-    <Error Condition="'$(MSBuildRuntimeType)' == 'Core' and '$(PharmacistMinCoreVersionRequired)' > '$(PharmacistNetCoreAppVersion)' "
-           Text="Pharmacist requires at least the .NET Core SDK v2.1 to run with 'dotnet build'"
-           ContinueOnError="false"
-           />
-
     <PharmacistNuGetTask SourceFiles="@(PackageReference)"
                          TargetFramework="$(TargetFramework)"
                          OutputFile="$(IntermediateOutputPath)\Pharmacist.g.cs" />
