@@ -2,7 +2,7 @@
 
 ![](http://f.cl.ly/items/1307401C3x2g3F2p2Z36/Logo.png)
 
-[![NuGet Stats](https://img.shields.io/nuget/v/reactiveui.eventbuilder.svg)](https://www.nuget.org/packages/reactiveui.eventbuilder) [![Build Status](https://dev.azure.com/dotnet/ReactiveUI/_apis/build/status/Splat-CI)](https://dev.azure.com/dotnet/ReactiveUI/_build/latest?definitionId=48) [![Code Coverage](https://codecov.io/gh/reactiveui/splat/branch/master/graph/badge.svg)](https://codecov.io/gh/reactiveui/splat)
+[![NuGet Stats](https://img.shields.io/nuget/v/reactiveui.eventbuilder.svg)](https://www.nuget.org/packages/pharmacist.console) [![Build Status](https://dev.azure.com/dotnet/ReactiveUI/_apis/build/status/Pharmacist-CI)](https://dev.azure.com/dotnet/ReactiveUI/_build/latest?definitionId=82) [![Code Coverage](https://codecov.io/gh/reactiveui/pharmacist/branch/master/graph/badge.svg)](https://codecov.io/gh/reactiveui/pharmacist)
 <br>
 <a href="https://www.nuget.org/packages/reactiveui.eventbuilder">
         <img src="https://img.shields.io/nuget/dt/splat.svg">
@@ -21,7 +21,7 @@
 
 Pharmacist will convert events within an assembly and create observable wrappers for them. 
 
-It has been called pharmacist since it will generate Rx event subscripts, so it's a play on word about "Rx" which is short for prescriptions.
+It has been called pharmacist since it will generate Reactive Extensions (Rx) Observables for events, so it's a play on word about "Rx" which is short for prescriptions.
 
 It can generate the observables for the following:
 * System Platforms, such as Xamarin (iOS/Android/TVOS), UWP
