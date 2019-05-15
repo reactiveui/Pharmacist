@@ -2,11 +2,8 @@
 
 ![](http://f.cl.ly/items/1307401C3x2g3F2p2Z36/Logo.png)
 
-[![NuGet Stats](https://img.shields.io/nuget/v/reactiveui.eventbuilder.svg)](https://www.nuget.org/packages/pharmacist.console) [![Build Status](https://dev.azure.com/dotnet/ReactiveUI/_apis/build/status/Pharmacist-CI)](https://dev.azure.com/dotnet/ReactiveUI/_build/latest?definitionId=82) [![Code Coverage](https://codecov.io/gh/reactiveui/pharmacist/branch/master/graph/badge.svg)](https://codecov.io/gh/reactiveui/pharmacist)
+[![Build Status](https://dev.azure.com/dotnet/ReactiveUI/_apis/build/status/Pharmacist-CI)](https://dev.azure.com/dotnet/ReactiveUI/_build/latest?definitionId=82) [![Code Coverage](https://codecov.io/gh/reactiveui/pharmacist/branch/master/graph/badge.svg)](https://codecov.io/gh/reactiveui/pharmacist)
 <br>
-<a href="https://www.nuget.org/packages/reactiveui.eventbuilder">
-        <img src="https://img.shields.io/nuget/dt/splat.svg">
-</a>
 <a href="#backers">
         <img src="https://opencollective.com/reactiveui/backers/badge.svg">
 </a>
@@ -16,6 +13,25 @@
 <a href="https://reactiveui.net/slack">
         <img src="https://img.shields.io/badge/chat-slack-blue.svg">
 </a>
+
+## NuGet Packages
+
+Install the following packages to start using Pharmacist.
+
+| Platform          | NuGet                |
+| ----------------- | ---------------------------------|
+| Core - Libary     | [![CoreBadge]][Core]             |
+| Global Tool       | [![GlobalToolBadge]][GlobalTool] |
+| MSBuild Task      | [![MsBuildBadge]][MsBuild]       |
+
+[Core]: https://www.nuget.org/packages/Pharmacist.Core/
+[CoreBadge]: https://img.shields.io/nuget/v/Pharmacist.Core.svg
+
+[GlobalTool]: https://www.nuget.org/packages/Pharmacist/
+[GlobalToolBadge]: https://img.shields.io/nuget/v/Pharmacist.svg
+
+[MsBuild]: https://www.nuget.org/packages/Pharmacist.MsBuildTask/
+[MsBuildBadge]: https://img.shields.io/nuget/v/Pharmacist.MsBuildTask.svg
 
 ### What does it do?
 
