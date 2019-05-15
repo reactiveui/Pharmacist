@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ using Pharmacist.Core.Extractors.PlatformExtractors;
 using Pharmacist.Core.Reflection;
 using Pharmacist.Core.Reflection.Resolvers;
 
-using Serilog;
+using Splat;
 
 namespace Pharmacist.Core
 {
@@ -61,7 +62,7 @@ namespace Pharmacist.Core
         {
             foreach (var platform in platforms)
             {
-                Log.Information("Processing platform {0}", platform);
+                LogHost.Default.Info(CultureInfo.InvariantCulture, "Processing platform {0}", platform);
                 var platformExtractor = _platformExtractors[platform];
                 await platformExtractor.Extract(defaultReferenceAssemblyLocation).ConfigureAwait(false);
 
@@ -70,7 +71,7 @@ namespace Pharmacist.Core
                     await ExtractEventsFromAssemblies(stream, platformExtractor.Assemblies, platformExtractor.SearchDirectories).ConfigureAwait(false);
                 }
 
-                Log.Information("Finished platform {0}", platform);
+                LogHost.Default.Info(CultureInfo.InvariantCulture, "Finished platform {0}", platform);
             }
         }
 
@@ -83,14 +84,14 @@ namespace Pharmacist.Core
         /// <returns>A task to monitor the progress.</returns>
         public static async Task ExtractEventsFromNuGetPackages(Stream outputStream, PackageIdentity package, NuGetFramework framework)
         {
-            Log.Information("Processing NuGet package {0}", package);
+            LogHost.Default.Info(CultureInfo.InvariantCulture, "Processing NuGet package {0}", package);
 
             var extractor = new NuGetExtractor();
             await extractor.Extract(framework, package).ConfigureAwait(false);
 
             await ExtractEventsFromAssemblies(outputStream, extractor.Assemblies, extractor.SearchDirectories).ConfigureAwait(false);
 
-            Log.Information("Finished NuGet package {0}", package);
+            LogHost.Default.Info(CultureInfo.InvariantCulture, "Finished NuGet package {0}", package);
         }
 
         /// <summary>

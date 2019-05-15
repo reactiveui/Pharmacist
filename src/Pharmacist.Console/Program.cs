@@ -18,8 +18,7 @@ using Pharmacist.Console.CommandOptions;
 using Pharmacist.Core;
 using Pharmacist.Core.NuGet;
 
-using Serilog;
-using Serilog.Events;
+using Splat;
 
 using Parser = CommandLine.Parser;
 
@@ -33,17 +32,14 @@ namespace Pharmacist.Console
 
         public static async Task<int> Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Verbose()
-                .WriteTo.ColoredConsole(LogEventLevel.Information)
-                .WriteTo.File("EventBuilder.Log")
-                .CreateLogger();
-
             // allow app to be debugged in visual studio.
             if (args.Length == 0 && Debugger.IsAttached)
             {
                 args = "generate-platform --platforms=uwp --output-path=test.txt".Split(' ');
             }
+
+            var funcLogManager = new FuncLogManager(type => new WrappingFullLogger(new WrappingPrefixLogger(new ConsoleLogger(), type)));
+            Locator.CurrentMutable.RegisterConstant(funcLogManager, typeof(ILogManager));
 
             var parserResult = new Parser(parserSettings => parserSettings.CaseInsensitiveEnumValues = true)
                 .ParseArguments<CustomAssembliesCommandLineOptions, PlatformCommandLineOptions>(args);
@@ -64,7 +60,7 @@ namespace Pharmacist.Console
                     }
                     catch (Exception ex)
                     {
-                        Log.Fatal(ex.ToString());
+                        LogHost.Default.Fatal(ex);
                         return ExitCode.Error;
                     }
                 },
@@ -81,7 +77,7 @@ namespace Pharmacist.Console
                     }
                     catch (Exception ex)
                     {
-                        Log.Fatal(ex.ToString());
+                        LogHost.Default.Fatal(ex);
                         return ExitCode.Error;
                     }
                 },
@@ -100,7 +96,7 @@ namespace Pharmacist.Console
                     }
                     catch (Exception ex)
                     {
-                        Log.Fatal(ex.ToString());
+                        LogHost.Default.Fatal(ex);
                         return ExitCode.Error;
                     }
                 },

@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 
 using NuGet.Common;
 
+using Splat;
+
+using ILogger = NuGet.Common.ILogger;
+using LogLevel = NuGet.Common.LogLevel;
+
 namespace Pharmacist.Core.NuGet
 {
     /// <summary>
     /// A logger provider for the NuGet clients API.
     /// </summary>
-    internal class NuGetLogger : ILogger
+    internal class NuGetLogger : ILogger, IEnableLogger
     {
         /// <inheritdoc />
         public void Log(LogLevel level, string data)
@@ -20,19 +25,19 @@ namespace Pharmacist.Core.NuGet
             switch (level)
             {
                 case LogLevel.Warning:
-                    Serilog.Log.Warning(data);
+                    this.Log().Warn(data);
                     break;
                 case LogLevel.Error:
-                    Serilog.Log.Error(data);
+                    this.Log().Error(data);
                     break;
                 case LogLevel.Information:
-                    Serilog.Log.Information(data);
+                    this.Log().Info(data);
                     break;
                 case LogLevel.Debug:
-                    Serilog.Log.Debug(data);
+                    this.Log().Debug(data);
                     break;
                 default:
-                    Serilog.Log.Verbose(data);
+                    this.Log().Info(data);
                     break;
             }
         }
@@ -60,43 +65,43 @@ namespace Pharmacist.Core.NuGet
         /// <inheritdoc />
         public void LogDebug(string data)
         {
-            Serilog.Log.Debug(data);
+            this.Log().Debug(data);
         }
 
         /// <inheritdoc />
         public void LogError(string data)
         {
-            Serilog.Log.Error(data);
+            this.Log().Error(data);
         }
 
         /// <inheritdoc />
         public void LogInformation(string data)
         {
-            Serilog.Log.Information(data);
+            this.Log().Info(data);
         }
 
         /// <inheritdoc />
         public void LogInformationSummary(string data)
         {
-            Serilog.Log.Information(data);
+            this.Log().Info(data);
         }
 
         /// <inheritdoc />
         public void LogMinimal(string data)
         {
-            Serilog.Log.Information(data);
+            this.Log().Info(data);
         }
 
         /// <inheritdoc />
         public void LogVerbose(string data)
         {
-            Serilog.Log.Verbose(data);
+            this.Log().Info(data);
         }
 
         /// <inheritdoc />
         public void LogWarning(string data)
         {
-            Serilog.Log.Warning(data);
+            this.Log().Warn(data);
         }
     }
 }
