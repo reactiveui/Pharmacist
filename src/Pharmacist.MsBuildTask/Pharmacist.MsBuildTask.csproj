@@ -2,7 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
-    <Package>Pharmacist.MSBuildTask</Package>
+    <PackageId>Pharmacist.MSBuildTask</PackageId>
+    <ContentTargetFolders>build</ContentTargetFolders>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,10 +13,10 @@
   </ItemGroup>
 
   <ItemGroup Label="Package">
-    <None Include="targets\pharmacist.targets" PackagePath="build\net461" Pack="true" />
-    <None Include="targets\pharmacist.targets" PackagePath="buildTransitive\net461" Pack="true" />
-    <None Include="targets\pharmacist.targets" PackagePath="build\netstandard2.0" Pack="true" />
-    <None Include="targets\pharmacist.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="build\net461" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="buildTransitive\net461" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="build\netstandard2.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
   </ItemGroup>
 
   <ItemGroup>

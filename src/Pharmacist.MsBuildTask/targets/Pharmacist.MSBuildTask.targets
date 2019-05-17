@@ -20,6 +20,7 @@
   <UsingTask TaskName="Pharmacist.MsBuildTask.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
 
   <Target Name="GeneratePharmacist" BeforeTargets="CoreCompile">
+    <Message Importance="High" Text="+++ Glenn Watson +++" />
     <PharmacistNuGetTask SourceFiles="@(PackageReference)"
                          TargetFramework="$(TargetFramework)"
                          OutputFile="$(IntermediateOutputPath)\Pharmacist.g.cs" />
