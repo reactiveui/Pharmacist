@@ -4,6 +4,7 @@
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <PackageId>Pharmacist.MSBuildTask</PackageId>
     <ContentTargetFolders>build</ContentTargetFolders>
+    <!-- forces SDK to copy dependencies into build output to make packing easier -->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PackBuildOutputs</TargetsForTfmSpecificContentInPackage>
@@ -23,15 +24,11 @@
 
   <Target Name="PackBuildOutputs" DependsOnTargets="ResolveProjectReferences;SatelliteDllsProjectOutputGroup;DebugSymbolsProjectOutputGroup;SatelliteDllsProjectOutputGroupDependencies;ResolveAssemblyReferences">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="$(TargetPath)" PackagePath="lib\$(TargetFramework)" />
-      <TfmSpecificPackageFile Include="$(DepsFilePath)" PackagePath="lib\$(TargetFramework)" />
-      <TfmSpecificPackageFile Include="@(DebugSymbolsProjectOutputGroupOutput)" PackagePath="lib\$(TargetFramework)" />
-      <TfmSpecificPackageFile Include="%(_ResolvedProjectReferencePaths.Identity)" PackagePath="lib\$(TargetFramework)" />
-      <TfmSpecificPackageFile Include="@(ReferenceCopyLocalPaths)" Exclude="@(_ResolvedProjectReferencePaths)" PackagePath="lib\$(TargetFramework)\%(ReferenceCopyLocalPaths.DestinationSubPath)" />
+      <TfmSpecificPackageFile Include="bin\$(Configuration)\$(TargetFramework)\**\*" PackagePath="lib\$(TargetFramework)\%(RecursiveDir)" />
     </ItemGroup>
   </Target>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pharmacist.Core\Pharmacist.Core.csproj" />
+    <ProjectReference Include="..\Pharmacist.Core\Pharmacist.Core.csproj" PrivateAssets="All" />
   </ItemGroup>
 </Project>

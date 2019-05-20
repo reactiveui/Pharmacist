@@ -54,7 +54,16 @@ namespace Pharmacist.MsBuildTask
                 return false;
             }
 
-            Log.LogError("ProjectReferences = " + string.Join(Environment.NewLine, ProjectReferences.Select(x => x.ItemSpec)));
+            foreach (var projectReference in ProjectReferences)
+            {
+                Log.LogError("ItemSpec = " + projectReference.ItemSpec);
+
+                foreach (string metadataName in projectReference.MetadataNames)
+                {
+                    Log.LogError("MetadataName = " + metadataName);
+                    Log.LogError("MetadataValue = " + projectReference.GetMetadata(metadataName));
+                }
+            }
 
             return true;
 
