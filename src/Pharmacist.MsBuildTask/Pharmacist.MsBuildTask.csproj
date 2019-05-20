@@ -5,6 +5,8 @@
     <PackageId>Pharmacist.MSBuildTask</PackageId>
     <ContentTargetFolders>build</ContentTargetFolders>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PackBuildOutputs</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +20,16 @@
     <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="build\netstandard2.0" Pack="true" />
     <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
   </ItemGroup>
+
+  <Target Name="PackBuildOutputs" DependsOnTargets="ResolveProjectReferences;SatelliteDllsProjectOutputGroup;DebugSymbolsProjectOutputGroup;SatelliteDllsProjectOutputGroupDependencies;ResolveAssemblyReferences">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="$(TargetPath)" PackagePath="lib\$(TargetFramework)" />
+      <TfmSpecificPackageFile Include="$(DepsFilePath)" PackagePath="lib\$(TargetFramework)" />
+      <TfmSpecificPackageFile Include="@(DebugSymbolsProjectOutputGroupOutput)" PackagePath="lib\$(TargetFramework)" />
+      <TfmSpecificPackageFile Include="%(_ResolvedProjectReferencePaths.Identity)" PackagePath="lib\$(TargetFramework)" />
+      <TfmSpecificPackageFile Include="@(ReferenceCopyLocalPaths)" Exclude="@(_ResolvedProjectReferencePaths)" PackagePath="lib\$(TargetFramework)\%(ReferenceCopyLocalPaths.DestinationSubPath)" />
+    </ItemGroup>
+  </Target>
 
   <ItemGroup>
     <ProjectReference Include="..\Pharmacist.Core\Pharmacist.Core.csproj" />
