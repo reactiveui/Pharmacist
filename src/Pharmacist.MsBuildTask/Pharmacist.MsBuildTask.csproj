@@ -3,11 +3,9 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <PackageId>Pharmacist.MSBuildTask</PackageId>
-    <ContentTargetFolders>build</ContentTargetFolders>
     <!-- forces SDK to copy dependencies into build output to make packing easier -->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <IncludeBuildOutput>false</IncludeBuildOutput>
-    <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PackBuildOutputs</TargetsForTfmSpecificContentInPackage>
     <NoWarn>$(NoWarn);CA1819</NoWarn>
   </PropertyGroup>
@@ -24,7 +22,7 @@
     <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
   </ItemGroup>
 
-  <Target Name="PackBuildOutputs" DependsOnTargets="ResolveProjectReferences;SatelliteDllsProjectOutputGroup;DebugSymbolsProjectOutputGroup;SatelliteDllsProjectOutputGroupDependencies;ResolveAssemblyReferences">
+  <Target Name="PackBuildOutputs">
     <ItemGroup>
       <TfmSpecificPackageFile Include="bin\$(Configuration)\$(TargetFramework)\**\*" PackagePath="build\$(TargetFramework)\%(RecursiveDir)" />
     </ItemGroup>
