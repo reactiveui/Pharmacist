@@ -17,6 +17,10 @@
     <PharmacistNetCoreAppVersion Condition="'$(PharmacistNetCoreAppVersion)' == ''">1.0</PharmacistNetCoreAppVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Pharmacist.Common"  Version="1.*" />
+  </ItemGroup>
+
   <UsingTask TaskName="Pharmacist.MsBuildTask.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
 
   <Target Name="GeneratePharmacist" BeforeTargets="CoreCompile">
