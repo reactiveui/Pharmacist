@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
+    <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   
   <ItemGroup>
@@ -14,6 +15,6 @@
     <PackageReference Include="nuget.protocol" Version="5.0.0" />
     <PackageReference Include="polly" Version="7.1.0" />
     <PackageReference Include="splat" Version="7.2.1" />
-    <PackageReference Include="system.collections.immutable" Version="1.5.0" />
+    <PackageReference Include="system.collections.immutable" Version="1.5.0"  />
   </ItemGroup>
 </Project>

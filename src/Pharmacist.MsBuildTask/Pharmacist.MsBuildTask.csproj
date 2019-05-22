@@ -16,6 +16,14 @@
     <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="15.1.548" PrivateAssets="all" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Reflection.Emit">
+      <Version>4.3.0</Version>
+      <ExcludeAssets>All</ExcludeAssets>
+      <IncludeAssets>none</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
   <ItemGroup Label="Package">
     <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="build\net461" Pack="true" />
     <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="buildTransitive\net461" Pack="true" />
@@ -25,7 +33,7 @@
 
   <Target Name="PackBuildOutputs" DependsOnTargets="ResolveProjectReferences;SatelliteDllsProjectOutputGroup;DebugSymbolsProjectOutputGroup;SatelliteDllsProjectOutputGroupDependencies;ResolveAssemblyReferences">
     <ItemGroup>
-      <TfmSpecificPackageFile Include="bin\$(Configuration)\$(TargetFramework)\**\*" PackagePath="lib\$(TargetFramework)\%(RecursiveDir)" />
+      <TfmSpecificPackageFile Include="bin\$(Configuration)\$(TargetFramework)\**\*" PackagePath="build\$(TargetFramework)\%(RecursiveDir)" />
     </ItemGroup>
   </Target>
 
