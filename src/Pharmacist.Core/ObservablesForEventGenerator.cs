@@ -68,6 +68,7 @@ namespace Pharmacist.Core
 
                 using (var stream = new FileStream(Path.Combine(outputPath, prefix + ".cs"), FileMode.Create, FileAccess.Write))
                 {
+                    await WriteHeader(stream).ConfigureAwait(false);
                     await ExtractEventsFromAssemblies(stream, platformExtractor.Assemblies, platformExtractor.SearchDirectories).ConfigureAwait(false);
                 }
 
@@ -108,11 +109,22 @@ namespace Pharmacist.Core
                 var compilationOutputSyntax = SyntaxFactory.CompilationUnit().WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))));
 
                 StreamWriter streamWriter = new StreamWriter(outputStream);
-                await streamWriter.WriteAsync(await TemplateManager.GetTemplateAsync(TemplateManager.HeaderTemplate).ConfigureAwait(false)).ConfigureAwait(false);
                 await streamWriter.WriteAsync(Environment.NewLine).ConfigureAwait(false);
                 await streamWriter.WriteAsync(compilationOutputSyntax.NormalizeWhitespace(elasticTrivia: true).ToString()).ConfigureAwait(false);
                 await streamWriter.FlushAsync().ConfigureAwait(false);
             }
+        }
+
+        /// <summary>
+        /// Writes the header for a output.
+        /// </summary>
+        /// <param name="outputStream">The stream where to write to.</param>
+        /// <returns>A task to monitor the progress.</returns>
+        public static async Task WriteHeader(Stream outputStream)
+        {
+            StreamWriter streamWriter = new StreamWriter(outputStream);
+            await streamWriter.WriteAsync(await TemplateManager.GetTemplateAsync(TemplateManager.HeaderTemplate).ConfigureAwait(false)).ConfigureAwait(false);
+            await streamWriter.FlushAsync().ConfigureAwait(false);
         }
     }
 }

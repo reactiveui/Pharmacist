@@ -62,10 +62,11 @@ namespace Pharmacist.MsBuildTask
                 return false;
             }
 
-            var taskList = new List<System.Threading.Tasks.Task>();
             using (var stream = new FileStream(Path.Combine(OutputFile), FileMode.Create, FileAccess.Write))
             {
-                // Incldue all package references that aren't ourselves.
+                ObservablesForEventGenerator.WriteHeader(stream).ConfigureAwait(false).GetAwaiter().GetResult();
+
+                // Include all package references that aren't ourselves.
                 foreach (var projectReference in PackageReferences.Where(x => !x.ItemSpec.Equals("Pharmacist.MSBuildTask", StringComparison.InvariantCultureIgnoreCase)))
                 {
                     var include = projectReference.ItemSpec;
@@ -80,7 +81,7 @@ namespace Pharmacist.MsBuildTask
                     {
                         var packageIdentity = new PackageIdentity(include, nuGetVersion);
                         var nugetFramework = TargetFramework.ToFramework();
-                        taskList.Add(ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, packageIdentity, nugetFramework));
+                        ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, packageIdentity, nugetFramework).GetAwaiter().GetResult();
                     }
                     catch (Exception ex)
                     {
@@ -88,8 +89,6 @@ namespace Pharmacist.MsBuildTask
                         return false;
                     }
                 }
-
-                System.Threading.Tasks.Task.WaitAll(taskList.ToArray());
             }
 
             return true;
