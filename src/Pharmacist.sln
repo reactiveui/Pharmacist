@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.build.targets = Directory.build.targets
 		global.json = global.json
 		stylecop.json = stylecop.json
+		..\version.json = ..\version.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pharmacist.IntegrationTest", "Pharmacist.IntegrationTest\Pharmacist.IntegrationTest.csproj", "{57BD0D2F-A8E3-4854-BD76-3570E7C56154}"

@@ -21,6 +21,7 @@ namespace Pharmacist.Core
         public static System.Threading.Tasks.Task ExtractEventsFromAssemblies(System.IO.Stream outputStream, System.Collections.Generic.IEnumerable<string> assemblyPaths, System.Collections.Generic.IEnumerable<string> searchDirectories) { }
         public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.Stream outputStream, NuGet.Packaging.Core.PackageIdentity package, NuGet.Frameworks.NuGetFramework framework) { }
         public static System.Threading.Tasks.Task ExtractEventsFromPlatforms(string outputPath, string prefix, string defaultReferenceAssemblyLocation, System.Collections.Generic.IEnumerable<Pharmacist.Core.AutoPlatform> platforms) { }
+        public static System.Threading.Tasks.Task WriteHeader(System.IO.Stream outputStream) { }
     }
     public class static PlatformHelper
     {
