@@ -21,7 +21,7 @@
 
   <Target Name="GeneratePharmacist" BeforeTargets="CoreCompile">
     <Message Importance="High" Text="+++ Glenn Watson +++" />
-    <PharmacistNuGetTask ProjectReferences="@(PackageReference)"
+    <PharmacistNuGetTask PackageReferences="@(PackageReference)"
                          TargetFramework="$(TargetFramework)"
                          OutputFile="$(IntermediateOutputPath)\Pharmacist.g.cs" />
 

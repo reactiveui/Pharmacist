@@ -4,10 +4,18 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
+
+using NuGet.Packaging.Core;
+using NuGet.Versioning;
+
+using Pharmacist.Core;
+using Pharmacist.Core.NuGet;
 
 using Splat;
 
@@ -22,7 +30,7 @@ namespace Pharmacist.MsBuildTask
         /// Gets or sets the project references.
         /// </summary>
         [Required]
-        public ITaskItem[] ProjectReferences { get; set; }
+        public ITaskItem[] PackageReferences { get; set; }
 
         /// <summary>
         /// Gets or sets the target framework.
@@ -54,47 +62,37 @@ namespace Pharmacist.MsBuildTask
                 return false;
             }
 
-            foreach (var projectReference in ProjectReferences)
+            var taskList = new List<System.Threading.Tasks.Task>();
+            using (var stream = new FileStream(Path.Combine(OutputFile), FileMode.Create, FileAccess.Write))
             {
-                Log.LogError("ItemSpec = " + projectReference.ItemSpec);
-
-                foreach (string metadataName in projectReference.MetadataNames)
+                // Incldue all package references that aren't ourselves.
+                foreach (var projectReference in PackageReferences.Where(x => !x.ItemSpec.Equals("Pharmacist.MSBuildTask", StringComparison.InvariantCultureIgnoreCase)))
                 {
-                    Log.LogError("MetadataName = " + metadataName);
-                    Log.LogError("MetadataValue = " + projectReference.GetMetadata(metadataName));
+                    var include = projectReference.ItemSpec;
+
+                    if (!NuGetVersion.TryParse(projectReference.GetMetadata("Version"), out var nuGetVersion))
+                    {
+                        this.Log().Error($"Package {include} does not have a valid Version.");
+                        continue;
+                    }
+
+                    try
+                    {
+                        var packageIdentity = new PackageIdentity(include, nuGetVersion);
+                        var nugetFramework = TargetFramework.ToFramework();
+                        taskList.Add(ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, packageIdentity, nugetFramework));
+                    }
+                    catch (Exception ex)
+                    {
+                        this.Log().Error(ex);
+                        return false;
+                    }
                 }
+
+                System.Threading.Tasks.Task.WaitAll(taskList.ToArray());
             }
 
             return true;
-
-            ////if (string.IsNullOrWhiteSpace(Include))
-            ////{
-            ////    Log.LogError($"{nameof(Include)} is not set");
-            ////    return false;
-            ////}
-
-            ////if (!NuGetVersion.TryParse(Version, out var nuGetVersion))
-            ////{
-            ////    Log.LogError($"{nameof(Version)} is not set or is invalid");
-            ////    return false;
-            ////}
-
-            ////try
-            ////{
-            ////    using (var stream = new FileStream(Path.Combine(OutputFile), FileMode.Create, FileAccess.Write))
-            ////    {
-            ////        var packageIdentity = new PackageIdentity(Include, nuGetVersion);
-            ////        var nugetFramework = TargetFramework.ToFramework();
-            ////        ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, packageIdentity, nugetFramework).ConfigureAwait(false).GetAwaiter().GetResult();
-            ////    }
-
-            ////    return true;
-            ////}
-            ////catch (Exception ex)
-            ////{
-            ////    this.Log().Error(ex);
-            ////    return false;
-            ////}
         }
     }
 }
