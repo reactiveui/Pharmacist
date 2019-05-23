@@ -12,7 +12,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Pharmacist.Core.Reflection.Generators
+namespace Pharmacist.Core.Generation.Generators
 {
     /// <summary>
     /// Generates code syntax based on the Delegate based methodology
@@ -21,7 +21,7 @@ namespace Pharmacist.Core.Reflection.Generators
     /// </summary>
     internal static class DelegateGenerator
     {
-        private static readonly QualifiedNameSyntax _subjectNamespace = SyntaxFactory.QualifiedName(SyntaxFactory.IdentifierName("ReactiveUI"), SyntaxFactory.IdentifierName("Events"));
+        private static readonly QualifiedNameSyntax _subjectNamespace = SyntaxFactory.QualifiedName(SyntaxFactory.IdentifierName("Pharmacist"), SyntaxFactory.IdentifierName("Common"));
         private static readonly GenericNameSyntax _subjectType = SyntaxFactory.GenericName(SyntaxFactory.Identifier("SingleAwaitSubject"));
 
         /// <summary>

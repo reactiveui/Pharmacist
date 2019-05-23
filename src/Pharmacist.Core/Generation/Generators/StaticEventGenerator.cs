@@ -12,7 +12,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Pharmacist.Core.Reflection.Generators
+namespace Pharmacist.Core.Generation.Generators
 {
     internal class StaticEventGenerator : EventGeneratorBase
     {

@@ -27,7 +27,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pharmacist.IntegrationTest"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pharmacist.MsBuildTask", "Pharmacist.MsBuildTask\Pharmacist.MsBuildTask.csproj", "{2714A571-3FA9-4F27-9E62-EB722A00AC53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacist.Common", "Pharmacist.Common\Pharmacist.Common.csproj", "{C7C48470-B72E-454B-BB53-E48BB6F7DAD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pharmacist.Common", "Pharmacist.Common\Pharmacist.Common.csproj", "{C7C48470-B72E-454B-BB53-E48BB6F7DAD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8B77401B-FFCE-4AB0-8D3B-6A550783B835}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7674B335-ED10-4C0D-9727-52406743B083}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +70,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1C0EC69F-FF82-4C25-8A23-8EF319A3EAD4} = {8B77401B-FFCE-4AB0-8D3B-6A550783B835}
+		{4D94D3F8-C3D2-43A5-A8F2-363500939E09} = {8B77401B-FFCE-4AB0-8D3B-6A550783B835}
+		{1FB6434B-7985-488F-8005-6DA328D7365E} = {7674B335-ED10-4C0D-9727-52406743B083}
+		{57BD0D2F-A8E3-4854-BD76-3570E7C56154} = {7674B335-ED10-4C0D-9727-52406743B083}
+		{2714A571-3FA9-4F27-9E62-EB722A00AC53} = {8B77401B-FFCE-4AB0-8D3B-6A550783B835}
+		{C7C48470-B72E-454B-BB53-E48BB6F7DAD7} = {8B77401B-FFCE-4AB0-8D3B-6A550783B835}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8AD09057-1163-45D2-A260-CB034E6DFD07}

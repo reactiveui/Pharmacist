@@ -10,14 +10,13 @@ using System.Linq;
 using System.Reflection.PortableExecutable;
 
 using ICSharpCode.Decompiler.Metadata;
-using ICSharpCode.Decompiler.TypeSystem;
 
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-using Pharmacist.Core.Reflection.Compilation;
+using Pharmacist.Core.Generation.Compilation;
 
-namespace Pharmacist.Core.Reflection
+namespace Pharmacist.Core.Generation
 {
     /// <summary>
     /// Helper methods associated with the roslyn template generators.

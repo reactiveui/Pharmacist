@@ -9,7 +9,7 @@ using ICSharpCode.Decompiler.TypeSystem;
 
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Pharmacist.Core.Reflection.Resolvers
+namespace Pharmacist.Core.Generation.Resolvers
 {
     /// <summary>
     /// A resolver which will generate namespace information.

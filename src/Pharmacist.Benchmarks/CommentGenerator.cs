@@ -5,7 +5,7 @@
 
 using BenchmarkDotNet.Attributes;
 
-using Pharmacist.Core.Reflection;
+using Pharmacist.Core.Generation;
 
 namespace Pharmacist.Benchmarks
 {

@@ -12,7 +12,7 @@ using ICSharpCode.Decompiler.TypeSystem;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Pharmacist.Core.Reflection
+namespace Pharmacist.Core.Generation
 {
     internal static class RoslynGeneratorExtensions
     {

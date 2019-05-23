@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
-using Pharmacist.Core.Reflection;
+using Pharmacist.Core.Generation;
 
 using PublicApiGenerator;
 

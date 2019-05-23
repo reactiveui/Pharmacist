@@ -14,7 +14,7 @@ using ICSharpCode.Decompiler.TypeSystem.Implementation;
 
 using Splat;
 
-namespace Pharmacist.Core.Reflection
+namespace Pharmacist.Core.Generation
 {
     /// <summary>
     /// Extension methods associated with the System.Reflection.Metadata and ICSharpCode.Decompiler based classes.

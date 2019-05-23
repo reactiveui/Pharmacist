@@ -1,7 +1,47 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pharmacist.MsBuildTask\Pharmacist.MsBuildTask.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <CoreCompileDependsOn>
+      $(CoreCompileDependsOn);
+      GeneratePharmacist;
+    </CoreCompileDependsOn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)\obj\$(Configuration)\</IntermediateOutputPath>
+    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildProjectDirectory)\..\Pharmacist.MsBuildTask\bin\$(Configuration)\netstandard2.0\Pharmacist.MsBuildTask.dll</PharmacistTaskAssemblyFile>
+    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildProjectDirectory)\..\Pharmacist.MsBuildTask\bin\$(Configuration)\net461\Pharmacist.MsBuildTask.dll</PharmacistTaskAssemblyFile>
+
+    <!-- Our default CLI version for error checking purposes -->
+    <PharmacistNetCoreAppVersion>$(BundledNETCoreAppTargetFrameworkVersion)</PharmacistNetCoreAppVersion>
+    <PharmacistNetCoreAppVersion Condition="'$(PharmacistNetCoreAppVersion)' == ''">1.0</PharmacistNetCoreAppVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Pharmacist.Common"  Version="1.*" />
+  </ItemGroup>
+
+  <UsingTask TaskName="Pharmacist.MsBuildTask.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
+
+  <Target Name="GeneratePharmacist" BeforeTargets="CoreCompile">
+    <PharmacistNuGetTask PackageReferences="@(PackageReference)"
+                         TargetFramework="$(TargetFramework)"
+                         OutputFile="$(IntermediateOutputPath)\Pharmacist.g.cs" />
+
+    <Message Text="Processed Pharmacist Packages" />
+
+    <ItemGroup Condition="Exists('$(IntermediateOutputPath)\Pharmacist.g.cs')">
+      <Compile Include="$(IntermediateOutputPath)\Pharmacist.g.cs" />
+    </ItemGroup>
+  </Target>
+
 
 </Project>

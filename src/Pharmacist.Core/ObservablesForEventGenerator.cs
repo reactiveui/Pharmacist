@@ -20,8 +20,8 @@ using NuGet.Packaging.Core;
 
 using Pharmacist.Core.Extractors;
 using Pharmacist.Core.Extractors.PlatformExtractors;
-using Pharmacist.Core.Reflection;
-using Pharmacist.Core.Reflection.Resolvers;
+using Pharmacist.Core.Generation;
+using Pharmacist.Core.Generation.Resolvers;
 
 using Splat;
 

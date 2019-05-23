@@ -9,7 +9,7 @@ using ICSharpCode.Decompiler.TypeSystem;
 
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace Pharmacist.Core.Reflection.Generators
+namespace Pharmacist.Core.Generation.Generators
 {
     /// <summary>
     /// Generates based on events in the base code.

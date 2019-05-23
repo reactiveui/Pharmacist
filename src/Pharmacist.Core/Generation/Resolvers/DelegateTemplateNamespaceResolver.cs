@@ -11,9 +11,9 @@ using ICSharpCode.Decompiler.TypeSystem;
 
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-using Pharmacist.Core.Reflection.Generators;
+using Pharmacist.Core.Generation.Generators;
 
-namespace Pharmacist.Core.Reflection.Resolvers
+namespace Pharmacist.Core.Generation.Resolvers
 {
     internal class DelegateTemplateNamespaceResolver : INamespaceResolver
     {

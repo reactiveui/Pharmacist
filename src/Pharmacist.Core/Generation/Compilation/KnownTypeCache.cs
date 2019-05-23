@@ -7,7 +7,7 @@ using ICSharpCode.Decompiler.TypeSystem;
 using ICSharpCode.Decompiler.TypeSystem.Implementation;
 using ICSharpCode.Decompiler.Util;
 
-namespace Pharmacist.Core.Reflection.Compilation
+namespace Pharmacist.Core.Generation.Compilation
 {
     /// <summary>
     /// Cache for KnownTypeReferences.

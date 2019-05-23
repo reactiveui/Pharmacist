@@ -8,9 +8,9 @@ using System.Linq;
 
 using ICSharpCode.Decompiler.TypeSystem;
 
-using Pharmacist.Core.Reflection.Generators;
+using Pharmacist.Core.Generation.Generators;
 
-namespace Pharmacist.Core.Reflection.Resolvers
+namespace Pharmacist.Core.Generation.Resolvers
 {
     /// <summary>
     /// A namespace resolver that extracts event information.

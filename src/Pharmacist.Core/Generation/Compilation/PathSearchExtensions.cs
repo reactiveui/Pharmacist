@@ -11,7 +11,7 @@ using System.Reflection.PortableExecutable;
 
 using ICSharpCode.Decompiler.Metadata;
 
-namespace Pharmacist.Core.Reflection.Compilation
+namespace Pharmacist.Core.Generation.Compilation
 {
     internal static class PathSearchExtensions
     {
