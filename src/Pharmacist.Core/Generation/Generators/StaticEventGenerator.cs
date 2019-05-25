@@ -21,23 +21,21 @@ namespace Pharmacist.Core.Generation.Generators
         /// </summary>
         /// <param name="declarations">The declarations to add.</param>
         /// <returns>An array of namespace declarations.</returns>
-        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, IEnumerable<IEvent> events)> declarations) =>
-            declarations
-                .GroupBy(x => x.typeDefinition.Namespace)
-                .Select(x => GenerateNamespace(x.Key, x));
-
-        private static NamespaceDeclarationSyntax GenerateNamespace(string namespaceName, IEnumerable<(ITypeDefinition typeDefinition, IEnumerable<IEvent> events)> declarations)
+        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, IEnumerable<IEvent> events)> declarations)
         {
-            var namespaceDeclaration = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.IdentifierName(namespaceName));
-
-            var members = declarations.OrderBy(x => x.typeDefinition.Name).Select(x => GenerateStaticClass(namespaceName, x.typeDefinition, x.events)).Where(x => x != null).ToList();
-
-            if (members.Any())
+            foreach (var groupDeclaration in declarations.GroupBy(x => x.typeDefinition.Namespace))
             {
-                return namespaceDeclaration.WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(members));
-            }
+                var namespaceName = groupDeclaration.Key;
 
-            return namespaceDeclaration;
+                var members = groupDeclaration.OrderBy(x => x.typeDefinition.Name).Select(x => GenerateStaticClass(namespaceName, x.typeDefinition, x.events)).Where(x => x != null).ToList();
+
+                if (members.Any())
+                {
+                    yield return SyntaxFactory
+                        .NamespaceDeclaration(SyntaxFactory.IdentifierName(namespaceName))
+                        .WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(members));
+                }
+            }
         }
 
         private static ClassDeclarationSyntax GenerateStaticClass(string namespaceName, ITypeDefinition typeDefinition, IEnumerable<IEvent> events)
