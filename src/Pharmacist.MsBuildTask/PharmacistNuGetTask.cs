@@ -86,8 +86,7 @@ namespace Pharmacist.MsBuildTask
                     try
                     {
                         var packageIdentity = new PackageIdentity(include, nuGetVersion);
-                        var nugetFramework = TargetFramework.ToFramework();
-                        ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, packageIdentity, nugetFramework).GetAwaiter().GetResult();
+                        ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, packageIdentity, TargetFramework.ToFrameworks()).GetAwaiter().GetResult();
                     }
                     catch (Exception ex)
                     {

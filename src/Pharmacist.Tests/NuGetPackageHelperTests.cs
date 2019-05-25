@@ -154,10 +154,10 @@ namespace Pharmacist.Tests
         public async Task CanGetNuGetProtocolAndDependencies()
         {
             var package = new PackageIdentity("NuGet.Protocol", new NuGetVersion("5.0.0"));
-            var framework = FrameworkConstants.CommonFrameworks.NetStandard20;
+            var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             var result = (await NuGetPackageHelper
-                              .DownloadPackageAndGetLibFilesAndFolder(package, framework: framework)
+                              .DownloadPackageAndGetLibFilesAndFolder(package, frameworks: frameworks)
                               .ConfigureAwait(false)).ToList();
 
             result.ShouldNotBeEmpty();
@@ -166,10 +166,10 @@ namespace Pharmacist.Tests
         private static async Task GetAndCheckTizenPackage()
         {
             var package = new PackageIdentity("Tizen.NET.API4", new NuGetVersion("4.0.1.14152"));
-            var framework = FrameworkConstants.CommonFrameworks.NetStandard20;
+            var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             var result = (await NuGetPackageHelper
-                              .DownloadPackageAndGetLibFilesAndFolder(package, framework: framework)
+                              .DownloadPackageAndGetLibFilesAndFolder(package, frameworks: frameworks)
                               .ConfigureAwait(false)).ToList();
 
             var actualFiles = result.SelectMany(x => x.files).ToList();

@@ -28,12 +28,12 @@ namespace Pharmacist.Core.Extractors
         /// <summary>
         /// Extracts the data using the specified target framework.
         /// </summary>
-        /// <param name="targetFramework">The target framework to extract.</param>
+        /// <param name="targetFrameworks">The target framework to extract in order of priority.</param>
         /// <param name="package">The package to extract the information from.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public async Task Extract(NuGetFramework targetFramework, PackageIdentity package)
+        public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, PackageIdentity package)
         {
-            var results = (await NuGetPackageHelper.DownloadPackageAndGetLibFilesAndFolder(package, targetFramework).ConfigureAwait(false)).ToList();
+            var results = (await NuGetPackageHelper.DownloadPackageAndGetLibFilesAndFolder(package, targetFrameworks).ConfigureAwait(false)).ToList();
             Assemblies.AddRange(results.SelectMany(x => x.files));
             SearchDirectories.AddRange(results.Select(x => x.folder));
         }

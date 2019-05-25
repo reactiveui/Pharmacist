@@ -81,14 +81,14 @@ namespace Pharmacist.Core
         /// </summary>
         /// <param name="outputStream">Stream that we should output to.</param>
         /// <param name="package">The package to process.</param>
-        /// <param name="framework">The framework to generate for.</param>
+        /// <param name="frameworks">The framework to generate for in order of priority.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public static async Task ExtractEventsFromNuGetPackages(Stream outputStream, PackageIdentity package, NuGetFramework framework)
+        public static async Task ExtractEventsFromNuGetPackages(Stream outputStream, PackageIdentity package, IReadOnlyCollection<NuGetFramework> frameworks)
         {
             LogHost.Default.Info(CultureInfo.InvariantCulture, "Processing NuGet package {0}", package);
 
             var extractor = new NuGetExtractor();
-            await extractor.Extract(framework, package).ConfigureAwait(false);
+            await extractor.Extract(frameworks, package).ConfigureAwait(false);
 
             await ExtractEventsFromAssemblies(outputStream, extractor.Assemblies, extractor.SearchDirectories).ConfigureAwait(false);
 

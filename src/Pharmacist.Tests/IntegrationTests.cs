@@ -34,11 +34,36 @@ namespace Pharmacist.Tests
         public async Task TizenNuGetTest()
         {
             var package = new PackageIdentity("Tizen.NET.API4", new NuGetVersion("4.0.1.14152"));
-            var framework = FrameworkConstants.CommonFrameworks.NetStandard20;
+            var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             using (var memoryStream = new MemoryStream())
             {
-                await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, framework).ConfigureAwait(false);
+                await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, frameworks).ConfigureAwait(false);
+                memoryStream.Flush();
+
+                memoryStream.Position = 0;
+                using (var sr = new StreamReader(memoryStream))
+                {
+                    var contents = sr.ReadToEnd();
+
+                    contents.ShouldNotBeEmpty();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Tests to make sure the Tizen platform produces the expected results.
+        /// </summary>
+        /// <returns>A task to monitor the progress.</returns>
+        [Fact]
+        public async Task XamarinEssentialsNuGetTest()
+        {
+            var package = new PackageIdentity("Xamarin.Essentials", new NuGetVersion("1.1.0"));
+            var frameworks = "MonoAndroid81".ToFrameworks();
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, frameworks).ConfigureAwait(false);
                 memoryStream.Flush();
 
                 memoryStream.Position = 0;

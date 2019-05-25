@@ -89,7 +89,7 @@ namespace Pharmacist.Console
                         using (var stream = new FileStream(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs"), FileMode.Create, FileAccess.Write))
                         {
                             var packageIdentity = new PackageIdentity(options.NugetPackageName, new NuGetVersion(options.NugetVersion));
-                            var nugetFramework = options.TargetFramework.ToFramework();
+                            var nugetFramework = options.TargetFramework.ToFrameworks();
                             await ObservablesForEventGenerator.WriteHeader(stream).ConfigureAwait(false);
                             await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, packageIdentity, nugetFramework).ConfigureAwait(false);
                         }

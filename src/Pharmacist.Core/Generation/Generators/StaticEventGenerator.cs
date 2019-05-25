@@ -42,7 +42,7 @@ namespace Pharmacist.Core.Generation.Generators
         {
             var members = events.OrderBy(x => x.Name).Select(x => GenerateEventWrapperObservable(x, typeDefinition.GenerateFullGenericName())).Where(x => x != null).ToList();
 
-            if (members.Count > 0)
+            if (members.Count == 0)
             {
                 return null;
             }
