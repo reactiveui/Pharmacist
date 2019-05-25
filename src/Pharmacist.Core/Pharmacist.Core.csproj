@@ -12,9 +12,9 @@
   <ItemGroup>
     <PackageReference Include="ICSharpCode.Decompiler" Version="4.0.0.4521" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.0.0" />
-    <PackageReference Include="nuget.protocol" Version="5.0.0" />
+    <PackageReference Include="nuget.protocol" Version="5.1.0" />
     <PackageReference Include="polly" Version="7.1.0" />
     <PackageReference Include="splat" Version="7.2.1" />
-    <PackageReference Include="system.collections.immutable" Version="1.5.0"  />
+    <PackageReference Include="system.collections.immutable" Version="1.5.0" />
   </ItemGroup>
 </Project>
