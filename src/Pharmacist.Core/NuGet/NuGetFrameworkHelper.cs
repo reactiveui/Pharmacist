@@ -41,15 +41,15 @@ namespace Pharmacist.Core.NuGet
             _nugetFrameworks["NetStandard1.6"] = FrameworkConstants.CommonFrameworks.NetStandard16;
             _nugetFrameworks["NetStandard1.7"] = FrameworkConstants.CommonFrameworks.NetStandard17;
             _nugetFrameworks["NetStandard2.0"] = FrameworkConstants.CommonFrameworks.NetStandard20;
-            _nugetFrameworks["NetStandard2.1"] = FrameworkConstants.CommonFrameworks.NetStandard21;
+            _nugetFrameworks["NetStandard2.1"] = new NuGetFramework(".NETStandard", new Version(2, 1, 0, 0));
             _nugetFrameworks["UAP"] = FrameworkConstants.CommonFrameworks.UAP10;
             _nugetFrameworks["UAP10.0"] = FrameworkConstants.CommonFrameworks.UAP10;
             _nugetFrameworks["NetCoreApp1.0"] = FrameworkConstants.CommonFrameworks.NetCoreApp10;
             _nugetFrameworks["NetCoreApp1.1"] = FrameworkConstants.CommonFrameworks.NetCoreApp11;
             _nugetFrameworks["NetCoreApp2.0"] = FrameworkConstants.CommonFrameworks.NetCoreApp20;
             _nugetFrameworks["NetCoreApp2.1"] = FrameworkConstants.CommonFrameworks.NetCoreApp21;
-            _nugetFrameworks["NetCoreApp2.2"] = FrameworkConstants.CommonFrameworks.NetCoreApp22;
-            _nugetFrameworks["NetCoreApp3.0"] = FrameworkConstants.CommonFrameworks.NetCoreApp30;
+            _nugetFrameworks["NetCoreApp2.2"] = new NuGetFramework(".NETCoreApp", new Version(2, 1, 0, 0));
+            _nugetFrameworks["NetCoreApp3.0"] = new NuGetFramework(".NETCoreApp", new Version(3, 0, 0, 0));
         }
 
         /// <summary>
