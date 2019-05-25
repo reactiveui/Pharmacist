@@ -30,7 +30,7 @@ namespace Pharmacist.Core.NuGet
         private static readonly string[] DefaultFoldersToGrab = { PackagingConstants.Folders.Lib, PackagingConstants.Folders.Build, PackagingConstants.Folders.Ref };
 
         // Bunch of NuGet based objects we can cache and only create once.
-        private static readonly string _globalPackagesPath = SettingsUtility.GetGlobalPackagesFolder(new XPlatMachineWideSetting().Settings.Last());
+        private static readonly string _globalPackagesPath;
         private static readonly NuGetLogger _logger = new NuGetLogger();
         private static readonly PackageDownloadContext _downloadContext = new PackageDownloadContext(NullSourceCacheContext.Instance);
         private static readonly List<Lazy<INuGetResourceProvider>> _providers;
@@ -41,6 +41,9 @@ namespace Pharmacist.Core.NuGet
         {
             _providers = new List<Lazy<INuGetResourceProvider>>();
             _providers.AddRange(Repository.Provider.GetCoreV3());
+
+            var machineWideSettings = new XPlatMachineWideSetting();
+            _globalPackagesPath = SettingsUtility.GetGlobalPackagesFolder(machineWideSettings.Settings.LastOrDefault() ?? (ISettings)NullSettings.Instance);
         }
 
         /// <summary>
