@@ -31,7 +31,7 @@ namespace Pharmacist.Core.Generation.Resolvers
         };
 
         // NB: Apparently this used to break "build on device because of reasons". We don't know what these reasons are and this may not be needed anymore.
-        private static readonly string[] _garbageTypeList = { "AVPlayerItemLegibleOutputPushDelegate" };
+        private static readonly string[] _garbageTypeList = { "AVPlayerItemLegibleOutputPushDelegate", "System.Delegate" };
 
         public IEnumerable<NamespaceDeclarationSyntax> Create(ICompilation compilation)
         {

@@ -26,6 +26,12 @@ namespace Pharmacist.MsBuildTask
     /// </summary>
     public class PharmacistNuGetTask : Task, IEnableLogger
     {
+        private static readonly ISet<string> ExclusionPackageReferenceSet = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase)
+        {
+            "Pharmacist.MSBuildTask",
+            "Pharmacist.Common"
+        };
+
         /// <summary>
         /// Gets or sets the project references.
         /// </summary>
@@ -67,7 +73,7 @@ namespace Pharmacist.MsBuildTask
                 ObservablesForEventGenerator.WriteHeader(stream).ConfigureAwait(false).GetAwaiter().GetResult();
 
                 // Include all package references that aren't ourselves.
-                foreach (var projectReference in PackageReferences.Where(x => !x.ItemSpec.Equals("Pharmacist.MSBuildTask", StringComparison.InvariantCultureIgnoreCase)))
+                foreach (var projectReference in PackageReferences.Where(x => !ExclusionPackageReferenceSet.Contains(x.ItemSpec)))
                 {
                     var include = projectReference.ItemSpec;
 
