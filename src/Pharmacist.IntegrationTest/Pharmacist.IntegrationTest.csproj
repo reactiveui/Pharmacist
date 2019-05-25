@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <ProjectReference Include="..\Pharmacist.MsBuildTask\Pharmacist.MsBuildTask.csproj" />
   </ItemGroup>
 
@@ -20,7 +20,7 @@
     <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildProjectDirectory)\..\Pharmacist.MsBuildTask\bin\$(Configuration)\netstandard2.0\Pharmacist.MsBuildTask.dll</PharmacistTaskAssemblyFile>
     <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildProjectDirectory)\..\Pharmacist.MsBuildTask\bin\$(Configuration)\net461\Pharmacist.MsBuildTask.dll</PharmacistTaskAssemblyFile>
 
-    <!-- Our default CLI version for error checking purposes -->
+    --><!-- Our default CLI version for error checking purposes --><!--
     <PharmacistNetCoreAppVersion>$(BundledNETCoreAppTargetFrameworkVersion)</PharmacistNetCoreAppVersion>
     <PharmacistNetCoreAppVersion Condition="'$(PharmacistNetCoreAppVersion)' == ''">1.0</PharmacistNetCoreAppVersion>
   </PropertyGroup>
@@ -41,7 +41,7 @@
     <ItemGroup Condition="Exists('$(IntermediateOutputPath)\Pharmacist.g.cs')">
       <Compile Include="$(IntermediateOutputPath)\Pharmacist.g.cs" />
     </ItemGroup>
-  </Target>
+  </Target>-->
 
 
 </Project>
