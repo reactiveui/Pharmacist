@@ -172,7 +172,7 @@ namespace Pharmacist.Tests
                               .DownloadPackageAndFilesAndFolder(package, frameworks: frameworks)
                               .ConfigureAwait(false)).ToList();
 
-            var actualFiles = result.SelectMany(x => x.files).ToList();
+            var actualFiles = result.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)).ToList();
             var actualDirectories = result.Select(x => x.folder).ToList();
             Assert.True(actualFiles.All(File.Exists));
             Assert.True(actualDirectories.All(Directory.Exists));

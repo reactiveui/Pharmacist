@@ -82,7 +82,7 @@ namespace Pharmacist.Core.ReferenceLocators
                     process.Start();
 
                     // To avoid deadlocks, always read the output stream first and then wait.
-                    string output = process.StandardOutput.ReadToEnd();
+                    string output = process.StandardOutput.ReadToEnd().Replace(Environment.NewLine, string.Empty);
                     process.WaitForExit();
 
                     return Path.Combine(output, "Common7", "IDE", "ReferenceAssemblies", "Microsoft", "Framework");
