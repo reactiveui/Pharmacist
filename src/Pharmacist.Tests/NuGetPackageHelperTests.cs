@@ -157,7 +157,7 @@ namespace Pharmacist.Tests
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             var result = (await NuGetPackageHelper
-                              .DownloadPackageAndGetLibFilesAndFolder(package, frameworks: frameworks)
+                              .DownloadPackageAndFilesAndFolder(package, frameworks: frameworks)
                               .ConfigureAwait(false)).ToList();
 
             result.ShouldNotBeEmpty();
@@ -169,7 +169,7 @@ namespace Pharmacist.Tests
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             var result = (await NuGetPackageHelper
-                              .DownloadPackageAndGetLibFilesAndFolder(package, frameworks: frameworks)
+                              .DownloadPackageAndFilesAndFolder(package, frameworks: frameworks)
                               .ConfigureAwait(false)).ToList();
 
             var actualFiles = result.SelectMany(x => x.files).ToList();

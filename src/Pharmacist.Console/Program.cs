@@ -17,6 +17,7 @@ using NuGet.Versioning;
 using Pharmacist.Console.CommandOptions;
 using Pharmacist.Core;
 using Pharmacist.Core.NuGet;
+using Pharmacist.Core.ReferenceLocators;
 
 using Splat;
 
@@ -26,10 +27,6 @@ namespace Pharmacist.Console
 {
     internal static class Program
     {
-        private static string _referenceAssembliesLocation = PlatformHelper.IsRunningOnMono() ?
-            @"/Library⁩/Frameworks⁩/Libraries/⁨mono⁩" :
-            @"C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework";
-
         public static async Task<int> Main(string[] args)
         {
             // allow app to be debugged in visual studio.
@@ -49,12 +46,17 @@ namespace Pharmacist.Console
                 {
                     try
                     {
+                        string referenceAssembliesLocation;
                         if (!string.IsNullOrWhiteSpace(options.ReferenceAssemblies))
                         {
-                            _referenceAssembliesLocation = options.ReferenceAssemblies;
+                            referenceAssembliesLocation = options.ReferenceAssemblies;
+                        }
+                        else
+                        {
+                            referenceAssembliesLocation = await ReferenceLocator.GetReferenceLocation().ConfigureAwait(false);
                         }
 
-                        await ObservablesForEventGenerator.ExtractEventsFromPlatforms(options.OutputPath, options.OutputPrefix, _referenceAssembliesLocation, options.Platforms).ConfigureAwait(false);
+                        await ObservablesForEventGenerator.ExtractEventsFromPlatforms(options.OutputPath, options.OutputPrefix, referenceAssembliesLocation, options.Platforms).ConfigureAwait(false);
 
                         return ExitCode.Success;
                     }

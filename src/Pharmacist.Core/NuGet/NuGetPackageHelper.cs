@@ -57,9 +57,17 @@ namespace Pharmacist.Core.NuGet
         /// <param name="packageIdentity">The identity of the packages to find.</param>
         /// <param name="frameworks">Optional framework parameter which will force NuGet to evaluate as the specified Framework. If null it will use .NET Standard 2.0.</param>
         /// <param name="nugetSource">Optional v3 nuget source. Will default to default nuget.org servers.</param>
+        /// <param name="getDependencies">If we should get the dependencies.</param>
+        /// <param name="packageFolders">Directories to package folders. Will be lib/build/ref if not defined.</param>
         /// <param name="token">A cancellation token.</param>
-        /// <returns>The directory where the NuGet packages are unzipped to.</returns>
-        public static async Task<IEnumerable<(string folder, IEnumerable<string> files)>> DownloadPackageAndGetLibFilesAndFolder(PackageIdentity packageIdentity, IReadOnlyCollection<NuGetFramework> frameworks = null, PackageSource nugetSource = null, CancellationToken token = default)
+        /// <returns>The directory where the NuGet packages are unzipped to. Also the files contained within the requested package only.</returns>
+        public static async Task<IEnumerable<(string folder, IEnumerable<string> files)>> DownloadPackageAndFilesAndFolder(
+            PackageIdentity packageIdentity,
+            IReadOnlyCollection<NuGetFramework> frameworks = null,
+            PackageSource nugetSource = null,
+            bool getDependencies = true,
+            IReadOnlyCollection<string> packageFolders = null,
+            CancellationToken token = default)
         {
             // If the user hasn't selected a default framework to extract, select .NET Standard 2.0
             frameworks = frameworks ?? new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
@@ -67,12 +75,17 @@ namespace Pharmacist.Core.NuGet
             // Use the provided nuget package source, or use nuget.org
             var source = new SourceRepository(nugetSource ?? new PackageSource("https://api.nuget.org/v3/index.json"), _providers);
 
-            var librariesToCopy = await GetPackagesToCopy(packageIdentity, source, frameworks.First(), token).ConfigureAwait(false);
+            var librariesToCopy = await GetPackagesToCopy(packageIdentity, source, frameworks.First(), getDependencies, token).ConfigureAwait(false);
 
-            return CopyPackageFiles(librariesToCopy, frameworks, token);
+            return CopyPackageFiles(librariesToCopy, frameworks, packageFolders ?? DefaultFoldersToGrab, token);
         }
 
-        private static async Task<IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)>> GetPackagesToCopy(PackageIdentity startingPackage, SourceRepository source, NuGetFramework framework, CancellationToken token)
+        private static async Task<IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)>> GetPackagesToCopy(
+            PackageIdentity startingPackage,
+            SourceRepository source,
+            NuGetFramework framework,
+            bool getDependencies,
+            CancellationToken token)
         {
             // Get the download resource from the nuget client API. This is basically a DI locator.
             var downloadResource = source.GetResource<DownloadResource>(token);
@@ -80,11 +93,14 @@ namespace Pharmacist.Core.NuGet
             var packagesToCopy = new Dictionary<string, (PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)>(StringComparer.InvariantCultureIgnoreCase);
 
             var stack = new ConcurrentStack<PackageIdentity>(new[] { startingPackage });
-            var supportLibraries = framework.GetSupportLibraries().ToArray();
 
-            if (supportLibraries.Length > 0)
+            if (getDependencies)
             {
-                stack.PushRange(supportLibraries);
+                var supportLibraries = framework.GetSupportLibraries().ToArray();
+                if (supportLibraries.Length > 0)
+                {
+                    stack.PushRange(supportLibraries);
+                }
             }
 
             var currentItems = new PackageIdentity[ProcessingCount];
@@ -102,28 +118,31 @@ namespace Pharmacist.Core.NuGet
                     packagesToCopy[result.packageIdentity.Id] = (result.packageIdentity, result.downloadResourceResult, result.includeFilesInOutput);
                 }
 
-                var dependencies = results.SelectMany(x => GetDependencyPackages(x.downloadResourceResult, framework)
-                    .Where(
-                        dependentPackage =>
-                        {
-                            if (!packagesToCopy.TryGetValue(dependentPackage.Id, out var value))
-                            {
-                                return true;
-                            }
-
-                            return dependentPackage.Version > value.packageIdentity.Version;
-                        })).ToArray();
-
-                if (dependencies.Length > 0)
+                if (getDependencies)
                 {
-                    stack.PushRange(dependencies);
+                    var dependencies = results.SelectMany(x => GetDependencyPackages(x.downloadResourceResult, framework)
+                        .Where(
+                            dependentPackage =>
+                            {
+                                if (!packagesToCopy.TryGetValue(dependentPackage.Id, out var value))
+                                {
+                                    return true;
+                                }
+
+                                return dependentPackage.Version > value.packageIdentity.Version;
+                            })).ToArray();
+
+                    if (dependencies.Length > 0)
+                    {
+                        stack.PushRange(dependencies);
+                    }
                 }
             }
 
             return packagesToCopy.Select(x => (x.Value.packageIdentity, x.Value.downloadResourceResult, x.Value.includeFilesInOutput));
         }
 
-        private static IEnumerable<(string folder, IEnumerable<string> files)> CopyPackageFiles(IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)> packagesToProcess, IReadOnlyCollection<NuGetFramework> frameworks, CancellationToken token)
+        private static IEnumerable<(string folder, IEnumerable<string> files)> CopyPackageFiles(IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)> packagesToProcess, IReadOnlyCollection<NuGetFramework> frameworks, IReadOnlyCollection<string> packageFolders, CancellationToken token)
         {
             var output = new List<(string folder, IEnumerable<string> files)>();
             foreach (var packageToProcess in packagesToProcess)
@@ -134,19 +153,18 @@ namespace Pharmacist.Core.NuGet
                 EnsureDirectory(directory);
 
                 // Get all the folders in our lib and build directory of our nuget. These are the general contents we include in our projects.
-                var groups = DefaultFoldersToGrab.SelectMany(x => downloadResourceResults.PackageReader.GetFileGroups(x));
+                var groups = packageFolders.SelectMany(x => downloadResourceResults.PackageReader.GetFileGroups(x)).ToList();
 
                 foreach (var framework in frameworks)
                 {
                     // Select our groups that match our selected framework and have content.
-                    var groupFiles = groups.Where(x => !x.HasEmptyFolder && x.TargetFramework.EqualToOrLessThan(framework)).OrderByDescending(x => x.TargetFramework.Version).FirstOrDefault()?.Items ?? Array.Empty<string>();
+                    var groupFiles = groups.Where(x => !x.HasEmptyFolder && x.TargetFramework.EqualToOrLessThan(framework)).OrderByDescending(x => x.TargetFramework.Version).FirstOrDefault()?.Items.ToArray() ?? Array.Empty<string>();
 
                     // Extract the files, don't bother copying the XML file contents.
                     var packageFileExtractor = new PackageFileExtractor(groupFiles, XmlDocFileSaveMode.Skip);
 
                     // Copy the files to our extractor cache directory.
                     var outputFiles = downloadResourceResults.PackageReader.CopyFiles(directory, groupFiles, packageFileExtractor.ExtractPackageFile, _logger, token)
-                        .Where(x => x.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
                         .ToList();
 
                     if (outputFiles.Count > 0)

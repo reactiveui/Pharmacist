@@ -3,6 +3,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,8 +34,8 @@ namespace Pharmacist.Core.Extractors
         /// <returns>A task to monitor the progress.</returns>
         public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, PackageIdentity package)
         {
-            var results = (await NuGetPackageHelper.DownloadPackageAndGetLibFilesAndFolder(package, targetFrameworks).ConfigureAwait(false)).ToList();
-            Assemblies.AddRange(results.SelectMany(x => x.files));
+            var results = (await NuGetPackageHelper.DownloadPackageAndFilesAndFolder(package, targetFrameworks).ConfigureAwait(false)).ToList();
+            Assemblies.AddRange(results.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)));
             SearchDirectories.AddRange(results.Select(x => x.folder));
         }
     }

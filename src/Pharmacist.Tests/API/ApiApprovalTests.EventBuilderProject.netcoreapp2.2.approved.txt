@@ -114,6 +114,20 @@ namespace Pharmacist.Core.NuGet
         [return: System.Runtime.CompilerServices.TupleElementNamesAttribute(new string[] {
                 "folder",
                 "files"})]
-        public static System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<System.ValueTuple<string, System.Collections.Generic.IEnumerable<string>>>> DownloadPackageAndGetLibFilesAndFolder(NuGet.Packaging.Core.PackageIdentity packageIdentity, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, System.Threading.CancellationToken token = null) { }
+        public static System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<System.ValueTuple<string, System.Collections.Generic.IEnumerable<string>>>> DownloadPackageAndFilesAndFolder(NuGet.Packaging.Core.PackageIdentity packageIdentity, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, System.Threading.CancellationToken token = null) { }
+    }
+}
+namespace Pharmacist.Core.ReferenceLocators
+{
+    public class ReferenceLocationNotFoundException : System.Exception
+    {
+        public ReferenceLocationNotFoundException(string message) { }
+        public ReferenceLocationNotFoundException(string message, System.Exception innerException) { }
+        public ReferenceLocationNotFoundException() { }
+        protected ReferenceLocationNotFoundException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+    }
+    public class static ReferenceLocator
+    {
+        public static System.Threading.Tasks.Task<string> GetReferenceLocation(bool includePreRelease = True) { }
     }
 }
