@@ -30,7 +30,7 @@ var msbuildTask = Task("BuildMsBuild")
         .WithTarget("build")
         .SetVerbosity(Verbosity.Minimal);
 
-    MSBuild(projectPath, msBuildSettings);   
+    MSBuild("./src/Pharmacist.MsBuild/Pharmacist.MsBuild.csproj", msBuildSettings);   
 });
 
 BuildParameters.Tasks.TestxUnitCoverletGenerateTask.IsDependentOn(msbuildTask);
