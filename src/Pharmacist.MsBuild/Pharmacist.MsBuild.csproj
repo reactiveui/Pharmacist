@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
-    <PackageId>Pharmacist.MSBuildTask</PackageId>
+    <PackageId>Pharmacist.MSBuild</PackageId>
     <!-- forces SDK to copy dependencies into build output to make packing easier -->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -16,10 +16,10 @@
   </ItemGroup>
 
   <ItemGroup Label="Package">
-    <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="build\net461" Pack="true" />
-    <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="buildTransitive\net461" Pack="true" />
-    <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="build\netstandard2.0" Pack="true" />
-    <None Include="targets\Pharmacist.MSBuildTask.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\net461" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\net461" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\netstandard2.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
   </ItemGroup>
 
   <Target Name="PackBuildOutputs">

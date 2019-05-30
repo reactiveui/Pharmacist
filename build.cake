@@ -7,7 +7,7 @@ var packageWhitelist = new[]
 { 
     MakeAbsolute(File("./src/Pharmacist.Console/Pharmacist.Console.csproj")),
     MakeAbsolute(File("./src/Pharmacist.Core/Pharmacist.Core.csproj")),
-    MakeAbsolute(File("./src/Pharmacist.MsBuildTask/Pharmacist.MsBuildTask.csproj")),
+    //MakeAbsolute(File("./src/Pharmacist.MsBuildTask/Pharmacist.MsBuildTask.csproj")),
     MakeAbsolute(File("./src/Pharmacist.Common/Pharmacist.Common.csproj")),
 };
 
@@ -15,6 +15,14 @@ var packageTestWhitelist = new[]
 {
     MakeAbsolute(File("./src/Pharmacist.Tests/Pharmacist.Tests.csproj")),
 };
+
+Task("BuildMsBuild")
+    .IsDependentOn("Clean")
+    .IsDependentOn("GitVersion")
+    .Does(() =>
+{
+    BuildProject("./src/Pharmacist.MsBuild/Pharmacist.MsBuild.csproj", false);
+});
 
 BuildParameters.SetParameters(context: Context, 
                             buildSystem: BuildSystem,

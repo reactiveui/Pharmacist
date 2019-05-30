@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pharmacist.IntegrationTest", "Pharmacist.IntegrationTest\Pharmacist.IntegrationTest.csproj", "{57BD0D2F-A8E3-4854-BD76-3570E7C56154}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pharmacist.MsBuildTask", "Pharmacist.MsBuildTask\Pharmacist.MsBuildTask.csproj", "{2714A571-3FA9-4F27-9E62-EB722A00AC53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pharmacist.MsBuild", "Pharmacist.MsBuild\Pharmacist.MsBuild.csproj", "{2714A571-3FA9-4F27-9E62-EB722A00AC53}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pharmacist.Common", "Pharmacist.Common\Pharmacist.Common.csproj", "{C7C48470-B72E-454B-BB53-E48BB6F7DAD7}"
 EndProject
