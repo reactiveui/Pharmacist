@@ -27,7 +27,7 @@ var msbuildTask = Task("BuildMsBuild")
         .WithProperty("TreatWarningsAsErrors", BuildParameters.TreatWarningsAsErrors.ToString())
         .SetMaxCpuCount(ToolSettings.MaxCpuCount)
         .SetConfiguration(BuildParameters.Configuration)
-        .WithTarget("build")
+        .WithTarget("build;pack")
         .SetVerbosity(Verbosity.Minimal);
 
     MSBuild("./src/Pharmacist.MsBuild/Pharmacist.MsBuild.csproj", msBuildSettings);   
