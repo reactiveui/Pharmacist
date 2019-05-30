@@ -17,11 +17,25 @@ var packageTestWhitelist = new[]
 };
 
 var msbuildTask = Task("BuildMsBuild")
-    .IsDependentOn("Clean")
     .IsDependentOn("GitVersion")
     .Does(() =>
 {
-    BuildProject("./src/Pharmacist.MsBuild/Pharmacist.MsBuild.csproj", false);
+    var msBuildSettings = new MSBuildSettings() {
+            Restore = true,
+            ToolPath = ToolSettings.MsBuildPath,
+        }
+        .WithProperty("TreatWarningsAsErrors", BuildParameters.TreatWarningsAsErrors.ToString())
+        .SetMaxCpuCount(ToolSettings.MaxCpuCount)
+        .SetConfiguration(BuildParameters.Configuration)
+        .WithTarget("build")
+        .SetVerbosity(Verbosity.Minimal);
+
+    if (doNotOptimise)
+    {
+        msBuildSettings = msBuildSettings.WithProperty("Optimize",  "False");
+    }
+
+    MSBuild(projectPath, msBuildSettings);   
 });
 
 BuildParameters.Tasks.TestxUnitCoverletGenerateTask.IsDependentOn(msbuildTask);
