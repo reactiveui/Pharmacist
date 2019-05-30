@@ -30,11 +30,6 @@ var msbuildTask = Task("BuildMsBuild")
         .WithTarget("build")
         .SetVerbosity(Verbosity.Minimal);
 
-    if (doNotOptimise)
-    {
-        msBuildSettings = msBuildSettings.WithProperty("Optimize",  "False");
-    }
-
     MSBuild(projectPath, msBuildSettings);   
 });
 
