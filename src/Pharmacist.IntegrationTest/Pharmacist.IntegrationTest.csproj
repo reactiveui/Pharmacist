@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pharmacist.MsBuildTask\Pharmacist.MsBuildTask.csproj" />
+    <ProjectReference Include="..\Pharmacist.MsBuild\Pharmacist.MsBuild.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -17,8 +17,8 @@
 
   <PropertyGroup>
     <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)\obj\$(Configuration)\</IntermediateOutputPath>
-    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildProjectDirectory)\..\Pharmacist.MsBuildTask\bin\$(Configuration)\netstandard2.0\Pharmacist.MsBuildTask.dll</PharmacistTaskAssemblyFile>
-    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildProjectDirectory)\..\Pharmacist.MsBuildTask\bin\$(Configuration)\net461\Pharmacist.MsBuildTask.dll</PharmacistTaskAssemblyFile>
+    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildProjectDirectory)\..\Pharmacist.MsBuild\bin\$(Configuration)\netstandard2.0\Pharmacist.MsBuild.dll</PharmacistTaskAssemblyFile>
+    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildProjectDirectory)\..\Pharmacist.MsBuild\bin\$(Configuration)\net461\Pharmacist.MsBuild.dll</PharmacistTaskAssemblyFile>
   </PropertyGroup>
 
   <ItemGroup>
