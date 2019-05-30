@@ -25,7 +25,7 @@
     <PackageReference Include="Pharmacist.Common"  Version="1.*" />
   </ItemGroup>
 
-  <UsingTask TaskName="Pharmacist.MsBuildTask.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
+  <UsingTask TaskName="Pharmacist.MSBuild.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
 
   <Target Name="GeneratePharmacist" BeforeTargets="CoreCompile">
     <PharmacistNuGetTask PackageReferences="@(PackageReference)"

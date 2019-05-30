@@ -9,7 +9,7 @@ using Microsoft.Build.Utilities;
 
 using Splat;
 
-namespace Pharmacist.MsBuildTask
+namespace Pharmacist.MsBuild
 {
     /// <summary>
     /// A logger which talks to the MsBuild logging system.

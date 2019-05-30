@@ -19,7 +19,7 @@ using Pharmacist.Core.NuGet;
 
 using Splat;
 
-namespace Pharmacist.MsBuildTask
+namespace Pharmacist.MsBuild
 {
     /// <summary>
     /// A task for generating events.
@@ -28,7 +28,7 @@ namespace Pharmacist.MsBuildTask
     {
         private static readonly ISet<string> ExclusionPackageReferenceSet = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase)
         {
-            "Pharmacist.MSBuildTask",
+            "Pharmacist.MSBuild",
             "Pharmacist.Common"
         };
 

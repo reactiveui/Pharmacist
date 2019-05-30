@@ -7,7 +7,7 @@ var packageWhitelist = new[]
 { 
     MakeAbsolute(File("./src/Pharmacist.Console/Pharmacist.Console.csproj")),
     MakeAbsolute(File("./src/Pharmacist.Core/Pharmacist.Core.csproj")),
-    //MakeAbsolute(File("./src/Pharmacist.MsBuildTask/Pharmacist.MsBuildTask.csproj")),
+    //MakeAbsolute(File("./src/Pharmacist.MSBuild/Pharmacist.MSBuild.csproj")),
     MakeAbsolute(File("./src/Pharmacist.Common/Pharmacist.Common.csproj")),
 };
 

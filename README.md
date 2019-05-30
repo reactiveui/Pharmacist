@@ -30,8 +30,8 @@ Install the following packages to start using Pharmacist.
 [GlobalTool]: https://www.nuget.org/packages/Pharmacist/
 [GlobalToolBadge]: https://img.shields.io/nuget/v/Pharmacist.svg
 
-[MsBuild]: https://www.nuget.org/packages/Pharmacist.MsBuildTask/
-[MsBuildBadge]: https://img.shields.io/nuget/v/Pharmacist.MsBuildTask.svg
+[MsBuild]: https://www.nuget.org/packages/Pharmacist.MSBuild/
+[MsBuildBadge]: https://img.shields.io/nuget/v/Pharmacist.MSBuild.svg
 
 ### What does it do?
 
