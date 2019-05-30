@@ -16,13 +16,15 @@ var packageTestWhitelist = new[]
     MakeAbsolute(File("./src/Pharmacist.Tests/Pharmacist.Tests.csproj")),
 };
 
-Task("BuildMsBuild")
+var msbuildTask = Task("BuildMsBuild")
     .IsDependentOn("Clean")
     .IsDependentOn("GitVersion")
     .Does(() =>
 {
     BuildProject("./src/Pharmacist.MsBuild/Pharmacist.MsBuild.csproj", false);
 });
+
+BuildParameters.Tasks.TestxUnitCoverletGenerateTask.IsDependentOn(msbuildTask);
 
 BuildParameters.SetParameters(context: Context, 
                             buildSystem: BuildSystem,
