@@ -153,7 +153,7 @@ namespace Pharmacist.Tests
         [Fact]
         public async Task CanGetNuGetProtocolAndDependencies()
         {
-            var package = new PackageIdentity("NuGet.Protocol", new NuGetVersion("5.0.0"));
+            var package = new[] { new PackageIdentity("NuGet.Protocol", new NuGetVersion("5.0.0")) };
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             var result = (await NuGetPackageHelper
@@ -165,7 +165,7 @@ namespace Pharmacist.Tests
 
         private static async Task GetAndCheckTizenPackage()
         {
-            var package = new PackageIdentity("Tizen.NET.API4", new NuGetVersion("4.0.1.14152"));
+            var package = new[] { new PackageIdentity("Tizen.NET.API4", new NuGetVersion("4.0.1.14152")) };
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             var result = (await NuGetPackageHelper

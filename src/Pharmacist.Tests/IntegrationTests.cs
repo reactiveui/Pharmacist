@@ -33,7 +33,7 @@ namespace Pharmacist.Tests
         [Fact]
         public async Task TizenNuGetTest()
         {
-            var package = new PackageIdentity("Tizen.NET.API4", new NuGetVersion("4.0.1.14152"));
+            var package = new[] { new PackageIdentity("Tizen.NET.API4", new NuGetVersion("4.0.1.14152")) };
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             using (var memoryStream = new MemoryStream())
@@ -58,7 +58,7 @@ namespace Pharmacist.Tests
         [Fact]
         public async Task XamarinEssentialsNuGetTest()
         {
-            var package = new PackageIdentity("Xamarin.Essentials", new NuGetVersion("1.1.0"));
+            var package = new[] { new PackageIdentity("Xamarin.Essentials", new NuGetVersion("1.1.0")) };
             var frameworks = "MonoAndroid81".ToFrameworks();
 
             using (var memoryStream = new MemoryStream())
@@ -85,7 +85,7 @@ namespace Pharmacist.Tests
         {
             using (var memoryStream = new MemoryStream())
             {
-                var folders = (await NuGetPackageHelper.DownloadPackageAndFilesAndFolder(new PackageIdentity("NETStandard.Library", new NuGetVersion("2.0.0"))).ConfigureAwait(false)).Select(x => x.folder);
+                var folders = (await NuGetPackageHelper.DownloadPackageAndFilesAndFolder(new[] { new PackageIdentity("NETStandard.Library", new NuGetVersion("2.0.0")) }).ConfigureAwait(false)).Select(x => x.folder);
 
                 await ObservablesForEventGenerator.ExtractEventsFromAssemblies(memoryStream, new[] { typeof(InstanceClass).Assembly.Location }, folders).ConfigureAwait(false);
                 memoryStream.Flush();
