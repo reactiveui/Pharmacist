@@ -27,9 +27,6 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         private static readonly NuGetFramework ReferenceFramework = FrameworkConstants.CommonFrameworks.Net461;
 
         /// <inheritdoc />
-        public override AutoPlatform Platform => AutoPlatform.WPF;
-
-        /// <inheritdoc />
         /// <exception cref="NotSupportedException">Building events for WPF on Mac is not implemented.</exception>
         public override async Task Extract(string referenceAssembliesLocation)
         {

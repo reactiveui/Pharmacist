@@ -16,6 +16,9 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
     internal class Winforms : NetFrameworkBase
     {
         /// <inheritdoc />
+        public override AutoPlatform Platform => AutoPlatform.Winforms;
+
+        /// <inheritdoc />
         protected override void SetFiles(string[] files)
         {
             var assemblies = new List<string>(10);
