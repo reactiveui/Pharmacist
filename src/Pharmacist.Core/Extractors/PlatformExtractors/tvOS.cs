@@ -32,9 +32,8 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
                     SearchOption.AllDirectories);
 
             var latestVersion = assemblies.Last();
-            Assemblies.Add(latestVersion);
-
-            SearchDirectories.Add(Path.GetDirectoryName(latestVersion));
+            Assemblies = new[] { latestVersion };
+            SearchDirectories = new[] { Path.GetDirectoryName(latestVersion) };
 
             return Task.CompletedTask;
         }

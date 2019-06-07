@@ -72,27 +72,33 @@ namespace Pharmacist.MsBuild
             {
                 ObservablesForEventGenerator.WriteHeader(stream).ConfigureAwait(false).GetAwaiter().GetResult();
 
-                // Include all package references that aren't ourselves.
-                foreach (var projectReference in PackageReferences.Where(x => !ExclusionPackageReferenceSet.Contains(x.ItemSpec)))
-                {
-                    var include = projectReference.ItemSpec;
+                var packageReferences = PackageReferences.Where(x => !ExclusionPackageReferenceSet.Contains(x.ItemSpec));
 
-                    if (!NuGetVersion.TryParse(projectReference.GetMetadata("Version"), out var nuGetVersion))
+                var packages = new List<PackageIdentity>();
+
+                // Include all package references that aren't ourselves.
+                foreach (var packageReference in packageReferences)
+                {
+                    var include = packageReference.ItemSpec;
+
+                    if (!NuGetVersion.TryParse(packageReference.GetMetadata("Version"), out var nuGetVersion))
                     {
                         this.Log().Error($"Package {include} does not have a valid Version.");
                         continue;
                     }
 
-                    try
-                    {
-                        var packageIdentity = new PackageIdentity(include, nuGetVersion);
-                        ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, packageIdentity, TargetFramework.ToFrameworks()).GetAwaiter().GetResult();
-                    }
-                    catch (Exception ex)
-                    {
-                        this.Log().Error(ex);
-                        return false;
-                    }
+                    var packageIdentity = new PackageIdentity(include, nuGetVersion);
+                    packages.Add(packageIdentity);
+                }
+
+                try
+                {
+                    ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, packages, TargetFramework.ToFrameworks()).GetAwaiter().GetResult();
+                }
+                catch (Exception ex)
+                {
+                    this.Log().Error(ex);
+                    return false;
                 }
             }
 

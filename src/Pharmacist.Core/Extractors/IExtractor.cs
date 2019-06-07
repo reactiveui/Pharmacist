@@ -15,12 +15,12 @@ namespace Pharmacist.Core.Extractors
         /// <summary>
         /// Gets the assemblies.
         /// </summary>
-        List<string> Assemblies { get; }
+        IEnumerable<string> Assemblies { get; }
 
         /// <summary>
         /// Gets the cecil search directories.
         /// Cecil when run on Mono needs some direction as to the location of the platform specific MSCORLIB.
         /// </summary>
-        List<string> SearchDirectories { get; }
+        IEnumerable<string> SearchDirectories { get; }
     }
 }

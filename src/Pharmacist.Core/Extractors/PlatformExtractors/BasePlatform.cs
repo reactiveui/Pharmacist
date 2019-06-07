@@ -13,23 +13,14 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
     /// </summary>
     public abstract class BasePlatform : IPlatformExtractor
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BasePlatform"/> class.
-        /// </summary>
-        protected BasePlatform()
-        {
-            Assemblies = new List<string>();
-            SearchDirectories = new List<string>();
-        }
-
         /// <inheritdoc />
         public abstract AutoPlatform Platform { get; }
 
         /// <inheritdoc />
-        public List<string> Assemblies { get; }
+        public IEnumerable<string> Assemblies { get; protected set; }
 
         /// <inheritdoc />
-        public List<string> SearchDirectories { get; }
+        public IEnumerable<string> SearchDirectories { get; protected set; }
 
         /// <inheritdoc />
         public abstract Task Extract(string referenceAssembliesLocation);

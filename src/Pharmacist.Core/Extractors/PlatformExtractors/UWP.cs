@@ -24,7 +24,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
                 throw new NotSupportedException("Building events for UWP on Mac is not implemented yet.");
             }
 
-            Assemblies.Add(@"C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd");
+            Assemblies = new[] { @"C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd" };
 
             return Task.CompletedTask;
         }

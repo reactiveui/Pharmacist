@@ -4,33 +4,31 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+
+using NuGet.Frameworks;
+using NuGet.Packaging.Core;
+using NuGet.Versioning;
+
+using Pharmacist.Core.NuGet;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
 {
     /// <summary>
     /// WPF platform assemblies and events.
     /// </summary>
-    public class WPF : BasePlatform
+    internal class WPF : NetFrameworkBase
     {
         /// <inheritdoc />
-        public override AutoPlatform Platform => AutoPlatform.WPF;
-
-        /// <inheritdoc />
-        /// <exception cref="NotSupportedException">Building events for WPF on Mac is not implemented.</exception>
-        public override Task Extract(string referenceAssembliesLocation)
+        protected override void SetFiles(string[] files)
         {
-            if (PlatformHelper.IsRunningOnMono())
-            {
-                throw new NotSupportedException("Building events for WPF on Mac is not implemented.");
-            }
-
-            Assemblies.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\WindowsBase.dll");
-            Assemblies.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationCore.dll");
-            Assemblies.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationFramework.dll");
-
-            SearchDirectories.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1");
-            return Task.CompletedTask;
+            var assemblies = new List<string>(10);
+            assemblies.AddRange(files.Where(x => x.EndsWith("WindowsBase.dll", StringComparison.InvariantCultureIgnoreCase)));
+            assemblies.AddRange(files.Where(x => x.EndsWith("PresentationCore.dll", StringComparison.InvariantCultureIgnoreCase)));
+            assemblies.AddRange(files.Where(x => x.EndsWith("PresentationFramework.dll", StringComparison.InvariantCultureIgnoreCase)));
+            Assemblies = assemblies;
         }
     }
 }

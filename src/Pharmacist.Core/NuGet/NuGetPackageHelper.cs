@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -54,15 +55,15 @@ namespace Pharmacist.Core.NuGet
         /// <summary>
         /// Downloads the specified packages and returns the files and directories where the package NuGet package lives.
         /// </summary>
-        /// <param name="packageIdentity">The identity of the packages to find.</param>
+        /// <param name="packageIdentities">The identity of the packages to find.</param>
         /// <param name="frameworks">Optional framework parameter which will force NuGet to evaluate as the specified Framework. If null it will use .NET Standard 2.0.</param>
         /// <param name="nugetSource">Optional v3 nuget source. Will default to default nuget.org servers.</param>
         /// <param name="getDependencies">If we should get the dependencies.</param>
         /// <param name="packageFolders">Directories to package folders. Will be lib/build/ref if not defined.</param>
         /// <param name="token">A cancellation token.</param>
         /// <returns>The directory where the NuGet packages are unzipped to. Also the files contained within the requested package only.</returns>
-        public static async Task<IEnumerable<(string folder, IEnumerable<string> files)>> DownloadPackageAndFilesAndFolder(
-            PackageIdentity packageIdentity,
+        public static async Task<IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)>> DownloadPackageAndFilesAndFolder(
+            IReadOnlyCollection<PackageIdentity> packageIdentities,
             IReadOnlyCollection<NuGetFramework> frameworks = null,
             PackageSource nugetSource = null,
             bool getDependencies = true,
@@ -75,13 +76,13 @@ namespace Pharmacist.Core.NuGet
             // Use the provided nuget package source, or use nuget.org
             var source = new SourceRepository(nugetSource ?? new PackageSource("https://api.nuget.org/v3/index.json"), _providers);
 
-            var librariesToCopy = await GetPackagesToCopy(packageIdentity, source, frameworks.First(), getDependencies, token).ConfigureAwait(false);
+            var librariesToCopy = await GetPackagesToCopy(packageIdentities, source, frameworks.First(), getDependencies, token).ConfigureAwait(false);
 
             return CopyPackageFiles(librariesToCopy, frameworks, packageFolders ?? DefaultFoldersToGrab, token);
         }
 
         private static async Task<IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)>> GetPackagesToCopy(
-            PackageIdentity startingPackage,
+            IReadOnlyCollection<PackageIdentity> startingPackages,
             SourceRepository source,
             NuGetFramework framework,
             bool getDependencies,
@@ -92,7 +93,7 @@ namespace Pharmacist.Core.NuGet
 
             var packagesToCopy = new Dictionary<string, (PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)>(StringComparer.InvariantCultureIgnoreCase);
 
-            var stack = new ConcurrentStack<PackageIdentity>(new[] { startingPackage });
+            var stack = new ConcurrentStack<PackageIdentity>(startingPackages);
 
             if (getDependencies)
             {
@@ -110,7 +111,7 @@ namespace Pharmacist.Core.NuGet
 
                 // Download the resource into the global packages path. We get a result which allows us to copy or do other operations based on the files.
                 (DownloadResourceResult downloadResourceResult, PackageIdentity packageIdentity, bool includeFilesInOutput)[] results = await Task.WhenAll(currentItems.Take(count).Select(async item =>
-                                          (await downloadResource.GetDownloadResourceResultAsync(item, _downloadContext, _globalPackagesPath, _logger, token).ConfigureAwait(false), item, item.Equals(startingPackage))))
+                                          (await downloadResource.GetDownloadResourceResultAsync(item, _downloadContext, _globalPackagesPath, _logger, token).ConfigureAwait(false), item, startingPackages.Contains(item))))
                                           .ConfigureAwait(false);
 
                 foreach (var result in results.Where(x => x.downloadResourceResult.Status == DownloadResourceResultStatus.Available || x.downloadResourceResult.Status == DownloadResourceResultStatus.AvailableWithoutStream))
@@ -142,9 +143,9 @@ namespace Pharmacist.Core.NuGet
             return packagesToCopy.Select(x => (x.Value.packageIdentity, x.Value.downloadResourceResult, x.Value.includeFilesInOutput));
         }
 
-        private static IEnumerable<(string folder, IEnumerable<string> files)> CopyPackageFiles(IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)> packagesToProcess, IReadOnlyCollection<NuGetFramework> frameworks, IReadOnlyCollection<string> packageFolders, CancellationToken token)
+        private static IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)> CopyPackageFiles(IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)> packagesToProcess, IReadOnlyCollection<NuGetFramework> frameworks, IReadOnlyCollection<string> packageFolders, CancellationToken token)
         {
-            var output = new List<(string folder, IEnumerable<string> files)>();
+            var output = new List<(string folder, IReadOnlyCollection<string> files)>();
             foreach (var packageToProcess in packagesToProcess)
             {
                 var (packageIdentity, downloadResourceResults, includeFilesInOutput) = packageToProcess;
@@ -170,7 +171,7 @@ namespace Pharmacist.Core.NuGet
                     if (outputFiles.Count > 0)
                     {
                         // Return the folder, if we aren't excluding files return all the assemblies.
-                        output.Add((directory, includeFilesInOutput ? outputFiles : Enumerable.Empty<string>()));
+                        output.Add((directory, includeFilesInOutput ? (IReadOnlyCollection<string>)outputFiles : Array.Empty<string>()));
                         break;
                     }
                 }

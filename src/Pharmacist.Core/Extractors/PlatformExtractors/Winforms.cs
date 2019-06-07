@@ -4,6 +4,8 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
@@ -11,119 +13,20 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
     /// <summary>
     /// Win Forms platform assemblies and events.
     /// </summary>
-    public class Winforms : BasePlatform
+    internal class Winforms : NetFrameworkBase
     {
         /// <inheritdoc />
-        public override AutoPlatform Platform => AutoPlatform.Winforms;
-
-        /// <inheritdoc />
-        /// <exception cref="NotSupportedException">Building events for Winforms on Mac is not implemented.</exception>
-        public override Task Extract(string referenceAssembliesLocation)
+        protected override void SetFiles(string[] files)
         {
-            if (PlatformHelper.IsRunningOnMono())
-            {
-                throw new NotSupportedException("Building events for Winforms on Mac is not implemented.");
-            }
-
-            // BackgroundWorker
-            // EventLog
-            // FileSystemWatcher
-            // PerformanceCounter
-            // Process
-            // SerialPort
-            Assemblies.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll");
-
-            // DataSet
-            Assemblies.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.dll");
-
-            // DirectoryEntry
-            // DirectorySearcher
-            Assemblies.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.DirectoryServices.dll");
-
-            // PrintDocument
-            Assemblies.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Drawing.dll");
-
-            // MessageQueue
-            Assemblies.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Messaging.dll");
-
-            // BindingNavigator
-            // ToolStripButton
-            // ToolStripLabel
-            // ToolStripButton
-            // ToolStripButton
-            // ToolStripButton
-            // ToolStripSeparator
-            // ToolStripTextBox
-            // ToolStripSeparator
-            // ToolStripButton
-            // ToolStripButton
-            // ToolStripSeparator
-            // BindingSource
-            // Button
-            // CheckBox
-            // CheckedListBox
-            // ColorDialog
-            // ComboBox
-            // ContextMenuStrip
-            // DataGridView
-            // DateTimePicker
-            // DomainUpDown
-            // ErrorProvider
-            // WebBrowser
-            // VScrollBar
-            // TreeView
-            // ToolStripContainer
-            // TrackBar
-            // ToolStrip
-            // SplitContainer
-            // TabControl
-            // TabPage
-            // TableLayoutPanel
-            // TextBox
-            // TabPage
-            // StatusStrip
-            // Splitter
-            // RichTextBox
-            // RadioButton
-            // PropertyGrid
-            // ProgressBar
-            // PrintPreviewControl
-            // PictureBox
-            // Panel
-            // NumericUpDown
-            // MonthCalendar
-            // MaskedTextBox
-            // ListView
-            // ListBox
-            // LinkLabel
-            // Label
-            // HScrollBar
-            // GroupBox
-            // FlowLayoutPanel
-            // MenuStrip
-            // FolderBrowserDialog
-            // FontDialog
-            // HelpProvider
-            // ImageList
-            // NotifyIcon
-            // OpenFileDialog
-            // PageSetupDialog
-            // PrintDialog
-            // PrintPreviewDialog
-            // SaveFileDialog
-            // Timer
-            // ToolTip
-            Assemblies.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Windows.Forms.dll");
-
-            // Chart
-            Assemblies.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Windows.Forms.DataVisualization.dll");
-
-            // ServiceController
-            Assemblies.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.ServiceProcess.dll");
-
-            SearchDirectories.Add(@"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1");
-
-            return Task.CompletedTask;
+            var assemblies = new List<string>(10);
+            assemblies.AddRange(files.Where(x => x.EndsWith("System.dll", StringComparison.InvariantCultureIgnoreCase)));
+            assemblies.AddRange(files.Where(x => x.EndsWith("System.Data.dll", StringComparison.InvariantCultureIgnoreCase)));
+            assemblies.AddRange(files.Where(x => x.EndsWith("System.DirectoryServices.dll", StringComparison.InvariantCultureIgnoreCase)));
+            assemblies.AddRange(files.Where(x => x.EndsWith("System.Messaging.dll", StringComparison.InvariantCultureIgnoreCase)));
+            assemblies.AddRange(files.Where(x => x.EndsWith("System.Windows.Forms.dll", StringComparison.InvariantCultureIgnoreCase)));
+            assemblies.AddRange(files.Where(x => x.EndsWith("System.Windows.Forms.DataVisualization.dll", StringComparison.InvariantCultureIgnoreCase)));
+            assemblies.AddRange(files.Where(x => x.EndsWith("System.ServiceProcess.dll", StringComparison.InvariantCultureIgnoreCase)));
+            Assemblies = assemblies;
         }
     }
 }

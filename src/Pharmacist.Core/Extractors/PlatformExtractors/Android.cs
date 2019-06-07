@@ -25,17 +25,14 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         /// <inheritdoc />
         public override Task Extract(string referenceAssembliesLocation)
         {
-            var sdks = new List<string>();
-            SearchDirectories.Add(Path.Combine(referenceAssembliesLocation, "MonoAndroid", "v1.0"));
-            sdks.AddRange(Directory.GetFiles(
-                   Path.Combine(referenceAssembliesLocation, "MonoAndroid"),
-                   "Mono.Android.dll",
-                   SearchOption.AllDirectories));
-
             // Pin to a particular framework version https://github.com/reactiveui/ReactiveUI/issues/1517
-            var latestVersion = sdks.Last(x => x.Contains(DesiredVersion));
-            Assemblies.Add(latestVersion);
-            SearchDirectories.Add(Path.GetDirectoryName(latestVersion));
+            var latestVersion = Directory.GetFiles(
+                Path.Combine(referenceAssembliesLocation, "MonoAndroid"),
+                "Mono.Android.dll",
+                SearchOption.AllDirectories).Last(x => x.Contains(DesiredVersion));
+
+            SearchDirectories = new[] { Path.Combine(referenceAssembliesLocation, "MonoAndroid", "v1.0"), Path.GetDirectoryName(latestVersion) };
+            Assemblies = new[] { latestVersion };
 
             return Task.CompletedTask;
         }
