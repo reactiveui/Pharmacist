@@ -19,7 +19,7 @@ namespace Pharmacist.Core
     public class static ObservablesForEventGenerator
     {
         public static System.Threading.Tasks.Task ExtractEventsFromAssemblies(System.IO.Stream outputStream, System.Collections.Generic.IEnumerable<string> assemblyPaths, System.Collections.Generic.IEnumerable<string> searchDirectories) { }
-        public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.Stream outputStream, NuGet.Packaging.Core.PackageIdentity package, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks) { }
+        public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.Stream outputStream, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packages, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks) { }
         public static System.Threading.Tasks.Task ExtractEventsFromPlatforms(string outputPath, string prefix, string defaultReferenceAssemblyLocation, System.Collections.Generic.IEnumerable<Pharmacist.Core.AutoPlatform> platforms) { }
         public static System.Threading.Tasks.Task WriteHeader(System.IO.Stream outputStream) { }
     }
@@ -32,15 +32,15 @@ namespace Pharmacist.Core.Extractors
 {
     public interface IExtractor
     {
-        System.Collections.Generic.List<string> Assemblies { get; }
-        System.Collections.Generic.List<string> SearchDirectories { get; }
+        System.Collections.Generic.IEnumerable<string> Assemblies { get; }
+        System.Collections.Generic.IEnumerable<string> SearchDirectories { get; }
     }
     public class NuGetExtractor : Pharmacist.Core.Extractors.IExtractor
     {
         public NuGetExtractor() { }
-        public System.Collections.Generic.List<string> Assemblies { get; }
-        public System.Collections.Generic.List<string> SearchDirectories { get; }
-        public System.Threading.Tasks.Task Extract(System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> targetFrameworks, NuGet.Packaging.Core.PackageIdentity package) { }
+        public System.Collections.Generic.IEnumerable<string> Assemblies { get; }
+        public System.Collections.Generic.IEnumerable<string> SearchDirectories { get; }
+        public System.Threading.Tasks.Task Extract(System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> targetFrameworks, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packages) { }
     }
 }
 namespace Pharmacist.Core.Extractors.PlatformExtractors
@@ -54,9 +54,9 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
     public abstract class BasePlatform : Pharmacist.Core.Extractors.IExtractor, Pharmacist.Core.Extractors.PlatformExtractors.IPlatformExtractor
     {
         protected BasePlatform() { }
-        public System.Collections.Generic.List<string> Assemblies { get; }
+        public System.Collections.Generic.IEnumerable<string> Assemblies { get; set; }
         public abstract Pharmacist.Core.AutoPlatform Platform { get; }
-        public System.Collections.Generic.List<string> SearchDirectories { get; }
+        public System.Collections.Generic.IEnumerable<string> SearchDirectories { get; set; }
         public abstract System.Threading.Tasks.Task Extract(string referenceAssembliesLocation);
     }
     public class iOS : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
@@ -88,18 +88,6 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         public override Pharmacist.Core.AutoPlatform Platform { get; }
         public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
     }
-    public class Winforms : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
-    {
-        public Winforms() { }
-        public override Pharmacist.Core.AutoPlatform Platform { get; }
-        public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
-    }
-    public class WPF : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
-    {
-        public WPF() { }
-        public override Pharmacist.Core.AutoPlatform Platform { get; }
-        public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
-    }
 }
 namespace Pharmacist.Core.NuGet
 {
@@ -114,7 +102,7 @@ namespace Pharmacist.Core.NuGet
         [return: System.Runtime.CompilerServices.TupleElementNamesAttribute(new string[] {
                 "folder",
                 "files"})]
-        public static System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<System.ValueTuple<string, System.Collections.Generic.IEnumerable<string>>>> DownloadPackageAndFilesAndFolder(NuGet.Packaging.Core.PackageIdentity packageIdentity, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, System.Threading.CancellationToken token = null) { }
+        public static System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyCollection<System.ValueTuple<string, System.Collections.Generic.IReadOnlyCollection<string>>>> DownloadPackageAndFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packageIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, System.Threading.CancellationToken token = null) { }
     }
 }
 namespace Pharmacist.Core.ReferenceLocators
