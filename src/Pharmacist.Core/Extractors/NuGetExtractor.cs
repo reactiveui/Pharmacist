@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using NuGet.Frameworks;
+using NuGet.LibraryModel;
 using NuGet.Packaging.Core;
 
 using Pharmacist.Core.NuGet;
@@ -34,7 +35,21 @@ namespace Pharmacist.Core.Extractors
         /// <returns>A task to monitor the progress.</returns>
         public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<PackageIdentity> packages)
         {
-            var results = await NuGetPackageHelper.DownloadPackageAndFilesAndFolder(packages, targetFrameworks).ConfigureAwait(false);
+            var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks).ConfigureAwait(false);
+
+            Assemblies = new List<string>(results.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)));
+            SearchDirectories = new List<string>(results.Select(x => x.folder));
+        }
+
+        /// <summary>
+        /// Extracts the data using the specified target framework.
+        /// </summary>
+        /// <param name="targetFrameworks">The target framework to extract in order of priority.</param>
+        /// <param name="packages">The packages to extract the information from.</param>
+        /// <returns>A task to monitor the progress.</returns>
+        public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<LibraryRange> packages)
+        {
+            var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks).ConfigureAwait(false);
 
             Assemblies = new List<string>(results.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)));
             SearchDirectories = new List<string>(results.Select(x => x.folder));

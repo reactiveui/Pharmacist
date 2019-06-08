@@ -11,6 +11,7 @@ using System.Linq;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
+using NuGet.LibraryModel;
 using NuGet.Packaging.Core;
 using NuGet.Versioning;
 
@@ -74,20 +75,20 @@ namespace Pharmacist.MsBuild
 
                 var packageReferences = PackageReferences.Where(x => !ExclusionPackageReferenceSet.Contains(x.ItemSpec));
 
-                var packages = new List<PackageIdentity>();
+                var packages = new List<LibraryRange>();
 
                 // Include all package references that aren't ourselves.
                 foreach (var packageReference in packageReferences)
                 {
                     var include = packageReference.ItemSpec;
 
-                    if (!NuGetVersion.TryParse(packageReference.GetMetadata("Version"), out var nuGetVersion))
+                    if (!VersionRange.TryParse(packageReference.GetMetadata("Version"), out var nuGetVersion))
                     {
                         this.Log().Error($"Package {include} does not have a valid Version.");
                         continue;
                     }
 
-                    var packageIdentity = new PackageIdentity(include, nuGetVersion);
+                    var packageIdentity = new LibraryRange(include, nuGetVersion, LibraryDependencyTarget.Package);
                     packages.Add(packageIdentity);
                 }
 

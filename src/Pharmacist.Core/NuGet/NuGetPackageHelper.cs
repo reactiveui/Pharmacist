@@ -15,10 +15,12 @@ using System.Threading.Tasks;
 
 using NuGet.Configuration;
 using NuGet.Frameworks;
+using NuGet.LibraryModel;
 using NuGet.Packaging;
 using NuGet.Packaging.Core;
 using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
+using NuGet.Versioning;
 
 namespace Pharmacist.Core.NuGet
 {
@@ -28,14 +30,17 @@ namespace Pharmacist.Core.NuGet
     public static class NuGetPackageHelper
     {
         private const int ProcessingCount = 32;
+
+        private const string DefaultNuGetSource = "https://api.nuget.org/v3/index.json";
+
         private static readonly string[] DefaultFoldersToGrab = { PackagingConstants.Folders.Lib, PackagingConstants.Folders.Build, PackagingConstants.Folders.Ref };
 
         // Bunch of NuGet based objects we can cache and only create once.
         private static readonly string _globalPackagesPath;
         private static readonly NuGetLogger _logger = new NuGetLogger();
-        private static readonly PackageDownloadContext _downloadContext = new PackageDownloadContext(NullSourceCacheContext.Instance);
+        private static readonly SourceCacheContext _sourceCacheContext = NullSourceCacheContext.Instance;
+        private static readonly PackageDownloadContext _downloadContext = new PackageDownloadContext(_sourceCacheContext);
         private static readonly List<Lazy<INuGetResourceProvider>> _providers;
-
         private static readonly IFrameworkNameProvider _frameworkNameProvider = DefaultFrameworkNameProvider.Instance;
 
         static NuGetPackageHelper()
@@ -50,7 +55,36 @@ namespace Pharmacist.Core.NuGet
         /// <summary>
         /// Gets the directory where the packages will be stored.
         /// </summary>
-        public static string PackageDirectory { get; } = Path.Combine(Path.GetTempPath(), "EventBuilder.NuGet");
+        public static string PackageDirectory { get; } = Path.Combine(Path.GetTempPath(), "ReactiveUI.Pharmacist");
+
+        /// <summary>
+        /// Downloads the specified packages and returns the files and directories where the package NuGet package lives.
+        /// </summary>
+        /// <param name="libraryIdentities">Library identities we want to match.</param>
+        /// <param name="frameworks">Optional framework parameter which will force NuGet to evaluate as the specified Framework. If null it will use .NET Standard 2.0.</param>
+        /// <param name="nugetSource">Optional v3 nuget source. Will default to default nuget.org servers.</param>
+        /// <param name="getDependencies">If we should get the dependencies.</param>
+        /// <param name="packageFolders">Directories to package folders. Will be lib/build/ref if not defined.</param>
+        /// <param name="token">A cancellation token.</param>
+        /// <returns>The directory where the NuGet packages are unzipped to. Also the files contained within the requested package only.</returns>
+        public static async Task<IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)>> DownloadPackageFilesAndFolder(
+            IReadOnlyCollection<LibraryRange> libraryIdentities,
+            IReadOnlyCollection<NuGetFramework> frameworks = null,
+            PackageSource nugetSource = null,
+            bool getDependencies = true,
+            IReadOnlyCollection<string> packageFolders = null,
+            CancellationToken token = default)
+        {
+            // If the user hasn't selected a default framework to extract, select .NET Standard 2.0
+            frameworks = frameworks ?? new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
+
+            // Use the provided nuget package source, or use nuget.org
+            var sourceRepository = new SourceRepository(nugetSource ?? new PackageSource(DefaultNuGetSource), _providers);
+
+            var packages = await Task.WhenAll(libraryIdentities.Select(x => GetBestMatch(x, sourceRepository, token))).ConfigureAwait(false);
+
+            return await DownloadPackageFilesAndFolder(packages, frameworks, sourceRepository, getDependencies, packageFolders, token).ConfigureAwait(false);
+        }
 
         /// <summary>
         /// Downloads the specified packages and returns the files and directories where the package NuGet package lives.
@@ -62,7 +96,7 @@ namespace Pharmacist.Core.NuGet
         /// <param name="packageFolders">Directories to package folders. Will be lib/build/ref if not defined.</param>
         /// <param name="token">A cancellation token.</param>
         /// <returns>The directory where the NuGet packages are unzipped to. Also the files contained within the requested package only.</returns>
-        public static async Task<IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)>> DownloadPackageAndFilesAndFolder(
+        public static Task<IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)>> DownloadPackageFilesAndFolder(
             IReadOnlyCollection<PackageIdentity> packageIdentities,
             IReadOnlyCollection<NuGetFramework> frameworks = null,
             PackageSource nugetSource = null,
@@ -74,22 +108,43 @@ namespace Pharmacist.Core.NuGet
             frameworks = frameworks ?? new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             // Use the provided nuget package source, or use nuget.org
-            var source = new SourceRepository(nugetSource ?? new PackageSource("https://api.nuget.org/v3/index.json"), _providers);
+            var sourceRepository = new SourceRepository(nugetSource ?? new PackageSource(DefaultNuGetSource), _providers);
 
-            var librariesToCopy = await GetPackagesToCopy(packageIdentities, source, frameworks.First(), getDependencies, token).ConfigureAwait(false);
+            return DownloadPackageFilesAndFolder(packageIdentities, frameworks, sourceRepository, getDependencies, packageFolders, token);
+        }
+
+        /// <summary>
+        /// Downloads the specified packages and returns the files and directories where the package NuGet package lives.
+        /// </summary>
+        /// <param name="packageIdentities">The identity of the packages to find.</param>
+        /// <param name="frameworks">Framework parameter which will force NuGet to evaluate as the specified Framework. If null it will use .NET Standard 2.0.</param>
+        /// <param name="sourceRepository">Nuget source repository. Will default to default nuget.org servers.</param>
+        /// <param name="getDependencies">If we should get the dependencies.</param>
+        /// <param name="packageFolders">Directories to package folders. Will be lib/build/ref if not defined.</param>
+        /// <param name="token">A cancellation token.</param>
+        /// <returns>The directory where the NuGet packages are unzipped to. Also the files contained within the requested package only.</returns>
+        private static async Task<IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)>> DownloadPackageFilesAndFolder(
+            IReadOnlyCollection<PackageIdentity> packageIdentities,
+            IReadOnlyCollection<NuGetFramework> frameworks,
+            SourceRepository sourceRepository,
+            bool getDependencies = true,
+            IReadOnlyCollection<string> packageFolders = null,
+            CancellationToken token = default)
+        {
+            var librariesToCopy = await GetPackagesToCopy(packageIdentities, sourceRepository, frameworks.First(), getDependencies, token).ConfigureAwait(false);
 
             return CopyPackageFiles(librariesToCopy, frameworks, packageFolders ?? DefaultFoldersToGrab, token);
         }
 
         private static async Task<IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)>> GetPackagesToCopy(
             IReadOnlyCollection<PackageIdentity> startingPackages,
-            SourceRepository source,
+            SourceRepository sourceRepository,
             NuGetFramework framework,
             bool getDependencies,
             CancellationToken token)
         {
             // Get the download resource from the nuget client API. This is basically a DI locator.
-            var downloadResource = source.GetResource<DownloadResource>(token);
+            var downloadResource = await sourceRepository.GetResourceAsync<DownloadResource>(token).ConfigureAwait(false);
 
             var packagesToCopy = new Dictionary<string, (PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)>(StringComparer.InvariantCultureIgnoreCase);
 
@@ -221,6 +276,17 @@ namespace Pharmacist.Core.NuGet
             return firstFramework.Version <= secondFramework.Version;
         }
 
+        private static async Task<PackageIdentity> GetBestMatch(LibraryRange identity, SourceRepository sourceRepository, CancellationToken token)
+        {
+            var findPackageResource = await sourceRepository.GetResourceAsync<FindPackageByIdResource>(token).ConfigureAwait(false);
+
+            var versions = await findPackageResource.GetAllVersionsAsync(identity.Name, _sourceCacheContext, _logger, token).ConfigureAwait(false);
+
+            var bestPackageVersion = versions?.FindBestMatch(identity.VersionRange, version => version);
+
+            return new PackageIdentity(identity.Name, bestPackageVersion);
+        }
+
         private static IEnumerable<FrameworkSpecificGroup> GetFileGroups(this PackageReaderBase reader, string folder)
         {
             var groups = new Dictionary<NuGetFramework, List<string>>(new NuGetFrameworkFullComparer());
@@ -245,7 +311,7 @@ namespace Pharmacist.Core.NuGet
         private static NuGetFramework GetFrameworkFromPath(this IPackageCoreReader reader, string path, bool allowSubFolders = false)
         {
             var nuGetFramework = NuGetFramework.AnyFramework;
-            var strArray = path.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            var strArray = path.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             if ((strArray.Length == 3 || strArray.Length > 3) && allowSubFolders)
             {
                 string folderName = strArray[1];

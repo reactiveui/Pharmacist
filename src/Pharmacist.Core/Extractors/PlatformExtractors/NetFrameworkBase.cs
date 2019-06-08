@@ -30,7 +30,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         /// <exception cref="NotSupportedException">Building events for WPF on Mac is not implemented.</exception>
         public override async Task Extract(string referenceAssembliesLocation)
         {
-            var results = await NuGetPackageHelper.DownloadPackageAndFilesAndFolder(new[] { ReferenceNuGet }, new[] { ReferenceFramework }).ConfigureAwait(false);
+            var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(new[] { ReferenceNuGet }, new[] { ReferenceFramework }).ConfigureAwait(false);
             var files = results.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)).ToArray();
             SetFiles(files);
             SearchDirectories = new List<string>(results.Select(x => x.folder));

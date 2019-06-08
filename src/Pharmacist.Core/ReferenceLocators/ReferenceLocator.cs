@@ -50,7 +50,7 @@ namespace Pharmacist.Core.ReferenceLocators
 
         private static async Task<string> GetWindowsInstallationDirectory(bool includePreRelease)
         {
-            var results = await NuGetPackageHelper.DownloadPackageAndFilesAndFolder(
+            var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(
                               new[] { VSWherePackageIdentity },
                               new[] { new NuGetFramework("Any") },
                               packageFolders: new[] { PackagingConstants.Folders.Tools },

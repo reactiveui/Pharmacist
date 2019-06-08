@@ -16,6 +16,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 using NuGet.Frameworks;
+using NuGet.LibraryModel;
 using NuGet.Packaging.Core;
 
 using Pharmacist.Core.Extractors;
@@ -84,6 +85,21 @@ namespace Pharmacist.Core
         /// <param name="frameworks">The framework to generate for in order of priority.</param>
         /// <returns>A task to monitor the progress.</returns>
         public static async Task ExtractEventsFromNuGetPackages(Stream outputStream, IReadOnlyCollection<PackageIdentity> packages, IReadOnlyCollection<NuGetFramework> frameworks)
+        {
+            var extractor = new NuGetExtractor();
+            await extractor.Extract(frameworks, packages).ConfigureAwait(false);
+
+            await ExtractEventsFromAssemblies(outputStream, extractor.Assemblies, extractor.SearchDirectories).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Extracts the events and delegates from the specified platform.
+        /// </summary>
+        /// <param name="outputStream">Stream that we should output to.</param>
+        /// <param name="packages">The packages to process.</param>
+        /// <param name="frameworks">The framework to generate for in order of priority.</param>
+        /// <returns>A task to monitor the progress.</returns>
+        public static async Task ExtractEventsFromNuGetPackages(Stream outputStream, IReadOnlyCollection<LibraryRange> packages, IReadOnlyCollection<NuGetFramework> frameworks)
         {
             var extractor = new NuGetExtractor();
             await extractor.Extract(frameworks, packages).ConfigureAwait(false);
