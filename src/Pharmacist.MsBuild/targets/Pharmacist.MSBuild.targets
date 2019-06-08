@@ -13,10 +13,6 @@
     <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildThisFileDirectory)..\..\build\net461\Pharmacist.MSBuild.dll</PharmacistTaskAssemblyFile>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Pharmacist.Common"  Version="1.*" />
-  </ItemGroup>
-
   <UsingTask TaskName="Pharmacist.MsBuild.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
 
   <Target Name="GeneratePharmacist" BeforeTargets="CoreCompile">
