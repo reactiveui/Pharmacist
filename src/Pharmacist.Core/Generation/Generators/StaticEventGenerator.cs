@@ -27,33 +27,28 @@ namespace Pharmacist.Core.Generation.Generators
             {
                 var namespaceName = groupDeclaration.Key;
 
-                var members = groupDeclaration.OrderBy(x => x.typeDefinition.Name).Select(x => GenerateStaticClass(namespaceName, x.typeDefinition, x.events)).Where(x => x != null).ToList();
+                var eventWrapperMembers = groupDeclaration
+                    .OrderBy(x => x.typeDefinition.Name)
+                    .SelectMany(
+                        x =>
+                            x.events
+                                .OrderBy(eventDetails => eventDetails.Name)
+                                .Select(eventDetails => GenerateEventWrapperObservable(eventDetails, x.typeDefinition.GenerateFullGenericName()))
+                                .Where(y => y != null))
+                    .ToList();
 
-                if (members.Any())
+                if (eventWrapperMembers.Count > 0)
                 {
+                    var members = SyntaxFactory.ClassDeclaration("Events")
+                        .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword)))
+                        .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class that contains extension methods to wrap events contained within static classes within the {0} namespace.", namespaceName))
+                        .WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(eventWrapperMembers));
+
                     yield return SyntaxFactory
                         .NamespaceDeclaration(SyntaxFactory.IdentifierName(namespaceName))
-                        .WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(members));
+                        .WithMembers(SyntaxFactory.SingletonList<MemberDeclarationSyntax>(members));
                 }
             }
-        }
-
-        private static ClassDeclarationSyntax GenerateStaticClass(string namespaceName, ITypeDefinition typeDefinition, IEnumerable<IEvent> events)
-        {
-            var members = events.OrderBy(x => x.Name).Select(x => GenerateEventWrapperObservable(x, typeDefinition.GenerateFullGenericName())).Where(x => x != null).ToList();
-
-            if (members.Count == 0)
-            {
-                return null;
-            }
-
-            // Produces:
-            // public static class EventExtensions
-            //   contents of members above
-            return SyntaxFactory.ClassDeclaration("Events")
-                .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword)))
-                .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class that contains extension methods to wrap events contained within static classes within the {0} namespace.", namespaceName))
-                .WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(members));
         }
     }
 }
