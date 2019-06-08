@@ -33,7 +33,7 @@ namespace Pharmacist.Core.Generation.Generators
                         x =>
                             x.events
                                 .OrderBy(eventDetails => eventDetails.Name)
-                                .Select(eventDetails => GenerateEventWrapperObservable(eventDetails, x.typeDefinition.GenerateFullGenericName()))
+                                .Select(eventDetails => GenerateEventWrapperObservable(eventDetails, x.typeDefinition.GenerateFullGenericName(), x.typeDefinition.Name))
                                 .Where(y => y != null))
                     .ToList();
 

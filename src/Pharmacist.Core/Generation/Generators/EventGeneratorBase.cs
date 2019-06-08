@@ -28,9 +28,12 @@ namespace Pharmacist.Core.Generation.Generators
         /// </summary>
         /// <param name="eventDetails">The details of the event to wrap.</param>
         /// <param name="dataObjectName">The name of the item where the event is stored.</param>
+        /// <param name="prefix">A prefix to append to the name.</param>
         /// <returns>The property declaration.</returns>
-        protected static PropertyDeclarationSyntax GenerateEventWrapperObservable(IEvent eventDetails, string dataObjectName)
+        protected static PropertyDeclarationSyntax GenerateEventWrapperObservable(IEvent eventDetails, string dataObjectName, string prefix = null)
         {
+            prefix = prefix ?? string.Empty;
+
             // Produces:
             // public System.IObservable<eventArgs, eventHandler> EventName => System.Reactive.Linq.Observable.FromEventPattern();
             var invokeMethod = eventDetails.GetEventType().GetDelegateInvokeMethod();
@@ -68,7 +71,7 @@ namespace Pharmacist.Core.Generation.Generators
                 ? SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword))
                 : SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword));
 
-            return SyntaxFactory.PropertyDeclaration(observableEventArgType, eventDetails.Name)
+            return SyntaxFactory.PropertyDeclaration(observableEventArgType, prefix + eventDetails.Name)
                 .WithModifiers(modifiers)
                 .WithExpressionBody(expressionBody)
                 .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken))
