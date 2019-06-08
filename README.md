@@ -23,6 +23,7 @@ Install the following packages to start using Pharmacist.
 | Core - Libary     | [![CoreBadge]][Core]             |
 | Global Tool       | [![GlobalToolBadge]][GlobalTool] |
 | MSBuild Task      | [![MsBuildBadge]][MsBuild]       |
+| Common            | [![CommonBadge]][Common]         |
 
 [Core]: https://www.nuget.org/packages/Pharmacist.Core/
 [CoreBadge]: https://img.shields.io/nuget/v/Pharmacist.Core.svg
@@ -32,6 +33,9 @@ Install the following packages to start using Pharmacist.
 
 [MsBuild]: https://www.nuget.org/packages/Pharmacist.MSBuild/
 [MsBuildBadge]: https://img.shields.io/nuget/v/Pharmacist.MSBuild.svg
+
+[Common]: https://www.nuget.org/packages/Pharmacist.Common/
+[CommonBadge]: https://img.shields.io/nuget/v/Pharmacist.Common.svg
 
 ### What does it do?
 
