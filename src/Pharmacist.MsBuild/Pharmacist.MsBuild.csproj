@@ -31,5 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Pharmacist.Core\Pharmacist.Core.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\Pharmacist.Common\Pharmacist.Common.csproj" />
   </ItemGroup>
 </Project>
