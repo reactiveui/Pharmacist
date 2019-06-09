@@ -138,5 +138,24 @@ namespace Pharmacist.Core
             await streamWriter.WriteAsync(await TemplateManager.GetTemplateAsync(TemplateManager.HeaderTemplate).ConfigureAwait(false)).ConfigureAwait(false);
             await streamWriter.FlushAsync().ConfigureAwait(false);
         }
+
+        /// <summary>
+        /// Writes the header for a output.
+        /// </summary>
+        /// <param name="outputStream">The stream where to write to.</param>
+        /// <param name="libraryRanges">The library ranges to include as packages included in the output.</param>
+        /// <returns>A task to monitor the progress.</returns>
+        public static async Task WriteHeader(Stream outputStream, IReadOnlyCollection<LibraryRange> libraryRanges)
+        {
+            StreamWriter streamWriter = new StreamWriter(outputStream);
+            await streamWriter.WriteAsync(await TemplateManager.GetTemplateAsync(TemplateManager.HeaderTemplate).ConfigureAwait(false)).ConfigureAwait(false);
+
+            foreach (var libraryRange in libraryRanges)
+            {
+                await streamWriter.WriteLineAsync($"// Package included {libraryRange}").ConfigureAwait(false);
+            }
+
+            await streamWriter.FlushAsync().ConfigureAwait(false);
+        }
     }
 }

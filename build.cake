@@ -16,25 +16,6 @@ var packageTestWhitelist = new[]
     MakeAbsolute(File("./src/Pharmacist.Tests/Pharmacist.Tests.csproj")),
 };
 
-// var msbuildTask = Task("BuildMsBuild")
-//     .IsDependentOn("GitVersion")
-//     .Does(() =>
-// {
-//     var msBuildSettings = new MSBuildSettings() {
-//             Restore = true,
-//             ToolPath = ToolSettings.MsBuildPath,
-//         }
-//         .WithProperty("TreatWarningsAsErrors", BuildParameters.TreatWarningsAsErrors.ToString())
-//         .SetMaxCpuCount(ToolSettings.MaxCpuCount)
-//         .SetConfiguration(BuildParameters.Configuration)
-//         .WithTarget("build;pack")
-//         .SetVerbosity(Verbosity.Minimal);
-
-//     MSBuild("./src/Pharmacist.MsBuild/Pharmacist.MsBuild.csproj", msBuildSettings);   
-// });
-
-// BuildParameters.Tasks.TestxUnitCoverletGenerateTask.IsDependentOn(msbuildTask);
-
 BuildParameters.SetParameters(context: Context, 
                             buildSystem: BuildSystem,
                             title: "Pharmacist",
@@ -43,6 +24,6 @@ BuildParameters.SetParameters(context: Context,
                             artifactsDirectory: "./artifacts",
                             sourceDirectory: "./src");
 
-ToolSettings.SetToolSettings(context: Context);
+ToolSettings.SetToolSettings(context: Context, maxCpuCount: 1);
 
 Build.Run();
