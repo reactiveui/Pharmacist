@@ -246,7 +246,7 @@ src/ReactiveUI.Events*/Events_*.cs
 # macOS
 .DS_Store
 
-src/*.Tests/**/ApiApprovalTests*.received.txt
+src/*.Tests/**/*.received.txt
 .idea/
 
 # Fody Weavers (for tests)

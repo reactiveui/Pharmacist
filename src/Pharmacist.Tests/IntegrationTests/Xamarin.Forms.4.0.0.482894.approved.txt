@@ -1,4 +1,5 @@
-﻿namespace Xamarin.Forms
+
+namespace Xamarin.Forms
 {
     /// <summary>
     /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Xamarin.Forms"/> namespace.
@@ -1765,11 +1766,11 @@ namespace Xamarin.Forms.Internals
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Internals.TableModel.ItemLongPressed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Xamarin.Forms.Internals.EventArg<global::object>> ItemLongPressed => global::System.Reactive.Linq.Observable.FromEventPattern<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<global::object>>, global::Xamarin.Forms.Internals.EventArg<global::object>>(x => _data.ItemLongPressed += x, x => _data.ItemLongPressed -= x).Select(x => x.EventArgs);
+        public global::System.IObservable<global::Xamarin.Forms.Internals.EventArg<object>> ItemLongPressed => global::System.Reactive.Linq.Observable.FromEventPattern<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<object>>, global::Xamarin.Forms.Internals.EventArg<object>>(x => _data.ItemLongPressed += x, x => _data.ItemLongPressed -= x).Select(x => x.EventArgs);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Internals.TableModel.ItemSelected"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Xamarin.Forms.Internals.EventArg<global::object>> ItemSelected => global::System.Reactive.Linq.Observable.FromEventPattern<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<global::object>>, global::Xamarin.Forms.Internals.EventArg<global::object>>(x => _data.ItemSelected += x, x => _data.ItemSelected -= x).Select(x => x.EventArgs);
+        public global::System.IObservable<global::Xamarin.Forms.Internals.EventArg<object>> ItemSelected => global::System.Reactive.Linq.Observable.FromEventPattern<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<object>>, global::Xamarin.Forms.Internals.EventArg<object>>(x => _data.ItemSelected += x, x => _data.ItemSelected -= x).Select(x => x.EventArgs);
     }
 
     /// <summary>

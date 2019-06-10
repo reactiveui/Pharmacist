@@ -85,16 +85,6 @@ namespace Pharmacist.Core.Generation
             return map.GetValueOrDefault(name);
         }
 
-        public static string GetBuiltInType(string typeName)
-        {
-            if (_fullToBuiltInTypes.TryGetValue(typeName, out var builtInName))
-            {
-                return builtInName;
-            }
-
-            return typeName;
-        }
-
         /// <summary>
         /// Get a list of non-generic public type definitions.
         /// </summary>
@@ -158,7 +148,8 @@ namespace Pharmacist.Core.Generation
         /// <returns>A type descriptor including the generic arguments.</returns>
         public static string GenerateFullGenericName(this IType currentType)
         {
-            var sb = new StringBuilder("global::" + GetBuiltInType(currentType.FullName));
+            var (isBuiltIn, typeName) = GetBuiltInType(currentType.FullName);
+            var sb = new StringBuilder(!isBuiltIn ? "global::" + typeName : typeName);
 
             if (currentType.TypeParameterCount > 0)
             {
@@ -176,6 +167,16 @@ namespace Pharmacist.Core.Generation
                     compilation,
                     comp => comp.GetPublicNonGenericTypeDefinitions().Where(x => x.Events.Any(eventInfo => eventInfo.Accessibility == Accessibility.Public))
                 .ToImmutableList());
+        }
+
+        private static (bool isInternalType, string typeName) GetBuiltInType(string typeName)
+        {
+            if (_fullToBuiltInTypes.TryGetValue(typeName, out var builtInName))
+            {
+                return (true, builtInName);
+            }
+
+            return (false, typeName);
         }
     }
 }

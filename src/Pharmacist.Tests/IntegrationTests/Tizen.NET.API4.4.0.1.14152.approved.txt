@@ -1,4 +1,5 @@
-﻿namespace ElmSharp
+
+namespace ElmSharp
 {
     /// <summary>
     /// A class that contains extension methods to wrap events for classes contained within the <see cref = "ElmSharp"/> namespace.
@@ -3593,7 +3594,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Tizen.NUI.PropertyNotification.Notified"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Tizen.NUI.PropertyNotification.NotifyEventArgs> Notified => global::System.Reactive.Linq.Observable.FromEventPattern<global::Tizen.NUI.DaliEventHandler<global::object, global::Tizen.NUI.PropertyNotification.NotifyEventArgs>, global::Tizen.NUI.PropertyNotification.NotifyEventArgs>(x => _data.Notified += x, x => _data.Notified -= x).Select(x => x.EventArgs);
+        public global::System.IObservable<global::Tizen.NUI.PropertyNotification.NotifyEventArgs> Notified => global::System.Reactive.Linq.Observable.FromEventPattern<global::Tizen.NUI.DaliEventHandler<object, global::Tizen.NUI.PropertyNotification.NotifyEventArgs>, global::Tizen.NUI.PropertyNotification.NotifyEventArgs>(x => _data.Notified += x, x => _data.Notified -= x).Select(x => x.EventArgs);
     }
 
     /// <summary>
@@ -3614,7 +3615,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Tizen.NUI.ScrollView.SnapStarted"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Tizen.NUI.ScrollView.SnapStartedEventArgs> SnapStarted => global::System.Reactive.Linq.Observable.FromEventPattern<global::Tizen.NUI.DaliEventHandler<global::object, global::Tizen.NUI.ScrollView.SnapStartedEventArgs>, global::Tizen.NUI.ScrollView.SnapStartedEventArgs>(x => _data.SnapStarted += x, x => _data.SnapStarted -= x).Select(x => x.EventArgs);
+        public global::System.IObservable<global::Tizen.NUI.ScrollView.SnapStartedEventArgs> SnapStarted => global::System.Reactive.Linq.Observable.FromEventPattern<global::Tizen.NUI.DaliEventHandler<object, global::Tizen.NUI.ScrollView.SnapStartedEventArgs>, global::Tizen.NUI.ScrollView.SnapStartedEventArgs>(x => _data.SnapStarted += x, x => _data.SnapStarted -= x).Select(x => x.EventArgs);
     }
 
     /// <summary>
@@ -3831,15 +3832,15 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Tizen.NUI.BaseComponents.Scrollable.ScrollCompleted"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Tizen.NUI.BaseComponents.Scrollable.CompletedEventArgs> ScrollCompleted => global::System.Reactive.Linq.Observable.FromEventPattern<global::Tizen.NUI.DaliEventHandler<global::object, global::Tizen.NUI.BaseComponents.Scrollable.CompletedEventArgs>, global::Tizen.NUI.BaseComponents.Scrollable.CompletedEventArgs>(x => _data.ScrollCompleted += x, x => _data.ScrollCompleted -= x).Select(x => x.EventArgs);
+        public global::System.IObservable<global::Tizen.NUI.BaseComponents.Scrollable.CompletedEventArgs> ScrollCompleted => global::System.Reactive.Linq.Observable.FromEventPattern<global::Tizen.NUI.DaliEventHandler<object, global::Tizen.NUI.BaseComponents.Scrollable.CompletedEventArgs>, global::Tizen.NUI.BaseComponents.Scrollable.CompletedEventArgs>(x => _data.ScrollCompleted += x, x => _data.ScrollCompleted -= x).Select(x => x.EventArgs);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Tizen.NUI.BaseComponents.Scrollable.ScrollStarted"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Tizen.NUI.BaseComponents.Scrollable.StartedEventArgs> ScrollStarted => global::System.Reactive.Linq.Observable.FromEventPattern<global::Tizen.NUI.DaliEventHandler<global::object, global::Tizen.NUI.BaseComponents.Scrollable.StartedEventArgs>, global::Tizen.NUI.BaseComponents.Scrollable.StartedEventArgs>(x => _data.ScrollStarted += x, x => _data.ScrollStarted -= x).Select(x => x.EventArgs);
+        public global::System.IObservable<global::Tizen.NUI.BaseComponents.Scrollable.StartedEventArgs> ScrollStarted => global::System.Reactive.Linq.Observable.FromEventPattern<global::Tizen.NUI.DaliEventHandler<object, global::Tizen.NUI.BaseComponents.Scrollable.StartedEventArgs>, global::Tizen.NUI.BaseComponents.Scrollable.StartedEventArgs>(x => _data.ScrollStarted += x, x => _data.ScrollStarted -= x).Select(x => x.EventArgs);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Tizen.NUI.BaseComponents.Scrollable.ScrollUpdated"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Tizen.NUI.BaseComponents.Scrollable.UpdatedEventArgs> ScrollUpdated => global::System.Reactive.Linq.Observable.FromEventPattern<global::Tizen.NUI.DaliEventHandler<global::object, global::Tizen.NUI.BaseComponents.Scrollable.UpdatedEventArgs>, global::Tizen.NUI.BaseComponents.Scrollable.UpdatedEventArgs>(x => _data.ScrollUpdated += x, x => _data.ScrollUpdated -= x).Select(x => x.EventArgs);
+        public global::System.IObservable<global::Tizen.NUI.BaseComponents.Scrollable.UpdatedEventArgs> ScrollUpdated => global::System.Reactive.Linq.Observable.FromEventPattern<global::Tizen.NUI.DaliEventHandler<object, global::Tizen.NUI.BaseComponents.Scrollable.UpdatedEventArgs>, global::Tizen.NUI.BaseComponents.Scrollable.UpdatedEventArgs>(x => _data.ScrollUpdated += x, x => _data.ScrollUpdated -= x).Select(x => x.EventArgs);
     }
 
     /// <summary>
