@@ -18,13 +18,7 @@ var packageTestWhitelist = new[]
 
 var killMsBuildTask = Task("KillMsBuild").Does(() =>
 {
-    var workers = System.Diagnostics.Process.GetProcessesByName("msbuild");
-    foreach (var worker in workers)
-    {
-        worker.Kill();
-        worker.WaitForExit();
-        worker.Dispose();
-    }
+    StartProcess("taskkill", "/F /IM MSBuild.exe");
 });
 
 BuildParameters.Tasks.TestxUnitCoverletGenerateTask.IsDependentOn(killMsBuildTask);
