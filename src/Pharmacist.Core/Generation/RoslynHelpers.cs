@@ -23,7 +23,7 @@ namespace Pharmacist.Core.Generation
     /// </summary>
     internal static class RoslynHelpers
     {
-        internal const string ObservableUnitName = "System.Reactive.Unit";
+        internal const string ObservableUnitName = "global::System.Reactive.Unit";
         internal const string VoidType = "System.Void";
 
         /// <summary>

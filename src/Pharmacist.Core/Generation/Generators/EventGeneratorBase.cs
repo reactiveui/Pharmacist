@@ -122,7 +122,7 @@ namespace Pharmacist.Core.Generation.Generators
                 SyntaxFactory.InvocationExpression(
                     SyntaxFactory.MemberAccessExpression(
                         SyntaxKind.SimpleMemberAccessExpression,
-                        SyntaxFactory.IdentifierName("System.Reactive.Linq.Observable"),
+                        SyntaxFactory.IdentifierName("global::System.Reactive.Linq.Observable"),
                         SyntaxFactory.GenericName(SyntaxFactory.Identifier("FromEvent"))
                             .WithTypeArgumentList(fromEventTypeParameters)))
                         .WithArgumentList(
@@ -147,7 +147,7 @@ namespace Pharmacist.Core.Generation.Generators
                 SyntaxFactory.InvocationExpression(
                         SyntaxFactory.MemberAccessExpression(
                             SyntaxKind.SimpleMemberAccessExpression,
-                            SyntaxFactory.IdentifierName("System.Reactive.Linq.Observable"),
+                            SyntaxFactory.IdentifierName("global::System.Reactive.Linq.Observable"),
                             SyntaxFactory.IdentifierName("FromEvent")))
                             .WithArgumentList(
                                 SyntaxFactory.ArgumentList(
@@ -178,7 +178,7 @@ namespace Pharmacist.Core.Generation.Generators
                             SyntaxFactory.InvocationExpression(
                                 SyntaxFactory.MemberAccessExpression(
                                     SyntaxKind.SimpleMemberAccessExpression,
-                                    SyntaxFactory.IdentifierName("System.Reactive.Linq.Observable"),
+                                    SyntaxFactory.IdentifierName("global::System.Reactive.Linq.Observable"),
                                     SyntaxFactory.GenericName(SyntaxFactory.Identifier("FromEventPattern"))
                                         .WithTypeArgumentList(
                                             SyntaxFactory.TypeArgumentList(
