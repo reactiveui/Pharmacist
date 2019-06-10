@@ -1,4 +1,4 @@
-﻿namespace Xamarin.Essentials
+namespace Xamarin.Essentials
 {
     /// <summary>
     /// A class that contains extension methods to wrap events contained within static classes within the <see cref = "Xamarin.Essentials"/> namespace.

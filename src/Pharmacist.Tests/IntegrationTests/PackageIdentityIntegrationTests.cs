@@ -3,31 +3,23 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
-using System.Collections.Generic;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using NuGet.Frameworks;
 using NuGet.Packaging.Core;
 using NuGet.Versioning;
 
-using Pharmacist.Core;
 using Pharmacist.Core.NuGet;
-
-using Shouldly;
 
 using Xunit;
 
-namespace Pharmacist.Tests
+namespace Pharmacist.Tests.IntegrationTests
 {
     /// <summary>
     /// Tests to make sure that integration tests produce correct results.
     /// </summary>
     public class PackageIdentityIntegrationTests
     {
-        private static readonly Regex _whitespaceRegex = new Regex(@"\s");
-
         /// <summary>
         /// Tests to make sure the Tizen platform produces the expected results.
         /// </summary>
@@ -38,7 +30,7 @@ namespace Pharmacist.Tests
             var package = new[] { new PackageIdentity("Tizen.NET.API4", new NuGetVersion("4.0.1.14152")) };
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
-            return CheckResultsAgainstTemplate(package, frameworks);
+            return IntegrationTestHelper.CheckResultsAgainstTemplate(package, frameworks);
         }
 
         /// <summary>
@@ -51,7 +43,7 @@ namespace Pharmacist.Tests
             var package = new[] { new PackageIdentity("Xamarin.Essentials", new NuGetVersion("1.1.0")) };
             var frameworks = "MonoAndroid81".ToFrameworks();
 
-            return CheckResultsAgainstTemplate(package, frameworks);
+            return IntegrationTestHelper.CheckResultsAgainstTemplate(package, frameworks);
         }
 
         /// <summary>
@@ -64,30 +56,7 @@ namespace Pharmacist.Tests
             var package = new[] { new PackageIdentity("Xamarin.Forms", new NuGetVersion("4.0.0.482894")) };
             var frameworks = "MonoAndroid81".ToFrameworks();
 
-            return CheckResultsAgainstTemplate(package, frameworks);
-        }
-
-        private static async Task CheckResultsAgainstTemplate(PackageIdentity[] package, IReadOnlyCollection<NuGetFramework> frameworks)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, frameworks).ConfigureAwait(false);
-                memoryStream.Flush();
-
-                memoryStream.Position = 0;
-                using (var sr = new StreamReader(memoryStream))
-                {
-                    var actualContents = sr.ReadToEnd();
-                    var expectedContents = File.ReadAllText($"TestExpectedResults/{package[0].Id}.{package[0].Version}.txt");
-
-                    string normalizedActual = _whitespaceRegex.Replace(actualContents, string.Empty);
-                    string normalizedExpected = _whitespaceRegex.Replace(expectedContents, string.Empty);
-
-                    normalizedActual.ShouldNotBeEmpty();
-
-                    normalizedActual.ShouldBe(normalizedExpected, StringCompareShould.IgnoreLineEndings);
-                }
-            }
+            return IntegrationTestHelper.CheckResultsAgainstTemplate(package, frameworks);
         }
     }
 }

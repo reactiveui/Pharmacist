@@ -13,17 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="TestExpectedResults\Tizen.Net.API4.4.0.1.14152.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="TestExpectedResults\Xamarin.Essentials.1.1.0.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="TestExpectedResults\Xamarin.Forms.4.0.0.482894.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestExpectedResults\" />
   </ItemGroup>
 </Project>
