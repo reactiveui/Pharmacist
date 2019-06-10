@@ -108,25 +108,6 @@ namespace Pharmacist.Core.Generation
                 .ToImmutableList());
         }
 
-        /// <summary>
-        /// Gets a string form of the type and generic arguments for a type.
-        /// </summary>
-        /// <param name="currentType">The type to generate the arguments for.</param>
-        /// <returns>A type descriptor including the generic arguments.</returns>
-        public static string GenerateFullGenericName(this IType currentType)
-        {
-            var sb = new StringBuilder(GetBuiltInType(currentType.FullName));
-
-            if (currentType.TypeParameterCount > 0)
-            {
-                sb.Append("<")
-                    .Append(string.Join(", ", currentType.TypeArguments.Select(GenerateFullGenericName)))
-                    .Append(">");
-            }
-
-            return sb.ToString();
-        }
-
         public static IType GetEventType(this IEvent eventDetails)
         {
             ICompilation compilation = eventDetails.Compilation;
@@ -168,6 +149,31 @@ namespace Pharmacist.Core.Generation
             }
 
             return type;
+        }
+
+        /// <summary>
+        /// Gets a string form of the type and generic arguments for a type.
+        /// </summary>
+        /// <param name="currentType">The type to generate the arguments for.</param>
+        /// <returns>A type descriptor including the generic arguments.</returns>
+        public static string GenerateFullGenericName(this IType currentType)
+        {
+            return GenerateFullGenericName(currentType, true);
+        }
+
+        private static string GenerateFullGenericName(this IType currentType, bool isStart)
+        {
+            var currentTypeFullName = GetBuiltInType(currentType.FullName);
+            var sb = new StringBuilder(isStart ? "global::" + currentTypeFullName : currentTypeFullName);
+
+            if (currentType.TypeParameterCount > 0)
+            {
+                sb.Append("<")
+                    .Append(string.Join(", ", currentType.TypeArguments.Select(x => GenerateFullGenericName(x, false))))
+                    .Append(">");
+            }
+
+            return sb.ToString();
         }
 
         private static IImmutableList<ITypeDefinition> GetPublicTypeDefinitionsWithEvents(ICompilation compilation)

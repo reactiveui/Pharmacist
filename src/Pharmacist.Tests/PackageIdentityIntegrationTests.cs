@@ -78,7 +78,7 @@ namespace Pharmacist.Tests
                 using (var sr = new StreamReader(memoryStream))
                 {
                     var actualContents = sr.ReadToEnd();
-                    var expectedContents = File.ReadAllText($"TestResults/{package[0].Id}.{package[0].Version}.txt");
+                    var expectedContents = File.ReadAllText($"TestExpectedResults/{package[0].Id}.{package[0].Version}.txt");
 
                     string normalizedActual = _whitespaceRegex.Replace(actualContents, string.Empty);
                     string normalizedExpected = _whitespaceRegex.Replace(expectedContents, string.Empty);
