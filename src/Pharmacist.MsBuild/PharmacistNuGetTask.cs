@@ -71,16 +71,17 @@ namespace Pharmacist.MsBuild
 
             using (var stream = new FileStream(Path.Combine(OutputFile), FileMode.Create, FileAccess.Write))
             {
-                ObservablesForEventGenerator.WriteHeader(stream).ConfigureAwait(false).GetAwaiter().GetResult();
-
-                var packageReferences = PackageReferences.Where(x => !ExclusionPackageReferenceSet.Contains(x.ItemSpec));
-
                 var packages = new List<LibraryRange>();
 
                 // Include all package references that aren't ourselves.
-                foreach (var packageReference in packageReferences)
+                foreach (var packageReference in PackageReferences)
                 {
-                    var include = packageReference.ItemSpec;
+                    var include = packageReference.GetMetadata("PackageName");
+
+                    if (ExclusionPackageReferenceSet.Contains(include))
+                    {
+                        continue;
+                    }
 
                     if (!VersionRange.TryParse(packageReference.GetMetadata("Version"), out var nuGetVersion))
                     {
@@ -91,6 +92,8 @@ namespace Pharmacist.MsBuild
                     var packageIdentity = new LibraryRange(include, nuGetVersion, LibraryDependencyTarget.Package);
                     packages.Add(packageIdentity);
                 }
+
+                ObservablesForEventGenerator.WriteHeader(stream).ConfigureAwait(false).GetAwaiter().GetResult();
 
                 try
                 {

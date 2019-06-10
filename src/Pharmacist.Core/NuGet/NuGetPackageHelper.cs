@@ -29,9 +29,12 @@ namespace Pharmacist.Core.NuGet
     /// </summary>
     public static class NuGetPackageHelper
     {
-        private const int ProcessingCount = 32;
+        /// <summary>
+        /// Gets the default nuget source.
+        /// </summary>
+        public const string DefaultNuGetSource = "https://api.nuget.org/v3/index.json";
 
-        private const string DefaultNuGetSource = "https://api.nuget.org/v3/index.json";
+        private const int ProcessingCount = 32;
 
         private static readonly string[] DefaultFoldersToGrab = { PackagingConstants.Folders.Lib, PackagingConstants.Folders.Build, PackagingConstants.Folders.Ref };
 
@@ -40,13 +43,12 @@ namespace Pharmacist.Core.NuGet
         private static readonly NuGetLogger _logger = new NuGetLogger();
         private static readonly SourceCacheContext _sourceCacheContext = NullSourceCacheContext.Instance;
         private static readonly PackageDownloadContext _downloadContext = new PackageDownloadContext(_sourceCacheContext);
-        private static readonly List<Lazy<INuGetResourceProvider>> _providers;
         private static readonly IFrameworkNameProvider _frameworkNameProvider = DefaultFrameworkNameProvider.Instance;
 
         static NuGetPackageHelper()
         {
-            _providers = new List<Lazy<INuGetResourceProvider>>();
-            _providers.AddRange(Repository.Provider.GetCoreV3());
+            Providers = new List<Lazy<INuGetResourceProvider>>();
+            Providers.AddRange(Repository.Provider.GetCoreV3());
 
             var machineWideSettings = new XPlatMachineWideSetting();
             _globalPackagesPath = SettingsUtility.GetGlobalPackagesFolder(machineWideSettings.Settings.LastOrDefault() ?? (ISettings)NullSettings.Instance);
@@ -56,6 +58,11 @@ namespace Pharmacist.Core.NuGet
         /// Gets the directory where the packages will be stored.
         /// </summary>
         public static string PackageDirectory { get; } = Path.Combine(Path.GetTempPath(), "ReactiveUI.Pharmacist");
+
+        /// <summary>
+        /// Gets the providers for the nuget resources.
+        /// </summary>
+        public static List<Lazy<INuGetResourceProvider>> Providers { get; }
 
         /// <summary>
         /// Downloads the specified packages and returns the files and directories where the package NuGet package lives.
@@ -79,7 +86,7 @@ namespace Pharmacist.Core.NuGet
             frameworks = frameworks ?? new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             // Use the provided nuget package source, or use nuget.org
-            var sourceRepository = new SourceRepository(nugetSource ?? new PackageSource(DefaultNuGetSource), _providers);
+            var sourceRepository = new SourceRepository(nugetSource ?? new PackageSource(DefaultNuGetSource), Providers);
 
             var packages = await Task.WhenAll(libraryIdentities.Select(x => GetBestMatch(x, sourceRepository, token))).ConfigureAwait(false);
 
@@ -108,9 +115,27 @@ namespace Pharmacist.Core.NuGet
             frameworks = frameworks ?? new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             // Use the provided nuget package source, or use nuget.org
-            var sourceRepository = new SourceRepository(nugetSource ?? new PackageSource(DefaultNuGetSource), _providers);
+            var sourceRepository = new SourceRepository(nugetSource ?? new PackageSource(DefaultNuGetSource), Providers);
 
             return DownloadPackageFilesAndFolder(packageIdentities, frameworks, sourceRepository, getDependencies, packageFolders, token);
+        }
+
+        /// <summary>
+        /// Gets the best matching PackageIdentity for the specified LibraryRange.
+        /// </summary>
+        /// <param name="identity">The library range to find the best patch for.</param>
+        /// <param name="sourceRepository">The source repository where to match.</param>
+        /// <param name="token">A optional cancellation token.</param>
+        /// <returns>The best matching PackageIdentity to the specified version range.</returns>
+        public static async Task<PackageIdentity> GetBestMatch(LibraryRange identity, SourceRepository sourceRepository, CancellationToken token)
+        {
+            var findPackageResource = await sourceRepository.GetResourceAsync<FindPackageByIdResource>(token).ConfigureAwait(false);
+
+            var versions = await findPackageResource.GetAllVersionsAsync(identity.Name, _sourceCacheContext, _logger, token).ConfigureAwait(false);
+
+            var bestPackageVersion = versions?.FindBestMatch(identity.VersionRange, version => version);
+
+            return new PackageIdentity(identity.Name, bestPackageVersion);
         }
 
         /// <summary>
@@ -274,17 +299,6 @@ namespace Pharmacist.Core.NuGet
             }
 
             return firstFramework.Version <= secondFramework.Version;
-        }
-
-        private static async Task<PackageIdentity> GetBestMatch(LibraryRange identity, SourceRepository sourceRepository, CancellationToken token)
-        {
-            var findPackageResource = await sourceRepository.GetResourceAsync<FindPackageByIdResource>(token).ConfigureAwait(false);
-
-            var versions = await findPackageResource.GetAllVersionsAsync(identity.Name, _sourceCacheContext, _logger, token).ConfigureAwait(false);
-
-            var bestPackageVersion = versions?.FindBestMatch(identity.VersionRange, version => version);
-
-            return new PackageIdentity(identity.Name, bestPackageVersion);
         }
 
         private static IEnumerable<FrameworkSpecificGroup> GetFileGroups(this PackageReaderBase reader, string folder)

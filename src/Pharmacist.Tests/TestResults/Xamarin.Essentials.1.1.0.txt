@@ -1,0 +1,53 @@
+﻿namespace Xamarin.Essentials
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events contained within static classes within the <see cref = "Xamarin.Essentials"/> namespace.
+    /// </summary>
+    public static class Events
+    {
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Accelerometer.ReadingChanged"/> event triggers.
+        /// </summary>
+        public static System.IObservable<Xamarin.Essentials.AccelerometerChangedEventArgs> AccelerometerReadingChanged => System.Reactive.Linq.Observable.FromEventPattern<System.EventHandler<Xamarin.Essentials.AccelerometerChangedEventArgs>, Xamarin.Essentials.AccelerometerChangedEventArgs>(x => Xamarin.Essentials.Accelerometer.ReadingChanged += x, x => Xamarin.Essentials.Accelerometer.ReadingChanged -= x).Select(x => x.EventArgs);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Accelerometer.ShakeDetected"/> event triggers.
+        /// </summary>
+        public static System.IObservable<System.EventArgs> AccelerometerShakeDetected => System.Reactive.Linq.Observable.FromEventPattern<System.EventHandler, System.EventArgs>(x => Xamarin.Essentials.Accelerometer.ShakeDetected += x, x => Xamarin.Essentials.Accelerometer.ShakeDetected -= x).Select(x => x.EventArgs);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Barometer.ReadingChanged"/> event triggers.
+        /// </summary>
+        public static System.IObservable<Xamarin.Essentials.BarometerChangedEventArgs> BarometerReadingChanged => System.Reactive.Linq.Observable.FromEventPattern<System.EventHandler<Xamarin.Essentials.BarometerChangedEventArgs>, Xamarin.Essentials.BarometerChangedEventArgs>(x => Xamarin.Essentials.Barometer.ReadingChanged += x, x => Xamarin.Essentials.Barometer.ReadingChanged -= x).Select(x => x.EventArgs);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Battery.BatteryInfoChanged"/> event triggers.
+        /// </summary>
+        public static System.IObservable<Xamarin.Essentials.BatteryInfoChangedEventArgs> BatteryBatteryInfoChanged => System.Reactive.Linq.Observable.FromEventPattern<System.EventHandler<Xamarin.Essentials.BatteryInfoChangedEventArgs>, Xamarin.Essentials.BatteryInfoChangedEventArgs>(x => Xamarin.Essentials.Battery.BatteryInfoChanged += x, x => Xamarin.Essentials.Battery.BatteryInfoChanged -= x).Select(x => x.EventArgs);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Battery.EnergySaverStatusChanged"/> event triggers.
+        /// </summary>
+        public static System.IObservable<Xamarin.Essentials.EnergySaverStatusChangedEventArgs> BatteryEnergySaverStatusChanged => System.Reactive.Linq.Observable.FromEventPattern<System.EventHandler<Xamarin.Essentials.EnergySaverStatusChangedEventArgs>, Xamarin.Essentials.EnergySaverStatusChangedEventArgs>(x => Xamarin.Essentials.Battery.EnergySaverStatusChanged += x, x => Xamarin.Essentials.Battery.EnergySaverStatusChanged -= x).Select(x => x.EventArgs);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Compass.ReadingChanged"/> event triggers.
+        /// </summary>
+        public static System.IObservable<Xamarin.Essentials.CompassChangedEventArgs> CompassReadingChanged => System.Reactive.Linq.Observable.FromEventPattern<System.EventHandler<Xamarin.Essentials.CompassChangedEventArgs>, Xamarin.Essentials.CompassChangedEventArgs>(x => Xamarin.Essentials.Compass.ReadingChanged += x, x => Xamarin.Essentials.Compass.ReadingChanged -= x).Select(x => x.EventArgs);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Connectivity.ConnectivityChanged"/> event triggers.
+        /// </summary>
+        public static System.IObservable<Xamarin.Essentials.ConnectivityChangedEventArgs> ConnectivityConnectivityChanged => System.Reactive.Linq.Observable.FromEventPattern<System.EventHandler<Xamarin.Essentials.ConnectivityChangedEventArgs>, Xamarin.Essentials.ConnectivityChangedEventArgs>(x => Xamarin.Essentials.Connectivity.ConnectivityChanged += x, x => Xamarin.Essentials.Connectivity.ConnectivityChanged -= x).Select(x => x.EventArgs);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.DeviceDisplay.MainDisplayInfoChanged"/> event triggers.
+        /// </summary>
+        public static System.IObservable<Xamarin.Essentials.DisplayInfoChangedEventArgs> DeviceDisplayMainDisplayInfoChanged => System.Reactive.Linq.Observable.FromEventPattern<System.EventHandler<Xamarin.Essentials.DisplayInfoChangedEventArgs>, Xamarin.Essentials.DisplayInfoChangedEventArgs>(x => Xamarin.Essentials.DeviceDisplay.MainDisplayInfoChanged += x, x => Xamarin.Essentials.DeviceDisplay.MainDisplayInfoChanged -= x).Select(x => x.EventArgs);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Gyroscope.ReadingChanged"/> event triggers.
+        /// </summary>
+        public static System.IObservable<Xamarin.Essentials.GyroscopeChangedEventArgs> GyroscopeReadingChanged => System.Reactive.Linq.Observable.FromEventPattern<System.EventHandler<Xamarin.Essentials.GyroscopeChangedEventArgs>, Xamarin.Essentials.GyroscopeChangedEventArgs>(x => Xamarin.Essentials.Gyroscope.ReadingChanged += x, x => Xamarin.Essentials.Gyroscope.ReadingChanged -= x).Select(x => x.EventArgs);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Magnetometer.ReadingChanged"/> event triggers.
+        /// </summary>
+        public static System.IObservable<Xamarin.Essentials.MagnetometerChangedEventArgs> MagnetometerReadingChanged => System.Reactive.Linq.Observable.FromEventPattern<System.EventHandler<Xamarin.Essentials.MagnetometerChangedEventArgs>, Xamarin.Essentials.MagnetometerChangedEventArgs>(x => Xamarin.Essentials.Magnetometer.ReadingChanged += x, x => Xamarin.Essentials.Magnetometer.ReadingChanged -= x).Select(x => x.EventArgs);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.OrientationSensor.ReadingChanged"/> event triggers.
+        /// </summary>
+        public static System.IObservable<Xamarin.Essentials.OrientationSensorChangedEventArgs> OrientationSensorReadingChanged => System.Reactive.Linq.Observable.FromEventPattern<System.EventHandler<Xamarin.Essentials.OrientationSensorChangedEventArgs>, Xamarin.Essentials.OrientationSensorChangedEventArgs>(x => Xamarin.Essentials.OrientationSensor.ReadingChanged += x, x => Xamarin.Essentials.OrientationSensor.ReadingChanged -= x).Select(x => x.EventArgs);
+    }
+}

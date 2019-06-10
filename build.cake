@@ -2,6 +2,8 @@
 
 Environment.SetVariableNames();
 
+System.Environment.SetEnvironmentVariable("MSBUILDDISABLENODEREUSE", "1");
+
 // Whitelisted Packages
 var packageWhitelist = new[] 
 { 
@@ -16,24 +18,12 @@ var packageTestWhitelist = new[]
     MakeAbsolute(File("./src/Pharmacist.Tests/Pharmacist.Tests.csproj")),
 };
 
-// var msbuildTask = Task("BuildMsBuild")
-//     .IsDependentOn("GitVersion")
-//     .Does(() =>
-// {
-//     var msBuildSettings = new MSBuildSettings() {
-//             Restore = true,
-//             ToolPath = ToolSettings.MsBuildPath,
-//         }
-//         .WithProperty("TreatWarningsAsErrors", BuildParameters.TreatWarningsAsErrors.ToString())
-//         .SetMaxCpuCount(ToolSettings.MaxCpuCount)
-//         .SetConfiguration(BuildParameters.Configuration)
-//         .WithTarget("build;pack")
-//         .SetVerbosity(Verbosity.Minimal);
+var killMsBuildTask = Task("KillMsBuild").Does(() =>
+{
+    StartProcess("taskkill", "/F /IM MSBuild.exe");
+});
 
-//     MSBuild("./src/Pharmacist.MsBuild/Pharmacist.MsBuild.csproj", msBuildSettings);   
-// });
-
-// BuildParameters.Tasks.TestxUnitCoverletGenerateTask.IsDependentOn(msbuildTask);
+BuildParameters.Tasks.TestxUnitCoverletGenerateTask.IsDependentOn(killMsBuildTask);
 
 BuildParameters.SetParameters(context: Context, 
                             buildSystem: BuildSystem,
@@ -43,6 +33,6 @@ BuildParameters.SetParameters(context: Context,
                             artifactsDirectory: "./artifacts",
                             sourceDirectory: "./src");
 
-ToolSettings.SetToolSettings(context: Context);
+ToolSettings.SetToolSettings(context: Context, maxCpuCount: 1);
 
 Build.Run();
