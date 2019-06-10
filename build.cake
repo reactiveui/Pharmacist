@@ -2,6 +2,8 @@
 
 Environment.SetVariableNames();
 
+System.Environment.SetEnvironmentVariable("MSBUILDDISABLENODEREUSE", "1");
+
 // Whitelisted Packages
 var packageWhitelist = new[] 
 { 
