@@ -75,12 +75,12 @@ namespace Pharmacist.Core.Generation
 
         public static TypeSyntax GenerateObservableType(this TypeArgumentListSyntax argumentList)
         {
-            return SyntaxFactory.QualifiedName(SyntaxFactory.IdentifierName("System"), SyntaxFactory.GenericName(SyntaxFactory.Identifier("IObservable")).WithTypeArgumentList(argumentList));
+            return SyntaxFactory.QualifiedName(SyntaxFactory.IdentifierName("global::System"), SyntaxFactory.GenericName(SyntaxFactory.Identifier("IObservable")).WithTypeArgumentList(argumentList));
         }
 
         public static TypeSyntax GenerateObservableType(this TypeSyntax argumentList)
         {
-            return SyntaxFactory.QualifiedName(SyntaxFactory.IdentifierName("System"), SyntaxFactory.GenericName(SyntaxFactory.Identifier("IObservable")).WithTypeArgumentList(SyntaxFactory.TypeArgumentList(SyntaxFactory.SingletonSeparatedList(argumentList))));
+            return SyntaxFactory.QualifiedName(SyntaxFactory.IdentifierName("global::System"), SyntaxFactory.GenericName(SyntaxFactory.Identifier("IObservable")).WithTypeArgumentList(SyntaxFactory.TypeArgumentList(SyntaxFactory.SingletonSeparatedList(argumentList))));
         }
 
         public static PropertyDeclarationSyntax WithObsoleteAttribute(this PropertyDeclarationSyntax syntax, IEntity eventDetails)
@@ -151,7 +151,7 @@ namespace Pharmacist.Core.Generation
             var message = obsoleteAttribute.FixedArguments.FirstOrDefault().Value.ToString() ?? string.Empty;
             var isError = bool.Parse(obsoleteAttribute.FixedArguments.ElementAtOrDefault(1).Value?.ToString() ?? bool.FalseString) ? SyntaxKind.TrueLiteralExpression : SyntaxKind.FalseLiteralExpression;
             var attribute = SyntaxFactory.Attribute(
-                SyntaxFactory.IdentifierName("System.ObsoleteAttribute"),
+                SyntaxFactory.IdentifierName("global::System.ObsoleteAttribute"),
                 SyntaxFactory.AttributeArgumentList(SyntaxFactory.SeparatedList(new[] { SyntaxFactory.AttributeArgument(SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression, SyntaxFactory.Literal(message))), SyntaxFactory.AttributeArgument(SyntaxFactory.LiteralExpression(isError)) })));
 
             return SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(attribute));
