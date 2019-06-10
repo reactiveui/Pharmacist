@@ -16,6 +16,19 @@ var packageTestWhitelist = new[]
     MakeAbsolute(File("./src/Pharmacist.Tests/Pharmacist.Tests.csproj")),
 };
 
+var killMsBuildTask = Task("KillMsBuild").Does(() =>
+{
+    var workers = System.Diagnostics.Process.GetProcessesByName("msbuild");
+    foreach (var worker in workers)
+    {
+        worker.Kill();
+        worker.WaitForExit();
+        worker.Dispose();
+    }
+});
+
+BuildParameters.Tasks.TestxUnitCoverletGenerateTask.IsDependentOn(killMsBuildTask);
+
 BuildParameters.SetParameters(context: Context, 
                             buildSystem: BuildSystem,
                             title: "Pharmacist",
