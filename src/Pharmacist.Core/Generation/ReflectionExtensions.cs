@@ -158,18 +158,12 @@ namespace Pharmacist.Core.Generation
         /// <returns>A type descriptor including the generic arguments.</returns>
         public static string GenerateFullGenericName(this IType currentType)
         {
-            return GenerateFullGenericName(currentType, true);
-        }
-
-        private static string GenerateFullGenericName(this IType currentType, bool isStart)
-        {
-            var currentTypeFullName = GetBuiltInType(currentType.FullName);
-            var sb = new StringBuilder(isStart ? "global::" + currentTypeFullName : currentTypeFullName);
+            var sb = new StringBuilder("global::" + GetBuiltInType(currentType.FullName));
 
             if (currentType.TypeParameterCount > 0)
             {
                 sb.Append("<")
-                    .Append(string.Join(", ", currentType.TypeArguments.Select(x => GenerateFullGenericName(x, false))))
+                    .Append(string.Join(", ", currentType.TypeArguments.Select(GenerateFullGenericName)))
                     .Append(">");
             }
 
