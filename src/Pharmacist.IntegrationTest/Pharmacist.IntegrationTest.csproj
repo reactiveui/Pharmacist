@@ -8,71 +8,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2"/>
   </ItemGroup>
 
-  <PropertyGroup>
-    <PharmacistGlobalPackages Condition="'$(PharmacistGlobalPackages)' == ''">false</PharmacistGlobalPackages>
-    <ProjectFileContent Condition="'$(PharmacistGlobalPackages)' == 'false'">$([System.IO.File]::ReadAllText($(MSBuildProjectFullPath)))</ProjectFileContent>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <CoreCompileDependsOn>
-      $(CoreCompileDependsOn);
-      GeneratePharmacist;
-    </CoreCompileDependsOn>
-  </PropertyGroup>
-
-  <Choose>  
-    <When Condition="'$(PharmacistGlobalPackages)' == 'false'">
-      <ItemGroup>
-        <PharmacistPackageReference Include="@(PackageReference)">
-          <PackageName>%(Identity)</PackageName>
-          <Version>%(Version)</Version>
-          <InProject>$(ProjectFileContent.Contains('Include="%(Identity)"'))</InProject>
-        </PharmacistPackageReference>
-      </ItemGroup>
-    </When>
-    <Otherwise>
-      <ItemGroup>
-        <PharmacistPackageReference Include="@(PackageReference)">
-          <PackageName>%(Identity)</PackageName>
-          <Version>%(Version)</Version>
-          <InProject>True</InProject>
-        </PharmacistPackageReference>
-      </ItemGroup>
-    </Otherwise>
-  </Choose>
-
   <ItemGroup>
-    <ProjectReference Include="..\Pharmacist.MsBuild\Pharmacist.MsBuild.csproj" />
+    <ProjectReference Include="..\Pharmacist.MsBuild\Pharmacist.MsBuild.csproj" PrivateAssets="all" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <CoreCompileDependsOn>
-      $(CoreCompileDependsOn);
-      GeneratePharmacist;
-    </CoreCompileDependsOn>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)\obj\$(Configuration)\</IntermediateOutputPath>
-    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildProjectDirectory)\..\Pharmacist.MsBuild\bin\$(Configuration)\netstandard2.0\Pharmacist.MsBuild.dll</PharmacistTaskAssemblyFile>
-    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildProjectDirectory)\..\Pharmacist.MsBuild\bin\$(Configuration)\net461\Pharmacist.MsBuild.dll</PharmacistTaskAssemblyFile>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Pharmacist.Common"  Version="1.*" />
-  </ItemGroup>
-
-  <UsingTask TaskName="Pharmacist.MSBuild.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
-
-  <Target Name="GeneratePharmacist" BeforeTargets="CoreCompile">
-    <PharmacistNuGetTask PackageReferences="@(PharmacistPackageReference -> WithMetadataValue('InProject', True))"
-                         TargetFramework="$(TargetFramework)"
-                         OutputFile="$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs" />
-
-    <Message Text="Processed Pharmacist Packages" />
-
-    <ItemGroup Condition="Exists('$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs')">
-      <Compile Include="$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs" />
-    </ItemGroup>
-  </Target>
 </Project>
