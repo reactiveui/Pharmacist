@@ -5,8 +5,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -69,7 +71,38 @@ namespace Pharmacist.Tests.IntegrationTests
             if (!string.Equals(normalizedActual, normalizedExpected, StringComparison.InvariantCulture))
             {
                 File.WriteAllText(receivedFileName, actualContents);
-                ShouldlyConfiguration.DiffTools.GetDiffTool().Open(receivedFileName, approvedFileName, true);
+                try
+                {
+                    ShouldlyConfiguration.DiffTools.GetDiffTool().Open(receivedFileName, approvedFileName, true);
+                }
+                catch (ShouldAssertException)
+                {
+                    var process = new Process
+                                  {
+                                      StartInfo = new ProcessStartInfo
+                                                  {
+                                                      Arguments = $"\"{approvedFileName}\" \"{receivedFileName}\"",
+                                                      UseShellExecute = false,
+                                                      RedirectStandardOutput = true,
+                                                      CreateNoWindow = true
+                                                  }
+                                  };
+
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                    {
+                        process.StartInfo.FileName = "FC";
+                    }
+                    else
+                    {
+                        process.StartInfo.FileName = "diff";
+                    }
+
+                    process.Start();
+                    string output = process.StandardOutput.ReadToEnd();
+                    process.WaitForExit();
+
+                    throw new Exception("Invalid API configuration: " + Environment.NewLine + output);
+                }
             }
 
             normalizedActual.ShouldNotBeEmpty();
