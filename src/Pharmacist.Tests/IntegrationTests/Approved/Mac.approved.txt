@@ -3522,8 +3522,8 @@ namespace AppKit
         private readonly Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSObject> _orderFrontStandardAboutPanel = new Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSObject>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSDictionary> _orderFrontStandardAboutPanelWithOptions = new Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSDictionary>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSApplication application, global::Foundation.NSDictionary userInfo)> _receivedRemoteNotification = new Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSApplication application, global::Foundation.NSDictionary userInfo)>();
-        private readonly Pharmacist.Common.SingleAwaitSubject<(global::System.String[] sendTypes, global::System.String[] returnTypes)> _registerServicesMenu = new Pharmacist.Common.SingleAwaitSubject<(global::System.String[] sendTypes, global::System.String[] returnTypes)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSApplication application, global::Foundation.NSData deviceToken)> _registeredForRemoteNotifications = new Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSApplication application, global::Foundation.NSData deviceToken)>();
+        private readonly Pharmacist.Common.SingleAwaitSubject<(global::System.String[] sendTypes, global::System.String[] returnTypes)> _registerServicesMenu = new Pharmacist.Common.SingleAwaitSubject<(global::System.String[] sendTypes, global::System.String[] returnTypes)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNotification> _screenParametersChanged = new Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNotification>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSApplication application, global::Foundation.NSUserActivity userActivity)> _updatedUserActivity = new Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSApplication application, global::Foundation.NSUserActivity userActivity)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSApplication application, global::CloudKit.CKShareMetadata metadata)> _userDidAcceptCloudKitShare = new Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSApplication application, global::CloudKit.CKShareMetadata metadata)>();
@@ -3594,14 +3594,14 @@ namespace AppKit
         /// </summary>
         public global::System.IObservable<(global::AppKit.NSApplication application, global::Foundation.NSDictionary userInfo)> ReceivedRemoteNotificationObs => _receivedRemoteNotification;
         /// <summary>
+        /// Gets an observable which signals when the <see cref = "AppKit.NSApplicationDelegate.RegisteredForRemoteNotifications"/> method is invoked.
+        /// </summary>
+        public global::System.IObservable<(global::AppKit.NSApplication application, global::Foundation.NSData deviceToken)> RegisteredForRemoteNotificationsObs => _registeredForRemoteNotifications;
+        /// <summary>
         /// Gets an observable which signals when the <see cref = "AppKit.NSApplicationDelegate.RegisterServicesMenu"/> method is invoked.
         /// </summary>
         [global::System.ObsoleteAttribute("Use the 'RegisterServicesMenu2' on NSApplication.", false)]
         public global::System.IObservable<(global::System.String[] sendTypes, global::System.String[] returnTypes)> RegisterServicesMenuObs => _registerServicesMenu;
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "AppKit.NSApplicationDelegate.RegisteredForRemoteNotifications"/> method is invoked.
-        /// </summary>
-        public global::System.IObservable<(global::AppKit.NSApplication application, global::Foundation.NSData deviceToken)> RegisteredForRemoteNotificationsObs => _registeredForRemoteNotifications;
         /// <summary>
         /// Gets an observable which signals when the <see cref = "AppKit.NSApplicationDelegate.ScreenParametersChanged"/> method is invoked.
         /// </summary>
@@ -3677,10 +3677,10 @@ namespace AppKit
         /// <inheritdoc/>
         public override void ReceivedRemoteNotification(global::AppKit.NSApplication application, global::Foundation.NSDictionary userInfo) => _receivedRemoteNotification.OnNext((application, userInfo));
         /// <inheritdoc/>
+        public override void RegisteredForRemoteNotifications(global::AppKit.NSApplication application, global::Foundation.NSData deviceToken) => _registeredForRemoteNotifications.OnNext((application, deviceToken));
+        /// <inheritdoc/>
         [global::System.ObsoleteAttribute("Use the 'RegisterServicesMenu2' on NSApplication.", false)]
         public override void RegisterServicesMenu(global::System.String[] sendTypes, global::System.String[] returnTypes) => _registerServicesMenu.OnNext((sendTypes, returnTypes));
-        /// <inheritdoc/>
-        public override void RegisteredForRemoteNotifications(global::AppKit.NSApplication application, global::Foundation.NSData deviceToken) => _registeredForRemoteNotifications.OnNext((application, deviceToken));
         /// <inheritdoc/>
         public override void ScreenParametersChanged(global::Foundation.NSNotification notification) => _screenParametersChanged.OnNext(notification);
         /// <inheritdoc/>
@@ -3767,21 +3767,21 @@ namespace AppKit
     public partial class NSCandidateListTouchBarItemDelegateRx : global::AppKit.NSCandidateListTouchBarItemDelegate
     {
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint index)> _beginSelectingCandidate = new Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint index)>();
-        private readonly Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint previousIndex, global::System.nint index)> _changeSelectionFromCandidate = new Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint previousIndex, global::System.nint index)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSCandidateListTouchBarItem anItem, bool isVisible)> _changedCandidateListVisibility = new Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSCandidateListTouchBarItem anItem, bool isVisible)>();
+        private readonly Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint previousIndex, global::System.nint index)> _changeSelectionFromCandidate = new Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint previousIndex, global::System.nint index)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint index)> _endSelectingCandidate = new Pharmacist.Common.SingleAwaitSubject<(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint index)>();
         /// <summary>
         /// Gets an observable which signals when the <see cref = "AppKit.NSCandidateListTouchBarItemDelegate.BeginSelectingCandidate"/> method is invoked.
         /// </summary>
         public global::System.IObservable<(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint index)> BeginSelectingCandidateObs => _beginSelectingCandidate;
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "AppKit.NSCandidateListTouchBarItemDelegate.ChangeSelectionFromCandidate"/> method is invoked.
-        /// </summary>
-        public global::System.IObservable<(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint previousIndex, global::System.nint index)> ChangeSelectionFromCandidateObs => _changeSelectionFromCandidate;
-        /// <summary>
         /// Gets an observable which signals when the <see cref = "AppKit.NSCandidateListTouchBarItemDelegate.ChangedCandidateListVisibility"/> method is invoked.
         /// </summary>
         public global::System.IObservable<(global::AppKit.NSCandidateListTouchBarItem anItem, bool isVisible)> ChangedCandidateListVisibilityObs => _changedCandidateListVisibility;
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "AppKit.NSCandidateListTouchBarItemDelegate.ChangeSelectionFromCandidate"/> method is invoked.
+        /// </summary>
+        public global::System.IObservable<(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint previousIndex, global::System.nint index)> ChangeSelectionFromCandidateObs => _changeSelectionFromCandidate;
         /// <summary>
         /// Gets an observable which signals when the <see cref = "AppKit.NSCandidateListTouchBarItemDelegate.EndSelectingCandidate"/> method is invoked.
         /// </summary>
@@ -3789,9 +3789,9 @@ namespace AppKit
         /// <inheritdoc/>
         public override void BeginSelectingCandidate(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint index) => _beginSelectingCandidate.OnNext((anItem, index));
         /// <inheritdoc/>
-        public override void ChangeSelectionFromCandidate(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint previousIndex, global::System.nint index) => _changeSelectionFromCandidate.OnNext((anItem, previousIndex, index));
-        /// <inheritdoc/>
         public override void ChangedCandidateListVisibility(global::AppKit.NSCandidateListTouchBarItem anItem, bool isVisible) => _changedCandidateListVisibility.OnNext((anItem, isVisible));
+        /// <inheritdoc/>
+        public override void ChangeSelectionFromCandidate(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint previousIndex, global::System.nint index) => _changeSelectionFromCandidate.OnNext((anItem, previousIndex, index));
         /// <inheritdoc/>
         public override void EndSelectingCandidate(global::AppKit.NSCandidateListTouchBarItem anItem, global::System.nint index) => _endSelectingCandidate.OnNext((anItem, index));
     }
@@ -6021,9 +6021,9 @@ namespace CoreLocation
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegionState state, global::CoreLocation.CLRegion region)> _didDetermineState = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegionState state, global::CoreLocation.CLRegion region)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region)> _didStartMonitoringForRegion = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::Foundation.NSError error)> _failed = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::Foundation.NSError error)>();
+        private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations)> _locationsUpdated = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::CoreLocation.CLLocationManager> _locationUpdatesPaused = new Pharmacist.Common.SingleAwaitSubject<global::CoreLocation.CLLocationManager>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::CoreLocation.CLLocationManager> _locationUpdatesResumed = new Pharmacist.Common.SingleAwaitSubject<global::CoreLocation.CLLocationManager>();
-        private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations)> _locationsUpdated = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region, global::Foundation.NSError error)> _monitoringFailed = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region, global::Foundation.NSError error)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region)> _regionEntered = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region)> _regionLeft = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region)>();
@@ -6049,6 +6049,10 @@ namespace CoreLocation
         /// </summary>
         public global::System.IObservable<(global::CoreLocation.CLLocationManager manager, global::Foundation.NSError error)> FailedObs => _failed;
         /// <summary>
+        /// Gets an observable which signals when the <see cref = "CoreLocation.CLLocationManagerDelegate.LocationsUpdated"/> method is invoked.
+        /// </summary>
+        public global::System.IObservable<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations)> LocationsUpdatedObs => _locationsUpdated;
+        /// <summary>
         /// Gets an observable which signals when the <see cref = "CoreLocation.CLLocationManagerDelegate.LocationUpdatesPaused"/> method is invoked.
         /// </summary>
         public global::System.IObservable<global::CoreLocation.CLLocationManager> LocationUpdatesPausedObs => _locationUpdatesPaused;
@@ -6056,10 +6060,6 @@ namespace CoreLocation
         /// Gets an observable which signals when the <see cref = "CoreLocation.CLLocationManagerDelegate.LocationUpdatesResumed"/> method is invoked.
         /// </summary>
         public global::System.IObservable<global::CoreLocation.CLLocationManager> LocationUpdatesResumedObs => _locationUpdatesResumed;
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "CoreLocation.CLLocationManagerDelegate.LocationsUpdated"/> method is invoked.
-        /// </summary>
-        public global::System.IObservable<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations)> LocationsUpdatedObs => _locationsUpdated;
         /// <summary>
         /// Gets an observable which signals when the <see cref = "CoreLocation.CLLocationManagerDelegate.MonitoringFailed"/> method is invoked.
         /// </summary>
@@ -6087,11 +6087,11 @@ namespace CoreLocation
         /// <inheritdoc/>
         public override void Failed(global::CoreLocation.CLLocationManager manager, global::Foundation.NSError error) => _failed.OnNext((manager, error));
         /// <inheritdoc/>
+        public override void LocationsUpdated(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations) => _locationsUpdated.OnNext((manager, locations));
+        /// <inheritdoc/>
         public override void LocationUpdatesPaused(global::CoreLocation.CLLocationManager manager) => _locationUpdatesPaused.OnNext(manager);
         /// <inheritdoc/>
         public override void LocationUpdatesResumed(global::CoreLocation.CLLocationManager manager) => _locationUpdatesResumed.OnNext(manager);
-        /// <inheritdoc/>
-        public override void LocationsUpdated(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations) => _locationsUpdated.OnNext((manager, locations));
         /// <inheritdoc/>
         public override void MonitoringFailed(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region, global::Foundation.NSError error) => _monitoringFailed.OnNext((manager, region, error));
         /// <inheritdoc/>
@@ -6394,8 +6394,8 @@ namespace Foundation
     {
         private readonly Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNetService> _addressResolved = new Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNetService>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSInputStream inputStream, global::Foundation.NSOutputStream outputStream)> _didAcceptConnection = new Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSInputStream inputStream, global::Foundation.NSOutputStream outputStream)>();
-        private readonly Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)> _publishFailure = new Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNetService> _published = new Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNetService>();
+        private readonly Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)> _publishFailure = new Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)> _resolveFailure = new Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNetService> _stopped = new Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNetService>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSData data)> _updatedTxtRecordData = new Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSData data)>();
@@ -6410,13 +6410,13 @@ namespace Foundation
         /// </summary>
         public global::System.IObservable<(global::Foundation.NSNetService sender, global::Foundation.NSInputStream inputStream, global::Foundation.NSOutputStream outputStream)> DidAcceptConnectionObs => _didAcceptConnection;
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Foundation.NSNetServiceDelegate.PublishFailure"/> method is invoked.
-        /// </summary>
-        public global::System.IObservable<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)> PublishFailureObs => _publishFailure;
-        /// <summary>
         /// Gets an observable which signals when the <see cref = "Foundation.NSNetServiceDelegate.Published"/> method is invoked.
         /// </summary>
         public global::System.IObservable<global::Foundation.NSNetService> PublishedObs => _published;
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Foundation.NSNetServiceDelegate.PublishFailure"/> method is invoked.
+        /// </summary>
+        public global::System.IObservable<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)> PublishFailureObs => _publishFailure;
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Foundation.NSNetServiceDelegate.ResolveFailure"/> method is invoked.
         /// </summary>
@@ -6442,9 +6442,9 @@ namespace Foundation
         /// <inheritdoc/>
         public override void DidAcceptConnection(global::Foundation.NSNetService sender, global::Foundation.NSInputStream inputStream, global::Foundation.NSOutputStream outputStream) => _didAcceptConnection.OnNext((sender, inputStream, outputStream));
         /// <inheritdoc/>
-        public override void PublishFailure(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors) => _publishFailure.OnNext((sender, errors));
-        /// <inheritdoc/>
         public override void Published(global::Foundation.NSNetService sender) => _published.OnNext(sender);
+        /// <inheritdoc/>
+        public override void PublishFailure(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors) => _publishFailure.OnNext((sender, errors));
         /// <inheritdoc/>
         public override void ResolveFailure(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors) => _resolveFailure.OnNext((sender, errors));
         /// <inheritdoc/>

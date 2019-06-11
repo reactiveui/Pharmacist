@@ -4988,9 +4988,9 @@ namespace CarPlay
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::System.Action<global::UIKit.UIBackgroundFetchResult> completionHandler)> _performFetch = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::System.Action<global::UIKit.UIBackgroundFetchResult> completionHandler)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication> _protectedDataDidBecomeAvailable = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication> _protectedDataWillBecomeUnavailable = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication>();
-        private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication> _receiveMemoryWarning = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::UIKit.UILocalNotification notification)> _receivedLocalNotification = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::UIKit.UILocalNotification notification)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::Foundation.NSDictionary userInfo)> _receivedRemoteNotification = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::Foundation.NSDictionary userInfo)>();
+        private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication> _receiveMemoryWarning = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::Foundation.NSData deviceToken)> _registeredForRemoteNotifications = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::Foundation.NSData deviceToken)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication> _shouldRequestHealthAuthorization = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::Foundation.NSUserActivity userActivity)> _userActivityUpdated = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::Foundation.NSUserActivity userActivity)>();
@@ -5097,10 +5097,6 @@ namespace CarPlay
         /// </summary>
         public global::System.IObservable<global::UIKit.UIApplication> ProtectedDataWillBecomeUnavailableObs => _protectedDataWillBecomeUnavailable;
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "CarPlay.CPApplicationDelegate.ReceiveMemoryWarning"/> method is invoked.
-        /// </summary>
-        public global::System.IObservable<global::UIKit.UIApplication> ReceiveMemoryWarningObs => _receiveMemoryWarning;
-        /// <summary>
         /// Gets an observable which signals when the <see cref = "CarPlay.CPApplicationDelegate.ReceivedLocalNotification"/> method is invoked.
         /// </summary>
         public global::System.IObservable<(global::UIKit.UIApplication application, global::UIKit.UILocalNotification notification)> ReceivedLocalNotificationObs => _receivedLocalNotification;
@@ -5108,6 +5104,10 @@ namespace CarPlay
         /// Gets an observable which signals when the <see cref = "CarPlay.CPApplicationDelegate.ReceivedRemoteNotification"/> method is invoked.
         /// </summary>
         public global::System.IObservable<(global::UIKit.UIApplication application, global::Foundation.NSDictionary userInfo)> ReceivedRemoteNotificationObs => _receivedRemoteNotification;
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "CarPlay.CPApplicationDelegate.ReceiveMemoryWarning"/> method is invoked.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UIApplication> ReceiveMemoryWarningObs => _receiveMemoryWarning;
         /// <summary>
         /// Gets an observable which signals when the <see cref = "CarPlay.CPApplicationDelegate.RegisteredForRemoteNotifications"/> method is invoked.
         /// </summary>
@@ -5193,11 +5193,11 @@ namespace CarPlay
         /// <inheritdoc/>
         public override void ProtectedDataWillBecomeUnavailable(global::UIKit.UIApplication application) => _protectedDataWillBecomeUnavailable.OnNext(application);
         /// <inheritdoc/>
-        public override void ReceiveMemoryWarning(global::UIKit.UIApplication application) => _receiveMemoryWarning.OnNext(application);
-        /// <inheritdoc/>
         public override void ReceivedLocalNotification(global::UIKit.UIApplication application, global::UIKit.UILocalNotification notification) => _receivedLocalNotification.OnNext((application, notification));
         /// <inheritdoc/>
         public override void ReceivedRemoteNotification(global::UIKit.UIApplication application, global::Foundation.NSDictionary userInfo) => _receivedRemoteNotification.OnNext((application, userInfo));
+        /// <inheritdoc/>
+        public override void ReceiveMemoryWarning(global::UIKit.UIApplication application) => _receiveMemoryWarning.OnNext(application);
         /// <inheritdoc/>
         public override void RegisteredForRemoteNotifications(global::UIKit.UIApplication application, global::Foundation.NSData deviceToken) => _registeredForRemoteNotifications.OnNext((application, deviceToken));
         /// <inheritdoc/>
@@ -5896,9 +5896,9 @@ namespace CoreLocation
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region)> _didStartMonitoringForRegion = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLVisit visit)> _didVisit = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLVisit visit)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::Foundation.NSError error)> _failed = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::Foundation.NSError error)>();
+        private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations)> _locationsUpdated = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::CoreLocation.CLLocationManager> _locationUpdatesPaused = new Pharmacist.Common.SingleAwaitSubject<global::CoreLocation.CLLocationManager>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::CoreLocation.CLLocationManager> _locationUpdatesResumed = new Pharmacist.Common.SingleAwaitSubject<global::CoreLocation.CLLocationManager>();
-        private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations)> _locationsUpdated = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region, global::Foundation.NSError error)> _monitoringFailed = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region, global::Foundation.NSError error)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLBeaconRegion region, global::Foundation.NSError error)> _rangingBeaconsDidFailForRegion = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLBeaconRegion region, global::Foundation.NSError error)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region)> _regionEntered = new Pharmacist.Common.SingleAwaitSubject<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region)>();
@@ -5934,6 +5934,10 @@ namespace CoreLocation
         /// </summary>
         public global::System.IObservable<(global::CoreLocation.CLLocationManager manager, global::Foundation.NSError error)> FailedObs => _failed;
         /// <summary>
+        /// Gets an observable which signals when the <see cref = "CoreLocation.CLLocationManagerDelegate.LocationsUpdated"/> method is invoked.
+        /// </summary>
+        public global::System.IObservable<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations)> LocationsUpdatedObs => _locationsUpdated;
+        /// <summary>
         /// Gets an observable which signals when the <see cref = "CoreLocation.CLLocationManagerDelegate.LocationUpdatesPaused"/> method is invoked.
         /// </summary>
         public global::System.IObservable<global::CoreLocation.CLLocationManager> LocationUpdatesPausedObs => _locationUpdatesPaused;
@@ -5941,10 +5945,6 @@ namespace CoreLocation
         /// Gets an observable which signals when the <see cref = "CoreLocation.CLLocationManagerDelegate.LocationUpdatesResumed"/> method is invoked.
         /// </summary>
         public global::System.IObservable<global::CoreLocation.CLLocationManager> LocationUpdatesResumedObs => _locationUpdatesResumed;
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "CoreLocation.CLLocationManagerDelegate.LocationsUpdated"/> method is invoked.
-        /// </summary>
-        public global::System.IObservable<(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations)> LocationsUpdatedObs => _locationsUpdated;
         /// <summary>
         /// Gets an observable which signals when the <see cref = "CoreLocation.CLLocationManagerDelegate.MonitoringFailed"/> method is invoked.
         /// </summary>
@@ -5984,11 +5984,11 @@ namespace CoreLocation
         /// <inheritdoc/>
         public override void Failed(global::CoreLocation.CLLocationManager manager, global::Foundation.NSError error) => _failed.OnNext((manager, error));
         /// <inheritdoc/>
+        public override void LocationsUpdated(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations) => _locationsUpdated.OnNext((manager, locations));
+        /// <inheritdoc/>
         public override void LocationUpdatesPaused(global::CoreLocation.CLLocationManager manager) => _locationUpdatesPaused.OnNext(manager);
         /// <inheritdoc/>
         public override void LocationUpdatesResumed(global::CoreLocation.CLLocationManager manager) => _locationUpdatesResumed.OnNext(manager);
-        /// <inheritdoc/>
-        public override void LocationsUpdated(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLLocation[] locations) => _locationsUpdated.OnNext((manager, locations));
         /// <inheritdoc/>
         public override void MonitoringFailed(global::CoreLocation.CLLocationManager manager, global::CoreLocation.CLRegion region, global::Foundation.NSError error) => _monitoringFailed.OnNext((manager, region, error));
         /// <inheritdoc/>
@@ -6361,8 +6361,8 @@ namespace Foundation
     {
         private readonly Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNetService> _addressResolved = new Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNetService>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSInputStream inputStream, global::Foundation.NSOutputStream outputStream)> _didAcceptConnection = new Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSInputStream inputStream, global::Foundation.NSOutputStream outputStream)>();
-        private readonly Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)> _publishFailure = new Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNetService> _published = new Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNetService>();
+        private readonly Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)> _publishFailure = new Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)> _resolveFailure = new Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNetService> _stopped = new Pharmacist.Common.SingleAwaitSubject<global::Foundation.NSNetService>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSData data)> _updatedTxtRecordData = new Pharmacist.Common.SingleAwaitSubject<(global::Foundation.NSNetService sender, global::Foundation.NSData data)>();
@@ -6377,13 +6377,13 @@ namespace Foundation
         /// </summary>
         public global::System.IObservable<(global::Foundation.NSNetService sender, global::Foundation.NSInputStream inputStream, global::Foundation.NSOutputStream outputStream)> DidAcceptConnectionObs => _didAcceptConnection;
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Foundation.NSNetServiceDelegate.PublishFailure"/> method is invoked.
-        /// </summary>
-        public global::System.IObservable<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)> PublishFailureObs => _publishFailure;
-        /// <summary>
         /// Gets an observable which signals when the <see cref = "Foundation.NSNetServiceDelegate.Published"/> method is invoked.
         /// </summary>
         public global::System.IObservable<global::Foundation.NSNetService> PublishedObs => _published;
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Foundation.NSNetServiceDelegate.PublishFailure"/> method is invoked.
+        /// </summary>
+        public global::System.IObservable<(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors)> PublishFailureObs => _publishFailure;
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Foundation.NSNetServiceDelegate.ResolveFailure"/> method is invoked.
         /// </summary>
@@ -6409,9 +6409,9 @@ namespace Foundation
         /// <inheritdoc/>
         public override void DidAcceptConnection(global::Foundation.NSNetService sender, global::Foundation.NSInputStream inputStream, global::Foundation.NSOutputStream outputStream) => _didAcceptConnection.OnNext((sender, inputStream, outputStream));
         /// <inheritdoc/>
-        public override void PublishFailure(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors) => _publishFailure.OnNext((sender, errors));
-        /// <inheritdoc/>
         public override void Published(global::Foundation.NSNetService sender) => _published.OnNext(sender);
+        /// <inheritdoc/>
+        public override void PublishFailure(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors) => _publishFailure.OnNext((sender, errors));
         /// <inheritdoc/>
         public override void ResolveFailure(global::Foundation.NSNetService sender, global::Foundation.NSDictionary errors) => _resolveFailure.OnNext((sender, errors));
         /// <inheritdoc/>
@@ -7937,15 +7937,10 @@ namespace MediaPlayer
     /// </summary>
     public partial class MPPlayableContentDelegateRx : global::MediaPlayer.MPPlayableContentDelegate
     {
-        private readonly Pharmacist.Common.SingleAwaitSubject<(global::MediaPlayer.MPPlayableContentManager contentManager, global::Foundation.NSIndexPath indexPath, global::System.Action<global::Foundation.NSError> completionHandler)> _playableContentManager = new Pharmacist.Common.SingleAwaitSubject<(global::MediaPlayer.MPPlayableContentManager contentManager, global::Foundation.NSIndexPath indexPath, global::System.Action<global::Foundation.NSError> completionHandler)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::MediaPlayer.MPPlayableContentManager contentManager, global::MediaPlayer.MPPlayableContentManagerContext context)> _contextUpdated = new Pharmacist.Common.SingleAwaitSubject<(global::MediaPlayer.MPPlayableContentManager contentManager, global::MediaPlayer.MPPlayableContentManagerContext context)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::MediaPlayer.MPPlayableContentManager contentManager, global::MediaPlayer.MPContentItem[] contentItems, global::System.Action<global::Foundation.NSError> completionHandler)> _initializePlaybackQueue = new Pharmacist.Common.SingleAwaitSubject<(global::MediaPlayer.MPPlayableContentManager contentManager, global::MediaPlayer.MPContentItem[] contentItems, global::System.Action<global::Foundation.NSError> completionHandler)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::MediaPlayer.MPPlayableContentManager contentManager, global::Foundation.NSIndexPath indexPath, global::System.Action<global::Foundation.NSError> completionHandler)> _initiatePlaybackOfContentItem = new Pharmacist.Common.SingleAwaitSubject<(global::MediaPlayer.MPPlayableContentManager contentManager, global::Foundation.NSIndexPath indexPath, global::System.Action<global::Foundation.NSError> completionHandler)>();
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "MediaPlayer.MPPlayableContentDelegate.PlayableContentManager"/> method is invoked.
-        /// </summary>
-        [global::System.ObsoleteAttribute("Use 'InitiatePlaybackOfContentItem' instead.", false)]
-        public global::System.IObservable<(global::MediaPlayer.MPPlayableContentManager contentManager, global::Foundation.NSIndexPath indexPath, global::System.Action<global::Foundation.NSError> completionHandler)> PlayableContentManagerObs => _playableContentManager;
+        private readonly Pharmacist.Common.SingleAwaitSubject<(global::MediaPlayer.MPPlayableContentManager contentManager, global::Foundation.NSIndexPath indexPath, global::System.Action<global::Foundation.NSError> completionHandler)> _playableContentManager = new Pharmacist.Common.SingleAwaitSubject<(global::MediaPlayer.MPPlayableContentManager contentManager, global::Foundation.NSIndexPath indexPath, global::System.Action<global::Foundation.NSError> completionHandler)>();
         /// <summary>
         /// Gets an observable which signals when the <see cref = "MediaPlayer.MPPlayableContentDelegate.ContextUpdated"/> method is invoked.
         /// </summary>
@@ -7958,15 +7953,20 @@ namespace MediaPlayer
         /// Gets an observable which signals when the <see cref = "MediaPlayer.MPPlayableContentDelegate.InitiatePlaybackOfContentItem"/> method is invoked.
         /// </summary>
         public global::System.IObservable<(global::MediaPlayer.MPPlayableContentManager contentManager, global::Foundation.NSIndexPath indexPath, global::System.Action<global::Foundation.NSError> completionHandler)> InitiatePlaybackOfContentItemObs => _initiatePlaybackOfContentItem;
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "MediaPlayer.MPPlayableContentDelegate.PlayableContentManager"/> method is invoked.
+        /// </summary>
         [global::System.ObsoleteAttribute("Use 'InitiatePlaybackOfContentItem' instead.", false)]
-        public override void PlayableContentManager(global::MediaPlayer.MPPlayableContentManager contentManager, global::Foundation.NSIndexPath indexPath, global::System.Action<global::Foundation.NSError> completionHandler) => _playableContentManager.OnNext((contentManager, indexPath, completionHandler));
+        public global::System.IObservable<(global::MediaPlayer.MPPlayableContentManager contentManager, global::Foundation.NSIndexPath indexPath, global::System.Action<global::Foundation.NSError> completionHandler)> PlayableContentManagerObs => _playableContentManager;
         /// <inheritdoc/>
         public override void ContextUpdated(global::MediaPlayer.MPPlayableContentManager contentManager, global::MediaPlayer.MPPlayableContentManagerContext context) => _contextUpdated.OnNext((contentManager, context));
         /// <inheritdoc/>
         public override void InitializePlaybackQueue(global::MediaPlayer.MPPlayableContentManager contentManager, global::MediaPlayer.MPContentItem[] contentItems, global::System.Action<global::Foundation.NSError> completionHandler) => _initializePlaybackQueue.OnNext((contentManager, contentItems, completionHandler));
         /// <inheritdoc/>
         public override void InitiatePlaybackOfContentItem(global::MediaPlayer.MPPlayableContentManager contentManager, global::Foundation.NSIndexPath indexPath, global::System.Action<global::Foundation.NSError> completionHandler) => _initiatePlaybackOfContentItem.OnNext((contentManager, indexPath, completionHandler));
+        /// <inheritdoc/>
+        [global::System.ObsoleteAttribute("Use 'InitiatePlaybackOfContentItem' instead.", false)]
+        public override void PlayableContentManager(global::MediaPlayer.MPPlayableContentManager contentManager, global::Foundation.NSIndexPath indexPath, global::System.Action<global::Foundation.NSError> completionHandler) => _playableContentManager.OnNext((contentManager, indexPath, completionHandler));
     }
 }
 
@@ -9204,9 +9204,9 @@ namespace UIKit
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::System.Action<global::UIKit.UIBackgroundFetchResult> completionHandler)> _performFetch = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::System.Action<global::UIKit.UIBackgroundFetchResult> completionHandler)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication> _protectedDataDidBecomeAvailable = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication> _protectedDataWillBecomeUnavailable = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication>();
-        private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication> _receiveMemoryWarning = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::UIKit.UILocalNotification notification)> _receivedLocalNotification = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::UIKit.UILocalNotification notification)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::Foundation.NSDictionary userInfo)> _receivedRemoteNotification = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::Foundation.NSDictionary userInfo)>();
+        private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication> _receiveMemoryWarning = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::Foundation.NSData deviceToken)> _registeredForRemoteNotifications = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::Foundation.NSData deviceToken)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication> _shouldRequestHealthAuthorization = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIApplication>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::Foundation.NSUserActivity userActivity)> _userActivityUpdated = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIApplication application, global::Foundation.NSUserActivity userActivity)>();
@@ -9297,10 +9297,6 @@ namespace UIKit
         /// </summary>
         public global::System.IObservable<global::UIKit.UIApplication> ProtectedDataWillBecomeUnavailableObs => _protectedDataWillBecomeUnavailable;
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIApplicationDelegate.ReceiveMemoryWarning"/> method is invoked.
-        /// </summary>
-        public global::System.IObservable<global::UIKit.UIApplication> ReceiveMemoryWarningObs => _receiveMemoryWarning;
-        /// <summary>
         /// Gets an observable which signals when the <see cref = "UIKit.UIApplicationDelegate.ReceivedLocalNotification"/> method is invoked.
         /// </summary>
         public global::System.IObservable<(global::UIKit.UIApplication application, global::UIKit.UILocalNotification notification)> ReceivedLocalNotificationObs => _receivedLocalNotification;
@@ -9308,6 +9304,10 @@ namespace UIKit
         /// Gets an observable which signals when the <see cref = "UIKit.UIApplicationDelegate.ReceivedRemoteNotification"/> method is invoked.
         /// </summary>
         public global::System.IObservable<(global::UIKit.UIApplication application, global::Foundation.NSDictionary userInfo)> ReceivedRemoteNotificationObs => _receivedRemoteNotification;
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIApplicationDelegate.ReceiveMemoryWarning"/> method is invoked.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UIApplication> ReceiveMemoryWarningObs => _receiveMemoryWarning;
         /// <summary>
         /// Gets an observable which signals when the <see cref = "UIKit.UIApplicationDelegate.RegisteredForRemoteNotifications"/> method is invoked.
         /// </summary>
@@ -9385,11 +9385,11 @@ namespace UIKit
         /// <inheritdoc/>
         public override void ProtectedDataWillBecomeUnavailable(global::UIKit.UIApplication application) => _protectedDataWillBecomeUnavailable.OnNext(application);
         /// <inheritdoc/>
-        public override void ReceiveMemoryWarning(global::UIKit.UIApplication application) => _receiveMemoryWarning.OnNext(application);
-        /// <inheritdoc/>
         public override void ReceivedLocalNotification(global::UIKit.UIApplication application, global::UIKit.UILocalNotification notification) => _receivedLocalNotification.OnNext((application, notification));
         /// <inheritdoc/>
         public override void ReceivedRemoteNotification(global::UIKit.UIApplication application, global::Foundation.NSDictionary userInfo) => _receivedRemoteNotification.OnNext((application, userInfo));
+        /// <inheritdoc/>
+        public override void ReceiveMemoryWarning(global::UIKit.UIApplication application) => _receiveMemoryWarning.OnNext(application);
         /// <inheritdoc/>
         public override void RegisteredForRemoteNotifications(global::UIKit.UIApplication application, global::Foundation.NSData deviceToken) => _registeredForRemoteNotifications.OnNext((application, deviceToken));
         /// <inheritdoc/>
@@ -9689,8 +9689,8 @@ namespace UIKit
     public partial class UIDocumentBrowserViewControllerDelegateRx : global::UIKit.UIDocumentBrowserViewControllerDelegate
     {
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl sourceUrl, global::Foundation.NSUrl destinationUrl)> _didImportDocument = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl sourceUrl, global::Foundation.NSUrl destinationUrl)>();
-        private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl[] documentUrls)> _didPickDocumentUrls = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl[] documentUrls)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl[] documentUrls)> _didPickDocumentsAtUrls = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl[] documentUrls)>();
+        private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl[] documentUrls)> _didPickDocumentUrls = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl[] documentUrls)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::System.Action<global::Foundation.NSUrl, global::UIKit.UIDocumentBrowserImportMode> importHandler)> _didRequestDocumentCreation = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::System.Action<global::Foundation.NSUrl, global::UIKit.UIDocumentBrowserImportMode> importHandler)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl documentUrl, global::Foundation.NSError error)> _failedToImportDocument = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl documentUrl, global::Foundation.NSError error)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::UIKit.UIActivityViewController activityViewController)> _willPresent = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIDocumentBrowserViewController controller, global::UIKit.UIActivityViewController activityViewController)>();
@@ -9699,13 +9699,13 @@ namespace UIKit
         /// </summary>
         public global::System.IObservable<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl sourceUrl, global::Foundation.NSUrl destinationUrl)> DidImportDocumentObs => _didImportDocument;
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIDocumentBrowserViewControllerDelegate.DidPickDocumentUrls"/> method is invoked.
-        /// </summary>
-        public global::System.IObservable<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl[] documentUrls)> DidPickDocumentUrlsObs => _didPickDocumentUrls;
-        /// <summary>
         /// Gets an observable which signals when the <see cref = "UIKit.UIDocumentBrowserViewControllerDelegate.DidPickDocumentsAtUrls"/> method is invoked.
         /// </summary>
         public global::System.IObservable<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl[] documentUrls)> DidPickDocumentsAtUrlsObs => _didPickDocumentsAtUrls;
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIDocumentBrowserViewControllerDelegate.DidPickDocumentUrls"/> method is invoked.
+        /// </summary>
+        public global::System.IObservable<(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl[] documentUrls)> DidPickDocumentUrlsObs => _didPickDocumentUrls;
         /// <summary>
         /// Gets an observable which signals when the <see cref = "UIKit.UIDocumentBrowserViewControllerDelegate.DidRequestDocumentCreation"/> method is invoked.
         /// </summary>
@@ -9721,9 +9721,9 @@ namespace UIKit
         /// <inheritdoc/>
         public override void DidImportDocument(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl sourceUrl, global::Foundation.NSUrl destinationUrl) => _didImportDocument.OnNext((controller, sourceUrl, destinationUrl));
         /// <inheritdoc/>
-        public override void DidPickDocumentUrls(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl[] documentUrls) => _didPickDocumentUrls.OnNext((controller, documentUrls));
-        /// <inheritdoc/>
         public override void DidPickDocumentsAtUrls(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl[] documentUrls) => _didPickDocumentsAtUrls.OnNext((controller, documentUrls));
+        /// <inheritdoc/>
+        public override void DidPickDocumentUrls(global::UIKit.UIDocumentBrowserViewController controller, global::Foundation.NSUrl[] documentUrls) => _didPickDocumentUrls.OnNext((controller, documentUrls));
         /// <inheritdoc/>
         public override void DidRequestDocumentCreation(global::UIKit.UIDocumentBrowserViewController controller, global::System.Action<global::Foundation.NSUrl, global::UIKit.UIDocumentBrowserImportMode> importHandler) => _didRequestDocumentCreation.OnNext((controller, importHandler));
         /// <inheritdoc/>
@@ -10108,14 +10108,9 @@ namespace UIKit
     /// </summary>
     public partial class UIPopoverPresentationControllerDelegateRx : global::UIKit.UIPopoverPresentationControllerDelegate
     {
-        private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIPopoverPresentationController popoverPresentationController, global::CoreGraphics.CGRect targetRect, global::UIKit.UIView inView)> _willRepositionPopover = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIPopoverPresentationController popoverPresentationController, global::CoreGraphics.CGRect targetRect, global::UIKit.UIView inView)>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIPopoverPresentationController> _didDismissPopover = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIPopoverPresentationController>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIPopoverPresentationController> _prepareForPopoverPresentation = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIPopoverPresentationController>();
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIPopoverPresentationControllerDelegate.WillRepositionPopover"/> method is invoked.
-        /// </summary>
-        [global::System.ObsoleteAttribute("Use the overload with 'ref' parameters for 'targetRect' and 'inView'.", false)]
-        public global::System.IObservable<(global::UIKit.UIPopoverPresentationController popoverPresentationController, global::CoreGraphics.CGRect targetRect, global::UIKit.UIView inView)> WillRepositionPopoverObs => _willRepositionPopover;
+        private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIPopoverPresentationController popoverPresentationController, global::CoreGraphics.CGRect targetRect, global::UIKit.UIView inView)> _willRepositionPopover = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIPopoverPresentationController popoverPresentationController, global::CoreGraphics.CGRect targetRect, global::UIKit.UIView inView)>();
         /// <summary>
         /// Gets an observable which signals when the <see cref = "UIKit.UIPopoverPresentationControllerDelegate.DidDismissPopover"/> method is invoked.
         /// </summary>
@@ -10124,13 +10119,18 @@ namespace UIKit
         /// Gets an observable which signals when the <see cref = "UIKit.UIPopoverPresentationControllerDelegate.PrepareForPopoverPresentation"/> method is invoked.
         /// </summary>
         public global::System.IObservable<global::UIKit.UIPopoverPresentationController> PrepareForPopoverPresentationObs => _prepareForPopoverPresentation;
-        /// <inheritdoc/>
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIPopoverPresentationControllerDelegate.WillRepositionPopover"/> method is invoked.
+        /// </summary>
         [global::System.ObsoleteAttribute("Use the overload with 'ref' parameters for 'targetRect' and 'inView'.", false)]
-        public override void WillRepositionPopover(global::UIKit.UIPopoverPresentationController popoverPresentationController, global::CoreGraphics.CGRect targetRect, global::UIKit.UIView inView) => _willRepositionPopover.OnNext((popoverPresentationController, targetRect, inView));
+        public global::System.IObservable<(global::UIKit.UIPopoverPresentationController popoverPresentationController, global::CoreGraphics.CGRect targetRect, global::UIKit.UIView inView)> WillRepositionPopoverObs => _willRepositionPopover;
         /// <inheritdoc/>
         public override void DidDismissPopover(global::UIKit.UIPopoverPresentationController popoverPresentationController) => _didDismissPopover.OnNext(popoverPresentationController);
         /// <inheritdoc/>
         public override void PrepareForPopoverPresentation(global::UIKit.UIPopoverPresentationController popoverPresentationController) => _prepareForPopoverPresentation.OnNext(popoverPresentationController);
+        /// <inheritdoc/>
+        [global::System.ObsoleteAttribute("Use the overload with 'ref' parameters for 'targetRect' and 'inView'.", false)]
+        public override void WillRepositionPopover(global::UIKit.UIPopoverPresentationController popoverPresentationController, global::CoreGraphics.CGRect targetRect, global::UIKit.UIView inView) => _willRepositionPopover.OnNext((popoverPresentationController, targetRect, inView));
     }
 
     /// <summary>
@@ -11147,26 +11147,26 @@ namespace UIKit
     public partial class UIWebViewDelegateRx : global::UIKit.UIWebViewDelegate
     {
         private readonly Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIWebView webView, global::Foundation.NSError error)> _loadFailed = new Pharmacist.Common.SingleAwaitSubject<(global::UIKit.UIWebView webView, global::Foundation.NSError error)>();
-        private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIWebView> _loadStarted = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIWebView>();
         private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIWebView> _loadingFinished = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIWebView>();
+        private readonly Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIWebView> _loadStarted = new Pharmacist.Common.SingleAwaitSubject<global::UIKit.UIWebView>();
         /// <summary>
         /// Gets an observable which signals when the <see cref = "UIKit.UIWebViewDelegate.LoadFailed"/> method is invoked.
         /// </summary>
         public global::System.IObservable<(global::UIKit.UIWebView webView, global::Foundation.NSError error)> LoadFailedObs => _loadFailed;
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIWebViewDelegate.LoadStarted"/> method is invoked.
-        /// </summary>
-        public global::System.IObservable<global::UIKit.UIWebView> LoadStartedObs => _loadStarted;
-        /// <summary>
         /// Gets an observable which signals when the <see cref = "UIKit.UIWebViewDelegate.LoadingFinished"/> method is invoked.
         /// </summary>
         public global::System.IObservable<global::UIKit.UIWebView> LoadingFinishedObs => _loadingFinished;
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIWebViewDelegate.LoadStarted"/> method is invoked.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UIWebView> LoadStartedObs => _loadStarted;
         /// <inheritdoc/>
         public override void LoadFailed(global::UIKit.UIWebView webView, global::Foundation.NSError error) => _loadFailed.OnNext((webView, error));
         /// <inheritdoc/>
-        public override void LoadStarted(global::UIKit.UIWebView webView) => _loadStarted.OnNext(webView);
-        /// <inheritdoc/>
         public override void LoadingFinished(global::UIKit.UIWebView webView) => _loadingFinished.OnNext(webView);
+        /// <inheritdoc/>
+        public override void LoadStarted(global::UIKit.UIWebView webView) => _loadStarted.OnNext(webView);
     }
 }
 
