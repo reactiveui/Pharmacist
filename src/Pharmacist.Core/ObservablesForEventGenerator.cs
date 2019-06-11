@@ -56,10 +56,11 @@ namespace Pharmacist.Core
         /// </summary>
         /// <param name="outputPath">The path where to output the files.</param>
         /// <param name="prefix">The prefix to add to the start of the output file.</param>
+        /// <param name="suffix">The suffix to add to the end of output file names.</param>
         /// <param name="defaultReferenceAssemblyLocation">A directory path to where reference assemblies can be located.</param>
         /// <param name="platforms">The platforms to generate for.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public static async Task ExtractEventsFromPlatforms(string outputPath, string prefix, string defaultReferenceAssemblyLocation, IEnumerable<AutoPlatform> platforms)
+        public static async Task ExtractEventsFromPlatforms(string outputPath, string prefix, string suffix, string defaultReferenceAssemblyLocation, IEnumerable<AutoPlatform> platforms)
         {
             foreach (var platform in platforms)
             {
@@ -67,7 +68,7 @@ namespace Pharmacist.Core
                 var platformExtractor = _platformExtractors[platform];
                 await platformExtractor.Extract(defaultReferenceAssemblyLocation).ConfigureAwait(false);
 
-                using (var stream = new FileStream(Path.Combine(outputPath, prefix + ".cs"), FileMode.Create, FileAccess.Write))
+                using (var stream = new FileStream(Path.Combine(outputPath, $"{prefix}{platform}{suffix}"), FileMode.Create, FileAccess.Write))
                 {
                     await WriteHeader(stream).ConfigureAwait(false);
                     await ExtractEventsFromAssemblies(stream, platformExtractor.Assemblies, platformExtractor.SearchDirectories).ConfigureAwait(false);

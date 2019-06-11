@@ -22,7 +22,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
     /// </summary>
     internal abstract class NetFrameworkBase : BasePlatform
     {
-        private static readonly PackageIdentity ReferenceNuGet = new PackageIdentity("Microsoft.NETFramework.ReferenceAssemblies", new NuGetVersion("1.0.0-preview.2"));
+        private static readonly PackageIdentity ReferenceNuGet = new PackageIdentity("Microsoft.NETFramework.ReferenceAssemblies.net461", new NuGetVersion("1.0.0-preview.2"));
 
         private static readonly NuGetFramework ReferenceFramework = FrameworkConstants.CommonFrameworks.Net461;
 

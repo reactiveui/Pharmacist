@@ -29,28 +29,42 @@ namespace Pharmacist.Core.Generation.Generators
         /// </summary>
         /// <param name="declarations">The declarations to add.</param>
         /// <returns>An array of namespace declarations.</returns>
-        internal static IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, bool isAbstract, IEnumerable<IMethod> methods)> declarations) => declarations.GroupBy(x => x.typeDefinition.Namespace)
-            .Select(x => SyntaxFactory.NamespaceDeclaration(SyntaxFactory.IdentifierName(x.Key)).WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(GenerateClasses(x))));
+        internal static IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, bool isAbstract, IEnumerable<IMethod> methods)> declarations)
+        {
+            foreach (var groupedDeclarations in declarations.GroupBy(x => x.typeDefinition.Namespace))
+            {
+                var namespaceName = groupedDeclarations.Key;
+                var members = new List<ClassDeclarationSyntax>();
+
+                members.AddRange(groupedDeclarations.OrderBy(x => x.typeDefinition.Name).Select(x => GenerateClass(x.typeDefinition, x.isAbstract, x.methods)));
+
+                if (members.Count > 0)
+                {
+                    yield return SyntaxFactory
+                        .NamespaceDeclaration(SyntaxFactory.IdentifierName(namespaceName))
+                        .WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(members));
+                }
+            }
+        }
 
         /// <summary>
         /// Generates our helper classes with the observables.
         /// </summary>
-        /// <param name="declarations">Our class declarations along with the methods we want to generate the values for.</param>
+        /// <param name="typeDefinition">The type definition containing the information.</param>
+        /// <param name="isAbstract">If the delegates are abstract.</param>
+        /// <param name="methods">The methods to generate delegate overloads for.</param>
         /// <returns>The generated class declarations.</returns>
-        private static IEnumerable<ClassDeclarationSyntax> GenerateClasses(IEnumerable<(ITypeDefinition typeDefinition, bool isAbstract, IEnumerable<IMethod> methods)> declarations)
+        private static ClassDeclarationSyntax GenerateClass(ITypeDefinition typeDefinition, bool isAbstract, IEnumerable<IMethod> methods)
         {
-            foreach (var declaration in declarations)
-            {
-                var modifiers = declaration.typeDefinition.IsAbstract || declaration.isAbstract
+                var modifiers = typeDefinition.IsAbstract || isAbstract
                     ? SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.AbstractKeyword), SyntaxFactory.Token(SyntaxKind.PartialKeyword))
                     : SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.PartialKeyword));
-                yield return SyntaxFactory.ClassDeclaration(declaration.typeDefinition.Name + "Rx")
+                return SyntaxFactory.ClassDeclaration(typeDefinition.Name + "Rx")
                     .WithModifiers(modifiers)
-                    .WithMembers(SyntaxFactory.List(GenerateObservableMembers(declaration.methods)))
-                    .WithBaseList(SyntaxFactory.BaseList(SyntaxFactory.SingletonSeparatedList<BaseTypeSyntax>(SyntaxFactory.SimpleBaseType(SyntaxFactory.IdentifierName(declaration.typeDefinition.GenerateFullGenericName())))))
-                    .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Wraps delegates events from {0} into Observables.", declaration.typeDefinition.GenerateFullGenericName()))
-                    .WithObsoleteAttribute(declaration.typeDefinition);
-            }
+                    .WithMembers(SyntaxFactory.List(GenerateObservableMembers(methods)))
+                    .WithBaseList(SyntaxFactory.BaseList(SyntaxFactory.SingletonSeparatedList<BaseTypeSyntax>(SyntaxFactory.SimpleBaseType(SyntaxFactory.IdentifierName(typeDefinition.GenerateFullGenericName())))))
+                    .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Wraps delegates events from {0} into Observables.", typeDefinition.GenerateFullGenericName()))
+                    .WithObsoleteAttribute(typeDefinition);
         }
 
         private static IEnumerable<MemberDeclarationSyntax> GenerateObservableMembers(IEnumerable<IMethod> methods)
@@ -59,7 +73,7 @@ namespace Pharmacist.Core.Generation.Generators
             var fieldDeclarations = new List<FieldDeclarationSyntax>();
             var propertyDeclarations = new List<PropertyDeclarationSyntax>();
 
-            foreach (var method in methods)
+            foreach (var method in methods.OrderBy(y => y.Name))
             {
                 var observableName = "_" + char.ToLowerInvariant(method.Name[0]) + method.Name.Substring(1);
                 methodDeclarations.Add(GenerateMethodDeclaration(observableName, method));

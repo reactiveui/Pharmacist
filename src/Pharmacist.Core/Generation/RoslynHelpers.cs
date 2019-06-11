@@ -40,14 +40,22 @@ namespace Pharmacist.Core.Generation
         {
             var modules = targetAssemblies.Select(x => new PEFile(x, PEStreamOptions.PrefetchMetadata));
 
+            var searchStack = new Stack<DirectoryInfo>(searchDirectories.Select(x => new DirectoryInfo(x)));
             var foundDirectories = new HashSet<string>();
-            foreach (var searchDirectory in searchDirectories)
+
+            while (searchStack.Count != 0)
             {
-                var directoryInfo = new DirectoryInfo(searchDirectory);
-                foundDirectories.UnionWith(
-                    directoryInfo.EnumerateDirectories("*.*", SearchOption.AllDirectories)
-                        .Where(x => x.EnumerateFiles().Any(file => file.FullName.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase) || file.FullName.EndsWith(".winmd", StringComparison.InvariantCultureIgnoreCase)))
-                        .Select(x => x.FullName));
+                var directoryInfo = searchStack.Pop();
+
+                if (directoryInfo.EnumerateFiles().Any(file => file.FullName.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase) || file.FullName.EndsWith(".winmd", StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    foundDirectories.Add(directoryInfo.FullName);
+                }
+
+                foreach (var directory in directoryInfo.EnumerateDirectories())
+                {
+                    searchStack.Push(directory);
+                }
             }
 
             return new EventBuilderCompiler(modules, foundDirectories.ToList());
