@@ -36,14 +36,6 @@ namespace Pharmacist.Tests.IntegrationTests
             var platforms = Enum.GetValues(typeof(AutoPlatform)).Cast<AutoPlatform>().ToList();
 
             await ObservablesForEventGenerator.ExtractEventsFromPlatforms(sourceDirectory, string.Empty, ".received.txt", referenceAssembliesLocation, platforms).ConfigureAwait(false);
-
-            foreach (var platform in platforms)
-            {
-                var approvedFileName = Path.Combine(sourceDirectory, $"{platform}.approved.txt");
-                var receivedFileName = Path.Combine(sourceDirectory, $"{platform}.received.txt");
-
-                IntegrationTestHelper.CheckContents(File.ReadAllText(receivedFileName), approvedFileName, receivedFileName);
-            }
         }
     }
 }
