@@ -56,7 +56,7 @@ namespace Pharmacist.Console
                             referenceAssembliesLocation = await ReferenceLocator.GetReferenceLocation().ConfigureAwait(false);
                         }
 
-                        await ObservablesForEventGenerator.ExtractEventsFromPlatforms(options.OutputPath, options.OutputPrefix, referenceAssembliesLocation, options.Platforms).ConfigureAwait(false);
+                        await ObservablesForEventGenerator.ExtractEventsFromPlatforms(options.OutputPath, options.OutputPrefix, ".cs", referenceAssembliesLocation, options.Platforms).ConfigureAwait(false);
 
                         return ExitCode.Success;
                     }

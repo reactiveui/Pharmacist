@@ -25,6 +25,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
             }
 
             Assemblies = new[] { @"C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd" };
+            SearchDirectories = new[] { @"C:\Windows\Microsoft.NET\Framework\v4.0.30319" };
 
             return Task.CompletedTask;
         }

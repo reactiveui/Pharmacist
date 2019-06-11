@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="TestExpectedResults\**" />
+    <EmbeddedResource Remove="TestExpectedResults\**" />
+    <None Remove="TestExpectedResults\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Pharmacist.Core\Pharmacist.Core.csproj" />
     <ProjectReference Include="..\Pharmacist.IntegrationTest\Pharmacist.IntegrationTest.csproj" />
   </ItemGroup>
@@ -16,9 +22,5 @@
     <None Update="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TestExpectedResults\" />
   </ItemGroup>
 </Project>

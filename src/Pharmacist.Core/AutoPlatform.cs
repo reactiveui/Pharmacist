@@ -28,19 +28,9 @@ namespace Pharmacist.Core
         Mac,
 
         /// <summary>
-        /// Tizen platform.
-        /// </summary>
-        Tizen4,
-
-        /// <summary>
         /// WPF platform.
         /// </summary>
         WPF,
-
-        /// <summary>
-        /// Xamarin Forms platform.
-        /// </summary>
-        XamForms,
 
         /// <summary>
         /// UWP platform.
@@ -56,10 +46,5 @@ namespace Pharmacist.Core
         /// TV OS platform.
         /// </summary>
         TVOS,
-
-        /// <summary>
-        /// Xamarin Essentials platform.
-        /// </summary>
-        Essentials
     }
 }

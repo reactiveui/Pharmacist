@@ -34,7 +34,7 @@ namespace Pharmacist.Tests.IntegrationTests
             using (var memoryStream = new MemoryStream())
             {
                 await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, frameworks).ConfigureAwait(false);
-                CheckContents(memoryStream, package[0], filePath);
+                CheckPackageIdentityContents(memoryStream, package[0], filePath);
             }
         }
 
@@ -45,47 +45,52 @@ namespace Pharmacist.Tests.IntegrationTests
             using (var memoryStream = new MemoryStream())
             {
                 await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, frameworks).ConfigureAwait(false);
-                CheckContents(memoryStream, bestPackageIdentity, filePath);
+                CheckPackageIdentityContents(memoryStream, bestPackageIdentity, filePath);
             }
         }
 
-        private static void CheckContents(MemoryStream memoryStream, PackageIdentity bestPackageIdentity, string filePath)
+        public static void CheckContents(string actualContents, string approvedFileName, string receivedFileName)
         {
-            var sourceDirectory = Path.GetDirectoryName(filePath);
-
-            var approvedFileName = Path.Combine(sourceDirectory, $"{bestPackageIdentity.Id}.{bestPackageIdentity.Version}.approved.txt");
-            var receivedFileName = Path.Combine(sourceDirectory, $"{bestPackageIdentity.Id}.{bestPackageIdentity.Version}.received.txt");
-
             if (!File.Exists(approvedFileName))
             {
-                File.Create(approvedFileName);
+                File.Create(approvedFileName).Close();
             }
 
             if (!File.Exists(receivedFileName))
             {
-                File.Create(receivedFileName);
+                File.Create(receivedFileName).Close();
             }
 
-            memoryStream.Flush();
+            var expectedContents = File.ReadAllText(approvedFileName);
 
+            string normalizedActual = _whitespaceRegex.Replace(actualContents, string.Empty);
+            string normalizedExpected = _whitespaceRegex.Replace(expectedContents, string.Empty);
+
+            if (!string.Equals(normalizedActual, normalizedExpected, StringComparison.InvariantCulture))
+            {
+                File.WriteAllText(receivedFileName, actualContents);
+                ShouldlyConfiguration.DiffTools.GetDiffTool().Open(receivedFileName, approvedFileName, true);
+            }
+
+            normalizedActual.ShouldNotBeEmpty();
+
+            normalizedActual.ShouldBe(normalizedExpected, StringCompareShould.IgnoreLineEndings);
+        }
+
+        public static string GetOutputDirectory([CallerFilePath] string filePath = null) => Path.Combine(Path.GetDirectoryName(filePath), "Approved");
+
+        private static void CheckPackageIdentityContents(MemoryStream memoryStream, PackageIdentity bestPackageIdentity, string filePath)
+        {
+            var sourceDirectory = GetOutputDirectory(filePath);
+
+            var approvedFileName = Path.Combine(sourceDirectory, $"{bestPackageIdentity.Id}.{bestPackageIdentity.Version}.approved.txt");
+            var receivedFileName = Path.Combine(sourceDirectory, $"{bestPackageIdentity.Id}.{bestPackageIdentity.Version}.received.txt");
+
+            memoryStream.Flush();
             memoryStream.Position = 0;
             using (var sr = new StreamReader(memoryStream))
             {
-                var actualContents = sr.ReadToEnd().Trim('\n').Trim('\r');
-                var expectedContents = File.ReadAllText(approvedFileName);
-
-                string normalizedActual = _whitespaceRegex.Replace(actualContents, string.Empty);
-                string normalizedExpected = _whitespaceRegex.Replace(expectedContents, string.Empty);
-
-                if (!string.Equals(normalizedActual, normalizedExpected, StringComparison.InvariantCulture))
-                {
-                    File.WriteAllText(receivedFileName, actualContents);
-                    ShouldlyConfiguration.DiffTools.GetDiffTool().Open(receivedFileName, approvedFileName, true);
-                }
-
-                normalizedActual.ShouldNotBeEmpty();
-
-                normalizedActual.ShouldBe(normalizedExpected, StringCompareShould.IgnoreLineEndings);
+                CheckContents(sr.ReadToEnd().Trim('\n').Trim('\r'), approvedFileName, receivedFileName);
             }
         }
     }
