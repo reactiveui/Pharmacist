@@ -14,6 +14,9 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Pharmacist.Core.Generation.Generators
 {
+    /// <summary>
+    /// Generates common code generation between both static and instance based observables for events.
+    /// </summary>
     internal abstract class EventGeneratorBase : IEventGenerator
     {
         /// <summary>
@@ -142,6 +145,8 @@ namespace Pharmacist.Core.Generation.Generators
 
         private static ArrowExpressionClauseSyntax GenerateUnitFromEventExpression(IEvent eventDetails, string dataObjectName)
         {
+            // This produces "=> global::System.Reactive.Linq.Observable.FromEvent(x => dataObjectName.EventName += x, x => dataObjectName.EventName -= x)".
+            // It uses the observable Unit form of the method.
             var eventName = eventDetails.Name;
             return SyntaxFactory.ArrowExpressionClause(
                 SyntaxFactory.InvocationExpression(
@@ -162,6 +167,7 @@ namespace Pharmacist.Core.Generation.Generators
 
         private static (ArrowExpressionClauseSyntax, TypeSyntax) GenerateFromEventPatternExpressionClauseAndType(IEvent eventDetails, string dataObjectName, IMethod invokeMethod)
         {
+            // This produces "=> global::System.Reactive.Linq.Observable.FromEventPattern<TEventType<TEventArgs>, TEventArgs>(x => dataObject.EventName += x; x => dataObject.EventName -= x)".
             var param = invokeMethod.Parameters[1];
 
             var eventArgsName = param.Type.GenerateFullGenericName();
@@ -204,6 +210,7 @@ namespace Pharmacist.Core.Generation.Generators
 
         private static ArgumentSyntax GenerateArgumentEventAccessor(SyntaxKind accessor, string eventName, string dataObjectName)
         {
+            // This produces "x => dataObject.EventName += x" and also "x => dataObject.EventName -= x" depending on the accessor passed in.
             return SyntaxFactory.Argument(
                 SyntaxFactory.SimpleLambdaExpression(
                     SyntaxFactory.Parameter(SyntaxFactory.Identifier("x")),
