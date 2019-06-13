@@ -14,6 +14,9 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Pharmacist.Core.Generation.Generators
 {
+    /// <summary>
+    /// Generates common code generation between both static and instance based observables for events.
+    /// </summary>
     internal abstract class EventGeneratorBase : IEventGenerator
     {
         /// <summary>
@@ -140,15 +143,10 @@ namespace Pharmacist.Core.Generation.Generators
             return (expression, eventArgsType.GenerateObservableType());
         }
 
-        /// <summary>
-        /// This produces "=> global::System.Reactive.Linq.Observable.FromEvent(x => dataObjectName.EventName += x, x => dataObjectName.EventName -= x)".
-        /// It uses the observable Unit form of the method.
-        /// </summary>
-        /// <param name="eventDetails">The details of the event.</param>
-        /// <param name="dataObjectName">The name of the object that contains the event.</param>
-        /// <returns>The arrow expression statement.</returns>
         private static ArrowExpressionClauseSyntax GenerateUnitFromEventExpression(IEvent eventDetails, string dataObjectName)
         {
+            // This produces "=> global::System.Reactive.Linq.Observable.FromEvent(x => dataObjectName.EventName += x, x => dataObjectName.EventName -= x)".
+            // It uses the observable Unit form of the method.
             var eventName = eventDetails.Name;
             return SyntaxFactory.ArrowExpressionClause(
                 SyntaxFactory.InvocationExpression(
@@ -167,15 +165,9 @@ namespace Pharmacist.Core.Generation.Generators
                                         }))));
         }
 
-        /// <summary>
-        /// This produces "=> global::System.Reactive.Linq.Observable.FromEventPattern<TEventType<TEventArgs>, TEventArgs>(x => dataObject.EventName += x; x => dataObject.EventName -= x)".
-        /// </summary>
-        /// <param name="eventDetails">The details of the event.</param>
-        /// <param name="dataObjectName">The name of the object that contains the event.</param>
-        /// <param name="invokeMethod">The invoke method contained within the event object itself.</param>
-        /// <returns>The arrow expression statement.</returns>
         private static (ArrowExpressionClauseSyntax, TypeSyntax) GenerateFromEventPatternExpressionClauseAndType(IEvent eventDetails, string dataObjectName, IMethod invokeMethod)
         {
+            // This produces "=> global::System.Reactive.Linq.Observable.FromEventPattern<TEventType<TEventArgs>, TEventArgs>(x => dataObject.EventName += x; x => dataObject.EventName -= x)".
             var param = invokeMethod.Parameters[1];
 
             var eventArgsName = param.Type.GenerateFullGenericName();
@@ -216,15 +208,9 @@ namespace Pharmacist.Core.Generation.Generators
             return (expression, observableEventArgType);
         }
 
-        /// <summary>
-        /// This produces "x => dataObject.EventName += x" and also "x => dataObject.EventName -= x" depending on the accessor passed in.
-        /// </summary>
-        /// <param name="accessor">The accessor to use for creating the event. This is often a + or - depending if we are subscribing/unsubscribing.</param>
-        /// <param name="eventName">The name of the event on the data object.</param>
-        /// <param name="dataObjectName">The name of the object that contains the event.</param>
-        /// <returns>The argument for the expression.</returns>
         private static ArgumentSyntax GenerateArgumentEventAccessor(SyntaxKind accessor, string eventName, string dataObjectName)
         {
+            // This produces "x => dataObject.EventName += x" and also "x => dataObject.EventName -= x" depending on the accessor passed in.
             return SyntaxFactory.Argument(
                 SyntaxFactory.SimpleLambdaExpression(
                     SyntaxFactory.Parameter(SyntaxFactory.Identifier("x")),
