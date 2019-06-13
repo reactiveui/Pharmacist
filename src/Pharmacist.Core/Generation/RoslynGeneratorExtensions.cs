@@ -21,31 +21,14 @@ namespace Pharmacist.Core.Generation
         /// </summary>
         /// <param name="parameter">The parameter to generate the argument list for.</param>
         /// <returns>The argument list.</returns>
-        public static ArgumentListSyntax GenerateArgumentList(this IParameter parameter) => SyntaxFactory.ArgumentList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.Argument(SyntaxFactory.IdentifierName(parameter.Name))));
-
-        /// <summary>
-        /// Generates a type argument list for a single type.
-        /// </summary>
-        /// <param name="type">The type to generate the type argument list for.</param>
-        /// <returns>The type argument list.</returns>
-        public static TypeArgumentListSyntax GenerateTypeArgumentList(this IType type) => SyntaxFactory.TypeArgumentList(SyntaxFactory.SingletonSeparatedList<TypeSyntax>(SyntaxFactory.IdentifierName(type.GenerateFullGenericName())));
+        public static ArgumentListSyntax GenerateArgumentList(this IParameter parameter) => SyntaxFactory.ArgumentList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.Argument(SyntaxFactory.IdentifierName(parameter.Name.GetKeywordSafeName()))));
 
         /// <summary>
         /// Generates a argument list for a tuple parameter.
         /// </summary>
         /// <param name="parameters">The parameters to generate the argument list for.</param>
         /// <returns>The argument list.</returns>
-        public static ArgumentListSyntax GenerateTupleArgumentList(this IEnumerable<IParameter> parameters) => SyntaxFactory.ArgumentList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.Argument(SyntaxFactory.TupleExpression(SyntaxFactory.SeparatedList(parameters.Select(x => SyntaxFactory.Argument(SyntaxFactory.IdentifierName(x.Name))))))));
-
-        /// <summary>
-        /// Generates a type argument list for a tuple parameter.
-        /// </summary>
-        /// <param name="types">The types to generate the argument list for.</param>
-        /// <returns>The argument list.</returns>
-        public static TypeArgumentListSyntax GenerateTupleTypeArgumentList(this IEnumerable<IType> types)
-        {
-            return SyntaxFactory.TypeArgumentList(SyntaxFactory.SingletonSeparatedList(types.GenerateTupleType()));
-        }
+        public static ArgumentListSyntax GenerateTupleArgumentList(this IEnumerable<IParameter> parameters) => SyntaxFactory.ArgumentList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.Argument(SyntaxFactory.TupleExpression(SyntaxFactory.SeparatedList(parameters.Select(x => SyntaxFactory.Argument(SyntaxFactory.IdentifierName(x.Name.GetKeywordSafeName()))))))));
 
         public static TypeSyntax GenerateTupleType(this IEnumerable<IType> types)
         {
@@ -155,6 +138,11 @@ namespace Pharmacist.Core.Generation
                 SyntaxFactory.AttributeArgumentList(SyntaxFactory.SeparatedList(new[] { SyntaxFactory.AttributeArgument(SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression, SyntaxFactory.Literal(message))), SyntaxFactory.AttributeArgument(SyntaxFactory.LiteralExpression(isError)) })));
 
             return SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(attribute));
+        }
+
+        private static string GetKeywordSafeName(this string name)
+        {
+            return TypesMetadata.CSharpKeywords.Contains(name) ? '@' + name : name;
         }
     }
 }

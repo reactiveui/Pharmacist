@@ -25,25 +25,6 @@ namespace Pharmacist.Core.Generation
         private static readonly ConcurrentDictionary<ICompilation, ImmutableList<ITypeDefinition>> _publicNonGenericTypeMapping = new ConcurrentDictionary<ICompilation, ImmutableList<ITypeDefinition>>();
         private static readonly ConcurrentDictionary<ICompilation, ImmutableList<ITypeDefinition>> _publicEventsTypeMapping = new ConcurrentDictionary<ICompilation, ImmutableList<ITypeDefinition>>();
 
-        private static readonly ConcurrentDictionary<string, string> _fullToBuiltInTypes = new ConcurrentDictionary<string, string>
-        {
-            ["System.Boolean"] = "bool",
-            ["System.Byte"] = "byte",
-            ["System.SByte"] = "sbyte",
-            ["System.Char"] = "char",
-            ["System.Decimal"] = "decimal",
-            ["System.Double"] = "double",
-            ["System.Single"] = "float",
-            ["System.Int32"] = "int",
-            ["System.UInt32"] = "uint",
-            ["System.Int64"] = "long",
-            ["System.UInt64"] = "ulong",
-            ["System.Object"] = "object",
-            ["System.Int16"] = "short",
-            ["System.UInt16"] = "ushort",
-            ["System.String"] = "string",
-        };
-
         /// <summary>
         /// Get all type definitions where they have public events, aren't generic (no type parameters == 0), and they are public.
         /// </summary>
@@ -98,6 +79,11 @@ namespace Pharmacist.Core.Generation
                 .ToImmutableList());
         }
 
+        /// <summary>
+        /// Gets the type that the event.
+        /// </summary>
+        /// <param name="eventDetails">The details about the event.</param>
+        /// <returns>The type of the event.</returns>
         public static IType GetEventType(this IEvent eventDetails)
         {
             ICompilation compilation = eventDetails.Compilation;
@@ -120,8 +106,19 @@ namespace Pharmacist.Core.Generation
             return type;
         }
 
+        /// <summary>
+        /// If the type if UnknownType, it will search all the dependencies for the specified type.
+        /// If the type is not unknown type it will just return the type directly.
+        /// This gets around the problem that types are only known for the assembly they are included in.
+        /// </summary>
+        /// <param name="type">The type to check.</param>
+        /// <param name="compilation">The compilation which contains all the assemblies and dependencies.</param>
+        /// <returns>The concrete type if one can be found.</returns>
         public static IType GetRealType(this IType type, ICompilation compilation)
         {
+            // If the type is UnknownType, check other assemblies we have as dependencies first,
+            // since UnknownType is only if it's unknown in the current assembly only.
+            // This scenario is fairly common with types in the netstandard libraries, eg System.EventHandler.
             if (type is UnknownType || type.Kind == TypeKind.Unknown)
             {
                 if (type.TypeParameterCount == 0)
@@ -171,7 +168,7 @@ namespace Pharmacist.Core.Generation
 
         private static (bool isInternalType, string typeName) GetBuiltInType(string typeName)
         {
-            if (_fullToBuiltInTypes.TryGetValue(typeName, out var builtInName))
+            if (TypesMetadata.FullToBuiltInTypes.TryGetValue(typeName, out var builtInName))
             {
                 return (true, builtInName);
             }
