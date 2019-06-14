@@ -6,6 +6,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
@@ -25,6 +26,11 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         /// <inheritdoc />
         public override Task Extract(string referenceAssembliesLocation)
         {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                referenceAssembliesLocation = "/Library/Frameworks/Xamarin.Android.framework/Libraries/xbuild-frameworks";
+            }
+
             // Pin to a particular framework version https://github.com/reactiveui/ReactiveUI/issues/1517
             var latestVersion = Directory.GetFiles(
                 Path.Combine(referenceAssembliesLocation, "MonoAndroid"),
