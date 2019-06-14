@@ -67,7 +67,7 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Gets an observable which signals when the {0} event triggers.", eventDetails.FullName));
         }
 
-        protected static (ArrowExpressionClauseSyntax, TypeSyntax) GenerateFromEventExpression(IEvent eventDetails, IMethod invokeMethod, string dataObjectName)
+        private static (ArrowExpressionClauseSyntax, TypeSyntax) GenerateFromEventExpression(IEvent eventDetails, IMethod invokeMethod, string dataObjectName)
         {
             var returnType = SyntaxFactory.IdentifierName(eventDetails.ReturnType.GenerateFullGenericName());
 
