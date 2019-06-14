@@ -37,7 +37,7 @@ namespace Pharmacist.Core.ReferenceLocators
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                return Task.FromResult("/Library⁩/Frameworks⁩/Libraries/⁨mono");
+                return Task.FromResult("⁨/Library⁩/Frameworks⁩/Libraries/⁨mono⁩");
             }
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

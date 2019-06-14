@@ -6,6 +6,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
@@ -23,6 +24,11 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         /// <inheritdoc />
         public override Task Extract(string referenceAssembliesLocation)
         {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                referenceAssembliesLocation = "/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/";
+            }
+
             var assemblies =
                 Directory.GetFiles(
                     Path.Combine(referenceAssembliesLocation, "Xamarin.iOS"),
