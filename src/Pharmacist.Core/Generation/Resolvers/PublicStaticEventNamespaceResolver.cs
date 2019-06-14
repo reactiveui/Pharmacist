@@ -26,7 +26,7 @@ namespace Pharmacist.Core.Generation.Resolvers
 
         protected override IEnumerable<IEvent> GetValidEventDetails(IEnumerable<IEvent> eventDetails)
         {
-            return eventDetails.Where(x => x.Accessibility == Accessibility.Public && x.IsStatic);
+            return eventDetails.Where(x => x.Accessibility == Accessibility.Public && x.IsStatic && IsValidParameters(x));
         }
     }
 }
