@@ -22,7 +22,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         {
             if (PlatformHelper.IsRunningOnMono())
             {
-                referenceAssembliesLocation = "/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/lib/mono/";
+                referenceAssembliesLocation = "/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/";
             }
 
             var assemblies =
