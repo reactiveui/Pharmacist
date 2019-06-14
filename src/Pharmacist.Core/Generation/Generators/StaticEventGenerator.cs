@@ -12,6 +12,9 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
+using static Pharmacist.Core.Generation.XmlSyntaxFactory;
+
 namespace Pharmacist.Core.Generation.Generators
 {
     internal class StaticEventGenerator : EventGeneratorBase
@@ -39,14 +42,13 @@ namespace Pharmacist.Core.Generation.Generators
 
                 if (eventWrapperMembers.Count > 0)
                 {
-                    var members = SyntaxFactory.ClassDeclaration("Events")
-                        .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword)))
-                        .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class that contains extension methods to wrap events contained within static classes within the {0} namespace.", namespaceName))
-                        .WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(eventWrapperMembers));
+                    var members = ClassDeclaration("Events")
+                        .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword)))
+                        .WithLeadingTrivia(GenerateSummarySeeAlsoComment("A class that contains extension methods to wrap events contained within static classes within the {0} namespace.", namespaceName))
+                        .WithMembers(List<MemberDeclarationSyntax>(eventWrapperMembers));
 
-                    yield return SyntaxFactory
-                        .NamespaceDeclaration(SyntaxFactory.IdentifierName(namespaceName))
-                        .WithMembers(SyntaxFactory.SingletonList<MemberDeclarationSyntax>(members));
+                    yield return NamespaceDeclaration(IdentifierName(namespaceName))
+                        .WithMembers(SingletonList<MemberDeclarationSyntax>(members));
                 }
             }
         }

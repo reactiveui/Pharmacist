@@ -12,6 +12,9 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
+using static Pharmacist.Core.Generation.XmlSyntaxFactory;
+
 namespace Pharmacist.Core.Generation.Generators
 {
     /// <summary>
@@ -48,79 +51,85 @@ namespace Pharmacist.Core.Generation.Generators
             }
 
             SyntaxTokenList modifiers = eventDetails.IsStatic
-                ? SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword))
-                : SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword));
+                ? TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword))
+                : TokenList(Token(SyntaxKind.PublicKeyword));
 
             // Produces for static: public static global::System.IObservable<(argType1, argType2)> EventName => (contents of expression body)
             // Produces for instance: public global::System.IObservable<(argType1, argType2)> EventName => (contents of expression body)
-            return SyntaxFactory.PropertyDeclaration(observableEventArgType, prefix + eventDetails.Name)
+            return PropertyDeclaration(observableEventArgType, prefix + eventDetails.Name)
                 .WithModifiers(modifiers)
                 .WithExpressionBody(expressionBody)
-                .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken))
+                .WithSemicolonToken(Token(SyntaxKind.SemicolonToken))
                 .WithObsoleteAttribute(eventDetails)
-                .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Gets an observable which signals when the {0} event triggers.", eventDetails.FullName));
+                .WithLeadingTrivia(GenerateSummarySeeAlsoComment("Gets an observable which signals when the {0} event triggers.", eventDetails.FullName));
         }
 
         private static (ArrowExpressionClauseSyntax, TypeSyntax) GenerateFromEventExpression(IEvent eventDetails, IMethod invokeMethod, string dataObjectName)
         {
-            var returnType = SyntaxFactory.IdentifierName(eventDetails.ReturnType.GenerateFullGenericName());
+            var returnType = IdentifierName(eventDetails.ReturnType.GenerateFullGenericName());
 
             ArgumentListSyntax methodParametersArgumentList;
             TypeSyntax eventArgsType;
 
-            // If we have any members call our observables with the parameters.
-            if (invokeMethod.Parameters.Count > 0)
+            // If we are using a standard approach of using 2 parameters only send the "Value", not the sender.
+            if (invokeMethod.Parameters.Count == 2 && invokeMethod.Parameters[0].Type.FullName == "System.Object")
             {
+                methodParametersArgumentList = invokeMethod.Parameters[1].GenerateArgumentList();
+                eventArgsType = IdentifierName(invokeMethod.Parameters[1].Type.GenerateFullGenericName());
+            }
+            else if (invokeMethod.Parameters.Count > 0)
+            {
+                // If we have any members call our observables with the parameters.
                 // If we have only one member, produces arguments: (arg1);
                 // If we have greater than one member, produces arguments with value type: ((arg1, arg2))
                 methodParametersArgumentList = invokeMethod.Parameters.Count == 1 ? invokeMethod.Parameters[0].GenerateArgumentList() : invokeMethod.Parameters.GenerateTupleArgumentList();
-                eventArgsType = invokeMethod.Parameters.Count == 1 ? SyntaxFactory.IdentifierName(invokeMethod.Parameters[0].Type.GenerateFullGenericName()) : invokeMethod.Parameters.Select(x => x.Type).GenerateTupleType();
+                eventArgsType = invokeMethod.Parameters.Count == 1 ? IdentifierName(invokeMethod.Parameters[0].Type.GenerateFullGenericName()) : invokeMethod.Parameters.Select(x => (x.Type, x.Name)).GenerateTupleType();
             }
             else
             {
                 // Produces argument: (global::System.Reactive.Unit.Default)
                 methodParametersArgumentList = RoslynHelpers.ReactiveUnitArgumentList;
-                eventArgsType = SyntaxFactory.IdentifierName(RoslynHelpers.ObservableUnitName);
+                eventArgsType = IdentifierName(RoslynHelpers.ObservableUnitName);
             }
 
             var eventName = eventDetails.Name;
 
             // Produces local function: void Handler(DataType1 eventParam1, DataType2 eventParam2) => eventHandler(eventParam1, eventParam2)
-            var localFunctionExpression = SyntaxFactory.LocalFunctionStatement(
-                                                SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.VoidKeyword)),
-                                                SyntaxFactory.Identifier("Handler"))
+            var localFunctionExpression = LocalFunctionStatement(
+                                                PredefinedType(Token(SyntaxKind.VoidKeyword)),
+                                                Identifier("Handler"))
                                             .WithParameterList(invokeMethod.GenerateMethodParameters())
                                             .WithExpressionBody(
-                                                SyntaxFactory.ArrowExpressionClause(
-                                                    SyntaxFactory.InvocationExpression(SyntaxFactory.IdentifierName("eventHandler"))
+                                                ArrowExpressionClause(
+                                                    InvocationExpression(IdentifierName("eventHandler"))
                                                         .WithArgumentList(methodParametersArgumentList)))
-                                            .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+                                            .WithSemicolonToken(Token(SyntaxKind.SemicolonToken));
 
             // Produces lambda expression: eventHandler => (local function above); return Handler;
-            var conversionLambdaExpression = SyntaxFactory.SimpleLambdaExpression(
-                SyntaxFactory.Parameter(SyntaxFactory.Identifier("eventHandler")),
-                SyntaxFactory.Block(localFunctionExpression, SyntaxFactory.ReturnStatement(SyntaxFactory.IdentifierName("Handler"))));
+            var conversionLambdaExpression = SimpleLambdaExpression(
+                Parameter(Identifier("eventHandler")),
+                Block(localFunctionExpression, ReturnStatement(IdentifierName("Handler"))));
 
             // Produces type parameters: <EventArg1Type, EventArg2Type>
-            var fromEventTypeParameters = SyntaxFactory.TypeArgumentList(SyntaxFactory.SeparatedList<TypeSyntax>(new SyntaxNodeOrToken[] { returnType, SyntaxFactory.Token(SyntaxKind.CommaToken), eventArgsType }));
+            var fromEventTypeParameters = TypeArgumentList(SeparatedList<TypeSyntax>(new SyntaxNodeOrToken[] { returnType, Token(SyntaxKind.CommaToken), eventArgsType }));
 
             // Produces: => global::System.Reactive.Linq.Observable.FromEvent<TypeParameters>(h => (handler from above), x => x += DataObject.Event, x => x -= DataObject.Event);
-            var expression = SyntaxFactory.ArrowExpressionClause(
-                SyntaxFactory.InvocationExpression(
-                    SyntaxFactory.MemberAccessExpression(
+            var expression = ArrowExpressionClause(
+                InvocationExpression(
+                    MemberAccessExpression(
                         SyntaxKind.SimpleMemberAccessExpression,
-                        SyntaxFactory.IdentifierName("global::System.Reactive.Linq.Observable"),
-                        SyntaxFactory.GenericName(SyntaxFactory.Identifier("FromEvent"))
+                        IdentifierName("global::System.Reactive.Linq.Observable"),
+                        GenericName(Identifier("FromEvent"))
                             .WithTypeArgumentList(fromEventTypeParameters)))
                         .WithArgumentList(
-                            SyntaxFactory.ArgumentList(
-                                SyntaxFactory.SeparatedList<ArgumentSyntax>(
+                            ArgumentList(
+                                SeparatedList<ArgumentSyntax>(
                                     new SyntaxNodeOrToken[]
                                     {
-                                            SyntaxFactory.Argument(conversionLambdaExpression),
-                                            SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                            Argument(conversionLambdaExpression),
+                                            Token(SyntaxKind.CommaToken),
                                             GenerateArgumentEventAccessor(SyntaxKind.AddAssignmentExpression, eventName, dataObjectName),
-                                            SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                            Token(SyntaxKind.CommaToken),
                                             GenerateArgumentEventAccessor(SyntaxKind.SubtractAssignmentExpression, eventName, dataObjectName)
                                     }))));
 
@@ -130,16 +139,16 @@ namespace Pharmacist.Core.Generation.Generators
         private static ArgumentSyntax GenerateArgumentEventAccessor(SyntaxKind accessor, string eventName, string dataObjectName)
         {
             // This produces "x => dataObject.EventName += x" and also "x => dataObject.EventName -= x" depending on the accessor passed in.
-            return SyntaxFactory.Argument(
-                SyntaxFactory.SimpleLambdaExpression(
-                    SyntaxFactory.Parameter(SyntaxFactory.Identifier("x")),
-                    SyntaxFactory.AssignmentExpression(
+            return Argument(
+                SimpleLambdaExpression(
+                    Parameter(Identifier("x")),
+                    AssignmentExpression(
                         accessor,
-                        SyntaxFactory.MemberAccessExpression(
+                        MemberAccessExpression(
                             SyntaxKind.SimpleMemberAccessExpression,
-                            SyntaxFactory.IdentifierName(dataObjectName),
-                            SyntaxFactory.IdentifierName(eventName)),
-                        SyntaxFactory.IdentifierName("x"))));
+                            IdentifierName(dataObjectName),
+                            IdentifierName(eventName)),
+                        IdentifierName("x"))));
         }
     }
 }

@@ -12,6 +12,8 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
+
 namespace Pharmacist.Core.Generation.Generators
 {
     internal class InstanceEventGenerator : EventGeneratorBase
@@ -32,9 +34,8 @@ namespace Pharmacist.Core.Generation.Generators
 
                 if (members.Count > 0)
                 {
-                    yield return SyntaxFactory
-                        .NamespaceDeclaration(SyntaxFactory.IdentifierName(namespaceName))
-                        .WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(members));
+                    yield return NamespaceDeclaration(IdentifierName(namespaceName))
+                        .WithMembers(List<MemberDeclarationSyntax>(members));
                 }
             }
         }
@@ -43,23 +44,23 @@ namespace Pharmacist.Core.Generation.Generators
         {
             // Produces:
             // public static class EventExtensions
-            //   contents of members above
-            return SyntaxFactory.ClassDeclaration("EventExtensions")
-                .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword)))
+            // contents of members above
+            return ClassDeclaration("EventExtensions")
+                .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword)))
                 .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class that contains extension methods to wrap events for classes contained within the {0} namespace.", namespaceName))
-                .WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(declarations.Select(declaration =>
+                .WithMembers(List<MemberDeclarationSyntax>(declarations.Select(declaration =>
                     {
-                        var eventsClassName = SyntaxFactory.IdentifierName(declaration.Name + "Events");
-                        return SyntaxFactory.MethodDeclaration(eventsClassName, SyntaxFactory.Identifier("Events"))
-                            .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword)))
-                            .WithParameterList(SyntaxFactory.ParameterList(SyntaxFactory.SingletonSeparatedList(
-                                SyntaxFactory.Parameter(SyntaxFactory.Identifier("item"))
-                                    .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.ThisKeyword)))
-                                    .WithType(SyntaxFactory.IdentifierName(declaration.GenerateFullGenericName())))))
-                            .WithExpressionBody(SyntaxFactory.ArrowExpressionClause(
-                                SyntaxFactory.ObjectCreationExpression(eventsClassName)
-                                    .WithArgumentList(SyntaxFactory.ArgumentList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.Argument(SyntaxFactory.IdentifierName("item")))))))
-                            .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken))
+                        var eventsClassName = IdentifierName(declaration.Name + "Events");
+                        return MethodDeclaration(eventsClassName, Identifier("Events"))
+                            .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword)))
+                            .WithParameterList(ParameterList(SingletonSeparatedList(
+                                Parameter(Identifier("item"))
+                                    .WithModifiers(TokenList(Token(SyntaxKind.ThisKeyword)))
+                                    .WithType(IdentifierName(declaration.GenerateFullGenericName())))))
+                            .WithExpressionBody(ArrowExpressionClause(
+                                ObjectCreationExpression(eventsClassName)
+                                    .WithArgumentList(ArgumentList(SingletonSeparatedList(Argument(IdentifierName("item")))))))
+                            .WithSemicolonToken(Token(SyntaxKind.SemicolonToken))
                             .WithObsoleteAttribute(declaration)
                             .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A wrapper class which wraps all the events contained within the {0} class.", declaration.GenerateFullGenericName()));
                     })));
@@ -67,29 +68,29 @@ namespace Pharmacist.Core.Generation.Generators
 
         private static ConstructorDeclarationSyntax GenerateEventWrapperClassConstructor(ITypeDefinition typeDefinition)
         {
-            return SyntaxFactory.ConstructorDeclaration(
-                    SyntaxFactory.Identifier(typeDefinition.Name + "Events"))
+            return ConstructorDeclaration(
+                    Identifier(typeDefinition.Name + "Events"))
                 .WithModifiers(
-                    SyntaxFactory.TokenList(
-                        SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+                    TokenList(
+                        Token(SyntaxKind.PublicKeyword)))
                 .WithParameterList(
-                    SyntaxFactory.ParameterList(
-                        SyntaxFactory.SingletonSeparatedList(
-                            SyntaxFactory.Parameter(
-                                    SyntaxFactory.Identifier("data"))
+                    ParameterList(
+                        SingletonSeparatedList(
+                            Parameter(
+                                    Identifier("data"))
                                 .WithType(
-                                    SyntaxFactory.IdentifierName(typeDefinition.GenerateFullGenericName())))))
-                .WithBody(SyntaxFactory.Block(SyntaxFactory.SingletonList(
-                    SyntaxFactory.ExpressionStatement(
-                        SyntaxFactory.AssignmentExpression(SyntaxKind.SimpleAssignmentExpression, SyntaxFactory.IdentifierName(DataFieldName), SyntaxFactory.IdentifierName("data"))))))
+                                    IdentifierName(typeDefinition.GenerateFullGenericName())))))
+                .WithBody(Block(SingletonList(
+                    ExpressionStatement(
+                        AssignmentExpression(SyntaxKind.SimpleAssignmentExpression, IdentifierName(DataFieldName), IdentifierName("data"))))))
                 .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Initializes a new instance of the {0} class.", typeDefinition.GenerateFullGenericName(), ("data", "The class that is being wrapped.")));
         }
 
         private static FieldDeclarationSyntax GenerateEventWrapperField(ITypeDefinition typeDefinition)
         {
-            return SyntaxFactory.FieldDeclaration(SyntaxFactory.VariableDeclaration(SyntaxFactory.IdentifierName(typeDefinition.GenerateFullGenericName()))
-                .WithVariables(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.VariableDeclarator(SyntaxFactory.Identifier(DataFieldName)))))
-                .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PrivateKeyword), SyntaxFactory.Token(SyntaxKind.ReadOnlyKeyword)));
+            return FieldDeclaration(VariableDeclaration(IdentifierName(typeDefinition.GenerateFullGenericName()))
+                .WithVariables(SingletonSeparatedList(VariableDeclarator(Identifier(DataFieldName)))))
+                .WithModifiers(TokenList(Token(SyntaxKind.PrivateKeyword), Token(SyntaxKind.ReadOnlyKeyword)));
         }
 
         private static ClassDeclarationSyntax GenerateEventWrapperClass(ITypeDefinition typeDefinition, IEnumerable<IEvent> events)
@@ -97,9 +98,9 @@ namespace Pharmacist.Core.Generation.Generators
             var members = new List<MemberDeclarationSyntax> { GenerateEventWrapperField(typeDefinition), GenerateEventWrapperClassConstructor(typeDefinition) };
             members.AddRange(events.OrderBy(x => x.Name).Select(x => GenerateEventWrapperObservable(x, DataFieldName)).Where(x => x != null));
 
-            return SyntaxFactory.ClassDeclaration(typeDefinition.Name + "Events")
-                .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
-                .WithMembers(SyntaxFactory.List(members))
+            return ClassDeclaration(typeDefinition.Name + "Events")
+                .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword)))
+                .WithMembers(List(members))
                 .WithObsoleteAttribute(typeDefinition)
                 .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class which wraps the events contained within the {0} class as observables.", typeDefinition.GenerateFullGenericName()));
         }
