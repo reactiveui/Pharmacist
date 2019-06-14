@@ -112,7 +112,7 @@ namespace Pharmacist.Core.Generation
             return SyntaxFactory.ParameterList(
                 SyntaxFactory.SeparatedList(
                     method.Parameters.Select(
-                        x => SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Name))
+                        x => SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Name.GetKeywordSafeName()))
                             .WithType(SyntaxFactory.IdentifierName(x.Type.GenerateFullGenericName())))));
         }
 
