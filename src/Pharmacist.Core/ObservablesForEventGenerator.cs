@@ -68,7 +68,7 @@ namespace Pharmacist.Core
                 var platformExtractor = _platformExtractors[platform];
                 await platformExtractor.Extract(defaultReferenceAssemblyLocation).ConfigureAwait(false);
 
-                using (var stream = new FileStream(Path.Combine(outputPath, $"{prefix}{platform}{suffix}"), FileMode.Create, FileAccess.Write))
+                using (var stream = new FileStream(Path.Combine(outputPath, $"{prefix}{platform.ToString().ToLowerInvariant()}{suffix}"), FileMode.Create, FileAccess.Write))
                 {
                     await WriteHeader(stream).ConfigureAwait(false);
                     await ExtractEventsFromAssemblies(stream, platformExtractor.Assemblies, platformExtractor.SearchDirectories).ConfigureAwait(false);
