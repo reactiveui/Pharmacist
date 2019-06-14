@@ -254,9 +254,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Application.ModalPopped"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ModalPoppedEventArgs)> ModalPopped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ModalPoppedEventArgs>, (object, global::Xamarin.Forms.ModalPoppedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ModalPoppedEventArgs> ModalPopped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ModalPoppedEventArgs>, global::Xamarin.Forms.ModalPoppedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ModalPoppedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ModalPoppedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -264,9 +264,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Application.ModalPopping"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ModalPoppingEventArgs)> ModalPopping => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ModalPoppingEventArgs>, (object, global::Xamarin.Forms.ModalPoppingEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ModalPoppingEventArgs> ModalPopping => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ModalPoppingEventArgs>, global::Xamarin.Forms.ModalPoppingEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ModalPoppingEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ModalPoppingEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -274,9 +274,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Application.ModalPushed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ModalPushedEventArgs)> ModalPushed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ModalPushedEventArgs>, (object, global::Xamarin.Forms.ModalPushedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ModalPushedEventArgs> ModalPushed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ModalPushedEventArgs>, global::Xamarin.Forms.ModalPushedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ModalPushedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ModalPushedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -284,9 +284,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Application.ModalPushing"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ModalPushingEventArgs)> ModalPushing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ModalPushingEventArgs>, (object, global::Xamarin.Forms.ModalPushingEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ModalPushingEventArgs> ModalPushing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ModalPushingEventArgs>, global::Xamarin.Forms.ModalPushingEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ModalPushingEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ModalPushingEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -294,9 +294,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Application.PageAppearing"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Page)> PageAppearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Page>, (object, global::Xamarin.Forms.Page)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Page> PageAppearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Page>, global::Xamarin.Forms.Page>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Page e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Page e) => eventHandler(e);
             return Handler;
         }
 
@@ -304,9 +304,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Application.PageDisappearing"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Page)> PageDisappearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Page>, (object, global::Xamarin.Forms.Page)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Page> PageDisappearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Page>, global::Xamarin.Forms.Page>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Page e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Page e) => eventHandler(e);
             return Handler;
         }
 
@@ -331,9 +331,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.BindableObject.BindingContextChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> BindingContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> BindingContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -341,9 +341,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.BindableObject.PropertyChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.ComponentModel.PropertyChangedEventArgs)> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, (object, global::System.ComponentModel.PropertyChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -351,9 +351,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.BindableObject.PropertyChanging"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.PropertyChangingEventArgs)> PropertyChanging => global::System.Reactive.Linq.Observable.FromEvent<global::Xamarin.Forms.PropertyChangingEventHandler, (object, global::Xamarin.Forms.PropertyChangingEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.PropertyChangingEventArgs> PropertyChanging => global::System.Reactive.Linq.Observable.FromEvent<global::Xamarin.Forms.PropertyChangingEventHandler, global::Xamarin.Forms.PropertyChangingEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.PropertyChangingEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.PropertyChangingEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -378,9 +378,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Button.Clicked"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -388,9 +388,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Button.Pressed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Pressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Pressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -398,9 +398,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Button.Released"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Released => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Released => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -425,9 +425,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Cell.Appearing"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Appearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Appearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -435,9 +435,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Cell.Disappearing"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Disappearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Disappearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -445,9 +445,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Cell.ForceUpdateSizeRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> ForceUpdateSizeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> ForceUpdateSizeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -455,9 +455,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Cell.Tapped"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Tapped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Tapped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -482,9 +482,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ChildGestureRecognizer.PropertyChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.ComponentModel.PropertyChangedEventArgs)> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, (object, global::System.ComponentModel.PropertyChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -509,9 +509,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ClickGestureRecognizer.Clicked"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -536,9 +536,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ColumnDefinition.SizeChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -563,9 +563,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Command.CanExecuteChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> CanExecuteChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> CanExecuteChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -590,9 +590,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.DatePicker.DateSelected"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.DateChangedEventArgs)> DateSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.DateChangedEventArgs>, (object, global::Xamarin.Forms.DateChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.DateChangedEventArgs> DateSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.DateChangedEventArgs>, global::Xamarin.Forms.DateChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.DateChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.DateChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -617,9 +617,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Editor.Completed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Completed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Completed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -627,9 +627,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Editor.TextChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.TextChangedEventArgs)> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, (object, global::Xamarin.Forms.TextChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.TextChangedEventArgs> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, global::Xamarin.Forms.TextChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -654,9 +654,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Element.ChildAdded"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ElementEventArgs)> ChildAdded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ElementEventArgs>, (object, global::Xamarin.Forms.ElementEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ElementEventArgs> ChildAdded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ElementEventArgs>, global::Xamarin.Forms.ElementEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ElementEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ElementEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -664,9 +664,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Element.ChildRemoved"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ElementEventArgs)> ChildRemoved => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ElementEventArgs>, (object, global::Xamarin.Forms.ElementEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ElementEventArgs> ChildRemoved => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ElementEventArgs>, global::Xamarin.Forms.ElementEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ElementEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ElementEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -674,9 +674,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Element.DescendantAdded"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ElementEventArgs)> DescendantAdded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ElementEventArgs>, (object, global::Xamarin.Forms.ElementEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ElementEventArgs> DescendantAdded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ElementEventArgs>, global::Xamarin.Forms.ElementEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ElementEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ElementEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -684,9 +684,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Element.DescendantRemoved"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ElementEventArgs)> DescendantRemoved => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ElementEventArgs>, (object, global::Xamarin.Forms.ElementEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ElementEventArgs> DescendantRemoved => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ElementEventArgs>, global::Xamarin.Forms.ElementEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ElementEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ElementEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -695,9 +695,9 @@ namespace Xamarin.Forms
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Element.PlatformSet"/> event triggers.
         /// </summary>
         [global::System.ObsoleteAttribute("PlatformSet is obsolete as of 3.5.0. Do not use this event.", false)]
-        public global::System.IObservable<(object, global::System.EventArgs)> PlatformSet => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> PlatformSet => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -722,9 +722,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Entry.Completed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Completed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Completed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -732,9 +732,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Entry.TextChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.TextChangedEventArgs)> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, (object, global::Xamarin.Forms.TextChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.TextChangedEventArgs> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, global::Xamarin.Forms.TextChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -759,9 +759,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.EntryCell.Completed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Completed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Completed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -786,9 +786,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ICellController.ForceUpdateSizeRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> ForceUpdateSizeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> ForceUpdateSizeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -813,9 +813,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IDefinition.SizeChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -841,9 +841,9 @@ namespace Xamarin.Forms
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IElementController.PlatformSet"/> event triggers.
         /// </summary>
         [global::System.ObsoleteAttribute("PlatformSet is obsolete as of 3.5.0. Do not use this event.", false)]
-        public global::System.IObservable<(object, global::System.EventArgs)> PlatformSet => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> PlatformSet => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -868,9 +868,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ILayout.LayoutChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> LayoutChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> LayoutChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -895,9 +895,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IListProxy.CollectionChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs)> CollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.Collections.Specialized.NotifyCollectionChangedEventHandler, (object, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.Collections.Specialized.NotifyCollectionChangedEventArgs> CollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.Collections.Specialized.NotifyCollectionChangedEventHandler, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -922,9 +922,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IListViewController.ScrollToRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ScrollToRequestedEventArgs)> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestedEventArgs>, (object, global::Xamarin.Forms.ScrollToRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ScrollToRequestedEventArgs> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestedEventArgs>, global::Xamarin.Forms.ScrollToRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ScrollToRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ScrollToRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -949,9 +949,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ImageButton.Clicked"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -959,9 +959,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ImageButton.Pressed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Pressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Pressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -969,9 +969,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ImageButton.Released"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Released => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Released => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -996,9 +996,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IMasterDetailPageController.BackButtonPressed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.BackButtonPressedEventArgs)> BackButtonPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.BackButtonPressedEventArgs>, (object, global::Xamarin.Forms.BackButtonPressedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.BackButtonPressedEventArgs> BackButtonPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.BackButtonPressedEventArgs>, global::Xamarin.Forms.BackButtonPressedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.BackButtonPressedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.BackButtonPressedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1023,9 +1023,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.INavigationPageController.InsertPageBeforeRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)> InsertPageBeforeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, (object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> InsertPageBeforeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1033,9 +1033,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.INavigationPageController.PopRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)> PopRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, (object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> PopRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1043,9 +1043,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.INavigationPageController.PopToRootRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)> PopToRootRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, (object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> PopToRootRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1053,9 +1053,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.INavigationPageController.PushRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)> PushRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, (object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> PushRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1063,9 +1063,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.INavigationPageController.RemovePageRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)> RemovePageRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, (object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> RemovePageRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1090,9 +1090,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IOpenGlViewController.DisplayRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> DisplayRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> DisplayRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1117,9 +1117,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IScrollViewController.ScrollToRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ScrollToRequestedEventArgs)> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestedEventArgs>, (object, global::Xamarin.Forms.ScrollToRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ScrollToRequestedEventArgs> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestedEventArgs>, global::Xamarin.Forms.ScrollToRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ScrollToRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ScrollToRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1144,9 +1144,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ISearchHandlerController.ListProxyChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ListProxyChangedEventArgs)> ListProxyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ListProxyChangedEventArgs>, (object, global::Xamarin.Forms.ListProxyChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ListProxyChangedEventArgs> ListProxyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ListProxyChangedEventArgs>, global::Xamarin.Forms.ListProxyChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ListProxyChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ListProxyChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1171,9 +1171,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IShellController.StructureChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> StructureChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> StructureChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1198,9 +1198,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IShellSectionController.NavigationRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)> NavigationRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, (object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> NavigationRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1225,9 +1225,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ITableViewController.ModelChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> ModelChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> ModelChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1252,9 +1252,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ItemsView.ScrollToRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ScrollToRequestEventArgs)> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestEventArgs>, (object, global::Xamarin.Forms.ScrollToRequestEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ScrollToRequestEventArgs> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestEventArgs>, global::Xamarin.Forms.ScrollToRequestEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ScrollToRequestEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ScrollToRequestEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1279,9 +1279,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IVisualElementController.BatchCommitted"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>)> BatchCommitted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>>, (object, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>> BatchCommitted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>>, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement> e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement> e) => eventHandler(e);
             return Handler;
         }
 
@@ -1289,9 +1289,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IVisualElementController.FocusChangeRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.VisualElement.FocusRequestArgs)> FocusChangeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.VisualElement.FocusRequestArgs>, (object, global::Xamarin.Forms.VisualElement.FocusRequestArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.VisualElement.FocusRequestArgs> FocusChangeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.VisualElement.FocusRequestArgs>, global::Xamarin.Forms.VisualElement.FocusRequestArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.VisualElement.FocusRequestArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.VisualElement.FocusRequestArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1316,9 +1316,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IWebViewController.EvalRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.EvalRequested)> EvalRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EvalRequested>, (object, global::Xamarin.Forms.Internals.EvalRequested)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.EvalRequested> EvalRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EvalRequested>, global::Xamarin.Forms.Internals.EvalRequested>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.EvalRequested e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.EvalRequested e) => eventHandler(e);
             return Handler;
         }
 
@@ -1326,9 +1326,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IWebViewController.GoBackRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> GoBackRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> GoBackRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1336,9 +1336,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IWebViewController.GoForwardRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> GoForwardRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> GoForwardRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1346,9 +1346,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IWebViewController.ReloadRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> ReloadRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> ReloadRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1373,9 +1373,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Layout.LayoutChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> LayoutChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> LayoutChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1400,9 +1400,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ListView.ItemAppearing"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ItemVisibilityEventArgs)> ItemAppearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ItemVisibilityEventArgs>, (object, global::Xamarin.Forms.ItemVisibilityEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ItemVisibilityEventArgs> ItemAppearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ItemVisibilityEventArgs>, global::Xamarin.Forms.ItemVisibilityEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ItemVisibilityEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ItemVisibilityEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1410,9 +1410,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ListView.ItemDisappearing"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ItemVisibilityEventArgs)> ItemDisappearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ItemVisibilityEventArgs>, (object, global::Xamarin.Forms.ItemVisibilityEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ItemVisibilityEventArgs> ItemDisappearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ItemVisibilityEventArgs>, global::Xamarin.Forms.ItemVisibilityEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ItemVisibilityEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ItemVisibilityEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1420,9 +1420,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ListView.ItemSelected"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.SelectedItemChangedEventArgs)> ItemSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SelectedItemChangedEventArgs>, (object, global::Xamarin.Forms.SelectedItemChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.SelectedItemChangedEventArgs> ItemSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SelectedItemChangedEventArgs>, global::Xamarin.Forms.SelectedItemChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.SelectedItemChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.SelectedItemChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1430,9 +1430,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ListView.ItemTapped"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ItemTappedEventArgs)> ItemTapped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ItemTappedEventArgs>, (object, global::Xamarin.Forms.ItemTappedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ItemTappedEventArgs> ItemTapped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ItemTappedEventArgs>, global::Xamarin.Forms.ItemTappedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ItemTappedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ItemTappedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1440,9 +1440,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ListView.Refreshing"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Refreshing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Refreshing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1450,9 +1450,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ListView.ScrollToRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ScrollToRequestedEventArgs)> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestedEventArgs>, (object, global::Xamarin.Forms.ScrollToRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ScrollToRequestedEventArgs> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestedEventArgs>, global::Xamarin.Forms.ScrollToRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ScrollToRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ScrollToRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1477,9 +1477,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.MasterDetailPage.BackButtonPressed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.BackButtonPressedEventArgs)> BackButtonPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.BackButtonPressedEventArgs>, (object, global::Xamarin.Forms.BackButtonPressedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.BackButtonPressedEventArgs> BackButtonPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.BackButtonPressedEventArgs>, global::Xamarin.Forms.BackButtonPressedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.BackButtonPressedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.BackButtonPressedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1487,9 +1487,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.MasterDetailPage.IsPresentedChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> IsPresentedChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> IsPresentedChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1514,9 +1514,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.MenuItem.Clicked"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1541,9 +1541,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.InsertPageBeforeRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)> InsertPageBeforeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, (object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> InsertPageBeforeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1551,9 +1551,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.Popped"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.NavigationEventArgs)> Popped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.NavigationEventArgs>, (object, global::Xamarin.Forms.NavigationEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.NavigationEventArgs> Popped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.NavigationEventArgs>, global::Xamarin.Forms.NavigationEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.NavigationEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.NavigationEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1561,9 +1561,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.PoppedToRoot"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.NavigationEventArgs)> PoppedToRoot => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.NavigationEventArgs>, (object, global::Xamarin.Forms.NavigationEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.NavigationEventArgs> PoppedToRoot => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.NavigationEventArgs>, global::Xamarin.Forms.NavigationEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.NavigationEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.NavigationEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1571,9 +1571,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.PopRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)> PopRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, (object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> PopRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1581,9 +1581,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.PopToRootRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)> PopToRootRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, (object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> PopToRootRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1591,9 +1591,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.Pushed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.NavigationEventArgs)> Pushed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.NavigationEventArgs>, (object, global::Xamarin.Forms.NavigationEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.NavigationEventArgs> Pushed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.NavigationEventArgs>, global::Xamarin.Forms.NavigationEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.NavigationEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.NavigationEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1601,9 +1601,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.PushRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)> PushRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, (object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> PushRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1611,9 +1611,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.RemovePageRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)> RemovePageRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, (object, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> RemovePageRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1638,9 +1638,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.OpenGLView.DisplayRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> DisplayRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> DisplayRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1665,9 +1665,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Page.Appearing"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Appearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Appearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1675,9 +1675,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Page.Disappearing"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Disappearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Disappearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1685,9 +1685,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Page.LayoutChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> LayoutChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> LayoutChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1712,9 +1712,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.PanGestureRecognizer.PanUpdated"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.PanUpdatedEventArgs)> PanUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.PanUpdatedEventArgs>, (object, global::Xamarin.Forms.PanUpdatedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.PanUpdatedEventArgs> PanUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.PanUpdatedEventArgs>, global::Xamarin.Forms.PanUpdatedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.PanUpdatedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.PanUpdatedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1739,9 +1739,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Picker.SelectedIndexChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> SelectedIndexChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> SelectedIndexChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1766,9 +1766,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.PinchGestureRecognizer.PinchUpdated"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.PinchGestureUpdatedEventArgs)> PinchUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.PinchGestureUpdatedEventArgs>, (object, global::Xamarin.Forms.PinchGestureUpdatedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.PinchGestureUpdatedEventArgs> PinchUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.PinchGestureUpdatedEventArgs>, global::Xamarin.Forms.PinchGestureUpdatedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.PinchGestureUpdatedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.PinchGestureUpdatedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1793,9 +1793,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.RowDefinition.SizeChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1820,9 +1820,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ScrollView.Scrolled"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ScrolledEventArgs)> Scrolled => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrolledEventArgs>, (object, global::Xamarin.Forms.ScrolledEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ScrolledEventArgs> Scrolled => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrolledEventArgs>, global::Xamarin.Forms.ScrolledEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ScrolledEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ScrolledEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1830,9 +1830,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ScrollView.ScrollToRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ScrollToRequestedEventArgs)> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestedEventArgs>, (object, global::Xamarin.Forms.ScrollToRequestedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ScrollToRequestedEventArgs> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestedEventArgs>, global::Xamarin.Forms.ScrollToRequestedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ScrollToRequestedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ScrollToRequestedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1857,9 +1857,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SearchBar.SearchButtonPressed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> SearchButtonPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> SearchButtonPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1867,9 +1867,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SearchBar.TextChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.TextChangedEventArgs)> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, (object, global::Xamarin.Forms.TextChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.TextChangedEventArgs> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, global::Xamarin.Forms.TextChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1894,9 +1894,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SearchHandler.FocusChangeRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.VisualElement.FocusRequestArgs)> FocusChangeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.VisualElement.FocusRequestArgs>, (object, global::Xamarin.Forms.VisualElement.FocusRequestArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.VisualElement.FocusRequestArgs> FocusChangeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.VisualElement.FocusRequestArgs>, global::Xamarin.Forms.VisualElement.FocusRequestArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.VisualElement.FocusRequestArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.VisualElement.FocusRequestArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1904,9 +1904,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SearchHandler.Focused"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Focused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Focused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1914,9 +1914,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SearchHandler.Unfocused"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Unfocused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Unfocused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1941,9 +1941,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SelectableItemsView.SelectionChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.SelectionChangedEventArgs)> SelectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SelectionChangedEventArgs>, (object, global::Xamarin.Forms.SelectionChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.SelectionChangedEventArgs> SelectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SelectionChangedEventArgs>, global::Xamarin.Forms.SelectionChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.SelectionChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.SelectionChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1968,9 +1968,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Shell.Navigated"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ShellNavigatedEventArgs)> Navigated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ShellNavigatedEventArgs>, (object, global::Xamarin.Forms.ShellNavigatedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ShellNavigatedEventArgs> Navigated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ShellNavigatedEventArgs>, global::Xamarin.Forms.ShellNavigatedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ShellNavigatedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ShellNavigatedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -1978,9 +1978,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Shell.Navigating"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ShellNavigatingEventArgs)> Navigating => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ShellNavigatingEventArgs>, (object, global::Xamarin.Forms.ShellNavigatingEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ShellNavigatingEventArgs> Navigating => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ShellNavigatingEventArgs>, global::Xamarin.Forms.ShellNavigatingEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ShellNavigatingEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ShellNavigatingEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2005,9 +2005,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Slider.DragCompleted"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> DragCompleted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> DragCompleted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2015,9 +2015,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Slider.DragStarted"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> DragStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> DragStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2025,9 +2025,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Slider.ValueChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ValueChangedEventArgs)> ValueChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ValueChangedEventArgs>, (object, global::Xamarin.Forms.ValueChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ValueChangedEventArgs> ValueChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ValueChangedEventArgs>, global::Xamarin.Forms.ValueChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ValueChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ValueChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2052,9 +2052,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Stepper.ValueChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ValueChangedEventArgs)> ValueChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ValueChangedEventArgs>, (object, global::Xamarin.Forms.ValueChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ValueChangedEventArgs> ValueChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ValueChangedEventArgs>, global::Xamarin.Forms.ValueChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ValueChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ValueChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2079,9 +2079,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SwipeGestureRecognizer.Swiped"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.SwipedEventArgs)> Swiped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SwipedEventArgs>, (object, global::Xamarin.Forms.SwipedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.SwipedEventArgs> Swiped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SwipedEventArgs>, global::Xamarin.Forms.SwipedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.SwipedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.SwipedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2106,9 +2106,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Switch.Toggled"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ToggledEventArgs)> Toggled => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ToggledEventArgs>, (object, global::Xamarin.Forms.ToggledEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ToggledEventArgs> Toggled => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ToggledEventArgs>, global::Xamarin.Forms.ToggledEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ToggledEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ToggledEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2133,9 +2133,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SwitchCell.OnChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.ToggledEventArgs)> OnChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ToggledEventArgs>, (object, global::Xamarin.Forms.ToggledEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.ToggledEventArgs> OnChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ToggledEventArgs>, global::Xamarin.Forms.ToggledEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ToggledEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ToggledEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2160,9 +2160,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.TableView.ModelChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> ModelChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> ModelChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2187,9 +2187,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.TapGestureRecognizer.Tapped"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Tapped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Tapped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2215,9 +2215,9 @@ namespace Xamarin.Forms
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ToolbarItem.Activated"/> event triggers.
         /// </summary>
         [global::System.ObsoleteAttribute("Activated is obsolete as of version 1.3.0. Please use Clicked instead.", false)]
-        public global::System.IObservable<(object, global::System.EventArgs)> Activated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Activated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2242,9 +2242,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.BatchCommitted"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>)> BatchCommitted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>>, (object, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>> BatchCommitted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>>, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement> e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement> e) => eventHandler(e);
             return Handler;
         }
 
@@ -2252,9 +2252,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.ChildrenReordered"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> ChildrenReordered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> ChildrenReordered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2262,9 +2262,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.FocusChangeRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.VisualElement.FocusRequestArgs)> FocusChangeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.VisualElement.FocusRequestArgs>, (object, global::Xamarin.Forms.VisualElement.FocusRequestArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.VisualElement.FocusRequestArgs> FocusChangeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.VisualElement.FocusRequestArgs>, global::Xamarin.Forms.VisualElement.FocusRequestArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.VisualElement.FocusRequestArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.VisualElement.FocusRequestArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2272,9 +2272,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.Focused"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.FocusEventArgs)> Focused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.FocusEventArgs>, (object, global::Xamarin.Forms.FocusEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.FocusEventArgs> Focused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.FocusEventArgs>, global::Xamarin.Forms.FocusEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.FocusEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.FocusEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2282,9 +2282,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.MeasureInvalidated"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> MeasureInvalidated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> MeasureInvalidated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2292,9 +2292,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.SizeChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2302,9 +2302,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.Unfocused"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.FocusEventArgs)> Unfocused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.FocusEventArgs>, (object, global::Xamarin.Forms.FocusEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.FocusEventArgs> Unfocused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.FocusEventArgs>, global::Xamarin.Forms.FocusEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.FocusEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.FocusEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2329,9 +2329,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.WebView.EvalRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.EvalRequested)> EvalRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EvalRequested>, (object, global::Xamarin.Forms.Internals.EvalRequested)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.EvalRequested> EvalRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EvalRequested>, global::Xamarin.Forms.Internals.EvalRequested>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.EvalRequested e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.EvalRequested e) => eventHandler(e);
             return Handler;
         }
 
@@ -2339,9 +2339,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.WebView.GoBackRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> GoBackRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> GoBackRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2349,9 +2349,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.WebView.GoForwardRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> GoForwardRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> GoForwardRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2359,9 +2359,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.WebView.Navigated"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.WebNavigatedEventArgs)> Navigated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.WebNavigatedEventArgs>, (object, global::Xamarin.Forms.WebNavigatedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.WebNavigatedEventArgs> Navigated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.WebNavigatedEventArgs>, global::Xamarin.Forms.WebNavigatedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.WebNavigatedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.WebNavigatedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2369,9 +2369,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.WebView.Navigating"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.WebNavigatingEventArgs)> Navigating => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.WebNavigatingEventArgs>, (object, global::Xamarin.Forms.WebNavigatingEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.WebNavigatingEventArgs> Navigating => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.WebNavigatingEventArgs>, global::Xamarin.Forms.WebNavigatingEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.WebNavigatingEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.WebNavigatingEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2379,9 +2379,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.WebView.ReloadRequested"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> ReloadRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> ReloadRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2432,9 +2432,9 @@ namespace Xamarin.Forms.Internals
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Internals.DeviceInfo.PropertyChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.ComponentModel.PropertyChangedEventArgs)> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, (object, global::System.ComponentModel.PropertyChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2459,9 +2459,9 @@ namespace Xamarin.Forms.Internals
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Internals.IResourceDictionary.ValuesChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.ResourcesChangedEventArgs)> ValuesChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.ResourcesChangedEventArgs>, (object, global::Xamarin.Forms.Internals.ResourcesChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.ResourcesChangedEventArgs> ValuesChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.ResourcesChangedEventArgs>, global::Xamarin.Forms.Internals.ResourcesChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.ResourcesChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.ResourcesChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2486,9 +2486,9 @@ namespace Xamarin.Forms.Internals
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Internals.TableModel.ItemLongPressed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.EventArg<object>)> ItemLongPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<object>>, (object, global::Xamarin.Forms.Internals.EventArg<object>)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.EventArg<object>> ItemLongPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<object>>, global::Xamarin.Forms.Internals.EventArg<object>>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.EventArg<object> e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.EventArg<object> e) => eventHandler(e);
             return Handler;
         }
 
@@ -2496,9 +2496,9 @@ namespace Xamarin.Forms.Internals
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Internals.TableModel.ItemSelected"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Internals.EventArg<object>)> ItemSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<object>>, (object, global::Xamarin.Forms.Internals.EventArg<object>)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Internals.EventArg<object>> ItemSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<object>>, global::Xamarin.Forms.Internals.EventArg<object>>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Internals.EventArg<object> e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Internals.EventArg<object> e) => eventHandler(e);
             return Handler;
         }
 
@@ -2523,9 +2523,9 @@ namespace Xamarin.Forms.Internals
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Internals.ToolbarTracker.CollectionChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> CollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> CollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2628,9 +2628,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.FormsAppCompatActivity.ConfigurationChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> ConfigurationChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> ConfigurationChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2655,9 +2655,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.FormsApplicationActivity.ConfigurationChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> ConfigurationChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> ConfigurationChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2682,9 +2682,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.IBorderVisualElementRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, (object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2709,9 +2709,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.IButtonLayoutRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, (object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2736,9 +2736,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.IDeviceInfoProvider.ConfigurationChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> ConfigurationChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> ConfigurationChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2763,9 +2763,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.ImageButtonRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, (object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2773,9 +2773,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.ImageButtonRenderer.ElementPropertyChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.ComponentModel.PropertyChangedEventArgs)> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, (object, global::System.ComponentModel.PropertyChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2800,9 +2800,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.IShellItemRenderer.Destroyed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Destroyed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Destroyed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2827,9 +2827,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.IShellObservableFragment.AnimationFinished"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> AnimationFinished => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> AnimationFinished => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2854,9 +2854,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.IShellSearchView.SearchConfirmed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> SearchConfirmed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> SearchConfirmed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2881,9 +2881,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.ItemsViewRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, (object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2891,9 +2891,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.ItemsViewRenderer.ElementPropertyChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.ComponentModel.PropertyChangedEventArgs)> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, (object, global::System.ComponentModel.PropertyChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2918,9 +2918,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.IVisualElementRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, (object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2928,9 +2928,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.IVisualElementRenderer.ElementPropertyChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.ComponentModel.PropertyChangedEventArgs)> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, (object, global::System.ComponentModel.PropertyChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2955,9 +2955,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.MasterDetailRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, (object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2982,9 +2982,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.ScrollViewRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, (object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3009,9 +3009,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.ShellContentFragment.AnimationFinished"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> AnimationFinished => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> AnimationFinished => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3036,9 +3036,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.ShellItemRendererBase.Destroyed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> Destroyed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Destroyed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3063,9 +3063,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.ShellSearchView.SearchConfirmed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> SearchConfirmed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> SearchConfirmed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3090,9 +3090,9 @@ namespace Xamarin.Forms.Platform.Android
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.ShellSectionRenderer.AnimationFinished"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.EventArgs)> AnimationFinished => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, (object, global::System.EventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> AnimationFinished => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3143,9 +3143,9 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.FastRenderers.ButtonRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, (object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3153,9 +3153,9 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.FastRenderers.ButtonRenderer.ElementPropertyChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.ComponentModel.PropertyChangedEventArgs)> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, (object, global::System.ComponentModel.PropertyChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3180,9 +3180,9 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.FastRenderers.FrameRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, (object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3190,9 +3190,9 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.FastRenderers.FrameRenderer.ElementPropertyChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.ComponentModel.PropertyChangedEventArgs)> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, (object, global::System.ComponentModel.PropertyChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3217,9 +3217,9 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.FastRenderers.ImageRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, (object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3227,9 +3227,9 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.FastRenderers.ImageRenderer.ElementPropertyChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.ComponentModel.PropertyChangedEventArgs)> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, (object, global::System.ComponentModel.PropertyChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3254,9 +3254,9 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.FastRenderers.LabelRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, (object, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3264,9 +3264,9 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.Android.FastRenderers.LabelRenderer.ElementPropertyChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<(object, global::System.ComponentModel.PropertyChangedEventArgs)> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, (object, global::System.ComponentModel.PropertyChangedEventArgs)>(eventHandler =>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -3284,9 +3284,9 @@ namespace Xamarin.Forms
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Forms.ViewInitialized"/> event triggers.
         /// </summary>
-        public static global::System.IObservable<(object, global::Xamarin.Forms.ViewInitializedEventArgs)> FormsViewInitialized => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ViewInitializedEventArgs>, (object, global::Xamarin.Forms.ViewInitializedEventArgs)>(eventHandler =>
+        public static global::System.IObservable<global::Xamarin.Forms.ViewInitializedEventArgs> FormsViewInitialized => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ViewInitializedEventArgs>, global::Xamarin.Forms.ViewInitializedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.ViewInitializedEventArgs e) => eventHandler((sender, e));
+            void Handler(object sender, global::Xamarin.Forms.ViewInitializedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
