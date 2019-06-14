@@ -63,6 +63,24 @@ namespace Pharmacist.Core.Generation.Resolvers
             return GetEventGenerator().Generate(events);
         }
 
+        protected static bool IsValidParameters(IEvent eventDetails)
+        {
+            var invokeMethod = eventDetails.GetEventType().GetDelegateInvokeMethod();
+
+            // Events must have a valid return type.
+            if (invokeMethod == null || invokeMethod.ReturnType.FullName != "System.Void")
+            {
+                return false;
+            }
+
+            if (invokeMethod.Parameters.Any(x => x.IsRef))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         protected abstract IEventGenerator GetEventGenerator();
 
         protected abstract IEnumerable<ITypeDefinition> GetPublicTypesWithEvents(ICompilation compilation);

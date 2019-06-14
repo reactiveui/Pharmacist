@@ -37,15 +37,7 @@ namespace Pharmacist.Core.Generation.Generators
         {
             prefix = prefix ?? string.Empty;
 
-            // Produces:
-            // public System.IObservable<eventArgs, eventHandler> EventName => System.Reactive.Linq.Observable.FromEventPattern();
             var invokeMethod = eventDetails.GetEventType().GetDelegateInvokeMethod();
-
-            // Events must have a valid return type.
-            if (invokeMethod == null || invokeMethod.ReturnType.FullName != "System.Void")
-            {
-                return null;
-            }
 
             // Create "Observable.FromEvent" for our method.
             var (expressionBody, observableEventArgType) = GenerateFromEventExpression(eventDetails, invokeMethod, dataObjectName);
@@ -59,6 +51,8 @@ namespace Pharmacist.Core.Generation.Generators
                 ? SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword))
                 : SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword));
 
+            // Produces for static: public static global::System.IObservable<(argType1, argType2)> EventName => (contents of expression body)
+            // Produces for instance: public global::System.IObservable<(argType1, argType2)> EventName => (contents of expression body)
             return SyntaxFactory.PropertyDeclaration(observableEventArgType, prefix + eventDetails.Name)
                 .WithModifiers(modifiers)
                 .WithExpressionBody(expressionBody)
@@ -77,19 +71,21 @@ namespace Pharmacist.Core.Generation.Generators
             // If we have any members call our observables with the parameters.
             if (invokeMethod.Parameters.Count > 0)
             {
-                // If we have only one member, just pass that directly, since our observable will have one generic type parameter.
-                // If we have more than one parameter we have to pass them by value tuples, since observables only have one generic type parameter.
+                // If we have only one member, produces arguments: (arg1);
+                // If we have greater than one member, produces arguments with value type: ((arg1, arg2))
                 methodParametersArgumentList = invokeMethod.Parameters.Count == 1 ? invokeMethod.Parameters[0].GenerateArgumentList() : invokeMethod.Parameters.GenerateTupleArgumentList();
                 eventArgsType = invokeMethod.Parameters.Count == 1 ? SyntaxFactory.IdentifierName(invokeMethod.Parameters[0].Type.GenerateFullGenericName()) : invokeMethod.Parameters.Select(x => x.Type).GenerateTupleType();
             }
             else
             {
+                // Produces argument: (global::System.Reactive.Unit.Default)
                 methodParametersArgumentList = RoslynHelpers.ReactiveUnitArgumentList;
                 eventArgsType = SyntaxFactory.IdentifierName(RoslynHelpers.ObservableUnitName);
             }
 
             var eventName = eventDetails.Name;
 
+            // Produces local function: void Handler(DataType1 eventParam1, DataType2 eventParam2) => eventHandler(eventParam1, eventParam2)
             var localFunctionExpression = SyntaxFactory.LocalFunctionStatement(
                                                 SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.VoidKeyword)),
                                                 SyntaxFactory.Identifier("Handler"))
@@ -100,12 +96,15 @@ namespace Pharmacist.Core.Generation.Generators
                                                         .WithArgumentList(methodParametersArgumentList)))
                                             .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
 
+            // Produces lambda expression: eventHandler => (local function above); return Handler;
             var conversionLambdaExpression = SyntaxFactory.SimpleLambdaExpression(
                 SyntaxFactory.Parameter(SyntaxFactory.Identifier("eventHandler")),
                 SyntaxFactory.Block(localFunctionExpression, SyntaxFactory.ReturnStatement(SyntaxFactory.IdentifierName("Handler"))));
 
+            // Produces type parameters: <EventArg1Type, EventArg2Type>
             var fromEventTypeParameters = SyntaxFactory.TypeArgumentList(SyntaxFactory.SeparatedList<TypeSyntax>(new SyntaxNodeOrToken[] { returnType, SyntaxFactory.Token(SyntaxKind.CommaToken), eventArgsType }));
 
+            // Produces: => global::System.Reactive.Linq.Observable.FromEvent<TypeParameters>(h => (handler from above), x => x += DataObject.Event, x => x -= DataObject.Event);
             var expression = SyntaxFactory.ArrowExpressionClause(
                 SyntaxFactory.InvocationExpression(
                     SyntaxFactory.MemberAccessExpression(
