@@ -12,6 +12,8 @@ using ICSharpCode.Decompiler.TypeSystem;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
+
 namespace Pharmacist.Core.Generation
 {
     internal static class RoslynGeneratorExtensions
@@ -21,18 +23,23 @@ namespace Pharmacist.Core.Generation
         /// </summary>
         /// <param name="parameter">The parameter to generate the argument list for.</param>
         /// <returns>The argument list.</returns>
-        public static ArgumentListSyntax GenerateArgumentList(this IParameter parameter) => SyntaxFactory.ArgumentList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.Argument(SyntaxFactory.IdentifierName(parameter.Name.GetKeywordSafeName()))));
+        public static ArgumentListSyntax GenerateArgumentList(this IParameter parameter) => ArgumentList(SingletonSeparatedList(Argument(IdentifierName(parameter.Name.GetKeywordSafeName()))));
 
         /// <summary>
         /// Generates a argument list for a tuple parameter.
         /// </summary>
         /// <param name="parameters">The parameters to generate the argument list for.</param>
         /// <returns>The argument list.</returns>
-        public static ArgumentListSyntax GenerateTupleArgumentList(this IEnumerable<IParameter> parameters) => SyntaxFactory.ArgumentList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory.Argument(SyntaxFactory.TupleExpression(SyntaxFactory.SeparatedList(parameters.Select(x => SyntaxFactory.Argument(SyntaxFactory.IdentifierName(x.Name.GetKeywordSafeName()))))))));
+        public static ArgumentListSyntax GenerateTupleArgumentList(this IEnumerable<IParameter> parameters) => ArgumentList(SingletonSeparatedList(Argument(TupleExpression(SeparatedList(parameters.Select(x => Argument(IdentifierName(x.Name.GetKeywordSafeName()))))))));
 
         public static TypeSyntax GenerateTupleType(this IEnumerable<IType> types)
         {
-            return SyntaxFactory.TupleType(SyntaxFactory.SeparatedList(types.Select(x => SyntaxFactory.TupleElement(SyntaxFactory.IdentifierName(x.GenerateFullGenericName())))));
+            return TupleType(SeparatedList(types.Select(x => TupleElement(IdentifierName(x.GenerateFullGenericName())))));
+        }
+
+        public static TypeSyntax GenerateTupleType(this IEnumerable<(IType type, string name)> types)
+        {
+            return TupleType(SeparatedList(types.Select(x => TupleElement(IdentifierName(x.type.GenerateFullGenericName()), Identifier(x.name)))));
         }
 
         public static TypeArgumentListSyntax GenerateObservableTypeArguments(this IMethod method)
@@ -42,15 +49,15 @@ namespace Pharmacist.Core.Generation
             // If we have no parameters, use the Unit type, if only one use the type directly, otherwise use a value tuple.
             if (method.Parameters.Count == 0)
             {
-                argumentList = SyntaxFactory.TypeArgumentList(SyntaxFactory.SingletonSeparatedList<TypeSyntax>(SyntaxFactory.IdentifierName(RoslynHelpers.ObservableUnitName)));
+                argumentList = TypeArgumentList(SingletonSeparatedList<TypeSyntax>(IdentifierName(RoslynHelpers.ObservableUnitName)));
             }
             else if (method.Parameters.Count == 1)
             {
-                argumentList = SyntaxFactory.TypeArgumentList(SyntaxFactory.SingletonSeparatedList<TypeSyntax>(SyntaxFactory.IdentifierName(method.Parameters[0].Type.GenerateFullGenericName())));
+                argumentList = TypeArgumentList(SingletonSeparatedList<TypeSyntax>(IdentifierName(method.Parameters[0].Type.GenerateFullGenericName())));
             }
             else
             {
-                argumentList = SyntaxFactory.TypeArgumentList(SyntaxFactory.SingletonSeparatedList<TypeSyntax>(SyntaxFactory.TupleType(SyntaxFactory.SeparatedList(method.Parameters.Select(x => SyntaxFactory.TupleElement(SyntaxFactory.IdentifierName(x.Type.GenerateFullGenericName())).WithIdentifier(SyntaxFactory.Identifier(x.Name)))))));
+                argumentList = TypeArgumentList(SingletonSeparatedList<TypeSyntax>(TupleType(SeparatedList(method.Parameters.Select(x => TupleElement(IdentifierName(x.Type.GenerateFullGenericName())).WithIdentifier(Identifier(x.Name)))))));
             }
 
             return argumentList;
@@ -58,12 +65,12 @@ namespace Pharmacist.Core.Generation
 
         public static TypeSyntax GenerateObservableType(this TypeArgumentListSyntax argumentList)
         {
-            return SyntaxFactory.QualifiedName(SyntaxFactory.IdentifierName("global::System"), SyntaxFactory.GenericName(SyntaxFactory.Identifier("IObservable")).WithTypeArgumentList(argumentList));
+            return QualifiedName(IdentifierName("global::System"), GenericName(Identifier("IObservable")).WithTypeArgumentList(argumentList));
         }
 
         public static TypeSyntax GenerateObservableType(this TypeSyntax argumentList)
         {
-            return SyntaxFactory.QualifiedName(SyntaxFactory.IdentifierName("global::System"), SyntaxFactory.GenericName(SyntaxFactory.Identifier("IObservable")).WithTypeArgumentList(SyntaxFactory.TypeArgumentList(SyntaxFactory.SingletonSeparatedList(argumentList))));
+            return QualifiedName(IdentifierName("global::System"), GenericName(Identifier("IObservable")).WithTypeArgumentList(TypeArgumentList(SingletonSeparatedList(argumentList))));
         }
 
         public static PropertyDeclarationSyntax WithObsoleteAttribute(this PropertyDeclarationSyntax syntax, IEntity eventDetails)
@@ -75,7 +82,7 @@ namespace Pharmacist.Core.Generation
                 return syntax;
             }
 
-            return syntax.WithAttributeLists(SyntaxFactory.SingletonList(attribute));
+            return syntax.WithAttributeLists(SingletonList(attribute));
         }
 
         public static ClassDeclarationSyntax WithObsoleteAttribute(this ClassDeclarationSyntax syntax, IEntity eventDetails)
@@ -87,7 +94,7 @@ namespace Pharmacist.Core.Generation
                 return syntax;
             }
 
-            return syntax.WithAttributeLists(SyntaxFactory.SingletonList(attribute));
+            return syntax.WithAttributeLists(SingletonList(attribute));
         }
 
         public static MethodDeclarationSyntax WithObsoleteAttribute(this MethodDeclarationSyntax syntax, IEntity eventDetails)
@@ -99,21 +106,21 @@ namespace Pharmacist.Core.Generation
                 return syntax;
             }
 
-            return syntax.WithAttributeLists(SyntaxFactory.SingletonList(attribute));
+            return syntax.WithAttributeLists(SingletonList(attribute));
         }
 
         public static ParameterListSyntax GenerateMethodParameters(this IMethod method)
         {
             if (method.Parameters.Count == 0)
             {
-                return SyntaxFactory.ParameterList();
+                return ParameterList();
             }
 
-            return SyntaxFactory.ParameterList(
-                SyntaxFactory.SeparatedList(
+            return ParameterList(
+                SeparatedList(
                     method.Parameters.Select(
-                        x => SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Name.GetKeywordSafeName()))
-                            .WithType(SyntaxFactory.IdentifierName(x.Type.GenerateFullGenericName())))));
+                        x => Parameter(Identifier(x.Name.GetKeywordSafeName()))
+                            .WithType(IdentifierName(x.Type.GenerateFullGenericName())))));
         }
 
         /// <summary>
@@ -131,13 +138,13 @@ namespace Pharmacist.Core.Generation
                 return null;
             }
 
-            var message = obsoleteAttribute.FixedArguments.FirstOrDefault().Value.ToString() ?? string.Empty;
+            var message = obsoleteAttribute.FixedArguments.FirstOrDefault().Value.ToString();
             var isError = bool.Parse(obsoleteAttribute.FixedArguments.ElementAtOrDefault(1).Value?.ToString() ?? bool.FalseString) ? SyntaxKind.TrueLiteralExpression : SyntaxKind.FalseLiteralExpression;
-            var attribute = SyntaxFactory.Attribute(
-                SyntaxFactory.IdentifierName("global::System.ObsoleteAttribute"),
-                SyntaxFactory.AttributeArgumentList(SyntaxFactory.SeparatedList(new[] { SyntaxFactory.AttributeArgument(SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression, SyntaxFactory.Literal(message))), SyntaxFactory.AttributeArgument(SyntaxFactory.LiteralExpression(isError)) })));
+            var attribute = Attribute(
+                IdentifierName("global::System.ObsoleteAttribute"),
+                AttributeArgumentList(SeparatedList(new[] { AttributeArgument(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(message))), AttributeArgument(LiteralExpression(isError)) })));
 
-            return SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(attribute));
+            return AttributeList(SingletonSeparatedList(attribute));
         }
 
         private static string GetKeywordSafeName(this string name)

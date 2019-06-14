@@ -12,6 +12,9 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
+using static Pharmacist.Core.Generation.XmlSyntaxFactory;
+
 namespace Pharmacist.Core.Generation.Generators
 {
     /// <summary>
@@ -21,8 +24,8 @@ namespace Pharmacist.Core.Generation.Generators
     /// </summary>
     internal static class DelegateGenerator
     {
-        private static readonly QualifiedNameSyntax _subjectNamespace = SyntaxFactory.QualifiedName(SyntaxFactory.IdentifierName("Pharmacist"), SyntaxFactory.IdentifierName("Common"));
-        private static readonly GenericNameSyntax _subjectType = SyntaxFactory.GenericName(SyntaxFactory.Identifier("SingleAwaitSubject"));
+        private static readonly QualifiedNameSyntax _subjectNamespace = QualifiedName(IdentifierName("Pharmacist"), IdentifierName("Common"));
+        private static readonly GenericNameSyntax _subjectType = GenericName(Identifier("SingleAwaitSubject"));
 
         /// <summary>
         /// Generate our namespace declarations. These will contain our helper classes.
@@ -40,9 +43,8 @@ namespace Pharmacist.Core.Generation.Generators
 
                 if (members.Count > 0)
                 {
-                    yield return SyntaxFactory
-                        .NamespaceDeclaration(SyntaxFactory.IdentifierName(namespaceName))
-                        .WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(members));
+                    yield return NamespaceDeclaration(IdentifierName(namespaceName))
+                        .WithMembers(List<MemberDeclarationSyntax>(members));
                 }
             }
         }
@@ -57,13 +59,13 @@ namespace Pharmacist.Core.Generation.Generators
         private static ClassDeclarationSyntax GenerateClass(ITypeDefinition typeDefinition, bool isAbstract, IEnumerable<IMethod> methods)
         {
                 var modifiers = typeDefinition.IsAbstract || isAbstract
-                    ? SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.AbstractKeyword), SyntaxFactory.Token(SyntaxKind.PartialKeyword))
-                    : SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.PartialKeyword));
-                return SyntaxFactory.ClassDeclaration(typeDefinition.Name + "Rx")
+                    ? TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.AbstractKeyword), Token(SyntaxKind.PartialKeyword))
+                    : TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.PartialKeyword));
+                return ClassDeclaration(typeDefinition.Name + "Rx")
                     .WithModifiers(modifiers)
-                    .WithMembers(SyntaxFactory.List(GenerateObservableMembers(methods)))
-                    .WithBaseList(SyntaxFactory.BaseList(SyntaxFactory.SingletonSeparatedList<BaseTypeSyntax>(SyntaxFactory.SimpleBaseType(SyntaxFactory.IdentifierName(typeDefinition.GenerateFullGenericName())))))
-                    .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Wraps delegates events from {0} into Observables.", typeDefinition.GenerateFullGenericName()))
+                    .WithMembers(List(GenerateObservableMembers(methods)))
+                    .WithBaseList(BaseList(SingletonSeparatedList<BaseTypeSyntax>(SimpleBaseType(IdentifierName(typeDefinition.GenerateFullGenericName())))))
+                    .WithLeadingTrivia(GenerateSummarySeeAlsoComment("Wraps delegates events from {0} into Observables.", typeDefinition.GenerateFullGenericName()))
                     .WithObsoleteAttribute(typeDefinition);
         }
 
@@ -94,12 +96,12 @@ namespace Pharmacist.Core.Generation.Generators
         {
             // Produces:
             // public System.IObservable<type> MethodNameObs => _observableName;
-            return SyntaxFactory.PropertyDeclaration(method.GenerateObservableTypeArguments().GenerateObservableType(), SyntaxFactory.Identifier(method.Name + "Obs"))
-                .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+            return PropertyDeclaration(method.GenerateObservableTypeArguments().GenerateObservableType(), Identifier(method.Name + "Obs"))
+                .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword)))
                 .WithObsoleteAttribute(method)
-                .WithExpressionBody(SyntaxFactory.ArrowExpressionClause(SyntaxFactory.IdentifierName(observableName)))
-                .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken))
-                .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Gets an observable which signals when the {0} method is invoked.", method.FullName));
+                .WithExpressionBody(ArrowExpressionClause(IdentifierName(observableName)))
+                .WithSemicolonToken(Token(SyntaxKind.SemicolonToken))
+                .WithLeadingTrivia(GenerateSummarySeeAlsoComment("Gets an observable which signals when the {0} method is invoked.", method.FullName));
         }
 
         /// <summary>
@@ -112,16 +114,16 @@ namespace Pharmacist.Core.Generation.Generators
         {
             // Produces:
             // private readonly ReactiveUI.Events.SingleAwaitSubject<type> _methodName = new ReactiveUI.Events.SingleAwaitSubject<type>();
-            var typeName = SyntaxFactory.QualifiedName(_subjectNamespace, _subjectType.WithTypeArgumentList(method.GenerateObservableTypeArguments()));
+            var typeName = QualifiedName(_subjectNamespace, _subjectType.WithTypeArgumentList(method.GenerateObservableTypeArguments()));
 
-            return SyntaxFactory.FieldDeclaration(SyntaxFactory.VariableDeclaration(typeName)
+            return FieldDeclaration(VariableDeclaration(typeName)
                 .WithVariables(
-                    SyntaxFactory.SingletonSeparatedList(
-                        SyntaxFactory.VariableDeclarator(SyntaxFactory.Identifier(observableName))
+                    SingletonSeparatedList(
+                        VariableDeclarator(Identifier(observableName))
                             .WithInitializer(
-                                SyntaxFactory.EqualsValueClause(
-                                    SyntaxFactory.ObjectCreationExpression(typeName).WithArgumentList(SyntaxFactory.ArgumentList()))))))
-                .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PrivateKeyword), SyntaxFactory.Token(SyntaxKind.ReadOnlyKeyword)));
+                                EqualsValueClause(
+                                    ObjectCreationExpression(typeName).WithArgumentList(ArgumentList()))))))
+                .WithModifiers(TokenList(Token(SyntaxKind.PrivateKeyword), Token(SyntaxKind.ReadOnlyKeyword)));
         }
 
         private static MethodDeclarationSyntax GenerateMethodDeclaration(string observableName, IMethod method)
@@ -129,7 +131,7 @@ namespace Pharmacist.Core.Generation.Generators
             // Produces:
             // /// <inheritdoc />
             // public override void MethodName(params..) => _methodName.OnNext(...);
-            var methodBody = SyntaxFactory.InvocationExpression(SyntaxFactory.MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression, SyntaxFactory.IdentifierName(observableName), SyntaxFactory.IdentifierName("OnNext")));
+            var methodBody = InvocationExpression(MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression, IdentifierName(observableName), IdentifierName("OnNext")));
 
             var methodParameterList = method.GenerateMethodParameters();
 
@@ -152,13 +154,13 @@ namespace Pharmacist.Core.Generation.Generators
                 methodBody = methodBody.WithArgumentList(RoslynHelpers.ReactiveUnitArgumentList);
             }
 
-            return SyntaxFactory.MethodDeclaration(SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.VoidKeyword)), method.Name)
-                .WithExpressionBody(SyntaxFactory.ArrowExpressionClause(methodBody))
+            return MethodDeclaration(PredefinedType(Token(SyntaxKind.VoidKeyword)), method.Name)
+                .WithExpressionBody(ArrowExpressionClause(methodBody))
                 .WithParameterList(methodParameterList)
                 .WithObsoleteAttribute(method)
-                .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.OverrideKeyword)))
-                .WithLeadingTrivia(XmlSyntaxFactory.InheritdocSyntax)
-                .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
+                .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.OverrideKeyword)))
+                .WithLeadingTrivia(InheritdocSyntax)
+                .WithSemicolonToken(Token(SyntaxKind.SemicolonToken));
         }
     }
 }

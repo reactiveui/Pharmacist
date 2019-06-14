@@ -68,9 +68,15 @@ namespace Pharmacist.Core.Generation.Generators
             ArgumentListSyntax methodParametersArgumentList;
             TypeSyntax eventArgsType;
 
-            // If we have any members call our observables with the parameters.
-            if (invokeMethod.Parameters.Count > 0)
+            // If we are using a standard approach of using 2 parameters only send the "Value", not the sender.
+            if (invokeMethod.Parameters.Count == 2 && invokeMethod.Parameters[0].Type.FullName == "System.Object")
             {
+                methodParametersArgumentList = invokeMethod.Parameters[1].GenerateArgumentList();
+                eventArgsType = SyntaxFactory.IdentifierName(invokeMethod.Parameters[1].Type.GenerateFullGenericName());
+            }
+            else if (invokeMethod.Parameters.Count > 0)
+            {
+                // If we have any members call our observables with the parameters.
                 // If we have only one member, produces arguments: (arg1);
                 // If we have greater than one member, produces arguments with value type: ((arg1, arg2))
                 methodParametersArgumentList = invokeMethod.Parameters.Count == 1 ? invokeMethod.Parameters[0].GenerateArgumentList() : invokeMethod.Parameters.GenerateTupleArgumentList();
