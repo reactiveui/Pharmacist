@@ -109,7 +109,7 @@ namespace Pharmacist.Core.NuGet
 
             if (framework.Framework.StartsWith(".NETFramework", StringComparison.OrdinalIgnoreCase))
             {
-                return new[] { new PackageIdentity("Microsoft.NETFramework.ReferenceAssemblies", new NuGetVersion("1.0.0-preview.1")) };
+                return new[] { new PackageIdentity("Microsoft.NETFramework.ReferenceAssemblies", new NuGetVersion("1.0.0-preview.2")) };
             }
 
             if (framework.Framework.StartsWith("Mono", StringComparison.OrdinalIgnoreCase))
