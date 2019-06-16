@@ -1,5 +1,6 @@
 [![Build Status](https://dev.azure.com/dotnet/ReactiveUI/_apis/build/status/Pharmacist-CI)](https://dev.azure.com/dotnet/ReactiveUI/_build/latest?definitionId=82) 
 [![Code Coverage](https://codecov.io/gh/reactiveui/pharmacist/branch/master/graph/badge.svg)](https://codecov.io/gh/reactiveui/pharmacist)
+
 <a href="#backers">
         <img src="https://opencollective.com/reactiveui/backers/badge.svg">
 </a>
@@ -9,9 +10,9 @@
 <a href="https://reactiveui.net/slack">
         <img src="https://img.shields.io/badge/chat-slack-blue.svg">
 </a>
-
+<br />
 <a href="https://github.com/reactiveui/pharmacist">
-        <img width="160" height="160" src="https://github.com/reactiveui/Pharmacist/blob/master/image/ph-violet.svg"/>
+        <img width="170" height="170" src="https://github.com/reactiveui/Pharmacist/blob/master/image/ph-violet.svg"/>
 </a>
 
 # Pharmacist
