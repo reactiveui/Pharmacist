@@ -1,9 +1,5 @@
-## Pharmacist
-
-![Pharmacist](https://github.com/reactiveui/Pharmacist/blob/master/image/image.png?raw=true)
-
-[![Build Status](https://dev.azure.com/dotnet/ReactiveUI/_apis/build/status/Pharmacist-CI)](https://dev.azure.com/dotnet/ReactiveUI/_build/latest?definitionId=82) [![Code Coverage](https://codecov.io/gh/reactiveui/pharmacist/branch/master/graph/badge.svg)](https://codecov.io/gh/reactiveui/pharmacist)
-<br>
+[![Build Status](https://dev.azure.com/dotnet/ReactiveUI/_apis/build/status/Pharmacist-CI)](https://dev.azure.com/dotnet/ReactiveUI/_build/latest?definitionId=82) 
+[![Code Coverage](https://codecov.io/gh/reactiveui/pharmacist/branch/master/graph/badge.svg)](https://codecov.io/gh/reactiveui/pharmacist)
 <a href="#backers">
         <img src="https://opencollective.com/reactiveui/backers/badge.svg">
 </a>
@@ -14,7 +10,15 @@
         <img src="https://img.shields.io/badge/chat-slack-blue.svg">
 </a>
 
-## NuGet Packages
+<a href="https://github.com/reactiveui/pharmacist">
+        <img width="160" height="160" src="https://github.com/reactiveui/Pharmacist/blob/master/image/ph-violet.svg"/>
+</a>
+
+# Pharmacist
+
+Builds observables from events.
+
+### NuGet Packages
 
 Install the following packages to start using Pharmacist.
 
