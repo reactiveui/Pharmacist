@@ -1,6 +1,6 @@
 ## Pharmacist
 
-![](http://f.cl.ly/items/1307401C3x2g3F2p2Z36/Logo.png)
+![Pharmacist](https://github.com/reactiveui/Pharmacist/blob/master/image/image.png?raw=true)
 
 [![Build Status](https://dev.azure.com/dotnet/ReactiveUI/_apis/build/status/Pharmacist-CI)](https://dev.azure.com/dotnet/ReactiveUI/_build/latest?definitionId=82) [![Code Coverage](https://codecov.io/gh/reactiveui/pharmacist/branch/master/graph/badge.svg)](https://codecov.io/gh/reactiveui/pharmacist)
 <br>
@@ -50,7 +50,7 @@ It can generate the observables for the following:
 
 There is a MSBuild Task version and a global tool version.
 
-### How do I install?
+### How do I use?
 
 ** To Come **
 
