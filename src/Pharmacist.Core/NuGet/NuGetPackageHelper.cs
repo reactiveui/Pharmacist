@@ -55,11 +55,6 @@ namespace Pharmacist.Core.NuGet
         }
 
         /// <summary>
-        /// Gets the directory where the packages will be stored.
-        /// </summary>
-        public static string PackageDirectory { get; } = Path.Combine(Path.GetTempPath(), "ReactiveUI.Pharmacist");
-
-        /// <summary>
         /// Gets the providers for the nuget resources.
         /// </summary>
         public static List<Lazy<INuGetResourceProvider>> Providers { get; }
@@ -72,6 +67,7 @@ namespace Pharmacist.Core.NuGet
         /// <param name="nugetSource">Optional v3 nuget source. Will default to default nuget.org servers.</param>
         /// <param name="getDependencies">If we should get the dependencies.</param>
         /// <param name="packageFolders">Directories to package folders. Will be lib/build/ref if not defined.</param>
+        /// <param name="packageDirectory">A directory where to store the files, if null a random location will be used.</param>
         /// <param name="token">A cancellation token.</param>
         /// <returns>The directory where the NuGet packages are unzipped to. Also the files contained within the requested package only.</returns>
         public static async Task<IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)>> DownloadPackageFilesAndFolder(
@@ -80,6 +76,7 @@ namespace Pharmacist.Core.NuGet
             PackageSource nugetSource = null,
             bool getDependencies = true,
             IReadOnlyCollection<string> packageFolders = null,
+            string packageDirectory = null,
             CancellationToken token = default)
         {
             // If the user hasn't selected a default framework to extract, select .NET Standard 2.0
@@ -90,7 +87,7 @@ namespace Pharmacist.Core.NuGet
 
             var packages = await Task.WhenAll(libraryIdentities.Select(x => GetBestMatch(x, sourceRepository, token))).ConfigureAwait(false);
 
-            return await DownloadPackageFilesAndFolder(packages, frameworks, sourceRepository, getDependencies, packageFolders, token).ConfigureAwait(false);
+            return await DownloadPackageFilesAndFolder(packages, frameworks, sourceRepository, getDependencies, packageFolders, packageDirectory, token).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -101,6 +98,7 @@ namespace Pharmacist.Core.NuGet
         /// <param name="nugetSource">Optional v3 nuget source. Will default to default nuget.org servers.</param>
         /// <param name="getDependencies">If we should get the dependencies.</param>
         /// <param name="packageFolders">Directories to package folders. Will be lib/build/ref if not defined.</param>
+        /// <param name="packageDirectory">A directory where to store the files, if null a random location will be used.</param>
         /// <param name="token">A cancellation token.</param>
         /// <returns>The directory where the NuGet packages are unzipped to. Also the files contained within the requested package only.</returns>
         public static Task<IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)>> DownloadPackageFilesAndFolder(
@@ -109,6 +107,7 @@ namespace Pharmacist.Core.NuGet
             PackageSource nugetSource = null,
             bool getDependencies = true,
             IReadOnlyCollection<string> packageFolders = null,
+            string packageDirectory = null,
             CancellationToken token = default)
         {
             // If the user hasn't selected a default framework to extract, select .NET Standard 2.0
@@ -117,7 +116,7 @@ namespace Pharmacist.Core.NuGet
             // Use the provided nuget package source, or use nuget.org
             var sourceRepository = new SourceRepository(nugetSource ?? new PackageSource(DefaultNuGetSource), Providers);
 
-            return DownloadPackageFilesAndFolder(packageIdentities, frameworks, sourceRepository, getDependencies, packageFolders, token);
+            return DownloadPackageFilesAndFolder(packageIdentities, frameworks, sourceRepository, getDependencies, packageFolders, packageDirectory, token);
         }
 
         /// <summary>
@@ -146,6 +145,7 @@ namespace Pharmacist.Core.NuGet
         /// <param name="sourceRepository">Nuget source repository. Will default to default nuget.org servers.</param>
         /// <param name="getDependencies">If we should get the dependencies.</param>
         /// <param name="packageFolders">Directories to package folders. Will be lib/build/ref if not defined.</param>
+        /// <param name="packageDirectory">A directory where to store the files, if null a random location will be used.</param>
         /// <param name="token">A cancellation token.</param>
         /// <returns>The directory where the NuGet packages are unzipped to. Also the files contained within the requested package only.</returns>
         private static async Task<IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)>> DownloadPackageFilesAndFolder(
@@ -154,11 +154,14 @@ namespace Pharmacist.Core.NuGet
             SourceRepository sourceRepository,
             bool getDependencies = true,
             IReadOnlyCollection<string> packageFolders = null,
+            string packageDirectory = null,
             CancellationToken token = default)
         {
             var librariesToCopy = await GetPackagesToCopy(packageIdentities, sourceRepository, frameworks.First(), getDependencies, token).ConfigureAwait(false);
 
-            return CopyPackageFiles(librariesToCopy, frameworks, packageFolders ?? DefaultFoldersToGrab, token);
+            packageDirectory = packageDirectory ?? GetRandomPackageDirectory();
+
+            return CopyPackageFiles(librariesToCopy, frameworks, packageFolders ?? DefaultFoldersToGrab, packageDirectory, token);
         }
 
         private static async Task<IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)>> GetPackagesToCopy(
@@ -223,13 +226,13 @@ namespace Pharmacist.Core.NuGet
             return packagesToCopy.Select(x => (x.Value.packageIdentity, x.Value.downloadResourceResult, x.Value.includeFilesInOutput));
         }
 
-        private static IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)> CopyPackageFiles(IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)> packagesToProcess, IReadOnlyCollection<NuGetFramework> frameworks, IReadOnlyCollection<string> packageFolders, CancellationToken token)
+        private static IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)> CopyPackageFiles(IEnumerable<(PackageIdentity packageIdentity, DownloadResourceResult downloadResourceResult, bool includeFilesInOutput)> packagesToProcess, IReadOnlyCollection<NuGetFramework> frameworks, IReadOnlyCollection<string> packageFolders, string packageDirectory, CancellationToken token)
         {
             var output = new List<(string folder, IReadOnlyCollection<string> files)>();
             foreach (var packageToProcess in packagesToProcess)
             {
                 var (packageIdentity, downloadResourceResults, includeFilesInOutput) = packageToProcess;
-                var directory = Path.Combine(PackageDirectory, packageIdentity.Id, packageIdentity.Version.ToNormalizedString());
+                var directory = Path.Combine(packageDirectory, packageIdentity.Id, packageIdentity.Version.ToNormalizedString());
 
                 EnsureDirectory(directory);
 
@@ -258,6 +261,12 @@ namespace Pharmacist.Core.NuGet
             }
 
             return output;
+        }
+
+        private static string GetRandomPackageDirectory()
+        {
+            var packageDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            return packageDirectory;
         }
 
         /// <summary>

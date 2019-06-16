@@ -99,16 +99,15 @@ namespace Pharmacist.Core.NuGet
     public class static NuGetPackageHelper
     {
         public const string DefaultNuGetSource = "https://api.nuget.org/v3/index.json";
-        public static string PackageDirectory { get; }
         public static System.Collections.Generic.List<System.Lazy<NuGet.Protocol.Core.Types.INuGetResourceProvider>> Providers { get; }
         [return: System.Runtime.CompilerServices.TupleElementNamesAttribute(new string[] {
                 "folder",
                 "files"})]
-        public static System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyCollection<System.ValueTuple<string, System.Collections.Generic.IReadOnlyCollection<string>>>> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> libraryIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, System.Threading.CancellationToken token = null) { }
+        public static System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyCollection<System.ValueTuple<string, System.Collections.Generic.IReadOnlyCollection<string>>>> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> libraryIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, string packageDirectory = null, System.Threading.CancellationToken token = null) { }
         [return: System.Runtime.CompilerServices.TupleElementNamesAttribute(new string[] {
                 "folder",
                 "files"})]
-        public static System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyCollection<System.ValueTuple<string, System.Collections.Generic.IReadOnlyCollection<string>>>> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packageIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, System.Threading.CancellationToken token = null) { }
+        public static System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyCollection<System.ValueTuple<string, System.Collections.Generic.IReadOnlyCollection<string>>>> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packageIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, string packageDirectory = null, System.Threading.CancellationToken token = null) { }
         public static System.Threading.Tasks.Task<NuGet.Packaging.Core.PackageIdentity> GetBestMatch(NuGet.LibraryModel.LibraryRange identity, NuGet.Protocol.Core.Types.SourceRepository sourceRepository, System.Threading.CancellationToken token) { }
     }
 }
