@@ -119,17 +119,6 @@ namespace Pharmacist.Tests
         };
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NuGetPackageHelperTests"/> class.
-        /// </summary>
-        public NuGetPackageHelperTests()
-        {
-            if (Directory.Exists(NuGetPackageHelper.PackageDirectory))
-            {
-                Directory.Delete(NuGetPackageHelper.PackageDirectory, true);
-            }
-        }
-
-        /// <summary>
         /// Check to make sure that the tizen packages produce the correct files.
         /// </summary>
         /// <returns>A task to monitor the progress.</returns>
@@ -157,7 +146,7 @@ namespace Pharmacist.Tests
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             var result = (await NuGetPackageHelper
-                              .DownloadPackageFilesAndFolder(package, frameworks: frameworks)
+                              .DownloadPackageFilesAndFolder(package, frameworks)
                               .ConfigureAwait(false)).ToList();
 
             result.ShouldNotBeEmpty();
@@ -168,8 +157,9 @@ namespace Pharmacist.Tests
             var package = new[] { new PackageIdentity("Tizen.NET.API4", new NuGetVersion("4.0.1.14152")) };
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
+            var packageDirectory = Path.Combine(Path.GetTempPath(), "Pharmacist.Tests");
             var result = (await NuGetPackageHelper
-                              .DownloadPackageFilesAndFolder(package, frameworks: frameworks)
+                              .DownloadPackageFilesAndFolder(package, frameworks, packageDirectory: packageDirectory)
                               .ConfigureAwait(false)).ToList();
 
             var actualFiles = result.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)).ToList();
@@ -178,7 +168,7 @@ namespace Pharmacist.Tests
             Assert.True(actualDirectories.All(Directory.Exists));
 
             var actualFileNames = actualFiles.Select(Path.GetFileName).ToList();
-            var actualDirectoryNames = actualDirectories.Select(x => x.Replace(NuGetPackageHelper.PackageDirectory + Path.DirectorySeparatorChar, string.Empty)).ToList();
+            var actualDirectoryNames = actualDirectories.Select(x => x.Replace(packageDirectory + Path.DirectorySeparatorChar, string.Empty)).ToList();
             ExpectedTizenFiles.ShouldHaveSameContents(actualFileNames);
             ExpectedTizenDirectories.ShouldHaveSameContents(actualDirectoryNames);
         }
