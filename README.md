@@ -11,6 +11,8 @@
         <img src="https://img.shields.io/badge/chat-slack-blue.svg">
 </a>
 <br />
+<br />
+
 <a href="https://github.com/reactiveui/pharmacist">
         <img width="170" height="170" src="https://github.com/reactiveui/Pharmacist/blob/master/image/ph-violet.svg"/>
 </a>
