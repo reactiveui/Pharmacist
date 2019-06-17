@@ -18,14 +18,14 @@ namespace Pharmacist.Core.NuGet
     /// </summary>
     public static class NuGetFrameworkHelper
     {
-        private static readonly Dictionary<string, IReadOnlyCollection<NuGetFramework>> _nugetFrameworks;
+        private static readonly Dictionary<string, IReadOnlyList<NuGetFramework>> _nugetFrameworks;
 
         /// <summary>
         /// Initializes static members of the <see cref="NuGetFrameworkHelper"/> class.
         /// </summary>
         static NuGetFrameworkHelper()
         {
-            _nugetFrameworks = new Dictionary<string, IReadOnlyCollection<NuGetFramework>>(StringComparer.InvariantCultureIgnoreCase);
+            _nugetFrameworks = new Dictionary<string, IReadOnlyList<NuGetFramework>>(StringComparer.InvariantCultureIgnoreCase);
             foreach (var property in typeof(FrameworkConstants.CommonFrameworks).GetProperties(BindingFlags.NonPublic | BindingFlags.Static))
             {
                 _nugetFrameworks[property.Name] = new[] { (NuGetFramework)property.GetValue(null) };
@@ -71,7 +71,7 @@ namespace Pharmacist.Core.NuGet
         /// </summary>
         /// <param name="frameworkName">The name of the framework.</param>
         /// <returns>The framework.</returns>
-        public static IReadOnlyCollection<NuGetFramework> ToFrameworks(this string frameworkName)
+        public static IReadOnlyList<NuGetFramework> ToFrameworks(this string frameworkName)
         {
             _nugetFrameworks.TryGetValue(frameworkName, out var framework);
 

@@ -32,10 +32,11 @@ namespace Pharmacist.Core.Extractors
         /// </summary>
         /// <param name="targetFrameworks">The target framework to extract in order of priority.</param>
         /// <param name="packages">The packages to extract the information from.</param>
+        /// <param name="packageOutputDirectory">Directory for the packages, if null a random path in the temp folder will be used.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<PackageIdentity> packages)
+        public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<PackageIdentity> packages, string packageOutputDirectory)
         {
-            var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks).ConfigureAwait(false);
+            var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks, packageOutputDirectory: packageOutputDirectory).ConfigureAwait(false);
 
             Assemblies = new List<string>(results.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)));
             SearchDirectories = new List<string>(results.Select(x => x.folder));
@@ -46,10 +47,11 @@ namespace Pharmacist.Core.Extractors
         /// </summary>
         /// <param name="targetFrameworks">The target framework to extract in order of priority.</param>
         /// <param name="packages">The packages to extract the information from.</param>
+        /// <param name="packageOutputDirectory">Directory for the packages, if null a random path in the temp folder will be used.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<LibraryRange> packages)
+        public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<LibraryRange> packages, string packageOutputDirectory)
         {
-            var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks).ConfigureAwait(false);
+            var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks, packageOutputDirectory: packageOutputDirectory).ConfigureAwait(false);
 
             Assemblies = new List<string>(results.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)));
             SearchDirectories = new List<string>(results.Select(x => x.folder));

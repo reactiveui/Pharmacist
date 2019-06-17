@@ -84,11 +84,12 @@ namespace Pharmacist.Core
         /// <param name="outputStream">Stream that we should output to.</param>
         /// <param name="packages">The packages to process.</param>
         /// <param name="frameworks">The framework to generate for in order of priority.</param>
+        /// <param name="packageOutputFolder">Directory for the packages, if null a random path in the temp folder will be used.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public static async Task ExtractEventsFromNuGetPackages(Stream outputStream, IReadOnlyCollection<PackageIdentity> packages, IReadOnlyCollection<NuGetFramework> frameworks)
+        public static async Task ExtractEventsFromNuGetPackages(Stream outputStream, IReadOnlyCollection<PackageIdentity> packages, IReadOnlyCollection<NuGetFramework> frameworks, string packageOutputFolder = null)
         {
             var extractor = new NuGetExtractor();
-            await extractor.Extract(frameworks, packages).ConfigureAwait(false);
+            await extractor.Extract(frameworks, packages, packageOutputFolder).ConfigureAwait(false);
 
             await ExtractEventsFromAssemblies(outputStream, extractor.Assemblies, extractor.SearchDirectories).ConfigureAwait(false);
         }
@@ -99,11 +100,12 @@ namespace Pharmacist.Core
         /// <param name="outputStream">Stream that we should output to.</param>
         /// <param name="packages">The packages to process.</param>
         /// <param name="frameworks">The framework to generate for in order of priority.</param>
+        /// <param name="packageOutputFolder">Directory for the packages, if null a random path in the temp folder will be used.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public static async Task ExtractEventsFromNuGetPackages(Stream outputStream, IReadOnlyCollection<LibraryRange> packages, IReadOnlyCollection<NuGetFramework> frameworks)
+        public static async Task ExtractEventsFromNuGetPackages(Stream outputStream, IReadOnlyCollection<LibraryRange> packages, IReadOnlyCollection<NuGetFramework> frameworks, string packageOutputFolder = null)
         {
             var extractor = new NuGetExtractor();
-            await extractor.Extract(frameworks, packages).ConfigureAwait(false);
+            await extractor.Extract(frameworks, packages, packageOutputFolder).ConfigureAwait(false);
 
             await ExtractEventsFromAssemblies(outputStream, extractor.Assemblies, extractor.SearchDirectories).ConfigureAwait(false);
         }
