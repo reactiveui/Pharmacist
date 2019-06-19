@@ -30,5 +30,11 @@ namespace Pharmacist.Console.CommandOptions
         /// </summary>
         [Option('t', "target-framework", Required = true, HelpText = "Specify the Target framework to extract for.")]
         public string TargetFramework { get; set; }
+
+        /// <summary>
+        /// Gets or sets the package folder. If not set a random folder will be used.
+        /// </summary>
+        [Option("package-folder", HelpText = "Optional folder where to place NuGet packages for processing, otherwise random temp folder will be used.")]
+        public string PackageFolder { get; set; }
     }
 }

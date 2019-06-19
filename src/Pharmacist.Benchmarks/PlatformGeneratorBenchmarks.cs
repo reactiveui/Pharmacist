@@ -18,7 +18,7 @@ namespace Pharmacist.Benchmarks
     /// Benchmarks for the NavigationStack and the RoutingState objects.
     /// </summary>
     [ClrJob]
-    [CoreJob]
+    ////[CoreJob]
     [MemoryDiagnoser]
     [MarkdownExporterAttribute.GitHub]
     public class NavigationStackBenchmark
@@ -33,8 +33,7 @@ namespace Pharmacist.Benchmarks
         [Benchmark]
         public Task Navigate()
         {
-            var platforms = Enum.GetValues(typeof(AutoPlatform)).OfType<AutoPlatform>();
-            return ObservablesForEventGenerator.ExtractEventsFromPlatforms(Path.GetTempPath(), Guid.NewGuid().ToString(), _referenceAssembliesLocation, platforms);
+            return Task.CompletedTask;
         }
     }
 }

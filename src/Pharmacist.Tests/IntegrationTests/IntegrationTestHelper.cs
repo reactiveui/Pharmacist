@@ -31,23 +31,25 @@ namespace Pharmacist.Tests.IntegrationTests
     {
         private static readonly Regex _whitespaceRegex = new Regex(@"\s");
 
-        public static async Task CheckResultsAgainstTemplate(PackageIdentity[] package, IReadOnlyCollection<NuGetFramework> frameworks, [CallerFilePath]string filePath = null)
+        public static async Task CheckResultsAgainstTemplate(PackageIdentity[] package, IReadOnlyList<NuGetFramework> frameworks, [CallerFilePath]string filePath = null)
         {
             using (var memoryStream = new MemoryStream())
             {
-                await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, frameworks).ConfigureAwait(false);
-                CheckPackageIdentityContents(memoryStream, package[0], filePath);
+                await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, frameworks, TestUtilities.PackageDirectory).ConfigureAwait(false);
+                CheckPackageIdentityContents(memoryStream, package[0], frameworks[0], filePath);
             }
         }
 
-        public static async Task CheckResultsAgainstTemplate(LibraryRange[] package, IReadOnlyCollection<NuGetFramework> frameworks, [CallerFilePath]string filePath = null)
+        public static async Task CheckResultsAgainstTemplate(LibraryRange[] package, IReadOnlyList<NuGetFramework> frameworks, [CallerFilePath]string filePath = null)
         {
-            var bestPackageIdentity = await NuGetPackageHelper.GetBestMatch(package[0], new SourceRepository(new PackageSource(NuGetPackageHelper.DefaultNuGetSource), NuGetPackageHelper.Providers), CancellationToken.None).ConfigureAwait(false);
+            var sourceRepository = new SourceRepository(new PackageSource(NuGetPackageHelper.DefaultNuGetSource), NuGetPackageHelper.Providers);
+            var findResource = await sourceRepository.GetResourceAsync<FindPackageByIdResource>().ConfigureAwait(false);
+            var bestPackageIdentity = await NuGetPackageHelper.GetBestMatch(package[0], findResource, CancellationToken.None).ConfigureAwait(false);
 
             using (var memoryStream = new MemoryStream())
             {
-                await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, frameworks).ConfigureAwait(false);
-                CheckPackageIdentityContents(memoryStream, bestPackageIdentity, filePath);
+                await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, frameworks, TestUtilities.PackageDirectory).ConfigureAwait(false);
+                CheckPackageIdentityContents(memoryStream, bestPackageIdentity, frameworks[0], filePath);
             }
         }
 
@@ -112,12 +114,12 @@ namespace Pharmacist.Tests.IntegrationTests
 
         public static string GetOutputDirectory([CallerFilePath] string filePath = null) => Path.Combine(Path.GetDirectoryName(filePath), "Approved");
 
-        private static void CheckPackageIdentityContents(MemoryStream memoryStream, PackageIdentity bestPackageIdentity, string filePath)
+        private static void CheckPackageIdentityContents(MemoryStream memoryStream, PackageIdentity bestPackageIdentity, NuGetFramework nugetFramework, string filePath)
         {
             var sourceDirectory = GetOutputDirectory(filePath);
 
-            var approvedFileName = Path.Combine(sourceDirectory, $"{bestPackageIdentity.Id}.{bestPackageIdentity.Version}.approved.txt");
-            var receivedFileName = Path.Combine(sourceDirectory, $"{bestPackageIdentity.Id}.{bestPackageIdentity.Version}.received.txt");
+            var approvedFileName = Path.Combine(sourceDirectory, $"{bestPackageIdentity.Id}.{bestPackageIdentity.Version}.{nugetFramework.GetShortFolderName()}.approved.txt");
+            var receivedFileName = Path.Combine(sourceDirectory, $"{bestPackageIdentity.Id}.{bestPackageIdentity.Version}.{nugetFramework.GetShortFolderName()}.received.txt");
 
             memoryStream.Flush();
             memoryStream.Position = 0;

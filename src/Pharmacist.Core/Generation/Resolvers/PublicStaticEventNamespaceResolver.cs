@@ -3,8 +3,10 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 using ICSharpCode.Decompiler.TypeSystem;
 
@@ -19,14 +21,33 @@ namespace Pharmacist.Core.Generation.Resolvers
             return new StaticEventGenerator();
         }
 
-        protected override IEnumerable<ITypeDefinition> GetPublicTypesWithEvents(ICompilation compilation)
+        /// <inheritdoc />
+        protected override IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation)
+        {
+            var output = new ConcurrentBag<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)>();
+
+            Parallel.ForEach(
+                GetPublicTypesWithEvents(compilation),
+                typeDefinition =>
+                {
+                    var events = typeDefinition.Events.Where(IsValidEvent).ToList();
+
+                    if (events.Count == 0)
+                    {
+                        return;
+                    }
+
+                    output.Add((typeDefinition, null, events));
+                });
+
+            return output;
+        }
+
+        private static IEnumerable<ITypeDefinition> GetPublicTypesWithEvents(ICompilation compilation)
         {
             return compilation.GetPublicTypesWithStaticEvents();
         }
 
-        protected override IEnumerable<IEvent> GetValidEventDetails(IEnumerable<IEvent> eventDetails)
-        {
-            return eventDetails.Where(x => x.Accessibility == Accessibility.Public && x.IsStatic && IsValidParameters(x));
-        }
+        private static bool IsValidEvent(IEvent eventDetails) => eventDetails.Accessibility == Accessibility.Public && eventDetails.IsStatic && IsValidParameters(eventDetails);
     }
 }

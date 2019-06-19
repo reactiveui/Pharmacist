@@ -93,7 +93,7 @@ namespace Pharmacist.Console
                             var packageIdentity = new PackageIdentity(options.NugetPackageName, new NuGetVersion(options.NugetVersion));
                             var nugetFramework = options.TargetFramework.ToFrameworks();
                             await ObservablesForEventGenerator.WriteHeader(stream).ConfigureAwait(false);
-                            await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, new[] { packageIdentity }, nugetFramework).ConfigureAwait(false);
+                            await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, new[] { packageIdentity }, nugetFramework, options.PackageFolder).ConfigureAwait(false);
                         }
 
                         return ExitCode.Success;

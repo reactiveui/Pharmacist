@@ -38,8 +38,6 @@ namespace Pharmacist.Core.Generation
 
         public static EventBuilderCompiler GetCompilation(IEnumerable<string> targetAssemblies, IEnumerable<string> searchDirectories)
         {
-            var modules = targetAssemblies.Select(x => new PEFile(x, PEStreamOptions.PrefetchMetadata));
-
             var searchStack = new Stack<DirectoryInfo>(searchDirectories.Select(x => new DirectoryInfo(x)));
             var foundDirectories = new HashSet<string>();
 
@@ -58,7 +56,7 @@ namespace Pharmacist.Core.Generation
                 }
             }
 
-            return new EventBuilderCompiler(modules, foundDirectories.ToList());
+            return new EventBuilderCompiler(targetAssemblies, foundDirectories.ToList());
         }
     }
 }

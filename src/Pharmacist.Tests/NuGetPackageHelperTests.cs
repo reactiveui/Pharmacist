@@ -146,10 +146,41 @@ namespace Pharmacist.Tests
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             var result = (await NuGetPackageHelper
-                              .DownloadPackageFilesAndFolder(package, frameworks)
+                              .DownloadPackageFilesAndFolder(package, frameworks, packageOutputDirectory: TestUtilities.PackageDirectory)
                               .ConfigureAwait(false)).ToList();
 
             result.ShouldNotBeEmpty();
+        }
+
+        [Fact]
+        public async Task CanGetNetCoreApp20()
+        {
+            var package = new[] { new PackageIdentity("Microsoft.NETCore.App", new NuGetVersion("2.0.0")) };
+            var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetCoreApp20 };
+
+            var result = (await NuGetPackageHelper
+                              .DownloadPackageFilesAndFolder(package, frameworks, packageOutputDirectory: TestUtilities.PackageDirectory)
+                              .ConfigureAwait(false)).ToList();
+
+            result.ShouldNotBeEmpty();
+
+            result.SelectMany(x => x.files).Where(x => x.EndsWith(".dll")).ShouldNotBeEmpty();
+        }
+
+        [Fact]
+        public async Task CanGetNetFramework()
+        {
+            var package = new[] { new PackageIdentity("Microsoft.NETFramework.ReferenceAssemblies.net461", new NuGetVersion("1.0.0-preview.2")) };
+
+            var frameworks = new[] { FrameworkConstants.CommonFrameworks.Net461 };
+
+            var result = (await NuGetPackageHelper
+                              .DownloadPackageFilesAndFolder(package, frameworks, packageOutputDirectory: TestUtilities.PackageDirectory)
+                              .ConfigureAwait(false)).ToList();
+
+            result.ShouldNotBeEmpty();
+
+            result.SelectMany(x => x.files).Where(x => x.EndsWith(".dll")).ShouldNotBeEmpty();
         }
 
         private static async Task GetAndCheckTizenPackage()
@@ -157,9 +188,8 @@ namespace Pharmacist.Tests
             var package = new[] { new PackageIdentity("Tizen.NET.API4", new NuGetVersion("4.0.1.14152")) };
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
-            var packageDirectory = Path.Combine(Path.GetTempPath(), "Pharmacist.Tests");
             var result = (await NuGetPackageHelper
-                              .DownloadPackageFilesAndFolder(package, frameworks, packageDirectory: packageDirectory)
+                              .DownloadPackageFilesAndFolder(package, frameworks, packageOutputDirectory: TestUtilities.PackageDirectory)
                               .ConfigureAwait(false)).ToList();
 
             var actualFiles = result.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)).ToList();
@@ -168,7 +198,7 @@ namespace Pharmacist.Tests
             Assert.True(actualDirectories.All(Directory.Exists));
 
             var actualFileNames = actualFiles.Select(Path.GetFileName).ToList();
-            var actualDirectoryNames = actualDirectories.Select(x => x.Replace(packageDirectory + Path.DirectorySeparatorChar, string.Empty)).ToList();
+            var actualDirectoryNames = actualDirectories.Select(x => x.Replace(TestUtilities.PackageDirectory + Path.DirectorySeparatorChar, string.Empty)).ToList();
             ExpectedTizenFiles.ShouldHaveSameContents(actualFileNames);
             ExpectedTizenDirectories.ShouldHaveSameContents(actualDirectoryNames);
         }

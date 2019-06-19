@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -18,6 +19,19 @@ namespace Pharmacist.Tests
     /// </summary>
     public static class TestUtilities
     {
+        static TestUtilities()
+        {
+            try
+            {
+                Directory.Delete(PackageDirectory, true);
+            }
+            catch
+            {
+            }
+        }
+
+        public static string PackageDirectory { get; } = Path.Combine(Path.GetTempPath(), "Pharmacist.Tests");
+
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:ParameterMustNotSpanMultipleLines", Justification = "Reviewed. Suppression is OK here.")]
         public static void ShouldHaveSameContents<T>(this IEnumerable<T> expected, IEnumerable<T> actual)
         {
