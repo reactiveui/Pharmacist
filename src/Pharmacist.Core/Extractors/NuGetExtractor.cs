@@ -38,8 +38,7 @@ namespace Pharmacist.Core.Extractors
         {
             var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks, packageOutputDirectory: packageOutputDirectory).ConfigureAwait(false);
 
-            Assemblies = new List<string>(results.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)));
-            SearchDirectories = new List<string>(results.Select(x => x.folder));
+            await Extract(targetFrameworks, results).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -53,8 +52,14 @@ namespace Pharmacist.Core.Extractors
         {
             var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks, packageOutputDirectory: packageOutputDirectory).ConfigureAwait(false);
 
+            await Extract(targetFrameworks, results).ConfigureAwait(false);
+        }
+
+        private async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)> results)
+        {
+            var extraSearchFolders = (await Task.WhenAll(targetFrameworks.Select(x => x.GetNuGetFrameworkFolders())).ConfigureAwait(false)).SelectMany(x => x);
             Assemblies = new List<string>(results.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)));
-            SearchDirectories = new List<string>(results.Select(x => x.folder));
+            SearchDirectories = new List<string>(results.Select(x => x.folder).Concat(extraSearchFolders));
         }
     }
 }

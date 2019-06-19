@@ -34,7 +34,7 @@ namespace Pharmacist.Core.Generation.Generators
         /// <returns>An array of namespace declarations.</returns>
         internal static IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, bool isAbstract, IEnumerable<IMethod> methods)> declarations)
         {
-            foreach (var groupedDeclarations in declarations.GroupBy(x => x.typeDefinition.Namespace))
+            foreach (var groupedDeclarations in declarations.GroupBy(x => x.typeDefinition.Namespace).OrderBy(x => x.Key))
             {
                 var namespaceName = groupedDeclarations.Key;
                 var members = new List<ClassDeclarationSyntax>();

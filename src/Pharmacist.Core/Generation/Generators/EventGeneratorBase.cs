@@ -27,7 +27,7 @@ namespace Pharmacist.Core.Generation.Generators
         /// </summary>
         /// <param name="declarations">The declarations to add.</param>
         /// <returns>An array of namespace declarations.</returns>
-        public abstract IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, IEnumerable<IEvent> events)> declarations);
+        public abstract IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition baseDefinition, IEnumerable<IEvent> events)> declarations);
 
         /// <summary>
         /// Generates an observable declaration that wraps a event.

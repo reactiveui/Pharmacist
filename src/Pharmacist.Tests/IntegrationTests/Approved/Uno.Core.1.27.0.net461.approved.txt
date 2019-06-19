@@ -1,0 +1,41 @@
+
+namespace Uno
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Uno"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.ILoadable"/> class.
+        /// </summary>
+        public static ILoadableEvents Events(this global::Uno.ILoadable item) => new ILoadableEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.ILoadable"/> class as observables.
+    /// </summary>
+    public class ILoadableEvents
+    {
+        private readonly global::Uno.ILoadable _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.ILoadable"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public ILoadableEvents(global::Uno.ILoadable data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.ILoadable.Loaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Loaded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Loaded += x, x => _data.Loaded -= x);
+    }
+}

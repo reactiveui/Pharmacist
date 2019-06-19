@@ -42,7 +42,9 @@ namespace Pharmacist.Tests.IntegrationTests
 
         public static async Task CheckResultsAgainstTemplate(LibraryRange[] package, IReadOnlyList<NuGetFramework> frameworks, [CallerFilePath]string filePath = null)
         {
-            var bestPackageIdentity = await NuGetPackageHelper.GetBestMatch(package[0], new SourceRepository(new PackageSource(NuGetPackageHelper.DefaultNuGetSource), NuGetPackageHelper.Providers), CancellationToken.None).ConfigureAwait(false);
+            var sourceRepository = new SourceRepository(new PackageSource(NuGetPackageHelper.DefaultNuGetSource), NuGetPackageHelper.Providers);
+            var findResource = await sourceRepository.GetResourceAsync<FindPackageByIdResource>().ConfigureAwait(false);
+            var bestPackageIdentity = await NuGetPackageHelper.GetBestMatch(package[0], findResource, CancellationToken.None).ConfigureAwait(false);
 
             using (var memoryStream = new MemoryStream())
             {

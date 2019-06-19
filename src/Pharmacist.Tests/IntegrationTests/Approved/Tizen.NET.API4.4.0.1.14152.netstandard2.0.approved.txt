@@ -179,7 +179,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Button"/> class as observables.
     /// </summary>
-    public class ButtonEvents
+    public class ButtonEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Button _data;
         /// <summary>
@@ -236,7 +236,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Calendar"/> class as observables.
     /// </summary>
-    public class CalendarEvents
+    public class CalendarEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Calendar _data;
         /// <summary>
@@ -273,7 +273,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Check"/> class as observables.
     /// </summary>
-    public class CheckEvents
+    public class CheckEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Check _data;
         /// <summary>
@@ -300,7 +300,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.ColorSelector"/> class as observables.
     /// </summary>
-    public class ColorSelectorEvents
+    public class ColorSelectorEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.ColorSelector _data;
         /// <summary>
@@ -327,7 +327,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.ContextPopup"/> class as observables.
     /// </summary>
-    public class ContextPopupEvents
+    public class ContextPopupEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.ContextPopup _data;
         /// <summary>
@@ -354,7 +354,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.ContextPopupItem"/> class as observables.
     /// </summary>
-    public class ContextPopupItemEvents
+    public class ContextPopupItemEvents : global::ElmSharp.ItemObjectEvents
     {
         private readonly global::ElmSharp.ContextPopupItem _data;
         /// <summary>
@@ -381,7 +381,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.DateTimeSelector"/> class as observables.
     /// </summary>
-    public class DateTimeSelectorEvents
+    public class DateTimeSelectorEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.DateTimeSelector _data;
         /// <summary>
@@ -462,7 +462,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Entry"/> class as observables.
     /// </summary>
-    public class EntryEvents
+    public class EntryEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Entry _data;
         /// <summary>
@@ -643,7 +643,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.FlipSelector"/> class as observables.
     /// </summary>
-    public class FlipSelectorEvents
+    public class FlipSelectorEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.FlipSelector _data;
         /// <summary>
@@ -690,7 +690,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.FlipSelectorItem"/> class as observables.
     /// </summary>
-    public class FlipSelectorItemEvents
+    public class FlipSelectorItemEvents : global::ElmSharp.ItemObjectEvents
     {
         private readonly global::ElmSharp.FlipSelectorItem _data;
         /// <summary>
@@ -717,7 +717,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.GenGrid"/> class as observables.
     /// </summary>
-    public class GenGridEvents
+    public class GenGridEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.GenGrid _data;
         /// <summary>
@@ -834,7 +834,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.GenList"/> class as observables.
     /// </summary>
-    public class GenListEvents
+    public class GenListEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.GenList _data;
         /// <summary>
@@ -1011,7 +1011,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Hoversel"/> class as observables.
     /// </summary>
-    public class HoverselEvents
+    public class HoverselEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Hoversel _data;
         /// <summary>
@@ -1068,7 +1068,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.HoverselItem"/> class as observables.
     /// </summary>
-    public class HoverselItemEvents
+    public class HoverselItemEvents : global::ElmSharp.ItemObjectEvents
     {
         private readonly global::ElmSharp.HoverselItem _data;
         /// <summary>
@@ -1095,7 +1095,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Image"/> class as observables.
     /// </summary>
-    public class ImageEvents
+    public class ImageEvents : global::ElmSharp.WidgetEvents
     {
         private readonly global::ElmSharp.Image _data;
         /// <summary>
@@ -1142,7 +1142,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Index"/> class as observables.
     /// </summary>
-    public class IndexEvents
+    public class IndexEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Index _data;
         /// <summary>
@@ -1169,7 +1169,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.IndexItem"/> class as observables.
     /// </summary>
-    public class IndexItemEvents
+    public class IndexItemEvents : global::ElmSharp.ItemObjectEvents
     {
         private readonly global::ElmSharp.IndexItem _data;
         /// <summary>
@@ -1223,7 +1223,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Label"/> class as observables.
     /// </summary>
-    public class LabelEvents
+    public class LabelEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Label _data;
         /// <summary>
@@ -1250,7 +1250,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Layout"/> class as observables.
     /// </summary>
-    public class LayoutEvents
+    public class LayoutEvents : global::ElmSharp.WidgetEvents
     {
         private readonly global::ElmSharp.Layout _data;
         /// <summary>
@@ -1287,7 +1287,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.List"/> class as observables.
     /// </summary>
-    public class ListEvents
+    public class ListEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.List _data;
         /// <summary>
@@ -1354,7 +1354,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.MultiButtonEntry"/> class as observables.
     /// </summary>
-    public class MultiButtonEntryEvents
+    public class MultiButtonEntryEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.MultiButtonEntry _data;
         /// <summary>
@@ -1461,7 +1461,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Naviframe"/> class as observables.
     /// </summary>
-    public class NaviframeEvents
+    public class NaviframeEvents : global::ElmSharp.WidgetEvents
     {
         private readonly global::ElmSharp.Naviframe _data;
         /// <summary>
@@ -1498,7 +1498,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.NaviItem"/> class as observables.
     /// </summary>
-    public class NaviItemEvents
+    public class NaviItemEvents : global::ElmSharp.ItemObjectEvents
     {
         private readonly global::ElmSharp.NaviItem _data;
         /// <summary>
@@ -1525,7 +1525,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Panel"/> class as observables.
     /// </summary>
-    public class PanelEvents
+    public class PanelEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Panel _data;
         /// <summary>
@@ -1552,7 +1552,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Panes"/> class as observables.
     /// </summary>
-    public class PanesEvents
+    public class PanesEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Panes _data;
         /// <summary>
@@ -1589,7 +1589,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Popup"/> class as observables.
     /// </summary>
-    public class PopupEvents
+    public class PopupEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Popup _data;
         /// <summary>
@@ -1646,7 +1646,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.ProgressBar"/> class as observables.
     /// </summary>
-    public class ProgressBarEvents
+    public class ProgressBarEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.ProgressBar _data;
         /// <summary>
@@ -1673,7 +1673,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Radio"/> class as observables.
     /// </summary>
-    public class RadioEvents
+    public class RadioEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Radio _data;
         /// <summary>
@@ -1700,7 +1700,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Scroller"/> class as observables.
     /// </summary>
-    public class ScrollerEvents
+    public class ScrollerEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Scroller _data;
         /// <summary>
@@ -1757,7 +1757,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Slider"/> class as observables.
     /// </summary>
-    public class SliderEvents
+    public class SliderEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Slider _data;
         /// <summary>
@@ -1841,7 +1841,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Spinner"/> class as observables.
     /// </summary>
-    public class SpinnerEvents
+    public class SpinnerEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Spinner _data;
         /// <summary>
@@ -1878,7 +1878,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Toolbar"/> class as observables.
     /// </summary>
-    public class ToolbarEvents
+    public class ToolbarEvents : global::ElmSharp.WidgetEvents
     {
         private readonly global::ElmSharp.Toolbar _data;
         /// <summary>
@@ -1905,7 +1905,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.ToolbarItem"/> class as observables.
     /// </summary>
-    public class ToolbarItemEvents
+    public class ToolbarItemEvents : global::ElmSharp.ItemObjectEvents
     {
         private readonly global::ElmSharp.ToolbarItem _data;
         /// <summary>
@@ -1979,7 +1979,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Widget"/> class as observables.
     /// </summary>
-    public class WidgetEvents
+    public class WidgetEvents : global::ElmSharp.EvasObjectEvents
     {
         private readonly global::ElmSharp.Widget _data;
         /// <summary>
@@ -2016,7 +2016,7 @@ namespace ElmSharp
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Window"/> class as observables.
     /// </summary>
-    public class WindowEvents
+    public class WindowEvents : global::ElmSharp.WidgetEvents
     {
         private readonly global::ElmSharp.Window _data;
         /// <summary>
@@ -2075,7 +2075,7 @@ namespace ElmSharp.Wearable
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Wearable.CircleSlider"/> class as observables.
     /// </summary>
-    public class CircleSliderEvents
+    public class CircleSliderEvents : global::ElmSharp.WidgetEvents
     {
         private readonly global::ElmSharp.Wearable.CircleSlider _data;
         /// <summary>
@@ -2102,7 +2102,7 @@ namespace ElmSharp.Wearable
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Wearable.MoreOption"/> class as observables.
     /// </summary>
-    public class MoreOptionEvents
+    public class MoreOptionEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Wearable.MoreOption _data;
         /// <summary>
@@ -2159,7 +2159,7 @@ namespace ElmSharp.Wearable
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::ElmSharp.Wearable.RotarySelector"/> class as observables.
     /// </summary>
-    public class RotarySelectorEvents
+    public class RotarySelectorEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::ElmSharp.Wearable.RotarySelector _data;
         /// <summary>
@@ -2323,7 +2323,7 @@ namespace Tizen.Applications
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.Applications.CoreUIApplication"/> class as observables.
     /// </summary>
-    public class CoreUIApplicationEvents
+    public class CoreUIApplicationEvents : global::Tizen.Applications.CoreApplicationEvents
     {
         private readonly global::Tizen.Applications.CoreUIApplication _data;
         /// <summary>
@@ -2387,7 +2387,7 @@ namespace Tizen.Applications
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.Applications.WatchApplication"/> class as observables.
     /// </summary>
-    public class WatchApplicationEvents
+    public class WatchApplicationEvents : global::Tizen.Applications.CoreApplicationEvents
     {
         private readonly global::Tizen.Applications.WatchApplication _data;
         /// <summary>
@@ -2884,7 +2884,7 @@ namespace Tizen.Maps
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.Maps.MapView"/> class as observables.
     /// </summary>
-    public class MapViewEvents
+    public class MapViewEvents : global::ElmSharp.LayoutEvents
     {
         private readonly global::Tizen.Maps.MapView _data;
         /// <summary>
@@ -3116,7 +3116,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.Multimedia.AsyncAudioCapture"/> class as observables.
     /// </summary>
-    public class AsyncAudioCaptureEvents
+    public class AsyncAudioCaptureEvents : global::Tizen.Multimedia.AudioCaptureBaseEvents
     {
         private readonly global::Tizen.Multimedia.AsyncAudioCapture _data;
         /// <summary>
@@ -4340,7 +4340,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.Network.Bluetooth.BluetoothGattCharacteristic"/> class as observables.
     /// </summary>
-    public class BluetoothGattCharacteristicEvents
+    public class BluetoothGattCharacteristicEvents : global::Tizen.Network.Bluetooth.BluetoothGattAttributeEvents
     {
         private readonly global::Tizen.Network.Bluetooth.BluetoothGattCharacteristic _data;
         /// <summary>
@@ -5076,10 +5076,6 @@ namespace Tizen.NUI
         /// </summary>
         public static StyleManagerEvents Events(this global::Tizen.NUI.StyleManager item) => new StyleManagerEvents(item);
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Tizen.NUI.Timer"/> class.
-        /// </summary>
-        public static TimerEvents Events(this global::Tizen.NUI.Timer item) => new TimerEvents(item);
-        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Tizen.NUI.TTSPlayer"/> class.
         /// </summary>
         public static TTSPlayerEvents Events(this global::Tizen.NUI.TTSPlayer item) => new TTSPlayerEvents(item);
@@ -5258,7 +5254,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.NUIApplication"/> class as observables.
     /// </summary>
-    public class NUIApplicationEvents
+    public class NUIApplicationEvents : global::Tizen.Applications.CoreApplicationEvents
     {
         private readonly global::Tizen.NUI.NUIApplication _data;
         /// <summary>
@@ -5322,7 +5318,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.ScrollView"/> class as observables.
     /// </summary>
-    public class ScrollViewEvents
+    public class ScrollViewEvents : global::Tizen.NUI.BaseComponents.ScrollableEvents
     {
         private readonly global::Tizen.NUI.ScrollView _data;
         /// <summary>
@@ -5374,22 +5370,6 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.Timer"/> class as observables.
-    /// </summary>
-    public class TimerEvents
-    {
-        private readonly global::Tizen.NUI.Timer _data;
-        /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Tizen.NUI.Timer"/> class.
-        /// </summary>
-        /// <param name = "data">The class that is being wrapped.</param>
-        public TimerEvents(global::Tizen.NUI.Timer data)
-        {
-            _data = data;
-        }
-    }
-
-    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.TTSPlayer"/> class as observables.
     /// </summary>
     public class TTSPlayerEvents
@@ -5419,7 +5399,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.WidgetView"/> class as observables.
     /// </summary>
-    public class WidgetViewEvents
+    public class WidgetViewEvents : global::Tizen.NUI.BaseComponents.ViewEvents
     {
         private readonly global::Tizen.NUI.WidgetView _data;
         /// <summary>
@@ -5608,7 +5588,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.BaseComponents.ImageView"/> class as observables.
     /// </summary>
-    public class ImageViewEvents
+    public class ImageViewEvents : global::Tizen.NUI.BaseComponents.ViewEvents
     {
         private readonly global::Tizen.NUI.BaseComponents.ImageView _data;
         /// <summary>
@@ -5635,7 +5615,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.BaseComponents.Scrollable"/> class as observables.
     /// </summary>
-    public class ScrollableEvents
+    public class ScrollableEvents : global::Tizen.NUI.BaseComponents.ViewEvents
     {
         private readonly global::Tizen.NUI.BaseComponents.Scrollable _data;
         /// <summary>
@@ -5682,7 +5662,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.BaseComponents.TextEditor"/> class as observables.
     /// </summary>
-    public class TextEditorEvents
+    public class TextEditorEvents : global::Tizen.NUI.BaseComponents.ViewEvents
     {
         private readonly global::Tizen.NUI.BaseComponents.TextEditor _data;
         /// <summary>
@@ -5719,7 +5699,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.BaseComponents.TextField"/> class as observables.
     /// </summary>
-    public class TextFieldEvents
+    public class TextFieldEvents : global::Tizen.NUI.BaseComponents.ViewEvents
     {
         private readonly global::Tizen.NUI.BaseComponents.TextField _data;
         /// <summary>
@@ -5756,7 +5736,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.BaseComponents.VideoView"/> class as observables.
     /// </summary>
-    public class VideoViewEvents
+    public class VideoViewEvents : global::Tizen.NUI.BaseComponents.ViewEvents
     {
         private readonly global::Tizen.NUI.BaseComponents.VideoView _data;
         /// <summary>
@@ -5886,10 +5866,6 @@ namespace Tizen.NUI.UIComponents
     public static class EventExtensions
     {
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Tizen.NUI.UIComponents.Button"/> class.
-        /// </summary>
-        public static ButtonEvents Events(this global::Tizen.NUI.UIComponents.Button item) => new ButtonEvents(item);
-        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Tizen.NUI.UIComponents.Popup"/> class.
         /// </summary>
         public static PopupEvents Events(this global::Tizen.NUI.UIComponents.Popup item) => new PopupEvents(item);
@@ -5901,32 +5877,12 @@ namespace Tizen.NUI.UIComponents
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Tizen.NUI.UIComponents.ScrollBar"/> class.
         /// </summary>
         public static ScrollBarEvents Events(this global::Tizen.NUI.UIComponents.ScrollBar item) => new ScrollBarEvents(item);
-        /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Tizen.NUI.UIComponents.Slider"/> class.
-        /// </summary>
-        public static SliderEvents Events(this global::Tizen.NUI.UIComponents.Slider item) => new SliderEvents(item);
-    }
-
-    /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.UIComponents.Button"/> class as observables.
-    /// </summary>
-    public class ButtonEvents
-    {
-        private readonly global::Tizen.NUI.UIComponents.Button _data;
-        /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Tizen.NUI.UIComponents.Button"/> class.
-        /// </summary>
-        /// <param name = "data">The class that is being wrapped.</param>
-        public ButtonEvents(global::Tizen.NUI.UIComponents.Button data)
-        {
-            _data = data;
-        }
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.UIComponents.Popup"/> class as observables.
     /// </summary>
-    public class PopupEvents
+    public class PopupEvents : global::Tizen.NUI.BaseComponents.ViewEvents
     {
         private readonly global::Tizen.NUI.UIComponents.Popup _data;
         /// <summary>
@@ -5993,7 +5949,7 @@ namespace Tizen.NUI.UIComponents
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.UIComponents.ProgressBar"/> class as observables.
     /// </summary>
-    public class ProgressBarEvents
+    public class ProgressBarEvents : global::Tizen.NUI.BaseComponents.ViewEvents
     {
         private readonly global::Tizen.NUI.UIComponents.ProgressBar _data;
         /// <summary>
@@ -6020,7 +5976,7 @@ namespace Tizen.NUI.UIComponents
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.UIComponents.ScrollBar"/> class as observables.
     /// </summary>
-    public class ScrollBarEvents
+    public class ScrollBarEvents : global::Tizen.NUI.BaseComponents.ViewEvents
     {
         private readonly global::Tizen.NUI.UIComponents.ScrollBar _data;
         /// <summary>
@@ -6052,22 +6008,6 @@ namespace Tizen.NUI.UIComponents
         }
 
         , x => _data.ScrollInterval += x, x => _data.ScrollInterval -= x);
-    }
-
-    /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Tizen.NUI.UIComponents.Slider"/> class as observables.
-    /// </summary>
-    public class SliderEvents
-    {
-        private readonly global::Tizen.NUI.UIComponents.Slider _data;
-        /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Tizen.NUI.UIComponents.Slider"/> class.
-        /// </summary>
-        /// <param name = "data">The class that is being wrapped.</param>
-        public SliderEvents(global::Tizen.NUI.UIComponents.Slider data)
-        {
-            _data = data;
-        }
     }
 }
 
@@ -7422,7 +7362,7 @@ namespace Tizen.WebView
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Tizen.WebView.WebView"/> class as observables.
     /// </summary>
-    public class WebViewEvents
+    public class WebViewEvents : global::ElmSharp.EvasObjectEvents
     {
         private readonly global::Tizen.WebView.WebView _data;
         /// <summary>

@@ -55,12 +55,9 @@ namespace Pharmacist.Core.Generation.Resolvers
         /// <inheritdoc />
         public IEnumerable<NamespaceDeclarationSyntax> Create(ICompilation compilation)
         {
-            var events = GetPublicTypesWithEvents(compilation)
-                .Where(x => !SkipNamespaceList.Contains(x.Namespace))
-                .Select(x => (x, GetValidEventDetails(x.Events)))
-                .ToList();
+            var typesAndEvents = GetValidEventDetails(compilation);
 
-            return GetEventGenerator().Generate(events);
+            return GetEventGenerator().Generate(typesAndEvents);
         }
 
         protected static bool IsValidParameters(IEvent eventDetails)
@@ -83,8 +80,6 @@ namespace Pharmacist.Core.Generation.Resolvers
 
         protected abstract IEventGenerator GetEventGenerator();
 
-        protected abstract IEnumerable<ITypeDefinition> GetPublicTypesWithEvents(ICompilation compilation);
-
-        protected abstract IEnumerable<IEvent> GetValidEventDetails(IEnumerable<IEvent> eventDetails);
+        protected abstract IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation);
     }
 }

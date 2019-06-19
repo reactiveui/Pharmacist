@@ -20,9 +20,9 @@ namespace Pharmacist.Core.Generation.Generators
     {
         private const string DataFieldName = "_data";
 
-        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, IEnumerable<IEvent> events)> declarations)
+        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition baseDefinition, IEnumerable<IEvent> events)> declarations)
         {
-            foreach (var groupedDeclarations in declarations.GroupBy(x => x.typeDefinition.Namespace))
+            foreach (var groupedDeclarations in declarations.GroupBy(x => x.typeDefinition.Namespace).OrderBy(x => x.Key))
             {
                 var namespaceName = groupedDeclarations.Key;
                 var members = new List<ClassDeclarationSyntax>();
@@ -30,7 +30,7 @@ namespace Pharmacist.Core.Generation.Generators
                 var orderedTypeDeclarations = groupedDeclarations.OrderBy(x => x.typeDefinition.Name).ToList();
 
                 members.Add(GenerateStaticClass(namespaceName, orderedTypeDeclarations.Select(x => x.typeDefinition)));
-                members.AddRange(orderedTypeDeclarations.Select(x => GenerateEventWrapperClass(x.typeDefinition, x.events)).Where(x => x != null));
+                members.AddRange(orderedTypeDeclarations.Select(x => GenerateEventWrapperClass(x.typeDefinition, x.baseDefinition, x.events)).Where(x => x != null));
 
                 if (members.Count > 0)
                 {
@@ -93,16 +93,23 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithModifiers(TokenList(Token(SyntaxKind.PrivateKeyword), Token(SyntaxKind.ReadOnlyKeyword)));
         }
 
-        private static ClassDeclarationSyntax GenerateEventWrapperClass(ITypeDefinition typeDefinition, IEnumerable<IEvent> events)
+        private static ClassDeclarationSyntax GenerateEventWrapperClass(ITypeDefinition typeDefinition, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)
         {
             var members = new List<MemberDeclarationSyntax> { GenerateEventWrapperField(typeDefinition), GenerateEventWrapperClassConstructor(typeDefinition) };
             members.AddRange(events.OrderBy(x => x.Name).Select(x => GenerateEventWrapperObservable(x, DataFieldName)).Where(x => x != null));
 
-            return ClassDeclaration(typeDefinition.Name + "Events")
+            var classDeclaration = ClassDeclaration(typeDefinition.Name + "Events")
                 .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword)))
                 .WithMembers(List(members))
                 .WithObsoleteAttribute(typeDefinition)
                 .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class which wraps the events contained within the {0} class as observables.", typeDefinition.GenerateFullGenericName()));
+
+            if (baseTypeDefinition != null)
+            {
+                classDeclaration = classDeclaration.WithBaseList(BaseList(SingletonSeparatedList<BaseTypeSyntax>(SimpleBaseType(IdentifierName($"global::{baseTypeDefinition.Namespace}.{baseTypeDefinition.Name}Events")))));
+            }
+
+            return classDeclaration;
         }
     }
 }

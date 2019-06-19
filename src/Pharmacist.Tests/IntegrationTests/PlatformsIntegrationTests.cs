@@ -26,16 +26,22 @@ namespace Pharmacist.Tests.IntegrationTests
         /// <summary>
         /// Tests to make sure that the platform tests produce valid output.
         /// </summary>
+        /// <param name="autoPlatform">The platform to test.</param>
         /// <returns>A task to monitor the progress.</returns>
-        [Fact]
-        public async Task TestsValid()
+        [Theory]
+        [InlineData(AutoPlatform.Winforms)]
+        [InlineData(AutoPlatform.Android)]
+        [InlineData(AutoPlatform.Mac)]
+        [InlineData(AutoPlatform.TVOS)]
+        [InlineData(AutoPlatform.UWP)]
+        [InlineData(AutoPlatform.WPF)]
+        [InlineData(AutoPlatform.iOS)]
+        public async Task PlatformGeneratesCode(AutoPlatform autoPlatform)
         {
             var sourceDirectory = IntegrationTestHelper.GetOutputDirectory();
             var referenceAssembliesLocation = await ReferenceLocator.GetReferenceLocation().ConfigureAwait(false);
 
-            var platforms = Enum.GetValues(typeof(AutoPlatform)).Cast<AutoPlatform>().ToList();
-
-            await ObservablesForEventGenerator.ExtractEventsFromPlatforms(sourceDirectory, string.Empty, ".received.txt", referenceAssembliesLocation, platforms).ConfigureAwait(false);
+            await ObservablesForEventGenerator.ExtractEventsFromPlatforms(sourceDirectory, string.Empty, ".received.txt", referenceAssembliesLocation, new[] { autoPlatform }).ConfigureAwait(false);
         }
     }
 }

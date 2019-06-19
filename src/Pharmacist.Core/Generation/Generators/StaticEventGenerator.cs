@@ -24,9 +24,9 @@ namespace Pharmacist.Core.Generation.Generators
         /// </summary>
         /// <param name="declarations">The declarations to add.</param>
         /// <returns>An array of namespace declarations.</returns>
-        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, IEnumerable<IEvent> events)> declarations)
+        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition baseDefinition, IEnumerable<IEvent> events)> declarations)
         {
-            foreach (var groupDeclaration in declarations.GroupBy(x => x.typeDefinition.Namespace))
+            foreach (var groupDeclaration in declarations.GroupBy(x => x.typeDefinition.Namespace).OrderBy(x => x.Key))
             {
                 var namespaceName = groupDeclaration.Key;
 

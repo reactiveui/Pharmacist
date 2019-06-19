@@ -3,6 +3,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -34,9 +35,7 @@ namespace Pharmacist.Core.Generation
         {
             var list = GetPublicTypeDefinitionsWithEvents(compilation);
             return list
-                .Where(x => x.Events.Any(eventDetails => !eventDetails.IsStatic))
-                .OrderBy(x => x.Namespace)
-                .ThenBy(x => x.Name);
+                .Where(x => x.Events.Any(eventDetails => !eventDetails.IsStatic));
         }
 
         /// <summary>
@@ -48,9 +47,7 @@ namespace Pharmacist.Core.Generation
         {
             var list = GetPublicTypeDefinitionsWithEvents(compilation);
             return list
-                .Where(x => x.Events.Any(eventDetails => eventDetails.IsStatic))
-                .OrderBy(x => x.Namespace)
-                .ThenBy(x => x.Name);
+                .Where(x => x.Events.Any(eventDetails => eventDetails.IsStatic));
         }
 
         /// <summary>
@@ -63,7 +60,7 @@ namespace Pharmacist.Core.Generation
         {
             var map = _typeNameMapping.GetOrAdd(compilation, comp => comp.ReferencedModules.Concat(compilation.Modules).SelectMany(x => x.TypeDefinitions).GroupBy(x => x.ReflectionName).ToImmutableDictionary(x => x.Key, x => x.ToImmutableList()));
 
-            return map.GetValueOrDefault(name);
+            return map.GetValueOrDefault(name) ?? ImmutableList<ITypeDefinition>.Empty;
         }
 
         /// <summary>
@@ -75,8 +72,7 @@ namespace Pharmacist.Core.Generation
         {
             return _publicNonGenericTypeMapping.GetOrAdd(
                     compilation,
-                    comp => comp.GetAllTypeDefinitions().Where(x => x.Accessibility == Accessibility.Public && x.TypeParameterCount == 0).OrderBy(x => x.FullName)
-                .ToImmutableList());
+                    comp => comp.GetAllTypeDefinitions().Where(x => x.Accessibility == Accessibility.Public && x.TypeParameterCount == 0).ToImmutableList());
         }
 
         /// <summary>
@@ -119,23 +115,24 @@ namespace Pharmacist.Core.Generation
             // If the type is UnknownType, check other assemblies we have as dependencies first,
             // since UnknownType is only if it's unknown in the current assembly only.
             // This scenario is fairly common with types in the netstandard libraries, eg System.EventHandler.
-            if (type is UnknownType || type.Kind == TypeKind.Unknown)
+            IType newType = type;
+            if (newType is UnknownType || newType.Kind == TypeKind.Unknown)
             {
-                if (type.TypeParameterCount == 0)
+                if (newType.TypeParameterCount == 0)
                 {
-                    type = compilation.GetReferenceTypeDefinitionsWithFullName(type.ReflectionName).FirstOrDefault();
+                    newType = compilation.GetReferenceTypeDefinitionsWithFullName(newType.ReflectionName).FirstOrDefault();
                 }
-                else if (type is ParameterizedType paramType)
+                else if (newType is ParameterizedType paramType)
                 {
                     var genericType = compilation.GetReferenceTypeDefinitionsWithFullName(paramType.GenericType.ReflectionName).FirstOrDefault();
 
-                    var typeArguments = type.TypeArguments.Select(x => GetRealType(x, compilation));
+                    var typeArguments = newType.TypeArguments.Select(x => GetRealType(x, compilation));
 
-                    type = new ParameterizedType(genericType, typeArguments);
+                    newType = new ParameterizedType(genericType, typeArguments);
                 }
             }
 
-            return type;
+            return newType ?? type;
         }
 
         /// <summary>

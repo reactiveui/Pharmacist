@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 
 using ICSharpCode.Decompiler.Metadata;
 using ICSharpCode.Decompiler.TypeSystem;
@@ -29,8 +30,9 @@ namespace Pharmacist.Core.Generation.Compilation
         private bool _initialized;
         private INamespace _rootNamespace;
 
-        public EventBuilderCompiler(IEnumerable<IModuleReference> modules, IEnumerable<string> searchDirectories)
+        public EventBuilderCompiler(IEnumerable<string> targetAssemblies, IEnumerable<string> searchDirectories)
         {
+            var modules = targetAssemblies.Select(x => new PEFile(x, PEStreamOptions.PrefetchMetadata));
             _knownTypeCache = new KnownTypeCache(this);
             Init(modules, searchDirectories.ToList());
         }
@@ -178,29 +180,32 @@ namespace Pharmacist.Core.Generation.Compilation
 
                 assemblyReferencesVisited.Add(currentAssemblyReference.FullName);
 
-                IModule asm;
-                try
-                {
-                    var currentModule = currentAssemblyReference.Resolve(searchDirectories);
+                var currentModules = currentAssemblyReference.Resolve(searchDirectories);
 
-                    if (currentModule == null)
+                if (currentModules.Count == 0)
+                {
+                    continue;
+                }
+
+                foreach (var currentModule in currentModules)
+                {
+                    IModule asm;
+                    try
                     {
-                        continue;
+                        asm = ((IModuleReference)currentModule).Resolve(context);
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        throw new InvalidOperationException("Tried to initialize compilation with an invalid assembly reference. (Forgot to load the assembly reference ? - see CecilLoader)");
                     }
 
-                    asm = ((IModuleReference)currentModule).Resolve(context);
-                }
-                catch (InvalidOperationException)
-                {
-                    throw new InvalidOperationException("Tried to initialize compilation with an invalid assembly reference. (Forgot to load the assembly reference ? - see CecilLoader)");
-                }
-
-                if (asm != null)
-                {
-                    referencedAssemblies.Add(asm);
-                    foreach (var element in asm.PEFile.AssemblyReferences)
+                    if (asm != null)
                     {
-                        referenceModulesToProcess.Push(element);
+                        referencedAssemblies.Add(asm);
+                        foreach (var element in asm.PEFile.AssemblyReferences)
+                        {
+                            referenceModulesToProcess.Push(element);
+                        }
                     }
                 }
             }

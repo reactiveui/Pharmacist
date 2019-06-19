@@ -1,4 +1,650 @@
 
+namespace UIKit
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "UIKit"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::UIKit.UIAlertView"/> class.
+        /// </summary>
+        public static UIAlertViewEvents Events(this global::UIKit.UIAlertView item) => new UIAlertViewEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::UIKit.UIControl"/> class.
+        /// </summary>
+        public static UIControlEvents Events(this global::UIKit.UIControl item) => new UIControlEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::UIKit.UIScrollView"/> class.
+        /// </summary>
+        public static UIScrollViewEvents Events(this global::UIKit.UIScrollView item) => new UIScrollViewEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::UIKit.UISearchBar"/> class.
+        /// </summary>
+        public static UISearchBarEvents Events(this global::UIKit.UISearchBar item) => new UISearchBarEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::UIKit.UITextField"/> class.
+        /// </summary>
+        public static UITextFieldEvents Events(this global::UIKit.UITextField item) => new UITextFieldEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::UIKit.UITextView"/> class.
+        /// </summary>
+        public static UITextViewEvents Events(this global::UIKit.UITextView item) => new UITextViewEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::UIKit.UIAlertView"/> class as observables.
+    /// </summary>
+    public class UIAlertViewEvents
+    {
+        private readonly global::UIKit.UIAlertView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::UIKit.UIAlertView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public UIAlertViewEvents(global::UIKit.UIAlertView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIAlertView.Canceled"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Canceled => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Canceled += x, x => _data.Canceled -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIAlertView.Clicked"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UIButtonEventArgs> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UIButtonEventArgs>, global::UIKit.UIButtonEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UIButtonEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Clicked += x, x => _data.Clicked -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIAlertView.Dismissed"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UIButtonEventArgs> Dismissed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UIButtonEventArgs>, global::UIKit.UIButtonEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UIButtonEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Dismissed += x, x => _data.Dismissed -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIAlertView.Presented"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Presented => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Presented += x, x => _data.Presented -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIAlertView.WillDismiss"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UIButtonEventArgs> WillDismiss => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UIButtonEventArgs>, global::UIKit.UIButtonEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UIButtonEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillDismiss += x, x => _data.WillDismiss -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIAlertView.WillPresent"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> WillPresent => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillPresent += x, x => _data.WillPresent -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::UIKit.UIControl"/> class as observables.
+    /// </summary>
+    public class UIControlEvents
+    {
+        private readonly global::UIKit.UIControl _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::UIKit.UIControl"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public UIControlEvents(global::UIKit.UIControl data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.AllEditingEvents"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> AllEditingEvents => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.AllEditingEvents += x, x => _data.AllEditingEvents -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.AllEvents"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> AllEvents => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.AllEvents += x, x => _data.AllEvents -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.AllTouchEvents"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> AllTouchEvents => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.AllTouchEvents += x, x => _data.AllTouchEvents -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.EditingChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> EditingChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.EditingChanged += x, x => _data.EditingChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.EditingDidBegin"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> EditingDidBegin => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.EditingDidBegin += x, x => _data.EditingDidBegin -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.EditingDidEnd"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> EditingDidEnd => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.EditingDidEnd += x, x => _data.EditingDidEnd -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.EditingDidEndOnExit"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> EditingDidEndOnExit => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.EditingDidEndOnExit += x, x => _data.EditingDidEndOnExit -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.PrimaryActionTriggered"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> PrimaryActionTriggered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PrimaryActionTriggered += x, x => _data.PrimaryActionTriggered -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.TouchCancel"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> TouchCancel => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.TouchCancel += x, x => _data.TouchCancel -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.TouchDown"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> TouchDown => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.TouchDown += x, x => _data.TouchDown -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.TouchDownRepeat"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> TouchDownRepeat => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.TouchDownRepeat += x, x => _data.TouchDownRepeat -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.TouchDragEnter"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> TouchDragEnter => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.TouchDragEnter += x, x => _data.TouchDragEnter -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.TouchDragExit"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> TouchDragExit => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.TouchDragExit += x, x => _data.TouchDragExit -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.TouchDragInside"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> TouchDragInside => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.TouchDragInside += x, x => _data.TouchDragInside -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.TouchDragOutside"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> TouchDragOutside => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.TouchDragOutside += x, x => _data.TouchDragOutside -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.TouchUpInside"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> TouchUpInside => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.TouchUpInside += x, x => _data.TouchUpInside -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.TouchUpOutside"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> TouchUpOutside => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.TouchUpOutside += x, x => _data.TouchUpOutside -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIControl.ValueChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> ValueChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ValueChanged += x, x => _data.ValueChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::UIKit.UIScrollView"/> class as observables.
+    /// </summary>
+    public class UIScrollViewEvents
+    {
+        private readonly global::UIKit.UIScrollView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::UIKit.UIScrollView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public UIScrollViewEvents(global::UIKit.UIScrollView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.DecelerationEnded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DecelerationEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DecelerationEnded += x, x => _data.DecelerationEnded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.DecelerationStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DecelerationStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DecelerationStarted += x, x => _data.DecelerationStarted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.DidChangeAdjustedContentInset"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DidChangeAdjustedContentInset => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DidChangeAdjustedContentInset += x, x => _data.DidChangeAdjustedContentInset -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.DidZoom"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DidZoom => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DidZoom += x, x => _data.DidZoom -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.DraggingEnded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.DraggingEventArgs> DraggingEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.DraggingEventArgs>, global::UIKit.DraggingEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.DraggingEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DraggingEnded += x, x => _data.DraggingEnded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.DraggingStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DraggingStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DraggingStarted += x, x => _data.DraggingStarted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.ScrollAnimationEnded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> ScrollAnimationEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ScrollAnimationEnded += x, x => _data.ScrollAnimationEnded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.Scrolled"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Scrolled => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Scrolled += x, x => _data.Scrolled -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.ScrolledToTop"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> ScrolledToTop => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ScrolledToTop += x, x => _data.ScrolledToTop -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.WillEndDragging"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.WillEndDraggingEventArgs> WillEndDragging => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.WillEndDraggingEventArgs>, global::UIKit.WillEndDraggingEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.WillEndDraggingEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillEndDragging += x, x => _data.WillEndDragging -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.ZoomingEnded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.ZoomingEndedEventArgs> ZoomingEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.ZoomingEndedEventArgs>, global::UIKit.ZoomingEndedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.ZoomingEndedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ZoomingEnded += x, x => _data.ZoomingEnded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.ZoomingStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UIScrollViewZoomingEventArgs> ZoomingStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UIScrollViewZoomingEventArgs>, global::UIKit.UIScrollViewZoomingEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UIScrollViewZoomingEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ZoomingStarted += x, x => _data.ZoomingStarted -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::UIKit.UISearchBar"/> class as observables.
+    /// </summary>
+    public class UISearchBarEvents
+    {
+        private readonly global::UIKit.UISearchBar _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::UIKit.UISearchBar"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public UISearchBarEvents(global::UIKit.UISearchBar data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UISearchBar.BookmarkButtonClicked"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> BookmarkButtonClicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.BookmarkButtonClicked += x, x => _data.BookmarkButtonClicked -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UISearchBar.CancelButtonClicked"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> CancelButtonClicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.CancelButtonClicked += x, x => _data.CancelButtonClicked -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UISearchBar.ListButtonClicked"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> ListButtonClicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ListButtonClicked += x, x => _data.ListButtonClicked -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UISearchBar.OnEditingStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> OnEditingStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.OnEditingStarted += x, x => _data.OnEditingStarted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UISearchBar.OnEditingStopped"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> OnEditingStopped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.OnEditingStopped += x, x => _data.OnEditingStopped -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UISearchBar.SearchButtonClicked"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> SearchButtonClicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.SearchButtonClicked += x, x => _data.SearchButtonClicked -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UISearchBar.SelectedScopeButtonIndexChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UISearchBarButtonIndexEventArgs> SelectedScopeButtonIndexChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISearchBarButtonIndexEventArgs>, global::UIKit.UISearchBarButtonIndexEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UISearchBarButtonIndexEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.SelectedScopeButtonIndexChanged += x, x => _data.SelectedScopeButtonIndexChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UISearchBar.TextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UISearchBarTextChangedEventArgs> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISearchBarTextChangedEventArgs>, global::UIKit.UISearchBarTextChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UISearchBarTextChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.TextChanged += x, x => _data.TextChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::UIKit.UITextField"/> class as observables.
+    /// </summary>
+    public class UITextFieldEvents : global::UIKit.UIControlEvents
+    {
+        private readonly global::UIKit.UITextField _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::UIKit.UITextField"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public UITextFieldEvents(global::UIKit.UITextField data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UITextField.Ended"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Ended => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Ended += x, x => _data.Ended -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UITextField.EndedWithReason"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UITextFieldEditingEndedEventArgs> EndedWithReason => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UITextFieldEditingEndedEventArgs>, global::UIKit.UITextFieldEditingEndedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UITextFieldEditingEndedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.EndedWithReason += x, x => _data.EndedWithReason -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UITextField.Started"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Started => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Started += x, x => _data.Started -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::UIKit.UITextView"/> class as observables.
+    /// </summary>
+    public class UITextViewEvents : global::UIKit.UIScrollViewEvents
+    {
+        private readonly global::UIKit.UITextView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::UIKit.UITextView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public UITextViewEvents(global::UIKit.UITextView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UITextView.Changed"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Changed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Changed += x, x => _data.Changed -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UITextView.Ended"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Ended => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Ended += x, x => _data.Ended -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UITextView.SelectionChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> SelectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.SelectionChanged += x, x => _data.SelectionChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "UIKit.UITextView.Started"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Started => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Started += x, x => _data.Started -= x);
+    }
+}
+
 namespace Uno.UI.Common
 {
     /// <summary>
@@ -37,6 +683,611 @@ namespace Uno.UI.Common
         }
 
         , x => _data.CanExecuteChanged += x, x => _data.CanExecuteChanged -= x);
+    }
+}
+
+namespace Uno.UI.Controls
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Uno.UI.Controls"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Controls.BindableSearchBar"/> class.
+        /// </summary>
+        public static BindableSearchBarEvents Events(this global::Uno.UI.Controls.BindableSearchBar item) => new BindableSearchBarEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Controls.BindableUISlider"/> class.
+        /// </summary>
+        public static BindableUISliderEvents Events(this global::Uno.UI.Controls.BindableUISlider item) => new BindableUISliderEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Controls.BindableUIView"/> class.
+        /// </summary>
+        public static BindableUIViewEvents Events(this global::Uno.UI.Controls.BindableUIView item) => new BindableUIViewEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Controls.StatePresenter"/> class.
+        /// </summary>
+        public static StatePresenterEvents Events(this global::Uno.UI.Controls.StatePresenter item) => new StatePresenterEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Controls.BindableSearchBar"/> class as observables.
+    /// </summary>
+    public class BindableSearchBarEvents : global::UIKit.UISearchBarEvents
+    {
+        private readonly global::Uno.UI.Controls.BindableSearchBar _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Controls.BindableSearchBar"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public BindableSearchBarEvents(global::Uno.UI.Controls.BindableSearchBar data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.BindableSearchBar.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.BindableSearchBar.PropertyChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PropertyChanged += x, x => _data.PropertyChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Controls.BindableUISlider"/> class as observables.
+    /// </summary>
+    public class BindableUISliderEvents : global::UIKit.UIControlEvents
+    {
+        private readonly global::Uno.UI.Controls.BindableUISlider _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Controls.BindableUISlider"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public BindableUISliderEvents(global::Uno.UI.Controls.BindableUISlider data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.BindableUISlider.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.BindableUISlider.PropertyChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PropertyChanged += x, x => _data.PropertyChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Controls.BindableUIView"/> class as observables.
+    /// </summary>
+    public class BindableUIViewEvents
+    {
+        private readonly global::Uno.UI.Controls.BindableUIView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Controls.BindableUIView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public BindableUIViewEvents(global::Uno.UI.Controls.BindableUIView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.BindableUIView.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.BindableUIView.PropertyChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PropertyChanged += x, x => _data.PropertyChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Controls.StatePresenter"/> class as observables.
+    /// </summary>
+    public class StatePresenterEvents : global::UIKit.UIControlEvents
+    {
+        private readonly global::Uno.UI.Controls.StatePresenter _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Controls.StatePresenter"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public StatePresenterEvents(global::Uno.UI.Controls.StatePresenter data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.StatePresenter.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+    }
+}
+
+namespace Uno.UI.Controls.Legacy
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Uno.UI.Controls.Legacy"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Controls.Legacy.ListViewBase"/> class.
+        /// </summary>
+        public static ListViewBaseEvents Events(this global::Uno.UI.Controls.Legacy.ListViewBase item) => new ListViewBaseEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Controls.Legacy.ListViewBaseLayout"/> class.
+        /// </summary>
+        public static ListViewBaseLayoutEvents Events(this global::Uno.UI.Controls.Legacy.ListViewBaseLayout item) => new ListViewBaseLayoutEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Controls.Legacy.ListViewBaseSource"/> class.
+        /// </summary>
+        public static ListViewBaseSourceEvents Events(this global::Uno.UI.Controls.Legacy.ListViewBaseSource item) => new ListViewBaseSourceEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Controls.Legacy.ListViewBase"/> class as observables.
+    /// </summary>
+    public class ListViewBaseEvents : global::Uno.UI.Views.Controls.BindableUICollectionViewEvents
+    {
+        private readonly global::Uno.UI.Controls.Legacy.ListViewBase _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Controls.Legacy.ListViewBase"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public ListViewBaseEvents(global::Uno.UI.Controls.Legacy.ListViewBase data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.Legacy.ListViewBase.IsEnabledChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs> IsEnabledChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.DependencyPropertyChangedEventHandler, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.IsEnabledChanged += x, x => _data.IsEnabledChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.Legacy.ListViewBase.ItemClick"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.Controls.ItemClickEventArgs> ItemClick => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.Controls.ItemClickEventHandler, global::Windows.UI.Xaml.Controls.ItemClickEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.Controls.ItemClickEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ItemClick += x, x => _data.ItemClick -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.Legacy.ListViewBase.LayoutUpdated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<object> LayoutUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
+        {
+            void Handler(object sender, object e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LayoutUpdated += x, x => _data.LayoutUpdated -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.Legacy.ListViewBase.Loaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Loaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Loaded += x, x => _data.Loaded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.Legacy.ListViewBase.Loading"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, object args)> Loading => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, object>, (global::Windows.UI.Xaml.DependencyObject sender, object args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, object args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.Loading += x, x => _data.Loading -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.Legacy.ListViewBase.SelectionChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.Controls.SelectionChangedEventArgs> SelectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.Controls.SelectionChangedEventHandler, global::Windows.UI.Xaml.Controls.SelectionChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.Controls.SelectionChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.SelectionChanged += x, x => _data.SelectionChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.Legacy.ListViewBase.SizeChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.SizeChangedEventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.SizeChangedEventHandler, global::Windows.UI.Xaml.SizeChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.SizeChangedEventArgs args) => eventHandler(args);
+            return Handler;
+        }
+
+        , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.Legacy.ListViewBase.Unloaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Unloaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Unloaded += x, x => _data.Unloaded -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Controls.Legacy.ListViewBaseLayout"/> class as observables.
+    /// </summary>
+    public class ListViewBaseLayoutEvents
+    {
+        private readonly global::Uno.UI.Controls.Legacy.ListViewBaseLayout _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Controls.Legacy.ListViewBaseLayout"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public ListViewBaseLayoutEvents(global::Uno.UI.Controls.Legacy.ListViewBaseLayout data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.Legacy.ListViewBaseLayout.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Controls.Legacy.ListViewBaseSource"/> class as observables.
+    /// </summary>
+    public class ListViewBaseSourceEvents
+    {
+        private readonly global::Uno.UI.Controls.Legacy.ListViewBaseSource _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Controls.Legacy.ListViewBaseSource"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public ListViewBaseSourceEvents(global::Uno.UI.Controls.Legacy.ListViewBaseSource data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.Legacy.ListViewBaseSource.ItemClick"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.Controls.ItemClickEventArgs> ItemClick => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.Controls.ItemClickEventHandler, global::Windows.UI.Xaml.Controls.ItemClickEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.Controls.ItemClickEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ItemClick += x, x => _data.ItemClick -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Controls.Legacy.ListViewBaseSource.SelectionChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.Controls.SelectionChangedEventArgs> SelectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.Controls.SelectionChangedEventHandler, global::Windows.UI.Xaml.Controls.SelectionChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.Controls.SelectionChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.SelectionChanged += x, x => _data.SelectionChanged -= x);
+    }
+}
+
+namespace Uno.UI.Views.Controls
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Uno.UI.Views.Controls"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUIActivityIndicatorView"/> class.
+        /// </summary>
+        public static BindableUIActivityIndicatorViewEvents Events(this global::Uno.UI.Views.Controls.BindableUIActivityIndicatorView item) => new BindableUIActivityIndicatorViewEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUIAlertView"/> class.
+        /// </summary>
+        public static BindableUIAlertViewEvents Events(this global::Uno.UI.Views.Controls.BindableUIAlertView item) => new BindableUIAlertViewEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUIButton"/> class.
+        /// </summary>
+        public static BindableUIButtonEvents Events(this global::Uno.UI.Views.Controls.BindableUIButton item) => new BindableUIButtonEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUICollectionView"/> class.
+        /// </summary>
+        public static BindableUICollectionViewEvents Events(this global::Uno.UI.Views.Controls.BindableUICollectionView item) => new BindableUICollectionViewEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUIProgressView"/> class.
+        /// </summary>
+        public static BindableUIProgressViewEvents Events(this global::Uno.UI.Views.Controls.BindableUIProgressView item) => new BindableUIProgressViewEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUIScrollView"/> class.
+        /// </summary>
+        public static BindableUIScrollViewEvents Events(this global::Uno.UI.Views.Controls.BindableUIScrollView item) => new BindableUIScrollViewEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUISwitch"/> class.
+        /// </summary>
+        public static BindableUISwitchEvents Events(this global::Uno.UI.Views.Controls.BindableUISwitch item) => new BindableUISwitchEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.UI.Views.Controls.StyleSelector2"/> class.
+        /// </summary>
+        public static StyleSelector2Events Events(this global::Uno.UI.Views.Controls.StyleSelector2 item) => new StyleSelector2Events(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUIActivityIndicatorView"/> class as observables.
+    /// </summary>
+    public class BindableUIActivityIndicatorViewEvents
+    {
+        private readonly global::Uno.UI.Views.Controls.BindableUIActivityIndicatorView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Views.Controls.BindableUIActivityIndicatorView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public BindableUIActivityIndicatorViewEvents(global::Uno.UI.Views.Controls.BindableUIActivityIndicatorView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Views.Controls.BindableUIActivityIndicatorView.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUIAlertView"/> class as observables.
+    /// </summary>
+    public class BindableUIAlertViewEvents : global::UIKit.UIAlertViewEvents
+    {
+        private readonly global::Uno.UI.Views.Controls.BindableUIAlertView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Views.Controls.BindableUIAlertView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public BindableUIAlertViewEvents(global::Uno.UI.Views.Controls.BindableUIAlertView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Views.Controls.BindableUIAlertView.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUIButton"/> class as observables.
+    /// </summary>
+    public class BindableUIButtonEvents : global::UIKit.UIControlEvents
+    {
+        private readonly global::Uno.UI.Views.Controls.BindableUIButton _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Views.Controls.BindableUIButton"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public BindableUIButtonEvents(global::Uno.UI.Views.Controls.BindableUIButton data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Views.Controls.BindableUIButton.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUICollectionView"/> class as observables.
+    /// </summary>
+    public class BindableUICollectionViewEvents : global::UIKit.UIScrollViewEvents
+    {
+        private readonly global::Uno.UI.Views.Controls.BindableUICollectionView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Views.Controls.BindableUICollectionView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public BindableUICollectionViewEvents(global::Uno.UI.Views.Controls.BindableUICollectionView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Views.Controls.BindableUICollectionView.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUIProgressView"/> class as observables.
+    /// </summary>
+    public class BindableUIProgressViewEvents
+    {
+        private readonly global::Uno.UI.Views.Controls.BindableUIProgressView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Views.Controls.BindableUIProgressView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public BindableUIProgressViewEvents(global::Uno.UI.Views.Controls.BindableUIProgressView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Views.Controls.BindableUIProgressView.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUIScrollView"/> class as observables.
+    /// </summary>
+    public class BindableUIScrollViewEvents : global::UIKit.UIScrollViewEvents
+    {
+        private readonly global::Uno.UI.Views.Controls.BindableUIScrollView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Views.Controls.BindableUIScrollView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public BindableUIScrollViewEvents(global::Uno.UI.Views.Controls.BindableUIScrollView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Views.Controls.BindableUIScrollView.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Views.Controls.BindableUISwitch"/> class as observables.
+    /// </summary>
+    public class BindableUISwitchEvents : global::UIKit.UIControlEvents
+    {
+        private readonly global::Uno.UI.Views.Controls.BindableUISwitch _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Views.Controls.BindableUISwitch"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public BindableUISwitchEvents(global::Uno.UI.Views.Controls.BindableUISwitch data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Views.Controls.BindableUISwitch.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Uno.UI.Views.Controls.StyleSelector2"/> class as observables.
+    /// </summary>
+    public class StyleSelector2Events
+    {
+        private readonly global::Uno.UI.Views.Controls.StyleSelector2 _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Uno.UI.Views.Controls.StyleSelector2"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public StyleSelector2Events(global::Uno.UI.Views.Controls.StyleSelector2 data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Uno.UI.Views.Controls.StyleSelector2.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
     }
 }
 
@@ -10001,6 +11252,16 @@ namespace Windows.Media.Playback
 
         , x => _data.VideoFrameAvailable += x, x => _data.VideoFrameAvailable -= x);
         /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.Media.Playback.MediaPlayer.VideoRatioChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.Media.Playback.MediaPlayer sender, double args)> VideoRatioChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.Media.Playback.MediaPlayer, double>, (global::Windows.Media.Playback.MediaPlayer sender, double args)>(eventHandler =>
+        {
+            void Handler(global::Windows.Media.Playback.MediaPlayer sender, double args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.VideoRatioChanged += x, x => _data.VideoRatioChanged -= x);
+        /// <summary>
         /// Gets an observable which signals when the <see cref = "Windows.Media.Playback.MediaPlayer.VolumeChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<(global::Windows.Media.Playback.MediaPlayer sender, object args)> VolumeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.Media.Playback.MediaPlayer, object>, (global::Windows.Media.Playback.MediaPlayer sender, object args)>(eventHandler =>
@@ -16752,9 +18013,9 @@ namespace Windows.UI.Xaml
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.FrameworkElement.Loading"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Loading => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, object args)> Loading => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, object>, (global::Windows.UI.Xaml.DependencyObject sender, object args)>(eventHandler =>
         {
-            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, object args) => eventHandler((sender, args));
             return Handler;
         }
 
@@ -17057,7 +18318,7 @@ namespace Windows.UI.Xaml
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Windows.UI.Xaml.UIElement"/> class as observables.
     /// </summary>
-    public class UIElementEvents
+    public class UIElementEvents : global::Uno.UI.Controls.BindableUIViewEvents
     {
         private readonly global::Windows.UI.Xaml.UIElement _data;
         /// <summary>
@@ -17139,16 +18400,6 @@ namespace Windows.UI.Xaml
         }
 
         , x => _data.ContextRequested += x, x => _data.ContextRequested -= x);
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.UIElement.DataContextChanged"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
-        {
-            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
-            return Handler;
-        }
-
-        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.UIElement.DoubleTapped"/> event triggers.
         /// </summary>
@@ -17977,6 +19228,14 @@ namespace Windows.UI.Xaml.Controls
         /// </summary>
         public static MenuFlyoutItemEvents Events(this global::Windows.UI.Xaml.Controls.MenuFlyoutItem item) => new MenuFlyoutItemEvents(item);
         /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.MultilineTextBoxView"/> class.
+        /// </summary>
+        public static MultilineTextBoxViewEvents Events(this global::Windows.UI.Xaml.Controls.MultilineTextBoxView item) => new MultilineTextBoxViewEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.NativeListViewBase"/> class.
+        /// </summary>
+        public static NativeListViewBaseEvents Events(this global::Windows.UI.Xaml.Controls.NativeListViewBase item) => new NativeListViewBaseEvents(item);
+        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.NavigationView"/> class.
         /// </summary>
         public static NavigationViewEvents Events(this global::Windows.UI.Xaml.Controls.NavigationView item) => new NavigationViewEvents(item);
@@ -17988,6 +19247,10 @@ namespace Windows.UI.Xaml.Controls
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.PasswordBox"/> class.
         /// </summary>
         public static PasswordBoxEvents Events(this global::Windows.UI.Xaml.Controls.PasswordBox item) => new PasswordBoxEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.Picker"/> class.
+        /// </summary>
+        public static PickerEvents Events(this global::Windows.UI.Xaml.Controls.Picker item) => new PickerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.PickerConfirmedEventArgs"/> class.
         /// </summary>
@@ -18004,6 +19267,10 @@ namespace Windows.UI.Xaml.Controls
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.PopupBase"/> class.
         /// </summary>
         public static PopupBaseEvents Events(this global::Windows.UI.Xaml.Controls.PopupBase item) => new PopupBaseEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.ProgressRing"/> class.
+        /// </summary>
+        public static ProgressRingEvents Events(this global::Windows.UI.Xaml.Controls.ProgressRing item) => new ProgressRingEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.RatingControl"/> class.
         /// </summary>
@@ -18037,6 +19304,10 @@ namespace Windows.UI.Xaml.Controls
         /// </summary>
         public static RowDefinitionEvents Events(this global::Windows.UI.Xaml.Controls.RowDefinition item) => new RowDefinitionEvents(item);
         /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.ScrollContentPresenter"/> class.
+        /// </summary>
+        public static ScrollContentPresenterEvents Events(this global::Windows.UI.Xaml.Controls.ScrollContentPresenter item) => new ScrollContentPresenterEvents(item);
+        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.ScrollViewer"/> class.
         /// </summary>
         public static ScrollViewerEvents Events(this global::Windows.UI.Xaml.Controls.ScrollViewer item) => new ScrollViewerEvents(item);
@@ -18052,6 +19323,10 @@ namespace Windows.UI.Xaml.Controls
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.SettingsFlyout"/> class.
         /// </summary>
         public static SettingsFlyoutEvents Events(this global::Windows.UI.Xaml.Controls.SettingsFlyout item) => new SettingsFlyoutEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.SinglelineTextBoxView"/> class.
+        /// </summary>
+        public static SinglelineTextBoxViewEvents Events(this global::Windows.UI.Xaml.Controls.SinglelineTextBoxView item) => new SinglelineTextBoxViewEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.SplitButton"/> class.
         /// </summary>
@@ -18961,7 +20236,7 @@ namespace Windows.UI.Xaml.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.Image"/> class as observables.
     /// </summary>
-    public class ImageEvents : global::Windows.UI.Xaml.FrameworkElementEvents
+    public class ImageEvents
     {
         private readonly global::Windows.UI.Xaml.Controls.Image _data;
         /// <summary>
@@ -18974,11 +20249,21 @@ namespace Windows.UI.Xaml.Controls
         }
 
         /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Image.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+        /// <summary>
         /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Image.ImageFailed"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> ImageFailed => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        public global::System.IObservable<global::Windows.UI.Xaml.ExceptionRoutedEventArgs> ImageFailed => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.ExceptionRoutedEventHandler, global::Windows.UI.Xaml.ExceptionRoutedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            void Handler(object sender, global::Windows.UI.Xaml.ExceptionRoutedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -18993,6 +20278,66 @@ namespace Windows.UI.Xaml.Controls
         }
 
         , x => _data.ImageOpened += x, x => _data.ImageOpened -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Image.IsEnabledChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs> IsEnabledChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.DependencyPropertyChangedEventHandler, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.IsEnabledChanged += x, x => _data.IsEnabledChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Image.LayoutUpdated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<object> LayoutUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
+        {
+            void Handler(object sender, object e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LayoutUpdated += x, x => _data.LayoutUpdated -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Image.Loaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Loaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Loaded += x, x => _data.Loaded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Image.Loading"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, object args)> Loading => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, object>, (global::Windows.UI.Xaml.DependencyObject sender, object args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, object args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.Loading += x, x => _data.Loading -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Image.SizeChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.SizeChangedEventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.SizeChangedEventHandler, global::Windows.UI.Xaml.SizeChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.SizeChangedEventArgs args) => eventHandler(args);
+            return Handler;
+        }
+
+        , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Image.Unloaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Unloaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Unloaded += x, x => _data.Unloaded -= x);
     }
 
     /// <summary>
@@ -19594,6 +20939,200 @@ namespace Windows.UI.Xaml.Controls
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.MultilineTextBoxView"/> class as observables.
+    /// </summary>
+    public class MultilineTextBoxViewEvents : global::UIKit.UITextViewEvents
+    {
+        private readonly global::Windows.UI.Xaml.Controls.MultilineTextBoxView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.MultilineTextBoxView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public MultilineTextBoxViewEvents(global::Windows.UI.Xaml.Controls.MultilineTextBoxView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.MultilineTextBoxView.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.MultilineTextBoxView.IsEnabledChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs> IsEnabledChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.DependencyPropertyChangedEventHandler, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.IsEnabledChanged += x, x => _data.IsEnabledChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.MultilineTextBoxView.LayoutUpdated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<object> LayoutUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
+        {
+            void Handler(object sender, object e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LayoutUpdated += x, x => _data.LayoutUpdated -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.MultilineTextBoxView.Loaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Loaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Loaded += x, x => _data.Loaded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.MultilineTextBoxView.Loading"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, object args)> Loading => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, object>, (global::Windows.UI.Xaml.DependencyObject sender, object args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, object args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.Loading += x, x => _data.Loading -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.MultilineTextBoxView.SizeChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.SizeChangedEventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.SizeChangedEventHandler, global::Windows.UI.Xaml.SizeChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.SizeChangedEventArgs args) => eventHandler(args);
+            return Handler;
+        }
+
+        , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.MultilineTextBoxView.Unloaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Unloaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Unloaded += x, x => _data.Unloaded -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.NativeListViewBase"/> class as observables.
+    /// </summary>
+    public class NativeListViewBaseEvents : global::UIKit.UIScrollViewEvents
+    {
+        private readonly global::Windows.UI.Xaml.Controls.NativeListViewBase _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.NativeListViewBase"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public NativeListViewBaseEvents(global::Windows.UI.Xaml.Controls.NativeListViewBase data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.NativeListViewBase.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.NativeListViewBase.HorizontalSnapPointsChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<object> HorizontalSnapPointsChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
+        {
+            void Handler(object sender, object e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.HorizontalSnapPointsChanged += x, x => _data.HorizontalSnapPointsChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.NativeListViewBase.IsEnabledChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs> IsEnabledChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.DependencyPropertyChangedEventHandler, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.IsEnabledChanged += x, x => _data.IsEnabledChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.NativeListViewBase.LayoutUpdated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<object> LayoutUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
+        {
+            void Handler(object sender, object e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LayoutUpdated += x, x => _data.LayoutUpdated -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.NativeListViewBase.Loaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Loaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Loaded += x, x => _data.Loaded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.NativeListViewBase.Loading"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, object args)> Loading => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, object>, (global::Windows.UI.Xaml.DependencyObject sender, object args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, object args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.Loading += x, x => _data.Loading -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.NativeListViewBase.SizeChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.SizeChangedEventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.SizeChangedEventHandler, global::Windows.UI.Xaml.SizeChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.SizeChangedEventArgs args) => eventHandler(args);
+            return Handler;
+        }
+
+        , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.NativeListViewBase.Unloaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Unloaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Unloaded += x, x => _data.Unloaded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.NativeListViewBase.VerticalSnapPointsChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<object> VerticalSnapPointsChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
+        {
+            void Handler(object sender, object e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.VerticalSnapPointsChanged += x, x => _data.VerticalSnapPointsChanged -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.NavigationView"/> class as observables.
     /// </summary>
     public class NavigationViewEvents : global::Windows.UI.Xaml.Controls.ControlEvents
@@ -19775,6 +21314,103 @@ namespace Windows.UI.Xaml.Controls
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.Picker"/> class as observables.
+    /// </summary>
+    public class PickerEvents
+    {
+        private readonly global::Windows.UI.Xaml.Controls.Picker _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Picker"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public PickerEvents(global::Windows.UI.Xaml.Controls.Picker data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Picker.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Picker.IsEnabledChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs> IsEnabledChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.DependencyPropertyChangedEventHandler, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.IsEnabledChanged += x, x => _data.IsEnabledChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Picker.LayoutUpdated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<object> LayoutUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
+        {
+            void Handler(object sender, object e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LayoutUpdated += x, x => _data.LayoutUpdated -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Picker.Loaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Loaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Loaded += x, x => _data.Loaded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Picker.Loading"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, object args)> Loading => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, object>, (global::Windows.UI.Xaml.DependencyObject sender, object args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, object args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.Loading += x, x => _data.Loading -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Picker.SelectionChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.Controls.SelectionChangedEventArgs> SelectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.Controls.SelectionChangedEventHandler, global::Windows.UI.Xaml.Controls.SelectionChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.Controls.SelectionChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.SelectionChanged += x, x => _data.SelectionChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Picker.SizeChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.SizeChangedEventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.SizeChangedEventHandler, global::Windows.UI.Xaml.SizeChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.SizeChangedEventArgs args) => eventHandler(args);
+            return Handler;
+        }
+
+        , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.Picker.Unloaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Unloaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Unloaded += x, x => _data.Unloaded -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.PickerConfirmedEventArgs"/> class as observables.
     /// </summary>
     public class PickerConfirmedEventArgsEvents
@@ -19930,6 +21566,83 @@ namespace Windows.UI.Xaml.Controls
         }
 
         , x => _data.Opened += x, x => _data.Opened -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.ProgressRing"/> class as observables.
+    /// </summary>
+    public class ProgressRingEvents : global::Uno.UI.Views.Controls.BindableUIActivityIndicatorViewEvents
+    {
+        private readonly global::Windows.UI.Xaml.Controls.ProgressRing _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.ProgressRing"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public ProgressRingEvents(global::Windows.UI.Xaml.Controls.ProgressRing data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ProgressRing.IsEnabledChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs> IsEnabledChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.DependencyPropertyChangedEventHandler, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.IsEnabledChanged += x, x => _data.IsEnabledChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ProgressRing.LayoutUpdated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<object> LayoutUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
+        {
+            void Handler(object sender, object e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LayoutUpdated += x, x => _data.LayoutUpdated -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ProgressRing.Loaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Loaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Loaded += x, x => _data.Loaded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ProgressRing.Loading"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, object args)> Loading => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, object>, (global::Windows.UI.Xaml.DependencyObject sender, object args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, object args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.Loading += x, x => _data.Loading -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ProgressRing.SizeChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.SizeChangedEventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.SizeChangedEventHandler, global::Windows.UI.Xaml.SizeChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.SizeChangedEventArgs args) => eventHandler(args);
+            return Handler;
+        }
+
+        , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ProgressRing.Unloaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Unloaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Unloaded += x, x => _data.Unloaded -= x);
     }
 
     /// <summary>
@@ -20309,6 +22022,93 @@ namespace Windows.UI.Xaml.Controls
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.ScrollContentPresenter"/> class as observables.
+    /// </summary>
+    public class ScrollContentPresenterEvents : global::UIKit.UIScrollViewEvents
+    {
+        private readonly global::Windows.UI.Xaml.Controls.ScrollContentPresenter _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.ScrollContentPresenter"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public ScrollContentPresenterEvents(global::Windows.UI.Xaml.Controls.ScrollContentPresenter data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ScrollContentPresenter.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ScrollContentPresenter.IsEnabledChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs> IsEnabledChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.DependencyPropertyChangedEventHandler, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.IsEnabledChanged += x, x => _data.IsEnabledChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ScrollContentPresenter.LayoutUpdated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<object> LayoutUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
+        {
+            void Handler(object sender, object e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LayoutUpdated += x, x => _data.LayoutUpdated -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ScrollContentPresenter.Loaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Loaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Loaded += x, x => _data.Loaded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ScrollContentPresenter.Loading"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, object args)> Loading => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, object>, (global::Windows.UI.Xaml.DependencyObject sender, object args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, object args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.Loading += x, x => _data.Loading -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ScrollContentPresenter.SizeChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.SizeChangedEventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.SizeChangedEventHandler, global::Windows.UI.Xaml.SizeChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.SizeChangedEventArgs args) => eventHandler(args);
+            return Handler;
+        }
+
+        , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.ScrollContentPresenter.Unloaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Unloaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Unloaded += x, x => _data.Unloaded -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.ScrollViewer"/> class as observables.
     /// </summary>
     public class ScrollViewerEvents : global::Windows.UI.Xaml.Controls.ControlEvents
@@ -20504,6 +22304,93 @@ namespace Windows.UI.Xaml.Controls
         }
 
         , x => _data.BackClick += x, x => _data.BackClick -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Windows.UI.Xaml.Controls.SinglelineTextBoxView"/> class as observables.
+    /// </summary>
+    public class SinglelineTextBoxViewEvents : global::UIKit.UITextFieldEvents
+    {
+        private readonly global::Windows.UI.Xaml.Controls.SinglelineTextBoxView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.SinglelineTextBoxView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public SinglelineTextBoxViewEvents(global::Windows.UI.Xaml.Controls.SinglelineTextBoxView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.SinglelineTextBoxView.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.SinglelineTextBoxView.IsEnabledChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs> IsEnabledChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.DependencyPropertyChangedEventHandler, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.DependencyPropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.IsEnabledChanged += x, x => _data.IsEnabledChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.SinglelineTextBoxView.LayoutUpdated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<object> LayoutUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
+        {
+            void Handler(object sender, object e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LayoutUpdated += x, x => _data.LayoutUpdated -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.SinglelineTextBoxView.Loaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Loaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Loaded += x, x => _data.Loaded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.SinglelineTextBoxView.Loading"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, object args)> Loading => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, object>, (global::Windows.UI.Xaml.DependencyObject sender, object args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, object args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.Loading += x, x => _data.Loading -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.SinglelineTextBoxView.SizeChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.SizeChangedEventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.SizeChangedEventHandler, global::Windows.UI.Xaml.SizeChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.SizeChangedEventArgs args) => eventHandler(args);
+            return Handler;
+        }
+
+        , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Controls.SinglelineTextBoxView.Unloaded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> Unloaded => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Unloaded += x, x => _data.Unloaded -= x);
     }
 
     /// <summary>
@@ -23761,12 +25648,32 @@ namespace Windows.UI.Xaml.Documents
         }
 
         , x => _data.Click += x, x => _data.Click -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Documents.Hyperlink.GotFocus"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> GotFocus => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.GotFocus += x, x => _data.GotFocus -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Documents.Hyperlink.LostFocus"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Windows.UI.Xaml.RoutedEventArgs> LostFocus => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.UI.Xaml.RoutedEventHandler, global::Windows.UI.Xaml.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Windows.UI.Xaml.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LostFocus += x, x => _data.LostFocus -= x);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Windows.UI.Xaml.Documents.TextElement"/> class as observables.
     /// </summary>
-    public class TextElementEvents : global::Windows.UI.Xaml.UIElementEvents
+    public class TextElementEvents
     {
         private readonly global::Windows.UI.Xaml.Documents.TextElement _data;
         /// <summary>
@@ -23808,6 +25715,16 @@ namespace Windows.UI.Xaml.Documents
         }
 
         , x => _data.AccessKeyInvoked += x, x => _data.AccessKeyInvoked -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "Windows.UI.Xaml.Documents.TextElement.DataContextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::Windows.Foundation.TypedEventHandler<global::Windows.UI.Xaml.DependencyObject, global::Windows.UI.Xaml.DataContextChangedEventArgs>, (global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args)>(eventHandler =>
+        {
+            void Handler(global::Windows.UI.Xaml.DependencyObject sender, global::Windows.UI.Xaml.DataContextChangedEventArgs args) => eventHandler((sender, args));
+            return Handler;
+        }
+
+        , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
     }
 
     /// <summary>
