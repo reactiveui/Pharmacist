@@ -34,7 +34,7 @@ namespace Pharmacist.Core.NuGet
         /// </summary>
         public const string DefaultNuGetSource = "https://api.nuget.org/v3/index.json";
 
-        private static readonly int ProcessingCount = Environment.ProcessorCount - 1;
+        private static readonly int ProcessingCount = Environment.ProcessorCount;
 
         private static readonly string[] DefaultFoldersToGrab = { PackagingConstants.Folders.Lib, PackagingConstants.Folders.Build, PackagingConstants.Folders.Ref };
 

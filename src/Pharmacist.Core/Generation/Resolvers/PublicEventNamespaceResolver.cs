@@ -28,7 +28,7 @@ namespace Pharmacist.Core.Generation.Resolvers
             var toProcess = new ConcurrentStack<ITypeDefinition>(GetPublicTypesWithEvents(compilation));
             var output = new ConcurrentBag<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)>();
 
-            var processing = new ITypeDefinition[Environment.ProcessorCount - 1];
+            var processing = new ITypeDefinition[Environment.ProcessorCount];
             while (!toProcess.IsEmpty)
             {
                 var count = toProcess.TryPopRange(processing);
