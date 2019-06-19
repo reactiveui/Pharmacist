@@ -16,8 +16,8 @@ namespace Pharmacist.Core
     public class static ObservablesForEventGenerator
     {
         public static System.Threading.Tasks.Task ExtractEventsFromAssemblies(System.IO.Stream outputStream, System.Collections.Generic.IEnumerable<string> assemblyPaths, System.Collections.Generic.IEnumerable<string> searchDirectories) { }
-        public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.Stream outputStream, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packages, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks) { }
-        public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.Stream outputStream, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> packages, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks) { }
+        public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.Stream outputStream, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packages, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks, string packageOutputFolder = null) { }
+        public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.Stream outputStream, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> packages, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks, string packageOutputFolder = null) { }
         public static System.Threading.Tasks.Task ExtractEventsFromPlatforms(string outputPath, string prefix, string suffix, string defaultReferenceAssemblyLocation, System.Collections.Generic.IEnumerable<Pharmacist.Core.AutoPlatform> platforms) { }
         public static System.Threading.Tasks.Task WriteHeader(System.IO.Stream outputStream) { }
         public static System.Threading.Tasks.Task WriteHeader(System.IO.Stream outputStream, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> libraryRanges) { }
@@ -39,8 +39,8 @@ namespace Pharmacist.Core.Extractors
         public NuGetExtractor() { }
         public System.Collections.Generic.IEnumerable<string> Assemblies { get; }
         public System.Collections.Generic.IEnumerable<string> SearchDirectories { get; }
-        public System.Threading.Tasks.Task Extract(System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> targetFrameworks, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packages) { }
-        public System.Threading.Tasks.Task Extract(System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> targetFrameworks, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> packages) { }
+        public System.Threading.Tasks.Task Extract(System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> targetFrameworks, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packages, string packageOutputDirectory) { }
+        public System.Threading.Tasks.Task Extract(System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> targetFrameworks, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> packages, string packageOutputDirectory) { }
     }
 }
 namespace Pharmacist.Core.Extractors.PlatformExtractors
@@ -94,7 +94,7 @@ namespace Pharmacist.Core.NuGet
     public class static NuGetFrameworkHelper
     {
         public static System.Collections.Generic.IEnumerable<NuGet.Packaging.Core.PackageIdentity> GetSupportLibraries(this NuGet.Frameworks.NuGetFramework framework) { }
-        public static System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> ToFrameworks(this string frameworkName) { }
+        public static System.Collections.Generic.IReadOnlyList<NuGet.Frameworks.NuGetFramework> ToFrameworks(this string frameworkName) { }
     }
     public class static NuGetPackageHelper
     {
@@ -103,12 +103,12 @@ namespace Pharmacist.Core.NuGet
         [return: System.Runtime.CompilerServices.TupleElementNamesAttribute(new string[] {
                 "folder",
                 "files"})]
-        public static System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyCollection<System.ValueTuple<string, System.Collections.Generic.IReadOnlyCollection<string>>>> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> libraryIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, string packageDirectory = null, System.Threading.CancellationToken token = null) { }
+        public static System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyCollection<System.ValueTuple<string, System.Collections.Generic.IReadOnlyCollection<string>>>> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> libraryIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, string packageOutputDirectory = null, System.Threading.CancellationToken token = null) { }
         [return: System.Runtime.CompilerServices.TupleElementNamesAttribute(new string[] {
                 "folder",
                 "files"})]
-        public static System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyCollection<System.ValueTuple<string, System.Collections.Generic.IReadOnlyCollection<string>>>> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packageIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, string packageDirectory = null, System.Threading.CancellationToken token = null) { }
-        public static System.Threading.Tasks.Task<NuGet.Packaging.Core.PackageIdentity> GetBestMatch(NuGet.LibraryModel.LibraryRange identity, NuGet.Protocol.Core.Types.SourceRepository sourceRepository, System.Threading.CancellationToken token) { }
+        public static System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyCollection<System.ValueTuple<string, System.Collections.Generic.IReadOnlyCollection<string>>>> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packageIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, string packageOutputDirectory = null, System.Threading.CancellationToken token = null) { }
+        public static System.Threading.Tasks.Task<NuGet.Packaging.Core.PackageIdentity> GetBestMatch(NuGet.LibraryModel.LibraryRange identity, NuGet.Protocol.Core.Types.FindPackageByIdResource findPackageResource, System.Threading.CancellationToken token) { }
     }
 }
 namespace Pharmacist.Core.ReferenceLocators
