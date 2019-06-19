@@ -66,9 +66,10 @@ namespace Pharmacist.Core.Generation.Generators
                     })));
         }
 
-        private static ConstructorDeclarationSyntax GenerateEventWrapperClassConstructor(ITypeDefinition typeDefinition)
+        private static ConstructorDeclarationSyntax GenerateEventWrapperClassConstructor(ITypeDefinition typeDefinition, bool hasBaseClass)
         {
-            return ConstructorDeclaration(
+            const string dataParameterName = "data";
+            var constructor = ConstructorDeclaration(
                     Identifier(typeDefinition.Name + "Events"))
                 .WithModifiers(
                     TokenList(
@@ -77,13 +78,20 @@ namespace Pharmacist.Core.Generation.Generators
                     ParameterList(
                         SingletonSeparatedList(
                             Parameter(
-                                    Identifier("data"))
+                                    Identifier(dataParameterName))
                                 .WithType(
                                     IdentifierName(typeDefinition.GenerateFullGenericName())))))
                 .WithBody(Block(SingletonList(
                     ExpressionStatement(
                         AssignmentExpression(SyntaxKind.SimpleAssignmentExpression, IdentifierName(DataFieldName), IdentifierName("data"))))))
-                .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Initializes a new instance of the {0} class.", typeDefinition.GenerateFullGenericName(), ("data", "The class that is being wrapped.")));
+                .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Initializes a new instance of the {0} class.", typeDefinition.GenerateFullGenericName(), (dataParameterName, "The class that is being wrapped.")));
+
+            if (hasBaseClass)
+            {
+                constructor = constructor.WithInitializer(ConstructorInitializer(SyntaxKind.BaseConstructorInitializer, ArgumentList(SingletonSeparatedList(Argument(IdentifierName(dataParameterName))))));
+            }
+
+            return constructor;
         }
 
         private static FieldDeclarationSyntax GenerateEventWrapperField(ITypeDefinition typeDefinition)
@@ -95,7 +103,7 @@ namespace Pharmacist.Core.Generation.Generators
 
         private static ClassDeclarationSyntax GenerateEventWrapperClass(ITypeDefinition typeDefinition, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)
         {
-            var members = new List<MemberDeclarationSyntax> { GenerateEventWrapperField(typeDefinition), GenerateEventWrapperClassConstructor(typeDefinition) };
+            var members = new List<MemberDeclarationSyntax> { GenerateEventWrapperField(typeDefinition), GenerateEventWrapperClassConstructor(typeDefinition, baseTypeDefinition != null) };
             members.AddRange(events.OrderBy(x => x.Name).Select(x => GenerateEventWrapperObservable(x, DataFieldName)).Where(x => x != null));
 
             var classDeclaration = ClassDeclaration(typeDefinition.Name + "Events")

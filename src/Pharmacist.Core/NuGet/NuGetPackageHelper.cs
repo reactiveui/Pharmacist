@@ -133,6 +133,16 @@ namespace Pharmacist.Core.NuGet
         /// <returns>The best matching PackageIdentity to the specified version range.</returns>
         public static async Task<PackageIdentity> GetBestMatch(LibraryRange identity, FindPackageByIdResource findPackageResource, CancellationToken token)
         {
+            if (identity == null)
+            {
+                throw new ArgumentNullException(nameof(identity));
+            }
+
+            if (findPackageResource == null)
+            {
+                throw new ArgumentNullException(nameof(findPackageResource));
+            }
+
             var versions = await findPackageResource.GetAllVersionsAsync(identity.Name, _sourceCacheContext, _logger, token).ConfigureAwait(false);
 
             var bestPackageVersion = versions?.FindBestMatch(identity.VersionRange, version => version);

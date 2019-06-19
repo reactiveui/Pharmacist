@@ -36,7 +36,11 @@ namespace Pharmacist.Tests
             {
                 var folders = (await NuGetPackageHelper.DownloadPackageFilesAndFolder(new[] { new PackageIdentity("NETStandard.Library", new NuGetVersion("2.0.0")) }).ConfigureAwait(false)).Select(x => x.folder);
 
-                await ObservablesForEventGenerator.ExtractEventsFromAssemblies(memoryStream, new[] { typeof(InstanceClass).Assembly.Location }, folders).ConfigureAwait(false);
+                using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8, 1024, true))
+                {
+                    await ObservablesForEventGenerator.ExtractEventsFromAssemblies(streamWriter, new[] { typeof(InstanceClass).Assembly.Location }, folders).ConfigureAwait(false);
+                }
+
                 memoryStream.Flush();
 
                 memoryStream.Position = 0;

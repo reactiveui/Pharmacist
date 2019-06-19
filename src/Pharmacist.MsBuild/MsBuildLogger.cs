@@ -70,7 +70,7 @@ namespace Pharmacist.MsBuild
             {
                 case LogLevel.Info:
                 case LogLevel.Debug:
-                    _log.LogMessage(exception.ToString());
+                    _log.LogMessage(exception?.ToString());
                     break;
                 case LogLevel.Warn:
                     _log.LogWarningFromException(exception);
@@ -120,7 +120,7 @@ namespace Pharmacist.MsBuild
             {
                 case LogLevel.Info:
                 case LogLevel.Debug:
-                    _log.LogMessage(exception.ToString());
+                    _log.LogMessage(exception?.ToString());
                     break;
                 case LogLevel.Warn:
                     _log.LogWarningFromException(exception);

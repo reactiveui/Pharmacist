@@ -5,14 +5,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Linq;
 
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
 using NuGet.LibraryModel;
-using NuGet.Packaging.Core;
 using NuGet.Versioning;
 
 using Pharmacist.Core;
@@ -25,6 +24,7 @@ namespace Pharmacist.MsBuild
     /// <summary>
     /// A task for generating events.
     /// </summary>
+    [SuppressMessage("Design", "CA1031: Catch specific exceptions", Justification = "Final logging location for exceptions.")]
     public class PharmacistNuGetTask : Task, IEnableLogger
     {
         private static readonly ISet<string> ExclusionPackageReferenceSet = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase)
@@ -69,7 +69,7 @@ namespace Pharmacist.MsBuild
                 return false;
             }
 
-            using (var stream = new FileStream(Path.Combine(OutputFile), FileMode.Create, FileAccess.Write))
+            using (var writer = new StreamWriter(Path.Combine(OutputFile)))
             {
                 var packages = new List<LibraryRange>();
 
@@ -93,11 +93,11 @@ namespace Pharmacist.MsBuild
                     packages.Add(packageIdentity);
                 }
 
-                ObservablesForEventGenerator.WriteHeader(stream).ConfigureAwait(false).GetAwaiter().GetResult();
+                ObservablesForEventGenerator.WriteHeader(writer, packages).ConfigureAwait(false).GetAwaiter().GetResult();
 
                 try
                 {
-                    ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, packages, TargetFramework.ToFrameworks()).GetAwaiter().GetResult();
+                    ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(writer, packages, TargetFramework.ToFrameworks()).GetAwaiter().GetResult();
                 }
                 catch (Exception ex)
                 {

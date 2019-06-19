@@ -20,38 +20,6 @@ namespace Pharmacist.Core.Generation.Resolvers
     /// </summary>
     internal abstract class EventNamespaceResolverBase : INamespaceResolver
     {
-        private static readonly ImmutableHashSet<string> SkipNamespaceList = new[]
-        {
-            "Windows.UI.Xaml.Data",
-            "Windows.UI.Xaml.Interop",
-            "Windows.UI.Xaml.Input",
-            "MonoTouch.AudioToolbox",
-            "MonoMac.AudioToolbox",
-            "ReactiveUI.Events",
-
-            // Winforms
-            "System.Collections.Specialized",
-            "System.Configuration",
-            "System.ComponentModel.Design",
-            "System.ComponentModel.Design.Serialization",
-            "System.CodeDom",
-            "System.Data.SqlClient",
-            "System.Data.OleDb",
-            "System.Data.Odbc",
-            "System.Data.Common",
-            "System.Drawing.Design",
-            "System.Media",
-            "System.Net",
-            "System.Net.Mail",
-            "System.Net.NetworkInformation",
-            "System.Net.Sockets",
-            "System.ServiceProcess.Design",
-            "System.Windows.Input",
-            "System.Windows.Forms.ComponentModel.Com2Interop",
-            "System.Windows.Forms.Design",
-            "System.Timers"
-        }.ToImmutableHashSet();
-
         /// <inheritdoc />
         public IEnumerable<NamespaceDeclarationSyntax> Create(ICompilation compilation)
         {
