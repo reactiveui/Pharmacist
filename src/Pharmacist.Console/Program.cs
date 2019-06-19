@@ -5,13 +5,14 @@
 
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading.Tasks;
 
 using CommandLine;
 using CommandLine.Text;
 
-using NuGet.Packaging.Core;
+using NuGet.LibraryModel;
 using NuGet.Versioning;
 
 using Pharmacist.Console.CommandOptions;
@@ -27,6 +28,8 @@ namespace Pharmacist.Console
 {
     internal static class Program
     {
+        [SuppressMessage("Design", "CA1031: Catch specific exceptions", Justification = "Final logging location for exceptions.")]
+        [SuppressMessage("Design", "CA2000: Dispose items", Justification = "Will be cleaned up when application ends.")]
         public static async Task<int> Main(string[] args)
         {
             // allow app to be debugged in visual studio.
@@ -70,10 +73,10 @@ namespace Pharmacist.Console
                 {
                     try
                     {
-                        using (var stream = new FileStream(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs"), FileMode.Create, FileAccess.Write))
+                        using (var writer = new StreamWriter(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs")))
                         {
-                            await ObservablesForEventGenerator.WriteHeader(stream).ConfigureAwait(false);
-                            await ObservablesForEventGenerator.ExtractEventsFromAssemblies(stream, options.Assemblies, options.SearchDirectories).ConfigureAwait(false);
+                            await ObservablesForEventGenerator.WriteHeader(writer, options.Assemblies).ConfigureAwait(false);
+                            await ObservablesForEventGenerator.ExtractEventsFromAssemblies(writer, options.Assemblies, options.SearchDirectories).ConfigureAwait(false);
                         }
 
                         return ExitCode.Success;
@@ -88,12 +91,12 @@ namespace Pharmacist.Console
                 {
                     try
                     {
-                        using (var stream = new FileStream(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs"), FileMode.Create, FileAccess.Write))
+                        using (var writer = new StreamWriter(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs")))
                         {
-                            var packageIdentity = new PackageIdentity(options.NugetPackageName, new NuGetVersion(options.NugetVersion));
+                            var packageIdentity = new[] { new LibraryRange(options.NugetPackageName, VersionRange.Parse(options.NugetVersion), LibraryDependencyTarget.Package) };
                             var nugetFramework = options.TargetFramework.ToFrameworks();
-                            await ObservablesForEventGenerator.WriteHeader(stream).ConfigureAwait(false);
-                            await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(stream, new[] { packageIdentity }, nugetFramework, options.PackageFolder).ConfigureAwait(false);
+                            await ObservablesForEventGenerator.WriteHeader(writer, packageIdentity).ConfigureAwait(false);
+                            await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(writer, packageIdentity, nugetFramework, options.PackageFolder).ConfigureAwait(false);
                         }
 
                         return ExitCode.Success;

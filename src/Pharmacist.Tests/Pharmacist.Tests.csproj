@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.2</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);net472</TargetFrameworks>
     <IsPackable>false</IsPackable>
     <NoWarn>$(NoWarn);1591;SA1633</NoWarn>
   </PropertyGroup>

@@ -170,7 +170,7 @@ namespace Avalonia
         /// Initializes a new instance of the <see cref = "global::Avalonia.StyledElement"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StyledElementEvents(global::Avalonia.StyledElement data)
+        public StyledElementEvents(global::Avalonia.StyledElement data): base(data)
         {
             _data = data;
         }
@@ -237,7 +237,7 @@ namespace Avalonia
         /// Initializes a new instance of the <see cref = "global::Avalonia.Visual"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public VisualEvents(global::Avalonia.Visual data)
+        public VisualEvents(global::Avalonia.Visual data): base(data)
         {
             _data = data;
         }
@@ -407,7 +407,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.AutoCompleteBox"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public AutoCompleteBoxEvents(global::Avalonia.Controls.AutoCompleteBox data)
+        public AutoCompleteBoxEvents(global::Avalonia.Controls.AutoCompleteBox data): base(data)
         {
             _data = data;
         }
@@ -504,7 +504,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Button"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ButtonEvents(global::Avalonia.Controls.Button data)
+        public ButtonEvents(global::Avalonia.Controls.Button data): base(data)
         {
             _data = data;
         }
@@ -531,7 +531,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Calendar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CalendarEvents(global::Avalonia.Controls.Calendar data)
+        public CalendarEvents(global::Avalonia.Controls.Calendar data): base(data)
         {
             _data = data;
         }
@@ -578,7 +578,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.ContextMenu"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ContextMenuEvents(global::Avalonia.Controls.ContextMenu data)
+        public ContextMenuEvents(global::Avalonia.Controls.ContextMenu data): base(data)
         {
             _data = data;
         }
@@ -615,7 +615,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.DatePicker"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public DatePickerEvents(global::Avalonia.Controls.DatePicker data)
+        public DatePickerEvents(global::Avalonia.Controls.DatePicker data): base(data)
         {
             _data = data;
         }
@@ -763,7 +763,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.MenuBase"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MenuBaseEvents(global::Avalonia.Controls.MenuBase data)
+        public MenuBaseEvents(global::Avalonia.Controls.MenuBase data): base(data)
         {
             _data = data;
         }
@@ -800,7 +800,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.MenuItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MenuItemEvents(global::Avalonia.Controls.MenuItem data)
+        public MenuItemEvents(global::Avalonia.Controls.MenuItem data): base(data)
         {
             _data = data;
         }
@@ -894,7 +894,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.NumericUpDown"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public NumericUpDownEvents(global::Avalonia.Controls.NumericUpDown data)
+        public NumericUpDownEvents(global::Avalonia.Controls.NumericUpDown data): base(data)
         {
             _data = data;
         }
@@ -931,7 +931,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.ResourceDictionary"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ResourceDictionaryEvents(global::Avalonia.Controls.ResourceDictionary data)
+        public ResourceDictionaryEvents(global::Avalonia.Controls.ResourceDictionary data): base(data)
         {
             _data = data;
         }
@@ -958,7 +958,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Spinner"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SpinnerEvents(global::Avalonia.Controls.Spinner data)
+        public SpinnerEvents(global::Avalonia.Controls.Spinner data): base(data)
         {
             _data = data;
         }
@@ -985,7 +985,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.TopLevel"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TopLevelEvents(global::Avalonia.Controls.TopLevel data)
+        public TopLevelEvents(global::Avalonia.Controls.TopLevel data): base(data)
         {
             _data = data;
         }
@@ -1022,7 +1022,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.TreeView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TreeViewEvents(global::Avalonia.Controls.TreeView data)
+        public TreeViewEvents(global::Avalonia.Controls.TreeView data): base(data)
         {
             _data = data;
         }
@@ -1049,7 +1049,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Window"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public WindowEvents(global::Avalonia.Controls.Window data)
+        public WindowEvents(global::Avalonia.Controls.Window data): base(data)
         {
             _data = data;
         }
@@ -1076,7 +1076,7 @@ namespace Avalonia.Controls
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.WindowBase"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public WindowBaseEvents(global::Avalonia.Controls.WindowBase data)
+        public WindowBaseEvents(global::Avalonia.Controls.WindowBase data): base(data)
         {
             _data = data;
         }
@@ -1137,7 +1137,7 @@ namespace Avalonia.Controls.Embedding
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Embedding.EmbeddableControlRoot"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public EmbeddableControlRootEvents(global::Avalonia.Controls.Embedding.EmbeddableControlRoot data)
+        public EmbeddableControlRootEvents(global::Avalonia.Controls.Embedding.EmbeddableControlRoot data): base(data)
         {
             _data = data;
         }
@@ -1457,7 +1457,7 @@ namespace Avalonia.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.CalendarButton"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CalendarButtonEvents(global::Avalonia.Controls.Primitives.CalendarButton data)
+        public CalendarButtonEvents(global::Avalonia.Controls.Primitives.CalendarButton data): base(data)
         {
             _data = data;
         }
@@ -1494,7 +1494,7 @@ namespace Avalonia.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.CalendarDayButton"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CalendarDayButtonEvents(global::Avalonia.Controls.Primitives.CalendarDayButton data)
+        public CalendarDayButtonEvents(global::Avalonia.Controls.Primitives.CalendarDayButton data): base(data)
         {
             _data = data;
         }
@@ -1531,7 +1531,7 @@ namespace Avalonia.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.Popup"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PopupEvents(global::Avalonia.Controls.Primitives.Popup data)
+        public PopupEvents(global::Avalonia.Controls.Primitives.Popup data): base(data)
         {
             _data = data;
         }
@@ -1578,7 +1578,7 @@ namespace Avalonia.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.ScrollBar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ScrollBarEvents(global::Avalonia.Controls.Primitives.ScrollBar data)
+        public ScrollBarEvents(global::Avalonia.Controls.Primitives.ScrollBar data): base(data)
         {
             _data = data;
         }
@@ -1605,7 +1605,7 @@ namespace Avalonia.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.SelectingItemsControl"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SelectingItemsControlEvents(global::Avalonia.Controls.Primitives.SelectingItemsControl data)
+        public SelectingItemsControlEvents(global::Avalonia.Controls.Primitives.SelectingItemsControl data): base(data)
         {
             _data = data;
         }
@@ -1632,7 +1632,7 @@ namespace Avalonia.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.TemplatedControl"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TemplatedControlEvents(global::Avalonia.Controls.Primitives.TemplatedControl data)
+        public TemplatedControlEvents(global::Avalonia.Controls.Primitives.TemplatedControl data): base(data)
         {
             _data = data;
         }
@@ -1659,7 +1659,7 @@ namespace Avalonia.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.Thumb"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ThumbEvents(global::Avalonia.Controls.Primitives.Thumb data)
+        public ThumbEvents(global::Avalonia.Controls.Primitives.Thumb data): base(data)
         {
             _data = data;
         }
@@ -2070,7 +2070,7 @@ namespace Avalonia.Input
         /// Initializes a new instance of the <see cref = "global::Avalonia.Input.InputElement"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public InputElementEvents(global::Avalonia.Input.InputElement data)
+        public InputElementEvents(global::Avalonia.Input.InputElement data): base(data)
         {
             _data = data;
         }
@@ -2258,7 +2258,7 @@ namespace Avalonia.Layout
         /// Initializes a new instance of the <see cref = "global::Avalonia.Layout.Layoutable"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public LayoutableEvents(global::Avalonia.Layout.Layoutable data)
+        public LayoutableEvents(global::Avalonia.Layout.Layoutable data): base(data)
         {
             _data = data;
         }
@@ -2444,7 +2444,7 @@ namespace Avalonia.Media
         /// Initializes a new instance of the <see cref = "global::Avalonia.Media.Brush"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public BrushEvents(global::Avalonia.Media.Brush data)
+        public BrushEvents(global::Avalonia.Media.Brush data): base(data)
         {
             _data = data;
         }
@@ -2471,7 +2471,7 @@ namespace Avalonia.Media
         /// Initializes a new instance of the <see cref = "global::Avalonia.Media.Geometry"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public GeometryEvents(global::Avalonia.Media.Geometry data)
+        public GeometryEvents(global::Avalonia.Media.Geometry data): base(data)
         {
             _data = data;
         }
@@ -2525,7 +2525,7 @@ namespace Avalonia.Media
         /// Initializes a new instance of the <see cref = "global::Avalonia.Media.Transform"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TransformEvents(global::Avalonia.Media.Transform data)
+        public TransformEvents(global::Avalonia.Media.Transform data): base(data)
         {
             _data = data;
         }
@@ -2807,7 +2807,7 @@ namespace Avalonia.Styling
         /// Initializes a new instance of the <see cref = "global::Avalonia.Styling.Style"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StyleEvents(global::Avalonia.Styling.Style data)
+        public StyleEvents(global::Avalonia.Styling.Style data): base(data)
         {
             _data = data;
         }
@@ -2834,7 +2834,7 @@ namespace Avalonia.Styling
         /// Initializes a new instance of the <see cref = "global::Avalonia.Styling.Styles"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StylesEvents(global::Avalonia.Styling.Styles data)
+        public StylesEvents(global::Avalonia.Styling.Styles data): base(data)
         {
             _data = data;
         }

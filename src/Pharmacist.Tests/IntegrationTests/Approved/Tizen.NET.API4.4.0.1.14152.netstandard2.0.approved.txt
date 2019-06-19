@@ -186,7 +186,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Button"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ButtonEvents(global::ElmSharp.Button data)
+        public ButtonEvents(global::ElmSharp.Button data): base(data)
         {
             _data = data;
         }
@@ -243,7 +243,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Calendar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CalendarEvents(global::ElmSharp.Calendar data)
+        public CalendarEvents(global::ElmSharp.Calendar data): base(data)
         {
             _data = data;
         }
@@ -280,7 +280,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Check"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CheckEvents(global::ElmSharp.Check data)
+        public CheckEvents(global::ElmSharp.Check data): base(data)
         {
             _data = data;
         }
@@ -307,7 +307,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.ColorSelector"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ColorSelectorEvents(global::ElmSharp.ColorSelector data)
+        public ColorSelectorEvents(global::ElmSharp.ColorSelector data): base(data)
         {
             _data = data;
         }
@@ -334,7 +334,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.ContextPopup"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ContextPopupEvents(global::ElmSharp.ContextPopup data)
+        public ContextPopupEvents(global::ElmSharp.ContextPopup data): base(data)
         {
             _data = data;
         }
@@ -361,7 +361,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.ContextPopupItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ContextPopupItemEvents(global::ElmSharp.ContextPopupItem data)
+        public ContextPopupItemEvents(global::ElmSharp.ContextPopupItem data): base(data)
         {
             _data = data;
         }
@@ -388,7 +388,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.DateTimeSelector"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public DateTimeSelectorEvents(global::ElmSharp.DateTimeSelector data)
+        public DateTimeSelectorEvents(global::ElmSharp.DateTimeSelector data): base(data)
         {
             _data = data;
         }
@@ -469,7 +469,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Entry"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public EntryEvents(global::ElmSharp.Entry data)
+        public EntryEvents(global::ElmSharp.Entry data): base(data)
         {
             _data = data;
         }
@@ -650,7 +650,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.FlipSelector"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public FlipSelectorEvents(global::ElmSharp.FlipSelector data)
+        public FlipSelectorEvents(global::ElmSharp.FlipSelector data): base(data)
         {
             _data = data;
         }
@@ -697,7 +697,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.FlipSelectorItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public FlipSelectorItemEvents(global::ElmSharp.FlipSelectorItem data)
+        public FlipSelectorItemEvents(global::ElmSharp.FlipSelectorItem data): base(data)
         {
             _data = data;
         }
@@ -724,7 +724,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.GenGrid"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public GenGridEvents(global::ElmSharp.GenGrid data)
+        public GenGridEvents(global::ElmSharp.GenGrid data): base(data)
         {
             _data = data;
         }
@@ -841,7 +841,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.GenList"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public GenListEvents(global::ElmSharp.GenList data)
+        public GenListEvents(global::ElmSharp.GenList data): base(data)
         {
             _data = data;
         }
@@ -1018,7 +1018,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Hoversel"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public HoverselEvents(global::ElmSharp.Hoversel data)
+        public HoverselEvents(global::ElmSharp.Hoversel data): base(data)
         {
             _data = data;
         }
@@ -1075,7 +1075,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.HoverselItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public HoverselItemEvents(global::ElmSharp.HoverselItem data)
+        public HoverselItemEvents(global::ElmSharp.HoverselItem data): base(data)
         {
             _data = data;
         }
@@ -1102,7 +1102,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Image"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ImageEvents(global::ElmSharp.Image data)
+        public ImageEvents(global::ElmSharp.Image data): base(data)
         {
             _data = data;
         }
@@ -1149,7 +1149,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Index"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IndexEvents(global::ElmSharp.Index data)
+        public IndexEvents(global::ElmSharp.Index data): base(data)
         {
             _data = data;
         }
@@ -1176,7 +1176,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.IndexItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IndexItemEvents(global::ElmSharp.IndexItem data)
+        public IndexItemEvents(global::ElmSharp.IndexItem data): base(data)
         {
             _data = data;
         }
@@ -1230,7 +1230,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Label"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public LabelEvents(global::ElmSharp.Label data)
+        public LabelEvents(global::ElmSharp.Label data): base(data)
         {
             _data = data;
         }
@@ -1257,7 +1257,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Layout"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public LayoutEvents(global::ElmSharp.Layout data)
+        public LayoutEvents(global::ElmSharp.Layout data): base(data)
         {
             _data = data;
         }
@@ -1294,7 +1294,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.List"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ListEvents(global::ElmSharp.List data)
+        public ListEvents(global::ElmSharp.List data): base(data)
         {
             _data = data;
         }
@@ -1361,7 +1361,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.MultiButtonEntry"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MultiButtonEntryEvents(global::ElmSharp.MultiButtonEntry data)
+        public MultiButtonEntryEvents(global::ElmSharp.MultiButtonEntry data): base(data)
         {
             _data = data;
         }
@@ -1468,7 +1468,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Naviframe"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public NaviframeEvents(global::ElmSharp.Naviframe data)
+        public NaviframeEvents(global::ElmSharp.Naviframe data): base(data)
         {
             _data = data;
         }
@@ -1505,7 +1505,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.NaviItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public NaviItemEvents(global::ElmSharp.NaviItem data)
+        public NaviItemEvents(global::ElmSharp.NaviItem data): base(data)
         {
             _data = data;
         }
@@ -1532,7 +1532,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Panel"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PanelEvents(global::ElmSharp.Panel data)
+        public PanelEvents(global::ElmSharp.Panel data): base(data)
         {
             _data = data;
         }
@@ -1559,7 +1559,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Panes"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PanesEvents(global::ElmSharp.Panes data)
+        public PanesEvents(global::ElmSharp.Panes data): base(data)
         {
             _data = data;
         }
@@ -1596,7 +1596,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Popup"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PopupEvents(global::ElmSharp.Popup data)
+        public PopupEvents(global::ElmSharp.Popup data): base(data)
         {
             _data = data;
         }
@@ -1653,7 +1653,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.ProgressBar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ProgressBarEvents(global::ElmSharp.ProgressBar data)
+        public ProgressBarEvents(global::ElmSharp.ProgressBar data): base(data)
         {
             _data = data;
         }
@@ -1680,7 +1680,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Radio"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public RadioEvents(global::ElmSharp.Radio data)
+        public RadioEvents(global::ElmSharp.Radio data): base(data)
         {
             _data = data;
         }
@@ -1707,7 +1707,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Scroller"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ScrollerEvents(global::ElmSharp.Scroller data)
+        public ScrollerEvents(global::ElmSharp.Scroller data): base(data)
         {
             _data = data;
         }
@@ -1764,7 +1764,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Slider"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SliderEvents(global::ElmSharp.Slider data)
+        public SliderEvents(global::ElmSharp.Slider data): base(data)
         {
             _data = data;
         }
@@ -1848,7 +1848,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Spinner"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SpinnerEvents(global::ElmSharp.Spinner data)
+        public SpinnerEvents(global::ElmSharp.Spinner data): base(data)
         {
             _data = data;
         }
@@ -1885,7 +1885,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Toolbar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ToolbarEvents(global::ElmSharp.Toolbar data)
+        public ToolbarEvents(global::ElmSharp.Toolbar data): base(data)
         {
             _data = data;
         }
@@ -1912,7 +1912,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.ToolbarItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ToolbarItemEvents(global::ElmSharp.ToolbarItem data)
+        public ToolbarItemEvents(global::ElmSharp.ToolbarItem data): base(data)
         {
             _data = data;
         }
@@ -1986,7 +1986,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Widget"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public WidgetEvents(global::ElmSharp.Widget data)
+        public WidgetEvents(global::ElmSharp.Widget data): base(data)
         {
             _data = data;
         }
@@ -2023,7 +2023,7 @@ namespace ElmSharp
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Window"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public WindowEvents(global::ElmSharp.Window data)
+        public WindowEvents(global::ElmSharp.Window data): base(data)
         {
             _data = data;
         }
@@ -2082,7 +2082,7 @@ namespace ElmSharp.Wearable
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Wearable.CircleSlider"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CircleSliderEvents(global::ElmSharp.Wearable.CircleSlider data)
+        public CircleSliderEvents(global::ElmSharp.Wearable.CircleSlider data): base(data)
         {
             _data = data;
         }
@@ -2109,7 +2109,7 @@ namespace ElmSharp.Wearable
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Wearable.MoreOption"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MoreOptionEvents(global::ElmSharp.Wearable.MoreOption data)
+        public MoreOptionEvents(global::ElmSharp.Wearable.MoreOption data): base(data)
         {
             _data = data;
         }
@@ -2166,7 +2166,7 @@ namespace ElmSharp.Wearable
         /// Initializes a new instance of the <see cref = "global::ElmSharp.Wearable.RotarySelector"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public RotarySelectorEvents(global::ElmSharp.Wearable.RotarySelector data)
+        public RotarySelectorEvents(global::ElmSharp.Wearable.RotarySelector data): base(data)
         {
             _data = data;
         }
@@ -2330,7 +2330,7 @@ namespace Tizen.Applications
         /// Initializes a new instance of the <see cref = "global::Tizen.Applications.CoreUIApplication"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CoreUIApplicationEvents(global::Tizen.Applications.CoreUIApplication data)
+        public CoreUIApplicationEvents(global::Tizen.Applications.CoreUIApplication data): base(data)
         {
             _data = data;
         }
@@ -2394,7 +2394,7 @@ namespace Tizen.Applications
         /// Initializes a new instance of the <see cref = "global::Tizen.Applications.WatchApplication"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public WatchApplicationEvents(global::Tizen.Applications.WatchApplication data)
+        public WatchApplicationEvents(global::Tizen.Applications.WatchApplication data): base(data)
         {
             _data = data;
         }
@@ -2891,7 +2891,7 @@ namespace Tizen.Maps
         /// Initializes a new instance of the <see cref = "global::Tizen.Maps.MapView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MapViewEvents(global::Tizen.Maps.MapView data)
+        public MapViewEvents(global::Tizen.Maps.MapView data): base(data)
         {
             _data = data;
         }
@@ -3123,7 +3123,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref = "global::Tizen.Multimedia.AsyncAudioCapture"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public AsyncAudioCaptureEvents(global::Tizen.Multimedia.AsyncAudioCapture data)
+        public AsyncAudioCaptureEvents(global::Tizen.Multimedia.AsyncAudioCapture data): base(data)
         {
             _data = data;
         }
@@ -4347,7 +4347,7 @@ namespace Tizen.Network.Bluetooth
         /// Initializes a new instance of the <see cref = "global::Tizen.Network.Bluetooth.BluetoothGattCharacteristic"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public BluetoothGattCharacteristicEvents(global::Tizen.Network.Bluetooth.BluetoothGattCharacteristic data)
+        public BluetoothGattCharacteristicEvents(global::Tizen.Network.Bluetooth.BluetoothGattCharacteristic data): base(data)
         {
             _data = data;
         }
@@ -5261,7 +5261,7 @@ namespace Tizen.NUI
         /// Initializes a new instance of the <see cref = "global::Tizen.NUI.NUIApplication"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public NUIApplicationEvents(global::Tizen.NUI.NUIApplication data)
+        public NUIApplicationEvents(global::Tizen.NUI.NUIApplication data): base(data)
         {
             _data = data;
         }
@@ -5325,7 +5325,7 @@ namespace Tizen.NUI
         /// Initializes a new instance of the <see cref = "global::Tizen.NUI.ScrollView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ScrollViewEvents(global::Tizen.NUI.ScrollView data)
+        public ScrollViewEvents(global::Tizen.NUI.ScrollView data): base(data)
         {
             _data = data;
         }
@@ -5406,7 +5406,7 @@ namespace Tizen.NUI
         /// Initializes a new instance of the <see cref = "global::Tizen.NUI.WidgetView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public WidgetViewEvents(global::Tizen.NUI.WidgetView data)
+        public WidgetViewEvents(global::Tizen.NUI.WidgetView data): base(data)
         {
             _data = data;
         }
@@ -5595,7 +5595,7 @@ namespace Tizen.NUI.BaseComponents
         /// Initializes a new instance of the <see cref = "global::Tizen.NUI.BaseComponents.ImageView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ImageViewEvents(global::Tizen.NUI.BaseComponents.ImageView data)
+        public ImageViewEvents(global::Tizen.NUI.BaseComponents.ImageView data): base(data)
         {
             _data = data;
         }
@@ -5622,7 +5622,7 @@ namespace Tizen.NUI.BaseComponents
         /// Initializes a new instance of the <see cref = "global::Tizen.NUI.BaseComponents.Scrollable"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ScrollableEvents(global::Tizen.NUI.BaseComponents.Scrollable data)
+        public ScrollableEvents(global::Tizen.NUI.BaseComponents.Scrollable data): base(data)
         {
             _data = data;
         }
@@ -5669,7 +5669,7 @@ namespace Tizen.NUI.BaseComponents
         /// Initializes a new instance of the <see cref = "global::Tizen.NUI.BaseComponents.TextEditor"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TextEditorEvents(global::Tizen.NUI.BaseComponents.TextEditor data)
+        public TextEditorEvents(global::Tizen.NUI.BaseComponents.TextEditor data): base(data)
         {
             _data = data;
         }
@@ -5706,7 +5706,7 @@ namespace Tizen.NUI.BaseComponents
         /// Initializes a new instance of the <see cref = "global::Tizen.NUI.BaseComponents.TextField"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TextFieldEvents(global::Tizen.NUI.BaseComponents.TextField data)
+        public TextFieldEvents(global::Tizen.NUI.BaseComponents.TextField data): base(data)
         {
             _data = data;
         }
@@ -5743,7 +5743,7 @@ namespace Tizen.NUI.BaseComponents
         /// Initializes a new instance of the <see cref = "global::Tizen.NUI.BaseComponents.VideoView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public VideoViewEvents(global::Tizen.NUI.BaseComponents.VideoView data)
+        public VideoViewEvents(global::Tizen.NUI.BaseComponents.VideoView data): base(data)
         {
             _data = data;
         }
@@ -5889,7 +5889,7 @@ namespace Tizen.NUI.UIComponents
         /// Initializes a new instance of the <see cref = "global::Tizen.NUI.UIComponents.Popup"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PopupEvents(global::Tizen.NUI.UIComponents.Popup data)
+        public PopupEvents(global::Tizen.NUI.UIComponents.Popup data): base(data)
         {
             _data = data;
         }
@@ -5956,7 +5956,7 @@ namespace Tizen.NUI.UIComponents
         /// Initializes a new instance of the <see cref = "global::Tizen.NUI.UIComponents.ProgressBar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ProgressBarEvents(global::Tizen.NUI.UIComponents.ProgressBar data)
+        public ProgressBarEvents(global::Tizen.NUI.UIComponents.ProgressBar data): base(data)
         {
             _data = data;
         }
@@ -5983,7 +5983,7 @@ namespace Tizen.NUI.UIComponents
         /// Initializes a new instance of the <see cref = "global::Tizen.NUI.UIComponents.ScrollBar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ScrollBarEvents(global::Tizen.NUI.UIComponents.ScrollBar data)
+        public ScrollBarEvents(global::Tizen.NUI.UIComponents.ScrollBar data): base(data)
         {
             _data = data;
         }
@@ -7369,7 +7369,7 @@ namespace Tizen.WebView
         /// Initializes a new instance of the <see cref = "global::Tizen.WebView.WebView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public WebViewEvents(global::Tizen.WebView.WebView data)
+        public WebViewEvents(global::Tizen.WebView.WebView data): base(data)
         {
             _data = data;
         }

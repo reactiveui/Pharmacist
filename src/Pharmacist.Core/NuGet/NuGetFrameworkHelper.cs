@@ -114,6 +114,11 @@ namespace Pharmacist.Core.NuGet
         /// <returns>The package details or null if none is available.</returns>
         public static IEnumerable<PackageIdentity> GetSupportLibraries(this NuGetFramework framework)
         {
+            if (framework == null)
+            {
+                throw new ArgumentNullException(nameof(framework));
+            }
+
             if (framework.Framework.StartsWith(".NETStandard", StringComparison.OrdinalIgnoreCase))
             {
                 return new[] { new PackageIdentity("NETStandard.Library", new NuGetVersion(framework.Version)) };

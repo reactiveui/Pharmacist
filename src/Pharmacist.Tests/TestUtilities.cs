@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 using Xunit;
@@ -19,18 +20,21 @@ namespace Pharmacist.Tests
     /// </summary>
     public static class TestUtilities
     {
+        private static readonly string NuGetBaseDirectory = Path.Combine(Path.GetTempPath(), "Pharmacist.Tests");
+
+        [SuppressMessage("Design", "CA1031: Catch specific exceptions", Justification = "Test utility only.")]
         static TestUtilities()
         {
             try
             {
-                Directory.Delete(PackageDirectory, true);
+                Directory.Delete(NuGetBaseDirectory, true);
             }
             catch
             {
             }
         }
 
-        public static string PackageDirectory { get; } = Path.Combine(Path.GetTempPath(), "Pharmacist.Tests");
+        public static string GetPackageDirectory([CallerMemberName]string callerMemberName = null, [CallerFilePath]string callerMemberFilePath = null) => Path.Combine(NuGetBaseDirectory, Path.GetFileName(callerMemberFilePath), callerMemberName);
 
         [SuppressMessage("StyleCop.CSharp.ReadabilityRules", "SA1118:ParameterMustNotSpanMultipleLines", Justification = "Reviewed. Suppression is OK here.")]
         public static void ShouldHaveSameContents<T>(this IEnumerable<T> expected, IEnumerable<T> actual)

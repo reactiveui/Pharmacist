@@ -31,16 +31,20 @@ namespace Pharmacist.Tests.IntegrationTests
     {
         private static readonly Regex _whitespaceRegex = new Regex(@"\s");
 
-        public static async Task CheckResultsAgainstTemplate(PackageIdentity[] package, IReadOnlyList<NuGetFramework> frameworks, [CallerFilePath]string filePath = null)
+        public static async Task CheckResultsAgainstTemplate(PackageIdentity[] package, IReadOnlyList<NuGetFramework> frameworks, [CallerFilePath]string filePath = null, [CallerMemberName]string memberName = null)
         {
             using (var memoryStream = new MemoryStream())
             {
-                await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, frameworks, TestUtilities.PackageDirectory).ConfigureAwait(false);
+                using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8, 1024, true))
+                {
+                    await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(streamWriter, package, frameworks, TestUtilities.GetPackageDirectory(memberName, filePath)).ConfigureAwait(false);
+                }
+
                 CheckPackageIdentityContents(memoryStream, package[0], frameworks[0], filePath);
             }
         }
 
-        public static async Task CheckResultsAgainstTemplate(LibraryRange[] package, IReadOnlyList<NuGetFramework> frameworks, [CallerFilePath]string filePath = null)
+        public static async Task CheckResultsAgainstTemplate(LibraryRange[] package, IReadOnlyList<NuGetFramework> frameworks, [CallerFilePath]string filePath = null, [CallerMemberName]string memberName = null)
         {
             var sourceRepository = new SourceRepository(new PackageSource(NuGetPackageHelper.DefaultNuGetSource), NuGetPackageHelper.Providers);
             var findResource = await sourceRepository.GetResourceAsync<FindPackageByIdResource>().ConfigureAwait(false);
@@ -48,7 +52,11 @@ namespace Pharmacist.Tests.IntegrationTests
 
             using (var memoryStream = new MemoryStream())
             {
-                await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(memoryStream, package, frameworks, TestUtilities.PackageDirectory).ConfigureAwait(false);
+                using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8, 1024, true))
+                {
+                    await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(streamWriter, package, frameworks, TestUtilities.GetPackageDirectory(memberName, filePath)).ConfigureAwait(false);
+                }
+
                 CheckPackageIdentityContents(memoryStream, bestPackageIdentity, frameworks[0], filePath);
             }
         }

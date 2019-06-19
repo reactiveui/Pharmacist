@@ -21,11 +21,13 @@ namespace Pharmacist.Core.Generation.Resolvers
     /// </summary>
     internal class PublicEventNamespaceResolver : EventNamespaceResolverBase
     {
+        private const string SkipNamespaceName = "ReactiveUI.Events";
+
         /// <inheritdoc />
         protected override IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation)
         {
             var processedList = new ConcurrentDictionary<ITypeDefinition, bool>();
-            var toProcess = new ConcurrentStack<ITypeDefinition>(GetPublicTypesWithEvents(compilation));
+            var toProcess = new ConcurrentStack<ITypeDefinition>(GetPublicTypesWithEvents(compilation).Where(x => !x.Namespace.StartsWith(SkipNamespaceName, StringComparison.InvariantCulture)));
             var output = new ConcurrentBag<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)>();
 
             var processing = new ITypeDefinition[Environment.ProcessorCount];

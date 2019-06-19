@@ -246,7 +246,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Application"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ApplicationEvents(global::Xamarin.Forms.Application data)
+        public ApplicationEvents(global::Xamarin.Forms.Application data): base(data)
         {
             _data = data;
         }
@@ -370,7 +370,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Button"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ButtonEvents(global::Xamarin.Forms.Button data)
+        public ButtonEvents(global::Xamarin.Forms.Button data): base(data)
         {
             _data = data;
         }
@@ -417,7 +417,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Cell"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CellEvents(global::Xamarin.Forms.Cell data)
+        public CellEvents(global::Xamarin.Forms.Cell data): base(data)
         {
             _data = data;
         }
@@ -501,7 +501,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ClickGestureRecognizer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ClickGestureRecognizerEvents(global::Xamarin.Forms.ClickGestureRecognizer data)
+        public ClickGestureRecognizerEvents(global::Xamarin.Forms.ClickGestureRecognizer data): base(data)
         {
             _data = data;
         }
@@ -528,7 +528,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ColumnDefinition"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ColumnDefinitionEvents(global::Xamarin.Forms.ColumnDefinition data)
+        public ColumnDefinitionEvents(global::Xamarin.Forms.ColumnDefinition data): base(data)
         {
             _data = data;
         }
@@ -582,7 +582,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.DatePicker"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public DatePickerEvents(global::Xamarin.Forms.DatePicker data)
+        public DatePickerEvents(global::Xamarin.Forms.DatePicker data): base(data)
         {
             _data = data;
         }
@@ -609,7 +609,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Editor"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public EditorEvents(global::Xamarin.Forms.Editor data)
+        public EditorEvents(global::Xamarin.Forms.Editor data): base(data)
         {
             _data = data;
         }
@@ -646,7 +646,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Element"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ElementEvents(global::Xamarin.Forms.Element data)
+        public ElementEvents(global::Xamarin.Forms.Element data): base(data)
         {
             _data = data;
         }
@@ -714,7 +714,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Entry"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public EntryEvents(global::Xamarin.Forms.Entry data)
+        public EntryEvents(global::Xamarin.Forms.Entry data): base(data)
         {
             _data = data;
         }
@@ -751,7 +751,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.EntryCell"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public EntryCellEvents(global::Xamarin.Forms.EntryCell data)
+        public EntryCellEvents(global::Xamarin.Forms.EntryCell data): base(data)
         {
             _data = data;
         }
@@ -941,7 +941,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ImageButton"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ImageButtonEvents(global::Xamarin.Forms.ImageButton data)
+        public ImageButtonEvents(global::Xamarin.Forms.ImageButton data): base(data)
         {
             _data = data;
         }
@@ -1244,7 +1244,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ItemsView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ItemsViewEvents(global::Xamarin.Forms.ItemsView data)
+        public ItemsViewEvents(global::Xamarin.Forms.ItemsView data): base(data)
         {
             _data = data;
         }
@@ -1365,7 +1365,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Layout"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public LayoutEvents(global::Xamarin.Forms.Layout data)
+        public LayoutEvents(global::Xamarin.Forms.Layout data): base(data)
         {
             _data = data;
         }
@@ -1392,7 +1392,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ListView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ListViewEvents(global::Xamarin.Forms.ListView data)
+        public ListViewEvents(global::Xamarin.Forms.ListView data): base(data)
         {
             _data = data;
         }
@@ -1469,7 +1469,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.MasterDetailPage"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MasterDetailPageEvents(global::Xamarin.Forms.MasterDetailPage data)
+        public MasterDetailPageEvents(global::Xamarin.Forms.MasterDetailPage data): base(data)
         {
             _data = data;
         }
@@ -1506,7 +1506,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.MenuItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MenuItemEvents(global::Xamarin.Forms.MenuItem data)
+        public MenuItemEvents(global::Xamarin.Forms.MenuItem data): base(data)
         {
             _data = data;
         }
@@ -1533,7 +1533,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.NavigationPage"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public NavigationPageEvents(global::Xamarin.Forms.NavigationPage data)
+        public NavigationPageEvents(global::Xamarin.Forms.NavigationPage data): base(data)
         {
             _data = data;
         }
@@ -1630,7 +1630,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.OpenGLView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public OpenGLViewEvents(global::Xamarin.Forms.OpenGLView data)
+        public OpenGLViewEvents(global::Xamarin.Forms.OpenGLView data): base(data)
         {
             _data = data;
         }
@@ -1657,7 +1657,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Page"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PageEvents(global::Xamarin.Forms.Page data)
+        public PageEvents(global::Xamarin.Forms.Page data): base(data)
         {
             _data = data;
         }
@@ -1704,7 +1704,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.PanGestureRecognizer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PanGestureRecognizerEvents(global::Xamarin.Forms.PanGestureRecognizer data)
+        public PanGestureRecognizerEvents(global::Xamarin.Forms.PanGestureRecognizer data): base(data)
         {
             _data = data;
         }
@@ -1731,7 +1731,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Picker"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PickerEvents(global::Xamarin.Forms.Picker data)
+        public PickerEvents(global::Xamarin.Forms.Picker data): base(data)
         {
             _data = data;
         }
@@ -1758,7 +1758,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.PinchGestureRecognizer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PinchGestureRecognizerEvents(global::Xamarin.Forms.PinchGestureRecognizer data)
+        public PinchGestureRecognizerEvents(global::Xamarin.Forms.PinchGestureRecognizer data): base(data)
         {
             _data = data;
         }
@@ -1785,7 +1785,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.RowDefinition"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public RowDefinitionEvents(global::Xamarin.Forms.RowDefinition data)
+        public RowDefinitionEvents(global::Xamarin.Forms.RowDefinition data): base(data)
         {
             _data = data;
         }
@@ -1812,7 +1812,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ScrollView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ScrollViewEvents(global::Xamarin.Forms.ScrollView data)
+        public ScrollViewEvents(global::Xamarin.Forms.ScrollView data): base(data)
         {
             _data = data;
         }
@@ -1849,7 +1849,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SearchBar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SearchBarEvents(global::Xamarin.Forms.SearchBar data)
+        public SearchBarEvents(global::Xamarin.Forms.SearchBar data): base(data)
         {
             _data = data;
         }
@@ -1886,7 +1886,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SearchHandler"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SearchHandlerEvents(global::Xamarin.Forms.SearchHandler data)
+        public SearchHandlerEvents(global::Xamarin.Forms.SearchHandler data): base(data)
         {
             _data = data;
         }
@@ -1933,7 +1933,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SelectableItemsView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SelectableItemsViewEvents(global::Xamarin.Forms.SelectableItemsView data)
+        public SelectableItemsViewEvents(global::Xamarin.Forms.SelectableItemsView data): base(data)
         {
             _data = data;
         }
@@ -1960,7 +1960,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Shell"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ShellEvents(global::Xamarin.Forms.Shell data)
+        public ShellEvents(global::Xamarin.Forms.Shell data): base(data)
         {
             _data = data;
         }
@@ -1997,7 +1997,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Slider"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SliderEvents(global::Xamarin.Forms.Slider data)
+        public SliderEvents(global::Xamarin.Forms.Slider data): base(data)
         {
             _data = data;
         }
@@ -2044,7 +2044,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Stepper"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StepperEvents(global::Xamarin.Forms.Stepper data)
+        public StepperEvents(global::Xamarin.Forms.Stepper data): base(data)
         {
             _data = data;
         }
@@ -2071,7 +2071,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SwipeGestureRecognizer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SwipeGestureRecognizerEvents(global::Xamarin.Forms.SwipeGestureRecognizer data)
+        public SwipeGestureRecognizerEvents(global::Xamarin.Forms.SwipeGestureRecognizer data): base(data)
         {
             _data = data;
         }
@@ -2098,7 +2098,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Switch"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SwitchEvents(global::Xamarin.Forms.Switch data)
+        public SwitchEvents(global::Xamarin.Forms.Switch data): base(data)
         {
             _data = data;
         }
@@ -2125,7 +2125,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SwitchCell"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SwitchCellEvents(global::Xamarin.Forms.SwitchCell data)
+        public SwitchCellEvents(global::Xamarin.Forms.SwitchCell data): base(data)
         {
             _data = data;
         }
@@ -2152,7 +2152,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.TableView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TableViewEvents(global::Xamarin.Forms.TableView data)
+        public TableViewEvents(global::Xamarin.Forms.TableView data): base(data)
         {
             _data = data;
         }
@@ -2179,7 +2179,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.TapGestureRecognizer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TapGestureRecognizerEvents(global::Xamarin.Forms.TapGestureRecognizer data)
+        public TapGestureRecognizerEvents(global::Xamarin.Forms.TapGestureRecognizer data): base(data)
         {
             _data = data;
         }
@@ -2206,7 +2206,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ToolbarItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ToolbarItemEvents(global::Xamarin.Forms.ToolbarItem data)
+        public ToolbarItemEvents(global::Xamarin.Forms.ToolbarItem data): base(data)
         {
             _data = data;
         }
@@ -2234,7 +2234,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.VisualElement"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public VisualElementEvents(global::Xamarin.Forms.VisualElement data)
+        public VisualElementEvents(global::Xamarin.Forms.VisualElement data): base(data)
         {
             _data = data;
         }
@@ -2321,7 +2321,7 @@ namespace Xamarin.Forms
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.WebView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public WebViewEvents(global::Xamarin.Forms.WebView data)
+        public WebViewEvents(global::Xamarin.Forms.WebView data): base(data)
         {
             _data = data;
         }

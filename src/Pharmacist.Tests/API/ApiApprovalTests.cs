@@ -51,12 +51,12 @@ namespace Pharmacist.Tests.API
 
             if (!File.Exists(approvedFileName))
             {
-                File.Create(approvedFileName);
+                File.Create(approvedFileName).Close();
             }
 
             if (!File.Exists(receivedFileName))
             {
-                File.Create(receivedFileName);
+                File.Create(receivedFileName).Close();
             }
 
             var approvedPublicApi = File.ReadAllText(approvedFileName);

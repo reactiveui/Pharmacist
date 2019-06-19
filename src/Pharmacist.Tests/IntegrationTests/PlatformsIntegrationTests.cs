@@ -41,7 +41,7 @@ namespace Pharmacist.Tests.IntegrationTests
             var sourceDirectory = IntegrationTestHelper.GetOutputDirectory();
             var referenceAssembliesLocation = await ReferenceLocator.GetReferenceLocation().ConfigureAwait(false);
 
-            await ObservablesForEventGenerator.ExtractEventsFromPlatforms(sourceDirectory, string.Empty, ".received.txt", referenceAssembliesLocation, new[] { autoPlatform }).ConfigureAwait(false);
+            await ObservablesForEventGenerator.ExtractEventsFromPlatforms(sourceDirectory, string.Empty, ".received.txt", referenceAssembliesLocation, new[] { autoPlatform }, TestUtilities.GetPackageDirectory()).ConfigureAwait(false);
         }
     }
 }

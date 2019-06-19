@@ -21,6 +21,11 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
     /// </summary>
     internal class WPF : NetFrameworkBase
     {
+        public WPF(string filePath)
+            : base(filePath)
+        {
+        }
+
         /// <inheritdoc />
         public override AutoPlatform Platform => AutoPlatform.WPF;
 

@@ -16694,7 +16694,7 @@ namespace Windows.UI.Xaml
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.FrameworkElement"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public FrameworkElementEvents(global::Windows.UI.Xaml.FrameworkElement data)
+        public FrameworkElementEvents(global::Windows.UI.Xaml.FrameworkElement data): base(data)
         {
             _data = data;
         }
@@ -18144,7 +18144,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.AppBar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public AppBarEvents(global::Windows.UI.Xaml.Controls.AppBar data)
+        public AppBarEvents(global::Windows.UI.Xaml.Controls.AppBar data): base(data)
         {
             _data = data;
         }
@@ -18201,7 +18201,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.AutoSuggestBox"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public AutoSuggestBoxEvents(global::Windows.UI.Xaml.Controls.AutoSuggestBox data)
+        public AutoSuggestBoxEvents(global::Windows.UI.Xaml.Controls.AutoSuggestBox data): base(data)
         {
             _data = data;
         }
@@ -18329,7 +18329,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.CalendarDatePicker"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CalendarDatePickerEvents(global::Windows.UI.Xaml.Controls.CalendarDatePicker data)
+        public CalendarDatePickerEvents(global::Windows.UI.Xaml.Controls.CalendarDatePicker data): base(data)
         {
             _data = data;
         }
@@ -18386,7 +18386,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.CalendarView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CalendarViewEvents(global::Windows.UI.Xaml.Controls.CalendarView data)
+        public CalendarViewEvents(global::Windows.UI.Xaml.Controls.CalendarView data): base(data)
         {
             _data = data;
         }
@@ -18423,7 +18423,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.ColorPicker"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ColorPickerEvents(global::Windows.UI.Xaml.Controls.ColorPicker data)
+        public ColorPickerEvents(global::Windows.UI.Xaml.Controls.ColorPicker data): base(data)
         {
             _data = data;
         }
@@ -18477,7 +18477,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.ComboBox"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ComboBoxEvents(global::Windows.UI.Xaml.Controls.ComboBox data)
+        public ComboBoxEvents(global::Windows.UI.Xaml.Controls.ComboBox data): base(data)
         {
             _data = data;
         }
@@ -18524,7 +18524,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.CommandBar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CommandBarEvents(global::Windows.UI.Xaml.Controls.CommandBar data)
+        public CommandBarEvents(global::Windows.UI.Xaml.Controls.CommandBar data): base(data)
         {
             _data = data;
         }
@@ -18551,7 +18551,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.ContentDialog"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ContentDialogEvents(global::Windows.UI.Xaml.Controls.ContentDialog data)
+        public ContentDialogEvents(global::Windows.UI.Xaml.Controls.ContentDialog data): base(data)
         {
             _data = data;
         }
@@ -18628,7 +18628,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Control"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ControlEvents(global::Windows.UI.Xaml.Controls.Control data)
+        public ControlEvents(global::Windows.UI.Xaml.Controls.Control data): base(data)
         {
             _data = data;
         }
@@ -18692,7 +18692,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.DatePicker"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public DatePickerEvents(global::Windows.UI.Xaml.Controls.DatePicker data)
+        public DatePickerEvents(global::Windows.UI.Xaml.Controls.DatePicker data): base(data)
         {
             _data = data;
         }
@@ -18729,7 +18729,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.DatePickerFlyout"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public DatePickerFlyoutEvents(global::Windows.UI.Xaml.Controls.DatePickerFlyout data)
+        public DatePickerFlyoutEvents(global::Windows.UI.Xaml.Controls.DatePickerFlyout data): base(data)
         {
             _data = data;
         }
@@ -18783,7 +18783,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Frame"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public FrameEvents(global::Windows.UI.Xaml.Controls.Frame data)
+        public FrameEvents(global::Windows.UI.Xaml.Controls.Frame data): base(data)
         {
             _data = data;
         }
@@ -18867,7 +18867,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.HandwritingView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public HandwritingViewEvents(global::Windows.UI.Xaml.Controls.HandwritingView data)
+        public HandwritingViewEvents(global::Windows.UI.Xaml.Controls.HandwritingView data): base(data)
         {
             _data = data;
         }
@@ -18904,7 +18904,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Hub"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public HubEvents(global::Windows.UI.Xaml.Controls.Hub data)
+        public HubEvents(global::Windows.UI.Xaml.Controls.Hub data): base(data)
         {
             _data = data;
         }
@@ -18968,7 +18968,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Image"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ImageEvents(global::Windows.UI.Xaml.Controls.Image data)
+        public ImageEvents(global::Windows.UI.Xaml.Controls.Image data): base(data)
         {
             _data = data;
         }
@@ -19005,7 +19005,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.InkToolbar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public InkToolbarEvents(global::Windows.UI.Xaml.Controls.InkToolbar data)
+        public InkToolbarEvents(global::Windows.UI.Xaml.Controls.InkToolbar data): base(data)
         {
             _data = data;
         }
@@ -19099,7 +19099,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.InkToolbarFlyoutItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public InkToolbarFlyoutItemEvents(global::Windows.UI.Xaml.Controls.InkToolbarFlyoutItem data)
+        public InkToolbarFlyoutItemEvents(global::Windows.UI.Xaml.Controls.InkToolbarFlyoutItem data): base(data)
         {
             _data = data;
         }
@@ -19281,7 +19281,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.ItemsPresenter"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ItemsPresenterEvents(global::Windows.UI.Xaml.Controls.ItemsPresenter data)
+        public ItemsPresenterEvents(global::Windows.UI.Xaml.Controls.ItemsPresenter data): base(data)
         {
             _data = data;
         }
@@ -19318,7 +19318,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.ListPickerFlyout"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ListPickerFlyoutEvents(global::Windows.UI.Xaml.Controls.ListPickerFlyout data)
+        public ListPickerFlyoutEvents(global::Windows.UI.Xaml.Controls.ListPickerFlyout data): base(data)
         {
             _data = data;
         }
@@ -19345,7 +19345,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.ListViewBase"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ListViewBaseEvents(global::Windows.UI.Xaml.Controls.ListViewBase data)
+        public ListViewBaseEvents(global::Windows.UI.Xaml.Controls.ListViewBase data): base(data)
         {
             _data = data;
         }
@@ -19422,7 +19422,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.MediaElement"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MediaElementEvents(global::Windows.UI.Xaml.Controls.MediaElement data)
+        public MediaElementEvents(global::Windows.UI.Xaml.Controls.MediaElement data): base(data)
         {
             _data = data;
         }
@@ -19549,7 +19549,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.MediaTransportControls"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MediaTransportControlsEvents(global::Windows.UI.Xaml.Controls.MediaTransportControls data)
+        public MediaTransportControlsEvents(global::Windows.UI.Xaml.Controls.MediaTransportControls data): base(data)
         {
             _data = data;
         }
@@ -19576,7 +19576,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.MenuFlyoutItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MenuFlyoutItemEvents(global::Windows.UI.Xaml.Controls.MenuFlyoutItem data)
+        public MenuFlyoutItemEvents(global::Windows.UI.Xaml.Controls.MenuFlyoutItem data): base(data)
         {
             _data = data;
         }
@@ -19603,7 +19603,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.NavigationView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public NavigationViewEvents(global::Windows.UI.Xaml.Controls.NavigationView data)
+        public NavigationViewEvents(global::Windows.UI.Xaml.Controls.NavigationView data): base(data)
         {
             _data = data;
         }
@@ -19727,7 +19727,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.PasswordBox"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PasswordBoxEvents(global::Windows.UI.Xaml.Controls.PasswordBox data)
+        public PasswordBoxEvents(global::Windows.UI.Xaml.Controls.PasswordBox data): base(data)
         {
             _data = data;
         }
@@ -19811,7 +19811,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.PickerFlyout"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PickerFlyoutEvents(global::Windows.UI.Xaml.Controls.PickerFlyout data)
+        public PickerFlyoutEvents(global::Windows.UI.Xaml.Controls.PickerFlyout data): base(data)
         {
             _data = data;
         }
@@ -19838,7 +19838,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Pivot"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PivotEvents(global::Windows.UI.Xaml.Controls.Pivot data)
+        public PivotEvents(global::Windows.UI.Xaml.Controls.Pivot data): base(data)
         {
             _data = data;
         }
@@ -19905,7 +19905,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.PopupBase"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PopupBaseEvents(global::Windows.UI.Xaml.Controls.PopupBase data)
+        public PopupBaseEvents(global::Windows.UI.Xaml.Controls.PopupBase data): base(data)
         {
             _data = data;
         }
@@ -19942,7 +19942,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.RatingControl"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public RatingControlEvents(global::Windows.UI.Xaml.Controls.RatingControl data)
+        public RatingControlEvents(global::Windows.UI.Xaml.Controls.RatingControl data): base(data)
         {
             _data = data;
         }
@@ -19996,7 +19996,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.RefreshContainer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public RefreshContainerEvents(global::Windows.UI.Xaml.Controls.RefreshContainer data)
+        public RefreshContainerEvents(global::Windows.UI.Xaml.Controls.RefreshContainer data): base(data)
         {
             _data = data;
         }
@@ -20023,7 +20023,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.RefreshVisualizer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public RefreshVisualizerEvents(global::Windows.UI.Xaml.Controls.RefreshVisualizer data)
+        public RefreshVisualizerEvents(global::Windows.UI.Xaml.Controls.RefreshVisualizer data): base(data)
         {
             _data = data;
         }
@@ -20217,7 +20217,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.RichTextBlock"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public RichTextBlockEvents(global::Windows.UI.Xaml.Controls.RichTextBlock data)
+        public RichTextBlockEvents(global::Windows.UI.Xaml.Controls.RichTextBlock data): base(data)
         {
             _data = data;
         }
@@ -20264,7 +20264,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.RichTextBlockOverflow"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public RichTextBlockOverflowEvents(global::Windows.UI.Xaml.Controls.RichTextBlockOverflow data)
+        public RichTextBlockOverflowEvents(global::Windows.UI.Xaml.Controls.RichTextBlockOverflow data): base(data)
         {
             _data = data;
         }
@@ -20318,7 +20318,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.ScrollViewer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ScrollViewerEvents(global::Windows.UI.Xaml.Controls.ScrollViewer data)
+        public ScrollViewerEvents(global::Windows.UI.Xaml.Controls.ScrollViewer data): base(data)
         {
             _data = data;
         }
@@ -20385,7 +20385,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.SearchBox"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SearchBoxEvents(global::Windows.UI.Xaml.Controls.SearchBox data)
+        public SearchBoxEvents(global::Windows.UI.Xaml.Controls.SearchBox data): base(data)
         {
             _data = data;
         }
@@ -20452,7 +20452,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.SemanticZoom"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SemanticZoomEvents(global::Windows.UI.Xaml.Controls.SemanticZoom data)
+        public SemanticZoomEvents(global::Windows.UI.Xaml.Controls.SemanticZoom data): base(data)
         {
             _data = data;
         }
@@ -20489,7 +20489,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.SettingsFlyout"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SettingsFlyoutEvents(global::Windows.UI.Xaml.Controls.SettingsFlyout data)
+        public SettingsFlyoutEvents(global::Windows.UI.Xaml.Controls.SettingsFlyout data): base(data)
         {
             _data = data;
         }
@@ -20516,7 +20516,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.SplitButton"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SplitButtonEvents(global::Windows.UI.Xaml.Controls.SplitButton data)
+        public SplitButtonEvents(global::Windows.UI.Xaml.Controls.SplitButton data): base(data)
         {
             _data = data;
         }
@@ -20543,7 +20543,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.SplitView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SplitViewEvents(global::Windows.UI.Xaml.Controls.SplitView data)
+        public SplitViewEvents(global::Windows.UI.Xaml.Controls.SplitView data): base(data)
         {
             _data = data;
         }
@@ -20600,7 +20600,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.StackPanel"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StackPanelEvents(global::Windows.UI.Xaml.Controls.StackPanel data)
+        public StackPanelEvents(global::Windows.UI.Xaml.Controls.StackPanel data): base(data)
         {
             _data = data;
         }
@@ -20637,7 +20637,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.SwapChainPanel"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SwapChainPanelEvents(global::Windows.UI.Xaml.Controls.SwapChainPanel data)
+        public SwapChainPanelEvents(global::Windows.UI.Xaml.Controls.SwapChainPanel data): base(data)
         {
             _data = data;
         }
@@ -20728,7 +20728,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.TextBlock"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TextBlockEvents(global::Windows.UI.Xaml.Controls.TextBlock data)
+        public TextBlockEvents(global::Windows.UI.Xaml.Controls.TextBlock data): base(data)
         {
             _data = data;
         }
@@ -20775,7 +20775,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.TextBox"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TextBoxEvents(global::Windows.UI.Xaml.Controls.TextBox data)
+        public TextBoxEvents(global::Windows.UI.Xaml.Controls.TextBox data): base(data)
         {
             _data = data;
         }
@@ -20949,7 +20949,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.TimePicker"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TimePickerEvents(global::Windows.UI.Xaml.Controls.TimePicker data)
+        public TimePickerEvents(global::Windows.UI.Xaml.Controls.TimePicker data): base(data)
         {
             _data = data;
         }
@@ -20986,7 +20986,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.TimePickerFlyout"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TimePickerFlyoutEvents(global::Windows.UI.Xaml.Controls.TimePickerFlyout data)
+        public TimePickerFlyoutEvents(global::Windows.UI.Xaml.Controls.TimePickerFlyout data): base(data)
         {
             _data = data;
         }
@@ -21013,7 +21013,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.ToggleSplitButton"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ToggleSplitButtonEvents(global::Windows.UI.Xaml.Controls.ToggleSplitButton data)
+        public ToggleSplitButtonEvents(global::Windows.UI.Xaml.Controls.ToggleSplitButton data): base(data)
         {
             _data = data;
         }
@@ -21040,7 +21040,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.ToggleSwitch"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ToggleSwitchEvents(global::Windows.UI.Xaml.Controls.ToggleSwitch data)
+        public ToggleSwitchEvents(global::Windows.UI.Xaml.Controls.ToggleSwitch data): base(data)
         {
             _data = data;
         }
@@ -21067,7 +21067,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.ToolTip"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ToolTipEvents(global::Windows.UI.Xaml.Controls.ToolTip data)
+        public ToolTipEvents(global::Windows.UI.Xaml.Controls.ToolTip data): base(data)
         {
             _data = data;
         }
@@ -21104,7 +21104,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.TreeView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TreeViewEvents(global::Windows.UI.Xaml.Controls.TreeView data)
+        public TreeViewEvents(global::Windows.UI.Xaml.Controls.TreeView data): base(data)
         {
             _data = data;
         }
@@ -21272,7 +21272,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.VirtualizingStackPanel"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public VirtualizingStackPanelEvents(global::Windows.UI.Xaml.Controls.VirtualizingStackPanel data)
+        public VirtualizingStackPanelEvents(global::Windows.UI.Xaml.Controls.VirtualizingStackPanel data): base(data)
         {
             _data = data;
         }
@@ -21299,7 +21299,7 @@ namespace Windows.UI.Xaml.Controls
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.WebView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public WebViewEvents(global::Windows.UI.Xaml.Controls.WebView data)
+        public WebViewEvents(global::Windows.UI.Xaml.Controls.WebView data): base(data)
         {
             _data = data;
         }
@@ -21598,7 +21598,7 @@ namespace Windows.UI.Xaml.Controls.Maps
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Maps.CustomMapTileDataSource"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CustomMapTileDataSourceEvents(global::Windows.UI.Xaml.Controls.Maps.CustomMapTileDataSource data)
+        public CustomMapTileDataSourceEvents(global::Windows.UI.Xaml.Controls.Maps.CustomMapTileDataSource data): base(data)
         {
             _data = data;
         }
@@ -21625,7 +21625,7 @@ namespace Windows.UI.Xaml.Controls.Maps
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Maps.HttpMapTileDataSource"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public HttpMapTileDataSourceEvents(global::Windows.UI.Xaml.Controls.Maps.HttpMapTileDataSource data)
+        public HttpMapTileDataSourceEvents(global::Windows.UI.Xaml.Controls.Maps.HttpMapTileDataSource data): base(data)
         {
             _data = data;
         }
@@ -21652,7 +21652,7 @@ namespace Windows.UI.Xaml.Controls.Maps
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Maps.LocalMapTileDataSource"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public LocalMapTileDataSourceEvents(global::Windows.UI.Xaml.Controls.Maps.LocalMapTileDataSource data)
+        public LocalMapTileDataSourceEvents(global::Windows.UI.Xaml.Controls.Maps.LocalMapTileDataSource data): base(data)
         {
             _data = data;
         }
@@ -21706,7 +21706,7 @@ namespace Windows.UI.Xaml.Controls.Maps
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Maps.MapControl"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MapControlEvents(global::Windows.UI.Xaml.Controls.Maps.MapControl data)
+        public MapControlEvents(global::Windows.UI.Xaml.Controls.Maps.MapControl data): base(data)
         {
             _data = data;
         }
@@ -21957,7 +21957,7 @@ namespace Windows.UI.Xaml.Controls.Maps
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Maps.MapElementsLayer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MapElementsLayerEvents(global::Windows.UI.Xaml.Controls.Maps.MapElementsLayer data)
+        public MapElementsLayerEvents(global::Windows.UI.Xaml.Controls.Maps.MapElementsLayer data): base(data)
         {
             _data = data;
         }
@@ -22521,7 +22521,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.ButtonBase"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ButtonBaseEvents(global::Windows.UI.Xaml.Controls.Primitives.ButtonBase data)
+        public ButtonBaseEvents(global::Windows.UI.Xaml.Controls.Primitives.ButtonBase data): base(data)
         {
             _data = data;
         }
@@ -22575,7 +22575,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.CarouselPanel"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CarouselPanelEvents(global::Windows.UI.Xaml.Controls.Primitives.CarouselPanel data)
+        public CarouselPanelEvents(global::Windows.UI.Xaml.Controls.Primitives.CarouselPanel data): base(data)
         {
             _data = data;
         }
@@ -22612,7 +22612,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.ColorSpectrum"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ColorSpectrumEvents(global::Windows.UI.Xaml.Controls.Primitives.ColorSpectrum data)
+        public ColorSpectrumEvents(global::Windows.UI.Xaml.Controls.Primitives.ColorSpectrum data): base(data)
         {
             _data = data;
         }
@@ -22932,7 +22932,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.LoopingSelector"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public LoopingSelectorEvents(global::Windows.UI.Xaml.Controls.Primitives.LoopingSelector data)
+        public LoopingSelectorEvents(global::Windows.UI.Xaml.Controls.Primitives.LoopingSelector data): base(data)
         {
             _data = data;
         }
@@ -22959,7 +22959,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.LoopingSelectorPanel"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public LoopingSelectorPanelEvents(global::Windows.UI.Xaml.Controls.Primitives.LoopingSelectorPanel data)
+        public LoopingSelectorPanelEvents(global::Windows.UI.Xaml.Controls.Primitives.LoopingSelectorPanel data): base(data)
         {
             _data = data;
         }
@@ -23050,7 +23050,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.OrientedVirtualizingPanel"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public OrientedVirtualizingPanelEvents(global::Windows.UI.Xaml.Controls.Primitives.OrientedVirtualizingPanel data)
+        public OrientedVirtualizingPanelEvents(global::Windows.UI.Xaml.Controls.Primitives.OrientedVirtualizingPanel data): base(data)
         {
             _data = data;
         }
@@ -23087,7 +23087,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.PivotPanel"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PivotPanelEvents(global::Windows.UI.Xaml.Controls.Primitives.PivotPanel data)
+        public PivotPanelEvents(global::Windows.UI.Xaml.Controls.Primitives.PivotPanel data): base(data)
         {
             _data = data;
         }
@@ -23124,7 +23124,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.Popup"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PopupEvents(global::Windows.UI.Xaml.Controls.Primitives.Popup data)
+        public PopupEvents(global::Windows.UI.Xaml.Controls.Primitives.Popup data): base(data)
         {
             _data = data;
         }
@@ -23215,7 +23215,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.RangeBase"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public RangeBaseEvents(global::Windows.UI.Xaml.Controls.Primitives.RangeBase data)
+        public RangeBaseEvents(global::Windows.UI.Xaml.Controls.Primitives.RangeBase data): base(data)
         {
             _data = data;
         }
@@ -23242,7 +23242,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.ScrollBar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ScrollBarEvents(global::Windows.UI.Xaml.Controls.Primitives.ScrollBar data)
+        public ScrollBarEvents(global::Windows.UI.Xaml.Controls.Primitives.ScrollBar data): base(data)
         {
             _data = data;
         }
@@ -23269,7 +23269,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.Selector"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SelectorEvents(global::Windows.UI.Xaml.Controls.Primitives.Selector data)
+        public SelectorEvents(global::Windows.UI.Xaml.Controls.Primitives.Selector data): base(data)
         {
             _data = data;
         }
@@ -23350,7 +23350,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.Thumb"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ThumbEvents(global::Windows.UI.Xaml.Controls.Primitives.Thumb data)
+        public ThumbEvents(global::Windows.UI.Xaml.Controls.Primitives.Thumb data): base(data)
         {
             _data = data;
         }
@@ -23397,7 +23397,7 @@ namespace Windows.UI.Xaml.Controls.Primitives
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Controls.Primitives.ToggleButton"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ToggleButtonEvents(global::Windows.UI.Xaml.Controls.Primitives.ToggleButton data)
+        public ToggleButtonEvents(global::Windows.UI.Xaml.Controls.Primitives.ToggleButton data): base(data)
         {
             _data = data;
         }
@@ -23672,7 +23672,7 @@ namespace Windows.UI.Xaml.Documents
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Documents.ContentLink"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ContentLinkEvents(global::Windows.UI.Xaml.Documents.ContentLink data)
+        public ContentLinkEvents(global::Windows.UI.Xaml.Documents.ContentLink data): base(data)
         {
             _data = data;
         }
@@ -23746,7 +23746,7 @@ namespace Windows.UI.Xaml.Documents
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Documents.Hyperlink"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public HyperlinkEvents(global::Windows.UI.Xaml.Documents.Hyperlink data)
+        public HyperlinkEvents(global::Windows.UI.Xaml.Documents.Hyperlink data): base(data)
         {
             _data = data;
         }
@@ -23773,7 +23773,7 @@ namespace Windows.UI.Xaml.Documents
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Documents.TextElement"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TextElementEvents(global::Windows.UI.Xaml.Documents.TextElement data)
+        public TextElementEvents(global::Windows.UI.Xaml.Documents.TextElement data): base(data)
         {
             _data = data;
         }
@@ -24259,7 +24259,7 @@ namespace Windows.UI.Xaml.Media
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Media.ImageBrush"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ImageBrushEvents(global::Windows.UI.Xaml.Media.ImageBrush data)
+        public ImageBrushEvents(global::Windows.UI.Xaml.Media.ImageBrush data): base(data)
         {
             _data = data;
         }
@@ -24833,7 +24833,7 @@ namespace Windows.UI.Xaml.Media.Imaging
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Media.Imaging.BitmapImage"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public BitmapImageEvents(global::Windows.UI.Xaml.Media.Imaging.BitmapImage data)
+        public BitmapImageEvents(global::Windows.UI.Xaml.Media.Imaging.BitmapImage data): base(data)
         {
             _data = data;
         }
@@ -24880,7 +24880,7 @@ namespace Windows.UI.Xaml.Media.Imaging
         /// Initializes a new instance of the <see cref = "global::Windows.UI.Xaml.Media.Imaging.SvgImageSource"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SvgImageSourceEvents(global::Windows.UI.Xaml.Media.Imaging.SvgImageSource data)
+        public SvgImageSourceEvents(global::Windows.UI.Xaml.Media.Imaging.SvgImageSource data): base(data)
         {
             _data = data;
         }
