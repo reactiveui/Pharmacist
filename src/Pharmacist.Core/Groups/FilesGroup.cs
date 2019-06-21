@@ -17,7 +17,12 @@ namespace Pharmacist.Core.Groups
     {
         private readonly DirectoryNode _rootNode = new DirectoryNode(string.Empty);
 
-        internal string GetFullFilePath(string fileName)
+        /// <summary>
+        /// Gets for a file name, the nearest matching full name in the shallowest of the hierarchy.
+        /// </summary>
+        /// <param name="fileName">The file name to grab.</param>
+        /// <returns>The full path if available, null otherwise.</returns>
+        public string GetFullFilePath(string fileName)
         {
             var processing = new Queue<DirectoryNode>(new[] { _rootNode });
 
@@ -39,7 +44,11 @@ namespace Pharmacist.Core.Groups
             return null;
         }
 
-        internal IEnumerable<string> GetAllFileNames()
+        /// <summary>
+        /// Gets all the files contained within the files group.
+        /// </summary>
+        /// <returns>The files.</returns>
+        public IEnumerable<string> GetAllFileNames()
         {
             var processing = new Queue<DirectoryNode>(new[] { _rootNode });
 
@@ -62,7 +71,7 @@ namespace Pharmacist.Core.Groups
         /// Adds files if they don't already exist to our collection.
         /// </summary>
         /// <param name="files">The files to add.</param>
-        internal void AddFiles(IEnumerable<string> files)
+        public void AddFiles(IEnumerable<string> files)
         {
             foreach (var file in files)
             {

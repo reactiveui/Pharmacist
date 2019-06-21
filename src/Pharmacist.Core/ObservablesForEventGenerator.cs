@@ -27,6 +27,8 @@ using Pharmacist.Core.Extractors.PlatformExtractors;
 using Pharmacist.Core.Generation;
 using Pharmacist.Core.Generation.Resolvers;
 using Pharmacist.Core.Groups;
+using Pharmacist.Core.NuGet;
+using Pharmacist.Core.Utilities;
 
 using Splat;
 
@@ -127,33 +129,24 @@ namespace Pharmacist.Core
         /// Extracts the events and delegates from the specified platform.
         /// </summary>
         /// <param name="writer">The writer where to output to.</param>
-        /// <param name="input">The input into the processor.</param>
-        /// <param name="framework">The framework we are adapting to.</param>
+        /// <param name="assemblies">The assemblies to extract.</param>
+        /// <param name="searchDirectories">Directories to search.</param>
+        /// <param name="targetFramework">The name of the TFM to extract for.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public static async Task ExtractEventsFromAssemblies(TextWriter writer, InputAssembliesGroup input, NuGetFramework framework)
+        public static async Task ExtractEventsFromAssemblies(TextWriter writer, IEnumerable<string> assemblies, IEnumerable<string> searchDirectories, string targetFramework)
         {
             if (writer == null)
             {
                 throw new ArgumentNullException(nameof(writer));
             }
 
-            using (var compilation = RoslynHelpers.GetCompilation(input, framework))
-            {
-                var compilationOutputSyntax = CompilationUnit()
-                    .WithMembers(List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))))
-                    .WithUsings(List(new[]
-                        {
-                            UsingDirective(IdentifierName("global::System")),
-                            UsingDirective(IdentifierName("global::System.Reactive")),
-                            UsingDirective(IdentifierName("global::System.Reactive.Linq")),
-                            UsingDirective(IdentifierName("global::System.Reactive.Subjects")),
-                            UsingDirective(IdentifierName("global::Pharmacist.Common"))
-                        }));
+            var input = new InputAssembliesGroup();
+            input.IncludeGroup.AddFiles(assemblies);
+            input.SupportGroup.AddFiles(FileSystemHelpers.GetFilesWithinSubdirectories(searchDirectories, AssemblyHelpers.AssemblyFileExtensionsSet));
 
-                await writer.WriteAsync(Environment.NewLine).ConfigureAwait(false);
-                await writer.WriteAsync(compilationOutputSyntax.NormalizeWhitespace(elasticTrivia: true).ToString()).ConfigureAwait(false);
-                await writer.FlushAsync().ConfigureAwait(false);
-            }
+            var framework = targetFramework.ToFrameworks();
+
+            await ExtractEventsFromAssemblies(writer, input, framework[0]).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -244,6 +237,39 @@ namespace Pharmacist.Core
             await writer.WriteLineAsync($"// Platform included: {autoPlatform}").ConfigureAwait(false);
 
             await writer.FlushAsync().ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Extracts the events and delegates from the specified platform.
+        /// </summary>
+        /// <param name="writer">The writer where to output to.</param>
+        /// <param name="input">The input into the processor.</param>
+        /// <param name="framework">The framework we are adapting to.</param>
+        /// <returns>A task to monitor the progress.</returns>
+        public static async Task ExtractEventsFromAssemblies(TextWriter writer, InputAssembliesGroup input, NuGetFramework framework)
+        {
+            if (writer == null)
+            {
+                throw new ArgumentNullException(nameof(writer));
+            }
+
+            using (var compilation = RoslynHelpers.GetCompilation(input, framework))
+            {
+                var compilationOutputSyntax = CompilationUnit()
+                    .WithMembers(List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))))
+                    .WithUsings(List(new[]
+                                     {
+                                         UsingDirective(IdentifierName("global::System")),
+                                         UsingDirective(IdentifierName("global::System.Reactive")),
+                                         UsingDirective(IdentifierName("global::System.Reactive.Linq")),
+                                         UsingDirective(IdentifierName("global::System.Reactive.Subjects")),
+                                         UsingDirective(IdentifierName("global::Pharmacist.Common"))
+                                     }));
+
+                await writer.WriteAsync(Environment.NewLine).ConfigureAwait(false);
+                await writer.WriteAsync(compilationOutputSyntax.NormalizeWhitespace(elasticTrivia: true).ToString()).ConfigureAwait(false);
+                await writer.FlushAsync().ConfigureAwait(false);
+            }
         }
     }
 }

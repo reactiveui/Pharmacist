@@ -17,6 +17,7 @@ using NuGet.Versioning;
 
 using Pharmacist.Console.CommandOptions;
 using Pharmacist.Core;
+using Pharmacist.Core.Groups;
 using Pharmacist.Core.NuGet;
 using Pharmacist.Core.ReferenceLocators;
 
@@ -56,7 +57,7 @@ namespace Pharmacist.Console
                         }
                         else
                         {
-                            referenceAssembliesLocation = await ReferenceLocator.GetReferenceLocation().ConfigureAwait(false);
+                            referenceAssembliesLocation = ReferenceLocator.GetReferenceLocation();
                         }
 
                         await ObservablesForEventGenerator.ExtractEventsFromPlatforms(options.OutputPath, options.OutputPrefix, ".cs", referenceAssembliesLocation, options.Platforms).ConfigureAwait(false);
@@ -76,7 +77,8 @@ namespace Pharmacist.Console
                         using (var writer = new StreamWriter(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs")))
                         {
                             await ObservablesForEventGenerator.WriteHeader(writer, options.Assemblies).ConfigureAwait(false);
-                            await ObservablesForEventGenerator.ExtractEventsFromAssemblies(writer, options.Assemblies, options.SearchDirectories).ConfigureAwait(false);
+
+                            await ObservablesForEventGenerator.ExtractEventsFromAssemblies(writer, options.Assemblies, options.SearchDirectories, options.TargetFramework).ConfigureAwait(false);
                         }
 
                         return ExitCode.Success;

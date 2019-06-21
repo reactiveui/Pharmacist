@@ -15,6 +15,7 @@ namespace Pharmacist.Core
     }
     public class static ObservablesForEventGenerator
     {
+        public static System.Threading.Tasks.Task ExtractEventsFromAssemblies(System.IO.TextWriter writer, System.Collections.Generic.IEnumerable<string> assemblies, System.Collections.Generic.IEnumerable<string> searchDirectories, string targetFramework) { }
         public static System.Threading.Tasks.Task ExtractEventsFromAssemblies(System.IO.TextWriter writer, Pharmacist.Core.Groups.InputAssembliesGroup input, NuGet.Frameworks.NuGetFramework framework) { }
         public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.TextWriter writer, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packages, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks, string packageOutputFolder = null) { }
         public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.TextWriter writer, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> packages, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks, string packageOutputFolder = null) { }
@@ -100,6 +101,9 @@ namespace Pharmacist.Core.Groups
     public class FilesGroup
     {
         public FilesGroup() { }
+        public void AddFiles(System.Collections.Generic.IEnumerable<string> files) { }
+        public System.Collections.Generic.IEnumerable<string> GetAllFileNames() { }
+        public string GetFullFilePath(string fileName) { }
     }
     public class InputAssembliesGroup
     {
