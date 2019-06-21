@@ -4,7 +4,15 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+
+using NuGet.Frameworks;
+
+using Pharmacist.Core.Groups;
+using Pharmacist.Core.NuGet;
+using Pharmacist.Core.Utilities;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
 {
@@ -17,6 +25,9 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         public override AutoPlatform Platform => AutoPlatform.UWP;
 
         /// <inheritdoc />
+        public override NuGetFramework Framework { get; } = "uap10.0.17763".ToFrameworks()[0];
+
+        /// <inheritdoc />
         public override Task Extract(string referenceAssembliesLocation)
         {
             if (PlatformHelper.IsRunningOnMono())
@@ -24,8 +35,10 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
                 throw new NotSupportedException("Building events for UWP on Mac is not implemented yet.");
             }
 
-            Assemblies = new[] { @"C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd" };
-            SearchDirectories = new[] { @"C:\Windows\Microsoft.NET\Framework\v4.0.30319" };
+            var metadataFile = AssemblyHelpers.FindUnionMetadataFile("Windows", Version.Parse("10.0.17763.0"));
+
+            Input = new InputAssembliesGroup();
+            Input.IncludeGroup.AddFiles(new[] { metadataFile });
 
             return Task.CompletedTask;
         }

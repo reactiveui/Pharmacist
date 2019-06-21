@@ -39,7 +39,7 @@ namespace Pharmacist.Tests.IntegrationTests
         public async Task PlatformGeneratesCode(AutoPlatform autoPlatform)
         {
             var sourceDirectory = IntegrationTestHelper.GetOutputDirectory();
-            var referenceAssembliesLocation = await ReferenceLocator.GetReferenceLocation().ConfigureAwait(false);
+            var referenceAssembliesLocation = ReferenceLocator.GetReferenceLocation();
 
             await ObservablesForEventGenerator.ExtractEventsFromPlatforms(sourceDirectory, string.Empty, ".received.txt", referenceAssembliesLocation, new[] { autoPlatform }, TestUtilities.GetPackageDirectory()).ConfigureAwait(false);
         }

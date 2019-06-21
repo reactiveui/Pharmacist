@@ -44,7 +44,7 @@ namespace Pharmacist.Benchmarks
 
             var result = (await NuGetPackageHelper
                               .DownloadPackageFilesAndFolder(package, frameworks, packageOutputDirectory: _packageDirectory)
-                              .ConfigureAwait(false)).ToList();
+                              .ConfigureAwait(false));
         }
     }
 }

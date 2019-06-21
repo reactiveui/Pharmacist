@@ -26,7 +26,7 @@ namespace Pharmacist.Core.Generation.Resolvers
         /// <inheritdoc />
         protected override IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation)
         {
-            var processedList = new ConcurrentDictionary<ITypeDefinition, bool>();
+            var processedList = new ConcurrentDictionary<ITypeDefinition, bool>(TypeDefinitionNameComparer.Default);
             var toProcess = new ConcurrentStack<ITypeDefinition>(GetPublicTypesWithEvents(compilation).Where(x => !x.Namespace.StartsWith(SkipNamespaceName, StringComparison.InvariantCulture)));
             var output = new ConcurrentBag<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)>();
 
@@ -51,8 +51,6 @@ namespace Pharmacist.Core.Generation.Resolvers
                         {
                             return;
                         }
-
-                        processedList.TryAdd(typeDefinition, true);
 
                         var baseType = GetValidBaseType(typeDefinition, compilation);
 

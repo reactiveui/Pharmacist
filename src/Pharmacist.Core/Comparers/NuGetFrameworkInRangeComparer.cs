@@ -5,12 +5,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 using NuGet.Frameworks;
-using NuGet.Packaging.Core;
 
-namespace Pharmacist.Core.NuGet
+namespace Pharmacist.Core.Comparers
 {
     internal class NuGetFrameworkInRangeComparer : IComparer<NuGetFramework>, IEqualityComparer<NuGetFramework>
     {

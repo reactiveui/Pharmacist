@@ -5,6 +5,8 @@
 
 using System.Threading.Tasks;
 
+using NuGet.Frameworks;
+
 namespace Pharmacist.Core.Extractors.PlatformExtractors
 {
     /// <summary>
@@ -16,6 +18,11 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         /// Gets the event builder platform.
         /// </summary>
         AutoPlatform Platform { get; }
+
+        /// <summary>
+        /// Gets the framework that this platform is associated with.
+        /// </summary>
+        NuGetFramework Framework { get; }
 
         /// <summary>
         /// Extract details about the platform.

@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection.PortableExecutable;
 
@@ -12,6 +13,12 @@ using ICSharpCode.Decompiler.Metadata;
 using ICSharpCode.Decompiler.TypeSystem;
 using ICSharpCode.Decompiler.TypeSystem.Implementation;
 using ICSharpCode.Decompiler.Util;
+
+using NuGet.Frameworks;
+
+using Pharmacist.Core.Comparers;
+using Pharmacist.Core.Groups;
+using Pharmacist.Core.Utilities;
 
 namespace Pharmacist.Core.Generation.Compilation
 {
@@ -30,11 +37,10 @@ namespace Pharmacist.Core.Generation.Compilation
         private bool _initialized;
         private INamespace _rootNamespace;
 
-        public EventBuilderCompiler(IEnumerable<string> targetAssemblies, IEnumerable<string> searchDirectories)
+        public EventBuilderCompiler(InputAssembliesGroup input, NuGetFramework framework)
         {
-            var modules = targetAssemblies.Select(x => new PEFile(x, PEStreamOptions.PrefetchMetadata));
             _knownTypeCache = new KnownTypeCache(this);
-            Init(modules, searchDirectories.ToList());
+            Init(input, framework);
         }
 
         /// <summary>
@@ -149,68 +155,57 @@ namespace Pharmacist.Core.Generation.Compilation
             }
         }
 
-        private void Init(IEnumerable<IModuleReference> mainAssemblies, IReadOnlyCollection<string> searchDirectories)
+        private static IEnumerable<IModule> GetReferenceModules(IEnumerable<IModule> mainModules, InputAssembliesGroup input, NuGetFramework framework, ITypeResolveContext context)
         {
-            if (mainAssemblies == null)
-            {
-                throw new ArgumentNullException(nameof(mainAssemblies));
-            }
+            var assemblyReferencesSeen = new HashSet<IAssemblyReference>(AssemblyReferenceNameComparer.Default);
 
-            if (searchDirectories == null)
+            var referenceModulesToProcess = new Stack<(IModule parent, IAssemblyReference reference)>(mainModules.SelectMany(x => x.PEFile.AssemblyReferences.Select(reference => (x, (IAssemblyReference)reference))));
+            while (referenceModulesToProcess.Count > 0)
             {
-                throw new ArgumentNullException(nameof(searchDirectories));
+                var current = referenceModulesToProcess.Pop();
+
+                if (!assemblyReferencesSeen.Add(current.reference))
+                {
+                    continue;
+                }
+
+#pragma warning disable CA2000 // Dispose objects before losing scope
+                var moduleReference = (IModuleReference)current.reference.Resolve(current.parent, input, framework);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+
+                if (moduleReference == null)
+                {
+                    continue;
+                }
+
+                var module = moduleReference.Resolve(context);
+
+                yield return module;
+
+                foreach (var childAssemblyReference in module.PEFile.AssemblyReferences)
+                {
+                    referenceModulesToProcess.Push((module, childAssemblyReference));
+                }
+            }
+        }
+
+        private void Init(InputAssembliesGroup input, NuGetFramework framework)
+        {
+            if (input == null)
+            {
+                throw new ArgumentNullException(nameof(input));
             }
 
             var context = new SimpleTypeResolveContext(this);
-            _assemblies.AddRange(mainAssemblies.Select(x => x.Resolve(context)));
 
-            List<IModule> referencedAssemblies = new List<IModule>();
+            var moduleReferences = input.IncludeGroup.GetAllFileNames()
+                .Where(file => AssemblyHelpers.AssemblyFileExtensionsSet.Contains(Path.GetExtension(file)))
+                .Select(x => (IModuleReference)new PEFile(x, PEStreamOptions.PrefetchMetadata));
 
-            var referenceModulesToProcess = new Stack<IAssemblyReference>(_assemblies.SelectMany(x => x.PEFile.AssemblyReferences));
-            var assemblyReferencesVisited = new HashSet<string>();
+            _assemblies.AddRange(moduleReferences.Select(x => x.Resolve(context)));
 
-            while (referenceModulesToProcess.Count > 0)
-            {
-                var currentAssemblyReference = referenceModulesToProcess.Pop();
+            _referencedAssemblies.AddRange(GetReferenceModules(_assemblies, input, framework, context));
 
-                if (assemblyReferencesVisited.Contains(currentAssemblyReference.FullName))
-                {
-                    continue;
-                }
-
-                assemblyReferencesVisited.Add(currentAssemblyReference.FullName);
-
-                var currentModules = currentAssemblyReference.Resolve(searchDirectories);
-
-                if (currentModules.Count == 0)
-                {
-                    continue;
-                }
-
-                foreach (var currentModule in currentModules)
-                {
-                    IModule asm;
-                    try
-                    {
-                        asm = ((IModuleReference)currentModule).Resolve(context);
-                    }
-                    catch (InvalidOperationException)
-                    {
-                        throw new InvalidOperationException("Tried to initialize compilation with an invalid assembly reference. (Forgot to load the assembly reference ? - see CecilLoader)");
-                    }
-
-                    if (asm != null)
-                    {
-                        referencedAssemblies.Add(asm);
-                        foreach (var element in asm.PEFile.AssemblyReferences)
-                        {
-                            referenceModulesToProcess.Push(element);
-                        }
-                    }
-                }
-            }
-
-            _referencedAssemblies.AddRange(referencedAssemblies);
             _initialized = true;
         }
 

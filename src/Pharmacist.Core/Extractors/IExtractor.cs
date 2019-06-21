@@ -5,6 +5,8 @@
 
 using System.Collections.Generic;
 
+using Pharmacist.Core.Groups;
+
 namespace Pharmacist.Core.Extractors
 {
     /// <summary>
@@ -13,14 +15,8 @@ namespace Pharmacist.Core.Extractors
     public interface IExtractor
     {
         /// <summary>
-        /// Gets the assemblies.
+        /// Gets the input for the generators and resolvers.
         /// </summary>
-        IEnumerable<string> Assemblies { get; }
-
-        /// <summary>
-        /// Gets the cecil search directories.
-        /// Cecil when run on Mono needs some direction as to the location of the platform specific MSCORLIB.
-        /// </summary>
-        IEnumerable<string> SearchDirectories { get; }
+        InputAssembliesGroup Input { get; }
     }
 }

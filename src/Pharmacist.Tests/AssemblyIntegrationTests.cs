@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using NuGet.Frameworks;
 using NuGet.Packaging.Core;
 using NuGet.Versioning;
 
@@ -34,11 +35,11 @@ namespace Pharmacist.Tests
         {
             using (var memoryStream = new MemoryStream())
             {
-                var folders = (await NuGetPackageHelper.DownloadPackageFilesAndFolder(new[] { new PackageIdentity("NETStandard.Library", new NuGetVersion("2.0.0")) }).ConfigureAwait(false)).Select(x => x.folder);
+                var input = await NuGetPackageHelper.DownloadPackageFilesAndFolder(new[] { new PackageIdentity("NETStandard.Library", new NuGetVersion("2.0.0")) }).ConfigureAwait(false);
 
                 using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8, 1024, true))
                 {
-                    await ObservablesForEventGenerator.ExtractEventsFromAssemblies(streamWriter, new[] { typeof(InstanceClass).Assembly.Location }, folders).ConfigureAwait(false);
+                    await ObservablesForEventGenerator.ExtractEventsFromAssemblies(streamWriter, input, FrameworkConstants.CommonFrameworks.NetStandard20).ConfigureAwait(false);
                 }
 
                 memoryStream.Flush();

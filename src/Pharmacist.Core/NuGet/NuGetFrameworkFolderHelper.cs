@@ -8,12 +8,11 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 using NuGet.Frameworks;
 
 using Pharmacist.Core.ReferenceLocators;
+using Pharmacist.Core.Utilities;
 
 namespace Pharmacist.Core.NuGet
 {
@@ -24,55 +23,74 @@ namespace Pharmacist.Core.NuGet
         /// </summary>
         /// <param name="framework">The framework to analyze.</param>
         /// <returns>A list of additional paths.</returns>
-        public static async Task<IEnumerable<string>> GetNuGetFrameworkFolders(this NuGetFramework framework)
+        public static IEnumerable<string> GetNuGetFrameworkFolders(this NuGetFramework framework)
         {
+            IEnumerable<string> folders;
             switch (framework.Framework.ToLowerInvariant())
             {
                 case "monoandroid":
-                    return await HandleAndroid(framework).ConfigureAwait(false);
+                    folders = HandleAndroid(framework);
+                    break;
                 case "xamarin.ios":
-                    return await HandleiOS().ConfigureAwait(false);
+                    folders = HandleiOS();
+                    break;
                 case "xamarin.tvos":
-                    return await HandleTVOS().ConfigureAwait(false);
+                    folders = HandleTVOS();
+                    break;
                 case "xamarin.watchos":
-                    return await HandleWatchOS().ConfigureAwait(false);
+                    folders = HandleWatchOS();
+                    break;
+                case "xamarin.mac":
+                    folders = HandleMac();
+                    break;
+                default:
+                    folders = Array.Empty<string>();
+                    break;
             }
 
-            return Array.Empty<string>();
+            return FileSystemHelpers.GetSubdirectoriesWithMatch(folders, AssemblyHelpers.AssemblyFileExtensionsSet);
         }
 
-        private static async Task<IEnumerable<string>> HandleWatchOS()
+        private static IEnumerable<string> HandleWatchOS()
         {
-            string referenceAssembliesLocation = await GetReferenceLocation("/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/").ConfigureAwait(false);
+            string referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/");
 
             return new[] { Path.Combine(referenceAssembliesLocation, "Xamarin.WatchOS") };
         }
 
-        private static async Task<IEnumerable<string>> HandleTVOS()
+        private static IEnumerable<string> HandleTVOS()
         {
-            string referenceAssembliesLocation = await GetReferenceLocation("/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/").ConfigureAwait(false);
+            string referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/");
 
             return new[] { Path.Combine(referenceAssembliesLocation, "Xamarin.TVOS") };
         }
 
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:Element should begin with upper-case letter", Justification = "iOS special naming scheme.")]
-        private static async Task<IEnumerable<string>> HandleiOS()
+        private static IEnumerable<string> HandleiOS()
         {
-            string referenceAssembliesLocation = await GetReferenceLocation("/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/").ConfigureAwait(false);
+            string referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/");
 
             return new[] { Path.Combine(referenceAssembliesLocation, "Xamarin.iOS") };
         }
 
-        private static async Task<IEnumerable<string>> HandleAndroid(NuGetFramework nugetFramework)
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:Element should begin with upper-case letter", Justification = "iOS special naming scheme.")]
+        private static IEnumerable<string> HandleMac()
         {
-            string referenceAssembliesLocation = await GetReferenceLocation("/Library/Frameworks/Xamarin.Android.framework/Libraries/xbuild-frameworks").ConfigureAwait(false);
+            string referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/lib/mono/");
+
+            return new[] { Path.Combine(referenceAssembliesLocation, "Xamarin.Mac") };
+        }
+
+        private static IEnumerable<string> HandleAndroid(NuGetFramework nugetFramework)
+        {
+            string referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.Android.framework/Libraries/xbuild-frameworks");
 
             var versionText = $"v{nugetFramework.Version.Major}.{nugetFramework.Version.Minor}";
 
-            return new[] { Path.Combine(referenceAssembliesLocation, "MonoAndroid", "v1.0"), Path.Combine(referenceAssembliesLocation, "MonoAndroid", versionText) };
+            return new[] { Path.Combine(referenceAssembliesLocation, "MonoAndroid", versionText), Path.Combine(referenceAssembliesLocation, "MonoAndroid", "v1.0") };
         }
 
-        private static async Task<string> GetReferenceLocation(string macLocation)
+        private static string GetReferenceLocation(string macLocation)
         {
             string referenceAssembliesLocation;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
@@ -81,7 +99,7 @@ namespace Pharmacist.Core.NuGet
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                referenceAssembliesLocation = await ReferenceLocator.GetReferenceLocation().ConfigureAwait(false);
+                referenceAssembliesLocation = ReferenceLocator.GetReferenceLocation();
             }
             else
             {

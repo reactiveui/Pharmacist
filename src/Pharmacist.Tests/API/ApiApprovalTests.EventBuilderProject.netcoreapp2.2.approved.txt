@@ -15,7 +15,7 @@ namespace Pharmacist.Core
     }
     public class static ObservablesForEventGenerator
     {
-        public static System.Threading.Tasks.Task ExtractEventsFromAssemblies(System.IO.TextWriter writer, System.Collections.Generic.IEnumerable<string> assemblyPaths, System.Collections.Generic.IEnumerable<string> searchDirectories) { }
+        public static System.Threading.Tasks.Task ExtractEventsFromAssemblies(System.IO.TextWriter writer, Pharmacist.Core.Groups.InputAssembliesGroup input, NuGet.Frameworks.NuGetFramework framework) { }
         public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.TextWriter writer, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packages, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks, string packageOutputFolder = null) { }
         public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.TextWriter writer, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> packages, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks, string packageOutputFolder = null) { }
         public static System.Threading.Tasks.Task ExtractEventsFromPlatforms(string outputPath, string prefix, string suffix, string defaultReferenceAssemblyLocation, System.Collections.Generic.IEnumerable<Pharmacist.Core.AutoPlatform> platforms, string packageOutputFolder = null) { }
@@ -33,14 +33,12 @@ namespace Pharmacist.Core.Extractors
 {
     public interface IExtractor
     {
-        System.Collections.Generic.IEnumerable<string> Assemblies { get; }
-        System.Collections.Generic.IEnumerable<string> SearchDirectories { get; }
+        Pharmacist.Core.Groups.InputAssembliesGroup Input { get; }
     }
     public class NuGetExtractor : Pharmacist.Core.Extractors.IExtractor
     {
         public NuGetExtractor() { }
-        public System.Collections.Generic.IEnumerable<string> Assemblies { get; }
-        public System.Collections.Generic.IEnumerable<string> SearchDirectories { get; }
+        public Pharmacist.Core.Groups.InputAssembliesGroup Input { get; }
         public System.Threading.Tasks.Task Extract(System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> targetFrameworks, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packages, string packageOutputDirectory) { }
         public System.Threading.Tasks.Task Extract(System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> targetFrameworks, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> packages, string packageOutputDirectory) { }
     }
@@ -50,45 +48,64 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
     public class Android : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
     {
         public Android() { }
+        public override NuGet.Frameworks.NuGetFramework Framework { get; }
         public override Pharmacist.Core.AutoPlatform Platform { get; }
         public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
     }
     public abstract class BasePlatform : Pharmacist.Core.Extractors.IExtractor, Pharmacist.Core.Extractors.PlatformExtractors.IPlatformExtractor
     {
         protected BasePlatform() { }
-        public System.Collections.Generic.IEnumerable<string> Assemblies { get; set; }
+        public abstract NuGet.Frameworks.NuGetFramework Framework { get; }
+        public Pharmacist.Core.Groups.InputAssembliesGroup Input { get; set; }
         public abstract Pharmacist.Core.AutoPlatform Platform { get; }
-        public System.Collections.Generic.IEnumerable<string> SearchDirectories { get; set; }
         public abstract System.Threading.Tasks.Task Extract(string referenceAssembliesLocation);
     }
     public interface IPlatformExtractor : Pharmacist.Core.Extractors.IExtractor
     {
+        NuGet.Frameworks.NuGetFramework Framework { get; }
         Pharmacist.Core.AutoPlatform Platform { get; }
         System.Threading.Tasks.Task Extract(string referenceAssembliesLocation);
     }
     public class Mac : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
     {
         public Mac() { }
+        public override NuGet.Frameworks.NuGetFramework Framework { get; }
         public override Pharmacist.Core.AutoPlatform Platform { get; }
         public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
     }
     public class TVOS : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
     {
         public TVOS() { }
+        public override NuGet.Frameworks.NuGetFramework Framework { get; }
         public override Pharmacist.Core.AutoPlatform Platform { get; }
         public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
     }
     public class UWP : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
     {
         public UWP() { }
+        public override NuGet.Frameworks.NuGetFramework Framework { get; }
         public override Pharmacist.Core.AutoPlatform Platform { get; }
         public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
     }
     public class iOS : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
     {
         public iOS() { }
+        public override NuGet.Frameworks.NuGetFramework Framework { get; }
         public override Pharmacist.Core.AutoPlatform Platform { get; }
         public override System.Threading.Tasks.Task Extract(string referenceAssembliesLocation) { }
+    }
+}
+namespace Pharmacist.Core.Groups
+{
+    public class FilesGroup
+    {
+        public FilesGroup() { }
+    }
+    public class InputAssembliesGroup
+    {
+        public InputAssembliesGroup() { }
+        public Pharmacist.Core.Groups.FilesGroup IncludeGroup { get; }
+        public Pharmacist.Core.Groups.FilesGroup SupportGroup { get; }
     }
 }
 namespace Pharmacist.Core.NuGet
@@ -102,14 +119,8 @@ namespace Pharmacist.Core.NuGet
     {
         public const string DefaultNuGetSource = "https://api.nuget.org/v3/index.json";
         public static System.Collections.Generic.List<System.Lazy<NuGet.Protocol.Core.Types.INuGetResourceProvider>> Providers { get; }
-        [return: System.Runtime.CompilerServices.TupleElementNamesAttribute(new string[] {
-                "folder",
-                "files"})]
-        public static System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyCollection<System.ValueTuple<string, System.Collections.Generic.IReadOnlyCollection<string>>>> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> libraryIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, string packageOutputDirectory = null, System.Threading.CancellationToken token = null) { }
-        [return: System.Runtime.CompilerServices.TupleElementNamesAttribute(new string[] {
-                "folder",
-                "files"})]
-        public static System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyCollection<System.ValueTuple<string, System.Collections.Generic.IReadOnlyCollection<string>>>> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packageIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, string packageOutputDirectory = null, System.Threading.CancellationToken token = null) { }
+        public static System.Threading.Tasks.Task<Pharmacist.Core.Groups.InputAssembliesGroup> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> libraryIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, string packageOutputDirectory = null, System.Threading.CancellationToken token = null) { }
+        public static System.Threading.Tasks.Task<Pharmacist.Core.Groups.InputAssembliesGroup> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packageIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks = null, NuGet.Configuration.PackageSource nugetSource = null, bool getDependencies = True, System.Collections.Generic.IReadOnlyCollection<string> packageFolders = null, string packageOutputDirectory = null, System.Threading.CancellationToken token = null) { }
         public static System.Threading.Tasks.Task<NuGet.Packaging.Core.PackageIdentity> GetBestMatch(NuGet.LibraryModel.LibraryRange identity, NuGet.Protocol.Core.Types.FindPackageByIdResource findPackageResource, System.Threading.CancellationToken token) { }
     }
 }
@@ -124,6 +135,6 @@ namespace Pharmacist.Core.ReferenceLocators
     }
     public class static ReferenceLocator
     {
-        public static System.Threading.Tasks.Task<string> GetReferenceLocation(bool includePreRelease = True) { }
+        public static string GetReferenceLocation(bool includePreRelease = True) { }
     }
 }

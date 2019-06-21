@@ -18,9 +18,9 @@ namespace Pharmacist.Tests
     public class ReferenceLocationTests
     {
         [Fact]
-        public async Task GetsValidLocation()
+        public void GetsValidLocation()
         {
-            var location = await ReferenceLocator.GetReferenceLocation().ConfigureAwait(false);
+            var location = ReferenceLocator.GetReferenceLocation();
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {

@@ -1,4 +1,81 @@
 
+using global::System;
+using global::System.Reactive;
+using global::System.Reactive.Linq;
+using global::System.Reactive.Subjects;
+using global::Pharmacist.Common;
+
+namespace AppKit
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "AppKit"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::AppKit.NSPageController"/> class.
+        /// </summary>
+        public static NSPageControllerEvents Events(this global::AppKit.NSPageController item) => new NSPageControllerEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::AppKit.NSPageController"/> class as observables.
+    /// </summary>
+    public class NSPageControllerEvents
+    {
+        private readonly global::AppKit.NSPageController _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::AppKit.NSPageController"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public NSPageControllerEvents(global::AppKit.NSPageController data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "AppKit.NSPageController.DidEndLiveTransition"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DidEndLiveTransition => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DidEndLiveTransition += x, x => _data.DidEndLiveTransition -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "AppKit.NSPageController.DidTransition"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::AppKit.NSPageControllerTransitionEventArgs> DidTransition => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::AppKit.NSPageControllerTransitionEventArgs>, global::AppKit.NSPageControllerTransitionEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::AppKit.NSPageControllerTransitionEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DidTransition += x, x => _data.DidTransition -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "AppKit.NSPageController.PrepareViewController"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::AppKit.NSPageControllerPrepareViewControllerEventArgs> PrepareViewController => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::AppKit.NSPageControllerPrepareViewControllerEventArgs>, global::AppKit.NSPageControllerPrepareViewControllerEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::AppKit.NSPageControllerPrepareViewControllerEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PrepareViewController += x, x => _data.PrepareViewController -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "AppKit.NSPageController.WillStartLiveTransition"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> WillStartLiveTransition => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillStartLiveTransition += x, x => _data.WillStartLiveTransition -= x);
+    }
+}
+
 namespace Xamarin.Forms
 {
     /// <summary>
@@ -2581,14 +2658,14 @@ namespace Xamarin.Forms.Platform.MacOS
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.MacOS.CarouselPageRenderer"/> class as observables.
     /// </summary>
-    public class CarouselPageRendererEvents
+    public class CarouselPageRendererEvents : global::AppKit.NSPageControllerEvents
     {
         private readonly global::Xamarin.Forms.Platform.MacOS.CarouselPageRenderer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.MacOS.CarouselPageRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CarouselPageRendererEvents(global::Xamarin.Forms.Platform.MacOS.CarouselPageRenderer data)
+        public CarouselPageRendererEvents(global::Xamarin.Forms.Platform.MacOS.CarouselPageRenderer data): base(data)
         {
             _data = data;
         }

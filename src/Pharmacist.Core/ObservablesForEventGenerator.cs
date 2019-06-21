@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
@@ -25,8 +26,11 @@ using Pharmacist.Core.Extractors;
 using Pharmacist.Core.Extractors.PlatformExtractors;
 using Pharmacist.Core.Generation;
 using Pharmacist.Core.Generation.Resolvers;
+using Pharmacist.Core.Groups;
 
 using Splat;
+
+using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace Pharmacist.Core
 {
@@ -80,7 +84,7 @@ namespace Pharmacist.Core
                 using (var streamWriter = new StreamWriter(Path.Combine(outputPath, prefix + platform.ToString().ToLowerInvariant() + suffix)))
                 {
                     await WriteHeader(streamWriter, platform).ConfigureAwait(false);
-                    await ExtractEventsFromAssemblies(streamWriter, platformExtractor.Assemblies, platformExtractor.SearchDirectories).ConfigureAwait(false);
+                    await ExtractEventsFromAssemblies(streamWriter, platformExtractor.Input, platformExtractor.Framework).ConfigureAwait(false);
                 }
 
                 LogHost.Default.Info(CultureInfo.InvariantCulture, "Finished platform {0}", platform);
@@ -100,7 +104,7 @@ namespace Pharmacist.Core
             var extractor = new NuGetExtractor();
             await extractor.Extract(frameworks, packages, packageOutputFolder).ConfigureAwait(false);
 
-            await ExtractEventsFromAssemblies(writer, extractor.Assemblies, extractor.SearchDirectories).ConfigureAwait(false);
+            await ExtractEventsFromAssemblies(writer, extractor.Input, frameworks.First()).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -116,26 +120,35 @@ namespace Pharmacist.Core
             var extractor = new NuGetExtractor();
             await extractor.Extract(frameworks, packages, packageOutputFolder).ConfigureAwait(false);
 
-            await ExtractEventsFromAssemblies(writer, extractor.Assemblies, extractor.SearchDirectories).ConfigureAwait(false);
+            await ExtractEventsFromAssemblies(writer, extractor.Input, frameworks.First()).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Extracts the events and delegates from the specified platform.
         /// </summary>
         /// <param name="writer">The writer where to output to.</param>
-        /// <param name="assemblyPaths">The paths to the assemblies to extract.</param>
-        /// <param name="searchDirectories">Paths to any directories to search for supporting libraries.</param>
+        /// <param name="input">The input into the processor.</param>
+        /// <param name="framework">The framework we are adapting to.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public static async Task ExtractEventsFromAssemblies(TextWriter writer, IEnumerable<string> assemblyPaths, IEnumerable<string> searchDirectories)
+        public static async Task ExtractEventsFromAssemblies(TextWriter writer, InputAssembliesGroup input, NuGetFramework framework)
         {
             if (writer == null)
             {
                 throw new ArgumentNullException(nameof(writer));
             }
 
-            using (var compilation = RoslynHelpers.GetCompilation(assemblyPaths, searchDirectories))
+            using (var compilation = RoslynHelpers.GetCompilation(input, framework))
             {
-                var compilationOutputSyntax = SyntaxFactory.CompilationUnit().WithMembers(SyntaxFactory.List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))));
+                var compilationOutputSyntax = CompilationUnit()
+                    .WithMembers(List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))))
+                    .WithUsings(List(new[]
+                        {
+                            UsingDirective(IdentifierName("global::System")),
+                            UsingDirective(IdentifierName("global::System.Reactive")),
+                            UsingDirective(IdentifierName("global::System.Reactive.Linq")),
+                            UsingDirective(IdentifierName("global::System.Reactive.Subjects")),
+                            UsingDirective(IdentifierName("global::Pharmacist.Common"))
+                        }));
 
                 await writer.WriteAsync(Environment.NewLine).ConfigureAwait(false);
                 await writer.WriteAsync(compilationOutputSyntax.NormalizeWhitespace(elasticTrivia: true).ToString()).ConfigureAwait(false);
@@ -156,7 +169,7 @@ namespace Pharmacist.Core
             }
 
             await writer.WriteAsync(await TemplateManager.GetTemplateAsync(TemplateManager.HeaderTemplate).ConfigureAwait(false)).ConfigureAwait(false);
-            await writer.WriteLineAsync("// Generated with Pharmacist version: " + Assembly.GetExecutingAssembly().GetName().Version).ConfigureAwait(false);
+            await writer.WriteLineAsync("// Generated with Pharmacist version: " + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion).ConfigureAwait(false);
             await writer.FlushAsync().ConfigureAwait(false);
         }
 
