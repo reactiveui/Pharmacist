@@ -4,15 +4,10 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
-using NuGet.Frameworks;
-using NuGet.Packaging.Core;
-using NuGet.Versioning;
-
-using Pharmacist.Core.NuGet;
+using Pharmacist.Core.Groups;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
 {
@@ -21,22 +16,26 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
     /// </summary>
     internal class WPF : NetFrameworkBase
     {
+        private static readonly string[] WantedFileNames =
+                                                          {
+                                                              "WindowsBase.dll",
+                                                              "PresentationCore.dll",
+                                                              "PresentationFramework.dll"
+                                                          };
+
         public WPF(string filePath)
             : base(filePath)
         {
         }
 
         /// <inheritdoc />
-        public override AutoPlatform Platform => AutoPlatform.WPF;
+        public override AutoPlatform Platform { get; } = AutoPlatform.WPF;
 
         /// <inheritdoc />
-        protected override void SetFiles(string[] files)
+        protected override void SetFiles(InputAssembliesGroup folderGroups)
         {
-            var assemblies = new List<string>(10);
-            assemblies.AddRange(files.Where(x => x.EndsWith("WindowsBase.dll", StringComparison.InvariantCultureIgnoreCase)));
-            assemblies.AddRange(files.Where(x => x.EndsWith("PresentationCore.dll", StringComparison.InvariantCultureIgnoreCase)));
-            assemblies.AddRange(files.Where(x => x.EndsWith("PresentationFramework.dll", StringComparison.InvariantCultureIgnoreCase)));
-            Assemblies = assemblies;
+            var fileMetadataEnumerable = folderGroups.IncludeGroup.GetAllFileNames().Where(file => WantedFileNames.Contains(Path.GetFileName(file), StringComparer.InvariantCultureIgnoreCase));
+            Input.IncludeGroup.AddFiles(fileMetadataEnumerable);
         }
     }
 }

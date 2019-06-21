@@ -4,7 +4,6 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -112,12 +111,6 @@ namespace Pharmacist.Tests
             "Tizen.WebView.dll",
         };
 
-        private static readonly string[] ExpectedTizenDirectories =
-        {
-            "NETStandard.Library" + Path.DirectorySeparatorChar + "2.0.0",
-            "Tizen.NET.API4" + Path.DirectorySeparatorChar + "4.0.1.14152"
-        };
-
         /// <summary>
         /// Check to make sure that the tizen packages produce the correct files.
         /// </summary>
@@ -145,11 +138,13 @@ namespace Pharmacist.Tests
             var package = new[] { new PackageIdentity("NuGet.Protocol", new NuGetVersion("5.0.0")) };
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
-            var result = (await NuGetPackageHelper
+            var result = await NuGetPackageHelper
                               .DownloadPackageFilesAndFolder(package, frameworks, packageOutputDirectory: TestUtilities.GetPackageDirectory())
-                              .ConfigureAwait(false)).ToList();
+                              .ConfigureAwait(false);
 
-            result.ShouldNotBeEmpty();
+            var includeFiles = result.IncludeGroup.GetAllFileNames().ToList();
+            includeFiles.ShouldNotBeEmpty();
+            includeFiles.Where(x => x.EndsWith(".dll")).ShouldNotBeEmpty();
         }
 
         [Fact]
@@ -158,13 +153,13 @@ namespace Pharmacist.Tests
             var package = new[] { new PackageIdentity("Microsoft.NETCore.App", new NuGetVersion("2.0.0")) };
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.NetCoreApp20 };
 
-            var result = (await NuGetPackageHelper
+            var result = await NuGetPackageHelper
                               .DownloadPackageFilesAndFolder(package, frameworks, packageOutputDirectory: TestUtilities.GetPackageDirectory())
-                              .ConfigureAwait(false)).ToList();
+                              .ConfigureAwait(false);
 
-            result.ShouldNotBeEmpty();
-
-            result.SelectMany(x => x.files).Where(x => x.EndsWith(".dll")).ShouldNotBeEmpty();
+            var includeFiles = result.IncludeGroup.GetAllFileNames().ToList();
+            includeFiles.ShouldNotBeEmpty();
+            includeFiles.Where(x => x.EndsWith(".dll")).ShouldNotBeEmpty();
         }
 
         [Fact]
@@ -174,13 +169,13 @@ namespace Pharmacist.Tests
 
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.Net461 };
 
-            var result = (await NuGetPackageHelper
+            var result = await NuGetPackageHelper
                               .DownloadPackageFilesAndFolder(package, frameworks, packageOutputDirectory: TestUtilities.GetPackageDirectory())
-                              .ConfigureAwait(false)).ToList();
+                              .ConfigureAwait(false);
 
-            result.ShouldNotBeEmpty();
-
-            result.SelectMany(x => x.files).Where(x => x.EndsWith(".dll")).ShouldNotBeEmpty();
+            var includeFiles = result.IncludeGroup.GetAllFileNames().ToList();
+            includeFiles.ShouldNotBeEmpty();
+            includeFiles.Where(x => x.EndsWith(".dll")).ShouldNotBeEmpty();
         }
 
         private static async Task GetAndCheckTizenPackage()
@@ -190,19 +185,19 @@ namespace Pharmacist.Tests
 
             var testPackageLocation = TestUtilities.GetPackageDirectory();
 
-            var result = (await NuGetPackageHelper
+            var result = await NuGetPackageHelper
                               .DownloadPackageFilesAndFolder(package, frameworks, packageOutputDirectory: testPackageLocation)
-                              .ConfigureAwait(false)).ToList();
+                              .ConfigureAwait(false);
 
-            var actualFiles = result.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)).ToList();
-            var actualDirectories = result.Select(x => x.folder).ToList();
+            var includeFiles = result.IncludeGroup.GetAllFileNames().ToList();
+            var actualFiles = includeFiles.Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)).ToList();
+            includeFiles.ShouldNotBeEmpty();
+            actualFiles.ShouldNotBeEmpty();
+
             Assert.True(actualFiles.All(File.Exists));
-            Assert.True(actualDirectories.All(Directory.Exists));
 
             var actualFileNames = actualFiles.Select(Path.GetFileName).ToList();
-            var actualDirectoryNames = actualDirectories.Select(x => x.Replace(testPackageLocation + Path.DirectorySeparatorChar, string.Empty)).ToList();
             ExpectedTizenFiles.ShouldHaveSameContents(actualFileNames);
-            ExpectedTizenDirectories.ShouldHaveSameContents(actualDirectoryNames);
         }
     }
 }

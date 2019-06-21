@@ -1,4 +1,10 @@
 
+using global::System;
+using global::System.Reactive;
+using global::System.Reactive.Linq;
+using global::System.Reactive.Subjects;
+using global::Pharmacist.Common;
+
 namespace Android.Support.V4.Widget
 {
     /// <summary>

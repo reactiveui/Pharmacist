@@ -3,11 +3,18 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+
+using NuGet.Frameworks;
+
+using Pharmacist.Core.Groups;
+using Pharmacist.Core.NuGet;
+using Pharmacist.Core.Utilities;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
 {
@@ -18,28 +25,17 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
     /// <seealso cref="BasePlatform" />
     public class Android : BasePlatform
     {
-        private const string DesiredVersion = "v8.1";
-
         /// <inheritdoc />
         public override AutoPlatform Platform => AutoPlatform.Android;
 
         /// <inheritdoc />
+        public override NuGetFramework Framework { get; } = "MonoAndroid81".ToFrameworks()[0];
+
+        /// <inheritdoc />
         public override Task Extract(string referenceAssembliesLocation)
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                referenceAssembliesLocation = "/Library/Frameworks/Xamarin.Android.framework/Libraries/xbuild-frameworks";
-            }
-
-            // Pin to a particular framework version https://github.com/reactiveui/ReactiveUI/issues/1517
-            var latestVersion = Directory.GetFiles(
-                Path.Combine(referenceAssembliesLocation, "MonoAndroid"),
-                "Mono.Android.dll",
-                SearchOption.AllDirectories).Last(x => x.Contains(DesiredVersion));
-
-            SearchDirectories = new[] { Path.Combine(referenceAssembliesLocation, "MonoAndroid", "v1.0"), Path.GetDirectoryName(latestVersion) };
-            Assemblies = new[] { latestVersion };
-
+            Input = new InputAssembliesGroup();
+            Input.IncludeGroup.AddFiles(FileSystemHelpers.GetFilesWithinSubdirectories(Framework.GetNuGetFrameworkFolders(), AssemblyHelpers.AssemblyFileExtensionsSet).Where(x => Path.GetFileName(x).Equals("Mono.Android.dll", StringComparison.InvariantCultureIgnoreCase)));
             return Task.CompletedTask;
         }
     }

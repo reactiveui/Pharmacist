@@ -27,5 +27,11 @@ namespace Pharmacist.Console.CommandOptions
         /// </summary>
         [Option('a', "assemblies", Required = true, HelpText = "List of assemblies to process.")]
         public IEnumerable<string> Assemblies { get; set; }
+
+        /// <summary>
+        /// Gets or sets the reference assemblies.
+        /// </summary>
+        [Option('t', "target-framework", Required = true, HelpText = "Specify the Target framework to extract for.")]
+        public string TargetFramework { get; set; }
     }
 }

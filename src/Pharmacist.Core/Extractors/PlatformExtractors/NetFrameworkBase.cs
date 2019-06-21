@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,9 @@ using NuGet.Frameworks;
 using NuGet.Packaging.Core;
 using NuGet.Versioning;
 
+using Pharmacist.Core.Groups;
 using Pharmacist.Core.NuGet;
+using Pharmacist.Core.Utilities;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
 {
@@ -34,19 +37,23 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         }
 
         /// <inheritdoc />
+        public override NuGetFramework Framework { get; } = "net461".ToFrameworks()[0];
+
+        /// <inheritdoc />
         /// <exception cref="NotSupportedException">Building events for WPF on Mac is not implemented.</exception>
         public override async Task Extract(string referenceAssembliesLocation)
         {
             var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(new[] { ReferenceNuGet }, new[] { ReferenceFramework }, packageOutputDirectory: _filePath).ConfigureAwait(false);
-            var files = results.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)).ToArray();
-            SetFiles(files);
-            SearchDirectories = new List<string>(results.Select(x => x.folder));
+
+            Input = new InputAssembliesGroup { SupportGroup = results.SupportGroup };
+
+            SetFiles(results);
         }
 
         /// <summary>
         /// Processes the files.
         /// </summary>
-        /// <param name="files">The files.</param>
-        protected abstract void SetFiles(string[] files);
+        /// <param name="folderGroups">The files.</param>
+        protected abstract void SetFiles(InputAssembliesGroup folderGroups);
     }
 }

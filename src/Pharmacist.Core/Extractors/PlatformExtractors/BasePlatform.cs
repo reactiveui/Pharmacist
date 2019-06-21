@@ -6,6 +6,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using NuGet.Frameworks;
+
+using Pharmacist.Core.Groups;
+
 namespace Pharmacist.Core.Extractors.PlatformExtractors
 {
     /// <summary>
@@ -17,10 +21,10 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         public abstract AutoPlatform Platform { get; }
 
         /// <inheritdoc />
-        public IEnumerable<string> Assemblies { get; protected set; }
+        public abstract NuGetFramework Framework { get; }
 
         /// <inheritdoc />
-        public IEnumerable<string> SearchDirectories { get; protected set; }
+        public InputAssembliesGroup Input { get; protected set; }
 
         /// <inheritdoc />
         public abstract Task Extract(string referenceAssembliesLocation);

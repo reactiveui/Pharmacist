@@ -4,6 +4,7 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -28,66 +29,76 @@ namespace Pharmacist.Core.ReferenceLocators
     {
         private static readonly PackageIdentity VSWherePackageIdentity = new PackageIdentity("VSWhere", new NuGetVersion("2.6.7"));
 
+        private static readonly ConcurrentDictionary<bool, string> _windowsInstallationDirectory = new ConcurrentDictionary<bool, string>();
+
         /// <summary>
         /// Gets the reference location.
         /// </summary>
         /// <param name="includePreRelease">If we should include pre-release software.</param>
         /// <returns>The reference location.</returns>
-        public static Task<string> GetReferenceLocation(bool includePreRelease = true)
+        public static string GetReferenceLocation(bool includePreRelease = true)
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                return Task.FromResult("⁨/Library⁩/Frameworks⁩/Libraries/⁨mono⁩");
+                return "⁨/Library⁩/Frameworks";
             }
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                return GetWindowsInstallationDirectory(includePreRelease);
+                var visualStudioInstallation = GetWindowsInstallationDirectory(includePreRelease);
+
+                return Path.Combine(visualStudioInstallation, "Common7", "IDE", "ReferenceAssemblies", "Microsoft", "Framework");
             }
 
             throw new ReferenceLocationNotFoundException("Visual Studio reference location not supported on this platform: " + RuntimeInformation.OSDescription);
         }
 
-        private static async Task<string> GetWindowsInstallationDirectory(bool includePreRelease)
+        private static string GetWindowsInstallationDirectory(bool includePreRelease)
         {
-            var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(
-                              new[] { VSWherePackageIdentity },
-                              new[] { new NuGetFramework("Any") },
-                              packageFolders: new[] { PackagingConstants.Folders.Tools },
-                              getDependencies: false).ConfigureAwait(false);
-
-            var fileName = results.SelectMany(x => x.files).FirstOrDefault(x => x.EndsWith("vswhere.exe", StringComparison.InvariantCultureIgnoreCase));
-
-            if (fileName == null)
-            {
-                throw new ReferenceLocationNotFoundException("Cannot find visual studio installation, due to vswhere not being installed correctly.");
-            }
-
-            var parameters = new StringBuilder("-latest -nologo -property installationPath -format value");
-
-            if (includePreRelease)
-            {
-                parameters.Append(" -prerelease");
-            }
-
-            return await Task.Run(() =>
-            {
-                using (var process = new Process())
+            return _windowsInstallationDirectory.GetOrAdd(
+                includePreRelease,
+                incPreRelease =>
                 {
-                    process.StartInfo.FileName = fileName;
-                    process.StartInfo.Arguments = parameters.ToString();
-                    process.StartInfo.UseShellExecute = false;
-                    process.StartInfo.RedirectStandardOutput = true;
+                    return Task.Run(
+                        async () =>
+                        {
+                            var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(
+                                              new[] { VSWherePackageIdentity },
+                                              new[] { new NuGetFramework("Any") },
+                                              packageFolders: new[] { PackagingConstants.Folders.Tools },
+                                              getDependencies: false).ConfigureAwait(false);
 
-                    process.Start();
+                            var fileName = results.IncludeGroup.GetAllFileNames().FirstOrDefault(x => x.EndsWith("vswhere.exe", StringComparison.InvariantCultureIgnoreCase));
 
-                    // To avoid deadlocks, always read the output stream first and then wait.
-                    string output = process.StandardOutput.ReadToEnd().Replace(Environment.NewLine, string.Empty);
-                    process.WaitForExit();
+                            if (fileName == null)
+                            {
+                                throw new ReferenceLocationNotFoundException("Cannot find visual studio installation, due to vswhere not being installed correctly.");
+                            }
 
-                    return Path.Combine(output, "Common7", "IDE", "ReferenceAssemblies", "Microsoft", "Framework");
-                }
-            }).ConfigureAwait(false);
+                            var parameters = new StringBuilder("-latest -nologo -property installationPath -format value");
+
+                            if (incPreRelease)
+                            {
+                                parameters.Append(" -prerelease");
+                            }
+
+                            using (var process = new Process())
+                            {
+                                process.StartInfo.FileName = fileName;
+                                process.StartInfo.Arguments = parameters.ToString();
+                                process.StartInfo.UseShellExecute = false;
+                                process.StartInfo.RedirectStandardOutput = true;
+
+                                process.Start();
+
+                                // To avoid deadlocks, always read the output stream first and then wait.
+                                string output = process.StandardOutput.ReadToEnd().Replace(Environment.NewLine, string.Empty);
+                                process.WaitForExit();
+
+                                return output;
+                            }
+                        }).ConfigureAwait(false).GetAwaiter().GetResult();
+                });
         }
     }
 }

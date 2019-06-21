@@ -4,9 +4,13 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
+
+using NuGet.Frameworks;
+
+using Pharmacist.Core.Groups;
+using Pharmacist.Core.NuGet;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
 {
@@ -15,6 +19,17 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
     /// </summary>
     internal class Winforms : NetFrameworkBase
     {
+        private static readonly string[] WantedFileNames =
+        {
+            "System.dll",
+            "System.Data.dll",
+            "System.DirectoryServices.dll",
+            "System.Messaging.dll",
+            "System.Windows.Forms.dll",
+            "System.Windows.Forms.DataVisualization.dll",
+            "System.ServiceProcess.dll",
+        };
+
         public Winforms(string filePath)
             : base(filePath)
         {
@@ -24,17 +39,10 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         public override AutoPlatform Platform => AutoPlatform.Winforms;
 
         /// <inheritdoc />
-        protected override void SetFiles(string[] files)
+        protected override void SetFiles(InputAssembliesGroup folderGroups)
         {
-            var assemblies = new List<string>(10);
-            assemblies.AddRange(files.Where(x => x.EndsWith("System.dll", StringComparison.InvariantCultureIgnoreCase)));
-            assemblies.AddRange(files.Where(x => x.EndsWith("System.Data.dll", StringComparison.InvariantCultureIgnoreCase)));
-            assemblies.AddRange(files.Where(x => x.EndsWith("System.DirectoryServices.dll", StringComparison.InvariantCultureIgnoreCase)));
-            assemblies.AddRange(files.Where(x => x.EndsWith("System.Messaging.dll", StringComparison.InvariantCultureIgnoreCase)));
-            assemblies.AddRange(files.Where(x => x.EndsWith("System.Windows.Forms.dll", StringComparison.InvariantCultureIgnoreCase)));
-            assemblies.AddRange(files.Where(x => x.EndsWith("System.Windows.Forms.DataVisualization.dll", StringComparison.InvariantCultureIgnoreCase)));
-            assemblies.AddRange(files.Where(x => x.EndsWith("System.ServiceProcess.dll", StringComparison.InvariantCultureIgnoreCase)));
-            Assemblies = assemblies;
+            var fileMetadataEnumerable = folderGroups.IncludeGroup.GetAllFileNames().Where(file => WantedFileNames.Contains(Path.GetFileName(file), StringComparer.InvariantCultureIgnoreCase));
+            Input.IncludeGroup.AddFiles(fileMetadataEnumerable);
         }
     }
 }

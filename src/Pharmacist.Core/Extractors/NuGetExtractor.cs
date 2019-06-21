@@ -12,6 +12,7 @@ using NuGet.Frameworks;
 using NuGet.LibraryModel;
 using NuGet.Packaging.Core;
 
+using Pharmacist.Core.Groups;
 using Pharmacist.Core.NuGet;
 
 namespace Pharmacist.Core.Extractors
@@ -21,11 +22,8 @@ namespace Pharmacist.Core.Extractors
     /// </summary>
     public class NuGetExtractor : IExtractor
     {
-        /// <inheritdoc/>
-        public IEnumerable<string> Assemblies { get; private set; }
-
-        /// <inheritdoc/>
-        public IEnumerable<string> SearchDirectories { get; private set; }
+        /// <inheritdoc />
+        public InputAssembliesGroup Input { get; private set; }
 
         /// <summary>
         /// Extracts the data using the specified target framework.
@@ -36,9 +34,7 @@ namespace Pharmacist.Core.Extractors
         /// <returns>A task to monitor the progress.</returns>
         public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<PackageIdentity> packages, string packageOutputDirectory)
         {
-            var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks, packageOutputDirectory: packageOutputDirectory).ConfigureAwait(false);
-
-            await Extract(targetFrameworks, results).ConfigureAwait(false);
+            Input = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks, packageOutputDirectory: packageOutputDirectory).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -50,16 +46,7 @@ namespace Pharmacist.Core.Extractors
         /// <returns>A task to monitor the progress.</returns>
         public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<LibraryRange> packages, string packageOutputDirectory)
         {
-            var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks, packageOutputDirectory: packageOutputDirectory).ConfigureAwait(false);
-
-            await Extract(targetFrameworks, results).ConfigureAwait(false);
-        }
-
-        private async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<(string folder, IReadOnlyCollection<string> files)> results)
-        {
-            var extraSearchFolders = (await Task.WhenAll(targetFrameworks.Select(x => x.GetNuGetFrameworkFolders())).ConfigureAwait(false)).SelectMany(x => x);
-            Assemblies = new List<string>(results.SelectMany(x => x.files).Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)));
-            SearchDirectories = new List<string>(results.Select(x => x.folder).Concat(extraSearchFolders));
+            Input = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks, packageOutputDirectory: packageOutputDirectory).ConfigureAwait(false);
         }
     }
 }

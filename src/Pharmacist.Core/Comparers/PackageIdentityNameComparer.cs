@@ -5,11 +5,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 using NuGet.Packaging.Core;
 
-namespace Pharmacist.Core.NuGet
+namespace Pharmacist.Core.Comparers
 {
     internal class PackageIdentityNameComparer : IEqualityComparer<PackageIdentity>
     {
