@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,13 +22,21 @@ namespace Pharmacist.Core.Generation.Resolvers
     /// </summary>
     internal class PublicEventNamespaceResolver : EventNamespaceResolverBase
     {
-        private const string SkipNamespaceName = "ReactiveUI.Events";
+        private static readonly ISet<string> SkipNamespaceList = new HashSet<string>(
+            new[]
+            {
+                "ReactiveUI.Events",
+
+                // Winforms
+                "System.CodeDom",
+            },
+            StringComparer.InvariantCulture);
 
         /// <inheritdoc />
         protected override IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation)
         {
             var processedList = new ConcurrentDictionary<ITypeDefinition, bool>(TypeDefinitionNameComparer.Default);
-            var toProcess = new ConcurrentStack<ITypeDefinition>(GetPublicTypesWithEvents(compilation).Where(x => !x.Namespace.StartsWith(SkipNamespaceName, StringComparison.InvariantCulture)));
+            var toProcess = new ConcurrentStack<ITypeDefinition>(GetPublicTypesWithEvents(compilation).Where(x => !SkipNamespaceList.Contains(x.Namespace)));
             var output = new ConcurrentBag<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)>();
 
             var processing = new ITypeDefinition[Environment.ProcessorCount];
