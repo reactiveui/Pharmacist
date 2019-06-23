@@ -18,7 +18,7 @@
 
 Builds observables from events.
 
-### NuGet Packages
+## NuGet Packages
 
 Install the following packages to start using Pharmacist.
 
@@ -41,7 +41,7 @@ Install the following packages to start using Pharmacist.
 [Common]: https://www.nuget.org/packages/Pharmacist.Common/
 [CommonBadge]: https://img.shields.io/nuget/v/Pharmacist.Common.svg
 
-### What does it do?
+## What does it do?
 
 Pharmacist will convert events within an assembly and create observable wrappers for them. 
 
@@ -54,9 +54,58 @@ It can generate the observables for the following:
 
 There is a MSBuild Task version and a global tool version.
 
-### How do I use?
+## How do I use?
 
-** To Come **
+### MsBuild
+
+Pharmacist can automatically create Observable wrappers for projects for their explicitly included NuGet packages.
+
+In your .csproj file you can add:
+
+```cs
+<ItemGroup>
+    <PackageReference Include="Pharmacist.MsBuild" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="Pharmacist.Common" Version="1.*" />
+</ItemGroup>
+```
+
+`Pharmacist.MsBuild` contains the MsBuild target file and appropriate tasks. `Pharmacist.Common` includes common source code that is required to invoke the generated observables.
+
+This will generate wrappers only for other included `PackageReference`'s contained within the project file.
+
+For example if you had a inclusion for `Xamarin.Forms` in the same project that includes Pharmacist it will generate Observable wrappers for the included codes. It will not include any `PackageReference` from other projects included via a `ProjectReference`. You can override that functionality by including `<PharmacistGlobalPackages>true</PharmacistGlobalPackages>` in a `PropertyGroup` inside your project.
+
+Also it will only generate the specified `ProjectReference` and none of it's dependent packages. For example for a ProjectReference inclusion of `ReactiveUI`, it will generate dependencies such as `System.Reactive`.
+
+### Command Line
+
+Pharmacist comes with a command line version which is useful for generating for a specified platform.
+
+The following values are supported for platforms:
+| Name     |
+|----------|
+| Android  |
+| iOS      |
+| Mac      |
+| WPF      |
+| UWP      |
+| Winforms |
+| TVOS     |
+
+Install the global tool:
+```Batchfile
+dotnet tool install -g Pharmacist
+```
+
+To generate files:
+
+```Batchfile
+pharmacist generate-platform -p <Platform> -o c:/directory/for/output --output-prefix="Events"
+```
+
+This would generate a file named `Events_<Platform>.cs`, where Platform would be the platform specified.
+
+In the near future this will be changing to TargetFramework with /wpf and /winforms options.
 
 ## Contribute
 
