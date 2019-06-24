@@ -117,6 +117,6 @@ namespace Pharmacist.Core.Generation.Resolvers
             return compilation.GetPublicTypesWithNotStaticEvents();
         }
 
-        private static bool IsValidEvent(IEvent x) => x.Accessibility == Accessibility.Public && !x.IsStatic && IsValidParameters(x);
+        private static bool IsValidEvent(IEvent x) => x.Accessibility == Accessibility.Public && !x.IsExplicitInterfaceImplementation && !x.IsStatic && IsValidParameters(x);
     }
 }
