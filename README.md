@@ -73,9 +73,9 @@ In your .csproj file you can add:
 
 This will generate wrappers only for other included `PackageReference`'s contained within the project file.
 
-For example if you had a inclusion for `Xamarin.Forms` in the same project that includes Pharmacist it will generate Observable wrappers for the included codes. It will not include any `PackageReference` from other projects included via a `ProjectReference`. You can override that functionality by including `<PharmacistGlobalPackages>true</PharmacistGlobalPackages>` in a `PropertyGroup` inside your project.
+For example if you had a inclusion for `Xamarin.Forms` in the same project that includes Pharmacist it will generate Observable wrappers for the included codes. It will not include any child `PackageReference` from other projects included via a `ProjectReference`. You can override that functionality by including `<PharmacistGlobalPackages>true</PharmacistGlobalPackages>` in a `PropertyGroup` inside your project.
 
-Also it will only generate the specified `ProjectReference` and none of it's dependent packages. For example for a ProjectReference inclusion of `ReactiveUI`, it will generate dependencies such as `System.Reactive`.
+Also it will only generate the specified `ProjectReference` and none of it's dependent packages. For example for a ProjectReference inclusion of `ReactiveUI`, it will not generate dependencies such as `System.Reactive`. If you want to generate observable wrappers for the dependent NuGet packages you must explicitly include them. 
 
 ### Command Line
 
