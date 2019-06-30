@@ -29,6 +29,10 @@ namespace Xamarin.Forms
         /// </summary>
         public static CellEvents Events(this global::Xamarin.Forms.Cell item) => new CellEvents(item);
         /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.CheckBox"/> class.
+        /// </summary>
+        public static CheckBoxEvents Events(this global::Xamarin.Forms.CheckBox item) => new CheckBoxEvents(item);
+        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ChildGestureRecognizer"/> class.
         /// </summary>
         public static ChildGestureRecognizerEvents Events(this global::Xamarin.Forms.ChildGestureRecognizer item) => new ChildGestureRecognizerEvents(item);
@@ -468,6 +472,33 @@ namespace Xamarin.Forms
         }
 
         , x => _data.Tapped += x, x => _data.Tapped -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.CheckBox"/> class as observables.
+    /// </summary>
+    public class CheckBoxEvents : global::Xamarin.Forms.VisualElementEvents
+    {
+        private readonly global::Xamarin.Forms.CheckBox _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.CheckBox"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public CheckBoxEvents(global::Xamarin.Forms.CheckBox data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.CheckBox.CheckedChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.CheckedChangedEventArgs> CheckedChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.CheckedChangedEventArgs>, global::Xamarin.Forms.CheckedChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.CheckedChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.CheckedChanged += x, x => _data.CheckedChanged -= x);
     }
 
     /// <summary>

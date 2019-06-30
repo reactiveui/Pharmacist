@@ -54,7 +54,7 @@ namespace Avalonia
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Application.OnExit"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Application.OnExit"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> OnExit => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -64,7 +64,7 @@ namespace Avalonia
 
         , x => _data.OnExit += x, x => _data.OnExit -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Application.ResourcesChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Application.ResourcesChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.ResourcesChangedEventArgs> ResourcesChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ResourcesChangedEventArgs>, global::Avalonia.Controls.ResourcesChangedEventArgs>(eventHandler =>
         {
@@ -91,7 +91,7 @@ namespace Avalonia
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.AvaloniaObject.PropertyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.AvaloniaObject.PropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.AvaloniaPropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.AvaloniaPropertyChangedEventArgs>, global::Avalonia.AvaloniaPropertyChangedEventArgs>(eventHandler =>
         {
@@ -118,7 +118,7 @@ namespace Avalonia
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.IAvaloniaObject.InheritablePropertyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.IAvaloniaObject.InheritablePropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.AvaloniaPropertyChangedEventArgs> InheritablePropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.AvaloniaPropertyChangedEventArgs>, global::Avalonia.AvaloniaPropertyChangedEventArgs>(eventHandler =>
         {
@@ -128,7 +128,7 @@ namespace Avalonia
 
         , x => _data.InheritablePropertyChanged += x, x => _data.InheritablePropertyChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.IAvaloniaObject.PropertyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.IAvaloniaObject.PropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.AvaloniaPropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.AvaloniaPropertyChangedEventArgs>, global::Avalonia.AvaloniaPropertyChangedEventArgs>(eventHandler =>
         {
@@ -155,7 +155,7 @@ namespace Avalonia
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.IStyledElement.Initialized"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.IStyledElement.Initialized"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Initialized => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -182,7 +182,7 @@ namespace Avalonia
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.StyledElement.AttachedToLogicalTree"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.StyledElement.AttachedToLogicalTree"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs> AttachedToLogicalTree => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs>, global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs>(eventHandler =>
         {
@@ -192,7 +192,7 @@ namespace Avalonia
 
         , x => _data.AttachedToLogicalTree += x, x => _data.AttachedToLogicalTree -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.StyledElement.DataContextChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.StyledElement.DataContextChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> DataContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -202,7 +202,7 @@ namespace Avalonia
 
         , x => _data.DataContextChanged += x, x => _data.DataContextChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.StyledElement.DetachedFromLogicalTree"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.StyledElement.DetachedFromLogicalTree"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs> DetachedFromLogicalTree => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs>, global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs>(eventHandler =>
         {
@@ -212,7 +212,7 @@ namespace Avalonia
 
         , x => _data.DetachedFromLogicalTree += x, x => _data.DetachedFromLogicalTree -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.StyledElement.Initialized"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.StyledElement.Initialized"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Initialized => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -222,7 +222,7 @@ namespace Avalonia
 
         , x => _data.Initialized += x, x => _data.Initialized -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.StyledElement.ResourcesChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.StyledElement.ResourcesChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.ResourcesChangedEventArgs> ResourcesChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ResourcesChangedEventArgs>, global::Avalonia.Controls.ResourcesChangedEventArgs>(eventHandler =>
         {
@@ -249,7 +249,7 @@ namespace Avalonia
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Visual.AttachedToVisualTree"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Visual.AttachedToVisualTree"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.VisualTreeAttachmentEventArgs> AttachedToVisualTree => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.VisualTreeAttachmentEventArgs>, global::Avalonia.VisualTreeAttachmentEventArgs>(eventHandler =>
         {
@@ -259,7 +259,7 @@ namespace Avalonia
 
         , x => _data.AttachedToVisualTree += x, x => _data.AttachedToVisualTree -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Visual.DetachedFromVisualTree"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Visual.DetachedFromVisualTree"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.VisualTreeAttachmentEventArgs> DetachedFromVisualTree => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.VisualTreeAttachmentEventArgs>, global::Avalonia.VisualTreeAttachmentEventArgs>(eventHandler =>
         {
@@ -300,7 +300,7 @@ namespace Avalonia.Collections
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Collections.AvaloniaDictionary.CollectionChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{global::TKey, global::TValue}.CollectionChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.Collections.Specialized.NotifyCollectionChangedEventArgs> CollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.Collections.Specialized.NotifyCollectionChangedEventHandler, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs>(eventHandler =>
         {
@@ -310,7 +310,7 @@ namespace Avalonia.Collections
 
         , x => _data.CollectionChanged += x, x => _data.CollectionChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Collections.AvaloniaDictionary.PropertyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{global::TKey, global::TValue}.PropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
@@ -419,7 +419,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.AutoCompleteBox.DropDownClosed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.AutoCompleteBox.DropDownClosed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> DropDownClosed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -429,7 +429,7 @@ namespace Avalonia.Controls
 
         , x => _data.DropDownClosed += x, x => _data.DropDownClosed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.AutoCompleteBox.DropDownClosing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.AutoCompleteBox.DropDownClosing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.CancelEventArgs> DropDownClosing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.CancelEventArgs>, global::System.ComponentModel.CancelEventArgs>(eventHandler =>
         {
@@ -439,7 +439,7 @@ namespace Avalonia.Controls
 
         , x => _data.DropDownClosing += x, x => _data.DropDownClosing -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.AutoCompleteBox.DropDownOpened"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.AutoCompleteBox.DropDownOpened"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> DropDownOpened => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -449,7 +449,7 @@ namespace Avalonia.Controls
 
         , x => _data.DropDownOpened += x, x => _data.DropDownOpened -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.AutoCompleteBox.DropDownOpening"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.AutoCompleteBox.DropDownOpening"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.CancelEventArgs> DropDownOpening => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.CancelEventArgs>, global::System.ComponentModel.CancelEventArgs>(eventHandler =>
         {
@@ -459,7 +459,7 @@ namespace Avalonia.Controls
 
         , x => _data.DropDownOpening += x, x => _data.DropDownOpening -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.AutoCompleteBox.Populated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.AutoCompleteBox.Populated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.PopulatedEventArgs> Populated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.PopulatedEventArgs>, global::Avalonia.Controls.PopulatedEventArgs>(eventHandler =>
         {
@@ -469,7 +469,7 @@ namespace Avalonia.Controls
 
         , x => _data.Populated += x, x => _data.Populated -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.AutoCompleteBox.Populating"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.AutoCompleteBox.Populating"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.PopulatingEventArgs> Populating => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.PopulatingEventArgs>, global::Avalonia.Controls.PopulatingEventArgs>(eventHandler =>
         {
@@ -479,7 +479,7 @@ namespace Avalonia.Controls
 
         , x => _data.Populating += x, x => _data.Populating -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.AutoCompleteBox.SelectionChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.AutoCompleteBox.SelectionChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.SelectionChangedEventArgs> SelectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.SelectionChangedEventArgs>, global::Avalonia.Controls.SelectionChangedEventArgs>(eventHandler =>
         {
@@ -489,7 +489,7 @@ namespace Avalonia.Controls
 
         , x => _data.SelectionChanged += x, x => _data.SelectionChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.AutoCompleteBox.TextChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.AutoCompleteBox.TextChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -516,7 +516,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Button.Click"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Button.Click"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> Click => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -543,7 +543,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Calendar.DisplayDateChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Calendar.DisplayDateChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.CalendarDateChangedEventArgs> DisplayDateChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.CalendarDateChangedEventArgs>, global::Avalonia.Controls.CalendarDateChangedEventArgs>(eventHandler =>
         {
@@ -553,7 +553,7 @@ namespace Avalonia.Controls
 
         , x => _data.DisplayDateChanged += x, x => _data.DisplayDateChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Calendar.DisplayModeChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Calendar.DisplayModeChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.CalendarModeChangedEventArgs> DisplayModeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.CalendarModeChangedEventArgs>, global::Avalonia.Controls.CalendarModeChangedEventArgs>(eventHandler =>
         {
@@ -563,7 +563,7 @@ namespace Avalonia.Controls
 
         , x => _data.DisplayModeChanged += x, x => _data.DisplayModeChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Calendar.SelectedDatesChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Calendar.SelectedDatesChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.SelectionChangedEventArgs> SelectedDatesChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.SelectionChangedEventArgs>, global::Avalonia.Controls.SelectionChangedEventArgs>(eventHandler =>
         {
@@ -590,7 +590,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.ContextMenu.ContextMenuClosing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.ContextMenu.ContextMenuClosing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.CancelEventArgs> ContextMenuClosing => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.CancelEventHandler, global::System.ComponentModel.CancelEventArgs>(eventHandler =>
         {
@@ -600,7 +600,7 @@ namespace Avalonia.Controls
 
         , x => _data.ContextMenuClosing += x, x => _data.ContextMenuClosing -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.ContextMenu.ContextMenuOpening"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.ContextMenu.ContextMenuOpening"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.CancelEventArgs> ContextMenuOpening => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.CancelEventHandler, global::System.ComponentModel.CancelEventArgs>(eventHandler =>
         {
@@ -627,7 +627,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.DatePicker.CalendarClosed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.DatePicker.CalendarClosed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> CalendarClosed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -637,7 +637,7 @@ namespace Avalonia.Controls
 
         , x => _data.CalendarClosed += x, x => _data.CalendarClosed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.DatePicker.CalendarOpened"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.DatePicker.CalendarOpened"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> CalendarOpened => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -647,7 +647,7 @@ namespace Avalonia.Controls
 
         , x => _data.CalendarOpened += x, x => _data.CalendarOpened -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.DatePicker.DateValidationError"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.DatePicker.DateValidationError"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.DatePickerDateValidationErrorEventArgs> DateValidationError => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.DatePickerDateValidationErrorEventArgs>, global::Avalonia.Controls.DatePickerDateValidationErrorEventArgs>(eventHandler =>
         {
@@ -657,7 +657,7 @@ namespace Avalonia.Controls
 
         , x => _data.DateValidationError += x, x => _data.DateValidationError -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.DatePicker.SelectedDateChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.DatePicker.SelectedDateChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.SelectionChangedEventArgs> SelectedDateChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.SelectionChangedEventArgs>, global::Avalonia.Controls.SelectionChangedEventArgs>(eventHandler =>
         {
@@ -684,7 +684,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.IApplicationLifecycle.OnExit"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.IApplicationLifecycle.OnExit"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> OnExit => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -711,7 +711,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.INameScope.Registered"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.INameScope.Registered"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.NameScopeEventArgs> Registered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NameScopeEventArgs>, global::Avalonia.Controls.NameScopeEventArgs>(eventHandler =>
         {
@@ -721,7 +721,7 @@ namespace Avalonia.Controls
 
         , x => _data.Registered += x, x => _data.Registered -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.INameScope.Unregistered"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.INameScope.Unregistered"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.NameScopeEventArgs> Unregistered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NameScopeEventArgs>, global::Avalonia.Controls.NameScopeEventArgs>(eventHandler =>
         {
@@ -748,7 +748,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.IResourceProvider.ResourcesChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.IResourceProvider.ResourcesChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.ResourcesChangedEventArgs> ResourcesChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ResourcesChangedEventArgs>, global::Avalonia.Controls.ResourcesChangedEventArgs>(eventHandler =>
         {
@@ -775,7 +775,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.MenuBase.MenuClosed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.MenuBase.MenuClosed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> MenuClosed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -785,7 +785,7 @@ namespace Avalonia.Controls
 
         , x => _data.MenuClosed += x, x => _data.MenuClosed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.MenuBase.MenuOpened"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.MenuBase.MenuOpened"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> MenuOpened => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -812,7 +812,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.MenuItem.Click"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.MenuItem.Click"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> Click => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -822,7 +822,7 @@ namespace Avalonia.Controls
 
         , x => _data.Click += x, x => _data.Click -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.MenuItem.PointerEnterItem"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.MenuItem.PointerEnterItem"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerEventArgs> PointerEnterItem => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerEventArgs>, global::Avalonia.Input.PointerEventArgs>(eventHandler =>
         {
@@ -832,7 +832,7 @@ namespace Avalonia.Controls
 
         , x => _data.PointerEnterItem += x, x => _data.PointerEnterItem -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.MenuItem.PointerLeaveItem"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.MenuItem.PointerLeaveItem"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerEventArgs> PointerLeaveItem => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerEventArgs>, global::Avalonia.Input.PointerEventArgs>(eventHandler =>
         {
@@ -842,7 +842,7 @@ namespace Avalonia.Controls
 
         , x => _data.PointerLeaveItem += x, x => _data.PointerLeaveItem -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.MenuItem.SubmenuOpened"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.MenuItem.SubmenuOpened"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> SubmenuOpened => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -869,7 +869,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.NameScope.Registered"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.NameScope.Registered"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.NameScopeEventArgs> Registered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NameScopeEventArgs>, global::Avalonia.Controls.NameScopeEventArgs>(eventHandler =>
         {
@@ -879,7 +879,7 @@ namespace Avalonia.Controls
 
         , x => _data.Registered += x, x => _data.Registered -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.NameScope.Unregistered"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.NameScope.Unregistered"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.NameScopeEventArgs> Unregistered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NameScopeEventArgs>, global::Avalonia.Controls.NameScopeEventArgs>(eventHandler =>
         {
@@ -906,7 +906,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.NumericUpDown.Spinned"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.NumericUpDown.Spinned"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.SpinEventArgs> Spinned => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.SpinEventArgs>, global::Avalonia.Controls.SpinEventArgs>(eventHandler =>
         {
@@ -916,7 +916,7 @@ namespace Avalonia.Controls
 
         , x => _data.Spinned += x, x => _data.Spinned -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.NumericUpDown.ValueChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.NumericUpDown.ValueChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.NumericUpDownValueChangedEventArgs> ValueChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NumericUpDownValueChangedEventArgs>, global::Avalonia.Controls.NumericUpDownValueChangedEventArgs>(eventHandler =>
         {
@@ -943,7 +943,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.ResourceDictionary.ResourcesChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.ResourceDictionary.ResourcesChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.ResourcesChangedEventArgs> ResourcesChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ResourcesChangedEventArgs>, global::Avalonia.Controls.ResourcesChangedEventArgs>(eventHandler =>
         {
@@ -970,7 +970,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Spinner.Spin"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Spinner.Spin"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.SpinEventArgs> Spin => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.SpinEventArgs>, global::Avalonia.Controls.SpinEventArgs>(eventHandler =>
         {
@@ -997,7 +997,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.TopLevel.Closed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.TopLevel.Closed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Closed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1007,7 +1007,7 @@ namespace Avalonia.Controls
 
         , x => _data.Closed += x, x => _data.Closed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.TopLevel.Opened"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.TopLevel.Opened"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Opened => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1034,7 +1034,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.TreeView.SelectionChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.TreeView.SelectionChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.SelectionChangedEventArgs> SelectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.SelectionChangedEventArgs>, global::Avalonia.Controls.SelectionChangedEventArgs>(eventHandler =>
         {
@@ -1061,7 +1061,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Window.Closing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Window.Closing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.CancelEventArgs> Closing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.CancelEventArgs>, global::System.ComponentModel.CancelEventArgs>(eventHandler =>
         {
@@ -1088,7 +1088,7 @@ namespace Avalonia.Controls
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.WindowBase.Activated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.WindowBase.Activated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Activated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1098,7 +1098,7 @@ namespace Avalonia.Controls
 
         , x => _data.Activated += x, x => _data.Activated -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.WindowBase.Deactivated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.WindowBase.Deactivated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Deactivated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1108,7 +1108,7 @@ namespace Avalonia.Controls
 
         , x => _data.Deactivated += x, x => _data.Deactivated -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.WindowBase.PositionChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.WindowBase.PositionChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.PixelPointEventArgs> PositionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.PixelPointEventArgs>, global::Avalonia.Controls.PixelPointEventArgs>(eventHandler =>
         {
@@ -1149,7 +1149,7 @@ namespace Avalonia.Controls.Embedding
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Embedding.EmbeddableControlRoot.Registered"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Embedding.EmbeddableControlRoot.Registered"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.NameScopeEventArgs> Registered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NameScopeEventArgs>, global::Avalonia.Controls.NameScopeEventArgs>(eventHandler =>
         {
@@ -1159,7 +1159,7 @@ namespace Avalonia.Controls.Embedding
 
         , x => _data.Registered += x, x => _data.Registered -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Embedding.EmbeddableControlRoot.Unregistered"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Embedding.EmbeddableControlRoot.Unregistered"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.NameScopeEventArgs> Unregistered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NameScopeEventArgs>, global::Avalonia.Controls.NameScopeEventArgs>(eventHandler =>
         {
@@ -1208,7 +1208,7 @@ namespace Avalonia.Controls.Generators
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Generators.IItemContainerGenerator.Dematerialized"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Generators.IItemContainerGenerator.Dematerialized"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.Generators.ItemContainerEventArgs> Dematerialized => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.Generators.ItemContainerEventArgs>, global::Avalonia.Controls.Generators.ItemContainerEventArgs>(eventHandler =>
         {
@@ -1218,7 +1218,7 @@ namespace Avalonia.Controls.Generators
 
         , x => _data.Dematerialized += x, x => _data.Dematerialized -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Generators.IItemContainerGenerator.Materialized"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Generators.IItemContainerGenerator.Materialized"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.Generators.ItemContainerEventArgs> Materialized => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.Generators.ItemContainerEventArgs>, global::Avalonia.Controls.Generators.ItemContainerEventArgs>(eventHandler =>
         {
@@ -1228,7 +1228,7 @@ namespace Avalonia.Controls.Generators
 
         , x => _data.Materialized += x, x => _data.Materialized -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Generators.IItemContainerGenerator.Recycled"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Generators.IItemContainerGenerator.Recycled"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.Generators.ItemContainerEventArgs> Recycled => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.Generators.ItemContainerEventArgs>, global::Avalonia.Controls.Generators.ItemContainerEventArgs>(eventHandler =>
         {
@@ -1255,7 +1255,7 @@ namespace Avalonia.Controls.Generators
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Generators.ItemContainerGenerator.Dematerialized"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Generators.ItemContainerGenerator.Dematerialized"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.Generators.ItemContainerEventArgs> Dematerialized => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.Generators.ItemContainerEventArgs>, global::Avalonia.Controls.Generators.ItemContainerEventArgs>(eventHandler =>
         {
@@ -1265,7 +1265,7 @@ namespace Avalonia.Controls.Generators
 
         , x => _data.Dematerialized += x, x => _data.Dematerialized -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Generators.ItemContainerGenerator.Materialized"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Generators.ItemContainerGenerator.Materialized"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.Generators.ItemContainerEventArgs> Materialized => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.Generators.ItemContainerEventArgs>, global::Avalonia.Controls.Generators.ItemContainerEventArgs>(eventHandler =>
         {
@@ -1275,7 +1275,7 @@ namespace Avalonia.Controls.Generators
 
         , x => _data.Materialized += x, x => _data.Materialized -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Generators.ItemContainerGenerator.Recycled"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Generators.ItemContainerGenerator.Recycled"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.Generators.ItemContainerEventArgs> Recycled => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.Generators.ItemContainerEventArgs>, global::Avalonia.Controls.Generators.ItemContainerEventArgs>(eventHandler =>
         {
@@ -1302,7 +1302,7 @@ namespace Avalonia.Controls.Generators
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Generators.TreeContainerIndex.Dematerialized"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Generators.TreeContainerIndex.Dematerialized"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.Generators.ItemContainerEventArgs> Dematerialized => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.Generators.ItemContainerEventArgs>, global::Avalonia.Controls.Generators.ItemContainerEventArgs>(eventHandler =>
         {
@@ -1312,7 +1312,7 @@ namespace Avalonia.Controls.Generators
 
         , x => _data.Dematerialized += x, x => _data.Dematerialized -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Generators.TreeContainerIndex.Materialized"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Generators.TreeContainerIndex.Materialized"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.Generators.ItemContainerEventArgs> Materialized => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.Generators.ItemContainerEventArgs>, global::Avalonia.Controls.Generators.ItemContainerEventArgs>(eventHandler =>
         {
@@ -1353,7 +1353,7 @@ namespace Avalonia.Controls.Platform
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Platform.InternalPlatformThreadingInterface.Signaled"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Platform.InternalPlatformThreadingInterface.Signaled"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.Nullable<global::Avalonia.Threading.DispatcherPriority>> Signaled => global::System.Reactive.Linq.Observable.FromEvent<global::System.Action<global::System.Nullable<global::Avalonia.Threading.DispatcherPriority>>, global::System.Nullable<global::Avalonia.Threading.DispatcherPriority>>(eventHandler =>
         {
@@ -1363,7 +1363,7 @@ namespace Avalonia.Controls.Platform
 
         , x => _data.Signaled += x, x => _data.Signaled -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Platform.InternalPlatformThreadingInterface.Tick"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Platform.InternalPlatformThreadingInterface.Tick"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.TimeSpan> Tick => global::System.Reactive.Linq.Observable.FromEvent<global::System.Action<global::System.TimeSpan>, global::System.TimeSpan>(eventHandler =>
         {
@@ -1404,7 +1404,7 @@ namespace Avalonia.Controls.Presenters
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Presenters.IContentPresenter.ChildChanging"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Presenters.IContentPresenter.ChildChanging"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.AvaloniaPropertyChangedEventArgs> ChildChanging => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.AvaloniaPropertyChangedEventArgs>, global::Avalonia.AvaloniaPropertyChangedEventArgs>(eventHandler =>
         {
@@ -1469,7 +1469,7 @@ namespace Avalonia.Controls.Primitives
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.CalendarButton.CalendarLeftMouseButtonDown"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.CalendarButton.CalendarLeftMouseButtonDown"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerPressedEventArgs> CalendarLeftMouseButtonDown => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerPressedEventArgs>, global::Avalonia.Input.PointerPressedEventArgs>(eventHandler =>
         {
@@ -1479,7 +1479,7 @@ namespace Avalonia.Controls.Primitives
 
         , x => _data.CalendarLeftMouseButtonDown += x, x => _data.CalendarLeftMouseButtonDown -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.CalendarButton.CalendarLeftMouseButtonUp"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.CalendarButton.CalendarLeftMouseButtonUp"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerReleasedEventArgs> CalendarLeftMouseButtonUp => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerReleasedEventArgs>, global::Avalonia.Input.PointerReleasedEventArgs>(eventHandler =>
         {
@@ -1506,7 +1506,7 @@ namespace Avalonia.Controls.Primitives
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.CalendarDayButton.CalendarDayButtonMouseDown"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.CalendarDayButton.CalendarDayButtonMouseDown"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerPressedEventArgs> CalendarDayButtonMouseDown => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerPressedEventArgs>, global::Avalonia.Input.PointerPressedEventArgs>(eventHandler =>
         {
@@ -1516,7 +1516,7 @@ namespace Avalonia.Controls.Primitives
 
         , x => _data.CalendarDayButtonMouseDown += x, x => _data.CalendarDayButtonMouseDown -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.CalendarDayButton.CalendarDayButtonMouseUp"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.CalendarDayButton.CalendarDayButtonMouseUp"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerReleasedEventArgs> CalendarDayButtonMouseUp => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerReleasedEventArgs>, global::Avalonia.Input.PointerReleasedEventArgs>(eventHandler =>
         {
@@ -1543,7 +1543,7 @@ namespace Avalonia.Controls.Primitives
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.Popup.Closed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.Popup.Closed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Closed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1553,7 +1553,7 @@ namespace Avalonia.Controls.Primitives
 
         , x => _data.Closed += x, x => _data.Closed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.Popup.Opened"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.Popup.Opened"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Opened => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1563,7 +1563,7 @@ namespace Avalonia.Controls.Primitives
 
         , x => _data.Opened += x, x => _data.Opened -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.Popup.PopupRootCreated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.Popup.PopupRootCreated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> PopupRootCreated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1590,7 +1590,7 @@ namespace Avalonia.Controls.Primitives
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.ScrollBar.Scroll"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.ScrollBar.Scroll"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.Primitives.ScrollEventArgs> Scroll => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.Primitives.ScrollEventArgs>, global::Avalonia.Controls.Primitives.ScrollEventArgs>(eventHandler =>
         {
@@ -1617,7 +1617,7 @@ namespace Avalonia.Controls.Primitives
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.SelectingItemsControl.SelectionChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.SelectingItemsControl.SelectionChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.SelectionChangedEventArgs> SelectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.SelectionChangedEventArgs>, global::Avalonia.Controls.SelectionChangedEventArgs>(eventHandler =>
         {
@@ -1644,7 +1644,7 @@ namespace Avalonia.Controls.Primitives
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.TemplatedControl.TemplateApplied"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.TemplatedControl.TemplateApplied"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.Primitives.TemplateAppliedEventArgs> TemplateApplied => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.Primitives.TemplateAppliedEventArgs>, global::Avalonia.Controls.Primitives.TemplateAppliedEventArgs>(eventHandler =>
         {
@@ -1671,7 +1671,7 @@ namespace Avalonia.Controls.Primitives
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.Thumb.DragCompleted"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.Thumb.DragCompleted"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.VectorEventArgs> DragCompleted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.VectorEventArgs>, global::Avalonia.Input.VectorEventArgs>(eventHandler =>
         {
@@ -1681,7 +1681,7 @@ namespace Avalonia.Controls.Primitives
 
         , x => _data.DragCompleted += x, x => _data.DragCompleted -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.Thumb.DragDelta"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.Thumb.DragDelta"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.VectorEventArgs> DragDelta => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.VectorEventArgs>, global::Avalonia.Input.VectorEventArgs>(eventHandler =>
         {
@@ -1691,7 +1691,7 @@ namespace Avalonia.Controls.Primitives
 
         , x => _data.DragDelta += x, x => _data.DragDelta -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Primitives.Thumb.DragStarted"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.Thumb.DragStarted"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.VectorEventArgs> DragStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.VectorEventArgs>, global::Avalonia.Input.VectorEventArgs>(eventHandler =>
         {
@@ -1736,7 +1736,7 @@ namespace Avalonia.Controls.Utils
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Utils.ISelectionAdapter.Cancel"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Utils.ISelectionAdapter.Cancel"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> Cancel => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -1746,7 +1746,7 @@ namespace Avalonia.Controls.Utils
 
         , x => _data.Cancel += x, x => _data.Cancel -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Utils.ISelectionAdapter.Commit"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Utils.ISelectionAdapter.Commit"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> Commit => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -1756,7 +1756,7 @@ namespace Avalonia.Controls.Utils
 
         , x => _data.Commit += x, x => _data.Commit -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Utils.ISelectionAdapter.SelectionChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Utils.ISelectionAdapter.SelectionChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.SelectionChangedEventArgs> SelectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.SelectionChangedEventArgs>, global::Avalonia.Controls.SelectionChangedEventArgs>(eventHandler =>
         {
@@ -1783,7 +1783,7 @@ namespace Avalonia.Controls.Utils
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter.Cancel"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter.Cancel"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> Cancel => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -1793,7 +1793,7 @@ namespace Avalonia.Controls.Utils
 
         , x => _data.Cancel += x, x => _data.Cancel -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter.Commit"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter.Commit"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> Commit => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -1803,7 +1803,7 @@ namespace Avalonia.Controls.Utils
 
         , x => _data.Commit += x, x => _data.Commit -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter.SelectionChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter.SelectionChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.SelectionChangedEventArgs> SelectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.SelectionChangedEventArgs>, global::Avalonia.Controls.SelectionChangedEventArgs>(eventHandler =>
         {
@@ -1844,7 +1844,7 @@ namespace Avalonia.Diagnostics.ViewModels
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Diagnostics.ViewModels.ViewModelBase.PropertyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Diagnostics.ViewModels.ViewModelBase.PropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
@@ -1901,7 +1901,7 @@ namespace Avalonia.Input
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.ICloseable.Closed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.ICloseable.Closed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Closed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1928,7 +1928,7 @@ namespace Avalonia.Input
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.IInputElement.GotFocus"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.IInputElement.GotFocus"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.GotFocusEventArgs> GotFocus => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.GotFocusEventArgs>, global::Avalonia.Input.GotFocusEventArgs>(eventHandler =>
         {
@@ -1938,7 +1938,7 @@ namespace Avalonia.Input
 
         , x => _data.GotFocus += x, x => _data.GotFocus -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.IInputElement.KeyDown"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.IInputElement.KeyDown"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.KeyEventArgs> KeyDown => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.KeyEventArgs>, global::Avalonia.Input.KeyEventArgs>(eventHandler =>
         {
@@ -1948,7 +1948,7 @@ namespace Avalonia.Input
 
         , x => _data.KeyDown += x, x => _data.KeyDown -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.IInputElement.KeyUp"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.IInputElement.KeyUp"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.KeyEventArgs> KeyUp => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.KeyEventArgs>, global::Avalonia.Input.KeyEventArgs>(eventHandler =>
         {
@@ -1958,7 +1958,7 @@ namespace Avalonia.Input
 
         , x => _data.KeyUp += x, x => _data.KeyUp -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.IInputElement.LostFocus"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.IInputElement.LostFocus"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> LostFocus => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -1968,7 +1968,7 @@ namespace Avalonia.Input
 
         , x => _data.LostFocus += x, x => _data.LostFocus -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.IInputElement.PointerEnter"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.IInputElement.PointerEnter"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerEventArgs> PointerEnter => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerEventArgs>, global::Avalonia.Input.PointerEventArgs>(eventHandler =>
         {
@@ -1978,7 +1978,7 @@ namespace Avalonia.Input
 
         , x => _data.PointerEnter += x, x => _data.PointerEnter -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.IInputElement.PointerLeave"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.IInputElement.PointerLeave"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerEventArgs> PointerLeave => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerEventArgs>, global::Avalonia.Input.PointerEventArgs>(eventHandler =>
         {
@@ -1988,7 +1988,7 @@ namespace Avalonia.Input
 
         , x => _data.PointerLeave += x, x => _data.PointerLeave -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.IInputElement.PointerMoved"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.IInputElement.PointerMoved"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerEventArgs> PointerMoved => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerEventArgs>, global::Avalonia.Input.PointerEventArgs>(eventHandler =>
         {
@@ -1998,7 +1998,7 @@ namespace Avalonia.Input
 
         , x => _data.PointerMoved += x, x => _data.PointerMoved -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.IInputElement.PointerPressed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.IInputElement.PointerPressed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerPressedEventArgs> PointerPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerPressedEventArgs>, global::Avalonia.Input.PointerPressedEventArgs>(eventHandler =>
         {
@@ -2008,7 +2008,7 @@ namespace Avalonia.Input
 
         , x => _data.PointerPressed += x, x => _data.PointerPressed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.IInputElement.PointerReleased"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.IInputElement.PointerReleased"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerReleasedEventArgs> PointerReleased => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerReleasedEventArgs>, global::Avalonia.Input.PointerReleasedEventArgs>(eventHandler =>
         {
@@ -2018,7 +2018,7 @@ namespace Avalonia.Input
 
         , x => _data.PointerReleased += x, x => _data.PointerReleased -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.IInputElement.PointerWheelChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.IInputElement.PointerWheelChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerWheelEventArgs> PointerWheelChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerWheelEventArgs>, global::Avalonia.Input.PointerWheelEventArgs>(eventHandler =>
         {
@@ -2028,7 +2028,7 @@ namespace Avalonia.Input
 
         , x => _data.PointerWheelChanged += x, x => _data.PointerWheelChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.IInputElement.TextInput"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.IInputElement.TextInput"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.TextInputEventArgs> TextInput => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.TextInputEventArgs>, global::Avalonia.Input.TextInputEventArgs>(eventHandler =>
         {
@@ -2055,7 +2055,7 @@ namespace Avalonia.Input
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.IMainMenu.MenuClosed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.IMainMenu.MenuClosed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> MenuClosed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -2082,7 +2082,7 @@ namespace Avalonia.Input
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.DoubleTapped"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.DoubleTapped"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> DoubleTapped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -2092,7 +2092,7 @@ namespace Avalonia.Input
 
         , x => _data.DoubleTapped += x, x => _data.DoubleTapped -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.GotFocus"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.GotFocus"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.GotFocusEventArgs> GotFocus => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.GotFocusEventArgs>, global::Avalonia.Input.GotFocusEventArgs>(eventHandler =>
         {
@@ -2102,7 +2102,7 @@ namespace Avalonia.Input
 
         , x => _data.GotFocus += x, x => _data.GotFocus -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.KeyDown"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.KeyDown"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.KeyEventArgs> KeyDown => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.KeyEventArgs>, global::Avalonia.Input.KeyEventArgs>(eventHandler =>
         {
@@ -2112,7 +2112,7 @@ namespace Avalonia.Input
 
         , x => _data.KeyDown += x, x => _data.KeyDown -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.KeyUp"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.KeyUp"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.KeyEventArgs> KeyUp => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.KeyEventArgs>, global::Avalonia.Input.KeyEventArgs>(eventHandler =>
         {
@@ -2122,7 +2122,7 @@ namespace Avalonia.Input
 
         , x => _data.KeyUp += x, x => _data.KeyUp -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.LostFocus"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.LostFocus"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> LostFocus => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -2132,7 +2132,7 @@ namespace Avalonia.Input
 
         , x => _data.LostFocus += x, x => _data.LostFocus -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.PointerEnter"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.PointerEnter"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerEventArgs> PointerEnter => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerEventArgs>, global::Avalonia.Input.PointerEventArgs>(eventHandler =>
         {
@@ -2142,7 +2142,7 @@ namespace Avalonia.Input
 
         , x => _data.PointerEnter += x, x => _data.PointerEnter -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.PointerLeave"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.PointerLeave"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerEventArgs> PointerLeave => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerEventArgs>, global::Avalonia.Input.PointerEventArgs>(eventHandler =>
         {
@@ -2152,7 +2152,7 @@ namespace Avalonia.Input
 
         , x => _data.PointerLeave += x, x => _data.PointerLeave -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.PointerMoved"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.PointerMoved"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerEventArgs> PointerMoved => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerEventArgs>, global::Avalonia.Input.PointerEventArgs>(eventHandler =>
         {
@@ -2162,7 +2162,7 @@ namespace Avalonia.Input
 
         , x => _data.PointerMoved += x, x => _data.PointerMoved -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.PointerPressed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.PointerPressed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerPressedEventArgs> PointerPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerPressedEventArgs>, global::Avalonia.Input.PointerPressedEventArgs>(eventHandler =>
         {
@@ -2172,7 +2172,7 @@ namespace Avalonia.Input
 
         , x => _data.PointerPressed += x, x => _data.PointerPressed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.PointerReleased"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.PointerReleased"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerReleasedEventArgs> PointerReleased => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerReleasedEventArgs>, global::Avalonia.Input.PointerReleasedEventArgs>(eventHandler =>
         {
@@ -2182,7 +2182,7 @@ namespace Avalonia.Input
 
         , x => _data.PointerReleased += x, x => _data.PointerReleased -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.PointerWheelChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.PointerWheelChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.PointerWheelEventArgs> PointerWheelChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerWheelEventArgs>, global::Avalonia.Input.PointerWheelEventArgs>(eventHandler =>
         {
@@ -2192,7 +2192,7 @@ namespace Avalonia.Input
 
         , x => _data.PointerWheelChanged += x, x => _data.PointerWheelChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.Tapped"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.Tapped"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> Tapped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
         {
@@ -2202,7 +2202,7 @@ namespace Avalonia.Input
 
         , x => _data.Tapped += x, x => _data.Tapped -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.InputElement.TextInput"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.TextInput"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Input.TextInputEventArgs> TextInput => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.TextInputEventArgs>, global::Avalonia.Input.TextInputEventArgs>(eventHandler =>
         {
@@ -2229,7 +2229,7 @@ namespace Avalonia.Input
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Input.KeyboardDevice.PropertyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.KeyboardDevice.PropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
@@ -2270,7 +2270,7 @@ namespace Avalonia.Layout
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Layout.Layoutable.LayoutUpdated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Layout.Layoutable.LayoutUpdated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> LayoutUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2311,7 +2311,7 @@ namespace Avalonia.LogicalTree
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.LogicalTree.ILogical.AttachedToLogicalTree"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.LogicalTree.ILogical.AttachedToLogicalTree"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs> AttachedToLogicalTree => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs>, global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs>(eventHandler =>
         {
@@ -2321,7 +2321,7 @@ namespace Avalonia.LogicalTree
 
         , x => _data.AttachedToLogicalTree += x, x => _data.AttachedToLogicalTree -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.LogicalTree.ILogical.DetachedFromLogicalTree"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.LogicalTree.ILogical.DetachedFromLogicalTree"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs> DetachedFromLogicalTree => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs>, global::Avalonia.LogicalTree.LogicalTreeAttachmentEventArgs>(eventHandler =>
         {
@@ -2362,7 +2362,7 @@ namespace Avalonia.Markup.Xaml.MarkupExtensions
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Markup.Xaml.MarkupExtensions.ResourceInclude.ResourcesChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Markup.Xaml.MarkupExtensions.ResourceInclude.ResourcesChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.ResourcesChangedEventArgs> ResourcesChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ResourcesChangedEventArgs>, global::Avalonia.Controls.ResourcesChangedEventArgs>(eventHandler =>
         {
@@ -2403,7 +2403,7 @@ namespace Avalonia.Markup.Xaml.Styling
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Markup.Xaml.Styling.StyleInclude.ResourcesChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Markup.Xaml.Styling.StyleInclude.ResourcesChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.ResourcesChangedEventArgs> ResourcesChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ResourcesChangedEventArgs>, global::Avalonia.Controls.ResourcesChangedEventArgs>(eventHandler =>
         {
@@ -2456,7 +2456,7 @@ namespace Avalonia.Media
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Media.Brush.Invalidated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Media.Brush.Invalidated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Invalidated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2483,7 +2483,7 @@ namespace Avalonia.Media
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Media.Geometry.Changed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Media.Geometry.Changed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Changed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2510,7 +2510,7 @@ namespace Avalonia.Media
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Media.IAffectsRender.Invalidated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Media.IAffectsRender.Invalidated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Invalidated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2537,7 +2537,7 @@ namespace Avalonia.Media
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Media.Transform.Changed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Media.Transform.Changed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Changed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2582,7 +2582,7 @@ namespace Avalonia.Platform
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Platform.IEmbeddableWindowImpl.LostFocus"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Platform.IEmbeddableWindowImpl.LostFocus"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.Reactive.Unit> LostFocus => global::System.Reactive.Linq.Observable.FromEvent<global::System.Action, global::System.Reactive.Unit>(eventHandler =>
         {
@@ -2609,7 +2609,7 @@ namespace Avalonia.Platform
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Platform.IPlatformThreadingInterface.Signaled"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Platform.IPlatformThreadingInterface.Signaled"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.Nullable<global::Avalonia.Threading.DispatcherPriority>> Signaled => global::System.Reactive.Linq.Observable.FromEvent<global::System.Action<global::System.Nullable<global::Avalonia.Threading.DispatcherPriority>>, global::System.Nullable<global::Avalonia.Threading.DispatcherPriority>>(eventHandler =>
         {
@@ -2666,7 +2666,7 @@ namespace Avalonia.Rendering
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Rendering.DefaultRenderTimer.Tick"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Rendering.DefaultRenderTimer.Tick"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.TimeSpan> Tick => global::System.Reactive.Linq.Observable.FromEvent<global::System.Action<global::System.TimeSpan>, global::System.TimeSpan>(eventHandler =>
         {
@@ -2693,7 +2693,7 @@ namespace Avalonia.Rendering
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Rendering.DeferredRenderer.SceneInvalidated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Rendering.DeferredRenderer.SceneInvalidated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Rendering.SceneInvalidatedEventArgs> SceneInvalidated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Rendering.SceneInvalidatedEventArgs>, global::Avalonia.Rendering.SceneInvalidatedEventArgs>(eventHandler =>
         {
@@ -2720,7 +2720,7 @@ namespace Avalonia.Rendering
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Rendering.ImmediateRenderer.SceneInvalidated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Rendering.ImmediateRenderer.SceneInvalidated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Rendering.SceneInvalidatedEventArgs> SceneInvalidated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Rendering.SceneInvalidatedEventArgs>, global::Avalonia.Rendering.SceneInvalidatedEventArgs>(eventHandler =>
         {
@@ -2747,7 +2747,7 @@ namespace Avalonia.Rendering
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Rendering.IRenderer.SceneInvalidated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Rendering.IRenderer.SceneInvalidated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Rendering.SceneInvalidatedEventArgs> SceneInvalidated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Rendering.SceneInvalidatedEventArgs>, global::Avalonia.Rendering.SceneInvalidatedEventArgs>(eventHandler =>
         {
@@ -2774,7 +2774,7 @@ namespace Avalonia.Rendering
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Rendering.IRenderTimer.Tick"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Rendering.IRenderTimer.Tick"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.TimeSpan> Tick => global::System.Reactive.Linq.Observable.FromEvent<global::System.Action<global::System.TimeSpan>, global::System.TimeSpan>(eventHandler =>
         {
@@ -2819,7 +2819,7 @@ namespace Avalonia.Styling
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Styling.Style.ResourcesChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Styling.Style.ResourcesChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.ResourcesChangedEventArgs> ResourcesChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ResourcesChangedEventArgs>, global::Avalonia.Controls.ResourcesChangedEventArgs>(eventHandler =>
         {
@@ -2846,7 +2846,7 @@ namespace Avalonia.Styling
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Styling.Styles.CollectionChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Styling.Styles.CollectionChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.Collections.Specialized.NotifyCollectionChangedEventArgs> CollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.Collections.Specialized.NotifyCollectionChangedEventHandler, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs>(eventHandler =>
         {
@@ -2856,7 +2856,7 @@ namespace Avalonia.Styling
 
         , x => _data.CollectionChanged += x, x => _data.CollectionChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Styling.Styles.ResourcesChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Styling.Styles.ResourcesChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.Controls.ResourcesChangedEventArgs> ResourcesChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ResourcesChangedEventArgs>, global::Avalonia.Controls.ResourcesChangedEventArgs>(eventHandler =>
         {
@@ -2897,7 +2897,7 @@ namespace Avalonia.Threading
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Threading.DispatcherTimer.Tick"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Threading.DispatcherTimer.Tick"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Tick => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2938,7 +2938,7 @@ namespace Avalonia.VisualTree
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.VisualTree.IVisual.AttachedToVisualTree"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.VisualTree.IVisual.AttachedToVisualTree"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.VisualTreeAttachmentEventArgs> AttachedToVisualTree => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.VisualTreeAttachmentEventArgs>, global::Avalonia.VisualTreeAttachmentEventArgs>(eventHandler =>
         {
@@ -2948,7 +2948,7 @@ namespace Avalonia.VisualTree
 
         , x => _data.AttachedToVisualTree += x, x => _data.AttachedToVisualTree -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.VisualTree.IVisual.DetachedFromVisualTree"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.VisualTree.IVisual.DetachedFromVisualTree"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Avalonia.VisualTreeAttachmentEventArgs> DetachedFromVisualTree => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.VisualTreeAttachmentEventArgs>, global::Avalonia.VisualTreeAttachmentEventArgs>(eventHandler =>
         {
@@ -2989,7 +2989,7 @@ namespace Portable.Xaml
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Portable.Xaml.IXamlNameResolver.OnNameScopeInitializationComplete"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Portable.Xaml.IXamlNameResolver.OnNameScopeInitializationComplete"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> OnNameScopeInitializationComplete => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {

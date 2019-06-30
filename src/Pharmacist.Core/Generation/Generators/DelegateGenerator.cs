@@ -65,7 +65,7 @@ namespace Pharmacist.Core.Generation.Generators
                     .WithModifiers(modifiers)
                     .WithMembers(List(GenerateObservableMembers(methods)))
                     .WithBaseList(BaseList(SingletonSeparatedList<BaseTypeSyntax>(SimpleBaseType(IdentifierName(typeDefinition.GenerateFullGenericName())))))
-                    .WithLeadingTrivia(GenerateSummarySeeAlsoComment("Wraps delegates events from {0} into Observables.", typeDefinition.GenerateFullGenericName()))
+                    .WithLeadingTrivia(GenerateSummarySeeAlsoComment("Wraps delegates events from {0} into Observables.", typeDefinition.ConvertToDocument()))
                     .WithObsoleteAttribute(typeDefinition);
         }
 
@@ -101,7 +101,7 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithObsoleteAttribute(method)
                 .WithExpressionBody(ArrowExpressionClause(IdentifierName(observableName)))
                 .WithSemicolonToken(Token(SyntaxKind.SemicolonToken))
-                .WithLeadingTrivia(GenerateSummarySeeAlsoComment("Gets an observable which signals when the {0} method is invoked.", method.FullName));
+                .WithLeadingTrivia(GenerateSummarySeeAlsoComment("Gets an observable which signals when the {0} method is invoked.", method.ConvertToDocument()));
         }
 
         /// <summary>

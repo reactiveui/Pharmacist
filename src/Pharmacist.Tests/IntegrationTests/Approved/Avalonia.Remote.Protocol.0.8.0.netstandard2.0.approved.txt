@@ -38,7 +38,7 @@ namespace Avalonia.Remote.Protocol
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection.OnException"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection.OnException"/> event triggers.
         /// </summary>
         public global::System.IObservable<(global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection arg1, global::System.Exception arg2)> OnException => global::System.Reactive.Linq.Observable.FromEvent<global::System.Action<global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection, global::System.Exception>, (global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection arg1, global::System.Exception arg2)>(eventHandler =>
         {
@@ -48,7 +48,7 @@ namespace Avalonia.Remote.Protocol
 
         , x => _data.OnException += x, x => _data.OnException -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection.OnMessage"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection.OnMessage"/> event triggers.
         /// </summary>
         public global::System.IObservable<(global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection arg1, object arg2)> OnMessage => global::System.Reactive.Linq.Observable.FromEvent<global::System.Action<global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection, object>, (global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection arg1, object arg2)>(eventHandler =>
         {
@@ -75,7 +75,7 @@ namespace Avalonia.Remote.Protocol
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Remote.Protocol.TransportConnectionWrapper.OnException"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Remote.Protocol.TransportConnectionWrapper.OnException"/> event triggers.
         /// </summary>
         public global::System.IObservable<(global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection arg1, global::System.Exception arg2)> OnException => global::System.Reactive.Linq.Observable.FromEvent<global::System.Action<global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection, global::System.Exception>, (global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection arg1, global::System.Exception arg2)>(eventHandler =>
         {
@@ -85,7 +85,7 @@ namespace Avalonia.Remote.Protocol
 
         , x => _data.OnException += x, x => _data.OnException -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Avalonia.Remote.Protocol.TransportConnectionWrapper.OnMessage"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Remote.Protocol.TransportConnectionWrapper.OnMessage"/> event triggers.
         /// </summary>
         public global::System.IObservable<(global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection arg1, object arg2)> OnMessage => global::System.Reactive.Linq.Observable.FromEvent<global::System.Action<global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection, object>, (global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection arg1, object arg2)>(eventHandler =>
         {

@@ -13,7 +13,7 @@ namespace Xamarin.Essentials
     public static class Events
     {
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Accelerometer.ReadingChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Essentials.Accelerometer.ReadingChanged"/> event triggers.
         /// </summary>
         public static global::System.IObservable<global::Xamarin.Essentials.AccelerometerChangedEventArgs> AccelerometerReadingChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Essentials.AccelerometerChangedEventArgs>, global::Xamarin.Essentials.AccelerometerChangedEventArgs>(eventHandler =>
         {
@@ -23,7 +23,7 @@ namespace Xamarin.Essentials
 
         , x => global::Xamarin.Essentials.Accelerometer.ReadingChanged += x, x => global::Xamarin.Essentials.Accelerometer.ReadingChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Barometer.ReadingChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Essentials.Barometer.ReadingChanged"/> event triggers.
         /// </summary>
         public static global::System.IObservable<global::Xamarin.Essentials.BarometerChangedEventArgs> BarometerReadingChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Essentials.BarometerChangedEventArgs>, global::Xamarin.Essentials.BarometerChangedEventArgs>(eventHandler =>
         {
@@ -33,7 +33,7 @@ namespace Xamarin.Essentials
 
         , x => global::Xamarin.Essentials.Barometer.ReadingChanged += x, x => global::Xamarin.Essentials.Barometer.ReadingChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Battery.BatteryInfoChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Essentials.Battery.BatteryInfoChanged"/> event triggers.
         /// </summary>
         public static global::System.IObservable<global::Xamarin.Essentials.BatteryInfoChangedEventArgs> BatteryBatteryInfoChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Essentials.BatteryInfoChangedEventArgs>, global::Xamarin.Essentials.BatteryInfoChangedEventArgs>(eventHandler =>
         {
@@ -43,7 +43,7 @@ namespace Xamarin.Essentials
 
         , x => global::Xamarin.Essentials.Battery.BatteryInfoChanged += x, x => global::Xamarin.Essentials.Battery.BatteryInfoChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Battery.EnergySaverStatusChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Essentials.Battery.EnergySaverStatusChanged"/> event triggers.
         /// </summary>
         public static global::System.IObservable<global::Xamarin.Essentials.EnergySaverStatusChangedEventArgs> BatteryEnergySaverStatusChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Essentials.EnergySaverStatusChangedEventArgs>, global::Xamarin.Essentials.EnergySaverStatusChangedEventArgs>(eventHandler =>
         {
@@ -53,7 +53,7 @@ namespace Xamarin.Essentials
 
         , x => global::Xamarin.Essentials.Battery.EnergySaverStatusChanged += x, x => global::Xamarin.Essentials.Battery.EnergySaverStatusChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Compass.ReadingChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Essentials.Compass.ReadingChanged"/> event triggers.
         /// </summary>
         public static global::System.IObservable<global::Xamarin.Essentials.CompassChangedEventArgs> CompassReadingChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Essentials.CompassChangedEventArgs>, global::Xamarin.Essentials.CompassChangedEventArgs>(eventHandler =>
         {
@@ -63,7 +63,7 @@ namespace Xamarin.Essentials
 
         , x => global::Xamarin.Essentials.Compass.ReadingChanged += x, x => global::Xamarin.Essentials.Compass.ReadingChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Connectivity.ConnectivityChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Essentials.Connectivity.ConnectivityChanged"/> event triggers.
         /// </summary>
         public static global::System.IObservable<global::Xamarin.Essentials.ConnectivityChangedEventArgs> ConnectivityConnectivityChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Essentials.ConnectivityChangedEventArgs>, global::Xamarin.Essentials.ConnectivityChangedEventArgs>(eventHandler =>
         {
@@ -73,7 +73,7 @@ namespace Xamarin.Essentials
 
         , x => global::Xamarin.Essentials.Connectivity.ConnectivityChanged += x, x => global::Xamarin.Essentials.Connectivity.ConnectivityChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.DeviceDisplay.MainDisplayInfoChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Essentials.DeviceDisplay.MainDisplayInfoChanged"/> event triggers.
         /// </summary>
         public static global::System.IObservable<global::Xamarin.Essentials.DisplayInfoChangedEventArgs> DeviceDisplayMainDisplayInfoChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Essentials.DisplayInfoChangedEventArgs>, global::Xamarin.Essentials.DisplayInfoChangedEventArgs>(eventHandler =>
         {
@@ -83,7 +83,7 @@ namespace Xamarin.Essentials
 
         , x => global::Xamarin.Essentials.DeviceDisplay.MainDisplayInfoChanged += x, x => global::Xamarin.Essentials.DeviceDisplay.MainDisplayInfoChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Gyroscope.ReadingChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Essentials.Gyroscope.ReadingChanged"/> event triggers.
         /// </summary>
         public static global::System.IObservable<global::Xamarin.Essentials.GyroscopeChangedEventArgs> GyroscopeReadingChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Essentials.GyroscopeChangedEventArgs>, global::Xamarin.Essentials.GyroscopeChangedEventArgs>(eventHandler =>
         {
@@ -93,7 +93,7 @@ namespace Xamarin.Essentials
 
         , x => global::Xamarin.Essentials.Gyroscope.ReadingChanged += x, x => global::Xamarin.Essentials.Gyroscope.ReadingChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.Magnetometer.ReadingChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Essentials.Magnetometer.ReadingChanged"/> event triggers.
         /// </summary>
         public static global::System.IObservable<global::Xamarin.Essentials.MagnetometerChangedEventArgs> MagnetometerReadingChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Essentials.MagnetometerChangedEventArgs>, global::Xamarin.Essentials.MagnetometerChangedEventArgs>(eventHandler =>
         {
@@ -103,7 +103,7 @@ namespace Xamarin.Essentials
 
         , x => global::Xamarin.Essentials.Magnetometer.ReadingChanged += x, x => global::Xamarin.Essentials.Magnetometer.ReadingChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Essentials.OrientationSensor.ReadingChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Essentials.OrientationSensor.ReadingChanged"/> event triggers.
         /// </summary>
         public static global::System.IObservable<global::Xamarin.Essentials.OrientationSensorChangedEventArgs> OrientationSensorReadingChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Essentials.OrientationSensorChangedEventArgs>, global::Xamarin.Essentials.OrientationSensorChangedEventArgs>(eventHandler =>
         {

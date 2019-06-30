@@ -115,5 +115,36 @@ namespace Pharmacist.Core.Generation
             sb.Append("/// <returns>").Append(returnValueText).AppendLine("</returns>");
             return SyntaxFactory.ParseLeadingTrivia(sb.ToString());
         }
+
+        public static string ConvertToDocument(this IType currentType)
+        {
+            return currentType.GenerateFullGenericName().Replace("<", "{").Replace(">", "}");
+        }
+
+        public static string ConvertToDocument(this IMethod method)
+        {
+            var stringBuilder = new StringBuilder(method.DeclaringType.ConvertToDocument() + "." + method.Name).Append("(");
+
+            for (int i = 0; i < method.Parameters.Count; ++i)
+            {
+                var parameter = method.Parameters[i];
+
+                if (i != 0)
+                {
+                    stringBuilder.Append(", ");
+                }
+
+                stringBuilder.Append(parameter.Type.ConvertToDocument());
+            }
+
+            stringBuilder.Append(")");
+
+            return stringBuilder.ToString();
+        }
+
+        public static string ConvertToDocument(this IEvent eventDetails)
+        {
+            return eventDetails.DeclaringType.ConvertToDocument() + "." + eventDetails.Name;
+        }
     }
 }

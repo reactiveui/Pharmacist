@@ -46,7 +46,7 @@ namespace UIKit
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.DecelerationEnded"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DecelerationEnded"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> DecelerationEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -56,7 +56,7 @@ namespace UIKit
 
         , x => _data.DecelerationEnded += x, x => _data.DecelerationEnded -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.DecelerationStarted"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DecelerationStarted"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> DecelerationStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -66,7 +66,7 @@ namespace UIKit
 
         , x => _data.DecelerationStarted += x, x => _data.DecelerationStarted -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.DidChangeAdjustedContentInset"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DidChangeAdjustedContentInset"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> DidChangeAdjustedContentInset => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -76,7 +76,7 @@ namespace UIKit
 
         , x => _data.DidChangeAdjustedContentInset += x, x => _data.DidChangeAdjustedContentInset -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.DidZoom"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DidZoom"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> DidZoom => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -86,7 +86,7 @@ namespace UIKit
 
         , x => _data.DidZoom += x, x => _data.DidZoom -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.DraggingEnded"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DraggingEnded"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.DraggingEventArgs> DraggingEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.DraggingEventArgs>, global::UIKit.DraggingEventArgs>(eventHandler =>
         {
@@ -96,7 +96,7 @@ namespace UIKit
 
         , x => _data.DraggingEnded += x, x => _data.DraggingEnded -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.DraggingStarted"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DraggingStarted"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> DraggingStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -106,7 +106,7 @@ namespace UIKit
 
         , x => _data.DraggingStarted += x, x => _data.DraggingStarted -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.ScrollAnimationEnded"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.ScrollAnimationEnded"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ScrollAnimationEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -116,7 +116,7 @@ namespace UIKit
 
         , x => _data.ScrollAnimationEnded += x, x => _data.ScrollAnimationEnded -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.Scrolled"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.Scrolled"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Scrolled => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -126,7 +126,7 @@ namespace UIKit
 
         , x => _data.Scrolled += x, x => _data.Scrolled -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.ScrolledToTop"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.ScrolledToTop"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ScrolledToTop => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -136,7 +136,7 @@ namespace UIKit
 
         , x => _data.ScrolledToTop += x, x => _data.ScrolledToTop -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.WillEndDragging"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.WillEndDragging"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.WillEndDraggingEventArgs> WillEndDragging => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.WillEndDraggingEventArgs>, global::UIKit.WillEndDraggingEventArgs>(eventHandler =>
         {
@@ -146,7 +146,7 @@ namespace UIKit
 
         , x => _data.WillEndDragging += x, x => _data.WillEndDragging -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.ZoomingEnded"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.ZoomingEnded"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.ZoomingEndedEventArgs> ZoomingEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.ZoomingEndedEventArgs>, global::UIKit.ZoomingEndedEventArgs>(eventHandler =>
         {
@@ -156,7 +156,7 @@ namespace UIKit
 
         , x => _data.ZoomingEnded += x, x => _data.ZoomingEnded -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIScrollView.ZoomingStarted"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.ZoomingStarted"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.UIScrollViewZoomingEventArgs> ZoomingStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UIScrollViewZoomingEventArgs>, global::UIKit.UIScrollViewZoomingEventArgs>(eventHandler =>
         {
@@ -183,7 +183,7 @@ namespace UIKit
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UISplitViewController.WillChangeDisplayMode"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillChangeDisplayMode"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.UISplitViewControllerDisplayModeEventArgs> WillChangeDisplayMode => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISplitViewControllerDisplayModeEventArgs>, global::UIKit.UISplitViewControllerDisplayModeEventArgs>(eventHandler =>
         {
@@ -193,7 +193,7 @@ namespace UIKit
 
         , x => _data.WillChangeDisplayMode += x, x => _data.WillChangeDisplayMode -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UISplitViewController.WillHideViewController"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillHideViewController"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.UISplitViewHideEventArgs> WillHideViewController => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISplitViewHideEventArgs>, global::UIKit.UISplitViewHideEventArgs>(eventHandler =>
         {
@@ -203,7 +203,7 @@ namespace UIKit
 
         , x => _data.WillHideViewController += x, x => _data.WillHideViewController -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UISplitViewController.WillPresentViewController"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillPresentViewController"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.UISplitViewPresentEventArgs> WillPresentViewController => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISplitViewPresentEventArgs>, global::UIKit.UISplitViewPresentEventArgs>(eventHandler =>
         {
@@ -213,7 +213,7 @@ namespace UIKit
 
         , x => _data.WillPresentViewController += x, x => _data.WillPresentViewController -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UISplitViewController.WillShowViewController"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillShowViewController"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.UISplitViewShowEventArgs> WillShowViewController => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISplitViewShowEventArgs>, global::UIKit.UISplitViewShowEventArgs>(eventHandler =>
         {
@@ -240,7 +240,7 @@ namespace UIKit
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UITabBarController.FinishedCustomizingViewControllers"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UITabBarController.FinishedCustomizingViewControllers"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.UITabBarCustomizeChangeEventArgs> FinishedCustomizingViewControllers => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UITabBarCustomizeChangeEventArgs>, global::UIKit.UITabBarCustomizeChangeEventArgs>(eventHandler =>
         {
@@ -250,7 +250,7 @@ namespace UIKit
 
         , x => _data.FinishedCustomizingViewControllers += x, x => _data.FinishedCustomizingViewControllers -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UITabBarController.OnCustomizingViewControllers"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UITabBarController.OnCustomizingViewControllers"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.UITabBarCustomizeEventArgs> OnCustomizingViewControllers => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UITabBarCustomizeEventArgs>, global::UIKit.UITabBarCustomizeEventArgs>(eventHandler =>
         {
@@ -260,7 +260,7 @@ namespace UIKit
 
         , x => _data.OnCustomizingViewControllers += x, x => _data.OnCustomizingViewControllers -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UITabBarController.OnEndCustomizingViewControllers"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UITabBarController.OnEndCustomizingViewControllers"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.UITabBarCustomizeChangeEventArgs> OnEndCustomizingViewControllers => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UITabBarCustomizeChangeEventArgs>, global::UIKit.UITabBarCustomizeChangeEventArgs>(eventHandler =>
         {
@@ -270,7 +270,7 @@ namespace UIKit
 
         , x => _data.OnEndCustomizingViewControllers += x, x => _data.OnEndCustomizingViewControllers -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UITabBarController.ViewControllerSelected"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UITabBarController.ViewControllerSelected"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.UITabBarSelectionEventArgs> ViewControllerSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UITabBarSelectionEventArgs>, global::UIKit.UITabBarSelectionEventArgs>(eventHandler =>
         {
@@ -297,7 +297,7 @@ namespace UIKit
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIWebView.LoadError"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIWebView.LoadError"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.UIWebErrorArgs> LoadError => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UIWebErrorArgs>, global::UIKit.UIWebErrorArgs>(eventHandler =>
         {
@@ -307,7 +307,7 @@ namespace UIKit
 
         , x => _data.LoadError += x, x => _data.LoadError -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIWebView.LoadFinished"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIWebView.LoadFinished"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> LoadFinished => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -317,7 +317,7 @@ namespace UIKit
 
         , x => _data.LoadFinished += x, x => _data.LoadFinished -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "UIKit.UIWebView.LoadStarted"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIWebView.LoadStarted"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> LoadStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -582,7 +582,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Application.ModalPopped"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Application.ModalPopped"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ModalPoppedEventArgs> ModalPopped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ModalPoppedEventArgs>, global::Xamarin.Forms.ModalPoppedEventArgs>(eventHandler =>
         {
@@ -592,7 +592,7 @@ namespace Xamarin.Forms
 
         , x => _data.ModalPopped += x, x => _data.ModalPopped -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Application.ModalPopping"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Application.ModalPopping"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ModalPoppingEventArgs> ModalPopping => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ModalPoppingEventArgs>, global::Xamarin.Forms.ModalPoppingEventArgs>(eventHandler =>
         {
@@ -602,7 +602,7 @@ namespace Xamarin.Forms
 
         , x => _data.ModalPopping += x, x => _data.ModalPopping -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Application.ModalPushed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Application.ModalPushed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ModalPushedEventArgs> ModalPushed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ModalPushedEventArgs>, global::Xamarin.Forms.ModalPushedEventArgs>(eventHandler =>
         {
@@ -612,7 +612,7 @@ namespace Xamarin.Forms
 
         , x => _data.ModalPushed += x, x => _data.ModalPushed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Application.ModalPushing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Application.ModalPushing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ModalPushingEventArgs> ModalPushing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ModalPushingEventArgs>, global::Xamarin.Forms.ModalPushingEventArgs>(eventHandler =>
         {
@@ -622,7 +622,7 @@ namespace Xamarin.Forms
 
         , x => _data.ModalPushing += x, x => _data.ModalPushing -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Application.PageAppearing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Application.PageAppearing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Page> PageAppearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Page>, global::Xamarin.Forms.Page>(eventHandler =>
         {
@@ -632,7 +632,7 @@ namespace Xamarin.Forms
 
         , x => _data.PageAppearing += x, x => _data.PageAppearing -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Application.PageDisappearing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Application.PageDisappearing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Page> PageDisappearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Page>, global::Xamarin.Forms.Page>(eventHandler =>
         {
@@ -659,7 +659,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.BindableObject.BindingContextChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.BindableObject.BindingContextChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> BindingContextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -669,7 +669,7 @@ namespace Xamarin.Forms
 
         , x => _data.BindingContextChanged += x, x => _data.BindingContextChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.BindableObject.PropertyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.BindableObject.PropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
@@ -679,7 +679,7 @@ namespace Xamarin.Forms
 
         , x => _data.PropertyChanged += x, x => _data.PropertyChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.BindableObject.PropertyChanging"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.BindableObject.PropertyChanging"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.PropertyChangingEventArgs> PropertyChanging => global::System.Reactive.Linq.Observable.FromEvent<global::Xamarin.Forms.PropertyChangingEventHandler, global::Xamarin.Forms.PropertyChangingEventArgs>(eventHandler =>
         {
@@ -706,7 +706,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Button.Clicked"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Button.Clicked"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -716,7 +716,7 @@ namespace Xamarin.Forms
 
         , x => _data.Clicked += x, x => _data.Clicked -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Button.Pressed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Button.Pressed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Pressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -726,7 +726,7 @@ namespace Xamarin.Forms
 
         , x => _data.Pressed += x, x => _data.Pressed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Button.Released"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Button.Released"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Released => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -753,7 +753,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Cell.Appearing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Cell.Appearing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Appearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -763,7 +763,7 @@ namespace Xamarin.Forms
 
         , x => _data.Appearing += x, x => _data.Appearing -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Cell.Disappearing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Cell.Disappearing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Disappearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -773,7 +773,7 @@ namespace Xamarin.Forms
 
         , x => _data.Disappearing += x, x => _data.Disappearing -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Cell.ForceUpdateSizeRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Cell.ForceUpdateSizeRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ForceUpdateSizeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -783,7 +783,7 @@ namespace Xamarin.Forms
 
         , x => _data.ForceUpdateSizeRequested += x, x => _data.ForceUpdateSizeRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Cell.Tapped"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Cell.Tapped"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Tapped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -810,7 +810,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ChildGestureRecognizer.PropertyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ChildGestureRecognizer.PropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
@@ -837,7 +837,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ClickGestureRecognizer.Clicked"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ClickGestureRecognizer.Clicked"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -864,7 +864,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ColumnDefinition.SizeChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ColumnDefinition.SizeChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -891,7 +891,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Command.CanExecuteChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Command.CanExecuteChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> CanExecuteChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -918,7 +918,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.DatePicker.DateSelected"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.DatePicker.DateSelected"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.DateChangedEventArgs> DateSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.DateChangedEventArgs>, global::Xamarin.Forms.DateChangedEventArgs>(eventHandler =>
         {
@@ -945,7 +945,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Editor.Completed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Editor.Completed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Completed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -955,7 +955,7 @@ namespace Xamarin.Forms
 
         , x => _data.Completed += x, x => _data.Completed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Editor.TextChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Editor.TextChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.TextChangedEventArgs> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, global::Xamarin.Forms.TextChangedEventArgs>(eventHandler =>
         {
@@ -982,7 +982,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Element.ChildAdded"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Element.ChildAdded"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ElementEventArgs> ChildAdded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ElementEventArgs>, global::Xamarin.Forms.ElementEventArgs>(eventHandler =>
         {
@@ -992,7 +992,7 @@ namespace Xamarin.Forms
 
         , x => _data.ChildAdded += x, x => _data.ChildAdded -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Element.ChildRemoved"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Element.ChildRemoved"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ElementEventArgs> ChildRemoved => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ElementEventArgs>, global::Xamarin.Forms.ElementEventArgs>(eventHandler =>
         {
@@ -1002,7 +1002,7 @@ namespace Xamarin.Forms
 
         , x => _data.ChildRemoved += x, x => _data.ChildRemoved -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Element.DescendantAdded"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Element.DescendantAdded"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ElementEventArgs> DescendantAdded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ElementEventArgs>, global::Xamarin.Forms.ElementEventArgs>(eventHandler =>
         {
@@ -1012,7 +1012,7 @@ namespace Xamarin.Forms
 
         , x => _data.DescendantAdded += x, x => _data.DescendantAdded -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Element.DescendantRemoved"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Element.DescendantRemoved"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ElementEventArgs> DescendantRemoved => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ElementEventArgs>, global::Xamarin.Forms.ElementEventArgs>(eventHandler =>
         {
@@ -1022,7 +1022,7 @@ namespace Xamarin.Forms
 
         , x => _data.DescendantRemoved += x, x => _data.DescendantRemoved -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Element.PlatformSet"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Element.PlatformSet"/> event triggers.
         /// </summary>
         [global::System.ObsoleteAttribute("PlatformSet is obsolete as of 3.5.0. Do not use this event.", false)]
         public global::System.IObservable<global::System.EventArgs> PlatformSet => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
@@ -1050,7 +1050,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Entry.Completed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Entry.Completed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Completed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1060,7 +1060,7 @@ namespace Xamarin.Forms
 
         , x => _data.Completed += x, x => _data.Completed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Entry.TextChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Entry.TextChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.TextChangedEventArgs> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, global::Xamarin.Forms.TextChangedEventArgs>(eventHandler =>
         {
@@ -1087,7 +1087,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.EntryCell.Completed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.EntryCell.Completed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Completed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1114,7 +1114,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ICellController.ForceUpdateSizeRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ICellController.ForceUpdateSizeRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ForceUpdateSizeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1141,7 +1141,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IDefinition.SizeChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IDefinition.SizeChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1168,7 +1168,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IElementController.PlatformSet"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IElementController.PlatformSet"/> event triggers.
         /// </summary>
         [global::System.ObsoleteAttribute("PlatformSet is obsolete as of 3.5.0. Do not use this event.", false)]
         public global::System.IObservable<global::System.EventArgs> PlatformSet => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
@@ -1196,7 +1196,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ILayout.LayoutChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ILayout.LayoutChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> LayoutChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1223,7 +1223,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IListProxy.CollectionChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IListProxy.CollectionChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.Collections.Specialized.NotifyCollectionChangedEventArgs> CollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.Collections.Specialized.NotifyCollectionChangedEventHandler, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs>(eventHandler =>
         {
@@ -1250,7 +1250,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IListViewController.ScrollToRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IListViewController.ScrollToRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ScrollToRequestedEventArgs> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestedEventArgs>, global::Xamarin.Forms.ScrollToRequestedEventArgs>(eventHandler =>
         {
@@ -1277,7 +1277,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ImageButton.Clicked"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ImageButton.Clicked"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1287,7 +1287,7 @@ namespace Xamarin.Forms
 
         , x => _data.Clicked += x, x => _data.Clicked -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ImageButton.Pressed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ImageButton.Pressed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Pressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1297,7 +1297,7 @@ namespace Xamarin.Forms
 
         , x => _data.Pressed += x, x => _data.Pressed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ImageButton.Released"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ImageButton.Released"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Released => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1324,7 +1324,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IMasterDetailPageController.BackButtonPressed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IMasterDetailPageController.BackButtonPressed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.BackButtonPressedEventArgs> BackButtonPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.BackButtonPressedEventArgs>, global::Xamarin.Forms.BackButtonPressedEventArgs>(eventHandler =>
         {
@@ -1351,7 +1351,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.INavigationPageController.InsertPageBeforeRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.INavigationPageController.InsertPageBeforeRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> InsertPageBeforeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
@@ -1361,7 +1361,7 @@ namespace Xamarin.Forms
 
         , x => _data.InsertPageBeforeRequested += x, x => _data.InsertPageBeforeRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.INavigationPageController.PopRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.INavigationPageController.PopRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> PopRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
@@ -1371,7 +1371,7 @@ namespace Xamarin.Forms
 
         , x => _data.PopRequested += x, x => _data.PopRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.INavigationPageController.PopToRootRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.INavigationPageController.PopToRootRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> PopToRootRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
@@ -1381,7 +1381,7 @@ namespace Xamarin.Forms
 
         , x => _data.PopToRootRequested += x, x => _data.PopToRootRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.INavigationPageController.PushRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.INavigationPageController.PushRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> PushRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
@@ -1391,7 +1391,7 @@ namespace Xamarin.Forms
 
         , x => _data.PushRequested += x, x => _data.PushRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.INavigationPageController.RemovePageRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.INavigationPageController.RemovePageRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> RemovePageRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
@@ -1418,7 +1418,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IOpenGlViewController.DisplayRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IOpenGlViewController.DisplayRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> DisplayRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1445,7 +1445,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IScrollViewController.ScrollToRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IScrollViewController.ScrollToRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ScrollToRequestedEventArgs> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestedEventArgs>, global::Xamarin.Forms.ScrollToRequestedEventArgs>(eventHandler =>
         {
@@ -1472,7 +1472,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ISearchHandlerController.ListProxyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ISearchHandlerController.ListProxyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ListProxyChangedEventArgs> ListProxyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ListProxyChangedEventArgs>, global::Xamarin.Forms.ListProxyChangedEventArgs>(eventHandler =>
         {
@@ -1499,7 +1499,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IShellController.StructureChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IShellController.StructureChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> StructureChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1526,7 +1526,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IShellSectionController.NavigationRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IShellSectionController.NavigationRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> NavigationRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
@@ -1553,7 +1553,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ITableViewController.ModelChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ITableViewController.ModelChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ModelChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1580,7 +1580,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ItemsView.ScrollToRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ItemsView.ScrollToRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ScrollToRequestEventArgs> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestEventArgs>, global::Xamarin.Forms.ScrollToRequestEventArgs>(eventHandler =>
         {
@@ -1607,7 +1607,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IVisualElementController.BatchCommitted"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IVisualElementController.BatchCommitted"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>> BatchCommitted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>>, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>>(eventHandler =>
         {
@@ -1617,7 +1617,7 @@ namespace Xamarin.Forms
 
         , x => _data.BatchCommitted += x, x => _data.BatchCommitted -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IVisualElementController.FocusChangeRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IVisualElementController.FocusChangeRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.VisualElement.FocusRequestArgs> FocusChangeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.VisualElement.FocusRequestArgs>, global::Xamarin.Forms.VisualElement.FocusRequestArgs>(eventHandler =>
         {
@@ -1644,7 +1644,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IWebViewController.EvalRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IWebViewController.EvalRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.EvalRequested> EvalRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EvalRequested>, global::Xamarin.Forms.Internals.EvalRequested>(eventHandler =>
         {
@@ -1654,7 +1654,7 @@ namespace Xamarin.Forms
 
         , x => _data.EvalRequested += x, x => _data.EvalRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IWebViewController.GoBackRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IWebViewController.GoBackRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> GoBackRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1664,7 +1664,7 @@ namespace Xamarin.Forms
 
         , x => _data.GoBackRequested += x, x => _data.GoBackRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IWebViewController.GoForwardRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IWebViewController.GoForwardRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> GoForwardRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1674,7 +1674,7 @@ namespace Xamarin.Forms
 
         , x => _data.GoForwardRequested += x, x => _data.GoForwardRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.IWebViewController.ReloadRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IWebViewController.ReloadRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ReloadRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1701,7 +1701,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Layout.LayoutChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Layout.LayoutChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> LayoutChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1728,7 +1728,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ListView.ItemAppearing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ListView.ItemAppearing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ItemVisibilityEventArgs> ItemAppearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ItemVisibilityEventArgs>, global::Xamarin.Forms.ItemVisibilityEventArgs>(eventHandler =>
         {
@@ -1738,7 +1738,7 @@ namespace Xamarin.Forms
 
         , x => _data.ItemAppearing += x, x => _data.ItemAppearing -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ListView.ItemDisappearing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ListView.ItemDisappearing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ItemVisibilityEventArgs> ItemDisappearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ItemVisibilityEventArgs>, global::Xamarin.Forms.ItemVisibilityEventArgs>(eventHandler =>
         {
@@ -1748,7 +1748,7 @@ namespace Xamarin.Forms
 
         , x => _data.ItemDisappearing += x, x => _data.ItemDisappearing -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ListView.ItemSelected"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ListView.ItemSelected"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.SelectedItemChangedEventArgs> ItemSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SelectedItemChangedEventArgs>, global::Xamarin.Forms.SelectedItemChangedEventArgs>(eventHandler =>
         {
@@ -1758,7 +1758,7 @@ namespace Xamarin.Forms
 
         , x => _data.ItemSelected += x, x => _data.ItemSelected -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ListView.ItemTapped"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ListView.ItemTapped"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ItemTappedEventArgs> ItemTapped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ItemTappedEventArgs>, global::Xamarin.Forms.ItemTappedEventArgs>(eventHandler =>
         {
@@ -1768,7 +1768,7 @@ namespace Xamarin.Forms
 
         , x => _data.ItemTapped += x, x => _data.ItemTapped -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ListView.Refreshing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ListView.Refreshing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Refreshing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1778,7 +1778,7 @@ namespace Xamarin.Forms
 
         , x => _data.Refreshing += x, x => _data.Refreshing -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ListView.ScrollToRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ListView.ScrollToRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ScrollToRequestedEventArgs> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestedEventArgs>, global::Xamarin.Forms.ScrollToRequestedEventArgs>(eventHandler =>
         {
@@ -1805,7 +1805,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.MasterDetailPage.BackButtonPressed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MasterDetailPage.BackButtonPressed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.BackButtonPressedEventArgs> BackButtonPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.BackButtonPressedEventArgs>, global::Xamarin.Forms.BackButtonPressedEventArgs>(eventHandler =>
         {
@@ -1815,7 +1815,7 @@ namespace Xamarin.Forms
 
         , x => _data.BackButtonPressed += x, x => _data.BackButtonPressed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.MasterDetailPage.IsPresentedChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MasterDetailPage.IsPresentedChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> IsPresentedChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1842,7 +1842,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.MenuItem.Clicked"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MenuItem.Clicked"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1869,7 +1869,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.InsertPageBeforeRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.InsertPageBeforeRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> InsertPageBeforeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
@@ -1879,7 +1879,7 @@ namespace Xamarin.Forms
 
         , x => _data.InsertPageBeforeRequested += x, x => _data.InsertPageBeforeRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.Popped"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.Popped"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.NavigationEventArgs> Popped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.NavigationEventArgs>, global::Xamarin.Forms.NavigationEventArgs>(eventHandler =>
         {
@@ -1889,7 +1889,7 @@ namespace Xamarin.Forms
 
         , x => _data.Popped += x, x => _data.Popped -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.PoppedToRoot"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.PoppedToRoot"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.NavigationEventArgs> PoppedToRoot => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.NavigationEventArgs>, global::Xamarin.Forms.NavigationEventArgs>(eventHandler =>
         {
@@ -1899,7 +1899,7 @@ namespace Xamarin.Forms
 
         , x => _data.PoppedToRoot += x, x => _data.PoppedToRoot -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.PopRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.PopRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> PopRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
@@ -1909,7 +1909,7 @@ namespace Xamarin.Forms
 
         , x => _data.PopRequested += x, x => _data.PopRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.PopToRootRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.PopToRootRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> PopToRootRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
@@ -1919,7 +1919,7 @@ namespace Xamarin.Forms
 
         , x => _data.PopToRootRequested += x, x => _data.PopToRootRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.Pushed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.Pushed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.NavigationEventArgs> Pushed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.NavigationEventArgs>, global::Xamarin.Forms.NavigationEventArgs>(eventHandler =>
         {
@@ -1929,7 +1929,7 @@ namespace Xamarin.Forms
 
         , x => _data.Pushed += x, x => _data.Pushed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.PushRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.PushRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> PushRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
@@ -1939,7 +1939,7 @@ namespace Xamarin.Forms
 
         , x => _data.PushRequested += x, x => _data.PushRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.NavigationPage.RemovePageRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.RemovePageRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> RemovePageRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
         {
@@ -1966,7 +1966,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.OpenGLView.DisplayRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.OpenGLView.DisplayRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> DisplayRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -1993,7 +1993,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Page.Appearing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Page.Appearing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Appearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2003,7 +2003,7 @@ namespace Xamarin.Forms
 
         , x => _data.Appearing += x, x => _data.Appearing -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Page.Disappearing"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Page.Disappearing"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Disappearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2013,7 +2013,7 @@ namespace Xamarin.Forms
 
         , x => _data.Disappearing += x, x => _data.Disappearing -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Page.LayoutChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Page.LayoutChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> LayoutChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2040,7 +2040,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.PanGestureRecognizer.PanUpdated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.PanGestureRecognizer.PanUpdated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.PanUpdatedEventArgs> PanUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.PanUpdatedEventArgs>, global::Xamarin.Forms.PanUpdatedEventArgs>(eventHandler =>
         {
@@ -2067,7 +2067,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Picker.SelectedIndexChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Picker.SelectedIndexChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> SelectedIndexChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2094,7 +2094,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.PinchGestureRecognizer.PinchUpdated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.PinchGestureRecognizer.PinchUpdated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.PinchGestureUpdatedEventArgs> PinchUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.PinchGestureUpdatedEventArgs>, global::Xamarin.Forms.PinchGestureUpdatedEventArgs>(eventHandler =>
         {
@@ -2121,7 +2121,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.RowDefinition.SizeChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.RowDefinition.SizeChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2148,7 +2148,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ScrollView.Scrolled"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ScrollView.Scrolled"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ScrolledEventArgs> Scrolled => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrolledEventArgs>, global::Xamarin.Forms.ScrolledEventArgs>(eventHandler =>
         {
@@ -2158,7 +2158,7 @@ namespace Xamarin.Forms
 
         , x => _data.Scrolled += x, x => _data.Scrolled -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ScrollView.ScrollToRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ScrollView.ScrollToRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ScrollToRequestedEventArgs> ScrollToRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ScrollToRequestedEventArgs>, global::Xamarin.Forms.ScrollToRequestedEventArgs>(eventHandler =>
         {
@@ -2185,7 +2185,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SearchBar.SearchButtonPressed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SearchBar.SearchButtonPressed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> SearchButtonPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2195,7 +2195,7 @@ namespace Xamarin.Forms
 
         , x => _data.SearchButtonPressed += x, x => _data.SearchButtonPressed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SearchBar.TextChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SearchBar.TextChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.TextChangedEventArgs> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, global::Xamarin.Forms.TextChangedEventArgs>(eventHandler =>
         {
@@ -2222,7 +2222,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SearchHandler.FocusChangeRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SearchHandler.FocusChangeRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.VisualElement.FocusRequestArgs> FocusChangeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.VisualElement.FocusRequestArgs>, global::Xamarin.Forms.VisualElement.FocusRequestArgs>(eventHandler =>
         {
@@ -2232,7 +2232,7 @@ namespace Xamarin.Forms
 
         , x => _data.FocusChangeRequested += x, x => _data.FocusChangeRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SearchHandler.Focused"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SearchHandler.Focused"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Focused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, global::System.EventArgs>(eventHandler =>
         {
@@ -2242,7 +2242,7 @@ namespace Xamarin.Forms
 
         , x => _data.Focused += x, x => _data.Focused -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SearchHandler.Unfocused"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SearchHandler.Unfocused"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Unfocused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, global::System.EventArgs>(eventHandler =>
         {
@@ -2269,7 +2269,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SelectableItemsView.SelectionChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SelectableItemsView.SelectionChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.SelectionChangedEventArgs> SelectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SelectionChangedEventArgs>, global::Xamarin.Forms.SelectionChangedEventArgs>(eventHandler =>
         {
@@ -2296,7 +2296,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Shell.Navigated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Shell.Navigated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ShellNavigatedEventArgs> Navigated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ShellNavigatedEventArgs>, global::Xamarin.Forms.ShellNavigatedEventArgs>(eventHandler =>
         {
@@ -2306,7 +2306,7 @@ namespace Xamarin.Forms
 
         , x => _data.Navigated += x, x => _data.Navigated -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Shell.Navigating"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Shell.Navigating"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ShellNavigatingEventArgs> Navigating => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ShellNavigatingEventArgs>, global::Xamarin.Forms.ShellNavigatingEventArgs>(eventHandler =>
         {
@@ -2333,7 +2333,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Slider.DragCompleted"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Slider.DragCompleted"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> DragCompleted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2343,7 +2343,7 @@ namespace Xamarin.Forms
 
         , x => _data.DragCompleted += x, x => _data.DragCompleted -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Slider.DragStarted"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Slider.DragStarted"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> DragStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2353,7 +2353,7 @@ namespace Xamarin.Forms
 
         , x => _data.DragStarted += x, x => _data.DragStarted -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Slider.ValueChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Slider.ValueChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ValueChangedEventArgs> ValueChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ValueChangedEventArgs>, global::Xamarin.Forms.ValueChangedEventArgs>(eventHandler =>
         {
@@ -2380,7 +2380,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Stepper.ValueChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Stepper.ValueChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ValueChangedEventArgs> ValueChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ValueChangedEventArgs>, global::Xamarin.Forms.ValueChangedEventArgs>(eventHandler =>
         {
@@ -2407,7 +2407,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SwipeGestureRecognizer.Swiped"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SwipeGestureRecognizer.Swiped"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.SwipedEventArgs> Swiped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SwipedEventArgs>, global::Xamarin.Forms.SwipedEventArgs>(eventHandler =>
         {
@@ -2434,7 +2434,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Switch.Toggled"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Switch.Toggled"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ToggledEventArgs> Toggled => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ToggledEventArgs>, global::Xamarin.Forms.ToggledEventArgs>(eventHandler =>
         {
@@ -2461,7 +2461,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.SwitchCell.OnChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SwitchCell.OnChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.ToggledEventArgs> OnChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ToggledEventArgs>, global::Xamarin.Forms.ToggledEventArgs>(eventHandler =>
         {
@@ -2488,7 +2488,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.TableView.ModelChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.TableView.ModelChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ModelChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2515,7 +2515,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.TapGestureRecognizer.Tapped"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.TapGestureRecognizer.Tapped"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Tapped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2542,7 +2542,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.ToolbarItem.Activated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ToolbarItem.Activated"/> event triggers.
         /// </summary>
         [global::System.ObsoleteAttribute("Activated is obsolete as of version 1.3.0. Please use Clicked instead.", false)]
         public global::System.IObservable<global::System.EventArgs> Activated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
@@ -2570,7 +2570,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.BatchCommitted"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.BatchCommitted"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>> BatchCommitted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>>, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement>>(eventHandler =>
         {
@@ -2580,7 +2580,7 @@ namespace Xamarin.Forms
 
         , x => _data.BatchCommitted += x, x => _data.BatchCommitted -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.ChildrenReordered"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.ChildrenReordered"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ChildrenReordered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2590,7 +2590,7 @@ namespace Xamarin.Forms
 
         , x => _data.ChildrenReordered += x, x => _data.ChildrenReordered -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.FocusChangeRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.FocusChangeRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.VisualElement.FocusRequestArgs> FocusChangeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.VisualElement.FocusRequestArgs>, global::Xamarin.Forms.VisualElement.FocusRequestArgs>(eventHandler =>
         {
@@ -2600,7 +2600,7 @@ namespace Xamarin.Forms
 
         , x => _data.FocusChangeRequested += x, x => _data.FocusChangeRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.Focused"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.Focused"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.FocusEventArgs> Focused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.FocusEventArgs>, global::Xamarin.Forms.FocusEventArgs>(eventHandler =>
         {
@@ -2610,7 +2610,7 @@ namespace Xamarin.Forms
 
         , x => _data.Focused += x, x => _data.Focused -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.MeasureInvalidated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.MeasureInvalidated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> MeasureInvalidated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2620,7 +2620,7 @@ namespace Xamarin.Forms
 
         , x => _data.MeasureInvalidated += x, x => _data.MeasureInvalidated -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.SizeChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.SizeChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> SizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2630,7 +2630,7 @@ namespace Xamarin.Forms
 
         , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.VisualElement.Unfocused"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.Unfocused"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.FocusEventArgs> Unfocused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.FocusEventArgs>, global::Xamarin.Forms.FocusEventArgs>(eventHandler =>
         {
@@ -2657,7 +2657,7 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.WebView.EvalRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.WebView.EvalRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.EvalRequested> EvalRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EvalRequested>, global::Xamarin.Forms.Internals.EvalRequested>(eventHandler =>
         {
@@ -2667,7 +2667,7 @@ namespace Xamarin.Forms
 
         , x => _data.EvalRequested += x, x => _data.EvalRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.WebView.GoBackRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.WebView.GoBackRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> GoBackRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2677,7 +2677,7 @@ namespace Xamarin.Forms
 
         , x => _data.GoBackRequested += x, x => _data.GoBackRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.WebView.GoForwardRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.WebView.GoForwardRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> GoForwardRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2687,7 +2687,7 @@ namespace Xamarin.Forms
 
         , x => _data.GoForwardRequested += x, x => _data.GoForwardRequested -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.WebView.Navigated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.WebView.Navigated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.WebNavigatedEventArgs> Navigated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.WebNavigatedEventArgs>, global::Xamarin.Forms.WebNavigatedEventArgs>(eventHandler =>
         {
@@ -2697,7 +2697,7 @@ namespace Xamarin.Forms
 
         , x => _data.Navigated += x, x => _data.Navigated -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.WebView.Navigating"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.WebView.Navigating"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.WebNavigatingEventArgs> Navigating => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.WebNavigatingEventArgs>, global::Xamarin.Forms.WebNavigatingEventArgs>(eventHandler =>
         {
@@ -2707,7 +2707,7 @@ namespace Xamarin.Forms
 
         , x => _data.Navigating += x, x => _data.Navigating -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.WebView.ReloadRequested"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.WebView.ReloadRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ReloadRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2760,7 +2760,7 @@ namespace Xamarin.Forms.Internals
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Internals.DeviceInfo.PropertyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Internals.DeviceInfo.PropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
@@ -2787,7 +2787,7 @@ namespace Xamarin.Forms.Internals
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Internals.IResourceDictionary.ValuesChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Internals.IResourceDictionary.ValuesChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.ResourcesChangedEventArgs> ValuesChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.ResourcesChangedEventArgs>, global::Xamarin.Forms.Internals.ResourcesChangedEventArgs>(eventHandler =>
         {
@@ -2814,7 +2814,7 @@ namespace Xamarin.Forms.Internals
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Internals.TableModel.ItemLongPressed"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Internals.TableModel.ItemLongPressed"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.EventArg<object>> ItemLongPressed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<object>>, global::Xamarin.Forms.Internals.EventArg<object>>(eventHandler =>
         {
@@ -2824,7 +2824,7 @@ namespace Xamarin.Forms.Internals
 
         , x => _data.ItemLongPressed += x, x => _data.ItemLongPressed -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Internals.TableModel.ItemSelected"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Internals.TableModel.ItemSelected"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.EventArg<object>> ItemSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.EventArg<object>>, global::Xamarin.Forms.Internals.EventArg<object>>(eventHandler =>
         {
@@ -2851,7 +2851,7 @@ namespace Xamarin.Forms.Internals
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Internals.ToolbarTracker.CollectionChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Internals.ToolbarTracker.CollectionChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> CollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2968,7 +2968,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.CarouselPageRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.CarouselPageRenderer.ElementChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
@@ -2995,7 +2995,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.IButtonLayoutRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IButtonLayoutRenderer.ElementChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.ElementChangedEventArgs<global::Xamarin.Forms.Button>> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.ElementChangedEventArgs<global::Xamarin.Forms.Button>>, global::Xamarin.Forms.Platform.iOS.ElementChangedEventArgs<global::Xamarin.Forms.Button>>(eventHandler =>
         {
@@ -3022,7 +3022,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer.WillAppear"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer.WillAppear"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> WillAppear => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -3032,7 +3032,7 @@ namespace Xamarin.Forms.Platform.iOS
 
         , x => _data.WillAppear += x, x => _data.WillAppear -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer.WillDisappear"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer.WillDisappear"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> WillDisappear => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -3059,7 +3059,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.IShellSearchResultsRenderer.ItemSelected"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellSearchResultsRenderer.ItemSelected"/> event triggers.
         /// </summary>
         public global::System.IObservable<object> ItemSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
         {
@@ -3086,7 +3086,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.IVisualElementRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualElementRenderer.ElementChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
@@ -3113,7 +3113,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer.ControlChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer.ControlChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ControlChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -3123,7 +3123,7 @@ namespace Xamarin.Forms.Platform.iOS
 
         , x => _data.ControlChanged += x, x => _data.ControlChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer.ControlChanging"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer.ControlChanging"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ControlChanging => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -3133,7 +3133,7 @@ namespace Xamarin.Forms.Platform.iOS
 
         , x => _data.ControlChanging += x, x => _data.ControlChanging -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer.ElementPropertyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer.ElementPropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
@@ -3160,7 +3160,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.NavigationRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.NavigationRenderer.ElementChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
@@ -3187,7 +3187,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.PageRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.PageRenderer.ElementChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
@@ -3214,7 +3214,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.PhoneMasterDetailRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.PhoneMasterDetailRenderer.ElementChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
@@ -3241,7 +3241,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.ScrollViewRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ScrollViewRenderer.ElementChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
@@ -3268,7 +3268,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer.WillAppear"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer.WillAppear"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> WillAppear => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -3278,7 +3278,7 @@ namespace Xamarin.Forms.Platform.iOS
 
         , x => _data.WillAppear += x, x => _data.WillAppear -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer.WillDisappear"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer.WillDisappear"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> WillDisappear => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -3305,7 +3305,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.ShellRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellRenderer.ElementChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
@@ -3332,7 +3332,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.ShellSearchResultsRenderer.ItemSelected"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellSearchResultsRenderer.ItemSelected"/> event triggers.
         /// </summary>
         public global::System.IObservable<object> ItemSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
         {
@@ -3359,7 +3359,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.ShellTableViewSource.ScrolledEvent"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellTableViewSource.ScrolledEvent"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.UIScrollView> ScrolledEvent => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UIScrollView>, global::UIKit.UIScrollView>(eventHandler =>
         {
@@ -3386,7 +3386,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.TabbedRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.TabbedRenderer.ElementChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
@@ -3413,7 +3413,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.TabletMasterDetailRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.TabletMasterDetailRenderer.ElementChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
@@ -3440,7 +3440,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.TemplatedCell.ContentSizeChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.TemplatedCell.ContentSizeChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ContentSizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, global::System.EventArgs>(eventHandler =>
         {
@@ -3467,7 +3467,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.VisualElementTracker.NativeControlUpdated"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.VisualElementTracker.NativeControlUpdated"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> NativeControlUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -3494,7 +3494,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.WebViewRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.WebViewRenderer.ElementChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
@@ -3521,7 +3521,7 @@ namespace Xamarin.Forms.Platform.iOS
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Platform.iOS.WkWebViewRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.WkWebViewRenderer.ElementChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
@@ -3541,7 +3541,7 @@ namespace Xamarin.Forms
     public static class Events
     {
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Xamarin.Forms.Forms.ViewInitialized"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Forms.ViewInitialized"/> event triggers.
         /// </summary>
         public static global::System.IObservable<global::Xamarin.Forms.ViewInitializedEventArgs> FormsViewInitialized => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ViewInitializedEventArgs>, global::Xamarin.Forms.ViewInitializedEventArgs>(eventHandler =>
         {
