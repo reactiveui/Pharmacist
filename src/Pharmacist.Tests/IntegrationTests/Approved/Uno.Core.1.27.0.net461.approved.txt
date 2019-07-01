@@ -34,7 +34,7 @@ namespace Uno
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "Uno.ILoadable.Loaded"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Uno.ILoadable.Loaded"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> Loaded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, global::System.EventArgs>(eventHandler =>
         {

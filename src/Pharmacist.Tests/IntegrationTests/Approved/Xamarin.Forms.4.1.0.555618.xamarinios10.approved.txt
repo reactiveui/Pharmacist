@@ -5,6 +5,330 @@ using global::System.Reactive.Linq;
 using global::System.Reactive.Subjects;
 using global::Pharmacist.Common;
 
+namespace UIKit
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "UIKit"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::UIKit.UIScrollView"/> class.
+        /// </summary>
+        public static UIScrollViewEvents Events(this global::UIKit.UIScrollView item) => new UIScrollViewEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::UIKit.UISplitViewController"/> class.
+        /// </summary>
+        public static UISplitViewControllerEvents Events(this global::UIKit.UISplitViewController item) => new UISplitViewControllerEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::UIKit.UITabBarController"/> class.
+        /// </summary>
+        public static UITabBarControllerEvents Events(this global::UIKit.UITabBarController item) => new UITabBarControllerEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::UIKit.UIWebView"/> class.
+        /// </summary>
+        public static UIWebViewEvents Events(this global::UIKit.UIWebView item) => new UIWebViewEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::UIKit.UIScrollView"/> class as observables.
+    /// </summary>
+    public class UIScrollViewEvents
+    {
+        private readonly global::UIKit.UIScrollView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::UIKit.UIScrollView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public UIScrollViewEvents(global::UIKit.UIScrollView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DecelerationEnded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DecelerationEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DecelerationEnded += x, x => _data.DecelerationEnded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DecelerationStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DecelerationStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DecelerationStarted += x, x => _data.DecelerationStarted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DidChangeAdjustedContentInset"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DidChangeAdjustedContentInset => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DidChangeAdjustedContentInset += x, x => _data.DidChangeAdjustedContentInset -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DidZoom"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DidZoom => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DidZoom += x, x => _data.DidZoom -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DraggingEnded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.DraggingEventArgs> DraggingEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.DraggingEventArgs>, global::UIKit.DraggingEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.DraggingEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DraggingEnded += x, x => _data.DraggingEnded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DraggingStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DraggingStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DraggingStarted += x, x => _data.DraggingStarted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.ScrollAnimationEnded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> ScrollAnimationEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ScrollAnimationEnded += x, x => _data.ScrollAnimationEnded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.Scrolled"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Scrolled => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Scrolled += x, x => _data.Scrolled -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.ScrolledToTop"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> ScrolledToTop => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ScrolledToTop += x, x => _data.ScrolledToTop -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.WillEndDragging"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.WillEndDraggingEventArgs> WillEndDragging => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.WillEndDraggingEventArgs>, global::UIKit.WillEndDraggingEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.WillEndDraggingEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillEndDragging += x, x => _data.WillEndDragging -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.ZoomingEnded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.ZoomingEndedEventArgs> ZoomingEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.ZoomingEndedEventArgs>, global::UIKit.ZoomingEndedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.ZoomingEndedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ZoomingEnded += x, x => _data.ZoomingEnded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.ZoomingStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UIScrollViewZoomingEventArgs> ZoomingStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UIScrollViewZoomingEventArgs>, global::UIKit.UIScrollViewZoomingEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UIScrollViewZoomingEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ZoomingStarted += x, x => _data.ZoomingStarted -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::UIKit.UISplitViewController"/> class as observables.
+    /// </summary>
+    public class UISplitViewControllerEvents
+    {
+        private readonly global::UIKit.UISplitViewController _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::UIKit.UISplitViewController"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public UISplitViewControllerEvents(global::UIKit.UISplitViewController data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillChangeDisplayMode"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UISplitViewControllerDisplayModeEventArgs> WillChangeDisplayMode => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISplitViewControllerDisplayModeEventArgs>, global::UIKit.UISplitViewControllerDisplayModeEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UISplitViewControllerDisplayModeEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillChangeDisplayMode += x, x => _data.WillChangeDisplayMode -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillHideViewController"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UISplitViewHideEventArgs> WillHideViewController => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISplitViewHideEventArgs>, global::UIKit.UISplitViewHideEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UISplitViewHideEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillHideViewController += x, x => _data.WillHideViewController -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillPresentViewController"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UISplitViewPresentEventArgs> WillPresentViewController => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISplitViewPresentEventArgs>, global::UIKit.UISplitViewPresentEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UISplitViewPresentEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillPresentViewController += x, x => _data.WillPresentViewController -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillShowViewController"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UISplitViewShowEventArgs> WillShowViewController => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISplitViewShowEventArgs>, global::UIKit.UISplitViewShowEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UISplitViewShowEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillShowViewController += x, x => _data.WillShowViewController -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::UIKit.UITabBarController"/> class as observables.
+    /// </summary>
+    public class UITabBarControllerEvents
+    {
+        private readonly global::UIKit.UITabBarController _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::UIKit.UITabBarController"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public UITabBarControllerEvents(global::UIKit.UITabBarController data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UITabBarController.FinishedCustomizingViewControllers"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UITabBarCustomizeChangeEventArgs> FinishedCustomizingViewControllers => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UITabBarCustomizeChangeEventArgs>, global::UIKit.UITabBarCustomizeChangeEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UITabBarCustomizeChangeEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.FinishedCustomizingViewControllers += x, x => _data.FinishedCustomizingViewControllers -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UITabBarController.OnCustomizingViewControllers"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UITabBarCustomizeEventArgs> OnCustomizingViewControllers => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UITabBarCustomizeEventArgs>, global::UIKit.UITabBarCustomizeEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UITabBarCustomizeEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.OnCustomizingViewControllers += x, x => _data.OnCustomizingViewControllers -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UITabBarController.OnEndCustomizingViewControllers"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UITabBarCustomizeChangeEventArgs> OnEndCustomizingViewControllers => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UITabBarCustomizeChangeEventArgs>, global::UIKit.UITabBarCustomizeChangeEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UITabBarCustomizeChangeEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.OnEndCustomizingViewControllers += x, x => _data.OnEndCustomizingViewControllers -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UITabBarController.ViewControllerSelected"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UITabBarSelectionEventArgs> ViewControllerSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UITabBarSelectionEventArgs>, global::UIKit.UITabBarSelectionEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UITabBarSelectionEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ViewControllerSelected += x, x => _data.ViewControllerSelected -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::UIKit.UIWebView"/> class as observables.
+    /// </summary>
+    public class UIWebViewEvents
+    {
+        private readonly global::UIKit.UIWebView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::UIKit.UIWebView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public UIWebViewEvents(global::UIKit.UIWebView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIWebView.LoadError"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UIWebErrorArgs> LoadError => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UIWebErrorArgs>, global::UIKit.UIWebErrorArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UIWebErrorArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LoadError += x, x => _data.LoadError -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIWebView.LoadFinished"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> LoadFinished => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LoadFinished += x, x => _data.LoadFinished -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UIWebView.LoadStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> LoadStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LoadStarted += x, x => _data.LoadStarted -= x);
+    }
+}
+
 namespace Xamarin.Forms
 {
     /// <summary>
@@ -28,6 +352,10 @@ namespace Xamarin.Forms
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Cell"/> class.
         /// </summary>
         public static CellEvents Events(this global::Xamarin.Forms.Cell item) => new CellEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.CheckBox"/> class.
+        /// </summary>
+        public static CheckBoxEvents Events(this global::Xamarin.Forms.CheckBox item) => new CheckBoxEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ChildGestureRecognizer"/> class.
         /// </summary>
@@ -468,6 +796,33 @@ namespace Xamarin.Forms
         }
 
         , x => _data.Tapped += x, x => _data.Tapped -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.CheckBox"/> class as observables.
+    /// </summary>
+    public class CheckBoxEvents : global::Xamarin.Forms.VisualElementEvents
+    {
+        private readonly global::Xamarin.Forms.CheckBox _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.CheckBox"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public CheckBoxEvents(global::Xamarin.Forms.CheckBox data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.CheckBox.CheckedChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.CheckedChangedEventArgs> CheckedChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.CheckedChangedEventArgs>, global::Xamarin.Forms.CheckedChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.CheckedChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.CheckedChanged += x, x => _data.CheckedChanged -= x);
     }
 
     /// <summary>
@@ -2539,72 +2894,116 @@ namespace Xamarin.Forms.Internals
     }
 }
 
-namespace Xamarin.Forms.Platform.UWP
+namespace Xamarin.Forms.Platform.iOS
 {
     /// <summary>
-    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Xamarin.Forms.Platform.UWP"/> namespace.
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Xamarin.Forms.Platform.iOS"/> namespace.
     /// </summary>
     public static class EventExtensions
     {
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer"/> class.
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.CarouselPageRenderer"/> class.
         /// </summary>
-        public static CarouselPageRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer item) => new CarouselPageRendererEvents(item);
+        public static CarouselPageRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.CarouselPageRenderer item) => new CarouselPageRendererEvents(item);
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted"/> class.
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.IButtonLayoutRenderer"/> class.
         /// </summary>
-        public static EntryCellRendererCompletedEvents Events(this global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted item) => new EntryCellRendererCompletedEvents(item);
+        public static IButtonLayoutRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.IButtonLayoutRenderer item) => new IButtonLayoutRendererEvents(item);
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.FormsFlyout"/> class.
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer"/> class.
         /// </summary>
-        public static FormsFlyoutEvents Events(this global::Xamarin.Forms.Platform.UWP.FormsFlyout item) => new FormsFlyoutEvents(item);
+        public static IShellFlyoutContentRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer item) => new IShellFlyoutContentRendererEvents(item);
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer"/> class.
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellSearchResultsRenderer"/> class.
         /// </summary>
-        public static IVisualElementRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer item) => new IVisualElementRendererEvents(item);
+        public static IShellSearchResultsRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.IShellSearchResultsRenderer item) => new IShellSearchResultsRendererEvents(item);
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer"/> class.
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualElementRenderer"/> class.
         /// </summary>
-        public static IVisualNativeElementRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer item) => new IVisualNativeElementRendererEvents(item);
+        public static IVisualElementRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.IVisualElementRenderer item) => new IVisualElementRendererEvents(item);
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer"/> class.
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer"/> class.
         /// </summary>
-        public static MasterDetailPageRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer item) => new MasterDetailPageRendererEvents(item);
+        public static IVisualNativeElementRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer item) => new IVisualNativeElementRendererEvents(item);
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer"/> class.
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.NavigationRenderer"/> class.
         /// </summary>
-        public static NavigationPageRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer item) => new NavigationPageRendererEvents(item);
+        public static NavigationRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.NavigationRenderer item) => new NavigationRendererEvents(item);
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.StepperControl"/> class.
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.PageRenderer"/> class.
         /// </summary>
-        public static StepperControlEvents Events(this global::Xamarin.Forms.Platform.UWP.StepperControl item) => new StepperControlEvents(item);
+        public static PageRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.PageRenderer item) => new PageRendererEvents(item);
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer"/> class.
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.PhoneMasterDetailRenderer"/> class.
         /// </summary>
-        public static TabbedPageRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer item) => new TabbedPageRendererEvents(item);
+        public static PhoneMasterDetailRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.PhoneMasterDetailRenderer item) => new PhoneMasterDetailRendererEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.ScrollViewRenderer"/> class.
+        /// </summary>
+        public static ScrollViewRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.ScrollViewRenderer item) => new ScrollViewRendererEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer"/> class.
+        /// </summary>
+        public static ShellFlyoutContentRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer item) => new ShellFlyoutContentRendererEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellRenderer"/> class.
+        /// </summary>
+        public static ShellRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.ShellRenderer item) => new ShellRendererEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellSearchResultsRenderer"/> class.
+        /// </summary>
+        public static ShellSearchResultsRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.ShellSearchResultsRenderer item) => new ShellSearchResultsRendererEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellTableViewSource"/> class.
+        /// </summary>
+        public static ShellTableViewSourceEvents Events(this global::Xamarin.Forms.Platform.iOS.ShellTableViewSource item) => new ShellTableViewSourceEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.TabbedRenderer"/> class.
+        /// </summary>
+        public static TabbedRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.TabbedRenderer item) => new TabbedRendererEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.TabletMasterDetailRenderer"/> class.
+        /// </summary>
+        public static TabletMasterDetailRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.TabletMasterDetailRenderer item) => new TabletMasterDetailRendererEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.TemplatedCell"/> class.
+        /// </summary>
+        public static TemplatedCellEvents Events(this global::Xamarin.Forms.Platform.iOS.TemplatedCell item) => new TemplatedCellEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.VisualElementTracker"/> class.
+        /// </summary>
+        public static VisualElementTrackerEvents Events(this global::Xamarin.Forms.Platform.iOS.VisualElementTracker item) => new VisualElementTrackerEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.WebViewRenderer"/> class.
+        /// </summary>
+        public static WebViewRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.WebViewRenderer item) => new WebViewRendererEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.WkWebViewRenderer"/> class.
+        /// </summary>
+        public static WkWebViewRendererEvents Events(this global::Xamarin.Forms.Platform.iOS.WkWebViewRenderer item) => new WkWebViewRendererEvents(item);
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.CarouselPageRenderer"/> class as observables.
     /// </summary>
     public class CarouselPageRendererEvents
     {
-        private readonly global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer _data;
+        private readonly global::Xamarin.Forms.Platform.iOS.CarouselPageRenderer _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer"/> class.
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.CarouselPageRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CarouselPageRendererEvents(global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer data)
+        public CarouselPageRendererEvents(global::Xamarin.Forms.Platform.iOS.CarouselPageRenderer data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.CarouselPageRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs e) => eventHandler(e);
+            void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2612,80 +3011,117 @@ namespace Xamarin.Forms.Platform.UWP
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.IButtonLayoutRenderer"/> class as observables.
     /// </summary>
-    public class EntryCellRendererCompletedEvents
+    public class IButtonLayoutRendererEvents
     {
-        private readonly global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted _data;
+        private readonly global::Xamarin.Forms.Platform.iOS.IButtonLayoutRenderer _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted"/> class.
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.IButtonLayoutRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public EntryCellRendererCompletedEvents(global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted data)
+        public IButtonLayoutRendererEvents(global::Xamarin.Forms.Platform.iOS.IButtonLayoutRenderer data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted.CanExecuteChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IButtonLayoutRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::System.EventArgs> CanExecuteChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.ElementChangedEventArgs<global::Xamarin.Forms.Button>> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.ElementChangedEventArgs<global::Xamarin.Forms.Button>>, global::Xamarin.Forms.Platform.iOS.ElementChangedEventArgs<global::Xamarin.Forms.Button>>(eventHandler =>
         {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            void Handler(object sender, global::Xamarin.Forms.Platform.iOS.ElementChangedEventArgs<global::Xamarin.Forms.Button> e) => eventHandler(e);
             return Handler;
         }
 
-        , x => _data.CanExecuteChanged += x, x => _data.CanExecuteChanged -= x);
+        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.FormsFlyout"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer"/> class as observables.
     /// </summary>
-    public class FormsFlyoutEvents
+    public class IShellFlyoutContentRendererEvents
     {
-        private readonly global::Xamarin.Forms.Platform.UWP.FormsFlyout _data;
+        private readonly global::Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.FormsFlyout"/> class.
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public FormsFlyoutEvents(global::Xamarin.Forms.Platform.UWP.FormsFlyout data)
+        public IShellFlyoutContentRendererEvents(global::Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.UWP.FormsFlyout.OptionSelected"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer.WillAppear"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::System.EventArgs> OptionSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> WillAppear => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
-        , x => _data.OptionSelected += x, x => _data.OptionSelected -= x);
+        , x => _data.WillAppear += x, x => _data.WillAppear -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer.WillDisappear"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> WillDisappear => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillDisappear += x, x => _data.WillDisappear -= x);
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellSearchResultsRenderer"/> class as observables.
+    /// </summary>
+    public class IShellSearchResultsRendererEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.iOS.IShellSearchResultsRenderer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellSearchResultsRenderer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public IShellSearchResultsRendererEvents(global::Xamarin.Forms.Platform.iOS.IShellSearchResultsRenderer data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellSearchResultsRenderer.ItemSelected"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<object> ItemSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
+        {
+            void Handler(object sender, object e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ItemSelected += x, x => _data.ItemSelected -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualElementRenderer"/> class as observables.
     /// </summary>
     public class IVisualElementRendererEvents
     {
-        private readonly global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer _data;
+        private readonly global::Xamarin.Forms.Platform.iOS.IVisualElementRenderer _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer"/> class.
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualElementRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IVisualElementRendererEvents(global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer data)
+        public IVisualElementRendererEvents(global::Xamarin.Forms.Platform.iOS.IVisualElementRenderer data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualElementRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs e) => eventHandler(e);
+            void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2693,22 +3129,22 @@ namespace Xamarin.Forms.Platform.UWP
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer"/> class as observables.
     /// </summary>
     public class IVisualNativeElementRendererEvents
     {
-        private readonly global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer _data;
+        private readonly global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer"/> class.
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IVisualNativeElementRendererEvents(global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer data)
+        public IVisualNativeElementRendererEvents(global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer.ControlChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer.ControlChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ControlChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2718,7 +3154,7 @@ namespace Xamarin.Forms.Platform.UWP
 
         , x => _data.ControlChanged += x, x => _data.ControlChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer.ControlChanging"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer.ControlChanging"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> ControlChanging => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
@@ -2728,7 +3164,7 @@ namespace Xamarin.Forms.Platform.UWP
 
         , x => _data.ControlChanging += x, x => _data.ControlChanging -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer.ElementPropertyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer.ElementPropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
@@ -2740,26 +3176,26 @@ namespace Xamarin.Forms.Platform.UWP
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.NavigationRenderer"/> class as observables.
     /// </summary>
-    public class MasterDetailPageRendererEvents
+    public class NavigationRendererEvents
     {
-        private readonly global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer _data;
+        private readonly global::Xamarin.Forms.Platform.iOS.NavigationRenderer _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer"/> class.
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.NavigationRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MasterDetailPageRendererEvents(global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer data)
+        public NavigationRendererEvents(global::Xamarin.Forms.Platform.iOS.NavigationRenderer data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.NavigationRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs e) => eventHandler(e);
+            void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2767,26 +3203,26 @@ namespace Xamarin.Forms.Platform.UWP
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.PageRenderer"/> class as observables.
     /// </summary>
-    public class NavigationPageRendererEvents
+    public class PageRendererEvents
     {
-        private readonly global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer _data;
+        private readonly global::Xamarin.Forms.Platform.iOS.PageRenderer _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer"/> class.
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.PageRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public NavigationPageRendererEvents(global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer data)
+        public PageRendererEvents(global::Xamarin.Forms.Platform.iOS.PageRenderer data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.PageRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs e) => eventHandler(e);
+            void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2794,53 +3230,333 @@ namespace Xamarin.Forms.Platform.UWP
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.StepperControl"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.PhoneMasterDetailRenderer"/> class as observables.
     /// </summary>
-    public class StepperControlEvents
+    public class PhoneMasterDetailRendererEvents
     {
-        private readonly global::Xamarin.Forms.Platform.UWP.StepperControl _data;
+        private readonly global::Xamarin.Forms.Platform.iOS.PhoneMasterDetailRenderer _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.StepperControl"/> class.
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.PhoneMasterDetailRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StepperControlEvents(global::Xamarin.Forms.Platform.UWP.StepperControl data)
+        public PhoneMasterDetailRendererEvents(global::Xamarin.Forms.Platform.iOS.PhoneMasterDetailRenderer data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.UWP.StepperControl.ValueChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.PhoneMasterDetailRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::System.EventArgs> ValueChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.ScrollViewRenderer"/> class as observables.
+    /// </summary>
+    public class ScrollViewRendererEvents : global::UIKit.UIScrollViewEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.iOS.ScrollViewRenderer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.ScrollViewRenderer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public ScrollViewRendererEvents(global::Xamarin.Forms.Platform.iOS.ScrollViewRenderer data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ScrollViewRenderer.ElementChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer"/> class as observables.
+    /// </summary>
+    public class ShellFlyoutContentRendererEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public ShellFlyoutContentRendererEvents(global::Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer.WillAppear"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> WillAppear => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
-        , x => _data.ValueChanged += x, x => _data.ValueChanged -= x);
+        , x => _data.WillAppear += x, x => _data.WillAppear -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer.WillDisappear"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> WillDisappear => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillDisappear += x, x => _data.WillDisappear -= x);
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellRenderer"/> class as observables.
     /// </summary>
-    public class TabbedPageRendererEvents
+    public class ShellRendererEvents
     {
-        private readonly global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer _data;
+        private readonly global::Xamarin.Forms.Platform.iOS.ShellRenderer _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer"/> class.
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TabbedPageRendererEvents(global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer data)
+        public ShellRendererEvents(global::Xamarin.Forms.Platform.iOS.ShellRenderer data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer.ElementChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellRenderer.ElementChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs>(eventHandler =>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Xamarin.Forms.Platform.UWP.VisualElementChangedEventArgs e) => eventHandler(e);
+            void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellSearchResultsRenderer"/> class as observables.
+    /// </summary>
+    public class ShellSearchResultsRendererEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.iOS.ShellSearchResultsRenderer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellSearchResultsRenderer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public ShellSearchResultsRendererEvents(global::Xamarin.Forms.Platform.iOS.ShellSearchResultsRenderer data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellSearchResultsRenderer.ItemSelected"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<object> ItemSelected => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<object>, object>(eventHandler =>
+        {
+            void Handler(object sender, object e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ItemSelected += x, x => _data.ItemSelected -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellTableViewSource"/> class as observables.
+    /// </summary>
+    public class ShellTableViewSourceEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.iOS.ShellTableViewSource _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellTableViewSource"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public ShellTableViewSourceEvents(global::Xamarin.Forms.Platform.iOS.ShellTableViewSource data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellTableViewSource.ScrolledEvent"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UIScrollView> ScrolledEvent => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UIScrollView>, global::UIKit.UIScrollView>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UIScrollView e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ScrolledEvent += x, x => _data.ScrolledEvent -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.TabbedRenderer"/> class as observables.
+    /// </summary>
+    public class TabbedRendererEvents : global::UIKit.UITabBarControllerEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.iOS.TabbedRenderer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.TabbedRenderer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public TabbedRendererEvents(global::Xamarin.Forms.Platform.iOS.TabbedRenderer data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.TabbedRenderer.ElementChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.TabletMasterDetailRenderer"/> class as observables.
+    /// </summary>
+    public class TabletMasterDetailRendererEvents : global::UIKit.UISplitViewControllerEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.iOS.TabletMasterDetailRenderer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.TabletMasterDetailRenderer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public TabletMasterDetailRendererEvents(global::Xamarin.Forms.Platform.iOS.TabletMasterDetailRenderer data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.TabletMasterDetailRenderer.ElementChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.TemplatedCell"/> class as observables.
+    /// </summary>
+    public class TemplatedCellEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.iOS.TemplatedCell _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.TemplatedCell"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public TemplatedCellEvents(global::Xamarin.Forms.Platform.iOS.TemplatedCell data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.TemplatedCell.ContentSizeChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> ContentSizeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ContentSizeChanged += x, x => _data.ContentSizeChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.VisualElementTracker"/> class as observables.
+    /// </summary>
+    public class VisualElementTrackerEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.iOS.VisualElementTracker _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.VisualElementTracker"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public VisualElementTrackerEvents(global::Xamarin.Forms.Platform.iOS.VisualElementTracker data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.VisualElementTracker.NativeControlUpdated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> NativeControlUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.NativeControlUpdated += x, x => _data.NativeControlUpdated -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.WebViewRenderer"/> class as observables.
+    /// </summary>
+    public class WebViewRendererEvents : global::UIKit.UIWebViewEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.iOS.WebViewRenderer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.WebViewRenderer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public WebViewRendererEvents(global::Xamarin.Forms.Platform.iOS.WebViewRenderer data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.WebViewRenderer.ElementChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.iOS.WkWebViewRenderer"/> class as observables.
+    /// </summary>
+    public class WkWebViewRendererEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.iOS.WkWebViewRenderer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.iOS.WkWebViewRenderer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public WkWebViewRendererEvents(global::Xamarin.Forms.Platform.iOS.WkWebViewRenderer data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.WkWebViewRenderer.ElementChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
@@ -2848,43 +3564,22 @@ namespace Xamarin.Forms.Platform.UWP
     }
 }
 
-namespace Xamarin.Forms.Platform.WinRT
+namespace Xamarin.Forms
 {
     /// <summary>
-    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Xamarin.Forms.Platform.WinRT"/> namespace.
+    /// A class that contains extension methods to wrap events contained within static classes within the <see cref = "Xamarin.Forms"/> namespace.
     /// </summary>
-    public static class EventExtensions
+    public static class Events
     {
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.WinRT.StepperControl"/> class.
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Forms.ViewInitialized"/> event triggers.
         /// </summary>
-        public static StepperControlEvents Events(this global::Xamarin.Forms.Platform.WinRT.StepperControl item) => new StepperControlEvents(item);
-    }
-
-    /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.WinRT.StepperControl"/> class as observables.
-    /// </summary>
-    public class StepperControlEvents
-    {
-        private readonly global::Xamarin.Forms.Platform.WinRT.StepperControl _data;
-        /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.WinRT.StepperControl"/> class.
-        /// </summary>
-        /// <param name = "data">The class that is being wrapped.</param>
-        public StepperControlEvents(global::Xamarin.Forms.Platform.WinRT.StepperControl data)
+        public static global::System.IObservable<global::Xamarin.Forms.ViewInitializedEventArgs> FormsViewInitialized => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.ViewInitializedEventArgs>, global::Xamarin.Forms.ViewInitializedEventArgs>(eventHandler =>
         {
-            _data = data;
-        }
-
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.WinRT.StepperControl.ValueChanged"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<global::System.EventArgs> ValueChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            void Handler(object sender, global::Xamarin.Forms.ViewInitializedEventArgs e) => eventHandler(e);
             return Handler;
         }
 
-        , x => _data.ValueChanged += x, x => _data.ValueChanged -= x);
+        , x => global::Xamarin.Forms.Forms.ViewInitialized += x, x => global::Xamarin.Forms.Forms.ViewInitialized -= x);
     }
 }

@@ -62,7 +62,7 @@ namespace Pharmacist.Core.Generation.Generators
                                     .WithArgumentList(ArgumentList(SingletonSeparatedList(Argument(IdentifierName("item")))))))
                             .WithSemicolonToken(Token(SyntaxKind.SemicolonToken))
                             .WithObsoleteAttribute(declaration)
-                            .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A wrapper class which wraps all the events contained within the {0} class.", declaration.GenerateFullGenericName()));
+                            .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A wrapper class which wraps all the events contained within the {0} class.", declaration.ConvertToDocument()));
                     })));
         }
 
@@ -84,7 +84,7 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithBody(Block(SingletonList(
                     ExpressionStatement(
                         AssignmentExpression(SyntaxKind.SimpleAssignmentExpression, IdentifierName(DataFieldName), IdentifierName("data"))))))
-                .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Initializes a new instance of the {0} class.", typeDefinition.GenerateFullGenericName(), (dataParameterName, "The class that is being wrapped.")));
+                .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("Initializes a new instance of the {0} class.", typeDefinition.ConvertToDocument(), (dataParameterName, "The class that is being wrapped.")));
 
             if (hasBaseClass)
             {
@@ -110,7 +110,7 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword)))
                 .WithMembers(List(members))
                 .WithObsoleteAttribute(typeDefinition)
-                .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class which wraps the events contained within the {0} class as observables.", typeDefinition.GenerateFullGenericName()));
+                .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class which wraps the events contained within the {0} class as observables.", typeDefinition.ConvertToDocument()));
 
             if (baseTypeDefinition != null)
             {

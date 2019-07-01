@@ -61,7 +61,7 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithExpressionBody(expressionBody)
                 .WithSemicolonToken(Token(SyntaxKind.SemicolonToken))
                 .WithObsoleteAttribute(eventDetails)
-                .WithLeadingTrivia(GenerateSummarySeeAlsoComment("Gets an observable which signals when the {0} event triggers.", eventDetails.FullName));
+                .WithLeadingTrivia(GenerateSummarySeeAlsoComment("Gets an observable which signals when the {0} event triggers.", eventDetails.ConvertToDocument()));
         }
 
         private static (ArrowExpressionClauseSyntax, TypeSyntax) GenerateFromEventExpression(IEvent eventDetails, IMethod invokeMethod, string dataObjectName)

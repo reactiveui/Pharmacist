@@ -25,7 +25,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         public override AutoPlatform Platform => AutoPlatform.UWP;
 
         /// <inheritdoc />
-        public override NuGetFramework Framework { get; } = "uap10.0.17763".ToFrameworks()[0];
+        public override NuGetFramework Framework { get; } = "uap10.0.16299".ToFrameworks()[0];
 
         /// <inheritdoc />
         public override Task Extract(string referenceAssembliesLocation)
@@ -35,7 +35,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
                 throw new NotSupportedException("Building events for UWP on Mac is not implemented yet.");
             }
 
-            var metadataFile = AssemblyHelpers.FindUnionMetadataFile("Windows", Version.Parse("10.0.17763.0"));
+            var metadataFile = AssemblyHelpers.FindUnionMetadataFile("Windows", Version.Parse("10.0.16299.0"));
 
             Input = new InputAssembliesGroup();
             Input.IncludeGroup.AddFiles(new[] { metadataFile });
