@@ -62,7 +62,7 @@ Pharmacist can automatically create Observable wrappers for projects for their e
 
 In your .csproj file you can add:
 
-```cs
+```xml
 <ItemGroup>
     <PackageReference Include="Pharmacist.MsBuild" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="Pharmacist.Common" Version="1.*" />
@@ -81,18 +81,10 @@ Also it will only generate the specified `ProjectReference` and none of it's dep
 
 Pharmacist comes with a command line version which is useful for generating for a specified platform.
 
-The following values are supported for platforms:
-| Name     |
-|----------|
-| Android  |
-| iOS      |
-| Mac      |
-| WPF      |
-| UWP      |
-| Winforms |
-| TVOS     |
+The following values are supported for platforms: `Android`, `iOS`, `Mac`, `WPF`, `UWP`, `Winforms`, `TVOS`
 
 Install the global tool:
+
 ```Batchfile
 dotnet tool install -g Pharmacist
 ```
