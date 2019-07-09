@@ -11,7 +11,7 @@
 <br />
 <br />
 <a href="https://github.com/reactiveui/pharmacist">
-        <img width="170" height="170" src="https://github.com/reactiveui/Pharmacist/blob/master/image/ph-violet.svg"/>
+        <img width="170" height="170" src="https://github.com/reactiveui/styleguide/blob/master/logo_pharmacist/logo.svg"/>
 </a>
 
 # Pharmacist
