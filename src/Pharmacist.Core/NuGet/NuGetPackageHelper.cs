@@ -52,8 +52,7 @@ namespace Pharmacist.Core.NuGet
             Providers = new List<Lazy<INuGetResourceProvider>>();
             Providers.AddRange(Repository.Provider.GetCoreV3());
 
-            var machineWideSettings = new XPlatMachineWideSetting();
-            _globalPackagesPath = SettingsUtility.GetGlobalPackagesFolder(machineWideSettings.Settings.LastOrDefault() ?? (ISettings)NullSettings.Instance);
+            _globalPackagesPath = SettingsUtility.GetGlobalPackagesFolder(new XPlatMachineWideSetting().Settings);
         }
 
         /// <summary>

@@ -5,18 +5,18 @@
     <LangVersion>latest</LangVersion>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <EmbeddedResource Include="Templates\HeaderTemplate.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ICSharpCode.Decompiler" Version="4.0.0.4521" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.1.0" />
-    <PackageReference Include="NuGet.Protocol" Version="4.8.2" />
-    <PackageReference Include="NuGet.LibraryModel" Version="4.8.2" />
+    <PackageReference Include="ICSharpCode.Decompiler" Version="5.0.0.5066-preview4" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.2.1" />
+    <PackageReference Include="NuGet.Protocol" Version="5.1.0" />
+    <PackageReference Include="NuGet.LibraryModel" Version="5.1.0" />
     <PackageReference Include="polly" Version="7.1.0" />
-    <PackageReference Include="splat" Version="8.0.1" />
+    <PackageReference Include="splat" Version="8.2.4" />
     <PackageReference Include="system.collections.immutable" Version="1.5.0" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.2" />
   </ItemGroup>
