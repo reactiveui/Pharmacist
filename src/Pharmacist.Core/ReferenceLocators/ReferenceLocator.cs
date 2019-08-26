@@ -40,7 +40,7 @@ namespace Pharmacist.Core.ReferenceLocators
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                return "⁨/Library⁩/Frameworks";
+                return "/Library/Frameworks";
             }
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

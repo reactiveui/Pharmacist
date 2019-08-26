@@ -83,7 +83,7 @@ namespace Pharmacist.Core.NuGet
 
         private static IEnumerable<string> HandleAndroid(NuGetFramework nugetFramework)
         {
-            string referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.Android.framework/Libraries/xbuild-frameworks");
+            string referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.Android.framework/Versions/Current/lib/xamarin.android/xbuild-frameworks");
 
             var versionText = $"v{nugetFramework.Version.Major}.{nugetFramework.Version.Minor}";
 

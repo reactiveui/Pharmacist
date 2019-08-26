@@ -29,7 +29,7 @@ namespace Pharmacist.Tests
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                Assert.Contains("/Library⁩/Frameworks⁩/Libraries/⁨mono", location);
+                Assert.Contains("/Library/Frameworks", location);
             }
         }
     }
