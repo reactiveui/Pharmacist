@@ -29,7 +29,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         public override AutoPlatform Platform => AutoPlatform.Android;
 
         /// <inheritdoc />
-        public override NuGetFramework Framework { get; } = "MonoAndroid81".ToFrameworks()[0];
+        public override NuGetFramework Framework { get; } = "MonoAndroid90".ToFrameworks()[0];
 
         /// <inheritdoc />
         public override Task Extract(string referenceAssembliesLocation)
