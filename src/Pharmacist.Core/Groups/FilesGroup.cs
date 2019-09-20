@@ -73,6 +73,11 @@ namespace Pharmacist.Core.Groups
         /// <param name="files">The files to add.</param>
         public void AddFiles(IEnumerable<string> files)
         {
+            if (files is null)
+            {
+                throw new ArgumentNullException(nameof(files));
+            }
+
             foreach (var file in files)
             {
                 var directoryPath = Path.GetDirectoryName(file);

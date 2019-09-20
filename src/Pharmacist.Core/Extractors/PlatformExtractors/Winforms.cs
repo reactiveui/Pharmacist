@@ -21,13 +21,9 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
     {
         private static readonly string[] WantedFileNames =
         {
-            "System.dll",
-            "System.Data.dll",
             "System.DirectoryServices.dll",
-            "System.Messaging.dll",
             "System.Windows.Forms.dll",
-            "System.Windows.Forms.DataVisualization.dll",
-            "System.ServiceProcess.dll",
+            "System.Drawing.dll",
         };
 
         public Winforms(string filePath)
