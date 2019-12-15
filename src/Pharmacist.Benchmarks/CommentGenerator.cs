@@ -24,9 +24,9 @@ namespace Pharmacist.Benchmarks
         [Benchmark]
         public void GenerateSummarySeeAlsoCommentBenchmark()
         {
-            for (int i = 0; i < _testValues.Length * 5; ++i)
+            for (var i = 0; i < _testValues.Length * 5; ++i)
             {
-                int currentIndex = i % _testValues.Length;
+                var currentIndex = i % _testValues.Length;
                 var testValue = _testValues[currentIndex];
                 var testValueType = _testValuesTypes[currentIndex];
                 var syntax = XmlSyntaxFactory.GenerateSummarySeeAlsoComment(testValue, testValueType);

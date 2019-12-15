@@ -1,0 +1,38 @@
+<Project Sdk="MSBuild.Sdk.Extras">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);net461</TargetFrameworks>
+    <PackageId>Pharmacist.MSBuild.TargetFramework</PackageId>
+    <!-- forces SDK to copy dependencies into build output to make packing easier -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <PackageDescription>Produces from NuGet packages System.Reactive Observables for all events within the target framework.</PackageDescription>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PackBuildOutputs</TargetsForTfmSpecificContentInPackage>
+    <NoWarn>$(NoWarn);CA1819</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Condition="'$(TargetFramework)' == 'net461' " Include="Microsoft.Build.Tasks.Core" Version="14.3" PrivateAssets="all" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="15.1.548" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="Package">
+    <None Include="targets\Pharmacist.MSBuild.TargetFramework.targets" PackagePath="build\net461" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.TargetFramework.targets" PackagePath="buildTransitive\net461" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.TargetFramework.targets" PackagePath="build\netstandard2.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.TargetFramework.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
+  </ItemGroup>
+
+  <Target Name="PackBuildOutputs">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="bin\$(Configuration)\$(TargetFramework)\**\*" PackagePath="build\$(TargetFramework)\%(RecursiveDir)" />
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pharmacist.Core\Pharmacist.Core.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\Pharmacist.Common\Pharmacist.Common.csproj" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.0" PrivateAssets="all" />
+  </ItemGroup>
+</Project>

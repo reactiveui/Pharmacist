@@ -17,24 +17,24 @@ namespace Pharmacist.Console.CommandOptions
         /// Gets or sets the platform.
         /// </summary>
         [Option('p', "package", Required = true, HelpText = "The name of the NuGet package.")]
-        public string NugetPackageName { get; set; }
+        public string? NugetPackageName { get; set; }
 
         /// <summary>
         /// Gets or sets the reference assemblies.
         /// </summary>
         [Option('v', "version", Required = true, HelpText = "Specify the NuGet version number.")]
-        public string NugetVersion { get; set; }
+        public string? NugetVersion { get; set; }
 
         /// <summary>
         /// Gets or sets the reference assemblies.
         /// </summary>
         [Option('t', "target-framework", Required = true, HelpText = "Specify the Target framework to extract for.")]
-        public string TargetFramework { get; set; }
+        public string? TargetFramework { get; set; }
 
         /// <summary>
         /// Gets or sets the package folder. If not set a random folder will be used.
         /// </summary>
         [Option("package-folder", HelpText = "Optional folder where to place NuGet packages for processing, otherwise random temp folder will be used.")]
-        public string PackageFolder { get; set; }
+        public string? PackageFolder { get; set; }
     }
 }

@@ -4,9 +4,11 @@
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);net461</TargetFrameworks>
     <PackageId>Pharmacist.MSBuild</PackageId>
+    <AssemblyName>Pharmacist.MSBuild</AssemblyName>
     <!-- forces SDK to copy dependencies into build output to make packing easier -->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <IncludeBuildOutput>false</IncludeBuildOutput>
+    <PackageDescription>Produces from NuGet packages System.Reactive Observables for all events within the NuGet packages inside the project..</PackageDescription>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PackBuildOutputs</TargetsForTfmSpecificContentInPackage>
     <NoWarn>$(NoWarn);CA1819</NoWarn>
   </PropertyGroup>
@@ -17,10 +19,10 @@
   </ItemGroup>
 
   <ItemGroup Label="Package">
-    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\net461" Pack="true" />
-    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\net461" Pack="true" />
-    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\netstandard2.0" Pack="true" />
-    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.NuGet.targets" PackagePath="build\net461" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.NuGet.targets" PackagePath="buildTransitive\net461" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.NuGet.targets" PackagePath="build\netstandard2.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.NuGet.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
   </ItemGroup>
 
   <Target Name="PackBuildOutputs">
@@ -32,6 +34,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Pharmacist.Core\Pharmacist.Core.csproj" PrivateAssets="All" />
     <ProjectReference Include="..\Pharmacist.Common\Pharmacist.Common.csproj" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.6.0" PrivateAssets="all" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.0" PrivateAssets="all" />
   </ItemGroup>
 </Project>

@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace Pharmacist.Core.Groups
 {
@@ -22,7 +21,7 @@ namespace Pharmacist.Core.Groups
         /// </summary>
         /// <param name="fileName">The file name to grab.</param>
         /// <returns>The full path if available, null otherwise.</returns>
-        public string GetFullFilePath(string fileName)
+        public string? GetFullFilePath(string fileName)
         {
             var processing = new Queue<DirectoryNode>(new[] { _rootNode });
 
@@ -102,7 +101,7 @@ namespace Pharmacist.Core.Groups
             private readonly List<FileNode> _files = new List<FileNode>();
             private readonly Dictionary<string, FileNode> _filesDict = new Dictionary<string, FileNode>();
 
-            public DirectoryNode(DirectoryNode parent, string name)
+            public DirectoryNode(DirectoryNode? parent, string name)
             {
                 Name = name;
                 Parent = parent;
@@ -128,18 +127,18 @@ namespace Pharmacist.Core.Groups
                 }
             }
 
-            public DirectoryNode Parent { get; }
+            public DirectoryNode? Parent { get; }
 
             public IEnumerable<FileNode> Files => _files;
 
             public IEnumerable<DirectoryNode> ChildNodes => _childNodes;
 
-            public bool TryGetChildNode(string path, out DirectoryNode outValue)
+            public bool TryGetChildNode(string path, out DirectoryNode? outValue)
             {
                 return _childNodesDict.TryGetValue(path, out outValue);
             }
 
-            public bool TryGetFile(string name, out string outValue)
+            public bool TryGetFile(string name, out string? outValue)
             {
                 if (_filesDict.TryGetValue(name, out var node))
                 {

@@ -4,10 +4,6 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using NuGet.Frameworks;
@@ -16,7 +12,6 @@ using NuGet.Versioning;
 
 using Pharmacist.Core.Groups;
 using Pharmacist.Core.NuGet;
-using Pharmacist.Core.Utilities;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
 {
@@ -29,9 +24,9 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
 
         private static readonly NuGetFramework ReferenceFramework = FrameworkConstants.CommonFrameworks.Net461;
 
-        private readonly string _filePath;
+        private readonly string? _filePath;
 
-        protected NetFrameworkBase(string filePath)
+        protected NetFrameworkBase(string? filePath)
         {
             _filePath = filePath;
         }
@@ -45,7 +40,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         {
             var results = await NuGetPackageHelper.DownloadPackageFilesAndFolder(new[] { ReferenceNuGet }, new[] { ReferenceFramework }, packageOutputDirectory: _filePath).ConfigureAwait(false);
 
-            Input = new InputAssembliesGroup { SupportGroup = results.SupportGroup };
+            Input.SupportGroup = results.SupportGroup;
 
             SetFiles(results);
         }

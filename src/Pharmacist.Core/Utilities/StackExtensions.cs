@@ -5,7 +5,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Pharmacist.Core.Utilities
 {
@@ -39,7 +38,7 @@ namespace Pharmacist.Core.Utilities
                 throw new ArgumentOutOfRangeException(nameof(count), "The count must be greater than 0.");
             }
 
-            int length = items.Length;
+            var length = items.Length;
             if (startIndex >= length || startIndex < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(startIndex), "The start index is out of range. It must between 0 and less than the length of the array.");
@@ -56,9 +55,9 @@ namespace Pharmacist.Core.Utilities
                 return 0;
             }
 
-            int nodesCount = stack.Count > count ? count : stack.Count;
+            var nodesCount = stack.Count > count ? count : stack.Count;
 
-            for (int i = startIndex; i < startIndex + nodesCount; i++)
+            for (var i = startIndex; i < startIndex + nodesCount; i++)
             {
                 items[i] = stack.Pop();
             }

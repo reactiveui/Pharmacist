@@ -3,9 +3,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 using NuGet.Frameworks;
@@ -23,7 +21,7 @@ namespace Pharmacist.Core.Extractors
     public class NuGetExtractor : IExtractor
     {
         /// <inheritdoc />
-        public InputAssembliesGroup Input { get; private set; }
+        public InputAssembliesGroup? Input { get; private set; }
 
         /// <summary>
         /// Extracts the data using the specified target framework.
@@ -32,7 +30,7 @@ namespace Pharmacist.Core.Extractors
         /// <param name="packages">The packages to extract the information from.</param>
         /// <param name="packageOutputDirectory">Directory for the packages, if null a random path in the temp folder will be used.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<PackageIdentity> packages, string packageOutputDirectory)
+        public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<PackageIdentity> packages, string? packageOutputDirectory)
         {
             Input = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks, packageOutputDirectory: packageOutputDirectory).ConfigureAwait(false);
         }
@@ -44,7 +42,7 @@ namespace Pharmacist.Core.Extractors
         /// <param name="packages">The packages to extract the information from.</param>
         /// <param name="packageOutputDirectory">Directory for the packages, if null a random path in the temp folder will be used.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<LibraryRange> packages, string packageOutputDirectory)
+        public async Task Extract(IReadOnlyCollection<NuGetFramework> targetFrameworks, IReadOnlyCollection<LibraryRange> packages, string? packageOutputDirectory)
         {
             Input = await NuGetPackageHelper.DownloadPackageFilesAndFolder(packages, targetFrameworks, packageOutputDirectory: packageOutputDirectory).ConfigureAwait(false);
         }

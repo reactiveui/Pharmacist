@@ -5,6 +5,7 @@
     <AssemblyName>Pharmacist</AssemblyName>
     <LangVersion>latest</LangVersion>
     <PackAsTool>true</PackAsTool>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

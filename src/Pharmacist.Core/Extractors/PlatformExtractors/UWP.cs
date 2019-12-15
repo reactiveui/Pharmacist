@@ -4,8 +4,6 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 using NuGet.Frameworks;
@@ -37,8 +35,10 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
 
             var metadataFile = AssemblyHelpers.FindUnionMetadataFile("Windows", Version.Parse("10.0.16299.0"));
 
-            Input = new InputAssembliesGroup();
-            Input.IncludeGroup.AddFiles(new[] { metadataFile });
+            if (!string.IsNullOrWhiteSpace(metadataFile))
+            {
+                Input.IncludeGroup.AddFiles(new[] { metadataFile! });
+            }
 
             return Task.CompletedTask;
         }

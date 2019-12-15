@@ -21,12 +21,12 @@ namespace Pharmacist.Console.CommandOptions
         /// Gets or sets the platform.
         /// </summary>
         [Option('p', "platforms", Separator = ',', Required = true, HelpText = "Platform to automatically generate. Possible options include: ANDROID, IOS, WPF, MAC, TIZEN, UWP, XAMFORMS, WINFORMS, TVOS, ESSENTIALS")]
-        public IEnumerable<AutoPlatform> Platforms { get; set; }
+        public IEnumerable<AutoPlatform>? Platforms { get; set; }
 
         /// <summary>
         /// Gets or sets the reference assemblies.
         /// </summary>
         [Option('r', "reference", Required = false, HelpText = "Specify a Reference Assemblies location to override the default.")]
-        public string ReferenceAssemblies { get; set; }
+        public string? ReferenceAssemblies { get; set; }
     }
 }

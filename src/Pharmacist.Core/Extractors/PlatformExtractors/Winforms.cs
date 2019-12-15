@@ -6,11 +6,7 @@
 using System;
 using System.IO;
 using System.Linq;
-
-using NuGet.Frameworks;
-
 using Pharmacist.Core.Groups;
-using Pharmacist.Core.NuGet;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
 {
@@ -26,7 +22,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
             "System.Drawing.dll",
         };
 
-        public Winforms(string filePath)
+        public Winforms(string? filePath)
             : base(filePath)
         {
         }

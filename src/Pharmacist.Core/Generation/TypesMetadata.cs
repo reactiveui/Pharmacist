@@ -100,7 +100,7 @@ namespace Pharmacist.Core.Generation
         };
 
         /// <summary>
-        ///     Gets a list of full type names, and their built in C# aliases.
+        /// Gets a list of full type names, and their built in C# aliases.
         /// </summary>
         public static IReadOnlyDictionary<string, string> FullToBuiltInTypes { get; } = new ReadOnlyDictionary<string, string>(
             new ConcurrentDictionary<string, string>

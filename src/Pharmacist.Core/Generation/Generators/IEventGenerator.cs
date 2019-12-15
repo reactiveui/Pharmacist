@@ -21,6 +21,6 @@ namespace Pharmacist.Core.Generation.Generators
         /// </summary>
         /// <param name="values">The values to generate for.</param>
         /// <returns>The new compilation unit.</returns>
-        IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition baseDefinition, IEnumerable<IEvent> events)> values);
+        IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition? baseDefinition, IEnumerable<IEvent> events)> values);
     }
 }

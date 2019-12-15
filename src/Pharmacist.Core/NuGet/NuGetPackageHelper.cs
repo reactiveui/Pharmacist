@@ -16,7 +16,6 @@ using NuGet.Frameworks;
 using NuGet.LibraryModel;
 using NuGet.Packaging;
 using NuGet.Packaging.Core;
-using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
 using NuGet.Versioning;
 
@@ -73,15 +72,15 @@ namespace Pharmacist.Core.NuGet
         /// <returns>The directory where the NuGet packages are unzipped to. Also the files contained within the requested package only.</returns>
         public static async Task<InputAssembliesGroup> DownloadPackageFilesAndFolder(
             IReadOnlyCollection<LibraryRange> libraryIdentities,
-            IReadOnlyCollection<NuGetFramework> frameworks = null,
-            PackageSource nugetSource = null,
+            IReadOnlyCollection<NuGetFramework>? frameworks = null,
+            PackageSource? nugetSource = null,
             bool getDependencies = true,
-            IReadOnlyCollection<string> packageFolders = null,
-            string packageOutputDirectory = null,
+            IReadOnlyCollection<string>? packageFolders = null,
+            string? packageOutputDirectory = null,
             CancellationToken token = default)
         {
             // If the user hasn't selected a default framework to extract, select .NET Standard 2.0
-            frameworks = frameworks ?? new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
+            frameworks ??= new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             // Use the provided nuget package source, or use nuget.org
             var sourceRepository = new SourceRepository(nugetSource ?? new PackageSource(DefaultNuGetSource), Providers);
@@ -107,15 +106,15 @@ namespace Pharmacist.Core.NuGet
         /// <returns>The directory where the NuGet packages are unzipped to. Also the files contained within the requested package only.</returns>
         public static async Task<InputAssembliesGroup> DownloadPackageFilesAndFolder(
             IReadOnlyCollection<PackageIdentity> packageIdentities,
-            IReadOnlyCollection<NuGetFramework> frameworks = null,
-            PackageSource nugetSource = null,
+            IReadOnlyCollection<NuGetFramework>? frameworks = null,
+            PackageSource? nugetSource = null,
             bool getDependencies = true,
-            IReadOnlyCollection<string> packageFolders = null,
-            string packageOutputDirectory = null,
+            IReadOnlyCollection<string>? packageFolders = null,
+            string? packageOutputDirectory = null,
             CancellationToken token = default)
         {
             // If the user hasn't selected a default framework to extract, select .NET Standard 2.0
-            frameworks = frameworks ?? new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
+            frameworks ??= new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             // Use the provided nuget package source, or use nuget.org
             var sourceRepository = new SourceRepository(nugetSource ?? new PackageSource(DefaultNuGetSource), Providers);
@@ -167,14 +166,14 @@ namespace Pharmacist.Core.NuGet
             IReadOnlyCollection<NuGetFramework> frameworks,
             DownloadResource downloadResource,
             bool getDependencies = true,
-            IReadOnlyCollection<string> packageFolders = null,
-            string packageOutputDirectory = null,
+            IReadOnlyCollection<string>? packageFolders = null,
+            string? packageOutputDirectory = null,
             CancellationToken token = default)
         {
             var librariesToCopy = await GetPackagesToCopy(packageIdentities, downloadResource, frameworks, getDependencies, token).ConfigureAwait(false);
 
-            packageOutputDirectory = packageOutputDirectory ?? GetRandomPackageDirectory();
-            packageFolders = packageFolders ?? DefaultFoldersToGrab;
+            packageOutputDirectory ??= GetRandomPackageDirectory();
+            packageFolders ??= DefaultFoldersToGrab;
 
             return CopyPackageFiles(librariesToCopy, frameworks, packageFolders, packageOutputDirectory, token);
         }
@@ -366,7 +365,7 @@ namespace Pharmacist.Core.NuGet
                     continue;
                 }
 
-                bool filesFound = false;
+                var filesFound = false;
                 foreach (var folder in folders)
                 {
                     if (!foldersDictionary.TryGetValue(folder, out var files))
@@ -395,7 +394,7 @@ namespace Pharmacist.Core.NuGet
             var strArray = path.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             if ((strArray.Length == 3 || strArray.Length > 3) && allowSubFolders)
             {
-                string folderName = strArray[1];
+                var folderName = strArray[1];
                 NuGetFramework folder;
                 try
                 {

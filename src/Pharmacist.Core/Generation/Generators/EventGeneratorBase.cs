@@ -25,9 +25,9 @@ namespace Pharmacist.Core.Generation.Generators
         /// <summary>
         /// Generate our namespace declarations. These will contain our helper classes.
         /// </summary>
-        /// <param name="declarations">The declarations to add.</param>
+        /// <param name="values">The declarations to add.</param>
         /// <returns>An array of namespace declarations.</returns>
-        public abstract IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition baseDefinition, IEnumerable<IEvent> events)> declarations);
+        public abstract IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition? baseDefinition, IEnumerable<IEvent> events)> values);
 
         /// <summary>
         /// Generates an observable declaration that wraps a event.
@@ -36,9 +36,9 @@ namespace Pharmacist.Core.Generation.Generators
         /// <param name="dataObjectName">The name of the item where the event is stored.</param>
         /// <param name="prefix">A prefix to append to the name.</param>
         /// <returns>The property declaration.</returns>
-        protected static PropertyDeclarationSyntax GenerateEventWrapperObservable(IEvent eventDetails, string dataObjectName, string prefix = null)
+        protected static PropertyDeclarationSyntax? GenerateEventWrapperObservable(IEvent eventDetails, string dataObjectName, string? prefix = null)
         {
-            prefix = prefix ?? string.Empty;
+            prefix ??= string.Empty;
 
             var invokeMethod = eventDetails.GetEventType().GetDelegateInvokeMethod();
 
@@ -50,7 +50,7 @@ namespace Pharmacist.Core.Generation.Generators
                 return null;
             }
 
-            SyntaxTokenList modifiers = eventDetails.IsStatic
+            var modifiers = eventDetails.IsStatic
                 ? TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword))
                 : TokenList(Token(SyntaxKind.PublicKeyword));
 

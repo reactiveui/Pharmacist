@@ -3,8 +3,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
-using System.Collections.Generic;
-
 using Pharmacist.Core.Groups;
 
 namespace Pharmacist.Core.Extractors
@@ -17,6 +15,6 @@ namespace Pharmacist.Core.Extractors
         /// <summary>
         /// Gets the input for the generators and resolvers.
         /// </summary>
-        InputAssembliesGroup Input { get; }
+        InputAssembliesGroup? Input { get; }
     }
 }

@@ -16,12 +16,12 @@ namespace Pharmacist.Console.CommandOptions
         /// Gets or sets the path where to output the contents.
         /// </summary>
         [Option('o', "output-path", Required = true, HelpText = "The directory path where to output the contents.")]
-        public string OutputPath { get; set; }
+        public string? OutputPath { get; set; }
 
         /// <summary>
         /// Gets or sets the output file prefix.
         /// </summary>
         [Option("output-prefix", Required = true, HelpText = "Specify a prefix for the output file based on the platforms selected. Each platform output file will contain this prefix.")]
-        public string OutputPrefix { get; set; }
+        public string? OutputPrefix { get; set; }
     }
 }

@@ -5,8 +5,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-
 using ICSharpCode.Decompiler.Metadata;
 
 namespace Pharmacist.Core.Comparers

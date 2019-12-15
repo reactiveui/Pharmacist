@@ -7,7 +7,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 using NuGet.Frameworks;
@@ -34,7 +33,6 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         /// <inheritdoc />
         public override Task Extract(string referenceAssembliesLocation)
         {
-            Input = new InputAssembliesGroup();
             Input.IncludeGroup.AddFiles(FileSystemHelpers.GetFilesWithinSubdirectories(Framework.GetNuGetFrameworkFolders(), AssemblyHelpers.AssemblyFileExtensionsSet).Where(x => Path.GetFileName(x).IndexOf("Xamarin.iOS", StringComparison.InvariantCultureIgnoreCase) >= 0));
             return Task.CompletedTask;
         }

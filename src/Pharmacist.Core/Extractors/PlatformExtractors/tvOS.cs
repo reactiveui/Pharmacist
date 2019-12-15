@@ -30,7 +30,6 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         /// <inheritdoc />
         public override Task Extract(string referenceAssembliesLocation)
         {
-            Input = new InputAssembliesGroup();
             Input.IncludeGroup.AddFiles(FileSystemHelpers.GetFilesWithinSubdirectories(Framework.GetNuGetFrameworkFolders(), AssemblyHelpers.AssemblyFileExtensionsSet).Where(x => Path.GetFileName(x).IndexOf("Xamarin.TVOS", StringComparison.InvariantCultureIgnoreCase) >= 0));
 
             return Task.CompletedTask;

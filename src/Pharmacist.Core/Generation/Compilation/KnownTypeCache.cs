@@ -26,7 +26,7 @@ namespace Pharmacist.Core.Generation.Compilation
 
         public IType FindType(KnownTypeCode typeCode)
         {
-            IType type = LazyInit.VolatileRead(ref _knownTypes[(int)typeCode]);
+            var type = LazyInit.VolatileRead(ref _knownTypes[(int)typeCode]);
             if (type != null)
             {
                 return type;
@@ -37,14 +37,14 @@ namespace Pharmacist.Core.Generation.Compilation
 
         private IType SearchType(KnownTypeCode typeCode)
         {
-            KnownTypeReference typeRef = KnownTypeReference.Get(typeCode);
+            var typeRef = KnownTypeReference.Get(typeCode);
             if (typeRef == null)
             {
                 return SpecialType.UnknownType;
             }
 
             var typeName = new TopLevelTypeName(typeRef.Namespace, typeRef.Name, typeRef.TypeParameterCount);
-            foreach (IModule asm in _compilation.Modules)
+            foreach (var asm in _compilation.Modules)
             {
                 var typeDef = asm.GetTypeDefinition(typeName);
                 if (typeDef != null)

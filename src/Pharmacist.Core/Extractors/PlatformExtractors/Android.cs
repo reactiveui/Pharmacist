@@ -4,10 +4,8 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 using NuGet.Frameworks;
@@ -34,7 +32,6 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         /// <inheritdoc />
         public override Task Extract(string referenceAssembliesLocation)
         {
-            Input = new InputAssembliesGroup();
             Input.IncludeGroup.AddFiles(FileSystemHelpers.GetFilesWithinSubdirectories(Framework.GetNuGetFrameworkFolders(), AssemblyHelpers.AssemblyFileExtensionsSet).Where(x => Path.GetFileName(x).Equals("Mono.Android.dll", StringComparison.InvariantCultureIgnoreCase)));
             return Task.CompletedTask;
         }
