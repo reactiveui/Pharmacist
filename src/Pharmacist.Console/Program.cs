@@ -49,17 +49,26 @@ namespace Pharmacist.Console
                 {
                     try
                     {
-                        string referenceAssembliesLocation;
-                        if (!string.IsNullOrWhiteSpace(options.ReferenceAssemblies))
+                        var referenceAssembliesLocation = !string.IsNullOrWhiteSpace(options.ReferenceAssemblies)
+                            ? options.ReferenceAssemblies!
+                            : ReferenceLocator.GetReferenceLocation();
+
+                        if (string.IsNullOrWhiteSpace(options.OutputPath))
                         {
-                            referenceAssembliesLocation = options.ReferenceAssemblies;
-                        }
-                        else
-                        {
-                            referenceAssembliesLocation = ReferenceLocator.GetReferenceLocation();
+                            throw new Exception("Invalid output path for the event generation.");
                         }
 
-                        await ObservablesForEventGenerator.ExtractEventsFromPlatforms(options.OutputPath, options.OutputPrefix, ".cs", referenceAssembliesLocation, options.Platforms).ConfigureAwait(false);
+                        if (string.IsNullOrWhiteSpace(options.OutputPrefix))
+                        {
+                            throw new Exception("Invalid output prefix for the event generation.");
+                        }
+
+                        if (options.Platforms == null)
+                        {
+                            throw new Exception("Invalid platforms for the event generation.");
+                        }
+
+                        await ObservablesForEventGenerator.ExtractEventsFromPlatforms(options.OutputPath!, options.OutputPrefix!, ".cs", referenceAssembliesLocation, options.Platforms).ConfigureAwait(false);
 
                         return ExitCode.Success;
                     }
@@ -75,9 +84,24 @@ namespace Pharmacist.Console
                     {
                         using (var writer = new StreamWriter(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs")))
                         {
-                            await ObservablesForEventGenerator.WriteHeader(writer, options.Assemblies).ConfigureAwait(false);
+                            if (options.Assemblies == null)
+                            {
+                                throw new Exception("Invalid specified assemblies for observable generation.");
+                            }
 
-                            await ObservablesForEventGenerator.ExtractEventsFromAssemblies(writer, options.Assemblies, options.SearchDirectories, options.TargetFramework).ConfigureAwait(false);
+                            if (options.SearchDirectories == null)
+                            {
+                                throw new Exception("Invalid search directories specified for observable generation.");
+                            }
+
+                            if (string.IsNullOrWhiteSpace(options.TargetFramework))
+                            {
+                                throw new Exception("Invalid target framework for the event generation.");
+                            }
+
+                            await ObservablesForEventGenerator.WriteHeader(writer, options.Assemblies!).ConfigureAwait(false);
+
+                            await ObservablesForEventGenerator.ExtractEventsFromAssemblies(writer, options.Assemblies!, options.SearchDirectories!, options.TargetFramework!).ConfigureAwait(false);
                         }
 
                         return ExitCode.Success;
@@ -94,8 +118,13 @@ namespace Pharmacist.Console
                     {
                         using (var writer = new StreamWriter(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs")))
                         {
+                            if (string.IsNullOrWhiteSpace(options.TargetFramework))
+                            {
+                                throw new Exception("Invalid target framework for the event generation.");
+                            }
+
                             var packageIdentity = new[] { new LibraryRange(options.NugetPackageName, VersionRange.Parse(options.NugetVersion), LibraryDependencyTarget.Package) };
-                            var nugetFramework = options.TargetFramework.ToFrameworks();
+                            var nugetFramework = options.TargetFramework!.ToFrameworks();
                             await ObservablesForEventGenerator.WriteHeader(writer, packageIdentity).ConfigureAwait(false);
                             await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(writer, packageIdentity, nugetFramework, options.PackageFolder).ConfigureAwait(false);
                         }
