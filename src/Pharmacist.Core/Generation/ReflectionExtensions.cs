@@ -3,9 +3,9 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 
@@ -21,7 +21,7 @@ namespace Pharmacist.Core.Generation
     /// </summary>
     internal static class ReflectionExtensions
     {
-        private static readonly ConcurrentDictionary<ICompilation, ImmutableDictionary<string, ImmutableList<ITypeDefinition>>> _typeNameMapping = new ConcurrentDictionary<ICompilation, ImmutableDictionary<string, ImmutableList<ITypeDefinition>>>();
+        private static readonly ConcurrentDictionary<ICompilation, Dictionary<string, List<ITypeDefinition>>> _typeNameMapping = new ConcurrentDictionary<ICompilation, Dictionary<string, List<ITypeDefinition>>>();
         private static readonly ConcurrentDictionary<ICompilation, IEnumerable<ITypeDefinition>> _publicNonGenericTypeMapping = new ConcurrentDictionary<ICompilation, IEnumerable<ITypeDefinition>>();
         private static readonly ConcurrentDictionary<ICompilation, IEnumerable<ITypeDefinition>> _publicEventsTypeMapping = new ConcurrentDictionary<ICompilation, IEnumerable<ITypeDefinition>>();
 
@@ -57,9 +57,14 @@ namespace Pharmacist.Core.Generation
         /// <returns>The name of the items.</returns>
         public static IReadOnlyCollection<ITypeDefinition> GetReferenceTypeDefinitionsWithFullName(this ICompilation compilation, string name)
         {
-            var map = _typeNameMapping.GetOrAdd(compilation, comp => comp.ReferencedModules.Concat(compilation.Modules).SelectMany(x => x.TypeDefinitions).GroupBy(x => x.ReflectionName).ToImmutableDictionary(x => x.Key, x => x.ToImmutableList()));
+            var map = _typeNameMapping.GetOrAdd(compilation, comp => comp.ReferencedModules.Concat(compilation.Modules).SelectMany(x => x.TypeDefinitions).GroupBy(x => x.ReflectionName).ToDictionary(x => x.Key, x => x.ToList()));
 
-            return map.GetValueOrDefault(name) ?? ImmutableList<ITypeDefinition>.Empty;
+            if (map.TryGetValue(name, out var value))
+            {
+                return value;
+            }
+
+            return Array.Empty<ITypeDefinition>();
         }
 
         /// <summary>
