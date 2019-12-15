@@ -20,7 +20,11 @@ namespace Pharmacist.Core.Generation
     /// </summary>
     internal static class ReflectionExtensions
     {
+<<<<<<< HEAD
         private static readonly ConcurrentDictionary<ICompilation, Dictionary<string, List<ITypeDefinition>>> _typeNameMapping = new ConcurrentDictionary<ICompilation, Dictionary<string, List<ITypeDefinition>>>();
+=======
+        private static readonly ConcurrentDictionary<ICompilation, ImmutableDictionary<string, ImmutableList<ITypeDefinition>>> _typeNameMapping = new ConcurrentDictionary<ICompilation, ImmutableDictionary<string, ImmutableList<ITypeDefinition>>>();
+>>>>>>> master
         private static readonly ConcurrentDictionary<ICompilation, IEnumerable<ITypeDefinition>> _publicNonGenericTypeMapping = new ConcurrentDictionary<ICompilation, IEnumerable<ITypeDefinition>>();
         private static readonly ConcurrentDictionary<ICompilation, IEnumerable<ITypeDefinition>> _publicEventsTypeMapping = new ConcurrentDictionary<ICompilation, IEnumerable<ITypeDefinition>>();
 
