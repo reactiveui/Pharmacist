@@ -14,16 +14,16 @@ namespace Pharmacist.Core.Utilities
 {
     internal static class AssemblyHelpers
     {
-        public static string[] AssemblyFileExtensions { get; } =
+        private static readonly string[] AssemblyFileExtensions =
         {
             ".winmd", ".dll", ".exe"
         };
 
         public static ISet<string> AssemblyFileExtensionsSet { get; } = new HashSet<string>(AssemblyFileExtensions, StringComparer.InvariantCultureIgnoreCase);
 
-        internal static string FindUnionMetadataFile(string name, Version version)
+        internal static string? FindUnionMetadataFile(string name, Version version)
         {
-            string basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Windows Kits", "10", "UnionMetadata");
+            var basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Windows Kits", "10", "UnionMetadata");
 
             if (!Directory.Exists(basePath))
             {
@@ -37,7 +37,7 @@ namespace Pharmacist.Core.Utilities
                 return null;
             }
 
-            string file = Path.Combine(basePath, name + ".winmd");
+            var file = Path.Combine(basePath, name + ".winmd");
 
             if (!File.Exists(file))
             {
@@ -47,7 +47,7 @@ namespace Pharmacist.Core.Utilities
             return file;
         }
 
-        internal static string FindWindowsMetadataFile(string name, Version version)
+        internal static string? FindWindowsMetadataFile(string name, Version version)
         {
             // This is only supported on windows at the moment.
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -55,7 +55,7 @@ namespace Pharmacist.Core.Utilities
                 return null;
             }
 
-            string basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Windows Kits", "10", "References");
+            var basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Windows Kits", "10", "References");
 
             if (!Directory.Exists(basePath))
             {
@@ -69,7 +69,7 @@ namespace Pharmacist.Core.Utilities
                 return FindWindowsMetadataInSystemDirectory(name);
             }
 
-            string file = Path.Combine(basePath, name + ".winmd");
+            var file = Path.Combine(basePath, name + ".winmd");
 
             if (!File.Exists(file))
             {
@@ -79,9 +79,9 @@ namespace Pharmacist.Core.Utilities
             return file;
         }
 
-        private static string FindWindowsMetadataInSystemDirectory(string name)
+        private static string? FindWindowsMetadataInSystemDirectory(string name)
         {
-            string file = Path.Combine(Environment.SystemDirectory, "WinMetadata", name + ".winmd");
+            var file = Path.Combine(Environment.SystemDirectory, "WinMetadata", name + ".winmd");
             if (File.Exists(file))
             {
                 return file;
@@ -92,7 +92,7 @@ namespace Pharmacist.Core.Utilities
 
         private static string FindClosestVersionDirectory(string basePath, Version version)
         {
-            string path = null;
+            string? path = null;
             foreach (var folder in new DirectoryInfo(basePath)
                 .EnumerateDirectories()
                 .Select(d => ConvertToVersion(d.Name))
@@ -109,12 +109,12 @@ namespace Pharmacist.Core.Utilities
         }
 
         [SuppressMessage("Design", "CA1031: Modify to catch a more specific exception type, or rethrow the exception.", Justification = "Deliberate usage.")]
-        private static (Version, string) ConvertToVersion(string name)
+        private static (Version?, string?) ConvertToVersion(string name)
         {
             string RemoveTrailingVersionInfo()
             {
-                string shortName = name;
-                int dashIndex = shortName.IndexOf('-');
+                var shortName = name;
+                var dashIndex = shortName.IndexOf('-');
                 if (dashIndex > 0)
                 {
                     shortName = shortName.Remove(dashIndex);

@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Globalization;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,11 +33,11 @@ namespace Pharmacist.Core.Generation.Resolvers
             StringComparer.InvariantCulture);
 
         /// <inheritdoc />
-        protected override IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation)
+        protected override IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition? baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation)
         {
             var processedList = new ConcurrentDictionary<ITypeDefinition, bool>(TypeDefinitionNameComparer.Default);
             var toProcess = new ConcurrentStack<ITypeDefinition>(GetPublicTypesWithEvents(compilation).Where(x => !SkipNamespaceList.Contains(x.Namespace)));
-            var output = new ConcurrentBag<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)>();
+            var output = new ConcurrentBag<(ITypeDefinition typeHostingEvent, ITypeDefinition? baseTypeDefinition, IEnumerable<IEvent> events)>();
 
             var processing = new ITypeDefinition[Environment.ProcessorCount];
             while (!toProcess.IsEmpty)
@@ -54,7 +54,17 @@ namespace Pharmacist.Core.Generation.Resolvers
                             return;
                         }
 
-                        var validEvents = typeDefinition.Events.Where(IsValidEvent).ToList();
+                        var validEvents = new HashSet<IEvent>(EventNameComparer.Default);
+
+                        foreach (var currentEvent in typeDefinition.Events)
+                        {
+                            if (!IsValidEvent(currentEvent))
+                            {
+                                continue;
+                            }
+
+                            validEvents.Add(currentEvent);
+                        }
 
                         if (validEvents.Count == 0)
                         {
@@ -80,7 +90,7 @@ namespace Pharmacist.Core.Generation.Resolvers
             return new InstanceEventGenerator();
         }
 
-        private static ITypeDefinition GetValidBaseType(ITypeDefinition typeDefinition, ICompilation compilation)
+        private static ITypeDefinition? GetValidBaseType(ITypeDefinition typeDefinition, ICompilation compilation)
         {
             var processedTypes = new HashSet<ITypeDefinition>();
             var processingQueue = new Queue<IType>(typeDefinition.DirectBaseTypes);

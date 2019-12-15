@@ -3,11 +3,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
-using System.Linq;
 using System.Threading.Tasks;
-
-using NuGet.Frameworks;
-using NuGet.LibraryModel;
 using NuGet.Packaging.Core;
 using NuGet.Versioning;
 
@@ -23,13 +19,13 @@ namespace Pharmacist.Tests.IntegrationTests
     public class PackageIdentityNuGetTest
     {
         [Theory]
-        [InlineData("Xamarin.Forms", "4.0.0.482894", "MonoAndroid81")]
-        [InlineData("Xamarin.Forms", "4.0.0.482894", "MonoAndroid90")]
-        [InlineData("Xamarin.Forms", "4.0.0.482894", "tizen40")]
-        [InlineData("Xamarin.Forms", "4.0.0.482894", "uap10.0.17763")]
-        [InlineData("Xamarin.Forms", "4.0.0.482894", "Xamarin.iOS10")]
-        [InlineData("Xamarin.Forms", "4.0.0.482894", "Xamarin.Mac20")]
-        [InlineData("Xamarin.Forms", "4.0.0.482894", "netstandard2.0")]
+        [InlineData("Xamarin.Forms", "4.3.0.991250", "MonoAndroid81")]
+        [InlineData("Xamarin.Forms", "4.3.0.991250", "MonoAndroid90")]
+        [InlineData("Xamarin.Forms", "4.3.0.991250", "tizen40")]
+        [InlineData("Xamarin.Forms", "4.3.0.991250", "uap10.0.17763")]
+        [InlineData("Xamarin.Forms", "4.3.0.991250", "Xamarin.iOS10")]
+        [InlineData("Xamarin.Forms", "4.3.0.991250", "Xamarin.Mac20")]
+        [InlineData("Xamarin.Forms", "4.3.0.991250", "netstandard2.0")]
         [InlineData("Xamarin.Essentials", "1.0.0", "MonoAndroid81")]
         [InlineData("Xamarin.Essentials", "1.0.0", "MonoAndroid90")]
         [InlineData("Xamarin.Essentials", "1.0.0", "uap10.0.17763")]

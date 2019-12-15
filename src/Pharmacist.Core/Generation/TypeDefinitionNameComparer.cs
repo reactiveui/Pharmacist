@@ -4,20 +4,20 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-
 using ICSharpCode.Decompiler.TypeSystem;
 
 namespace Pharmacist.Core.Generation
 {
-    internal class TypeDefinitionNameComparer : IEqualityComparer<ITypeDefinition>
+    /// <summary>
+    /// A comparer which will compare <see cref="ITypeDefinition"/> names.
+    /// </summary>
+    internal class TypeDefinitionNameComparer : IEqualityComparer<ITypeDefinition>, IComparer<ITypeDefinition>
     {
         public static TypeDefinitionNameComparer Default { get; } = new TypeDefinitionNameComparer();
 
         /// <inheritdoc />
-        public bool Equals(ITypeDefinition x, ITypeDefinition y)
+        public bool Equals(ITypeDefinition? x, ITypeDefinition? y)
         {
             return StringComparer.Ordinal.Equals(x?.GenerateFullGenericName(), y?.GenerateFullGenericName());
         }
@@ -26,6 +26,27 @@ namespace Pharmacist.Core.Generation
         public int GetHashCode(ITypeDefinition obj)
         {
             return StringComparer.Ordinal.GetHashCode(obj.GenerateFullGenericName());
+        }
+
+        /// <inheritdoc />
+        public int Compare(ITypeDefinition? x, ITypeDefinition? y)
+        {
+            if (x == null && y == null)
+            {
+                return 0;
+            }
+
+            if (x == null)
+            {
+                return -1;
+            }
+
+            if (y == null)
+            {
+                return 1;
+            }
+
+            return string.CompareOrdinal(x.GenerateFullGenericName(), y.GenerateFullGenericName());
         }
     }
 }

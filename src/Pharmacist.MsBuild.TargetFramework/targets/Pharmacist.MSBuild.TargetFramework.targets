@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <CoreCompileDependsOn>
+      $(CoreCompileDependsOn);
+      GeneratePharmacistTargetFramework;
+    </CoreCompileDependsOn>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)\obj\$(Configuration)\</IntermediateOutputPath>
+    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildThisFileDirectory)..\..\build\netstandard2.0\Pharmacist.MSBuild.TargetFramework.dll</PharmacistTaskAssemblyFile>
+    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildThisFileDirectory)..\..\build\net461\Pharmacist.MSBuild.TargetFramework.dll</PharmacistTaskAssemblyFile>
+  </PropertyGroup>
+
+  <UsingTask TaskName="Pharmacist.MsBuild.TargetFramework.PharmacistTargetFrameworkTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
+
+  <Target Name="GeneratePharmacistTargetFramework" BeforeTargets="CoreCompile">
+    <PharmacistNuGetTask TargetFramework="$(TargetFramework)"
+                         OutputFile="$(IntermediateOutputPath)\Pharmacist.TargetFramework.g.cs" />
+
+    <Message Text="Processed Pharmacist Target Frameworks" />
+
+    <ItemGroup Condition="Exists('$(IntermediateOutputPath)\Pharmacist.TargetFramework.g.cs')">
+      <Compile Include="$(IntermediateOutputPath)\Pharmacist.TargetFramework.g.cs" />
+    </ItemGroup>
+  </Target>
+</Project>

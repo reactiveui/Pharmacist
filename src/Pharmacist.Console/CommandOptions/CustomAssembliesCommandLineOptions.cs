@@ -19,19 +19,19 @@ namespace Pharmacist.Console.CommandOptions
         /// Gets or sets the reference assemblies.
         /// </summary>
         [Option('s', "search-directories", Required = true, HelpText = "Specify a search directories where to search for additional support libraries.")]
-        public IEnumerable<string> SearchDirectories { get; set; }
+        public IEnumerable<string>? SearchDirectories { get; set; }
 
         /// <summary>
         /// Gets or sets the assemblies.
         /// Manual generation using the specified assemblies. Use with --platform=NONE.
         /// </summary>
         [Option('a', "assemblies", Required = true, HelpText = "List of assemblies to process.")]
-        public IEnumerable<string> Assemblies { get; set; }
+        public IEnumerable<string>? Assemblies { get; set; }
 
         /// <summary>
         /// Gets or sets the reference assemblies.
         /// </summary>
         [Option('t', "target-framework", Required = true, HelpText = "Specify the Target framework to extract for.")]
-        public string TargetFramework { get; set; }
+        public string? TargetFramework { get; set; }
     }
 }

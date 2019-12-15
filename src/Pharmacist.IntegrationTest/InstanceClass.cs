@@ -43,10 +43,10 @@ namespace Pharmacist.IntegrationTest
         /// <summary>
         /// Invokes the event.
         /// </summary>
-        /// <param name="obj">The parameter being passed.</param>
-        protected virtual void OnIntActionEvent(int obj)
+        /// <param name="arg">The parameter being passed.</param>
+        protected virtual void OnIntActionEvent(int arg)
         {
-            IntActionEvent?.Invoke(obj);
+            IntActionEvent?.Invoke(arg);
         }
 
         /// <summary>

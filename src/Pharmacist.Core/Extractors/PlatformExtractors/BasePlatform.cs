@@ -3,7 +3,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using NuGet.Frameworks;
@@ -24,7 +23,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         public abstract NuGetFramework Framework { get; }
 
         /// <inheritdoc />
-        public InputAssembliesGroup Input { get; protected set; }
+        public InputAssembliesGroup Input { get; } = new InputAssembliesGroup();
 
         /// <inheritdoc />
         public abstract Task Extract(string referenceAssembliesLocation);

@@ -17,7 +17,6 @@ using NuGet.Versioning;
 
 using Pharmacist.Console.CommandOptions;
 using Pharmacist.Core;
-using Pharmacist.Core.Groups;
 using Pharmacist.Core.NuGet;
 using Pharmacist.Core.ReferenceLocators;
 

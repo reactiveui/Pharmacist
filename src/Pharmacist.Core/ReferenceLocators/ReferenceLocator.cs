@@ -5,7 +5,6 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -92,7 +91,7 @@ namespace Pharmacist.Core.ReferenceLocators
                                 process.Start();
 
                                 // To avoid deadlocks, always read the output stream first and then wait.
-                                string output = process.StandardOutput.ReadToEnd().Replace(Environment.NewLine, string.Empty);
+                                var output = process.StandardOutput.ReadToEnd().Replace(Environment.NewLine, string.Empty);
                                 process.WaitForExit();
 
                                 return output;

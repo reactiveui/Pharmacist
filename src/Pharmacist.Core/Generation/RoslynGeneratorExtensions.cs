@@ -123,7 +123,7 @@ namespace Pharmacist.Core.Generation
         /// </summary>
         /// <param name="eventDetails">The event details.</param>
         /// <returns>The event's obsolete information if there is any.</returns>
-        private static AttributeListSyntax GenerateObsoleteAttributeList(IEntity eventDetails)
+        private static AttributeListSyntax? GenerateObsoleteAttributeList(IEntity eventDetails)
         {
             var obsoleteAttribute = eventDetails.GetAttributes()
                 .FirstOrDefault(attr => attr.AttributeType.FullName.Equals("System.ObsoleteAttribute", StringComparison.InvariantCulture));

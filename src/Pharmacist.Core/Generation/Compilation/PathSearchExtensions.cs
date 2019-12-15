@@ -31,7 +31,7 @@ namespace Pharmacist.Core.Generation.Compilation
         /// <param name="framework">The framework we are processing for.</param>
         /// <param name="parameters">Parameters to provide to the reflection system..</param>
         /// <returns>The assembly definitions.</returns>
-        public static PEFile Resolve(this IAssemblyReference reference, IModule parent, InputAssembliesGroup input, NuGetFramework framework, PEStreamOptions parameters = PEStreamOptions.PrefetchMetadata)
+        public static PEFile? Resolve(this IAssemblyReference reference, IModule parent, InputAssembliesGroup input, NuGetFramework framework, PEStreamOptions parameters = PEStreamOptions.PrefetchMetadata)
         {
             var fileName = GetFileName(reference, parent, input, framework);
 
@@ -43,7 +43,7 @@ namespace Pharmacist.Core.Generation.Compilation
             return new PEFile(fileName, parameters);
         }
 
-        private static string GetFileName(IAssemblyReference reference, IModule parent, InputAssembliesGroup input, NuGetFramework framework)
+        private static string? GetFileName(IAssemblyReference reference, IModule parent, InputAssembliesGroup input, NuGetFramework framework)
         {
             var extensions = reference.IsWindowsRuntime ? new[] { ".winmd", ".dll" } : new[] { ".exe", ".dll" };
 
@@ -52,7 +52,7 @@ namespace Pharmacist.Core.Generation.Compilation
                 return AssemblyHelpers.FindWindowsMetadataFile(reference.Name, reference.Version);
             }
 
-            string file;
+            string? file;
 
             if (reference.Name == "mscorlib")
             {
@@ -80,14 +80,14 @@ namespace Pharmacist.Core.Generation.Compilation
             return SearchNugetFrameworkDirectories(reference, extensions, framework);
         }
 
-        private static string FindInParentDirectory(IAssemblyReference reference, IModule parent, IEnumerable<string> extensions)
+        private static string? FindInParentDirectory(IAssemblyReference reference, IModule parent, IEnumerable<string> extensions)
         {
             if (parent == null)
             {
                 return null;
             }
 
-            string baseDirectory = Path.GetDirectoryName(parent.PEFile.FileName);
+            var baseDirectory = Path.GetDirectoryName(parent.PEFile.FileName);
 
             if (string.IsNullOrWhiteSpace(baseDirectory))
             {
@@ -96,7 +96,7 @@ namespace Pharmacist.Core.Generation.Compilation
 
             foreach (var extension in extensions)
             {
-                string moduleFileName = Path.Combine(baseDirectory, reference.Name + extension);
+                var moduleFileName = Path.Combine(baseDirectory, reference.Name + extension);
                 if (!File.Exists(moduleFileName))
                 {
                     continue;
@@ -108,7 +108,7 @@ namespace Pharmacist.Core.Generation.Compilation
             return null;
         }
 
-        private static string SearchNugetFrameworkDirectories(IAssemblyReference reference, IReadOnlyCollection<string> extensions, NuGetFramework framework)
+        private static string? SearchNugetFrameworkDirectories(IAssemblyReference reference, IReadOnlyCollection<string> extensions, NuGetFramework framework)
         {
             var folders = framework.GetNuGetFrameworkFolders();
 
@@ -135,7 +135,7 @@ namespace Pharmacist.Core.Generation.Compilation
             return null;
         }
 
-        private static string SearchDirectories(IAssemblyReference name, InputAssembliesGroup input, IEnumerable<string> extensions)
+        private static string? SearchDirectories(IAssemblyReference name, InputAssembliesGroup input, IEnumerable<string> extensions)
         {
             foreach (var extension in extensions)
             {
@@ -156,7 +156,7 @@ namespace Pharmacist.Core.Generation.Compilation
             return null;
         }
 
-        private static string GetCorlib(IAssemblyReference reference)
+        private static string? GetCorlib(IAssemblyReference reference)
         {
             var version = reference.Version;
             var corlib = typeof(object).Assembly.GetName();
@@ -166,7 +166,7 @@ namespace Pharmacist.Core.Generation.Compilation
                 return typeof(object).Module.FullyQualifiedName;
             }
 
-            string path;
+            string? path;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 path = GetMscorlibBasePath(version, reference.PublicKeyToken.ToHexString(8));
@@ -190,9 +190,9 @@ namespace Pharmacist.Core.Generation.Compilation
             return null;
         }
 
-        private static string GetMscorlibBasePath(Version version, string publicKeyToken)
+        private static string? GetMscorlibBasePath(Version version, string publicKeyToken)
         {
-            string GetSubFolderForVersion()
+            string? GetSubFolderForVersion()
             {
                 switch (version.Major)
                 {
@@ -214,11 +214,11 @@ namespace Pharmacist.Core.Generation.Compilation
 
             if (publicKeyToken == "969db8053d3322ac")
             {
-                string programFiles = Environment.Is64BitOperatingSystem ?
+                var programFiles = Environment.Is64BitOperatingSystem ?
                     Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) :
                     Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-                string windowsCeDirectoryPath = $@"Microsoft.NET\SDK\CompactFramework\v{version.Major}.{version.Minor}\WindowsCE\";
-                string fullDirectoryPath = Path.Combine(programFiles, windowsCeDirectoryPath);
+                var windowsCeDirectoryPath = $@"Microsoft.NET\SDK\CompactFramework\v{version.Major}.{version.Minor}\WindowsCE\";
+                var fullDirectoryPath = Path.Combine(programFiles, windowsCeDirectoryPath);
                 if (Directory.Exists(fullDirectoryPath))
                 {
                     return fullDirectoryPath;
@@ -226,14 +226,14 @@ namespace Pharmacist.Core.Generation.Compilation
             }
             else
             {
-                string rootPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Microsoft.NET");
+                var rootPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Microsoft.NET");
                 string[] frameworkPaths =
                 {
                     Path.Combine(rootPath, "Framework"),
                     Path.Combine(rootPath, "Framework64")
                 };
 
-                string folder = GetSubFolderForVersion();
+                var folder = GetSubFolderForVersion();
 
                 if (folder != null)
                 {
@@ -251,7 +251,7 @@ namespace Pharmacist.Core.Generation.Compilation
             return null;
         }
 
-        private static string GetMonoMscorlibBasePath(Version version)
+        private static string? GetMonoMscorlibBasePath(Version version)
         {
             var path = Directory.GetParent(typeof(object).Module.FullyQualifiedName).Parent?.FullName;
 

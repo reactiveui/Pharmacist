@@ -20,9 +20,9 @@ namespace Pharmacist.Core.Generation.Generators
     {
         private const string DataFieldName = "_data";
 
-        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition baseDefinition, IEnumerable<IEvent> events)> declarations)
+        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition? baseDefinition, IEnumerable<IEvent> events)> values)
         {
-            foreach (var groupedDeclarations in declarations.GroupBy(x => x.typeDefinition.Namespace).OrderBy(x => x.Key))
+            foreach (var groupedDeclarations in values.GroupBy(x => x.typeDefinition.Namespace).OrderBy(x => x.Key))
             {
                 var namespaceName = groupedDeclarations.Key;
                 var members = new List<ClassDeclarationSyntax>();
@@ -104,7 +104,7 @@ namespace Pharmacist.Core.Generation.Generators
         private static ClassDeclarationSyntax GenerateEventWrapperClass(ITypeDefinition typeDefinition, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)
         {
             var members = new List<MemberDeclarationSyntax> { GenerateEventWrapperField(typeDefinition), GenerateEventWrapperClassConstructor(typeDefinition, baseTypeDefinition != null) };
-            members.AddRange(events.OrderBy(x => x.Name).Select(x => GenerateEventWrapperObservable(x, DataFieldName)).Where(x => x != null));
+            members.AddRange(events.OrderBy(x => x.Name).Select(x => GenerateEventWrapperObservable(x, DataFieldName)).Where(x => x != null).Select(x => x!));
 
             var classDeclaration = ClassDeclaration(typeDefinition.Name + "Events")
                 .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword)))

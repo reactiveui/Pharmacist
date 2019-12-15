@@ -23,7 +23,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
                                                               "PresentationFramework.dll"
                                                           };
 
-        public WPF(string filePath)
+        public WPF(string? filePath)
             : base(filePath)
         {
         }

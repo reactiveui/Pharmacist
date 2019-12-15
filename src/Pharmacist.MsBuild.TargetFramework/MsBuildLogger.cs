@@ -4,12 +4,10 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
-
 using Microsoft.Build.Utilities;
-
 using Splat;
 
-namespace Pharmacist.MsBuild
+namespace Pharmacist.MsBuild.TargetFramework
 {
     /// <summary>
     /// A logger which talks to the MsBuild logging system.

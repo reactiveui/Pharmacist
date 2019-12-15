@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -75,8 +76,8 @@ namespace Pharmacist.Tests.IntegrationTests
 
             var expectedContents = File.ReadAllText(approvedFileName);
 
-            string normalizedActual = _whitespaceRegex.Replace(actualContents, string.Empty);
-            string normalizedExpected = _whitespaceRegex.Replace(expectedContents, string.Empty);
+            var normalizedActual = _whitespaceRegex.Replace(actualContents, string.Empty);
+            var normalizedExpected = _whitespaceRegex.Replace(expectedContents, string.Empty);
 
             if (!string.Equals(normalizedActual, normalizedExpected, StringComparison.InvariantCulture))
             {
@@ -88,15 +89,15 @@ namespace Pharmacist.Tests.IntegrationTests
                 catch (ShouldAssertException)
                 {
                     var process = new Process
-                                  {
-                                      StartInfo = new ProcessStartInfo
-                                                  {
-                                                      Arguments = $"\"{approvedFileName}\" \"{receivedFileName}\"",
-                                                      UseShellExecute = false,
-                                                      RedirectStandardOutput = true,
-                                                      CreateNoWindow = true
-                                                  }
-                                  };
+                    {
+                        StartInfo = new ProcessStartInfo
+                        {
+                            Arguments = $"\"{approvedFileName}\" \"{receivedFileName}\"",
+                            UseShellExecute = false,
+                            RedirectStandardOutput = true,
+                            CreateNoWindow = true
+                        }
+                    };
 
                     if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                     {
@@ -108,7 +109,7 @@ namespace Pharmacist.Tests.IntegrationTests
                     }
 
                     process.Start();
-                    string output = process.StandardOutput.ReadToEnd();
+                    var output = process.StandardOutput.ReadToEnd();
                     process.WaitForExit();
 
                     throw new Exception("Invalid API configuration: " + Environment.NewLine + output);
@@ -117,13 +118,21 @@ namespace Pharmacist.Tests.IntegrationTests
 
             normalizedActual.ShouldNotBeEmpty();
 
-            normalizedActual.ShouldBe(normalizedExpected, StringCompareShould.IgnoreLineEndings);
+            if (CultureInfo.CurrentCulture.CompareInfo.Compare(normalizedActual, normalizedExpected, CompareOptions.IgnoreSymbols) != 0)
+            {
+                throw new Exception("The normalized output does not match.");
+            }
         }
 
         public static string GetOutputDirectory([CallerFilePath] string filePath = null) => Path.Combine(Path.GetDirectoryName(filePath), "Approved");
 
         private static void CheckPackageIdentityContents(MemoryStream memoryStream, PackageIdentity bestPackageIdentity, NuGetFramework nugetFramework, string filePath)
         {
+            if (filePath == null)
+            {
+                throw new ArgumentNullException(nameof(filePath));
+            }
+
             var sourceDirectory = GetOutputDirectory(filePath);
 
             var approvedFileName = Path.Combine(sourceDirectory, $"{bestPackageIdentity.Id}.{bestPackageIdentity.Version}.{nugetFramework.GetShortFolderName()}.approved.txt");

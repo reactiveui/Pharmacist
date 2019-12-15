@@ -34,13 +34,26 @@ namespace Pharmacist.Core.Generation.Compilation
         private readonly KnownTypeCache _knownTypeCache;
         private readonly List<IModule> _assemblies = new List<IModule>();
         private readonly List<IModule> _referencedAssemblies = new List<IModule>();
-        private bool _initialized;
-        private INamespace _rootNamespace;
+        private readonly INamespace _rootNamespace;
 
         public EventBuilderCompiler(InputAssembliesGroup input, NuGetFramework framework)
         {
             _knownTypeCache = new KnownTypeCache(this);
-            Init(input, framework);
+            if (input == null)
+            {
+                throw new ArgumentNullException(nameof(input));
+            }
+
+            var context = new SimpleTypeResolveContext(this);
+
+            var moduleReferences = input.IncludeGroup.GetAllFileNames()
+                .Where(file => AssemblyHelpers.AssemblyFileExtensionsSet.Contains(Path.GetExtension(file)))
+                .Select(x => (IModuleReference)new PEFile(x, PEStreamOptions.PrefetchMetadata));
+
+            _assemblies.AddRange(moduleReferences.Select(x => x.Resolve(context)));
+
+            _referencedAssemblies.AddRange(GetReferenceModules(_assemblies, input, framework, context));
+            _rootNamespace = CreateRootNamespace();
         }
 
         /// <summary>
@@ -51,11 +64,6 @@ namespace Pharmacist.Core.Generation.Compilation
         {
             get
             {
-                if (!_initialized)
-                {
-                    throw new InvalidOperationException("Compilation isn't initialized yet");
-                }
-
                 return _assemblies.FirstOrDefault();
             }
         }
@@ -67,11 +75,6 @@ namespace Pharmacist.Core.Generation.Compilation
         {
             get
             {
-                if (!_initialized)
-                {
-                    throw new InvalidOperationException("Compilation isn't initialized yet");
-                }
-
                 return _assemblies;
             }
         }
@@ -84,11 +87,6 @@ namespace Pharmacist.Core.Generation.Compilation
         {
             get
             {
-                if (!_initialized)
-                {
-                    throw new InvalidOperationException("Compilation isn't initialized yet");
-                }
-
                 return _referencedAssemblies;
             }
         }
@@ -100,18 +98,7 @@ namespace Pharmacist.Core.Generation.Compilation
         {
             get
             {
-                INamespace ns = LazyInit.VolatileRead(ref _rootNamespace);
-                if (ns != null)
-                {
-                    return ns;
-                }
-
-                if (!_initialized)
-                {
-                    throw new InvalidOperationException("Compilation isn't initialized yet");
-                }
-
-                return LazyInit.GetOrSet(ref _rootNamespace, CreateRootNamespace());
+                return _rootNamespace;
             }
         }
 
@@ -125,7 +112,7 @@ namespace Pharmacist.Core.Generation.Compilation
         /// </summary>
         public CacheManager CacheManager { get; } = new CacheManager();
 
-        public INamespace GetNamespaceForExternAlias(string alias)
+        public INamespace? GetNamespaceForExternAlias(string alias)
         {
             if (string.IsNullOrEmpty(alias))
             {
@@ -170,7 +157,7 @@ namespace Pharmacist.Core.Generation.Compilation
                 }
 
 #pragma warning disable CA2000 // Dispose objects before losing scope
-                var moduleReference = (IModuleReference)current.reference.Resolve(current.parent, input, framework);
+                var moduleReference = (IModuleReference?)current.reference.Resolve(current.parent, input, framework);
 #pragma warning restore CA2000 // Dispose objects before losing scope
 
                 if (moduleReference == null)
@@ -189,26 +176,6 @@ namespace Pharmacist.Core.Generation.Compilation
             }
         }
 
-        private void Init(InputAssembliesGroup input, NuGetFramework framework)
-        {
-            if (input == null)
-            {
-                throw new ArgumentNullException(nameof(input));
-            }
-
-            var context = new SimpleTypeResolveContext(this);
-
-            var moduleReferences = input.IncludeGroup.GetAllFileNames()
-                .Where(file => AssemblyHelpers.AssemblyFileExtensionsSet.Contains(Path.GetExtension(file)))
-                .Select(x => (IModuleReference)new PEFile(x, PEStreamOptions.PrefetchMetadata));
-
-            _assemblies.AddRange(moduleReferences.Select(x => x.Resolve(context)));
-
-            _referencedAssemblies.AddRange(GetReferenceModules(_assemblies, input, framework, context));
-
-            _initialized = true;
-        }
-
         private INamespace CreateRootNamespace()
         {
             var namespaces = new List<INamespace>();
@@ -217,7 +184,7 @@ namespace Pharmacist.Core.Generation.Compilation
                 // SimpleCompilation does not support extern aliases; but derived classes might.
                 // CreateRootNamespace() is virtual so that derived classes can change the global namespace.
                 namespaces.Add(module.RootNamespace);
-                for (int i = 0; i < _referencedAssemblies.Count; i++)
+                for (var i = 0; i < _referencedAssemblies.Count; i++)
                 {
                     namespaces.Add(_referencedAssemblies[i].RootNamespace);
                 }

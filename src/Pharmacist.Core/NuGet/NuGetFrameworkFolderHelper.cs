@@ -53,14 +53,14 @@ namespace Pharmacist.Core.NuGet
 
         private static IEnumerable<string> HandleWatchOS()
         {
-            string referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/");
+            var referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/");
 
             return new[] { Path.Combine(referenceAssembliesLocation, "Xamarin.WatchOS") };
         }
 
         private static IEnumerable<string> HandleTVOS()
         {
-            string referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/");
+            var referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/");
 
             return new[] { Path.Combine(referenceAssembliesLocation, "Xamarin.TVOS") };
         }
@@ -68,7 +68,7 @@ namespace Pharmacist.Core.NuGet
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:Element should begin with upper-case letter", Justification = "iOS special naming scheme.")]
         private static IEnumerable<string> HandleiOS()
         {
-            string referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/");
+            var referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/");
 
             return new[] { Path.Combine(referenceAssembliesLocation, "Xamarin.iOS") };
         }
@@ -76,14 +76,14 @@ namespace Pharmacist.Core.NuGet
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:Element should begin with upper-case letter", Justification = "iOS special naming scheme.")]
         private static IEnumerable<string> HandleMac()
         {
-            string referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/lib/mono/");
+            var referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/lib/mono/");
 
             return new[] { Path.Combine(referenceAssembliesLocation, "Xamarin.Mac") };
         }
 
         private static IEnumerable<string> HandleAndroid(NuGetFramework nugetFramework)
         {
-            string referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.Android.framework/Versions/Current/lib/xamarin.android/xbuild-frameworks");
+            var referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.Android.framework/Versions/Current/lib/xamarin.android/xbuild-frameworks");
 
             var versionText = $"v{nugetFramework.Version.Major}.{nugetFramework.Version.Minor}";
 

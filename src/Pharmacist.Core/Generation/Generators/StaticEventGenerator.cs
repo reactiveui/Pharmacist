@@ -24,7 +24,7 @@ namespace Pharmacist.Core.Generation.Generators
         /// </summary>
         /// <param name="declarations">The declarations to add.</param>
         /// <returns>An array of namespace declarations.</returns>
-        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition baseDefinition, IEnumerable<IEvent> events)> declarations)
+        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition? baseDefinition, IEnumerable<IEvent> events)> declarations)
         {
             foreach (var groupDeclaration in declarations.GroupBy(x => x.typeDefinition.Namespace).OrderBy(x => x.Key))
             {
@@ -45,7 +45,7 @@ namespace Pharmacist.Core.Generation.Generators
                     var members = ClassDeclaration("Events")
                         .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword)))
                         .WithLeadingTrivia(GenerateSummarySeeAlsoComment("A class that contains extension methods to wrap events contained within static classes within the {0} namespace.", namespaceName))
-                        .WithMembers(List<MemberDeclarationSyntax>(eventWrapperMembers));
+                        .WithMembers(List<MemberDeclarationSyntax>(eventWrapperMembers.Where(x => x != null).Select(x => x!)));
 
                     yield return NamespaceDeclaration(IdentifierName(namespaceName))
                         .WithMembers(SingletonList<MemberDeclarationSyntax>(members));

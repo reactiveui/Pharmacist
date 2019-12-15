@@ -4,7 +4,6 @@
 // See the LICENSE file in the project root for full license information.
 
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 
 using ICSharpCode.Decompiler.TypeSystem;
@@ -38,16 +37,11 @@ namespace Pharmacist.Core.Generation.Resolvers
                 return false;
             }
 
-            if (invokeMethod.Parameters.Any(x => x.IsRef))
-            {
-                return false;
-            }
-
-            return true;
+            return !invokeMethod.Parameters.Any(x => x.IsRef);
         }
 
         protected abstract IEventGenerator GetEventGenerator();
 
-        protected abstract IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation);
+        protected abstract IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition? baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation);
     }
 }

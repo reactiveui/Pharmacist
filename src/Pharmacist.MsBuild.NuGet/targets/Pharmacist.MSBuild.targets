@@ -40,7 +40,7 @@
     <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildThisFileDirectory)..\..\build\net461\Pharmacist.MSBuild.dll</PharmacistTaskAssemblyFile>
   </PropertyGroup>
 
-  <UsingTask TaskName="Pharmacist.MsBuild.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
+  <UsingTask TaskName="Pharmacist.MsBuild.NuGet.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
 
   <Target Name="GeneratePharmacist" BeforeTargets="CoreCompile">
     <PharmacistNuGetTask PackageReferences="@(PharmacistPackageReference -> WithMetadataValue('InProject', True) )"

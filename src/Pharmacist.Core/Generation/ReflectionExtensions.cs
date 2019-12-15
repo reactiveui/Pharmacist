@@ -3,7 +3,6 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
-using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -23,8 +22,8 @@ namespace Pharmacist.Core.Generation
     internal static class ReflectionExtensions
     {
         private static readonly ConcurrentDictionary<ICompilation, ImmutableDictionary<string, ImmutableList<ITypeDefinition>>> _typeNameMapping = new ConcurrentDictionary<ICompilation, ImmutableDictionary<string, ImmutableList<ITypeDefinition>>>();
-        private static readonly ConcurrentDictionary<ICompilation, ImmutableList<ITypeDefinition>> _publicNonGenericTypeMapping = new ConcurrentDictionary<ICompilation, ImmutableList<ITypeDefinition>>();
-        private static readonly ConcurrentDictionary<ICompilation, ImmutableList<ITypeDefinition>> _publicEventsTypeMapping = new ConcurrentDictionary<ICompilation, ImmutableList<ITypeDefinition>>();
+        private static readonly ConcurrentDictionary<ICompilation, IEnumerable<ITypeDefinition>> _publicNonGenericTypeMapping = new ConcurrentDictionary<ICompilation, IEnumerable<ITypeDefinition>>();
+        private static readonly ConcurrentDictionary<ICompilation, IEnumerable<ITypeDefinition>> _publicEventsTypeMapping = new ConcurrentDictionary<ICompilation, IEnumerable<ITypeDefinition>>();
 
         /// <summary>
         /// Get all type definitions where they have public events, aren't generic (no type parameters == 0), and they are public.
@@ -68,11 +67,25 @@ namespace Pharmacist.Core.Generation
         /// </summary>
         /// <param name="compilation">The compilation to get the type definitions from.</param>
         /// <returns>The list of type definitions.</returns>
-        public static IImmutableList<ITypeDefinition> GetPublicNonGenericTypeDefinitions(this ICompilation compilation)
+        public static IEnumerable<ITypeDefinition> GetPublicNonGenericTypeDefinitions(this ICompilation compilation)
         {
             return _publicNonGenericTypeMapping.GetOrAdd(
-                    compilation,
-                    comp => comp.GetAllTypeDefinitions().Where(x => x.Accessibility == Accessibility.Public && x.TypeParameterCount == 0).ToImmutableList());
+                compilation,
+                comp =>
+                {
+                    var types = new HashSet<ITypeDefinition>(TypeDefinitionNameComparer.Default);
+                    foreach (var item in comp.GetAllTypeDefinitions())
+                    {
+                        if (item.Accessibility != Accessibility.Public || item.TypeParameterCount > 0)
+                        {
+                            continue;
+                        }
+
+                        types.Add(item);
+                    }
+
+                    return types.ToList();
+                });
         }
 
         /// <summary>
@@ -80,9 +93,9 @@ namespace Pharmacist.Core.Generation
         /// </summary>
         /// <param name="eventDetails">The details about the event.</param>
         /// <returns>The type of the event.</returns>
-        public static IType GetEventType(this IEvent eventDetails)
+        public static IType? GetEventType(this IEvent eventDetails)
         {
-            ICompilation compilation = eventDetails.Compilation;
+            var compilation = eventDetails.Compilation;
 
             // Find the EventArgs type parameter of the event via digging around via reflection
             if (!eventDetails.CanAdd || !eventDetails.CanRemove)
@@ -91,7 +104,7 @@ namespace Pharmacist.Core.Generation
                 return null;
             }
 
-            IType type = GetRealType(eventDetails.ReturnType, compilation);
+            var type = GetRealType(eventDetails.ReturnType, compilation);
 
             if (type == null)
             {
@@ -115,7 +128,7 @@ namespace Pharmacist.Core.Generation
             // If the type is UnknownType, check other assemblies we have as dependencies first,
             // since UnknownType is only if it's unknown in the current assembly only.
             // This scenario is fairly common with types in the netstandard libraries, eg System.EventHandler.
-            IType newType = type;
+            var newType = type;
             if (newType is UnknownType || newType.Kind == TypeKind.Unknown)
             {
                 if (newType.TypeParameterCount == 0)
@@ -155,12 +168,17 @@ namespace Pharmacist.Core.Generation
             return sb.ToString();
         }
 
-        private static IImmutableList<ITypeDefinition> GetPublicTypeDefinitionsWithEvents(ICompilation compilation)
+        private static IEnumerable<ITypeDefinition> GetPublicTypeDefinitionsWithEvents(ICompilation compilation)
         {
             return _publicEventsTypeMapping.GetOrAdd(
                     compilation,
-                    comp => comp.GetPublicNonGenericTypeDefinitions().Where(x => x.Events.Any(eventInfo => eventInfo.Accessibility == Accessibility.Public))
-                .ToImmutableList());
+                    comp =>
+                    {
+                        return comp.GetPublicNonGenericTypeDefinitions()
+                            .Where(x =>
+                                x.Events.Any(eventInfo => eventInfo.Accessibility == Accessibility.Public))
+                            .ToList();
+                    });
         }
 
         private static (bool isInternalType, string typeName) GetBuiltInType(string typeName)

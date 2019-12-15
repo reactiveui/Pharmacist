@@ -22,22 +22,32 @@ namespace Pharmacist.Core.Generation.Resolvers
         }
 
         /// <inheritdoc />
-        protected override IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation)
+        protected override IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition? baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation)
         {
-            var output = new ConcurrentBag<(ITypeDefinition typeHostingEvent, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)>();
+            var output = new ConcurrentBag<(ITypeDefinition typeHostingEvent, ITypeDefinition? baseTypeDefinition, IEnumerable<IEvent> events)>();
 
             Parallel.ForEach(
                 GetPublicTypesWithEvents(compilation),
                 typeDefinition =>
                 {
-                    var events = typeDefinition.Events.Where(IsValidEvent).ToList();
+                    var validEvents = new HashSet<IEvent>(EventNameComparer.Default);
 
-                    if (events.Count == 0)
+                    foreach (var currentEvent in typeDefinition.Events)
+                    {
+                        if (!IsValidEvent(currentEvent))
+                        {
+                            continue;
+                        }
+
+                        validEvents.Add(currentEvent);
+                    }
+
+                    if (validEvents.Count == 0)
                     {
                         return;
                     }
 
-                    output.Add((typeDefinition, null, events));
+                    output.Add((typeDefinition, null, validEvents));
                 });
 
             return output;

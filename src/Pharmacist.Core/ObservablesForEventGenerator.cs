@@ -5,7 +5,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -15,7 +14,6 @@ using System.Reflection;
 using System.Threading.Tasks;
 
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 using NuGet.Frameworks;
@@ -25,6 +23,7 @@ using NuGet.Packaging.Core;
 using Pharmacist.Core.Extractors;
 using Pharmacist.Core.Extractors.PlatformExtractors;
 using Pharmacist.Core.Generation;
+using Pharmacist.Core.Generation.Compilation;
 using Pharmacist.Core.Generation.Resolvers;
 using Pharmacist.Core.Groups;
 using Pharmacist.Core.NuGet;
@@ -59,7 +58,7 @@ namespace Pharmacist.Core
         /// <param name="packageOutputFolder">Directory for the packages, if null a random path in the temp folder will be used.</param>
         /// <returns>A task to monitor the progress.</returns>
         [SuppressMessage("Design", "CA2000: Dispose Object", Justification = "Analyzer can't handle loop based using statements.")]
-        public static async Task ExtractEventsFromPlatforms(string outputPath, string prefix, string suffix, string defaultReferenceAssemblyLocation, IEnumerable<AutoPlatform> platforms, string packageOutputFolder = null)
+        public static async Task ExtractEventsFromPlatforms(string outputPath, string prefix, string suffix, string defaultReferenceAssemblyLocation, IEnumerable<AutoPlatform> platforms, string? packageOutputFolder = null)
         {
             var platformExtractors = new IPlatformExtractor[]
                 {
@@ -83,6 +82,11 @@ namespace Pharmacist.Core
                 var platformExtractor = platformExtractors[platform];
                 await platformExtractor.Extract(defaultReferenceAssemblyLocation).ConfigureAwait(false);
 
+                if (platformExtractor.Input == null)
+                {
+                    throw new Exception("Cannot find valid input from the specified Platform.");
+                }
+
                 using (var streamWriter = new StreamWriter(Path.Combine(outputPath, prefix + platform.ToString().ToLowerInvariant() + suffix)))
                 {
                     await WriteHeader(streamWriter, platform).ConfigureAwait(false);
@@ -101,10 +105,15 @@ namespace Pharmacist.Core
         /// <param name="frameworks">The framework to generate for in order of priority.</param>
         /// <param name="packageOutputFolder">Directory for the packages, if null a random path in the temp folder will be used.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public static async Task ExtractEventsFromNuGetPackages(TextWriter writer, IReadOnlyCollection<PackageIdentity> packages, IReadOnlyCollection<NuGetFramework> frameworks, string packageOutputFolder = null)
+        public static async Task ExtractEventsFromNuGetPackages(TextWriter writer, IReadOnlyCollection<PackageIdentity> packages, IReadOnlyCollection<NuGetFramework> frameworks, string? packageOutputFolder = null)
         {
             var extractor = new NuGetExtractor();
             await extractor.Extract(frameworks, packages, packageOutputFolder).ConfigureAwait(false);
+
+            if (extractor.Input == null)
+            {
+                throw new Exception("Cannot find valid input from the specified NuGet package.");
+            }
 
             await ExtractEventsFromAssemblies(writer, extractor.Input, frameworks.First()).ConfigureAwait(false);
         }
@@ -117,10 +126,15 @@ namespace Pharmacist.Core
         /// <param name="frameworks">The framework to generate for in order of priority.</param>
         /// <param name="packageOutputFolder">Directory for the packages, if null a random path in the temp folder will be used.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public static async Task ExtractEventsFromNuGetPackages(TextWriter writer, IReadOnlyCollection<LibraryRange> packages, IReadOnlyCollection<NuGetFramework> frameworks, string packageOutputFolder = null)
+        public static async Task ExtractEventsFromNuGetPackages(TextWriter writer, IReadOnlyCollection<LibraryRange> packages, IReadOnlyCollection<NuGetFramework> frameworks, string? packageOutputFolder = null)
         {
             var extractor = new NuGetExtractor();
             await extractor.Extract(frameworks, packages, packageOutputFolder).ConfigureAwait(false);
+
+            if (extractor.Input == null)
+            {
+                throw new Exception("Cannot find valid input from the specified NuGet package.");
+            }
 
             await ExtractEventsFromAssemblies(writer, extractor.Input, frameworks.First()).ConfigureAwait(false);
         }
@@ -163,6 +177,26 @@ namespace Pharmacist.Core
 
             await writer.WriteAsync(await TemplateManager.GetTemplateAsync(TemplateManager.HeaderTemplate).ConfigureAwait(false)).ConfigureAwait(false);
             await writer.WriteLineAsync("// Generated with Pharmacist version: " + FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion).ConfigureAwait(false);
+            await writer.FlushAsync().ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Writes the header for a output.
+        /// </summary>
+        /// <param name="writer">The writer where to output to.</param>
+        /// <param name="targetFramework">The target framework being generated.</param>
+        /// <returns>A task to monitor the progress.</returns>
+        public static async Task WriteHeader(TextWriter writer, string targetFramework)
+        {
+            if (writer == null)
+            {
+                throw new ArgumentNullException(nameof(writer));
+            }
+
+            await WriteHeader(writer).ConfigureAwait(false);
+
+            await writer.WriteAsync("// Target Framework Included:  " + targetFramework).ConfigureAwait(false);
+
             await writer.FlushAsync().ConfigureAwait(false);
         }
 
@@ -253,7 +287,7 @@ namespace Pharmacist.Core
                 throw new ArgumentNullException(nameof(writer));
             }
 
-            using (var compilation = RoslynHelpers.GetCompilation(input, framework))
+            using (var compilation = new EventBuilderCompiler(input, framework))
             {
                 var compilationOutputSyntax = CompilationUnit()
                     .WithMembers(List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))))
@@ -270,6 +304,41 @@ namespace Pharmacist.Core
                 await writer.WriteAsync(compilationOutputSyntax.NormalizeWhitespace(elasticTrivia: true).ToString()).ConfigureAwait(false);
                 await writer.FlushAsync().ConfigureAwait(false);
             }
+        }
+
+        /// <summary>
+        /// Extracts the events and delegates from the specified target frameworks.
+        /// </summary>
+        /// <param name="writer">The writer where to output to.</param>
+        /// <param name="frameworks">The frameworks we are adapting to.</param>
+        /// <returns>A task to monitor the progress.</returns>
+        public static async Task ExtractEventsFromTargetFramework(TextWriter writer, IReadOnlyList<NuGetFramework> frameworks)
+        {
+            if (writer == null)
+            {
+                throw new ArgumentNullException(nameof(writer));
+            }
+
+            if (frameworks == null)
+            {
+                throw new ArgumentNullException(nameof(frameworks));
+            }
+
+            if (frameworks.Count == 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(frameworks));
+            }
+
+            var mainFramework = frameworks[0];
+
+            LogHost.Default.Info(CultureInfo.InvariantCulture, "Processing target framework {0}", mainFramework);
+
+            var input = new InputAssembliesGroup();
+            input.IncludeGroup.AddFiles(FileSystemHelpers.GetFilesWithinSubdirectories(mainFramework.GetNuGetFrameworkFolders(), AssemblyHelpers.AssemblyFileExtensionsSet));
+
+            await ExtractEventsFromAssemblies(writer, input, mainFramework).ConfigureAwait(false);
+
+            LogHost.Default.Info(CultureInfo.InvariantCulture, "Finished target framework {0}", mainFramework);
         }
     }
 }
