@@ -19,10 +19,10 @@
   </ItemGroup>
 
   <ItemGroup Label="Package">
-    <None Include="targets\Pharmacist.MSBuild.NuGet.targets" PackagePath="build\net461" Pack="true" />
-    <None Include="targets\Pharmacist.MSBuild.NuGet.targets" PackagePath="buildTransitive\net461" Pack="true" />
-    <None Include="targets\Pharmacist.MSBuild.NuGet.targets" PackagePath="build\netstandard2.0" Pack="true" />
-    <None Include="targets\Pharmacist.MSBuild.NuGet.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\net461" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\net461" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\netstandard2.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
   </ItemGroup>
 
   <Target Name="PackBuildOutputs">
