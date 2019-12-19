@@ -3,6 +3,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
 
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,19 @@ namespace Pharmacist.Core.Generation.Resolvers
 {
     internal class PublicStaticEventNamespaceResolver : EventNamespaceResolverBase
     {
+        private static readonly ISet<string> SkipNamespaceList = new HashSet<string>(
+            new[]
+            {
+                "ReactiveUI.Events",
+
+                // Winforms
+                "System.CodeDom",
+
+                // Xamarin
+                "Xamarin.Forms.Xaml.Diagnostics"
+            },
+            StringComparer.InvariantCulture);
+
         protected override IEventGenerator GetEventGenerator()
         {
             return new StaticEventGenerator();
@@ -27,7 +41,7 @@ namespace Pharmacist.Core.Generation.Resolvers
             var output = new ConcurrentBag<(ITypeDefinition typeHostingEvent, ITypeDefinition? baseTypeDefinition, IEnumerable<IEvent> events)>();
 
             Parallel.ForEach(
-                GetPublicTypesWithEvents(compilation),
+                GetPublicTypesWithEvents(compilation).Where(x => !SkipNamespaceList.Contains(x.Namespace)),
                 typeDefinition =>
                 {
                     var validEvents = new HashSet<IEvent>(EventNameComparer.Default);

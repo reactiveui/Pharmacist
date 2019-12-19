@@ -29,6 +29,9 @@ namespace Pharmacist.Core.Generation.Resolvers
 
                 // Winforms
                 "System.CodeDom",
+
+                // Xamarin
+                "Xamarin.Forms.Xaml.Diagnostics"
             },
             StringComparer.InvariantCulture);
 
