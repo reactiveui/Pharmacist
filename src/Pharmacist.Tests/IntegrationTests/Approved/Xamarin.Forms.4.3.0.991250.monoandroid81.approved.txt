@@ -4041,23 +4041,3 @@ namespace Xamarin.Forms
         , x => global::Xamarin.Forms.Forms.ViewInitialized += x, x => global::Xamarin.Forms.Forms.ViewInitialized -= x);
     }
 }
-
-namespace Xamarin.Forms.Xaml.Diagnostics
-{
-    /// <summary>
-    /// A class that contains extension methods to wrap events contained within static classes within the <see cref = "Xamarin.Forms.Xaml.Diagnostics"/> namespace.
-    /// </summary>
-    public static class Events
-    {
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Xaml.Diagnostics.VisualDiagnostics.VisualTreeChanged"/> event triggers.
-        /// </summary>
-        public static global::System.IObservable<global::Xamarin.Forms.Xaml.Diagnostics.VisualTreeChangeEventArgs> VisualDiagnosticsVisualTreeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Xaml.Diagnostics.VisualTreeChangeEventArgs>, global::Xamarin.Forms.Xaml.Diagnostics.VisualTreeChangeEventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::Xamarin.Forms.Xaml.Diagnostics.VisualTreeChangeEventArgs e) => eventHandler(e);
-            return Handler;
-        }
-
-        , x => global::Xamarin.Forms.Xaml.Diagnostics.VisualDiagnostics.VisualTreeChanged += x, x => global::Xamarin.Forms.Xaml.Diagnostics.VisualDiagnostics.VisualTreeChanged -= x);
-    }
-}
