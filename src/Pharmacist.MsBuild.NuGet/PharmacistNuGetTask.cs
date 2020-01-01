@@ -27,6 +27,8 @@ namespace Pharmacist.MsBuild.NuGet
     [SuppressMessage("Design", "CA1031: Catch specific exceptions", Justification = "Final logging location for exceptions.")]
     public class PharmacistNuGetTask : Task, IEnableLogger
     {
+        private const string DefaultTargetFramework = "netstandard2.0";
+
         private static readonly ISet<string> ExclusionPackageReferenceSet = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase)
         {
             "Pharmacist.MSBuild",
@@ -42,8 +44,7 @@ namespace Pharmacist.MsBuild.NuGet
         /// <summary>
         /// Gets or sets the target framework.
         /// </summary>
-        [Required]
-        public string TargetFramework { get; set; }
+        public string TargetFramework { get; set; } = DefaultTargetFramework;
 
         /// <summary>
         /// Gets or sets the output file.
@@ -65,8 +66,7 @@ namespace Pharmacist.MsBuild.NuGet
 
             if (string.IsNullOrWhiteSpace(TargetFramework))
             {
-                Log.LogError($"{nameof(TargetFramework)} is not set");
-                return false;
+                TargetFramework = DefaultTargetFramework;
             }
 
             using (var writer = new StreamWriter(Path.Combine(OutputFile)))
