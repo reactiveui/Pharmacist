@@ -27,6 +27,8 @@ namespace Pharmacist.MsBuild.NuGet
     [SuppressMessage("Design", "CA1031: Catch specific exceptions", Justification = "Final logging location for exceptions.")]
     public class PharmacistNuGetTask : Task, IEnableLogger
     {
+        private const string DefaultTargetFramework = "netstandard2.0";
+
         private static readonly ISet<string> ExclusionPackageReferenceSet = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase)
         {
             "Pharmacist.MSBuild",
