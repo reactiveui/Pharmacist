@@ -7,10 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
-
+using System.Linq;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-
+using NuGet.Frameworks;
 using NuGet.LibraryModel;
 using NuGet.Versioning;
 
@@ -42,9 +42,19 @@ namespace Pharmacist.MsBuild.NuGet
         public ITaskItem[] PackageReferences { get; set; }
 
         /// <summary>
+        /// Gets or sets the guids of the project types.
+        /// </summary>
+        public string ProjectTypeGuids { get; set; }
+
+        /// <summary>
+        /// Gets or sets the version of the project type.
+        /// </summary>
+        public string TargetFrameworkVersion { get; set; }
+
+        /// <summary>
         /// Gets or sets the target framework.
         /// </summary>
-        public string TargetFramework { get; set; } = DefaultTargetFramework;
+        public string TargetFramework { get; set; }
 
         /// <summary>
         /// Gets or sets the output file.
@@ -64,40 +74,22 @@ namespace Pharmacist.MsBuild.NuGet
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(TargetFramework))
+            var nugetFrameworks = GetTargetFrameworks();
+            if (nugetFrameworks == null)
             {
-                TargetFramework = DefaultTargetFramework;
+                Log.LogError("Neither TargetFramework nor ProjectTypeGuids have been correctly set.");
+                return false;
             }
 
             using (var writer = new StreamWriter(Path.Combine(OutputFile)))
             {
-                var packages = new List<LibraryRange>();
-
-                // Include all package references that aren't ourselves.
-                foreach (var packageReference in PackageReferences)
-                {
-                    var include = packageReference.GetMetadata("PackageName");
-
-                    if (ExclusionPackageReferenceSet.Contains(include))
-                    {
-                        continue;
-                    }
-
-                    if (!VersionRange.TryParse(packageReference.GetMetadata("Version"), out var nuGetVersion))
-                    {
-                        this.Log().Error($"Package {include} does not have a valid Version.");
-                        continue;
-                    }
-
-                    var packageIdentity = new LibraryRange(include, nuGetVersion, LibraryDependencyTarget.Package);
-                    packages.Add(packageIdentity);
-                }
+                var packages = GetPackages();
 
                 ObservablesForEventGenerator.WriteHeader(writer, packages).ConfigureAwait(false).GetAwaiter().GetResult();
 
                 try
                 {
-                    ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(writer, packages, TargetFramework.ToFrameworks()).GetAwaiter().GetResult();
+                    ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(writer, packages, nugetFrameworks).GetAwaiter().GetResult();
                 }
                 catch (Exception ex)
                 {
@@ -107,6 +99,57 @@ namespace Pharmacist.MsBuild.NuGet
             }
 
             return true;
+        }
+
+        private IReadOnlyCollection<NuGetFramework> GetTargetFrameworks()
+        {
+            IReadOnlyCollection<NuGetFramework> nugetFrameworks;
+            if (!string.IsNullOrWhiteSpace(TargetFramework))
+            {
+                nugetFrameworks = TargetFramework.ToFrameworks();
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(ProjectTypeGuids) || string.IsNullOrWhiteSpace(TargetFrameworkVersion))
+                {
+                    return null;
+                }
+
+                var splitProjectTypeGuids = ProjectTypeGuids
+                    .Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(x => new Guid(x.Trim()));
+
+                nugetFrameworks = new List<NuGetFramework> { splitProjectTypeGuids.GetTargetFramework(TargetFrameworkVersion) };
+            }
+
+            return nugetFrameworks;
+        }
+
+        private List<LibraryRange> GetPackages()
+        {
+            var packages = new List<LibraryRange>();
+
+            // Include all package references that aren't ourselves.
+            foreach (var packageReference in PackageReferences)
+            {
+                var include = packageReference.GetMetadata("PackageName");
+
+                if (ExclusionPackageReferenceSet.Contains(include))
+                {
+                    continue;
+                }
+
+                if (!VersionRange.TryParse(packageReference.GetMetadata("Version"), out var nuGetVersion))
+                {
+                    this.Log().Error($"Package {include} does not have a valid Version.");
+                    continue;
+                }
+
+                var packageIdentity = new LibraryRange(include, nuGetVersion, LibraryDependencyTarget.Package);
+                packages.Add(packageIdentity);
+            }
+
+            return packages;
         }
     }
 }
