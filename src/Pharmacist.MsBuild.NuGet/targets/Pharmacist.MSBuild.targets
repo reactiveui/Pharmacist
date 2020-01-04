@@ -45,6 +45,8 @@
   <Target Name="GeneratePharmacist" BeforeTargets="CoreCompile">
     <PharmacistNuGetTask PackageReferences="@(PharmacistPackageReference -> WithMetadataValue('InProject', True) )"
                          TargetFramework="$(TargetFramework)"
+                         TargetFrameworkVersion="$(TargetFrameworkVersion)"
+                         ProjectTypeGuids="$(ProjectTypeGuids)"
                          OutputFile="$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs" />
 
     <Message Text="Processed Pharmacist Packages" />
