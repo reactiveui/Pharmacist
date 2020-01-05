@@ -47,6 +47,7 @@
                          TargetFramework="$(TargetFramework)"
                          TargetFrameworkVersion="$(TargetFrameworkVersion)"
                          ProjectTypeGuids="$(ProjectTypeGuids)"
+                         TargetPlatformVersion="$(TargetPlatformVersion)"
                          OutputFile="$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs" />
 
     <Message Text="Processed Pharmacist Packages" />
