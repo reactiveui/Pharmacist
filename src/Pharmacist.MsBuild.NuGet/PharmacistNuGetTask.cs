@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using NuGet.Frameworks;
@@ -27,7 +28,14 @@ namespace Pharmacist.MsBuild.NuGet
     [SuppressMessage("Design", "CA1031: Catch specific exceptions", Justification = "Final logging location for exceptions.")]
     public class PharmacistNuGetTask : Task, IEnableLogger
     {
-        private const string DefaultTargetFramework = "netstandard2.0";
+        private static readonly Regex _versionRegex = new Regex(@"(\d+\.)?(\d+\.)?(\d+\.)?(\*|\d+)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static readonly Dictionary<Guid, string> _guidToFramework = new Dictionary<Guid, string>()
+        {
+            [new Guid("EFBA0AD7-5A72-4C68-AF49-83D382785DCF")] = "MonoAndroid",
+            [new Guid("6BC8ED88-2882-458C-8E55-DFD12B67127B")] = "Xamarin.iOS",
+            [new Guid("A5A43C5B-DE2A-4C0C-9213-0A381AF9435A")] = "uap",
+            [new Guid("A3F8F2AB-B479-4A4A-A458-A89E7DC349F1")] = "Xamarin.Mac",
+        };
 
         private static readonly ISet<string> ExclusionPackageReferenceSet = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase)
         {
@@ -50,6 +58,11 @@ namespace Pharmacist.MsBuild.NuGet
         /// Gets or sets the version of the project type.
         /// </summary>
         public string TargetFrameworkVersion { get; set; }
+
+        /// <summary>
+        /// Gets or sets the version of the project type associated with UWP projects.
+        /// </summary>
+        public string TargetPlatformVersion { get; set; }
 
         /// <summary>
         /// Gets or sets the target framework.
@@ -103,23 +116,30 @@ namespace Pharmacist.MsBuild.NuGet
 
         private IReadOnlyCollection<NuGetFramework> GetTargetFrameworks()
         {
-            IReadOnlyCollection<NuGetFramework> nugetFrameworks;
             if (!string.IsNullOrWhiteSpace(TargetFramework))
             {
-                nugetFrameworks = TargetFramework.ToFrameworks();
+                return TargetFramework.ToFrameworks();
             }
-            else
+
+            var nugetFrameworks = new List<NuGetFramework>();
+
+            if (string.IsNullOrWhiteSpace(ProjectTypeGuids))
             {
-                if (string.IsNullOrWhiteSpace(ProjectTypeGuids) || string.IsNullOrWhiteSpace(TargetFrameworkVersion))
+                return null;
+            }
+
+            var projectGuids = ProjectTypeGuids
+                .Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries)
+                .Select(x => new Guid(x.Trim()));
+
+            var versionText = string.IsNullOrWhiteSpace(TargetFrameworkVersion) ? TargetFrameworkVersion : TargetPlatformVersion;
+            foreach (var projectGuid in projectGuids)
+            {
+                if (_guidToFramework.TryGetValue(projectGuid, out var targetFrameworkValue))
                 {
-                    return null;
+                    var versionMatch = new Version(_versionRegex.Match(versionText).Value);
+                    nugetFrameworks.Add(new NuGetFramework(targetFrameworkValue, versionMatch));
                 }
-
-                var splitProjectTypeGuids = ProjectTypeGuids
-                    .Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(x => new Guid(x.Trim()));
-
-                nugetFrameworks = new List<NuGetFramework> { splitProjectTypeGuids.GetTargetFramework(TargetFrameworkVersion) };
             }
 
             return nugetFrameworks;
