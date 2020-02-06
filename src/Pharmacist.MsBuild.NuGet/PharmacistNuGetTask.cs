@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
+using Newtonsoft.Json;
 using NuGet.Frameworks;
 using NuGet.LibraryModel;
 using NuGet.Versioning;
@@ -75,6 +76,12 @@ namespace Pharmacist.MsBuild.NuGet
         [Required]
         public string OutputFile { get; set; }
 
+        /// <summary>
+        /// Gets or sets the lock file.
+        /// </summary>
+        [Required]
+        public string LockFile { get; set; }
+
         /// <inheritdoc />
         public override bool Execute()
         {
@@ -94,10 +101,31 @@ namespace Pharmacist.MsBuild.NuGet
                 return false;
             }
 
+            var packages = GetPackages();
+
+            if (File.Exists(LockFile) && File.Exists(OutputFile))
+            {
+                try
+                {
+                    var fileContents = File.ReadAllText(LockFile);
+                    var lockedLibraries = JsonConvert.DeserializeObject<List<LibraryRange>>(fileContents);
+                    if (lockedLibraries != null && lockedLibraries.Count == packages.Count && lockedLibraries.All(packages.Contains))
+                    {
+                        return true;
+                    }
+                }
+                catch (JsonException ex)
+                {
+                    Log.LogWarningFromException(ex);
+                }
+                catch (Exception ex)
+                {
+                    Log.LogWarningFromException(ex);
+                }
+            }
+
             using (var writer = new StreamWriter(Path.Combine(OutputFile)))
             {
-                var packages = GetPackages();
-
                 ObservablesForEventGenerator.WriteHeader(writer, packages).ConfigureAwait(false).GetAwaiter().GetResult();
 
                 try
@@ -111,6 +139,7 @@ namespace Pharmacist.MsBuild.NuGet
                 }
             }
 
+            File.WriteAllText(LockFile, JsonConvert.SerializeObject(packages));
             return true;
         }
 
