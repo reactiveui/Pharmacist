@@ -39,7 +39,7 @@
     <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildThisFileDirectory)..\..\build\netstandard2.0\Pharmacist.MSBuild.dll</PharmacistTaskAssemblyFile>
     <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildThisFileDirectory)..\..\build\net461\Pharmacist.MSBuild.dll</PharmacistTaskAssemblyFile>
     <PharmacistOutputFile>$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs</PharmacistOutputFile>
-    <PharmacistLockFile>$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs</PharmacistLockFile>
+    <PharmacistLockFile>$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs.lock</PharmacistLockFile>
   </PropertyGroup>
 
   <UsingTask TaskName="Pharmacist.MsBuild.NuGet.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
