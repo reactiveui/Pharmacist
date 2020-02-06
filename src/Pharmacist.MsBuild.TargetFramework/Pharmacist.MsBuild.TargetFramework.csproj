@@ -12,11 +12,6 @@
     <NoWarn>$(NoWarn);CA1819</NoWarn>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Condition="'$(TargetFramework)' == 'net461' " Include="Microsoft.Build.Tasks.Core" Version="14.3" PrivateAssets="all" />
-    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="15.1.548" PrivateAssets="all" />
-  </ItemGroup>
-
   <ItemGroup Label="Package">
     <None Include="targets\Pharmacist.MSBuild.TargetFramework.targets" PackagePath="build\net461" Pack="true" />
     <None Include="targets\Pharmacist.MSBuild.TargetFramework.targets" PackagePath="buildTransitive\net461" Pack="true" />
@@ -33,6 +28,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Pharmacist.Core\Pharmacist.Core.csproj" PrivateAssets="All" />
     <ProjectReference Include="..\Pharmacist.Common\Pharmacist.Common.csproj" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.0" PrivateAssets="all" />
+    <ProjectReference Include="..\Pharmacist.MsBuild.Common\Pharmacist.MsBuild.Common.csproj" />
   </ItemGroup>
 </Project>

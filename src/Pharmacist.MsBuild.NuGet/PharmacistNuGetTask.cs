@@ -8,17 +8,14 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using Newtonsoft.Json;
-using NuGet.Frameworks;
 using NuGet.LibraryModel;
 using NuGet.Versioning;
 
 using Pharmacist.Core;
-using Pharmacist.Core.NuGet;
-
+using Pharmacist.MsBuild.Common;
 using Splat;
 
 namespace Pharmacist.MsBuild.NuGet
@@ -29,15 +26,6 @@ namespace Pharmacist.MsBuild.NuGet
     [SuppressMessage("Design", "CA1031: Catch specific exceptions", Justification = "Final logging location for exceptions.")]
     public class PharmacistNuGetTask : Task, IEnableLogger
     {
-        private static readonly Regex _versionRegex = new Regex(@"(\d+\.)?(\d+\.)?(\d+\.)?(\*|\d+)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-        private static readonly Dictionary<Guid, string> _guidToFramework = new Dictionary<Guid, string>()
-        {
-            [new Guid("EFBA0AD7-5A72-4C68-AF49-83D382785DCF")] = "MonoAndroid",
-            [new Guid("6BC8ED88-2882-458C-8E55-DFD12B67127B")] = "Xamarin.iOS",
-            [new Guid("A5A43C5B-DE2A-4C0C-9213-0A381AF9435A")] = "uap",
-            [new Guid("A3F8F2AB-B479-4A4A-A458-A89E7DC349F1")] = "Xamarin.Mac",
-        };
-
         private static readonly ISet<string> ExclusionPackageReferenceSet = new HashSet<string>(StringComparer.InvariantCultureIgnoreCase)
         {
             "Pharmacist.MSBuild",
@@ -95,7 +83,7 @@ namespace Pharmacist.MsBuild.NuGet
                 return false;
             }
 
-            var nugetFrameworks = GetTargetFrameworks();
+            var nugetFrameworks = TargetFrameworkHelper.GetTargetFrameworks(TargetFramework, TargetFrameworkVersion, TargetPlatformVersion, ProjectTypeGuids);
             if (nugetFrameworks == null)
             {
                 Log.LogError("Neither TargetFramework nor ProjectTypeGuids have been correctly set.");
@@ -142,37 +130,6 @@ namespace Pharmacist.MsBuild.NuGet
 
             File.WriteAllText(LockFile, JsonConvert.SerializeObject(packages, jsonSettings));
             return true;
-        }
-
-        private IReadOnlyCollection<NuGetFramework> GetTargetFrameworks()
-        {
-            if (!string.IsNullOrWhiteSpace(TargetFramework))
-            {
-                return TargetFramework.ToFrameworks();
-            }
-
-            var nugetFrameworks = new List<NuGetFramework>();
-
-            if (string.IsNullOrWhiteSpace(ProjectTypeGuids))
-            {
-                return null;
-            }
-
-            var projectGuids = ProjectTypeGuids
-                .Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(x => new Guid(x.Trim()));
-
-            var versionText = string.IsNullOrWhiteSpace(TargetFrameworkVersion) ? TargetFrameworkVersion : TargetPlatformVersion;
-            foreach (var projectGuid in projectGuids)
-            {
-                if (_guidToFramework.TryGetValue(projectGuid, out var targetFrameworkValue))
-                {
-                    var versionMatch = new Version(_versionRegex.Match(versionText).Value);
-                    nugetFrameworks.Add(new NuGetFramework(targetFrameworkValue, versionMatch));
-                }
-            }
-
-            return nugetFrameworks;
         }
 
         private List<LibraryRange> GetPackages()

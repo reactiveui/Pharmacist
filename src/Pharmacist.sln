@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7674B335
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacist.MsBuild.TargetFramework", "Pharmacist.MsBuild.TargetFramework\Pharmacist.MsBuild.TargetFramework.csproj", "{D353B43D-324F-4E97-BAA6-F8D0F8C1DB30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pharmacist.MsBuild.Common", "Pharmacist.MsBuild.Common\Pharmacist.MsBuild.Common.csproj", "{B3A11E56-D1F2-457C-AEDC-BE08A99848B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{D353B43D-324F-4E97-BAA6-F8D0F8C1DB30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D353B43D-324F-4E97-BAA6-F8D0F8C1DB30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D353B43D-324F-4E97-BAA6-F8D0F8C1DB30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3A11E56-D1F2-457C-AEDC-BE08A99848B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3A11E56-D1F2-457C-AEDC-BE08A99848B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3A11E56-D1F2-457C-AEDC-BE08A99848B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3A11E56-D1F2-457C-AEDC-BE08A99848B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{2714A571-3FA9-4F27-9E62-EB722A00AC53} = {8B77401B-FFCE-4AB0-8D3B-6A550783B835}
 		{C7C48470-B72E-454B-BB53-E48BB6F7DAD7} = {8B77401B-FFCE-4AB0-8D3B-6A550783B835}
 		{D353B43D-324F-4E97-BAA6-F8D0F8C1DB30} = {8B77401B-FFCE-4AB0-8D3B-6A550783B835}
+		{B3A11E56-D1F2-457C-AEDC-BE08A99848B0} = {8B77401B-FFCE-4AB0-8D3B-6A550783B835}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8AD09057-1163-45D2-A260-CB034E6DFD07}
