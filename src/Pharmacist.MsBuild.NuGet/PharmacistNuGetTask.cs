@@ -85,6 +85,7 @@ namespace Pharmacist.MsBuild.NuGet
         /// <inheritdoc />
         public override bool Execute()
         {
+            var jsonSettings = new JsonSerializerSettings() { Formatting = Formatting.Indented };
             var funcLogManager = new FuncLogManager(type => new WrappingFullLogger(new WrappingPrefixLogger(new MsBuildLogger(Log, LogLevel.Debug), type)));
             Locator.CurrentMutable.RegisterConstant(funcLogManager, typeof(ILogManager));
 
@@ -108,7 +109,7 @@ namespace Pharmacist.MsBuild.NuGet
                 try
                 {
                     var fileContents = File.ReadAllText(LockFile);
-                    var lockedLibraries = JsonConvert.DeserializeObject<List<LibraryRange>>(fileContents);
+                    var lockedLibraries = JsonConvert.DeserializeObject<List<LibraryRange>>(fileContents, jsonSettings);
                     if (lockedLibraries != null && lockedLibraries.Count == packages.Count && lockedLibraries.All(packages.Contains))
                     {
                         return true;
@@ -139,7 +140,7 @@ namespace Pharmacist.MsBuild.NuGet
                 }
             }
 
-            File.WriteAllText(LockFile, JsonConvert.SerializeObject(packages));
+            File.WriteAllText(LockFile, JsonConvert.SerializeObject(packages, jsonSettings));
             return true;
         }
 
