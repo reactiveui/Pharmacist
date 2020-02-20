@@ -14,8 +14,18 @@ using Xunit;
 
 namespace Pharmacist.Tests.IntegrationTests
 {
+    /// <summary>
+    /// Tests for the library ranges.
+    /// </summary>
     public class LibraryRangeNuGetTest
     {
+        /// <summary>
+        /// Tests a series of library ranges and see if they output valid values.
+        /// </summary>
+        /// <param name="packageName">The name of the package.</param>
+        /// <param name="nugetVersion">The NuGet package range.</param>
+        /// <param name="framework">The framework to generate for.</param>
+        /// <returns>A task to monitor the progress.</returns>
         [Theory]
         [InlineData("Xamarin.Forms", "4.*", "MonoAndroid81")]
         [InlineData("Xamarin.Forms", "4.*", "MonoAndroid90")]
@@ -42,6 +52,8 @@ namespace Pharmacist.Tests.IntegrationTests
         [InlineData("Uno.Core", "1.27.*", "netstandard2.0")]
         [InlineData("Uno.Core", "1.27.*", "net461")]
         [InlineData("Uno.Core", "1.27.*", "uap10.0.17763")]
+        [InlineData("Xamarin.FFImageLoading.Forms", "2.4.*", "uap10.0.17763")]
+        [InlineData("Xamarin.FFImageLoading.Forms", "2.4.*", "MonoAndroid90")]
         public Task ProcessLibraryRange(string packageName, string nugetVersion, string framework)
         {
             var package = new[] { new LibraryRange(packageName, VersionRange.Parse(nugetVersion), LibraryDependencyTarget.Package) };

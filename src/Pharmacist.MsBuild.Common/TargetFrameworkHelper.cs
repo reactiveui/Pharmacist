@@ -35,7 +35,7 @@ namespace Pharmacist.MsBuild.Common
         /// <param name="targetPlatformVersion">The string with the TargetPlatformVersion element.</param>
         /// <param name="projectTypeGuids">The string with the ProjectTypeGuids element.</param>
         /// <returns>The NuGet target frameworks that match the specified target framework input.</returns>
-        public static IReadOnlyCollection<NuGetFramework> GetTargetFrameworks(
+        public static IReadOnlyList<NuGetFramework> GetTargetFrameworks(
             string targetFramework,
             string targetFrameworkVersion,
             string targetPlatformVersion,

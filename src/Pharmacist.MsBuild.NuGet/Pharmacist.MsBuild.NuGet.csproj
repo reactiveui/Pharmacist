@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
     <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);net461</TargetFrameworks>
     <PackageId>Pharmacist.MSBuild</PackageId>
     <AssemblyName>Pharmacist.MSBuild</AssemblyName>
@@ -11,13 +11,16 @@
     <PackageDescription>Produces from NuGet packages System.Reactive Observables for all events within the NuGet packages inside the project..</PackageDescription>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PackBuildOutputs</TargetsForTfmSpecificContentInPackage>
     <NoWarn>$(NoWarn);CA1819</NoWarn>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <PackageReference Condition="'$(TargetFramework)' == 'net461' " Include="Microsoft.Build.Tasks.Core" Version="14.3" PrivateAssets="all" />
-    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="15.1.548" PrivateAssets="all" />
+    <PackageReference Include="CommandLineParser" Version="2.7.82" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Splat.Serilog" Version="9.3.11" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.1.1" />
   </ItemGroup>
-
   <ItemGroup Label="Package">
     <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\net461" Pack="true" />
     <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\net461" Pack="true" />
@@ -36,4 +39,5 @@
     <ProjectReference Include="..\Pharmacist.Common\Pharmacist.Common.csproj" />
     <ProjectReference Include="..\Pharmacist.MsBuild.Common\Pharmacist.MsBuild.Common.csproj" />
   </ItemGroup>
+
 </Project>

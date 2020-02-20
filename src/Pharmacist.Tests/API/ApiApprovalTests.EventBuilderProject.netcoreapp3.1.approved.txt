@@ -27,6 +27,7 @@ namespace Pharmacist.Core
         public static System.Threading.Tasks.Task WriteHeader(System.IO.TextWriter writer, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> libraryRanges) { }
         public static System.Threading.Tasks.Task WriteHeader(System.IO.TextWriter writer, System.Collections.Generic.IEnumerable<string> fileNames) { }
         public static System.Threading.Tasks.Task WriteHeader(System.IO.TextWriter writer, Pharmacist.Core.AutoPlatform autoPlatform) { }
+        public static System.Threading.Tasks.Task WriteHeader(System.IO.TextWriter writer, NuGet.Frameworks.NuGetFramework framework) { }
     }
     public class static PlatformHelper
     {

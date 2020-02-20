@@ -1,0 +1,348 @@
+using global::System;
+using global::System.Reactive;
+using global::System.Reactive.Linq;
+using global::System.Reactive.Subjects;
+using global::Pharmacist.Common;
+
+namespace Android.Views
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Android.Views"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Android.Views.View"/> class.
+        /// </summary>
+        public static ViewEvents Events(this global::Android.Views.View item) => new ViewEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Android.Views.View"/> class as observables.
+    /// </summary>
+    public class ViewEvents
+    {
+        private readonly global::Android.Views.View _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Android.Views.View"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public ViewEvents(global::Android.Views.View data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.CapturedPointer"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.CapturedPointerEventArgs> CapturedPointer => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.CapturedPointerEventArgs>, global::Android.Views.View.CapturedPointerEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.CapturedPointerEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.CapturedPointer += x, x => _data.CapturedPointer -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.Click"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Click => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Click += x, x => _data.Click -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.ContextClick"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.ContextClickEventArgs> ContextClick => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.ContextClickEventArgs>, global::Android.Views.View.ContextClickEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.ContextClickEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ContextClick += x, x => _data.ContextClick -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.ContextMenuCreated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.CreateContextMenuEventArgs> ContextMenuCreated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.CreateContextMenuEventArgs>, global::Android.Views.View.CreateContextMenuEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.CreateContextMenuEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ContextMenuCreated += x, x => _data.ContextMenuCreated -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.Drag"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.DragEventArgs> Drag => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.DragEventArgs>, global::Android.Views.View.DragEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.DragEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Drag += x, x => _data.Drag -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.FocusChange"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.FocusChangeEventArgs> FocusChange => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.FocusChangeEventArgs>, global::Android.Views.View.FocusChangeEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.FocusChangeEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.FocusChange += x, x => _data.FocusChange -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.GenericMotion"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.GenericMotionEventArgs> GenericMotion => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.GenericMotionEventArgs>, global::Android.Views.View.GenericMotionEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.GenericMotionEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.GenericMotion += x, x => _data.GenericMotion -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.Hover"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.HoverEventArgs> Hover => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.HoverEventArgs>, global::Android.Views.View.HoverEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.HoverEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Hover += x, x => _data.Hover -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.KeyPress"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.KeyEventArgs> KeyPress => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.KeyEventArgs>, global::Android.Views.View.KeyEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.KeyEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.KeyPress += x, x => _data.KeyPress -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.LayoutChange"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.LayoutChangeEventArgs> LayoutChange => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.LayoutChangeEventArgs>, global::Android.Views.View.LayoutChangeEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.LayoutChangeEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LayoutChange += x, x => _data.LayoutChange -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.LongClick"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.LongClickEventArgs> LongClick => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.LongClickEventArgs>, global::Android.Views.View.LongClickEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.LongClickEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.LongClick += x, x => _data.LongClick -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.ScrollChange"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.ScrollChangeEventArgs> ScrollChange => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.ScrollChangeEventArgs>, global::Android.Views.View.ScrollChangeEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.ScrollChangeEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ScrollChange += x, x => _data.ScrollChange -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.SystemUiVisibilityChange"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.SystemUiVisibilityChangeEventArgs> SystemUiVisibilityChange => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.SystemUiVisibilityChangeEventArgs>, global::Android.Views.View.SystemUiVisibilityChangeEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.SystemUiVisibilityChangeEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.SystemUiVisibilityChange += x, x => _data.SystemUiVisibilityChange -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.Touch"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.TouchEventArgs> Touch => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.TouchEventArgs>, global::Android.Views.View.TouchEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.TouchEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Touch += x, x => _data.Touch -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.UnhandledKeyEvent"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.UnhandledKeyEventEventArgs> UnhandledKeyEvent => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.UnhandledKeyEventEventArgs>, global::Android.Views.View.UnhandledKeyEventEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.UnhandledKeyEventEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.UnhandledKeyEvent += x, x => _data.UnhandledKeyEvent -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.ViewAttachedToWindow"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.ViewAttachedToWindowEventArgs> ViewAttachedToWindow => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.ViewAttachedToWindowEventArgs>, global::Android.Views.View.ViewAttachedToWindowEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.ViewAttachedToWindowEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ViewAttachedToWindow += x, x => _data.ViewAttachedToWindow -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Android.Views.View.ViewDetachedFromWindow"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Android.Views.View.ViewDetachedFromWindowEventArgs> ViewDetachedFromWindow => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Android.Views.View.ViewDetachedFromWindowEventArgs>, global::Android.Views.View.ViewDetachedFromWindowEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Android.Views.View.ViewDetachedFromWindowEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ViewDetachedFromWindow += x, x => _data.ViewDetachedFromWindow -= x);
+    }
+}
+
+namespace FFImageLoading.Forms
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "FFImageLoading.Forms"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::FFImageLoading.Forms.CachedImage"/> class.
+        /// </summary>
+        public static CachedImageEvents Events(this global::FFImageLoading.Forms.CachedImage item) => new CachedImageEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::FFImageLoading.Forms.CachedImage"/> class as observables.
+    /// </summary>
+    public class CachedImageEvents
+    {
+        private readonly global::FFImageLoading.Forms.CachedImage _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::FFImageLoading.Forms.CachedImage"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public CachedImageEvents(global::FFImageLoading.Forms.CachedImage data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.CachedImage.DownloadProgress"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::FFImageLoading.Forms.CachedImageEvents.DownloadProgressEventArgs> DownloadProgress => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::FFImageLoading.Forms.CachedImageEvents.DownloadProgressEventArgs>, global::FFImageLoading.Forms.CachedImageEvents.DownloadProgressEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::FFImageLoading.Forms.CachedImageEvents.DownloadProgressEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DownloadProgress += x, x => _data.DownloadProgress -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.CachedImage.DownloadStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::FFImageLoading.Forms.CachedImageEvents.DownloadStartedEventArgs> DownloadStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::FFImageLoading.Forms.CachedImageEvents.DownloadStartedEventArgs>, global::FFImageLoading.Forms.CachedImageEvents.DownloadStartedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::FFImageLoading.Forms.CachedImageEvents.DownloadStartedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DownloadStarted += x, x => _data.DownloadStarted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.CachedImage.Error"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::FFImageLoading.Forms.CachedImageEvents.ErrorEventArgs> Error => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::FFImageLoading.Forms.CachedImageEvents.ErrorEventArgs>, global::FFImageLoading.Forms.CachedImageEvents.ErrorEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::FFImageLoading.Forms.CachedImageEvents.ErrorEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Error += x, x => _data.Error -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.CachedImage.FileWriteFinished"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::FFImageLoading.Forms.CachedImageEvents.FileWriteFinishedEventArgs> FileWriteFinished => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::FFImageLoading.Forms.CachedImageEvents.FileWriteFinishedEventArgs>, global::FFImageLoading.Forms.CachedImageEvents.FileWriteFinishedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::FFImageLoading.Forms.CachedImageEvents.FileWriteFinishedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.FileWriteFinished += x, x => _data.FileWriteFinished -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.CachedImage.Finish"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::FFImageLoading.Forms.CachedImageEvents.FinishEventArgs> Finish => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::FFImageLoading.Forms.CachedImageEvents.FinishEventArgs>, global::FFImageLoading.Forms.CachedImageEvents.FinishEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::FFImageLoading.Forms.CachedImageEvents.FinishEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Finish += x, x => _data.Finish -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.CachedImage.Success"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::FFImageLoading.Forms.CachedImageEvents.SuccessEventArgs> Success => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::FFImageLoading.Forms.CachedImageEvents.SuccessEventArgs>, global::FFImageLoading.Forms.CachedImageEvents.SuccessEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::FFImageLoading.Forms.CachedImageEvents.SuccessEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Success += x, x => _data.Success -= x);
+    }
+}
+
+namespace FFImageLoading.Forms.Platform
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "FFImageLoading.Forms.Platform"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::FFImageLoading.Forms.Platform.CachedImageFastRenderer"/> class.
+        /// </summary>
+        public static CachedImageFastRendererEvents Events(this global::FFImageLoading.Forms.Platform.CachedImageFastRenderer item) => new CachedImageFastRendererEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::FFImageLoading.Forms.Platform.CachedImageFastRenderer"/> class as observables.
+    /// </summary>
+    public class CachedImageFastRendererEvents : global::Android.Views.ViewEvents
+    {
+        private readonly global::FFImageLoading.Forms.Platform.CachedImageFastRenderer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::FFImageLoading.Forms.Platform.CachedImageFastRenderer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public CachedImageFastRendererEvents(global::FFImageLoading.Forms.Platform.CachedImageFastRenderer data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.Platform.CachedImageFastRenderer.ElementChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.Platform.CachedImageFastRenderer.ElementPropertyChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementPropertyChanged += x, x => _data.ElementPropertyChanged -= x);
+    }
+}

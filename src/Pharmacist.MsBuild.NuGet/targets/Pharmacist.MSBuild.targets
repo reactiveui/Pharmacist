@@ -36,24 +36,16 @@
 
   <PropertyGroup>
     <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)\obj\$(Configuration)\</IntermediateOutputPath>
-    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildThisFileDirectory)..\..\build\netstandard2.0\Pharmacist.MSBuild.dll</PharmacistTaskAssemblyFile>
-    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildThisFileDirectory)..\..\build\net461\Pharmacist.MSBuild.dll</PharmacistTaskAssemblyFile>
+
+    <PharmacistGenFileExe Condition="'$(MSBuildRuntimeType)' != 'Full'">dotnet "$(MSBuildThisFileDirectory)..\..\build\netcoreapp3.1\Pharmacist.MSBuild.dll"</PharmacistGenFileExe>
+    <PharmacistGenFileExe Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildThisFileDirectory)..\..\build\net461\Pharmacist.MSBuild.exe</PharmacistGenFileExe>
     <PharmacistOutputFile>$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs</PharmacistOutputFile>
-    <PharmacistLockFile>$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs.lock</PharmacistLockFile>
   </PropertyGroup>
 
   <UsingTask TaskName="Pharmacist.MsBuild.NuGet.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
 
   <Target Name="GeneratePharmacist" BeforeTargets="CoreCompile">
-    <PharmacistNuGetTask PackageReferences="@(PharmacistPackageReference -> WithMetadataValue('InProject', True) )"
-                         TargetFramework="$(TargetFramework)"
-                         TargetFrameworkVersion="$(TargetFrameworkVersion)"
-                         ProjectTypeGuids="$(ProjectTypeGuids)"
-                         TargetPlatformVersion="$(TargetPlatformVersion)"
-                         OutputFile="$(PharmacistOutputFile)"
-                         LockFile="$(PharmacistLockFile)"/>
-
-    <Message Text="Processed Pharmacist Packages" />
+    <Exec Command="$(PharmacistGenFileExe) --packages='@(PharmacistPackageReference -> WithMetadataValue('InProject', True) )' --target-framework='$(TargetFramework)' --project-asset-file='$(ProjectAssetsFile)' --target-framework-version='$(TargetFrameworkVersion)' --project-type-guids='$(ProjectTypeGuids)' --target-platform-version='$(TargetPlatformVersion)' --output='$(OutputFile)' "/>
 
     <ItemGroup Condition="Exists('$(PharmacistOutputFile)')">
       <Compile Include="$(PharmacistOutputFile)" />

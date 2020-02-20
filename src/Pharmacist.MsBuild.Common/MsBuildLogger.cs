@@ -7,7 +7,7 @@ using System;
 using Microsoft.Build.Utilities;
 using Splat;
 
-namespace Pharmacist.MsBuild.TargetFramework
+namespace Pharmacist.MsBuild.Common
 {
     /// <summary>
     /// A logger which talks to the MsBuild logging system.

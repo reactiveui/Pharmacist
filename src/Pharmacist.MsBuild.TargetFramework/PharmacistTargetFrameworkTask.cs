@@ -10,6 +10,7 @@ using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using Pharmacist.Core;
 using Pharmacist.Core.NuGet;
+using Pharmacist.MsBuild.Common;
 using Splat;
 
 namespace Pharmacist.MsBuild.TargetFramework
@@ -21,9 +22,23 @@ namespace Pharmacist.MsBuild.TargetFramework
     public class PharmacistTargetFrameworkTask : Task, IEnableLogger
     {
         /// <summary>
+        /// Gets or sets the guids of the project types.
+        /// </summary>
+        public string ProjectTypeGuids { get; set; }
+
+        /// <summary>
+        /// Gets or sets the version of the project type.
+        /// </summary>
+        public string TargetFrameworkVersion { get; set; }
+
+        /// <summary>
+        /// Gets or sets the version of the project type associated with UWP projects.
+        /// </summary>
+        public string TargetPlatformVersion { get; set; }
+
+        /// <summary>
         /// Gets or sets the target framework.
         /// </summary>
-        [Required]
         public string TargetFramework { get; set; }
 
         /// <summary>
@@ -44,19 +59,20 @@ namespace Pharmacist.MsBuild.TargetFramework
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(TargetFramework))
+            var nugetFrameworks = TargetFrameworkHelper.GetTargetFrameworks(TargetFramework, TargetFrameworkVersion, TargetPlatformVersion, ProjectTypeGuids);
+            if (nugetFrameworks == null)
             {
-                Log.LogError($"{nameof(TargetFramework)} is not set");
+                Log.LogError("Neither TargetFramework nor ProjectTypeGuids have been correctly set.");
                 return false;
             }
 
             using (var writer = new StreamWriter(Path.Combine(OutputFile)))
             {
-                ObservablesForEventGenerator.WriteHeader(writer, TargetFramework).ConfigureAwait(false).GetAwaiter().GetResult();
+                ObservablesForEventGenerator.WriteHeader(writer, nugetFrameworks[0]).ConfigureAwait(false).GetAwaiter().GetResult();
 
                 try
                 {
-                    ObservablesForEventGenerator.ExtractEventsFromTargetFramework(writer, TargetFramework.ToFrameworks()).GetAwaiter().GetResult();
+                    ObservablesForEventGenerator.ExtractEventsFromTargetFramework(writer, nugetFrameworks).GetAwaiter().GetResult();
                 }
                 catch (Exception ex)
                 {

@@ -257,7 +257,7 @@ namespace Pharmacist.Core
         /// Writes the header for a output.
         /// </summary>
         /// <param name="writer">The writer where to output to.</param>
-        /// <param name="autoPlatform">The packages we are writing for..</param>
+        /// <param name="autoPlatform">The platform we are writing for.</param>
         /// <returns>A task to monitor the progress.</returns>
         public static async Task WriteHeader(TextWriter writer, AutoPlatform autoPlatform)
         {
@@ -269,6 +269,26 @@ namespace Pharmacist.Core
             await WriteHeader(writer).ConfigureAwait(false);
 
             await writer.WriteLineAsync($"// Platform included: {autoPlatform}").ConfigureAwait(false);
+
+            await writer.FlushAsync().ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Writes the header for a output.
+        /// </summary>
+        /// <param name="writer">The writer where to output to.</param>
+        /// <param name="framework">The target framework we are writing for.</param>
+        /// <returns>A task to monitor the progress.</returns>
+        public static async Task WriteHeader(TextWriter writer, NuGetFramework framework)
+        {
+            if (writer == null)
+            {
+                throw new ArgumentNullException(nameof(writer));
+            }
+
+            await WriteHeader(writer).ConfigureAwait(false);
+
+            await writer.WriteLineAsync($"// Platform included: {framework}").ConfigureAwait(false);
 
             await writer.FlushAsync().ConfigureAwait(false);
         }

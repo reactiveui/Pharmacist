@@ -1,0 +1,96 @@
+using global::System;
+using global::System.Reactive;
+using global::System.Reactive.Linq;
+using global::System.Reactive.Subjects;
+using global::Pharmacist.Common;
+
+namespace FFImageLoading.Forms
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "FFImageLoading.Forms"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::FFImageLoading.Forms.CachedImage"/> class.
+        /// </summary>
+        public static CachedImageEvents Events(this global::FFImageLoading.Forms.CachedImage item) => new CachedImageEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::FFImageLoading.Forms.CachedImage"/> class as observables.
+    /// </summary>
+    public class CachedImageEvents
+    {
+        private readonly global::FFImageLoading.Forms.CachedImage _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::FFImageLoading.Forms.CachedImage"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public CachedImageEvents(global::FFImageLoading.Forms.CachedImage data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.CachedImage.DownloadProgress"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::FFImageLoading.Forms.CachedImageEvents.DownloadProgressEventArgs> DownloadProgress => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::FFImageLoading.Forms.CachedImageEvents.DownloadProgressEventArgs>, global::FFImageLoading.Forms.CachedImageEvents.DownloadProgressEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::FFImageLoading.Forms.CachedImageEvents.DownloadProgressEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DownloadProgress += x, x => _data.DownloadProgress -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.CachedImage.DownloadStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::FFImageLoading.Forms.CachedImageEvents.DownloadStartedEventArgs> DownloadStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::FFImageLoading.Forms.CachedImageEvents.DownloadStartedEventArgs>, global::FFImageLoading.Forms.CachedImageEvents.DownloadStartedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::FFImageLoading.Forms.CachedImageEvents.DownloadStartedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DownloadStarted += x, x => _data.DownloadStarted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.CachedImage.Error"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::FFImageLoading.Forms.CachedImageEvents.ErrorEventArgs> Error => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::FFImageLoading.Forms.CachedImageEvents.ErrorEventArgs>, global::FFImageLoading.Forms.CachedImageEvents.ErrorEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::FFImageLoading.Forms.CachedImageEvents.ErrorEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Error += x, x => _data.Error -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.CachedImage.FileWriteFinished"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::FFImageLoading.Forms.CachedImageEvents.FileWriteFinishedEventArgs> FileWriteFinished => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::FFImageLoading.Forms.CachedImageEvents.FileWriteFinishedEventArgs>, global::FFImageLoading.Forms.CachedImageEvents.FileWriteFinishedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::FFImageLoading.Forms.CachedImageEvents.FileWriteFinishedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.FileWriteFinished += x, x => _data.FileWriteFinished -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.CachedImage.Finish"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::FFImageLoading.Forms.CachedImageEvents.FinishEventArgs> Finish => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::FFImageLoading.Forms.CachedImageEvents.FinishEventArgs>, global::FFImageLoading.Forms.CachedImageEvents.FinishEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::FFImageLoading.Forms.CachedImageEvents.FinishEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Finish += x, x => _data.Finish -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::FFImageLoading.Forms.CachedImage.Success"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::FFImageLoading.Forms.CachedImageEvents.SuccessEventArgs> Success => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::FFImageLoading.Forms.CachedImageEvents.SuccessEventArgs>, global::FFImageLoading.Forms.CachedImageEvents.SuccessEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::FFImageLoading.Forms.CachedImageEvents.SuccessEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Success += x, x => _data.Success -= x);
+    }
+}
