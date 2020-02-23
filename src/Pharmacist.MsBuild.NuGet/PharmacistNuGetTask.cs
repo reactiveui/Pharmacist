@@ -8,11 +8,13 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using NuGet.Frameworks;
 using NuGet.LibraryModel;
+using NuGet.Packaging.Core;
 using NuGet.Versioning;
 
 using Pharmacist.Core;
@@ -29,6 +31,7 @@ namespace Pharmacist.MsBuild.NuGet
     public class PharmacistNuGetTask : Task, IEnableLogger
     {
         private static readonly Regex _versionRegex = new Regex(@"(\d+\.)?(\d+\.)?(\d+\.)?(\*|\d+)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static readonly Regex _packageRegex = new Regex("^(.*)/(.*)$", RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
         private static readonly Dictionary<Guid, string> _guidToFramework = new Dictionary<Guid, string>()
         {
             [new Guid("EFBA0AD7-5A72-4C68-AF49-83D382785DCF")] = "MonoAndroid",
@@ -78,6 +81,7 @@ namespace Pharmacist.MsBuild.NuGet
         /// <inheritdoc />
         public override bool Execute()
         {
+            var lockFile = OutputFile + ".lock";
             var funcLogManager = new FuncLogManager(type => new WrappingFullLogger(new WrappingPrefixLogger(new MsBuildLogger(Log, LogLevel.Debug), type)));
             Locator.CurrentMutable.RegisterConstant(funcLogManager, typeof(ILogManager));
 
@@ -94,10 +98,17 @@ namespace Pharmacist.MsBuild.NuGet
                 return false;
             }
 
-            using (var writer = new StreamWriter(Path.Combine(OutputFile)))
-            {
-                var packages = GetPackages();
+            var packages = GetPackages();
 
+            var lockPackages = ReadPackages(lockFile);
+
+            if (lockPackages != null && lockPackages.Count == packages.Count && lockPackages.All(packages.Contains))
+            {
+                return true;
+            }
+
+            using (var writer = new StreamWriter(Path.Combine(OutputFile), false, Encoding.UTF8))
+            {
                 ObservablesForEventGenerator.WriteHeader(writer, packages).ConfigureAwait(false).GetAwaiter().GetResult();
 
                 try
@@ -110,6 +121,8 @@ namespace Pharmacist.MsBuild.NuGet
                     return false;
                 }
             }
+
+            WritePackages(packages, lockFile);
 
             return true;
         }
@@ -145,9 +158,9 @@ namespace Pharmacist.MsBuild.NuGet
             return nugetFrameworks;
         }
 
-        private List<LibraryRange> GetPackages()
+        private List<PackageIdentity> GetPackages()
         {
-            var packages = new List<LibraryRange>();
+            var packages = new List<PackageIdentity>();
 
             // Include all package references that aren't ourselves.
             foreach (var packageReference in PackageReferences)
@@ -165,11 +178,63 @@ namespace Pharmacist.MsBuild.NuGet
                     continue;
                 }
 
-                var packageIdentity = new LibraryRange(include, nuGetVersion, LibraryDependencyTarget.Package);
+                var libraryRange = new LibraryRange(include, nuGetVersion, LibraryDependencyTarget.Package);
+                var packageIdentity = NuGetPackageHelper.GetBestMatch(libraryRange).GetAwaiter().GetResult();
                 packages.Add(packageIdentity);
             }
 
             return packages;
+        }
+
+        private void WritePackages(List<PackageIdentity> packageIdentities, string lockFileName)
+        {
+            using var streamWriter = new StreamWriter(lockFileName, false, Encoding.UTF8);
+            foreach (var packageIdentity in packageIdentities)
+            {
+                streamWriter.WriteLine($"{packageIdentity.Id}/{packageIdentity.Version}");
+            }
+        }
+
+        private List<PackageIdentity> ReadPackages(string lockFileName)
+        {
+            if (string.IsNullOrWhiteSpace(lockFileName))
+            {
+                throw new ArgumentException("Cannot have a empty lock file name", nameof(lockFileName));
+            }
+
+            var packageIdentities = new List<PackageIdentity>();
+
+            if (File.Exists(lockFileName) == false)
+            {
+                return packageIdentities;
+            }
+
+            try
+            {
+                using var streamReader = new StreamReader(lockFileName, Encoding.UTF8, true);
+
+                string line;
+
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    if (string.IsNullOrWhiteSpace(line))
+                    {
+                        continue;
+                    }
+
+                    var match = _packageRegex.Match(line);
+
+                    var packageIdentity = new PackageIdentity(match.Groups[1].Value, NuGetVersion.Parse(match.Groups[2].Value));
+
+                    packageIdentities.Add(packageIdentity);
+                }
+            }
+            catch
+            {
+                packageIdentities = new List<PackageIdentity>();
+            }
+
+            return packageIdentities;
         }
     }
 }

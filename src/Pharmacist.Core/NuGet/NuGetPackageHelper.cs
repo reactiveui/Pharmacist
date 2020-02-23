@@ -129,6 +129,28 @@ namespace Pharmacist.Core.NuGet
         /// Gets the best matching PackageIdentity for the specified LibraryRange.
         /// </summary>
         /// <param name="identity">The library range to find the best patch for.</param>
+        /// <param name="nugetSource">Optional v3 nuget source. Will default to default nuget.org servers.</param>
+        /// <param name="token">A optional cancellation token.</param>
+        /// <returns>The best matching PackageIdentity to the specified version range.</returns>
+        public static async Task<PackageIdentity> GetBestMatch(LibraryRange identity, PackageSource? nugetSource = null, CancellationToken token = default)
+        {
+            if (identity == null)
+            {
+                throw new ArgumentNullException(nameof(identity));
+            }
+
+            // Use the provided nuget package source, or use nuget.org
+            var sourceRepository = new SourceRepository(nugetSource ?? new PackageSource(DefaultNuGetSource), Providers);
+
+            var findPackageResource = await sourceRepository.GetResourceAsync<FindPackageByIdResource>(token).ConfigureAwait(false);
+
+            return await GetBestMatch(identity, findPackageResource, token).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Gets the best matching PackageIdentity for the specified LibraryRange.
+        /// </summary>
+        /// <param name="identity">The library range to find the best patch for.</param>
         /// <param name="findPackageResource">The source repository where to match.</param>
         /// <param name="token">A optional cancellation token.</param>
         /// <returns>The best matching PackageIdentity to the specified version range.</returns>

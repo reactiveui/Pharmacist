@@ -50,7 +50,7 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class that contains extension methods to wrap events for classes contained within the {0} namespace.", namespaceName))
                 .WithMembers(List<MemberDeclarationSyntax>(declarations.Select(declaration =>
                     {
-                        var eventsClassName = IdentifierName(declaration.Name + "Events");
+                        var eventsClassName = IdentifierName("Rx" + declaration.Name + "Events");
                         return MethodDeclaration(eventsClassName, Identifier("Events"))
                             .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword)))
                             .WithParameterList(ParameterList(SingletonSeparatedList(
@@ -70,7 +70,7 @@ namespace Pharmacist.Core.Generation.Generators
         {
             const string dataParameterName = "data";
             var constructor = ConstructorDeclaration(
-                    Identifier(typeDefinition.Name + "Events"))
+                    Identifier("Rx" + typeDefinition.Name + "Events"))
                 .WithModifiers(
                     TokenList(
                         Token(SyntaxKind.PublicKeyword)))
