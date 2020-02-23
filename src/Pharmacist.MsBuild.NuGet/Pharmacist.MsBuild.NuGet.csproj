@@ -12,7 +12,7 @@
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PackBuildOutputs</TargetsForTfmSpecificContentInPackage>
     <NoWarn>$(NoWarn);CA1819</NoWarn>
     <NoPackageAnalysis>true</NoPackageAnalysis>
-    
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
   
   <ItemGroup>

@@ -102,13 +102,26 @@ namespace Pharmacist.MsBuild.NuGet
 
         private static (IEnumerable<string> includeFileNames, IEnumerable<string> supportFileNames, IReadOnlyCollection<LibraryRange> librariesIncluded) GetPackages(IEnumerable<string> packageReferences, string dependencyFile)
         {
+            if (packageReferences == null)
+            {
+                throw new ArgumentNullException(nameof(packageReferences));
+            }
+
+            if (string.IsNullOrWhiteSpace(dependencyFile))
+            {
+                return (null, null, null);
+            }
+
+            var packageReferencesSet = new HashSet<string>(packageReferences, StringComparer.InvariantCultureIgnoreCase);
             using var dependencyReader = new DependencyContextJsonReader();
 
-            var dependencyContext = dependencyReader.Read(new FileStream(dependencyFile, FileMode.Open, FileAccess.Read));
+            using var fileStream = new FileStream(dependencyFile, FileMode.Open, FileAccess.Read);
+            var dependencyContext = dependencyReader.Read(fileStream);
 
-            foreach (var runtime in dependencyContext.CompileLibraries)
+            foreach (var runtime in dependencyContext.RuntimeLibraries
+                .Where(x => x.Type == "package" && !ExclusionPackageReferenceSet.Contains(x.Name) && packageReferencesSet.Contains(x.Name)))
             {
-                runtime.ResolveReferencePaths();
+                var path = runtime.Path;
             }
 
             return (null, null, null);

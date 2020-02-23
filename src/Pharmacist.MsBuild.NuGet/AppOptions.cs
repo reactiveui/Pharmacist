@@ -17,7 +17,7 @@ namespace Pharmacist.MsBuild.NuGet
         /// Gets or sets the project references.
         /// </summary>
         [Option('p', "packages", Required = true, HelpText = "The packages to process.", Separator = ';')]
-        public List<string> PackageReferences { get; set; }
+        public IEnumerable<string> PackageReferences { get; set; }
 
         /// <summary>
         /// Gets or sets the guids of the project types.
