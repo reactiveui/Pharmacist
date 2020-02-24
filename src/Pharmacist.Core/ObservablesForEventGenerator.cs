@@ -232,6 +232,34 @@ namespace Pharmacist.Core
         /// Writes the header for a output.
         /// </summary>
         /// <param name="writer">The writer where to output to.</param>
+        /// <param name="packageIdentities">The packages included in the output.</param>
+        /// <returns>A task to monitor the progress.</returns>
+        public static async Task WriteHeader(TextWriter writer, IReadOnlyCollection<PackageIdentity> packageIdentities)
+        {
+            if (writer == null)
+            {
+                throw new ArgumentNullException(nameof(writer));
+            }
+
+            if (packageIdentities == null)
+            {
+                throw new ArgumentNullException(nameof(packageIdentities));
+            }
+
+            await WriteHeader(writer).ConfigureAwait(false);
+
+            foreach (var packageIdentity in packageIdentities)
+            {
+                await writer.WriteLineAsync($"// Package included: {packageIdentity}").ConfigureAwait(false);
+            }
+
+            await writer.FlushAsync().ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Writes the header for a output.
+        /// </summary>
+        /// <param name="writer">The writer where to output to.</param>
         /// <param name="fileNames">The file name to write.</param>
         /// <returns>A task to monitor the progress.</returns>
         public static async Task WriteHeader(TextWriter writer, IEnumerable<string> fileNames)

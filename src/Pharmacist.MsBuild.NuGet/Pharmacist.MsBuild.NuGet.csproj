@@ -11,6 +11,7 @@
     <PackageDescription>Produces from NuGet packages System.Reactive Observables for all events within the NuGet packages inside the project..</PackageDescription>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);PackBuildOutputs</TargetsForTfmSpecificContentInPackage>
     <NoWarn>$(NoWarn);CA1819</NoWarn>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,6 +37,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Pharmacist.Core\Pharmacist.Core.csproj" PrivateAssets="All" />
     <ProjectReference Include="..\Pharmacist.Common\Pharmacist.Common.csproj" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.0" PrivateAssets="all" />
   </ItemGroup>
 </Project>

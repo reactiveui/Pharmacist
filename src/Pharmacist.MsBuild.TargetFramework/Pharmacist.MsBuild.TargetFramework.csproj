@@ -33,6 +33,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Pharmacist.Core\Pharmacist.Core.csproj" PrivateAssets="All" />
     <ProjectReference Include="..\Pharmacist.Common\Pharmacist.Common.csproj" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.7.0" PrivateAssets="all" />
   </ItemGroup>
 </Project>
