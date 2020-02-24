@@ -38,6 +38,8 @@
     <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)\obj\$(Configuration)\</IntermediateOutputPath>
     <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildThisFileDirectory)..\..\build\netstandard2.0\Pharmacist.MSBuild.dll</PharmacistTaskAssemblyFile>
     <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildThisFileDirectory)..\..\build\net461\Pharmacist.MSBuild.dll</PharmacistTaskAssemblyFile>
+    <PharmacistOutputFile>$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs</PharmacistOutputFile>
+    <PharmacistLockFile>$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs.lock</PharmacistLockFile>
   </PropertyGroup>
 
   <UsingTask TaskName="Pharmacist.MsBuild.NuGet.PharmacistNuGetTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />
@@ -48,12 +50,13 @@
                          TargetFrameworkVersion="$(TargetFrameworkVersion)"
                          ProjectTypeGuids="$(ProjectTypeGuids)"
                          TargetPlatformVersion="$(TargetPlatformVersion)"
-                         OutputFile="$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs" />
+                         OutputFile="$(PharmacistOutputFile)"
+                         LockFile="$(PharmacistLockFile)"/>
 
     <Message Text="Processed Pharmacist Packages" />
 
-    <ItemGroup Condition="Exists('$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs')">
-      <Compile Include="$(IntermediateOutputPath)\Pharmacist.NuGet.g.cs" />
+    <ItemGroup Condition="Exists('$(PharmacistOutputFile)')">
+      <Compile Include="$(PharmacistOutputFile)" />
     </ItemGroup>
   </Target>
 </Project>

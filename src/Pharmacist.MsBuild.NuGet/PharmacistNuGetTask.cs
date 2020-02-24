@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
+using Newtonsoft.Json;
 using NuGet.Frameworks;
 using NuGet.LibraryModel;
 using NuGet.Packaging.Core;
@@ -77,6 +78,12 @@ namespace Pharmacist.MsBuild.NuGet
         /// </summary>
         [Required]
         public string OutputFile { get; set; }
+
+        /// <summary>
+        /// Gets or sets the lock file.
+        /// </summary>
+        [Required]
+        public string LockFile { get; set; }
 
         /// <inheritdoc />
         public override bool Execute()

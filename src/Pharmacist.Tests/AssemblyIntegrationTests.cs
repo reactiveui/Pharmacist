@@ -19,6 +19,9 @@ using Xunit;
 
 namespace Pharmacist.Tests
 {
+    /// <summary>
+    /// Tests for testing different assemblies.
+    /// </summary>
     public class AssemblyIntegrationTests
     {
         /// <summary>
