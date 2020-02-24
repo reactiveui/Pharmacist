@@ -106,7 +106,7 @@ namespace Pharmacist.Core.Generation.Generators
             var members = new List<MemberDeclarationSyntax> { GenerateEventWrapperField(typeDefinition), GenerateEventWrapperClassConstructor(typeDefinition, baseTypeDefinition != null) };
             members.AddRange(events.OrderBy(x => x.Name).Select(x => GenerateEventWrapperObservable(x, DataFieldName)).Where(x => x != null).Select(x => x!));
 
-            var classDeclaration = ClassDeclaration(typeDefinition.Name + "Events")
+            var classDeclaration = ClassDeclaration("Rx" + typeDefinition.Name + "Events")
                 .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword)))
                 .WithMembers(List(members))
                 .WithObsoleteAttribute(typeDefinition)
