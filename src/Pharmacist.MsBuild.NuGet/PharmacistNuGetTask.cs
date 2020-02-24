@@ -79,12 +79,6 @@ namespace Pharmacist.MsBuild.NuGet
         [Required]
         public string OutputFile { get; set; }
 
-        /// <summary>
-        /// Gets or sets the lock file.
-        /// </summary>
-        [Required]
-        public string LockFile { get; set; }
-
         /// <inheritdoc />
         public override bool Execute()
         {
