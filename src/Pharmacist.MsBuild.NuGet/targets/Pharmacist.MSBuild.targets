@@ -50,8 +50,7 @@
                          TargetFrameworkVersion="$(TargetFrameworkVersion)"
                          ProjectTypeGuids="$(ProjectTypeGuids)"
                          TargetPlatformVersion="$(TargetPlatformVersion)"
-                         OutputFile="$(PharmacistOutputFile)"
-                         LockFile="$(PharmacistLockFile)"/>
+                         OutputFile="$(PharmacistOutputFile)"/>
 
     <Message Text="Processed Pharmacist Packages" />
 
