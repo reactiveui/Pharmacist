@@ -114,7 +114,7 @@ namespace Pharmacist.Core.Generation.Generators
 
             if (baseTypeDefinition != null)
             {
-                classDeclaration = classDeclaration.WithBaseList(BaseList(SingletonSeparatedList<BaseTypeSyntax>(SimpleBaseType(IdentifierName($"global::{baseTypeDefinition.Namespace}.{baseTypeDefinition.Name}Events")))));
+                classDeclaration = classDeclaration.WithBaseList(BaseList(SingletonSeparatedList<BaseTypeSyntax>(SimpleBaseType(IdentifierName($"global::{baseTypeDefinition.Namespace}.Rx{baseTypeDefinition.Name}Events")))));
             }
 
             return classDeclaration;
