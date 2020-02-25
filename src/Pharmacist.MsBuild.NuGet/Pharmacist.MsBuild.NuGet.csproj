@@ -17,8 +17,6 @@
   <ItemGroup>
     <PackageReference Condition="'$(TargetFramework)' == 'net461' " Include="Microsoft.Build.Tasks.Core" Version="14.3" PrivateAssets="all" />
     <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="15.1.548" PrivateAssets="all" />
-    
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup Label="Package">
