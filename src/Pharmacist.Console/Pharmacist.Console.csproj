@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="commandlineparser" Version="2.7.82" />
+    <PackageReference Include="commandlineparser" Version="2.8.0" />
   </ItemGroup>
 
   <ItemGroup>
