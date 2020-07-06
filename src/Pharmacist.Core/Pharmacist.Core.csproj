@@ -17,7 +17,7 @@
     <PackageReference Include="NuGet.Protocol" Version="5.2.0" />
     <PackageReference Include="NuGet.LibraryModel" Version="5.2.0" />
     <PackageReference Include="polly" Version="7.2.1" />
-    <PackageReference Include="splat" Version="9.4.5" />
+    <PackageReference Include="splat" Version="9.5.2" />
   </ItemGroup>
 
   <ItemGroup Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">
