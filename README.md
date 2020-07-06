@@ -77,6 +77,26 @@ For example if you had a inclusion for `Xamarin.Forms` in the same project that 
 
 Also it will only generate the specified `ProjectReference` and none of it's dependent packages. For example for a ProjectReference inclusion of `ReactiveUI`, it will not generate dependencies such as `System.Reactive`. If you want to generate observable wrappers for the dependent NuGet packages you must explicitly include them. 
 
+### Example
+
+For a `MyInpc` type that implements `INotifyPropertyChanged` included in the `PackageReference` criteria etc. as above, an extension method that exposes an accessor to an `Observable<PropertyChangedEventArgs>` of the triggered events, will be automatically generated, and called `Events()`.
+
+Here's how it can be utilized: 
+
+```c#
+INotifyPropertyChanged myInpc = new MyInpc();
+Observable<PropertyChangedEventArgs> propertyChangedObservable = myInpc
+    .Events()
+    .PropertyChanged;
+    
+Or
+myInpc
+    .Events()
+    .PropertyChanged    
+    ... /* Rx operators */
+    .Subscribe(...);
+```
+
 ### Command Line
 
 Pharmacist comes with a command line version which is useful for generating for a specified platform.
