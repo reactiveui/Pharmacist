@@ -4,38 +4,31 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
-using System.IO;
-using System.Linq;
-
-using Pharmacist.Core.Groups;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using NuGet.Frameworks;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
 {
     /// <summary>
     /// WPF platform assemblies and events.
     /// </summary>
-    internal class WPF : NetFrameworkBase
+    internal class WPF : NetCoreExtractorBase
     {
-        private static readonly string[] WantedFileNames =
-                                                          {
-                                                              "WindowsBase.dll",
-                                                              "PresentationCore.dll",
-                                                              "PresentationFramework.dll"
-                                                          };
-
         public WPF(string? filePath)
             : base(filePath)
         {
         }
 
         /// <inheritdoc />
-        public override AutoPlatform Platform { get; } = AutoPlatform.WPF;
+        public override AutoPlatform Platform => AutoPlatform.WPF;
 
         /// <inheritdoc />
-        protected override void SetFiles(InputAssembliesGroup folderGroups)
+        protected override HashSet<string> WantedFileNames { get; } = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase)
         {
-            var fileMetadataEnumerable = folderGroups.IncludeGroup.GetAllFileNames().Where(file => WantedFileNames.Contains(Path.GetFileName(file), StringComparer.InvariantCultureIgnoreCase));
-            Input.IncludeGroup.AddFiles(fileMetadataEnumerable);
-        }
+            "WindowsBase.dll",
+            "PresentationCore.dll",
+            "PresentationFramework.dll"
+        };
     }
 }
