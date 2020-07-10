@@ -21,7 +21,7 @@ namespace Pharmacist.Core.Extractors
     public class NuGetExtractor : IExtractor
     {
         /// <inheritdoc />
-        public InputAssembliesGroup? Input { get; private set; }
+        public InputAssembliesGroup? Input { get; protected set; }
 
         /// <summary>
         /// Extracts the data using the specified target framework.

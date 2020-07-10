@@ -4,24 +4,15 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
-using System.IO;
-using System.Linq;
-using Pharmacist.Core.Groups;
+using System.Collections.Generic;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
 {
     /// <summary>
     /// Win Forms platform assemblies and events.
     /// </summary>
-    internal class Winforms : NetFrameworkBase
+    internal class Winforms : NetCoreExtractorBase
     {
-        private static readonly string[] WantedFileNames =
-        {
-            "System.DirectoryServices.dll",
-            "System.Windows.Forms.dll",
-            "System.Drawing.dll",
-        };
-
         public Winforms(string? filePath)
             : base(filePath)
         {
@@ -31,10 +22,11 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         public override AutoPlatform Platform => AutoPlatform.Winforms;
 
         /// <inheritdoc />
-        protected override void SetFiles(InputAssembliesGroup folderGroups)
+        protected override HashSet<string> WantedFileNames { get; } = new HashSet<string>(StringComparer.CurrentCultureIgnoreCase)
         {
-            var fileMetadataEnumerable = folderGroups.IncludeGroup.GetAllFileNames().Where(file => WantedFileNames.Contains(Path.GetFileName(file), StringComparer.InvariantCultureIgnoreCase));
-            Input.IncludeGroup.AddFiles(fileMetadataEnumerable);
-        }
+            "System.DirectoryServices.dll",
+            "System.Windows.Forms.dll",
+            "System.Drawing.dll",
+        };
     }
 }
