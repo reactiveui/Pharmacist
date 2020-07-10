@@ -1,10 +1,12 @@
 trigger:
 - main
+- latest
 - rel/*
 - preview/*
 
 pr:
 - main
+- latest
 - rel/*
 - preview/*
 
