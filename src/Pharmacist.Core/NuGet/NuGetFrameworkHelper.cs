@@ -50,6 +50,7 @@ namespace Pharmacist.Core.NuGet
             _nugetFrameworks["NetCoreApp2.1"] = new[] { FrameworkConstants.CommonFrameworks.NetCoreApp21 };
             _nugetFrameworks["NetCoreApp2.2"] = new[] { new NuGetFramework(".NETCoreApp", new Version(2, 1, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["NetCoreApp3.0"] = new[] { new NuGetFramework(".NETCoreApp", new Version(3, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["NetCoreApp3.1"] = new[] { new NuGetFramework(".NETCoreApp", new Version(3, 1, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["MonoAndroid50"] = new[] { new NuGetFramework("MonoAndroid", new Version(5, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["MonoAndroid51"] = new[] { new NuGetFramework("MonoAndroid", new Version(5, 1, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["MonoAndroid60"] = new[] { new NuGetFramework("MonoAndroid", new Version(6, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
