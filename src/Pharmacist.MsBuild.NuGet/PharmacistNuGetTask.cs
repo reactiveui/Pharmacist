@@ -128,6 +128,57 @@ namespace Pharmacist.MsBuild.NuGet
             return true;
         }
 
+        private static void WritePackages(List<PackageIdentity> packageIdentities, string lockFileName)
+        {
+            using var streamWriter = new StreamWriter(lockFileName, false, Encoding.UTF8);
+            foreach (var packageIdentity in packageIdentities)
+            {
+                streamWriter.WriteLine($"{packageIdentity.Id}/{packageIdentity.Version}");
+            }
+        }
+
+        private static List<PackageIdentity> ReadPackages(string lockFileName)
+        {
+            if (string.IsNullOrWhiteSpace(lockFileName))
+            {
+                throw new ArgumentException("Cannot have a empty lock file name", nameof(lockFileName));
+            }
+
+            var packageIdentities = new List<PackageIdentity>();
+
+            if (File.Exists(lockFileName) == false)
+            {
+                return packageIdentities;
+            }
+
+            try
+            {
+                using var streamReader = new StreamReader(lockFileName, Encoding.UTF8, true);
+
+                string line;
+
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    if (string.IsNullOrWhiteSpace(line))
+                    {
+                        continue;
+                    }
+
+                    var match = _packageRegex.Match(line);
+
+                    var packageIdentity = new PackageIdentity(match.Groups[1].Value, NuGetVersion.Parse(match.Groups[2].Value));
+
+                    packageIdentities.Add(packageIdentity);
+                }
+            }
+            catch
+            {
+                packageIdentities = new List<PackageIdentity>();
+            }
+
+            return packageIdentities;
+        }
+
         private IReadOnlyCollection<NuGetFramework> GetTargetFrameworks()
         {
             if (!string.IsNullOrWhiteSpace(TargetFramework))
@@ -185,57 +236,6 @@ namespace Pharmacist.MsBuild.NuGet
             }
 
             return packages;
-        }
-
-        private void WritePackages(List<PackageIdentity> packageIdentities, string lockFileName)
-        {
-            using var streamWriter = new StreamWriter(lockFileName, false, Encoding.UTF8);
-            foreach (var packageIdentity in packageIdentities)
-            {
-                streamWriter.WriteLine($"{packageIdentity.Id}/{packageIdentity.Version}");
-            }
-        }
-
-        private List<PackageIdentity> ReadPackages(string lockFileName)
-        {
-            if (string.IsNullOrWhiteSpace(lockFileName))
-            {
-                throw new ArgumentException("Cannot have a empty lock file name", nameof(lockFileName));
-            }
-
-            var packageIdentities = new List<PackageIdentity>();
-
-            if (File.Exists(lockFileName) == false)
-            {
-                return packageIdentities;
-            }
-
-            try
-            {
-                using var streamReader = new StreamReader(lockFileName, Encoding.UTF8, true);
-
-                string line;
-
-                while ((line = streamReader.ReadLine()) != null)
-                {
-                    if (string.IsNullOrWhiteSpace(line))
-                    {
-                        continue;
-                    }
-
-                    var match = _packageRegex.Match(line);
-
-                    var packageIdentity = new PackageIdentity(match.Groups[1].Value, NuGetVersion.Parse(match.Groups[2].Value));
-
-                    packageIdentities.Add(packageIdentity);
-                }
-            }
-            catch
-            {
-                packageIdentities = new List<PackageIdentity>();
-            }
-
-            return packageIdentities;
         }
     }
 }

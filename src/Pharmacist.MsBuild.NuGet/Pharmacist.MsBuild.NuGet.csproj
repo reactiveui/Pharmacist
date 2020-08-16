@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Condition="'$(TargetFramework)' == 'net461' " Include="Microsoft.Build.Tasks.Core" Version="14.3" PrivateAssets="all" />
-    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="15.1.548" PrivateAssets="all" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="16.6.0" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="Package">

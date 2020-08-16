@@ -36,9 +36,9 @@ namespace Pharmacist.Core.Generation.Resolvers
         }
 
         /// <inheritdoc />
-        protected override IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition? baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation)
+        protected override IEnumerable<(ITypeDefinition TypeHostingEvent, ITypeDefinition? BaseTypeDefinition, IEnumerable<IEvent> Events)> GetValidEventDetails(ICompilation compilation)
         {
-            var output = new ConcurrentBag<(ITypeDefinition typeHostingEvent, ITypeDefinition? baseTypeDefinition, IEnumerable<IEvent> events)>();
+            var output = new ConcurrentBag<(ITypeDefinition TypeHostingEvent, ITypeDefinition? BaseTypeDefinition, IEnumerable<IEvent> Events)>();
 
             Parallel.ForEach(
                 GetPublicTypesWithEvents(compilation).Where(x => !SkipNamespaceList.Contains(x.Namespace)),

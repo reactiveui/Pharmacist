@@ -82,6 +82,11 @@ namespace Pharmacist.Console
                 {
                     try
                     {
+                        if (options.OutputPath == null)
+                        {
+                            throw new InvalidOperationException("There is no Output path specified.");
+                        }
+
                         using (var writer = new StreamWriter(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs")))
                         {
                             if (options.Assemblies == null)
@@ -116,6 +121,11 @@ namespace Pharmacist.Console
                 {
                     try
                     {
+                        if (options.OutputPath == null)
+                        {
+                            throw new InvalidOperationException("There is no Output path specified.");
+                        }
+
                         using (var writer = new StreamWriter(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs")))
                         {
                             if (string.IsNullOrWhiteSpace(options.TargetFramework))

@@ -15,20 +15,20 @@ namespace Uno
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Uno.ILoadable"/> class.
         /// </summary>
-        public static ILoadableEvents Events(this global::Uno.ILoadable item) => new ILoadableEvents(item);
+        public static RxILoadableEvents Events(this global::Uno.ILoadable item) => new RxILoadableEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Uno.ILoadable"/> class as observables.
     /// </summary>
-    public class ILoadableEvents
+    public class RxILoadableEvents
     {
         private readonly global::Uno.ILoadable _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Uno.ILoadable"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ILoadableEvents(global::Uno.ILoadable data)
+        public RxILoadableEvents(global::Uno.ILoadable data)
         {
             _data = data;
         }

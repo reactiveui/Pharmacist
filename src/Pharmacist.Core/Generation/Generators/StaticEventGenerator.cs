@@ -24,19 +24,19 @@ namespace Pharmacist.Core.Generation.Generators
         /// </summary>
         /// <param name="declarations">The declarations to add.</param>
         /// <returns>An array of namespace declarations.</returns>
-        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition? baseDefinition, IEnumerable<IEvent> events)> declarations)
+        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition TypeDefinition, ITypeDefinition? BaseDefinition, IEnumerable<IEvent> Events)> declarations)
         {
-            foreach (var groupDeclaration in declarations.GroupBy(x => x.typeDefinition.Namespace).OrderBy(x => x.Key))
+            foreach (var groupDeclaration in declarations.GroupBy(x => x.TypeDefinition.Namespace).OrderBy(x => x.Key))
             {
                 var namespaceName = groupDeclaration.Key;
 
                 var eventWrapperMembers = groupDeclaration
-                    .OrderBy(x => x.typeDefinition.Name)
+                    .OrderBy(x => x.TypeDefinition.Name)
                     .SelectMany(
                         x =>
-                            x.events
+                            x.Events
                                 .OrderBy(eventDetails => eventDetails.Name)
-                                .Select(eventDetails => GenerateEventWrapperObservable(eventDetails, x.typeDefinition.GenerateFullGenericName(), x.typeDefinition.Name))
+                                .Select(eventDetails => GenerateEventWrapperObservable(eventDetails, x.TypeDefinition.GenerateFullGenericName(), x.TypeDefinition.Name))
                                 .Where(y => y != null))
                     .ToList();
 

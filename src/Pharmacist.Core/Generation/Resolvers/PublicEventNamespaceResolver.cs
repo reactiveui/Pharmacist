@@ -36,11 +36,11 @@ namespace Pharmacist.Core.Generation.Resolvers
             StringComparer.InvariantCulture);
 
         /// <inheritdoc />
-        protected override IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition? baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation)
+        protected override IEnumerable<(ITypeDefinition TypeHostingEvent, ITypeDefinition? BaseTypeDefinition, IEnumerable<IEvent> Events)> GetValidEventDetails(ICompilation compilation)
         {
             var processedList = new ConcurrentDictionary<ITypeDefinition, bool>(TypeDefinitionNameComparer.Default);
             var toProcess = new ConcurrentStack<ITypeDefinition>(GetPublicTypesWithEvents(compilation).Where(x => !SkipNamespaceList.Contains(x.Namespace)));
-            var output = new ConcurrentBag<(ITypeDefinition typeHostingEvent, ITypeDefinition? baseTypeDefinition, IEnumerable<IEvent> events)>();
+            var output = new ConcurrentBag<(ITypeDefinition TypeHostingEvent, ITypeDefinition? BaseTypeDefinition, IEnumerable<IEvent> Events)>();
 
             var processing = new ITypeDefinition[Environment.ProcessorCount];
             while (!toProcess.IsEmpty)

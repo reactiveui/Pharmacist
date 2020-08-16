@@ -20,17 +20,17 @@ namespace Pharmacist.Core.Generation.Generators
     {
         private const string DataFieldName = "_data";
 
-        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition? baseDefinition, IEnumerable<IEvent> events)> values)
+        public override IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition TypeDefinition, ITypeDefinition? BaseDefinition, IEnumerable<IEvent> Events)> values)
         {
-            foreach (var groupedDeclarations in values.GroupBy(x => x.typeDefinition.Namespace).OrderBy(x => x.Key))
+            foreach (var groupedDeclarations in values.GroupBy(x => x.TypeDefinition.Namespace).OrderBy(x => x.Key))
             {
                 var namespaceName = groupedDeclarations.Key;
                 var members = new List<ClassDeclarationSyntax>();
 
-                var orderedTypeDeclarations = groupedDeclarations.OrderBy(x => x.typeDefinition.Name).ToList();
+                var orderedTypeDeclarations = groupedDeclarations.OrderBy(x => x.TypeDefinition.Name).ToList();
 
-                members.Add(GenerateStaticClass(namespaceName, orderedTypeDeclarations.Select(x => x.typeDefinition)));
-                members.AddRange(orderedTypeDeclarations.Select(x => GenerateEventWrapperClass(x.typeDefinition, x.baseDefinition, x.events)).Where(x => x != null));
+                members.Add(GenerateStaticClass(namespaceName, orderedTypeDeclarations.Select(x => x.TypeDefinition)));
+                members.AddRange(orderedTypeDeclarations.Select(x => GenerateEventWrapperClass(x.TypeDefinition, x.BaseDefinition, x.Events)).Where(x => x != null));
 
                 if (members.Count > 0)
                 {
@@ -101,7 +101,7 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithModifiers(TokenList(Token(SyntaxKind.PrivateKeyword), Token(SyntaxKind.ReadOnlyKeyword)));
         }
 
-        private static ClassDeclarationSyntax GenerateEventWrapperClass(ITypeDefinition typeDefinition, ITypeDefinition baseTypeDefinition, IEnumerable<IEvent> events)
+        private static ClassDeclarationSyntax GenerateEventWrapperClass(ITypeDefinition typeDefinition, ITypeDefinition? baseTypeDefinition, IEnumerable<IEvent> events)
         {
             var members = new List<MemberDeclarationSyntax> { GenerateEventWrapperField(typeDefinition), GenerateEventWrapperClassConstructor(typeDefinition, baseTypeDefinition != null) };
             members.AddRange(events.OrderBy(x => x.Name).Select(x => GenerateEventWrapperObservable(x, DataFieldName)).Where(x => x != null).Select(x => x!));

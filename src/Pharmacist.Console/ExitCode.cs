@@ -11,12 +11,12 @@ namespace Pharmacist.Console
     public enum ExitCode
     {
         /// <summary>
-        /// Success
+        /// Success.
         /// </summary>
         Success = 0,
 
         /// <summary>
-        /// Error
+        /// Error.
         /// </summary>
         Error = 1,
     }

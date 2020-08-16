@@ -146,18 +146,18 @@ namespace Pharmacist.Core.Generation.Compilation
         {
             var assemblyReferencesSeen = new HashSet<IAssemblyReference>(AssemblyReferenceNameComparer.Default);
 
-            var referenceModulesToProcess = new Stack<(IModule parent, IAssemblyReference reference)>(mainModules.SelectMany(x => x.PEFile.AssemblyReferences.Select(reference => (x, (IAssemblyReference)reference))));
+            var referenceModulesToProcess = new Stack<(IModule Parent, IAssemblyReference Reference)>(mainModules.SelectMany(x => x.PEFile.AssemblyReferences.Select(reference => (x, (IAssemblyReference)reference))));
             while (referenceModulesToProcess.Count > 0)
             {
                 var current = referenceModulesToProcess.Pop();
 
-                if (!assemblyReferencesSeen.Add(current.reference))
+                if (!assemblyReferencesSeen.Add(current.Reference))
                 {
                     continue;
                 }
 
 #pragma warning disable CA2000 // Dispose objects before losing scope
-                var moduleReference = (IModuleReference?)current.reference.Resolve(current.parent, input, framework);
+                var moduleReference = (IModuleReference?)current.Reference.Resolve(current.Parent, input, framework);
 #pragma warning restore CA2000 // Dispose objects before losing scope
 
                 if (moduleReference == null)

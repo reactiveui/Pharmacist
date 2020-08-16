@@ -27,7 +27,7 @@ namespace Pharmacist.Core.Generation.Generators
         /// </summary>
         /// <param name="values">The declarations to add.</param>
         /// <returns>An array of namespace declarations.</returns>
-        public abstract IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, ITypeDefinition? baseDefinition, IEnumerable<IEvent> events)> values);
+        public abstract IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition TypeDefinition, ITypeDefinition? BaseDefinition, IEnumerable<IEvent> Events)> values);
 
         /// <summary>
         /// Generates an observable declaration that wraps a event.
@@ -64,7 +64,7 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithLeadingTrivia(GenerateSummarySeeAlsoComment("Gets an observable which signals when the {0} event triggers.", eventDetails.ConvertToDocument()));
         }
 
-        private static (ArrowExpressionClauseSyntax, TypeSyntax) GenerateFromEventExpression(IEvent eventDetails, IMethod invokeMethod, string dataObjectName)
+        private static (ArrowExpressionClauseSyntax ArrowClause, TypeSyntax EventArgsType) GenerateFromEventExpression(IEvent eventDetails, IMethod invokeMethod, string dataObjectName)
         {
             var returnType = IdentifierName(eventDetails.ReturnType.GenerateFullGenericName());
 

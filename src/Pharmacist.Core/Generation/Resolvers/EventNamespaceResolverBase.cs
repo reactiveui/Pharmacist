@@ -42,6 +42,6 @@ namespace Pharmacist.Core.Generation.Resolvers
 
         protected abstract IEventGenerator GetEventGenerator();
 
-        protected abstract IEnumerable<(ITypeDefinition typeHostingEvent, ITypeDefinition? baseTypeDefinition, IEnumerable<IEvent> events)> GetValidEventDetails(ICompilation compilation);
+        protected abstract IEnumerable<(ITypeDefinition TypeHostingEvent, ITypeDefinition? BaseTypeDefinition, IEnumerable<IEvent> Events)> GetValidEventDetails(ICompilation compilation);
     }
 }

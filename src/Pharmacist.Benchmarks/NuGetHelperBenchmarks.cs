@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 
 using NuGet.Frameworks;
 using NuGet.Packaging.Core;
@@ -11,8 +12,8 @@ using Pharmacist.Core.NuGet;
 
 namespace Pharmacist.Benchmarks
 {
-    [ClrJob]
-    ////[CoreJob]
+    [SimpleJob(RuntimeMoniker.Net472)]
+    [SimpleJob(RuntimeMoniker.NetCoreApp31)]
     [MemoryDiagnoser]
     [MarkdownExporterAttribute.GitHub]
     public class NuGetTaskGeneratorBenchmarks

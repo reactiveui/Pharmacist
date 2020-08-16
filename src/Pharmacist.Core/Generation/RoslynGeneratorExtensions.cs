@@ -32,9 +32,9 @@ namespace Pharmacist.Core.Generation
         /// <returns>The argument list.</returns>
         public static ArgumentListSyntax GenerateTupleArgumentList(this IEnumerable<IParameter> parameters) => ArgumentList(SingletonSeparatedList(Argument(TupleExpression(SeparatedList(parameters.Select(x => Argument(IdentifierName(x.Name.GetKeywordSafeName()))))))));
 
-        public static TypeSyntax GenerateTupleType(this IEnumerable<(IType type, string name)> types)
+        public static TypeSyntax GenerateTupleType(this IEnumerable<(IType Type, string Name)> types)
         {
-            return TupleType(SeparatedList(types.Select(x => TupleElement(IdentifierName(x.type.GenerateFullGenericName()), Identifier(x.name.GetKeywordSafeName())))));
+            return TupleType(SeparatedList(types.Select(x => TupleElement(IdentifierName(x.Type.GenerateFullGenericName()), Identifier(x.Name.GetKeywordSafeName())))));
         }
 
         public static TypeArgumentListSyntax GenerateObservableTypeArguments(this IMethod method)

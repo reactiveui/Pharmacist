@@ -32,14 +32,14 @@ namespace Pharmacist.Core.Generation.Generators
         /// </summary>
         /// <param name="declarations">The declarations to add.</param>
         /// <returns>An array of namespace declarations.</returns>
-        internal static IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition typeDefinition, bool isAbstract, IEnumerable<IMethod> methods)> declarations)
+        internal static IEnumerable<NamespaceDeclarationSyntax> Generate(IEnumerable<(ITypeDefinition TypeDefinition, bool IsAbstract, IEnumerable<IMethod> Methods)> declarations)
         {
-            foreach (var groupedDeclarations in declarations.GroupBy(x => x.typeDefinition.Namespace).OrderBy(x => x.Key))
+            foreach (var groupedDeclarations in declarations.GroupBy(x => x.TypeDefinition.Namespace).OrderBy(x => x.Key))
             {
                 var namespaceName = groupedDeclarations.Key;
                 var members = new List<ClassDeclarationSyntax>();
 
-                members.AddRange(groupedDeclarations.OrderBy(x => x.typeDefinition.Name).Select(x => GenerateClass(x.typeDefinition, x.isAbstract, x.methods)));
+                members.AddRange(groupedDeclarations.OrderBy(x => x.TypeDefinition.Name).Select(x => GenerateClass(x.TypeDefinition, x.IsAbstract, x.Methods)));
 
                 if (members.Count > 0)
                 {
