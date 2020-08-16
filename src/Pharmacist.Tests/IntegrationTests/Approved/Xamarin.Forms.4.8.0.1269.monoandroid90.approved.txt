@@ -568,6 +568,14 @@ namespace Xamarin.Forms
         /// </summary>
         public static RxDatePickerEvents Events(this global::Xamarin.Forms.DatePicker item) => new RxDatePickerEvents(item);
         /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.DragGestureRecognizer"/> class.
+        /// </summary>
+        public static RxDragGestureRecognizerEvents Events(this global::Xamarin.Forms.DragGestureRecognizer item) => new RxDragGestureRecognizerEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.DropGestureRecognizer"/> class.
+        /// </summary>
+        public static RxDropGestureRecognizerEvents Events(this global::Xamarin.Forms.DropGestureRecognizer item) => new RxDropGestureRecognizerEvents(item);
+        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Editor"/> class.
         /// </summary>
         public static RxEditorEvents Events(this global::Xamarin.Forms.Editor item) => new RxEditorEvents(item);
@@ -583,6 +591,10 @@ namespace Xamarin.Forms
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.EntryCell"/> class.
         /// </summary>
         public static RxEntryCellEvents Events(this global::Xamarin.Forms.EntryCell item) => new RxEntryCellEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Expander"/> class.
+        /// </summary>
+        public static RxExpanderEvents Events(this global::Xamarin.Forms.Expander item) => new RxExpanderEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ICellController"/> class.
         /// </summary>
@@ -620,6 +632,10 @@ namespace Xamarin.Forms
         /// </summary>
         public static RxINavigationPageControllerEvents Events(this global::Xamarin.Forms.INavigationPageController item) => new RxINavigationPageControllerEvents(item);
         /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.InputView"/> class.
+        /// </summary>
+        public static RxInputViewEvents Events(this global::Xamarin.Forms.InputView item) => new RxInputViewEvents(item);
+        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IOpenGlViewController"/> class.
         /// </summary>
         public static RxIOpenGlViewControllerEvents Events(this global::Xamarin.Forms.IOpenGlViewController item) => new RxIOpenGlViewControllerEvents(item);
@@ -632,13 +648,25 @@ namespace Xamarin.Forms
         /// </summary>
         public static RxISearchHandlerControllerEvents Events(this global::Xamarin.Forms.ISearchHandlerController item) => new RxISearchHandlerControllerEvents(item);
         /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IShellContentController"/> class.
+        /// </summary>
+        public static RxIShellContentControllerEvents Events(this global::Xamarin.Forms.IShellContentController item) => new RxIShellContentControllerEvents(item);
+        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IShellController"/> class.
         /// </summary>
         public static RxIShellControllerEvents Events(this global::Xamarin.Forms.IShellController item) => new RxIShellControllerEvents(item);
         /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IShellItemController"/> class.
+        /// </summary>
+        public static RxIShellItemControllerEvents Events(this global::Xamarin.Forms.IShellItemController item) => new RxIShellItemControllerEvents(item);
+        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IShellSectionController"/> class.
         /// </summary>
         public static RxIShellSectionControllerEvents Events(this global::Xamarin.Forms.IShellSectionController item) => new RxIShellSectionControllerEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ISwipeItem"/> class.
+        /// </summary>
+        public static RxISwipeItemEvents Events(this global::Xamarin.Forms.ISwipeItem item) => new RxISwipeItemEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ITableViewController"/> class.
         /// </summary>
@@ -664,9 +692,17 @@ namespace Xamarin.Forms
         /// </summary>
         public static RxListViewEvents Events(this global::Xamarin.Forms.ListView item) => new RxListViewEvents(item);
         /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.MarshalingObservableCollection"/> class.
+        /// </summary>
+        public static RxMarshalingObservableCollectionEvents Events(this global::Xamarin.Forms.MarshalingObservableCollection item) => new RxMarshalingObservableCollectionEvents(item);
+        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.MasterDetailPage"/> class.
         /// </summary>
         public static RxMasterDetailPageEvents Events(this global::Xamarin.Forms.MasterDetailPage item) => new RxMasterDetailPageEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.MediaElement"/> class.
+        /// </summary>
+        public static RxMediaElementEvents Events(this global::Xamarin.Forms.MediaElement item) => new RxMediaElementEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.MenuItem"/> class.
         /// </summary>
@@ -695,6 +731,10 @@ namespace Xamarin.Forms
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.PinchGestureRecognizer"/> class.
         /// </summary>
         public static RxPinchGestureRecognizerEvents Events(this global::Xamarin.Forms.PinchGestureRecognizer item) => new RxPinchGestureRecognizerEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.RadioButton"/> class.
+        /// </summary>
+        public static RxRadioButtonEvents Events(this global::Xamarin.Forms.RadioButton item) => new RxRadioButtonEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.RefreshView"/> class.
         /// </summary>
@@ -728,6 +768,10 @@ namespace Xamarin.Forms
         /// </summary>
         public static RxSliderEvents Events(this global::Xamarin.Forms.Slider item) => new RxSliderEvents(item);
         /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.StateTriggerBase"/> class.
+        /// </summary>
+        public static RxStateTriggerBaseEvents Events(this global::Xamarin.Forms.StateTriggerBase item) => new RxStateTriggerBaseEvents(item);
+        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Stepper"/> class.
         /// </summary>
         public static RxStepperEvents Events(this global::Xamarin.Forms.Stepper item) => new RxStepperEvents(item);
@@ -735,6 +779,22 @@ namespace Xamarin.Forms
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.SwipeGestureRecognizer"/> class.
         /// </summary>
         public static RxSwipeGestureRecognizerEvents Events(this global::Xamarin.Forms.SwipeGestureRecognizer item) => new RxSwipeGestureRecognizerEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.SwipeItem"/> class.
+        /// </summary>
+        public static RxSwipeItemEvents Events(this global::Xamarin.Forms.SwipeItem item) => new RxSwipeItemEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.SwipeItems"/> class.
+        /// </summary>
+        public static RxSwipeItemsEvents Events(this global::Xamarin.Forms.SwipeItems item) => new RxSwipeItemsEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.SwipeItemView"/> class.
+        /// </summary>
+        public static RxSwipeItemViewEvents Events(this global::Xamarin.Forms.SwipeItemView item) => new RxSwipeItemViewEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.SwipeView"/> class.
+        /// </summary>
+        public static RxSwipeViewEvents Events(this global::Xamarin.Forms.SwipeView item) => new RxSwipeViewEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Switch"/> class.
         /// </summary>
@@ -840,6 +900,16 @@ namespace Xamarin.Forms
         }
 
         , x => _data.PageDisappearing += x, x => _data.PageDisappearing -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Application.RequestedThemeChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.AppThemeChangedEventArgs> RequestedThemeChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.AppThemeChangedEventArgs>, global::Xamarin.Forms.AppThemeChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.AppThemeChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.RequestedThemeChanged += x, x => _data.RequestedThemeChanged -= x);
     }
 
     /// <summary>
@@ -1230,9 +1300,83 @@ namespace Xamarin.Forms
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.DragGestureRecognizer"/> class as observables.
+    /// </summary>
+    public class RxDragGestureRecognizerEvents : global::Xamarin.Forms.RxElementEvents
+    {
+        private readonly global::Xamarin.Forms.DragGestureRecognizer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.DragGestureRecognizer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxDragGestureRecognizerEvents(global::Xamarin.Forms.DragGestureRecognizer data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.DragGestureRecognizer.DragStarting"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.DragStartingEventArgs> DragStarting => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.DragStartingEventArgs>, global::Xamarin.Forms.DragStartingEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.DragStartingEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DragStarting += x, x => _data.DragStarting -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.DragGestureRecognizer.DropCompleted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.DropCompletedEventArgs> DropCompleted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.DropCompletedEventArgs>, global::Xamarin.Forms.DropCompletedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.DropCompletedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DropCompleted += x, x => _data.DropCompleted -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.DropGestureRecognizer"/> class as observables.
+    /// </summary>
+    public class RxDropGestureRecognizerEvents : global::Xamarin.Forms.RxElementEvents
+    {
+        private readonly global::Xamarin.Forms.DropGestureRecognizer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.DropGestureRecognizer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxDropGestureRecognizerEvents(global::Xamarin.Forms.DropGestureRecognizer data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.DropGestureRecognizer.DragOver"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.DragEventArgs> DragOver => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.DragEventArgs>, global::Xamarin.Forms.DragEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.DragEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DragOver += x, x => _data.DragOver -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.DropGestureRecognizer.Drop"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.DropEventArgs> Drop => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.DropEventArgs>, global::Xamarin.Forms.DropEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.DropEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Drop += x, x => _data.Drop -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Editor"/> class as observables.
     /// </summary>
-    public class RxEditorEvents : global::Xamarin.Forms.RxVisualElementEvents
+    public class RxEditorEvents : global::Xamarin.Forms.RxInputViewEvents
     {
         private readonly global::Xamarin.Forms.Editor _data;
         /// <summary>
@@ -1254,16 +1398,6 @@ namespace Xamarin.Forms
         }
 
         , x => _data.Completed += x, x => _data.Completed -= x);
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Editor.TextChanged"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<global::Xamarin.Forms.TextChangedEventArgs> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, global::Xamarin.Forms.TextChangedEventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler(e);
-            return Handler;
-        }
-
-        , x => _data.TextChanged += x, x => _data.TextChanged -= x);
     }
 
     /// <summary>
@@ -1337,7 +1471,7 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Entry"/> class as observables.
     /// </summary>
-    public class RxEntryEvents : global::Xamarin.Forms.RxVisualElementEvents
+    public class RxEntryEvents : global::Xamarin.Forms.RxInputViewEvents
     {
         private readonly global::Xamarin.Forms.Entry _data;
         /// <summary>
@@ -1359,16 +1493,6 @@ namespace Xamarin.Forms
         }
 
         , x => _data.Completed += x, x => _data.Completed -= x);
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Entry.TextChanged"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<global::Xamarin.Forms.TextChangedEventArgs> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, global::Xamarin.Forms.TextChangedEventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler(e);
-            return Handler;
-        }
-
-        , x => _data.TextChanged += x, x => _data.TextChanged -= x);
     }
 
     /// <summary>
@@ -1396,6 +1520,33 @@ namespace Xamarin.Forms
         }
 
         , x => _data.Completed += x, x => _data.Completed -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Expander"/> class as observables.
+    /// </summary>
+    public class RxExpanderEvents : global::Xamarin.Forms.RxLayoutEvents
+    {
+        private readonly global::Xamarin.Forms.Expander _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Expander"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxExpanderEvents(global::Xamarin.Forms.Expander data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Expander.Tapped"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Tapped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Tapped += x, x => _data.Tapped -= x);
     }
 
     /// <summary>
@@ -1703,6 +1854,33 @@ namespace Xamarin.Forms
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.InputView"/> class as observables.
+    /// </summary>
+    public class RxInputViewEvents : global::Xamarin.Forms.RxVisualElementEvents
+    {
+        private readonly global::Xamarin.Forms.InputView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.InputView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxInputViewEvents(global::Xamarin.Forms.InputView data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.InputView.TextChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.TextChangedEventArgs> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, global::Xamarin.Forms.TextChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.TextChanged += x, x => _data.TextChanged -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IOpenGlViewController"/> class as observables.
     /// </summary>
     public class RxIOpenGlViewControllerEvents
@@ -1784,6 +1962,33 @@ namespace Xamarin.Forms
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IShellContentController"/> class as observables.
+    /// </summary>
+    public class RxIShellContentControllerEvents
+    {
+        private readonly global::Xamarin.Forms.IShellContentController _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IShellContentController"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxIShellContentControllerEvents(global::Xamarin.Forms.IShellContentController data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IShellContentController.IsPageVisibleChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> IsPageVisibleChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.IsPageVisibleChanged += x, x => _data.IsPageVisibleChanged -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IShellController"/> class as observables.
     /// </summary>
     public class RxIShellControllerEvents
@@ -1799,6 +2004,16 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IShellController.ItemsCollectionChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.Collections.Specialized.NotifyCollectionChangedEventArgs> ItemsCollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.Collections.Specialized.NotifyCollectionChangedEventHandler, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ItemsCollectionChanged += x, x => _data.ItemsCollectionChanged -= x);
+        /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IShellController.StructureChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.EventArgs> StructureChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
@@ -1808,6 +2023,33 @@ namespace Xamarin.Forms
         }
 
         , x => _data.StructureChanged += x, x => _data.StructureChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IShellItemController"/> class as observables.
+    /// </summary>
+    public class RxIShellItemControllerEvents
+    {
+        private readonly global::Xamarin.Forms.IShellItemController _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IShellItemController"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxIShellItemControllerEvents(global::Xamarin.Forms.IShellItemController data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IShellItemController.ItemsCollectionChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.Collections.Specialized.NotifyCollectionChangedEventArgs> ItemsCollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.Collections.Specialized.NotifyCollectionChangedEventHandler, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ItemsCollectionChanged += x, x => _data.ItemsCollectionChanged -= x);
     }
 
     /// <summary>
@@ -1826,6 +2068,16 @@ namespace Xamarin.Forms
         }
 
         /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IShellSectionController.ItemsCollectionChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.Collections.Specialized.NotifyCollectionChangedEventArgs> ItemsCollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.Collections.Specialized.NotifyCollectionChangedEventHandler, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ItemsCollectionChanged += x, x => _data.ItemsCollectionChanged -= x);
+        /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IShellSectionController.NavigationRequested"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs> NavigationRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs>(eventHandler =>
@@ -1835,6 +2087,33 @@ namespace Xamarin.Forms
         }
 
         , x => _data.NavigationRequested += x, x => _data.NavigationRequested -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ISwipeItem"/> class as observables.
+    /// </summary>
+    public class RxISwipeItemEvents
+    {
+        private readonly global::Xamarin.Forms.ISwipeItem _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ISwipeItem"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxISwipeItemEvents(global::Xamarin.Forms.ISwipeItem data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ISwipeItem.Invoked"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Invoked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Invoked += x, x => _data.Invoked -= x);
     }
 
     /// <summary>
@@ -2120,6 +2399,33 @@ namespace Xamarin.Forms
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.MarshalingObservableCollection"/> class as observables.
+    /// </summary>
+    public class RxMarshalingObservableCollectionEvents
+    {
+        private readonly global::Xamarin.Forms.MarshalingObservableCollection _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.MarshalingObservableCollection"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxMarshalingObservableCollectionEvents(global::Xamarin.Forms.MarshalingObservableCollection data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MarshalingObservableCollection.CollectionChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.Collections.Specialized.NotifyCollectionChangedEventArgs> CollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.Collections.Specialized.NotifyCollectionChangedEventHandler, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.CollectionChanged += x, x => _data.CollectionChanged -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.MasterDetailPage"/> class as observables.
     /// </summary>
     public class RxMasterDetailPageEvents : global::Xamarin.Forms.RxPageEvents
@@ -2154,6 +2460,103 @@ namespace Xamarin.Forms
         }
 
         , x => _data.IsPresentedChanged += x, x => _data.IsPresentedChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.MediaElement"/> class as observables.
+    /// </summary>
+    public class RxMediaElementEvents : global::Xamarin.Forms.RxVisualElementEvents
+    {
+        private readonly global::Xamarin.Forms.MediaElement _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.MediaElement"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxMediaElementEvents(global::Xamarin.Forms.MediaElement data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MediaElement.MediaEnded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> MediaEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.MediaEnded += x, x => _data.MediaEnded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MediaElement.MediaFailed"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> MediaFailed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.MediaFailed += x, x => _data.MediaFailed -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MediaElement.MediaOpened"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> MediaOpened => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.MediaOpened += x, x => _data.MediaOpened -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MediaElement.PositionRequested"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> PositionRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PositionRequested += x, x => _data.PositionRequested -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MediaElement.SeekCompleted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> SeekCompleted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.SeekCompleted += x, x => _data.SeekCompleted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MediaElement.SeekRequested"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.SeekRequested> SeekRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SeekRequested>, global::Xamarin.Forms.SeekRequested>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.SeekRequested e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.SeekRequested += x, x => _data.SeekRequested -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MediaElement.StateRequested"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.StateRequested> StateRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.StateRequested>, global::Xamarin.Forms.StateRequested>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.StateRequested e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.StateRequested += x, x => _data.StateRequested -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MediaElement.VolumeRequested"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> VolumeRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.VolumeRequested += x, x => _data.VolumeRequested -= x);
     }
 
     /// <summary>
@@ -2436,6 +2839,33 @@ namespace Xamarin.Forms
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.RadioButton"/> class as observables.
+    /// </summary>
+    public class RxRadioButtonEvents : global::Xamarin.Forms.RxButtonEvents
+    {
+        private readonly global::Xamarin.Forms.RadioButton _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.RadioButton"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxRadioButtonEvents(global::Xamarin.Forms.RadioButton data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.RadioButton.CheckedChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.CheckedChangedEventArgs> CheckedChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.CheckedChangedEventArgs>, global::Xamarin.Forms.CheckedChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.CheckedChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.CheckedChanged += x, x => _data.CheckedChanged -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.RefreshView"/> class as observables.
     /// </summary>
     public class RxRefreshViewEvents : global::Xamarin.Forms.RxLayoutEvents
@@ -2529,7 +2959,7 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.SearchBar"/> class as observables.
     /// </summary>
-    public class RxSearchBarEvents : global::Xamarin.Forms.RxVisualElementEvents
+    public class RxSearchBarEvents : global::Xamarin.Forms.RxInputViewEvents
     {
         private readonly global::Xamarin.Forms.SearchBar _data;
         /// <summary>
@@ -2551,16 +2981,6 @@ namespace Xamarin.Forms
         }
 
         , x => _data.SearchButtonPressed += x, x => _data.SearchButtonPressed -= x);
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SearchBar.TextChanged"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<global::Xamarin.Forms.TextChangedEventArgs> TextChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.TextChangedEventArgs>, global::Xamarin.Forms.TextChangedEventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler(e);
-            return Handler;
-        }
-
-        , x => _data.TextChanged += x, x => _data.TextChanged -= x);
     }
 
     /// <summary>
@@ -2722,6 +3142,33 @@ namespace Xamarin.Forms
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.StateTriggerBase"/> class as observables.
+    /// </summary>
+    public class RxStateTriggerBaseEvents : global::Xamarin.Forms.RxBindableObjectEvents
+    {
+        private readonly global::Xamarin.Forms.StateTriggerBase _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.StateTriggerBase"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxStateTriggerBaseEvents(global::Xamarin.Forms.StateTriggerBase data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.StateTriggerBase.IsActiveChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> IsActiveChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.IsActiveChanged += x, x => _data.IsActiveChanged -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Stepper"/> class as observables.
     /// </summary>
     public class RxStepperEvents : global::Xamarin.Forms.RxVisualElementEvents
@@ -2773,6 +3220,154 @@ namespace Xamarin.Forms
         }
 
         , x => _data.Swiped += x, x => _data.Swiped -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.SwipeItem"/> class as observables.
+    /// </summary>
+    public class RxSwipeItemEvents : global::Xamarin.Forms.RxMenuItemEvents
+    {
+        private readonly global::Xamarin.Forms.SwipeItem _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SwipeItem"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxSwipeItemEvents(global::Xamarin.Forms.SwipeItem data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SwipeItem.Invoked"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Invoked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Invoked += x, x => _data.Invoked -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.SwipeItems"/> class as observables.
+    /// </summary>
+    public class RxSwipeItemsEvents : global::Xamarin.Forms.RxElementEvents
+    {
+        private readonly global::Xamarin.Forms.SwipeItems _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SwipeItems"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxSwipeItemsEvents(global::Xamarin.Forms.SwipeItems data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SwipeItems.CollectionChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.Collections.Specialized.NotifyCollectionChangedEventArgs> CollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.Collections.Specialized.NotifyCollectionChangedEventHandler, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.CollectionChanged += x, x => _data.CollectionChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.SwipeItemView"/> class as observables.
+    /// </summary>
+    public class RxSwipeItemViewEvents : global::Xamarin.Forms.RxLayoutEvents
+    {
+        private readonly global::Xamarin.Forms.SwipeItemView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SwipeItemView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxSwipeItemViewEvents(global::Xamarin.Forms.SwipeItemView data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SwipeItemView.Invoked"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Invoked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.EventArgs>, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Invoked += x, x => _data.Invoked -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.SwipeView"/> class as observables.
+    /// </summary>
+    public class RxSwipeViewEvents : global::Xamarin.Forms.RxLayoutEvents
+    {
+        private readonly global::Xamarin.Forms.SwipeView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SwipeView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxSwipeViewEvents(global::Xamarin.Forms.SwipeView data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SwipeView.CloseRequested"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> CloseRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.CloseRequested += x, x => _data.CloseRequested -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SwipeView.OpenRequested"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.OpenSwipeEventArgs> OpenRequested => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.OpenSwipeEventArgs>, global::Xamarin.Forms.OpenSwipeEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.OpenSwipeEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.OpenRequested += x, x => _data.OpenRequested -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SwipeView.SwipeChanging"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.SwipeChangingEventArgs> SwipeChanging => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SwipeChangingEventArgs>, global::Xamarin.Forms.SwipeChangingEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.SwipeChangingEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.SwipeChanging += x, x => _data.SwipeChanging -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SwipeView.SwipeEnded"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.SwipeEndedEventArgs> SwipeEnded => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SwipeEndedEventArgs>, global::Xamarin.Forms.SwipeEndedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.SwipeEndedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.SwipeEnded += x, x => _data.SwipeEnded -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SwipeView.SwipeStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.SwipeStartedEventArgs> SwipeStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.SwipeStartedEventArgs>, global::Xamarin.Forms.SwipeStartedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.SwipeStartedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.SwipeStarted += x, x => _data.SwipeStarted -= x);
     }
 
     /// <summary>
@@ -3232,6 +3827,10 @@ namespace Xamarin.Forms.Platform.Android
         /// </summary>
         public static RxCheckBoxRendererBaseEvents Events(this global::Xamarin.Forms.Platform.Android.CheckBoxRendererBase item) => new RxCheckBoxRendererBaseEvents(item);
         /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.FormsAnimationDrawable"/> class.
+        /// </summary>
+        public static RxFormsAnimationDrawableEvents Events(this global::Xamarin.Forms.Platform.Android.FormsAnimationDrawable item) => new RxFormsAnimationDrawableEvents(item);
+        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity"/> class.
         /// </summary>
         public static RxFormsAppCompatActivityEvents Events(this global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity item) => new RxFormsAppCompatActivityEvents(item);
@@ -3252,9 +3851,17 @@ namespace Xamarin.Forms.Platform.Android
         /// </summary>
         public static RxIDeviceInfoProviderEvents Events(this global::Xamarin.Forms.Platform.Android.IDeviceInfoProvider item) => new RxIDeviceInfoProviderEvents(item);
         /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.IFormsAnimationDrawable"/> class.
+        /// </summary>
+        public static RxIFormsAnimationDrawableEvents Events(this global::Xamarin.Forms.Platform.Android.IFormsAnimationDrawable item) => new RxIFormsAnimationDrawableEvents(item);
+        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.ImageButtonRenderer"/> class.
         /// </summary>
         public static RxImageButtonRendererEvents Events(this global::Xamarin.Forms.Platform.Android.ImageButtonRenderer item) => new RxImageButtonRendererEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.IndicatorViewRenderer"/> class.
+        /// </summary>
+        public static RxIndicatorViewRendererEvents Events(this global::Xamarin.Forms.Platform.Android.IndicatorViewRenderer item) => new RxIndicatorViewRendererEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.IShellItemRenderer"/> class.
         /// </summary>
@@ -3275,6 +3882,14 @@ namespace Xamarin.Forms.Platform.Android
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.MasterDetailRenderer"/> class.
         /// </summary>
         public static RxMasterDetailRendererEvents Events(this global::Xamarin.Forms.Platform.Android.MasterDetailRenderer item) => new RxMasterDetailRendererEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.MediaElementRenderer"/> class.
+        /// </summary>
+        public static RxMediaElementRendererEvents Events(this global::Xamarin.Forms.Platform.Android.MediaElementRenderer item) => new RxMediaElementRendererEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.RadioButtonRenderer"/> class.
+        /// </summary>
+        public static RxRadioButtonRendererEvents Events(this global::Xamarin.Forms.Platform.Android.RadioButtonRenderer item) => new RxRadioButtonRendererEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.RefreshViewRenderer"/> class.
         /// </summary>
@@ -3340,6 +3955,43 @@ namespace Xamarin.Forms.Platform.Android
         }
 
         , x => _data.ElementPropertyChanged += x, x => _data.ElementPropertyChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.FormsAnimationDrawable"/> class as observables.
+    /// </summary>
+    public class RxFormsAnimationDrawableEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.Android.FormsAnimationDrawable _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.Android.FormsAnimationDrawable"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxFormsAnimationDrawableEvents(global::Xamarin.Forms.Platform.Android.FormsAnimationDrawable data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.Android.FormsAnimationDrawable.AnimationStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> AnimationStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.AnimationStarted += x, x => _data.AnimationStarted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.Android.FormsAnimationDrawable.AnimationStopped"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.FormsAnimationDrawableStateEventArgs> AnimationStopped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.FormsAnimationDrawableStateEventArgs>, global::Xamarin.Forms.Platform.Android.FormsAnimationDrawableStateEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.FormsAnimationDrawableStateEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.AnimationStopped += x, x => _data.AnimationStopped -= x);
     }
 
     /// <summary>
@@ -3478,6 +4130,43 @@ namespace Xamarin.Forms.Platform.Android
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.IFormsAnimationDrawable"/> class as observables.
+    /// </summary>
+    public class RxIFormsAnimationDrawableEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.Android.IFormsAnimationDrawable _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.Android.IFormsAnimationDrawable"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxIFormsAnimationDrawableEvents(global::Xamarin.Forms.Platform.Android.IFormsAnimationDrawable data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.Android.IFormsAnimationDrawable.AnimationStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> AnimationStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.AnimationStarted += x, x => _data.AnimationStarted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.Android.IFormsAnimationDrawable.AnimationStopped"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.FormsAnimationDrawableStateEventArgs> AnimationStopped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.FormsAnimationDrawableStateEventArgs>, global::Xamarin.Forms.Platform.Android.FormsAnimationDrawableStateEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.FormsAnimationDrawableStateEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.AnimationStopped += x, x => _data.AnimationStopped -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.ImageButtonRenderer"/> class as observables.
     /// </summary>
     public class RxImageButtonRendererEvents : global::Android.Views.RxViewEvents
@@ -3504,6 +4193,43 @@ namespace Xamarin.Forms.Platform.Android
         , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.Android.ImageButtonRenderer.ElementPropertyChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementPropertyChanged += x, x => _data.ElementPropertyChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.IndicatorViewRenderer"/> class as observables.
+    /// </summary>
+    public class RxIndicatorViewRendererEvents : global::Android.Views.RxViewGroupEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.Android.IndicatorViewRenderer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.Android.IndicatorViewRenderer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxIndicatorViewRendererEvents(global::Xamarin.Forms.Platform.Android.IndicatorViewRenderer data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.Android.IndicatorViewRenderer.ElementChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.Android.IndicatorViewRenderer.ElementPropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
@@ -3657,6 +4383,80 @@ namespace Xamarin.Forms.Platform.Android
         }
 
         , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.MediaElementRenderer"/> class as observables.
+    /// </summary>
+    public class RxMediaElementRendererEvents : global::Android.Views.RxViewGroupEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.Android.MediaElementRenderer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.Android.MediaElementRenderer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxMediaElementRendererEvents(global::Xamarin.Forms.Platform.Android.MediaElementRenderer data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.Android.MediaElementRenderer.ElementChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.Android.MediaElementRenderer.ElementPropertyChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementPropertyChanged += x, x => _data.ElementPropertyChanged -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.Android.RadioButtonRenderer"/> class as observables.
+    /// </summary>
+    public class RxRadioButtonRendererEvents : global::Android.Widget.RxCompoundButtonEvents
+    {
+        private readonly global::Xamarin.Forms.Platform.Android.RadioButtonRenderer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.Android.RadioButtonRenderer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxRadioButtonRendererEvents(global::Xamarin.Forms.Platform.Android.RadioButtonRenderer data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.Android.RadioButtonRenderer.ElementChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs> ElementChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.Platform.Android.VisualElementChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.Android.RadioButtonRenderer.ElementPropertyChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> ElementPropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::System.ComponentModel.PropertyChangedEventArgs>, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementPropertyChanged += x, x => _data.ElementPropertyChanged -= x);
     }
 
     /// <summary>
@@ -4030,6 +4830,158 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
         }
 
         , x => _data.ElementPropertyChanged += x, x => _data.ElementPropertyChanged -= x);
+    }
+}
+
+namespace Xamarin.Forms.PlatformConfiguration.TizenSpecific
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Xamarin.Forms.PlatformConfiguration.TizenSpecific"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IMediaPlayer"/> class.
+        /// </summary>
+        public static RxIMediaPlayerEvents Events(this global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IMediaPlayer item) => new RxIMediaPlayerEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer"/> class.
+        /// </summary>
+        public static RxIPlatformMediaPlayerEvents Events(this global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer item) => new RxIPlatformMediaPlayerEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IMediaPlayer"/> class as observables.
+    /// </summary>
+    public class RxIMediaPlayerEvents
+    {
+        private readonly global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IMediaPlayer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IMediaPlayer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxIMediaPlayerEvents(global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IMediaPlayer data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IMediaPlayer.PlaybackPaused"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> PlaybackPaused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PlaybackPaused += x, x => _data.PlaybackPaused -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IMediaPlayer.PlaybackStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> PlaybackStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PlaybackStarted += x, x => _data.PlaybackStarted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IMediaPlayer.PlaybackStopped"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> PlaybackStopped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PlaybackStopped += x, x => _data.PlaybackStopped -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer"/> class as observables.
+    /// </summary>
+    public class RxIPlatformMediaPlayerEvents
+    {
+        private readonly global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxIPlatformMediaPlayerEvents(global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer.BufferingProgressUpdated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.BufferingProgressUpdatedEventArgs> BufferingProgressUpdated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.BufferingProgressUpdatedEventArgs>, global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.BufferingProgressUpdatedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.BufferingProgressUpdatedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.BufferingProgressUpdated += x, x => _data.BufferingProgressUpdated -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer.ErrorOccurred"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> ErrorOccurred => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ErrorOccurred += x, x => _data.ErrorOccurred -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer.PlaybackCompleted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> PlaybackCompleted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PlaybackCompleted += x, x => _data.PlaybackCompleted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer.PlaybackPaused"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> PlaybackPaused => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PlaybackPaused += x, x => _data.PlaybackPaused -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer.PlaybackStarted"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> PlaybackStarted => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PlaybackStarted += x, x => _data.PlaybackStarted -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer.PlaybackStopped"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> PlaybackStopped => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PlaybackStopped += x, x => _data.PlaybackStopped -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.PlatformConfiguration.TizenSpecific.IPlatformMediaPlayer.UpdateStreamInfo"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> UpdateStreamInfo => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.UpdateStreamInfo += x, x => _data.UpdateStreamInfo -= x);
     }
 }
 

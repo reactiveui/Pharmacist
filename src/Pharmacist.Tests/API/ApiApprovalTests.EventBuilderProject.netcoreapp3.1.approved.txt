@@ -42,7 +42,7 @@ namespace Pharmacist.Core.Extractors
     public class NuGetExtractor : Pharmacist.Core.Extractors.IExtractor
     {
         public NuGetExtractor() { }
-        public Pharmacist.Core.Groups.InputAssembliesGroup? Input { get; }
+        public Pharmacist.Core.Groups.InputAssembliesGroup? Input { get; set; }
         public System.Threading.Tasks.Task Extract(System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> targetFrameworks, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> packages, string? packageOutputDirectory) { }
         public System.Threading.Tasks.Task Extract(System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> targetFrameworks, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packages, string? packageOutputDirectory) { }
     }
@@ -134,6 +134,7 @@ namespace Pharmacist.Core.NuGet
 }
 namespace Pharmacist.Core.ReferenceLocators
 {
+    [System.Serializable]
     public class ReferenceLocationNotFoundException : System.Exception
     {
         public ReferenceLocationNotFoundException() { }

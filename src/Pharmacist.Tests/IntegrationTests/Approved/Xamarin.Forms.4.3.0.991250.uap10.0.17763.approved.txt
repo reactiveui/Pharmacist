@@ -1,3 +1,4 @@
+
 using global::System;
 using global::System.Reactive;
 using global::System.Reactive.Linq;
@@ -14,260 +15,260 @@ namespace Xamarin.Forms
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Application"/> class.
         /// </summary>
-        public static ApplicationEvents Events(this global::Xamarin.Forms.Application item) => new ApplicationEvents(item);
+        public static RxApplicationEvents Events(this global::Xamarin.Forms.Application item) => new RxApplicationEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.BaseShellItem"/> class.
         /// </summary>
-        public static BaseShellItemEvents Events(this global::Xamarin.Forms.BaseShellItem item) => new BaseShellItemEvents(item);
+        public static RxBaseShellItemEvents Events(this global::Xamarin.Forms.BaseShellItem item) => new RxBaseShellItemEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.BindableObject"/> class.
         /// </summary>
-        public static BindableObjectEvents Events(this global::Xamarin.Forms.BindableObject item) => new BindableObjectEvents(item);
+        public static RxBindableObjectEvents Events(this global::Xamarin.Forms.BindableObject item) => new RxBindableObjectEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Button"/> class.
         /// </summary>
-        public static ButtonEvents Events(this global::Xamarin.Forms.Button item) => new ButtonEvents(item);
+        public static RxButtonEvents Events(this global::Xamarin.Forms.Button item) => new RxButtonEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.CarouselView"/> class.
         /// </summary>
-        public static CarouselViewEvents Events(this global::Xamarin.Forms.CarouselView item) => new CarouselViewEvents(item);
+        public static RxCarouselViewEvents Events(this global::Xamarin.Forms.CarouselView item) => new RxCarouselViewEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Cell"/> class.
         /// </summary>
-        public static CellEvents Events(this global::Xamarin.Forms.Cell item) => new CellEvents(item);
+        public static RxCellEvents Events(this global::Xamarin.Forms.Cell item) => new RxCellEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.CheckBox"/> class.
         /// </summary>
-        public static CheckBoxEvents Events(this global::Xamarin.Forms.CheckBox item) => new CheckBoxEvents(item);
+        public static RxCheckBoxEvents Events(this global::Xamarin.Forms.CheckBox item) => new RxCheckBoxEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ChildGestureRecognizer"/> class.
         /// </summary>
-        public static ChildGestureRecognizerEvents Events(this global::Xamarin.Forms.ChildGestureRecognizer item) => new ChildGestureRecognizerEvents(item);
+        public static RxChildGestureRecognizerEvents Events(this global::Xamarin.Forms.ChildGestureRecognizer item) => new RxChildGestureRecognizerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ClickGestureRecognizer"/> class.
         /// </summary>
-        public static ClickGestureRecognizerEvents Events(this global::Xamarin.Forms.ClickGestureRecognizer item) => new ClickGestureRecognizerEvents(item);
+        public static RxClickGestureRecognizerEvents Events(this global::Xamarin.Forms.ClickGestureRecognizer item) => new RxClickGestureRecognizerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ColumnDefinition"/> class.
         /// </summary>
-        public static ColumnDefinitionEvents Events(this global::Xamarin.Forms.ColumnDefinition item) => new ColumnDefinitionEvents(item);
+        public static RxColumnDefinitionEvents Events(this global::Xamarin.Forms.ColumnDefinition item) => new RxColumnDefinitionEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Command"/> class.
         /// </summary>
-        public static CommandEvents Events(this global::Xamarin.Forms.Command item) => new CommandEvents(item);
+        public static RxCommandEvents Events(this global::Xamarin.Forms.Command item) => new RxCommandEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.DatePicker"/> class.
         /// </summary>
-        public static DatePickerEvents Events(this global::Xamarin.Forms.DatePicker item) => new DatePickerEvents(item);
+        public static RxDatePickerEvents Events(this global::Xamarin.Forms.DatePicker item) => new RxDatePickerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Editor"/> class.
         /// </summary>
-        public static EditorEvents Events(this global::Xamarin.Forms.Editor item) => new EditorEvents(item);
+        public static RxEditorEvents Events(this global::Xamarin.Forms.Editor item) => new RxEditorEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Element"/> class.
         /// </summary>
-        public static ElementEvents Events(this global::Xamarin.Forms.Element item) => new ElementEvents(item);
+        public static RxElementEvents Events(this global::Xamarin.Forms.Element item) => new RxElementEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Entry"/> class.
         /// </summary>
-        public static EntryEvents Events(this global::Xamarin.Forms.Entry item) => new EntryEvents(item);
+        public static RxEntryEvents Events(this global::Xamarin.Forms.Entry item) => new RxEntryEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.EntryCell"/> class.
         /// </summary>
-        public static EntryCellEvents Events(this global::Xamarin.Forms.EntryCell item) => new EntryCellEvents(item);
+        public static RxEntryCellEvents Events(this global::Xamarin.Forms.EntryCell item) => new RxEntryCellEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ICellController"/> class.
         /// </summary>
-        public static ICellControllerEvents Events(this global::Xamarin.Forms.ICellController item) => new ICellControllerEvents(item);
+        public static RxICellControllerEvents Events(this global::Xamarin.Forms.ICellController item) => new RxICellControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IDefinition"/> class.
         /// </summary>
-        public static IDefinitionEvents Events(this global::Xamarin.Forms.IDefinition item) => new IDefinitionEvents(item);
+        public static RxIDefinitionEvents Events(this global::Xamarin.Forms.IDefinition item) => new RxIDefinitionEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IElementController"/> class.
         /// </summary>
-        public static IElementControllerEvents Events(this global::Xamarin.Forms.IElementController item) => new IElementControllerEvents(item);
+        public static RxIElementControllerEvents Events(this global::Xamarin.Forms.IElementController item) => new RxIElementControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ILayout"/> class.
         /// </summary>
-        public static ILayoutEvents Events(this global::Xamarin.Forms.ILayout item) => new ILayoutEvents(item);
+        public static RxILayoutEvents Events(this global::Xamarin.Forms.ILayout item) => new RxILayoutEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IListProxy"/> class.
         /// </summary>
-        public static IListProxyEvents Events(this global::Xamarin.Forms.IListProxy item) => new IListProxyEvents(item);
+        public static RxIListProxyEvents Events(this global::Xamarin.Forms.IListProxy item) => new RxIListProxyEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IListViewController"/> class.
         /// </summary>
-        public static IListViewControllerEvents Events(this global::Xamarin.Forms.IListViewController item) => new IListViewControllerEvents(item);
+        public static RxIListViewControllerEvents Events(this global::Xamarin.Forms.IListViewController item) => new RxIListViewControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ImageButton"/> class.
         /// </summary>
-        public static ImageButtonEvents Events(this global::Xamarin.Forms.ImageButton item) => new ImageButtonEvents(item);
+        public static RxImageButtonEvents Events(this global::Xamarin.Forms.ImageButton item) => new RxImageButtonEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IMasterDetailPageController"/> class.
         /// </summary>
-        public static IMasterDetailPageControllerEvents Events(this global::Xamarin.Forms.IMasterDetailPageController item) => new IMasterDetailPageControllerEvents(item);
+        public static RxIMasterDetailPageControllerEvents Events(this global::Xamarin.Forms.IMasterDetailPageController item) => new RxIMasterDetailPageControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.INavigationPageController"/> class.
         /// </summary>
-        public static INavigationPageControllerEvents Events(this global::Xamarin.Forms.INavigationPageController item) => new INavigationPageControllerEvents(item);
+        public static RxINavigationPageControllerEvents Events(this global::Xamarin.Forms.INavigationPageController item) => new RxINavigationPageControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IOpenGlViewController"/> class.
         /// </summary>
-        public static IOpenGlViewControllerEvents Events(this global::Xamarin.Forms.IOpenGlViewController item) => new IOpenGlViewControllerEvents(item);
+        public static RxIOpenGlViewControllerEvents Events(this global::Xamarin.Forms.IOpenGlViewController item) => new RxIOpenGlViewControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IScrollViewController"/> class.
         /// </summary>
-        public static IScrollViewControllerEvents Events(this global::Xamarin.Forms.IScrollViewController item) => new IScrollViewControllerEvents(item);
+        public static RxIScrollViewControllerEvents Events(this global::Xamarin.Forms.IScrollViewController item) => new RxIScrollViewControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ISearchHandlerController"/> class.
         /// </summary>
-        public static ISearchHandlerControllerEvents Events(this global::Xamarin.Forms.ISearchHandlerController item) => new ISearchHandlerControllerEvents(item);
+        public static RxISearchHandlerControllerEvents Events(this global::Xamarin.Forms.ISearchHandlerController item) => new RxISearchHandlerControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IShellController"/> class.
         /// </summary>
-        public static IShellControllerEvents Events(this global::Xamarin.Forms.IShellController item) => new IShellControllerEvents(item);
+        public static RxIShellControllerEvents Events(this global::Xamarin.Forms.IShellController item) => new RxIShellControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IShellSectionController"/> class.
         /// </summary>
-        public static IShellSectionControllerEvents Events(this global::Xamarin.Forms.IShellSectionController item) => new IShellSectionControllerEvents(item);
+        public static RxIShellSectionControllerEvents Events(this global::Xamarin.Forms.IShellSectionController item) => new RxIShellSectionControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ITableViewController"/> class.
         /// </summary>
-        public static ITableViewControllerEvents Events(this global::Xamarin.Forms.ITableViewController item) => new ITableViewControllerEvents(item);
+        public static RxITableViewControllerEvents Events(this global::Xamarin.Forms.ITableViewController item) => new RxITableViewControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ItemsView"/> class.
         /// </summary>
-        public static ItemsViewEvents Events(this global::Xamarin.Forms.ItemsView item) => new ItemsViewEvents(item);
+        public static RxItemsViewEvents Events(this global::Xamarin.Forms.ItemsView item) => new RxItemsViewEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IVisualElementController"/> class.
         /// </summary>
-        public static IVisualElementControllerEvents Events(this global::Xamarin.Forms.IVisualElementController item) => new IVisualElementControllerEvents(item);
+        public static RxIVisualElementControllerEvents Events(this global::Xamarin.Forms.IVisualElementController item) => new RxIVisualElementControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.IWebViewController"/> class.
         /// </summary>
-        public static IWebViewControllerEvents Events(this global::Xamarin.Forms.IWebViewController item) => new IWebViewControllerEvents(item);
+        public static RxIWebViewControllerEvents Events(this global::Xamarin.Forms.IWebViewController item) => new RxIWebViewControllerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Layout"/> class.
         /// </summary>
-        public static LayoutEvents Events(this global::Xamarin.Forms.Layout item) => new LayoutEvents(item);
+        public static RxLayoutEvents Events(this global::Xamarin.Forms.Layout item) => new RxLayoutEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ListView"/> class.
         /// </summary>
-        public static ListViewEvents Events(this global::Xamarin.Forms.ListView item) => new ListViewEvents(item);
+        public static RxListViewEvents Events(this global::Xamarin.Forms.ListView item) => new RxListViewEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.MasterDetailPage"/> class.
         /// </summary>
-        public static MasterDetailPageEvents Events(this global::Xamarin.Forms.MasterDetailPage item) => new MasterDetailPageEvents(item);
+        public static RxMasterDetailPageEvents Events(this global::Xamarin.Forms.MasterDetailPage item) => new RxMasterDetailPageEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.MenuItem"/> class.
         /// </summary>
-        public static MenuItemEvents Events(this global::Xamarin.Forms.MenuItem item) => new MenuItemEvents(item);
+        public static RxMenuItemEvents Events(this global::Xamarin.Forms.MenuItem item) => new RxMenuItemEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.NavigationPage"/> class.
         /// </summary>
-        public static NavigationPageEvents Events(this global::Xamarin.Forms.NavigationPage item) => new NavigationPageEvents(item);
+        public static RxNavigationPageEvents Events(this global::Xamarin.Forms.NavigationPage item) => new RxNavigationPageEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.OpenGLView"/> class.
         /// </summary>
-        public static OpenGLViewEvents Events(this global::Xamarin.Forms.OpenGLView item) => new OpenGLViewEvents(item);
+        public static RxOpenGLViewEvents Events(this global::Xamarin.Forms.OpenGLView item) => new RxOpenGLViewEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Page"/> class.
         /// </summary>
-        public static PageEvents Events(this global::Xamarin.Forms.Page item) => new PageEvents(item);
+        public static RxPageEvents Events(this global::Xamarin.Forms.Page item) => new RxPageEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.PanGestureRecognizer"/> class.
         /// </summary>
-        public static PanGestureRecognizerEvents Events(this global::Xamarin.Forms.PanGestureRecognizer item) => new PanGestureRecognizerEvents(item);
+        public static RxPanGestureRecognizerEvents Events(this global::Xamarin.Forms.PanGestureRecognizer item) => new RxPanGestureRecognizerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Picker"/> class.
         /// </summary>
-        public static PickerEvents Events(this global::Xamarin.Forms.Picker item) => new PickerEvents(item);
+        public static RxPickerEvents Events(this global::Xamarin.Forms.Picker item) => new RxPickerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.PinchGestureRecognizer"/> class.
         /// </summary>
-        public static PinchGestureRecognizerEvents Events(this global::Xamarin.Forms.PinchGestureRecognizer item) => new PinchGestureRecognizerEvents(item);
+        public static RxPinchGestureRecognizerEvents Events(this global::Xamarin.Forms.PinchGestureRecognizer item) => new RxPinchGestureRecognizerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.RefreshView"/> class.
         /// </summary>
-        public static RefreshViewEvents Events(this global::Xamarin.Forms.RefreshView item) => new RefreshViewEvents(item);
+        public static RxRefreshViewEvents Events(this global::Xamarin.Forms.RefreshView item) => new RxRefreshViewEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.RowDefinition"/> class.
         /// </summary>
-        public static RowDefinitionEvents Events(this global::Xamarin.Forms.RowDefinition item) => new RowDefinitionEvents(item);
+        public static RxRowDefinitionEvents Events(this global::Xamarin.Forms.RowDefinition item) => new RxRowDefinitionEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ScrollView"/> class.
         /// </summary>
-        public static ScrollViewEvents Events(this global::Xamarin.Forms.ScrollView item) => new ScrollViewEvents(item);
+        public static RxScrollViewEvents Events(this global::Xamarin.Forms.ScrollView item) => new RxScrollViewEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.SearchBar"/> class.
         /// </summary>
-        public static SearchBarEvents Events(this global::Xamarin.Forms.SearchBar item) => new SearchBarEvents(item);
+        public static RxSearchBarEvents Events(this global::Xamarin.Forms.SearchBar item) => new RxSearchBarEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.SearchHandler"/> class.
         /// </summary>
-        public static SearchHandlerEvents Events(this global::Xamarin.Forms.SearchHandler item) => new SearchHandlerEvents(item);
+        public static RxSearchHandlerEvents Events(this global::Xamarin.Forms.SearchHandler item) => new RxSearchHandlerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.SelectableItemsView"/> class.
         /// </summary>
-        public static SelectableItemsViewEvents Events(this global::Xamarin.Forms.SelectableItemsView item) => new SelectableItemsViewEvents(item);
+        public static RxSelectableItemsViewEvents Events(this global::Xamarin.Forms.SelectableItemsView item) => new RxSelectableItemsViewEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Shell"/> class.
         /// </summary>
-        public static ShellEvents Events(this global::Xamarin.Forms.Shell item) => new ShellEvents(item);
+        public static RxShellEvents Events(this global::Xamarin.Forms.Shell item) => new RxShellEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Slider"/> class.
         /// </summary>
-        public static SliderEvents Events(this global::Xamarin.Forms.Slider item) => new SliderEvents(item);
+        public static RxSliderEvents Events(this global::Xamarin.Forms.Slider item) => new RxSliderEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Stepper"/> class.
         /// </summary>
-        public static StepperEvents Events(this global::Xamarin.Forms.Stepper item) => new StepperEvents(item);
+        public static RxStepperEvents Events(this global::Xamarin.Forms.Stepper item) => new RxStepperEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.SwipeGestureRecognizer"/> class.
         /// </summary>
-        public static SwipeGestureRecognizerEvents Events(this global::Xamarin.Forms.SwipeGestureRecognizer item) => new SwipeGestureRecognizerEvents(item);
+        public static RxSwipeGestureRecognizerEvents Events(this global::Xamarin.Forms.SwipeGestureRecognizer item) => new RxSwipeGestureRecognizerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Switch"/> class.
         /// </summary>
-        public static SwitchEvents Events(this global::Xamarin.Forms.Switch item) => new SwitchEvents(item);
+        public static RxSwitchEvents Events(this global::Xamarin.Forms.Switch item) => new RxSwitchEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.SwitchCell"/> class.
         /// </summary>
-        public static SwitchCellEvents Events(this global::Xamarin.Forms.SwitchCell item) => new SwitchCellEvents(item);
+        public static RxSwitchCellEvents Events(this global::Xamarin.Forms.SwitchCell item) => new RxSwitchCellEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.TableView"/> class.
         /// </summary>
-        public static TableViewEvents Events(this global::Xamarin.Forms.TableView item) => new TableViewEvents(item);
+        public static RxTableViewEvents Events(this global::Xamarin.Forms.TableView item) => new RxTableViewEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.TapGestureRecognizer"/> class.
         /// </summary>
-        public static TapGestureRecognizerEvents Events(this global::Xamarin.Forms.TapGestureRecognizer item) => new TapGestureRecognizerEvents(item);
+        public static RxTapGestureRecognizerEvents Events(this global::Xamarin.Forms.TapGestureRecognizer item) => new RxTapGestureRecognizerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.ToolbarItem"/> class.
         /// </summary>
-        public static ToolbarItemEvents Events(this global::Xamarin.Forms.ToolbarItem item) => new ToolbarItemEvents(item);
+        public static RxToolbarItemEvents Events(this global::Xamarin.Forms.ToolbarItem item) => new RxToolbarItemEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.VisualElement"/> class.
         /// </summary>
-        public static VisualElementEvents Events(this global::Xamarin.Forms.VisualElement item) => new VisualElementEvents(item);
+        public static RxVisualElementEvents Events(this global::Xamarin.Forms.VisualElement item) => new RxVisualElementEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.WebView"/> class.
         /// </summary>
-        public static WebViewEvents Events(this global::Xamarin.Forms.WebView item) => new WebViewEvents(item);
+        public static RxWebViewEvents Events(this global::Xamarin.Forms.WebView item) => new RxWebViewEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Application"/> class as observables.
     /// </summary>
-    public class ApplicationEvents : global::Xamarin.Forms.ElementEvents
+    public class RxApplicationEvents : global::Xamarin.Forms.RxElementEvents
     {
         private readonly global::Xamarin.Forms.Application _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Application"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ApplicationEvents(global::Xamarin.Forms.Application data): base(data)
+        public RxApplicationEvents(global::Xamarin.Forms.Application data): base(data)
         {
             _data = data;
         }
@@ -337,14 +338,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.BaseShellItem"/> class as observables.
     /// </summary>
-    public class BaseShellItemEvents : global::Xamarin.Forms.ElementEvents
+    public class RxBaseShellItemEvents : global::Xamarin.Forms.RxElementEvents
     {
         private readonly global::Xamarin.Forms.BaseShellItem _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.BaseShellItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public BaseShellItemEvents(global::Xamarin.Forms.BaseShellItem data): base(data)
+        public RxBaseShellItemEvents(global::Xamarin.Forms.BaseShellItem data): base(data)
         {
             _data = data;
         }
@@ -374,14 +375,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.BindableObject"/> class as observables.
     /// </summary>
-    public class BindableObjectEvents
+    public class RxBindableObjectEvents
     {
         private readonly global::Xamarin.Forms.BindableObject _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.BindableObject"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public BindableObjectEvents(global::Xamarin.Forms.BindableObject data)
+        public RxBindableObjectEvents(global::Xamarin.Forms.BindableObject data)
         {
             _data = data;
         }
@@ -421,14 +422,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Button"/> class as observables.
     /// </summary>
-    public class ButtonEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxButtonEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.Button _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Button"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ButtonEvents(global::Xamarin.Forms.Button data): base(data)
+        public RxButtonEvents(global::Xamarin.Forms.Button data): base(data)
         {
             _data = data;
         }
@@ -468,14 +469,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.CarouselView"/> class as observables.
     /// </summary>
-    public class CarouselViewEvents : global::Xamarin.Forms.ItemsViewEvents
+    public class RxCarouselViewEvents : global::Xamarin.Forms.RxItemsViewEvents
     {
         private readonly global::Xamarin.Forms.CarouselView _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.CarouselView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CarouselViewEvents(global::Xamarin.Forms.CarouselView data): base(data)
+        public RxCarouselViewEvents(global::Xamarin.Forms.CarouselView data): base(data)
         {
             _data = data;
         }
@@ -505,14 +506,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Cell"/> class as observables.
     /// </summary>
-    public class CellEvents : global::Xamarin.Forms.ElementEvents
+    public class RxCellEvents : global::Xamarin.Forms.RxElementEvents
     {
         private readonly global::Xamarin.Forms.Cell _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Cell"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CellEvents(global::Xamarin.Forms.Cell data): base(data)
+        public RxCellEvents(global::Xamarin.Forms.Cell data): base(data)
         {
             _data = data;
         }
@@ -562,14 +563,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.CheckBox"/> class as observables.
     /// </summary>
-    public class CheckBoxEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxCheckBoxEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.CheckBox _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.CheckBox"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CheckBoxEvents(global::Xamarin.Forms.CheckBox data): base(data)
+        public RxCheckBoxEvents(global::Xamarin.Forms.CheckBox data): base(data)
         {
             _data = data;
         }
@@ -589,14 +590,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ChildGestureRecognizer"/> class as observables.
     /// </summary>
-    public class ChildGestureRecognizerEvents
+    public class RxChildGestureRecognizerEvents
     {
         private readonly global::Xamarin.Forms.ChildGestureRecognizer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ChildGestureRecognizer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ChildGestureRecognizerEvents(global::Xamarin.Forms.ChildGestureRecognizer data)
+        public RxChildGestureRecognizerEvents(global::Xamarin.Forms.ChildGestureRecognizer data)
         {
             _data = data;
         }
@@ -616,14 +617,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ClickGestureRecognizer"/> class as observables.
     /// </summary>
-    public class ClickGestureRecognizerEvents : global::Xamarin.Forms.ElementEvents
+    public class RxClickGestureRecognizerEvents : global::Xamarin.Forms.RxElementEvents
     {
         private readonly global::Xamarin.Forms.ClickGestureRecognizer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ClickGestureRecognizer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ClickGestureRecognizerEvents(global::Xamarin.Forms.ClickGestureRecognizer data): base(data)
+        public RxClickGestureRecognizerEvents(global::Xamarin.Forms.ClickGestureRecognizer data): base(data)
         {
             _data = data;
         }
@@ -643,14 +644,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ColumnDefinition"/> class as observables.
     /// </summary>
-    public class ColumnDefinitionEvents : global::Xamarin.Forms.BindableObjectEvents
+    public class RxColumnDefinitionEvents : global::Xamarin.Forms.RxBindableObjectEvents
     {
         private readonly global::Xamarin.Forms.ColumnDefinition _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ColumnDefinition"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ColumnDefinitionEvents(global::Xamarin.Forms.ColumnDefinition data): base(data)
+        public RxColumnDefinitionEvents(global::Xamarin.Forms.ColumnDefinition data): base(data)
         {
             _data = data;
         }
@@ -670,14 +671,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Command"/> class as observables.
     /// </summary>
-    public class CommandEvents
+    public class RxCommandEvents
     {
         private readonly global::Xamarin.Forms.Command _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Command"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CommandEvents(global::Xamarin.Forms.Command data)
+        public RxCommandEvents(global::Xamarin.Forms.Command data)
         {
             _data = data;
         }
@@ -697,14 +698,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.DatePicker"/> class as observables.
     /// </summary>
-    public class DatePickerEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxDatePickerEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.DatePicker _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.DatePicker"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public DatePickerEvents(global::Xamarin.Forms.DatePicker data): base(data)
+        public RxDatePickerEvents(global::Xamarin.Forms.DatePicker data): base(data)
         {
             _data = data;
         }
@@ -724,14 +725,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Editor"/> class as observables.
     /// </summary>
-    public class EditorEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxEditorEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.Editor _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Editor"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public EditorEvents(global::Xamarin.Forms.Editor data): base(data)
+        public RxEditorEvents(global::Xamarin.Forms.Editor data): base(data)
         {
             _data = data;
         }
@@ -761,14 +762,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Element"/> class as observables.
     /// </summary>
-    public class ElementEvents : global::Xamarin.Forms.BindableObjectEvents
+    public class RxElementEvents : global::Xamarin.Forms.RxBindableObjectEvents
     {
         private readonly global::Xamarin.Forms.Element _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Element"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ElementEvents(global::Xamarin.Forms.Element data): base(data)
+        public RxElementEvents(global::Xamarin.Forms.Element data): base(data)
         {
             _data = data;
         }
@@ -829,14 +830,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Entry"/> class as observables.
     /// </summary>
-    public class EntryEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxEntryEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.Entry _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Entry"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public EntryEvents(global::Xamarin.Forms.Entry data): base(data)
+        public RxEntryEvents(global::Xamarin.Forms.Entry data): base(data)
         {
             _data = data;
         }
@@ -866,14 +867,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.EntryCell"/> class as observables.
     /// </summary>
-    public class EntryCellEvents : global::Xamarin.Forms.CellEvents
+    public class RxEntryCellEvents : global::Xamarin.Forms.RxCellEvents
     {
         private readonly global::Xamarin.Forms.EntryCell _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.EntryCell"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public EntryCellEvents(global::Xamarin.Forms.EntryCell data): base(data)
+        public RxEntryCellEvents(global::Xamarin.Forms.EntryCell data): base(data)
         {
             _data = data;
         }
@@ -893,14 +894,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ICellController"/> class as observables.
     /// </summary>
-    public class ICellControllerEvents
+    public class RxICellControllerEvents
     {
         private readonly global::Xamarin.Forms.ICellController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ICellController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ICellControllerEvents(global::Xamarin.Forms.ICellController data)
+        public RxICellControllerEvents(global::Xamarin.Forms.ICellController data)
         {
             _data = data;
         }
@@ -920,14 +921,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IDefinition"/> class as observables.
     /// </summary>
-    public class IDefinitionEvents
+    public class RxIDefinitionEvents
     {
         private readonly global::Xamarin.Forms.IDefinition _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IDefinition"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IDefinitionEvents(global::Xamarin.Forms.IDefinition data)
+        public RxIDefinitionEvents(global::Xamarin.Forms.IDefinition data)
         {
             _data = data;
         }
@@ -947,14 +948,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IElementController"/> class as observables.
     /// </summary>
-    public class IElementControllerEvents
+    public class RxIElementControllerEvents
     {
         private readonly global::Xamarin.Forms.IElementController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IElementController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IElementControllerEvents(global::Xamarin.Forms.IElementController data)
+        public RxIElementControllerEvents(global::Xamarin.Forms.IElementController data)
         {
             _data = data;
         }
@@ -975,14 +976,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ILayout"/> class as observables.
     /// </summary>
-    public class ILayoutEvents
+    public class RxILayoutEvents
     {
         private readonly global::Xamarin.Forms.ILayout _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ILayout"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ILayoutEvents(global::Xamarin.Forms.ILayout data)
+        public RxILayoutEvents(global::Xamarin.Forms.ILayout data)
         {
             _data = data;
         }
@@ -1002,14 +1003,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IListProxy"/> class as observables.
     /// </summary>
-    public class IListProxyEvents
+    public class RxIListProxyEvents
     {
         private readonly global::Xamarin.Forms.IListProxy _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IListProxy"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IListProxyEvents(global::Xamarin.Forms.IListProxy data)
+        public RxIListProxyEvents(global::Xamarin.Forms.IListProxy data)
         {
             _data = data;
         }
@@ -1029,14 +1030,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IListViewController"/> class as observables.
     /// </summary>
-    public class IListViewControllerEvents
+    public class RxIListViewControllerEvents
     {
         private readonly global::Xamarin.Forms.IListViewController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IListViewController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IListViewControllerEvents(global::Xamarin.Forms.IListViewController data)
+        public RxIListViewControllerEvents(global::Xamarin.Forms.IListViewController data)
         {
             _data = data;
         }
@@ -1056,14 +1057,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ImageButton"/> class as observables.
     /// </summary>
-    public class ImageButtonEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxImageButtonEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.ImageButton _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ImageButton"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ImageButtonEvents(global::Xamarin.Forms.ImageButton data): base(data)
+        public RxImageButtonEvents(global::Xamarin.Forms.ImageButton data): base(data)
         {
             _data = data;
         }
@@ -1103,14 +1104,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IMasterDetailPageController"/> class as observables.
     /// </summary>
-    public class IMasterDetailPageControllerEvents
+    public class RxIMasterDetailPageControllerEvents
     {
         private readonly global::Xamarin.Forms.IMasterDetailPageController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IMasterDetailPageController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IMasterDetailPageControllerEvents(global::Xamarin.Forms.IMasterDetailPageController data)
+        public RxIMasterDetailPageControllerEvents(global::Xamarin.Forms.IMasterDetailPageController data)
         {
             _data = data;
         }
@@ -1130,14 +1131,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.INavigationPageController"/> class as observables.
     /// </summary>
-    public class INavigationPageControllerEvents
+    public class RxINavigationPageControllerEvents
     {
         private readonly global::Xamarin.Forms.INavigationPageController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.INavigationPageController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public INavigationPageControllerEvents(global::Xamarin.Forms.INavigationPageController data)
+        public RxINavigationPageControllerEvents(global::Xamarin.Forms.INavigationPageController data)
         {
             _data = data;
         }
@@ -1197,14 +1198,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IOpenGlViewController"/> class as observables.
     /// </summary>
-    public class IOpenGlViewControllerEvents
+    public class RxIOpenGlViewControllerEvents
     {
         private readonly global::Xamarin.Forms.IOpenGlViewController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IOpenGlViewController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IOpenGlViewControllerEvents(global::Xamarin.Forms.IOpenGlViewController data)
+        public RxIOpenGlViewControllerEvents(global::Xamarin.Forms.IOpenGlViewController data)
         {
             _data = data;
         }
@@ -1224,14 +1225,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IScrollViewController"/> class as observables.
     /// </summary>
-    public class IScrollViewControllerEvents
+    public class RxIScrollViewControllerEvents
     {
         private readonly global::Xamarin.Forms.IScrollViewController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IScrollViewController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IScrollViewControllerEvents(global::Xamarin.Forms.IScrollViewController data)
+        public RxIScrollViewControllerEvents(global::Xamarin.Forms.IScrollViewController data)
         {
             _data = data;
         }
@@ -1251,14 +1252,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ISearchHandlerController"/> class as observables.
     /// </summary>
-    public class ISearchHandlerControllerEvents
+    public class RxISearchHandlerControllerEvents
     {
         private readonly global::Xamarin.Forms.ISearchHandlerController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ISearchHandlerController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ISearchHandlerControllerEvents(global::Xamarin.Forms.ISearchHandlerController data)
+        public RxISearchHandlerControllerEvents(global::Xamarin.Forms.ISearchHandlerController data)
         {
             _data = data;
         }
@@ -1278,14 +1279,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IShellController"/> class as observables.
     /// </summary>
-    public class IShellControllerEvents
+    public class RxIShellControllerEvents
     {
         private readonly global::Xamarin.Forms.IShellController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IShellController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IShellControllerEvents(global::Xamarin.Forms.IShellController data)
+        public RxIShellControllerEvents(global::Xamarin.Forms.IShellController data)
         {
             _data = data;
         }
@@ -1305,14 +1306,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IShellSectionController"/> class as observables.
     /// </summary>
-    public class IShellSectionControllerEvents
+    public class RxIShellSectionControllerEvents
     {
         private readonly global::Xamarin.Forms.IShellSectionController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IShellSectionController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IShellSectionControllerEvents(global::Xamarin.Forms.IShellSectionController data)
+        public RxIShellSectionControllerEvents(global::Xamarin.Forms.IShellSectionController data)
         {
             _data = data;
         }
@@ -1332,14 +1333,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ITableViewController"/> class as observables.
     /// </summary>
-    public class ITableViewControllerEvents
+    public class RxITableViewControllerEvents
     {
         private readonly global::Xamarin.Forms.ITableViewController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ITableViewController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ITableViewControllerEvents(global::Xamarin.Forms.ITableViewController data)
+        public RxITableViewControllerEvents(global::Xamarin.Forms.ITableViewController data)
         {
             _data = data;
         }
@@ -1359,14 +1360,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ItemsView"/> class as observables.
     /// </summary>
-    public class ItemsViewEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxItemsViewEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.ItemsView _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ItemsView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ItemsViewEvents(global::Xamarin.Forms.ItemsView data): base(data)
+        public RxItemsViewEvents(global::Xamarin.Forms.ItemsView data): base(data)
         {
             _data = data;
         }
@@ -1406,14 +1407,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IVisualElementController"/> class as observables.
     /// </summary>
-    public class IVisualElementControllerEvents
+    public class RxIVisualElementControllerEvents
     {
         private readonly global::Xamarin.Forms.IVisualElementController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IVisualElementController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IVisualElementControllerEvents(global::Xamarin.Forms.IVisualElementController data)
+        public RxIVisualElementControllerEvents(global::Xamarin.Forms.IVisualElementController data)
         {
             _data = data;
         }
@@ -1443,14 +1444,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.IWebViewController"/> class as observables.
     /// </summary>
-    public class IWebViewControllerEvents
+    public class RxIWebViewControllerEvents
     {
         private readonly global::Xamarin.Forms.IWebViewController _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.IWebViewController"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IWebViewControllerEvents(global::Xamarin.Forms.IWebViewController data)
+        public RxIWebViewControllerEvents(global::Xamarin.Forms.IWebViewController data)
         {
             _data = data;
         }
@@ -1500,14 +1501,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Layout"/> class as observables.
     /// </summary>
-    public class LayoutEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxLayoutEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.Layout _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Layout"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public LayoutEvents(global::Xamarin.Forms.Layout data): base(data)
+        public RxLayoutEvents(global::Xamarin.Forms.Layout data): base(data)
         {
             _data = data;
         }
@@ -1527,14 +1528,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ListView"/> class as observables.
     /// </summary>
-    public class ListViewEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxListViewEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.ListView _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ListView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ListViewEvents(global::Xamarin.Forms.ListView data): base(data)
+        public RxListViewEvents(global::Xamarin.Forms.ListView data): base(data)
         {
             _data = data;
         }
@@ -1614,14 +1615,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.MasterDetailPage"/> class as observables.
     /// </summary>
-    public class MasterDetailPageEvents : global::Xamarin.Forms.PageEvents
+    public class RxMasterDetailPageEvents : global::Xamarin.Forms.RxPageEvents
     {
         private readonly global::Xamarin.Forms.MasterDetailPage _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.MasterDetailPage"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MasterDetailPageEvents(global::Xamarin.Forms.MasterDetailPage data): base(data)
+        public RxMasterDetailPageEvents(global::Xamarin.Forms.MasterDetailPage data): base(data)
         {
             _data = data;
         }
@@ -1651,14 +1652,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.MenuItem"/> class as observables.
     /// </summary>
-    public class MenuItemEvents : global::Xamarin.Forms.ElementEvents
+    public class RxMenuItemEvents : global::Xamarin.Forms.RxElementEvents
     {
         private readonly global::Xamarin.Forms.MenuItem _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.MenuItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MenuItemEvents(global::Xamarin.Forms.MenuItem data): base(data)
+        public RxMenuItemEvents(global::Xamarin.Forms.MenuItem data): base(data)
         {
             _data = data;
         }
@@ -1678,14 +1679,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.NavigationPage"/> class as observables.
     /// </summary>
-    public class NavigationPageEvents : global::Xamarin.Forms.PageEvents
+    public class RxNavigationPageEvents : global::Xamarin.Forms.RxPageEvents
     {
         private readonly global::Xamarin.Forms.NavigationPage _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.NavigationPage"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public NavigationPageEvents(global::Xamarin.Forms.NavigationPage data): base(data)
+        public RxNavigationPageEvents(global::Xamarin.Forms.NavigationPage data): base(data)
         {
             _data = data;
         }
@@ -1775,14 +1776,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.OpenGLView"/> class as observables.
     /// </summary>
-    public class OpenGLViewEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxOpenGLViewEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.OpenGLView _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.OpenGLView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public OpenGLViewEvents(global::Xamarin.Forms.OpenGLView data): base(data)
+        public RxOpenGLViewEvents(global::Xamarin.Forms.OpenGLView data): base(data)
         {
             _data = data;
         }
@@ -1802,14 +1803,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Page"/> class as observables.
     /// </summary>
-    public class PageEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxPageEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.Page _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Page"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PageEvents(global::Xamarin.Forms.Page data): base(data)
+        public RxPageEvents(global::Xamarin.Forms.Page data): base(data)
         {
             _data = data;
         }
@@ -1849,14 +1850,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.PanGestureRecognizer"/> class as observables.
     /// </summary>
-    public class PanGestureRecognizerEvents : global::Xamarin.Forms.ElementEvents
+    public class RxPanGestureRecognizerEvents : global::Xamarin.Forms.RxElementEvents
     {
         private readonly global::Xamarin.Forms.PanGestureRecognizer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.PanGestureRecognizer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PanGestureRecognizerEvents(global::Xamarin.Forms.PanGestureRecognizer data): base(data)
+        public RxPanGestureRecognizerEvents(global::Xamarin.Forms.PanGestureRecognizer data): base(data)
         {
             _data = data;
         }
@@ -1876,14 +1877,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Picker"/> class as observables.
     /// </summary>
-    public class PickerEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxPickerEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.Picker _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Picker"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PickerEvents(global::Xamarin.Forms.Picker data): base(data)
+        public RxPickerEvents(global::Xamarin.Forms.Picker data): base(data)
         {
             _data = data;
         }
@@ -1903,14 +1904,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.PinchGestureRecognizer"/> class as observables.
     /// </summary>
-    public class PinchGestureRecognizerEvents : global::Xamarin.Forms.ElementEvents
+    public class RxPinchGestureRecognizerEvents : global::Xamarin.Forms.RxElementEvents
     {
         private readonly global::Xamarin.Forms.PinchGestureRecognizer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.PinchGestureRecognizer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PinchGestureRecognizerEvents(global::Xamarin.Forms.PinchGestureRecognizer data): base(data)
+        public RxPinchGestureRecognizerEvents(global::Xamarin.Forms.PinchGestureRecognizer data): base(data)
         {
             _data = data;
         }
@@ -1930,14 +1931,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.RefreshView"/> class as observables.
     /// </summary>
-    public class RefreshViewEvents : global::Xamarin.Forms.LayoutEvents
+    public class RxRefreshViewEvents : global::Xamarin.Forms.RxLayoutEvents
     {
         private readonly global::Xamarin.Forms.RefreshView _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.RefreshView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public RefreshViewEvents(global::Xamarin.Forms.RefreshView data): base(data)
+        public RxRefreshViewEvents(global::Xamarin.Forms.RefreshView data): base(data)
         {
             _data = data;
         }
@@ -1957,14 +1958,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.RowDefinition"/> class as observables.
     /// </summary>
-    public class RowDefinitionEvents : global::Xamarin.Forms.BindableObjectEvents
+    public class RxRowDefinitionEvents : global::Xamarin.Forms.RxBindableObjectEvents
     {
         private readonly global::Xamarin.Forms.RowDefinition _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.RowDefinition"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public RowDefinitionEvents(global::Xamarin.Forms.RowDefinition data): base(data)
+        public RxRowDefinitionEvents(global::Xamarin.Forms.RowDefinition data): base(data)
         {
             _data = data;
         }
@@ -1984,14 +1985,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ScrollView"/> class as observables.
     /// </summary>
-    public class ScrollViewEvents : global::Xamarin.Forms.LayoutEvents
+    public class RxScrollViewEvents : global::Xamarin.Forms.RxLayoutEvents
     {
         private readonly global::Xamarin.Forms.ScrollView _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ScrollView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ScrollViewEvents(global::Xamarin.Forms.ScrollView data): base(data)
+        public RxScrollViewEvents(global::Xamarin.Forms.ScrollView data): base(data)
         {
             _data = data;
         }
@@ -2021,14 +2022,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.SearchBar"/> class as observables.
     /// </summary>
-    public class SearchBarEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxSearchBarEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.SearchBar _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SearchBar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SearchBarEvents(global::Xamarin.Forms.SearchBar data): base(data)
+        public RxSearchBarEvents(global::Xamarin.Forms.SearchBar data): base(data)
         {
             _data = data;
         }
@@ -2058,14 +2059,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.SearchHandler"/> class as observables.
     /// </summary>
-    public class SearchHandlerEvents : global::Xamarin.Forms.BindableObjectEvents
+    public class RxSearchHandlerEvents : global::Xamarin.Forms.RxBindableObjectEvents
     {
         private readonly global::Xamarin.Forms.SearchHandler _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SearchHandler"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SearchHandlerEvents(global::Xamarin.Forms.SearchHandler data): base(data)
+        public RxSearchHandlerEvents(global::Xamarin.Forms.SearchHandler data): base(data)
         {
             _data = data;
         }
@@ -2105,14 +2106,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.SelectableItemsView"/> class as observables.
     /// </summary>
-    public class SelectableItemsViewEvents : global::Xamarin.Forms.ItemsViewEvents
+    public class RxSelectableItemsViewEvents : global::Xamarin.Forms.RxItemsViewEvents
     {
         private readonly global::Xamarin.Forms.SelectableItemsView _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SelectableItemsView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SelectableItemsViewEvents(global::Xamarin.Forms.SelectableItemsView data): base(data)
+        public RxSelectableItemsViewEvents(global::Xamarin.Forms.SelectableItemsView data): base(data)
         {
             _data = data;
         }
@@ -2132,14 +2133,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Shell"/> class as observables.
     /// </summary>
-    public class ShellEvents : global::Xamarin.Forms.PageEvents
+    public class RxShellEvents : global::Xamarin.Forms.RxPageEvents
     {
         private readonly global::Xamarin.Forms.Shell _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Shell"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ShellEvents(global::Xamarin.Forms.Shell data): base(data)
+        public RxShellEvents(global::Xamarin.Forms.Shell data): base(data)
         {
             _data = data;
         }
@@ -2169,14 +2170,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Slider"/> class as observables.
     /// </summary>
-    public class SliderEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxSliderEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.Slider _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Slider"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SliderEvents(global::Xamarin.Forms.Slider data): base(data)
+        public RxSliderEvents(global::Xamarin.Forms.Slider data): base(data)
         {
             _data = data;
         }
@@ -2216,14 +2217,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Stepper"/> class as observables.
     /// </summary>
-    public class StepperEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxStepperEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.Stepper _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Stepper"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StepperEvents(global::Xamarin.Forms.Stepper data): base(data)
+        public RxStepperEvents(global::Xamarin.Forms.Stepper data): base(data)
         {
             _data = data;
         }
@@ -2243,14 +2244,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.SwipeGestureRecognizer"/> class as observables.
     /// </summary>
-    public class SwipeGestureRecognizerEvents : global::Xamarin.Forms.ElementEvents
+    public class RxSwipeGestureRecognizerEvents : global::Xamarin.Forms.RxElementEvents
     {
         private readonly global::Xamarin.Forms.SwipeGestureRecognizer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SwipeGestureRecognizer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SwipeGestureRecognizerEvents(global::Xamarin.Forms.SwipeGestureRecognizer data): base(data)
+        public RxSwipeGestureRecognizerEvents(global::Xamarin.Forms.SwipeGestureRecognizer data): base(data)
         {
             _data = data;
         }
@@ -2270,14 +2271,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Switch"/> class as observables.
     /// </summary>
-    public class SwitchEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxSwitchEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.Switch _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Switch"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SwitchEvents(global::Xamarin.Forms.Switch data): base(data)
+        public RxSwitchEvents(global::Xamarin.Forms.Switch data): base(data)
         {
             _data = data;
         }
@@ -2297,14 +2298,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.SwitchCell"/> class as observables.
     /// </summary>
-    public class SwitchCellEvents : global::Xamarin.Forms.CellEvents
+    public class RxSwitchCellEvents : global::Xamarin.Forms.RxCellEvents
     {
         private readonly global::Xamarin.Forms.SwitchCell _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.SwitchCell"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SwitchCellEvents(global::Xamarin.Forms.SwitchCell data): base(data)
+        public RxSwitchCellEvents(global::Xamarin.Forms.SwitchCell data): base(data)
         {
             _data = data;
         }
@@ -2324,14 +2325,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.TableView"/> class as observables.
     /// </summary>
-    public class TableViewEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxTableViewEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.TableView _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.TableView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TableViewEvents(global::Xamarin.Forms.TableView data): base(data)
+        public RxTableViewEvents(global::Xamarin.Forms.TableView data): base(data)
         {
             _data = data;
         }
@@ -2351,14 +2352,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.TapGestureRecognizer"/> class as observables.
     /// </summary>
-    public class TapGestureRecognizerEvents : global::Xamarin.Forms.ElementEvents
+    public class RxTapGestureRecognizerEvents : global::Xamarin.Forms.RxElementEvents
     {
         private readonly global::Xamarin.Forms.TapGestureRecognizer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.TapGestureRecognizer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TapGestureRecognizerEvents(global::Xamarin.Forms.TapGestureRecognizer data): base(data)
+        public RxTapGestureRecognizerEvents(global::Xamarin.Forms.TapGestureRecognizer data): base(data)
         {
             _data = data;
         }
@@ -2378,14 +2379,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.ToolbarItem"/> class as observables.
     /// </summary>
-    public class ToolbarItemEvents : global::Xamarin.Forms.MenuItemEvents
+    public class RxToolbarItemEvents : global::Xamarin.Forms.RxMenuItemEvents
     {
         private readonly global::Xamarin.Forms.ToolbarItem _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.ToolbarItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ToolbarItemEvents(global::Xamarin.Forms.ToolbarItem data): base(data)
+        public RxToolbarItemEvents(global::Xamarin.Forms.ToolbarItem data): base(data)
         {
             _data = data;
         }
@@ -2406,14 +2407,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.VisualElement"/> class as observables.
     /// </summary>
-    public class VisualElementEvents : global::Xamarin.Forms.ElementEvents
+    public class RxVisualElementEvents : global::Xamarin.Forms.RxElementEvents
     {
         private readonly global::Xamarin.Forms.VisualElement _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.VisualElement"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public VisualElementEvents(global::Xamarin.Forms.VisualElement data): base(data)
+        public RxVisualElementEvents(global::Xamarin.Forms.VisualElement data): base(data)
         {
             _data = data;
         }
@@ -2493,14 +2494,14 @@ namespace Xamarin.Forms
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.WebView"/> class as observables.
     /// </summary>
-    public class WebViewEvents : global::Xamarin.Forms.VisualElementEvents
+    public class RxWebViewEvents : global::Xamarin.Forms.RxVisualElementEvents
     {
         private readonly global::Xamarin.Forms.WebView _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.WebView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public WebViewEvents(global::Xamarin.Forms.WebView data): base(data)
+        public RxWebViewEvents(global::Xamarin.Forms.WebView data): base(data)
         {
             _data = data;
         }
@@ -2578,32 +2579,32 @@ namespace Xamarin.Forms.Internals
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Internals.DeviceInfo"/> class.
         /// </summary>
-        public static DeviceInfoEvents Events(this global::Xamarin.Forms.Internals.DeviceInfo item) => new DeviceInfoEvents(item);
+        public static RxDeviceInfoEvents Events(this global::Xamarin.Forms.Internals.DeviceInfo item) => new RxDeviceInfoEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Internals.IResourceDictionary"/> class.
         /// </summary>
-        public static IResourceDictionaryEvents Events(this global::Xamarin.Forms.Internals.IResourceDictionary item) => new IResourceDictionaryEvents(item);
+        public static RxIResourceDictionaryEvents Events(this global::Xamarin.Forms.Internals.IResourceDictionary item) => new RxIResourceDictionaryEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Internals.TableModel"/> class.
         /// </summary>
-        public static TableModelEvents Events(this global::Xamarin.Forms.Internals.TableModel item) => new TableModelEvents(item);
+        public static RxTableModelEvents Events(this global::Xamarin.Forms.Internals.TableModel item) => new RxTableModelEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Internals.ToolbarTracker"/> class.
         /// </summary>
-        public static ToolbarTrackerEvents Events(this global::Xamarin.Forms.Internals.ToolbarTracker item) => new ToolbarTrackerEvents(item);
+        public static RxToolbarTrackerEvents Events(this global::Xamarin.Forms.Internals.ToolbarTracker item) => new RxToolbarTrackerEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Internals.DeviceInfo"/> class as observables.
     /// </summary>
-    public class DeviceInfoEvents
+    public class RxDeviceInfoEvents
     {
         private readonly global::Xamarin.Forms.Internals.DeviceInfo _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Internals.DeviceInfo"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public DeviceInfoEvents(global::Xamarin.Forms.Internals.DeviceInfo data)
+        public RxDeviceInfoEvents(global::Xamarin.Forms.Internals.DeviceInfo data)
         {
             _data = data;
         }
@@ -2623,14 +2624,14 @@ namespace Xamarin.Forms.Internals
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Internals.IResourceDictionary"/> class as observables.
     /// </summary>
-    public class IResourceDictionaryEvents
+    public class RxIResourceDictionaryEvents
     {
         private readonly global::Xamarin.Forms.Internals.IResourceDictionary _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Internals.IResourceDictionary"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IResourceDictionaryEvents(global::Xamarin.Forms.Internals.IResourceDictionary data)
+        public RxIResourceDictionaryEvents(global::Xamarin.Forms.Internals.IResourceDictionary data)
         {
             _data = data;
         }
@@ -2650,14 +2651,14 @@ namespace Xamarin.Forms.Internals
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Internals.TableModel"/> class as observables.
     /// </summary>
-    public class TableModelEvents
+    public class RxTableModelEvents
     {
         private readonly global::Xamarin.Forms.Internals.TableModel _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Internals.TableModel"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TableModelEvents(global::Xamarin.Forms.Internals.TableModel data)
+        public RxTableModelEvents(global::Xamarin.Forms.Internals.TableModel data)
         {
             _data = data;
         }
@@ -2687,14 +2688,14 @@ namespace Xamarin.Forms.Internals
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Internals.ToolbarTracker"/> class as observables.
     /// </summary>
-    public class ToolbarTrackerEvents
+    public class RxToolbarTrackerEvents
     {
         private readonly global::Xamarin.Forms.Internals.ToolbarTracker _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Internals.ToolbarTracker"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ToolbarTrackerEvents(global::Xamarin.Forms.Internals.ToolbarTracker data)
+        public RxToolbarTrackerEvents(global::Xamarin.Forms.Internals.ToolbarTracker data)
         {
             _data = data;
         }
@@ -2722,52 +2723,52 @@ namespace Xamarin.Forms.Platform.UWP
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer"/> class.
         /// </summary>
-        public static CarouselPageRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer item) => new CarouselPageRendererEvents(item);
+        public static RxCarouselPageRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer item) => new RxCarouselPageRendererEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted"/> class.
         /// </summary>
-        public static EntryCellRendererCompletedEvents Events(this global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted item) => new EntryCellRendererCompletedEvents(item);
+        public static RxEntryCellRendererCompletedEvents Events(this global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted item) => new RxEntryCellRendererCompletedEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.FormsFlyout"/> class.
         /// </summary>
-        public static FormsFlyoutEvents Events(this global::Xamarin.Forms.Platform.UWP.FormsFlyout item) => new FormsFlyoutEvents(item);
+        public static RxFormsFlyoutEvents Events(this global::Xamarin.Forms.Platform.UWP.FormsFlyout item) => new RxFormsFlyoutEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer"/> class.
         /// </summary>
-        public static IVisualElementRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer item) => new IVisualElementRendererEvents(item);
+        public static RxIVisualElementRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer item) => new RxIVisualElementRendererEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer"/> class.
         /// </summary>
-        public static IVisualNativeElementRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer item) => new IVisualNativeElementRendererEvents(item);
+        public static RxIVisualNativeElementRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer item) => new RxIVisualNativeElementRendererEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer"/> class.
         /// </summary>
-        public static MasterDetailPageRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer item) => new MasterDetailPageRendererEvents(item);
+        public static RxMasterDetailPageRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer item) => new RxMasterDetailPageRendererEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer"/> class.
         /// </summary>
-        public static NavigationPageRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer item) => new NavigationPageRendererEvents(item);
+        public static RxNavigationPageRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer item) => new RxNavigationPageRendererEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.StepperControl"/> class.
         /// </summary>
-        public static StepperControlEvents Events(this global::Xamarin.Forms.Platform.UWP.StepperControl item) => new StepperControlEvents(item);
+        public static RxStepperControlEvents Events(this global::Xamarin.Forms.Platform.UWP.StepperControl item) => new RxStepperControlEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer"/> class.
         /// </summary>
-        public static TabbedPageRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer item) => new TabbedPageRendererEvents(item);
+        public static RxTabbedPageRendererEvents Events(this global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer item) => new RxTabbedPageRendererEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer"/> class as observables.
     /// </summary>
-    public class CarouselPageRendererEvents
+    public class RxCarouselPageRendererEvents
     {
         private readonly global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CarouselPageRendererEvents(global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer data)
+        public RxCarouselPageRendererEvents(global::Xamarin.Forms.Platform.UWP.CarouselPageRenderer data)
         {
             _data = data;
         }
@@ -2787,14 +2788,14 @@ namespace Xamarin.Forms.Platform.UWP
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted"/> class as observables.
     /// </summary>
-    public class EntryCellRendererCompletedEvents
+    public class RxEntryCellRendererCompletedEvents
     {
         private readonly global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public EntryCellRendererCompletedEvents(global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted data)
+        public RxEntryCellRendererCompletedEvents(global::Xamarin.Forms.Platform.UWP.EntryCellRendererCompleted data)
         {
             _data = data;
         }
@@ -2814,14 +2815,14 @@ namespace Xamarin.Forms.Platform.UWP
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.FormsFlyout"/> class as observables.
     /// </summary>
-    public class FormsFlyoutEvents
+    public class RxFormsFlyoutEvents
     {
         private readonly global::Xamarin.Forms.Platform.UWP.FormsFlyout _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.FormsFlyout"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public FormsFlyoutEvents(global::Xamarin.Forms.Platform.UWP.FormsFlyout data)
+        public RxFormsFlyoutEvents(global::Xamarin.Forms.Platform.UWP.FormsFlyout data)
         {
             _data = data;
         }
@@ -2841,14 +2842,14 @@ namespace Xamarin.Forms.Platform.UWP
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer"/> class as observables.
     /// </summary>
-    public class IVisualElementRendererEvents
+    public class RxIVisualElementRendererEvents
     {
         private readonly global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IVisualElementRendererEvents(global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer data)
+        public RxIVisualElementRendererEvents(global::Xamarin.Forms.Platform.UWP.IVisualElementRenderer data)
         {
             _data = data;
         }
@@ -2868,14 +2869,14 @@ namespace Xamarin.Forms.Platform.UWP
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer"/> class as observables.
     /// </summary>
-    public class IVisualNativeElementRendererEvents
+    public class RxIVisualNativeElementRendererEvents
     {
         private readonly global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IVisualNativeElementRendererEvents(global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer data)
+        public RxIVisualNativeElementRendererEvents(global::Xamarin.Forms.Platform.UWP.IVisualNativeElementRenderer data)
         {
             _data = data;
         }
@@ -2915,14 +2916,14 @@ namespace Xamarin.Forms.Platform.UWP
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer"/> class as observables.
     /// </summary>
-    public class MasterDetailPageRendererEvents
+    public class RxMasterDetailPageRendererEvents
     {
         private readonly global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MasterDetailPageRendererEvents(global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer data)
+        public RxMasterDetailPageRendererEvents(global::Xamarin.Forms.Platform.UWP.MasterDetailPageRenderer data)
         {
             _data = data;
         }
@@ -2942,14 +2943,14 @@ namespace Xamarin.Forms.Platform.UWP
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer"/> class as observables.
     /// </summary>
-    public class NavigationPageRendererEvents
+    public class RxNavigationPageRendererEvents
     {
         private readonly global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public NavigationPageRendererEvents(global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer data)
+        public RxNavigationPageRendererEvents(global::Xamarin.Forms.Platform.UWP.NavigationPageRenderer data)
         {
             _data = data;
         }
@@ -2969,14 +2970,14 @@ namespace Xamarin.Forms.Platform.UWP
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.StepperControl"/> class as observables.
     /// </summary>
-    public class StepperControlEvents
+    public class RxStepperControlEvents
     {
         private readonly global::Xamarin.Forms.Platform.UWP.StepperControl _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.StepperControl"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StepperControlEvents(global::Xamarin.Forms.Platform.UWP.StepperControl data)
+        public RxStepperControlEvents(global::Xamarin.Forms.Platform.UWP.StepperControl data)
         {
             _data = data;
         }
@@ -2996,14 +2997,14 @@ namespace Xamarin.Forms.Platform.UWP
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer"/> class as observables.
     /// </summary>
-    public class TabbedPageRendererEvents
+    public class RxTabbedPageRendererEvents
     {
         private readonly global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TabbedPageRendererEvents(global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer data)
+        public RxTabbedPageRendererEvents(global::Xamarin.Forms.Platform.UWP.TabbedPageRenderer data)
         {
             _data = data;
         }
@@ -3031,20 +3032,20 @@ namespace Xamarin.Forms.Platform.WinRT
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Xamarin.Forms.Platform.WinRT.StepperControl"/> class.
         /// </summary>
-        public static StepperControlEvents Events(this global::Xamarin.Forms.Platform.WinRT.StepperControl item) => new StepperControlEvents(item);
+        public static RxStepperControlEvents Events(this global::Xamarin.Forms.Platform.WinRT.StepperControl item) => new RxStepperControlEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Xamarin.Forms.Platform.WinRT.StepperControl"/> class as observables.
     /// </summary>
-    public class StepperControlEvents
+    public class RxStepperControlEvents
     {
         private readonly global::Xamarin.Forms.Platform.WinRT.StepperControl _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Xamarin.Forms.Platform.WinRT.StepperControl"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StepperControlEvents(global::Xamarin.Forms.Platform.WinRT.StepperControl data)
+        public RxStepperControlEvents(global::Xamarin.Forms.Platform.WinRT.StepperControl data)
         {
             _data = data;
         }

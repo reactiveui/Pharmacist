@@ -76,7 +76,7 @@ namespace Pharmacist.Core.Generation
         /// <param name="seeAlsoText">The uri for the inner see also section.</param>
         /// <param name="parameters">Key/Value pairs for the parameters for the comment.</param>
         /// <returns>The syntax trivia of the comment.</returns>
-        public static SyntaxTriviaList GenerateSummarySeeAlsoComment(string summaryText, string seeAlsoText, params (string paramName, string paramText)[] parameters)
+        public static SyntaxTriviaList GenerateSummarySeeAlsoComment(string summaryText, string seeAlsoText, params (string ParamName, string ParamText)[] parameters)
         {
             var text = string.Format(CultureInfo.InvariantCulture, summaryText, "<see cref=\"" + seeAlsoText.Replace("<", "{").Replace(">", "}") + "\" />");
             var sb = new StringBuilder("/// <summary>")
@@ -86,7 +86,7 @@ namespace Pharmacist.Core.Generation
 
             foreach (var parameter in parameters)
             {
-                sb.Append("/// <param name=\"").Append(parameter.paramName).Append("\">").Append(parameter.paramText).AppendLine("</param>");
+                sb.Append("/// <param name=\"").Append(parameter.ParamName).Append("\">").Append(parameter.ParamText).AppendLine("</param>");
             }
 
             return SyntaxFactory.ParseLeadingTrivia(sb.ToString());
@@ -128,7 +128,7 @@ namespace Pharmacist.Core.Generation
         /// <param name="summaryText">The text of the summary comment.</param>
         /// <param name="parameters">The key/value text of each parameter.</param>
         /// <returns>The syntax trivia of the comment.</returns>
-        public static SyntaxTriviaList GenerateSummaryComment(string summaryText, IEnumerable<(string paramName, string paramText)> parameters)
+        public static SyntaxTriviaList GenerateSummaryComment(string summaryText, IEnumerable<(string ParamName, string ParamText)> parameters)
         {
             var sb = new StringBuilder("/// <summary>")
                 .AppendLine()
@@ -137,7 +137,7 @@ namespace Pharmacist.Core.Generation
 
             foreach (var parameter in parameters)
             {
-                sb.Append("/// <param name=\"").Append(parameter.paramName).Append("\">").Append(parameter.paramText).AppendLine("</param>");
+                sb.Append("/// <param name=\"").Append(parameter.ParamName).Append("\">").Append(parameter.ParamText).AppendLine("</param>");
             }
 
             return SyntaxFactory.ParseLeadingTrivia(sb.ToString());
@@ -150,7 +150,7 @@ namespace Pharmacist.Core.Generation
         /// <param name="parameters">The key/value text of each parameter.</param>
         /// <param name="returnValueText">The text of the return value.</param>
         /// <returns>The syntax trivia of the comment.</returns>
-        public static SyntaxTriviaList GenerateSummaryComment(string summaryText, IEnumerable<(string paramName, string paramText)> parameters, string returnValueText)
+        public static SyntaxTriviaList GenerateSummaryComment(string summaryText, IEnumerable<(string ParamName, string ParamText)> parameters, string returnValueText)
         {
             var sb = new StringBuilder("/// <summary>")
                 .AppendLine()
@@ -159,7 +159,7 @@ namespace Pharmacist.Core.Generation
 
             foreach (var parameter in parameters)
             {
-                sb.Append("/// <param name=\"").Append(parameter.paramName).Append("\">").Append(parameter.paramText).AppendLine("</param>");
+                sb.Append("/// <param name=\"").Append(parameter.ParamName).Append("\">").Append(parameter.ParamText).AppendLine("</param>");
             }
 
             sb.Append("/// <returns>").Append(returnValueText).AppendLine("</returns>");
@@ -183,7 +183,7 @@ namespace Pharmacist.Core.Generation
         /// <returns>A XML friendly version of the method.</returns>
         public static string ConvertToDocument(this IMethod method)
         {
-            var stringBuilder = new StringBuilder(method.DeclaringType.ConvertToDocument() + "." + method.Name).Append("(");
+            var stringBuilder = new StringBuilder(method.DeclaringType.ConvertToDocument() + "." + method.Name).Append('(');
 
             for (var i = 0; i < method.Parameters.Count; ++i)
             {
@@ -197,7 +197,7 @@ namespace Pharmacist.Core.Generation
                 stringBuilder.Append(parameter.Type.ConvertToDocument());
             }
 
-            stringBuilder.Append(")");
+            stringBuilder.Append(')');
 
             return stringBuilder.ToString();
         }

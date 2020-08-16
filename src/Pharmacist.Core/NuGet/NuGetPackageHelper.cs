@@ -201,16 +201,16 @@ namespace Pharmacist.Core.NuGet
             return CopyPackageFiles(librariesToCopy, frameworks, packageFolders, packageOutputDirectory, token);
         }
 
-        private static async Task<IReadOnlyCollection<(DownloadResourceResult downloadResourceResult, PackageIdentity packageIdentity, bool includeFilesInOutput)>> GetPackagesToCopy(
+        private static async Task<IReadOnlyCollection<(DownloadResourceResult DownloadResourceResult, PackageIdentity PackageIdentity, bool IncludeFilesInOutput)>> GetPackagesToCopy(
             IReadOnlyCollection<PackageIdentity> startingPackages,
             DownloadResource downloadResource,
             IReadOnlyCollection<NuGetFramework> frameworks,
             bool getDependencies,
             CancellationToken token)
         {
-            var packagesToCopy = new Dictionary<PackageIdentity, (DownloadResourceResult downloadResourceResult, PackageIdentity packageIdentity, bool includeFilesInOutput)>(PackageIdentityNameComparer.Default);
+            var packagesToCopy = new Dictionary<PackageIdentity, (DownloadResourceResult DownloadResourceResult, PackageIdentity PackageIdentity, bool IncludeFilesInOutput)>(PackageIdentityNameComparer.Default);
 
-            var stack = new Stack<(PackageIdentity packageIdentity, bool include)>(startingPackages.Select(x => (x, true)));
+            var stack = new Stack<(PackageIdentity PackageIdentity, bool Include)>(startingPackages.Select(x => (x, true)));
 
             if (getDependencies)
             {
@@ -221,7 +221,7 @@ namespace Pharmacist.Core.NuGet
                 }
             }
 
-            var processingItems = new (PackageIdentity packageIdentity, bool includeFiles)[ProcessingCount];
+            var processingItems = new (PackageIdentity PackageIdentity, bool IncludeFiles)[ProcessingCount];
             while (stack.Count != 0)
             {
                 var count = stack.TryPopRange(processingItems);
@@ -229,7 +229,7 @@ namespace Pharmacist.Core.NuGet
                 var currentItems = processingItems.Take(count).Where(
                     item =>
                     {
-                        if (packagesToCopy.TryGetValue(item.packageIdentity, out var existingValue) && item.packageIdentity.Version <= existingValue.packageIdentity.Version)
+                        if (packagesToCopy.TryGetValue(item.PackageIdentity, out var existingValue) && item.PackageIdentity.Version <= existingValue.PackageIdentity.Version)
                         {
                             return false;
                         }
@@ -238,15 +238,15 @@ namespace Pharmacist.Core.NuGet
                     }).ToList();
 
                 // Download the resource into the global packages path. We get a result which allows us to copy or do other operations based on the files.
-                (DownloadResourceResult downloadResourceResult, PackageIdentity packageIdentity, bool includeFilesInOutput)[] results = await Task.WhenAll(
+                (DownloadResourceResult DownloadResourceResult, PackageIdentity PackageIdentity, bool IncludeFilesInOutput)[] results = await Task.WhenAll(
                          currentItems.Select(
                              async item =>
-                                 (await downloadResource.GetDownloadResourceResultAsync(item.packageIdentity, _downloadContext, _globalPackagesPath, _logger, token).ConfigureAwait(false), item.packageIdentity, item.includeFiles))).ConfigureAwait(false);
+                                 (await downloadResource.GetDownloadResourceResultAsync(item.PackageIdentity, _downloadContext, _globalPackagesPath, _logger, token).ConfigureAwait(false), item.PackageIdentity, item.IncludeFiles))).ConfigureAwait(false);
 
-                foreach (var item in results.Where(x => x.downloadResourceResult.Status == DownloadResourceResultStatus.Available || x.downloadResourceResult.Status == DownloadResourceResultStatus.AvailableWithoutStream))
+                foreach (var item in results.Where(x => x.DownloadResourceResult.Status == DownloadResourceResultStatus.Available || x.DownloadResourceResult.Status == DownloadResourceResultStatus.AvailableWithoutStream))
                 {
-                    packagesToCopy[item.packageIdentity] = item;
-                    var dependencyInfos = GetDependencyPackages(item.downloadResourceResult, frameworks.First());
+                    packagesToCopy[item.PackageIdentity] = item;
+                    var dependencyInfos = GetDependencyPackages(item.DownloadResourceResult, frameworks.First());
 
                     stack.PushRange(dependencyInfos.Select(x => (x, false)));
                 }
@@ -256,7 +256,7 @@ namespace Pharmacist.Core.NuGet
         }
 
         private static InputAssembliesGroup CopyPackageFiles(
-            IReadOnlyCollection<(DownloadResourceResult downloadResourceResult, PackageIdentity packageIdentity, bool includeFilesInOutput)> packagesToProcess,
+            IReadOnlyCollection<(DownloadResourceResult DownloadResourceResult, PackageIdentity PackageIdentity, bool IncludeFilesInOutput)> packagesToProcess,
             IReadOnlyCollection<NuGetFramework> frameworks,
             IReadOnlyCollection<string> packageFolders,
             string packageDirectory,
@@ -281,10 +281,10 @@ namespace Pharmacist.Core.NuGet
                 EnsureDirectory(directory);
 
                 var folders = packageFolderGroup.Select(
-                    x => (x.folder, files: downloadResourceResult.PackageReader.CopyFiles(
+                    x => (x.Folder, files: downloadResourceResult.PackageReader.CopyFiles(
                                  directory,
-                                 x.files,
-                                 new PackageFileExtractor(x.files, XmlDocFileSaveMode.Skip).ExtractPackageFile,
+                                 x.Files,
+                                 new PackageFileExtractor(x.Files, XmlDocFileSaveMode.Skip).ExtractPackageFile,
                                  _logger,
                                  token)));
 
@@ -337,7 +337,7 @@ namespace Pharmacist.Core.NuGet
             return highestFramework.Packages.Select(package => new PackageIdentity(package.Id, package.VersionRange.MinVersion));
         }
 
-        private static IEnumerable<(string folder, IEnumerable<string> files)> GetFileGroups(this PackageReaderBase reader, IReadOnlyCollection<string> folders, IReadOnlyCollection<NuGetFramework> frameworksToInclude)
+        private static IEnumerable<(string Folder, IEnumerable<string> Files)> GetFileGroups(this PackageReaderBase reader, IReadOnlyCollection<string> folders, IReadOnlyCollection<NuGetFramework> frameworksToInclude)
         {
             var groups = new Dictionary<NuGetFramework, Dictionary<string, List<string>>>(new NuGetFrameworkFullComparer());
             foreach (var folder in folders)

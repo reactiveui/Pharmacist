@@ -109,7 +109,7 @@ namespace Pharmacist.Core.Utilities
         }
 
         [SuppressMessage("Design", "CA1031: Modify to catch a more specific exception type, or rethrow the exception.", Justification = "Deliberate usage.")]
-        private static (Version?, string?) ConvertToVersion(string name)
+        private static (Version? Version, string? Name) ConvertToVersion(string name)
         {
             string RemoveTrailingVersionInfo()
             {

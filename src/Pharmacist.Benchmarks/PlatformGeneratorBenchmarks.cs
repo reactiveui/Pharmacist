@@ -6,6 +6,7 @@
 using System.Threading.Tasks;
 
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 
 using Pharmacist.Core;
 
@@ -14,8 +15,8 @@ namespace Pharmacist.Benchmarks
     /// <summary>
     /// Benchmarks for the NavigationStack and the RoutingState objects.
     /// </summary>
-    [ClrJob]
-    ////[CoreJob]
+    [SimpleJob(RuntimeMoniker.Net472)]
+    [SimpleJob(RuntimeMoniker.NetCoreApp31)]
     [MemoryDiagnoser]
     [MarkdownExporterAttribute.GitHub]
     public class NavigationStackBenchmark

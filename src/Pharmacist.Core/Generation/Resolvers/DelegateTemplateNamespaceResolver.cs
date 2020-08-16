@@ -35,7 +35,7 @@ namespace Pharmacist.Core.Generation.Resolvers
 
         public IEnumerable<NamespaceDeclarationSyntax> Create(ICompilation compilation)
         {
-            IEnumerable<(ITypeDefinition typeDefinition, bool isAbstract, IEnumerable<IMethod> methods)> values = compilation.GetPublicTypeDefinitions()
+            IEnumerable<(ITypeDefinition TypeDefinition, bool IsAbstract, IEnumerable<IMethod> Methods)> values = compilation.GetPublicTypeDefinitions()
                 .Where(
                     x => x.Kind != TypeKind.Interface
                     && (!IsMulticastDelegateDerived(x)

@@ -165,9 +165,9 @@ namespace Pharmacist.Core.Generation
 
             if (currentType.TypeParameterCount > 0)
             {
-                sb.Append("<")
+                sb.Append('<')
                     .Append(string.Join(", ", currentType.TypeArguments.Select(GenerateFullGenericName)))
-                    .Append(">");
+                    .Append('>');
             }
 
             return sb.ToString();
@@ -186,7 +186,7 @@ namespace Pharmacist.Core.Generation
                     });
         }
 
-        private static (bool isInternalType, string typeName) GetBuiltInType(string typeName)
+        private static (bool IsInternalType, string TypeName) GetBuiltInType(string typeName)
         {
             if (TypesMetadata.FullToBuiltInTypes.TryGetValue(typeName, out var builtInName))
             {

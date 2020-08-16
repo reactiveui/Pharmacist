@@ -4,13 +4,14 @@
 // See the LICENSE file in the project root for full license information.
 
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 
 using Pharmacist.Core.Generation;
 
 namespace Pharmacist.Benchmarks
 {
-    [ClrJob]
-    [CoreJob]
+    [SimpleJob(RuntimeMoniker.Net472)]
+    [SimpleJob(RuntimeMoniker.NetCoreApp31)]
     [MemoryDiagnoser]
     [MarkdownExporterAttribute.GitHub]
     public class CommentGenerator
