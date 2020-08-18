@@ -14,54 +14,44 @@ namespace Avalonia
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Application"/> class.
         /// </summary>
-        public static ApplicationEvents Events(this global::Avalonia.Application item) => new ApplicationEvents(item);
+        public static RxApplicationEvents Events(this global::Avalonia.Application item) => new RxApplicationEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.AvaloniaObject"/> class.
         /// </summary>
-        public static AvaloniaObjectEvents Events(this global::Avalonia.AvaloniaObject item) => new AvaloniaObjectEvents(item);
+        public static RxAvaloniaObjectEvents Events(this global::Avalonia.AvaloniaObject item) => new RxAvaloniaObjectEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.IAvaloniaObject"/> class.
         /// </summary>
-        public static IAvaloniaObjectEvents Events(this global::Avalonia.IAvaloniaObject item) => new IAvaloniaObjectEvents(item);
+        public static RxIAvaloniaObjectEvents Events(this global::Avalonia.IAvaloniaObject item) => new RxIAvaloniaObjectEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.IStyledElement"/> class.
         /// </summary>
-        public static IStyledElementEvents Events(this global::Avalonia.IStyledElement item) => new IStyledElementEvents(item);
+        public static RxIStyledElementEvents Events(this global::Avalonia.IStyledElement item) => new RxIStyledElementEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.StyledElement"/> class.
         /// </summary>
-        public static StyledElementEvents Events(this global::Avalonia.StyledElement item) => new StyledElementEvents(item);
+        public static RxStyledElementEvents Events(this global::Avalonia.StyledElement item) => new RxStyledElementEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Visual"/> class.
         /// </summary>
-        public static VisualEvents Events(this global::Avalonia.Visual item) => new VisualEvents(item);
+        public static RxVisualEvents Events(this global::Avalonia.Visual item) => new RxVisualEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Application"/> class as observables.
     /// </summary>
-    public class ApplicationEvents
+    public class RxApplicationEvents : global::Avalonia.RxAvaloniaObjectEvents
     {
         private readonly global::Avalonia.Application _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Application"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ApplicationEvents(global::Avalonia.Application data)
+        public RxApplicationEvents(global::Avalonia.Application data): base(data)
         {
             _data = data;
         }
 
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Application.OnExit"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<global::System.EventArgs> OnExit => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
-            return Handler;
-        }
-
-        , x => _data.OnExit += x, x => _data.OnExit -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Avalonia.Application.ResourcesChanged"/> event triggers.
         /// </summary>
@@ -77,14 +67,14 @@ namespace Avalonia
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.AvaloniaObject"/> class as observables.
     /// </summary>
-    public class AvaloniaObjectEvents
+    public class RxAvaloniaObjectEvents
     {
         private readonly global::Avalonia.AvaloniaObject _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.AvaloniaObject"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public AvaloniaObjectEvents(global::Avalonia.AvaloniaObject data)
+        public RxAvaloniaObjectEvents(global::Avalonia.AvaloniaObject data)
         {
             _data = data;
         }
@@ -104,14 +94,14 @@ namespace Avalonia
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.IAvaloniaObject"/> class as observables.
     /// </summary>
-    public class IAvaloniaObjectEvents
+    public class RxIAvaloniaObjectEvents
     {
         private readonly global::Avalonia.IAvaloniaObject _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.IAvaloniaObject"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IAvaloniaObjectEvents(global::Avalonia.IAvaloniaObject data)
+        public RxIAvaloniaObjectEvents(global::Avalonia.IAvaloniaObject data)
         {
             _data = data;
         }
@@ -141,14 +131,14 @@ namespace Avalonia
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.IStyledElement"/> class as observables.
     /// </summary>
-    public class IStyledElementEvents
+    public class RxIStyledElementEvents
     {
         private readonly global::Avalonia.IStyledElement _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.IStyledElement"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IStyledElementEvents(global::Avalonia.IStyledElement data)
+        public RxIStyledElementEvents(global::Avalonia.IStyledElement data)
         {
             _data = data;
         }
@@ -168,14 +158,14 @@ namespace Avalonia
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.StyledElement"/> class as observables.
     /// </summary>
-    public class StyledElementEvents : global::Avalonia.AvaloniaObjectEvents
+    public class RxStyledElementEvents : global::Avalonia.RxAvaloniaObjectEvents
     {
         private readonly global::Avalonia.StyledElement _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.StyledElement"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StyledElementEvents(global::Avalonia.StyledElement data): base(data)
+        public RxStyledElementEvents(global::Avalonia.StyledElement data): base(data)
         {
             _data = data;
         }
@@ -235,14 +225,14 @@ namespace Avalonia
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Visual"/> class as observables.
     /// </summary>
-    public class VisualEvents : global::Avalonia.StyledElementEvents
+    public class RxVisualEvents : global::Avalonia.RxStyledElementEvents
     {
         private readonly global::Avalonia.Visual _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Visual"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public VisualEvents(global::Avalonia.Visual data): base(data)
+        public RxVisualEvents(global::Avalonia.Visual data): base(data)
         {
             _data = data;
         }
@@ -280,20 +270,20 @@ namespace Avalonia.Collections
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{global::TKey, global::TValue}"/> class.
         /// </summary>
-        public static AvaloniaDictionaryEvents Events(this global::Avalonia.Collections.AvaloniaDictionary<global::TKey, global::TValue> item) => new AvaloniaDictionaryEvents(item);
+        public static RxAvaloniaDictionaryEvents Events(this global::Avalonia.Collections.AvaloniaDictionary<global::TKey, global::TValue> item) => new RxAvaloniaDictionaryEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{global::TKey, global::TValue}"/> class as observables.
     /// </summary>
-    public class AvaloniaDictionaryEvents
+    public class RxAvaloniaDictionaryEvents
     {
         private readonly global::Avalonia.Collections.AvaloniaDictionary<global::TKey, global::TValue> _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{global::TKey, global::TValue}"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public AvaloniaDictionaryEvents(global::Avalonia.Collections.AvaloniaDictionary<global::TKey, global::TValue> data)
+        public RxAvaloniaDictionaryEvents(global::Avalonia.Collections.AvaloniaDictionary<global::TKey, global::TValue> data)
         {
             _data = data;
         }
@@ -331,88 +321,88 @@ namespace Avalonia.Controls
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.AutoCompleteBox"/> class.
         /// </summary>
-        public static AutoCompleteBoxEvents Events(this global::Avalonia.Controls.AutoCompleteBox item) => new AutoCompleteBoxEvents(item);
+        public static RxAutoCompleteBoxEvents Events(this global::Avalonia.Controls.AutoCompleteBox item) => new RxAutoCompleteBoxEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Button"/> class.
         /// </summary>
-        public static ButtonEvents Events(this global::Avalonia.Controls.Button item) => new ButtonEvents(item);
+        public static RxButtonEvents Events(this global::Avalonia.Controls.Button item) => new RxButtonEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Calendar"/> class.
         /// </summary>
-        public static CalendarEvents Events(this global::Avalonia.Controls.Calendar item) => new CalendarEvents(item);
+        public static RxCalendarEvents Events(this global::Avalonia.Controls.Calendar item) => new RxCalendarEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.ContextMenu"/> class.
         /// </summary>
-        public static ContextMenuEvents Events(this global::Avalonia.Controls.ContextMenu item) => new ContextMenuEvents(item);
+        public static RxContextMenuEvents Events(this global::Avalonia.Controls.ContextMenu item) => new RxContextMenuEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.DatePicker"/> class.
         /// </summary>
-        public static DatePickerEvents Events(this global::Avalonia.Controls.DatePicker item) => new DatePickerEvents(item);
-        /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.IApplicationLifecycle"/> class.
-        /// </summary>
-        public static IApplicationLifecycleEvents Events(this global::Avalonia.Controls.IApplicationLifecycle item) => new IApplicationLifecycleEvents(item);
-        /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.INameScope"/> class.
-        /// </summary>
-        public static INameScopeEvents Events(this global::Avalonia.Controls.INameScope item) => new INameScopeEvents(item);
+        public static RxDatePickerEvents Events(this global::Avalonia.Controls.DatePicker item) => new RxDatePickerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.IResourceProvider"/> class.
         /// </summary>
-        public static IResourceProviderEvents Events(this global::Avalonia.Controls.IResourceProvider item) => new IResourceProviderEvents(item);
+        public static RxIResourceProviderEvents Events(this global::Avalonia.Controls.IResourceProvider item) => new RxIResourceProviderEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.ItemsRepeater"/> class.
+        /// </summary>
+        public static RxItemsRepeaterEvents Events(this global::Avalonia.Controls.ItemsRepeater item) => new RxItemsRepeaterEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.ItemsSourceView"/> class.
+        /// </summary>
+        public static RxItemsSourceViewEvents Events(this global::Avalonia.Controls.ItemsSourceView item) => new RxItemsSourceViewEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.MenuBase"/> class.
         /// </summary>
-        public static MenuBaseEvents Events(this global::Avalonia.Controls.MenuBase item) => new MenuBaseEvents(item);
+        public static RxMenuBaseEvents Events(this global::Avalonia.Controls.MenuBase item) => new RxMenuBaseEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.MenuItem"/> class.
         /// </summary>
-        public static MenuItemEvents Events(this global::Avalonia.Controls.MenuItem item) => new MenuItemEvents(item);
+        public static RxMenuItemEvents Events(this global::Avalonia.Controls.MenuItem item) => new RxMenuItemEvents(item);
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.NameScope"/> class.
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.NativeMenuItem"/> class.
         /// </summary>
-        public static NameScopeEvents Events(this global::Avalonia.Controls.NameScope item) => new NameScopeEvents(item);
+        public static RxNativeMenuItemEvents Events(this global::Avalonia.Controls.NativeMenuItem item) => new RxNativeMenuItemEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.NumericUpDown"/> class.
         /// </summary>
-        public static NumericUpDownEvents Events(this global::Avalonia.Controls.NumericUpDown item) => new NumericUpDownEvents(item);
+        public static RxNumericUpDownEvents Events(this global::Avalonia.Controls.NumericUpDown item) => new RxNumericUpDownEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.ResourceDictionary"/> class.
         /// </summary>
-        public static ResourceDictionaryEvents Events(this global::Avalonia.Controls.ResourceDictionary item) => new ResourceDictionaryEvents(item);
+        public static RxResourceDictionaryEvents Events(this global::Avalonia.Controls.ResourceDictionary item) => new RxResourceDictionaryEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Spinner"/> class.
         /// </summary>
-        public static SpinnerEvents Events(this global::Avalonia.Controls.Spinner item) => new SpinnerEvents(item);
+        public static RxSpinnerEvents Events(this global::Avalonia.Controls.Spinner item) => new RxSpinnerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.TopLevel"/> class.
         /// </summary>
-        public static TopLevelEvents Events(this global::Avalonia.Controls.TopLevel item) => new TopLevelEvents(item);
+        public static RxTopLevelEvents Events(this global::Avalonia.Controls.TopLevel item) => new RxTopLevelEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.TreeView"/> class.
         /// </summary>
-        public static TreeViewEvents Events(this global::Avalonia.Controls.TreeView item) => new TreeViewEvents(item);
+        public static RxTreeViewEvents Events(this global::Avalonia.Controls.TreeView item) => new RxTreeViewEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Window"/> class.
         /// </summary>
-        public static WindowEvents Events(this global::Avalonia.Controls.Window item) => new WindowEvents(item);
+        public static RxWindowEvents Events(this global::Avalonia.Controls.Window item) => new RxWindowEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.WindowBase"/> class.
         /// </summary>
-        public static WindowBaseEvents Events(this global::Avalonia.Controls.WindowBase item) => new WindowBaseEvents(item);
+        public static RxWindowBaseEvents Events(this global::Avalonia.Controls.WindowBase item) => new RxWindowBaseEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.AutoCompleteBox"/> class as observables.
     /// </summary>
-    public class AutoCompleteBoxEvents : global::Avalonia.Controls.Primitives.TemplatedControlEvents
+    public class RxAutoCompleteBoxEvents : global::Avalonia.Controls.Primitives.RxTemplatedControlEvents
     {
         private readonly global::Avalonia.Controls.AutoCompleteBox _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.AutoCompleteBox"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public AutoCompleteBoxEvents(global::Avalonia.Controls.AutoCompleteBox data): base(data)
+        public RxAutoCompleteBoxEvents(global::Avalonia.Controls.AutoCompleteBox data): base(data)
         {
             _data = data;
         }
@@ -502,14 +492,14 @@ namespace Avalonia.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Button"/> class as observables.
     /// </summary>
-    public class ButtonEvents : global::Avalonia.Controls.Primitives.TemplatedControlEvents
+    public class RxButtonEvents : global::Avalonia.Controls.Primitives.RxTemplatedControlEvents
     {
         private readonly global::Avalonia.Controls.Button _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Button"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ButtonEvents(global::Avalonia.Controls.Button data): base(data)
+        public RxButtonEvents(global::Avalonia.Controls.Button data): base(data)
         {
             _data = data;
         }
@@ -529,14 +519,14 @@ namespace Avalonia.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Calendar"/> class as observables.
     /// </summary>
-    public class CalendarEvents : global::Avalonia.Controls.Primitives.TemplatedControlEvents
+    public class RxCalendarEvents : global::Avalonia.Controls.Primitives.RxTemplatedControlEvents
     {
         private readonly global::Avalonia.Controls.Calendar _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Calendar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CalendarEvents(global::Avalonia.Controls.Calendar data): base(data)
+        public RxCalendarEvents(global::Avalonia.Controls.Calendar data): base(data)
         {
             _data = data;
         }
@@ -576,14 +566,14 @@ namespace Avalonia.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.ContextMenu"/> class as observables.
     /// </summary>
-    public class ContextMenuEvents : global::Avalonia.Controls.MenuBaseEvents
+    public class RxContextMenuEvents : global::Avalonia.Controls.RxMenuBaseEvents
     {
         private readonly global::Avalonia.Controls.ContextMenu _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.ContextMenu"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ContextMenuEvents(global::Avalonia.Controls.ContextMenu data): base(data)
+        public RxContextMenuEvents(global::Avalonia.Controls.ContextMenu data): base(data)
         {
             _data = data;
         }
@@ -613,14 +603,14 @@ namespace Avalonia.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.DatePicker"/> class as observables.
     /// </summary>
-    public class DatePickerEvents : global::Avalonia.Controls.Primitives.TemplatedControlEvents
+    public class RxDatePickerEvents : global::Avalonia.Controls.Primitives.RxTemplatedControlEvents
     {
         private readonly global::Avalonia.Controls.DatePicker _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.DatePicker"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public DatePickerEvents(global::Avalonia.Controls.DatePicker data): base(data)
+        public RxDatePickerEvents(global::Avalonia.Controls.DatePicker data): base(data)
         {
             _data = data;
         }
@@ -668,80 +658,16 @@ namespace Avalonia.Controls
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.IApplicationLifecycle"/> class as observables.
-    /// </summary>
-    public class IApplicationLifecycleEvents
-    {
-        private readonly global::Avalonia.Controls.IApplicationLifecycle _data;
-        /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.IApplicationLifecycle"/> class.
-        /// </summary>
-        /// <param name = "data">The class that is being wrapped.</param>
-        public IApplicationLifecycleEvents(global::Avalonia.Controls.IApplicationLifecycle data)
-        {
-            _data = data;
-        }
-
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.IApplicationLifecycle.OnExit"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<global::System.EventArgs> OnExit => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
-            return Handler;
-        }
-
-        , x => _data.OnExit += x, x => _data.OnExit -= x);
-    }
-
-    /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.INameScope"/> class as observables.
-    /// </summary>
-    public class INameScopeEvents
-    {
-        private readonly global::Avalonia.Controls.INameScope _data;
-        /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.INameScope"/> class.
-        /// </summary>
-        /// <param name = "data">The class that is being wrapped.</param>
-        public INameScopeEvents(global::Avalonia.Controls.INameScope data)
-        {
-            _data = data;
-        }
-
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.INameScope.Registered"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<global::Avalonia.Controls.NameScopeEventArgs> Registered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NameScopeEventArgs>, global::Avalonia.Controls.NameScopeEventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::Avalonia.Controls.NameScopeEventArgs e) => eventHandler(e);
-            return Handler;
-        }
-
-        , x => _data.Registered += x, x => _data.Registered -= x);
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.INameScope.Unregistered"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<global::Avalonia.Controls.NameScopeEventArgs> Unregistered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NameScopeEventArgs>, global::Avalonia.Controls.NameScopeEventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::Avalonia.Controls.NameScopeEventArgs e) => eventHandler(e);
-            return Handler;
-        }
-
-        , x => _data.Unregistered += x, x => _data.Unregistered -= x);
-    }
-
-    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.IResourceProvider"/> class as observables.
     /// </summary>
-    public class IResourceProviderEvents
+    public class RxIResourceProviderEvents
     {
         private readonly global::Avalonia.Controls.IResourceProvider _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.IResourceProvider"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IResourceProviderEvents(global::Avalonia.Controls.IResourceProvider data)
+        public RxIResourceProviderEvents(global::Avalonia.Controls.IResourceProvider data)
         {
             _data = data;
         }
@@ -759,16 +685,90 @@ namespace Avalonia.Controls
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.ItemsRepeater"/> class as observables.
+    /// </summary>
+    public class RxItemsRepeaterEvents : global::Avalonia.Input.RxInputElementEvents
+    {
+        private readonly global::Avalonia.Controls.ItemsRepeater _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.ItemsRepeater"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxItemsRepeaterEvents(global::Avalonia.Controls.ItemsRepeater data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.ItemsRepeater.ElementClearing"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Avalonia.Controls.ItemsRepeaterElementClearingEventArgs> ElementClearing => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ItemsRepeaterElementClearingEventArgs>, global::Avalonia.Controls.ItemsRepeaterElementClearingEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Avalonia.Controls.ItemsRepeaterElementClearingEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementClearing += x, x => _data.ElementClearing -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.ItemsRepeater.ElementIndexChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Avalonia.Controls.ItemsRepeaterElementIndexChangedEventArgs> ElementIndexChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ItemsRepeaterElementIndexChangedEventArgs>, global::Avalonia.Controls.ItemsRepeaterElementIndexChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Avalonia.Controls.ItemsRepeaterElementIndexChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementIndexChanged += x, x => _data.ElementIndexChanged -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.ItemsRepeater.ElementPrepared"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Avalonia.Controls.ItemsRepeaterElementPreparedEventArgs> ElementPrepared => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ItemsRepeaterElementPreparedEventArgs>, global::Avalonia.Controls.ItemsRepeaterElementPreparedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Avalonia.Controls.ItemsRepeaterElementPreparedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ElementPrepared += x, x => _data.ElementPrepared -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.ItemsSourceView"/> class as observables.
+    /// </summary>
+    public class RxItemsSourceViewEvents
+    {
+        private readonly global::Avalonia.Controls.ItemsSourceView _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.ItemsSourceView"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxItemsSourceViewEvents(global::Avalonia.Controls.ItemsSourceView data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.ItemsSourceView.CollectionChanged"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.Collections.Specialized.NotifyCollectionChangedEventArgs> CollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.Collections.Specialized.NotifyCollectionChangedEventHandler, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.CollectionChanged += x, x => _data.CollectionChanged -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.MenuBase"/> class as observables.
     /// </summary>
-    public class MenuBaseEvents : global::Avalonia.Controls.Primitives.SelectingItemsControlEvents
+    public class RxMenuBaseEvents : global::Avalonia.Controls.Primitives.RxSelectingItemsControlEvents
     {
         private readonly global::Avalonia.Controls.MenuBase _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.MenuBase"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MenuBaseEvents(global::Avalonia.Controls.MenuBase data): base(data)
+        public RxMenuBaseEvents(global::Avalonia.Controls.MenuBase data): base(data)
         {
             _data = data;
         }
@@ -798,14 +798,14 @@ namespace Avalonia.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.MenuItem"/> class as observables.
     /// </summary>
-    public class MenuItemEvents : global::Avalonia.Controls.Primitives.SelectingItemsControlEvents
+    public class RxMenuItemEvents : global::Avalonia.Controls.Primitives.RxSelectingItemsControlEvents
     {
         private readonly global::Avalonia.Controls.MenuItem _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.MenuItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public MenuItemEvents(global::Avalonia.Controls.MenuItem data): base(data)
+        public RxMenuItemEvents(global::Avalonia.Controls.MenuItem data): base(data)
         {
             _data = data;
         }
@@ -853,53 +853,43 @@ namespace Avalonia.Controls
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.NameScope"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.NativeMenuItem"/> class as observables.
     /// </summary>
-    public class NameScopeEvents
+    public class RxNativeMenuItemEvents : global::Avalonia.RxAvaloniaObjectEvents
     {
-        private readonly global::Avalonia.Controls.NameScope _data;
+        private readonly global::Avalonia.Controls.NativeMenuItem _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.NameScope"/> class.
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.NativeMenuItem"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public NameScopeEvents(global::Avalonia.Controls.NameScope data)
+        public RxNativeMenuItemEvents(global::Avalonia.Controls.NativeMenuItem data): base(data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.NameScope.Registered"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.NativeMenuItem.Clicked"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Avalonia.Controls.NameScopeEventArgs> Registered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NameScopeEventArgs>, global::Avalonia.Controls.NameScopeEventArgs>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> Clicked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Avalonia.Controls.NameScopeEventArgs e) => eventHandler(e);
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
-        , x => _data.Registered += x, x => _data.Registered -= x);
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.NameScope.Unregistered"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<global::Avalonia.Controls.NameScopeEventArgs> Unregistered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NameScopeEventArgs>, global::Avalonia.Controls.NameScopeEventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::Avalonia.Controls.NameScopeEventArgs e) => eventHandler(e);
-            return Handler;
-        }
-
-        , x => _data.Unregistered += x, x => _data.Unregistered -= x);
+        , x => _data.Clicked += x, x => _data.Clicked -= x);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.NumericUpDown"/> class as observables.
     /// </summary>
-    public class NumericUpDownEvents : global::Avalonia.Controls.Primitives.TemplatedControlEvents
+    public class RxNumericUpDownEvents : global::Avalonia.Controls.Primitives.RxTemplatedControlEvents
     {
         private readonly global::Avalonia.Controls.NumericUpDown _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.NumericUpDown"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public NumericUpDownEvents(global::Avalonia.Controls.NumericUpDown data): base(data)
+        public RxNumericUpDownEvents(global::Avalonia.Controls.NumericUpDown data): base(data)
         {
             _data = data;
         }
@@ -929,14 +919,14 @@ namespace Avalonia.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.ResourceDictionary"/> class as observables.
     /// </summary>
-    public class ResourceDictionaryEvents : global::Avalonia.Collections.AvaloniaDictionaryEvents
+    public class RxResourceDictionaryEvents : global::Avalonia.Collections.RxAvaloniaDictionaryEvents
     {
         private readonly global::Avalonia.Controls.ResourceDictionary _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.ResourceDictionary"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ResourceDictionaryEvents(global::Avalonia.Controls.ResourceDictionary data): base(data)
+        public RxResourceDictionaryEvents(global::Avalonia.Controls.ResourceDictionary data): base(data)
         {
             _data = data;
         }
@@ -956,14 +946,14 @@ namespace Avalonia.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Spinner"/> class as observables.
     /// </summary>
-    public class SpinnerEvents : global::Avalonia.Controls.Primitives.TemplatedControlEvents
+    public class RxSpinnerEvents : global::Avalonia.Controls.Primitives.RxTemplatedControlEvents
     {
         private readonly global::Avalonia.Controls.Spinner _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Spinner"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SpinnerEvents(global::Avalonia.Controls.Spinner data): base(data)
+        public RxSpinnerEvents(global::Avalonia.Controls.Spinner data): base(data)
         {
             _data = data;
         }
@@ -983,14 +973,14 @@ namespace Avalonia.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.TopLevel"/> class as observables.
     /// </summary>
-    public class TopLevelEvents : global::Avalonia.Controls.Primitives.TemplatedControlEvents
+    public class RxTopLevelEvents : global::Avalonia.Controls.Primitives.RxTemplatedControlEvents
     {
         private readonly global::Avalonia.Controls.TopLevel _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.TopLevel"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TopLevelEvents(global::Avalonia.Controls.TopLevel data): base(data)
+        public RxTopLevelEvents(global::Avalonia.Controls.TopLevel data): base(data)
         {
             _data = data;
         }
@@ -1020,14 +1010,14 @@ namespace Avalonia.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.TreeView"/> class as observables.
     /// </summary>
-    public class TreeViewEvents : global::Avalonia.Controls.Primitives.TemplatedControlEvents
+    public class RxTreeViewEvents : global::Avalonia.Controls.Primitives.RxTemplatedControlEvents
     {
         private readonly global::Avalonia.Controls.TreeView _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.TreeView"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TreeViewEvents(global::Avalonia.Controls.TreeView data): base(data)
+        public RxTreeViewEvents(global::Avalonia.Controls.TreeView data): base(data)
         {
             _data = data;
         }
@@ -1047,14 +1037,14 @@ namespace Avalonia.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Window"/> class as observables.
     /// </summary>
-    public class WindowEvents : global::Avalonia.Controls.WindowBaseEvents
+    public class RxWindowEvents : global::Avalonia.Controls.RxWindowBaseEvents
     {
         private readonly global::Avalonia.Controls.Window _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Window"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public WindowEvents(global::Avalonia.Controls.Window data): base(data)
+        public RxWindowEvents(global::Avalonia.Controls.Window data): base(data)
         {
             _data = data;
         }
@@ -1074,14 +1064,14 @@ namespace Avalonia.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.WindowBase"/> class as observables.
     /// </summary>
-    public class WindowBaseEvents : global::Avalonia.Controls.TopLevelEvents
+    public class RxWindowBaseEvents : global::Avalonia.Controls.RxTopLevelEvents
     {
         private readonly global::Avalonia.Controls.WindowBase _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.WindowBase"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public WindowBaseEvents(global::Avalonia.Controls.WindowBase data): base(data)
+        public RxWindowBaseEvents(global::Avalonia.Controls.WindowBase data): base(data)
         {
             _data = data;
         }
@@ -1119,54 +1109,95 @@ namespace Avalonia.Controls
     }
 }
 
-namespace Avalonia.Controls.Embedding
+namespace Avalonia.Controls.ApplicationLifetimes
 {
     /// <summary>
-    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Avalonia.Controls.Embedding"/> namespace.
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Avalonia.Controls.ApplicationLifetimes"/> namespace.
     /// </summary>
     public static class EventExtensions
     {
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Embedding.EmbeddableControlRoot"/> class.
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.ApplicationLifetimes.ClassicDesktopStyleApplicationLifetime"/> class.
         /// </summary>
-        public static EmbeddableControlRootEvents Events(this global::Avalonia.Controls.Embedding.EmbeddableControlRoot item) => new EmbeddableControlRootEvents(item);
+        public static RxClassicDesktopStyleApplicationLifetimeEvents Events(this global::Avalonia.Controls.ApplicationLifetimes.ClassicDesktopStyleApplicationLifetime item) => new RxClassicDesktopStyleApplicationLifetimeEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.ApplicationLifetimes.IControlledApplicationLifetime"/> class.
+        /// </summary>
+        public static RxIControlledApplicationLifetimeEvents Events(this global::Avalonia.Controls.ApplicationLifetimes.IControlledApplicationLifetime item) => new RxIControlledApplicationLifetimeEvents(item);
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Embedding.EmbeddableControlRoot"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.ApplicationLifetimes.ClassicDesktopStyleApplicationLifetime"/> class as observables.
     /// </summary>
-    public class EmbeddableControlRootEvents : global::Avalonia.Controls.TopLevelEvents
+    public class RxClassicDesktopStyleApplicationLifetimeEvents
     {
-        private readonly global::Avalonia.Controls.Embedding.EmbeddableControlRoot _data;
+        private readonly global::Avalonia.Controls.ApplicationLifetimes.ClassicDesktopStyleApplicationLifetime _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Embedding.EmbeddableControlRoot"/> class.
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.ApplicationLifetimes.ClassicDesktopStyleApplicationLifetime"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public EmbeddableControlRootEvents(global::Avalonia.Controls.Embedding.EmbeddableControlRoot data): base(data)
+        public RxClassicDesktopStyleApplicationLifetimeEvents(global::Avalonia.Controls.ApplicationLifetimes.ClassicDesktopStyleApplicationLifetime data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Embedding.EmbeddableControlRoot.Registered"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.ApplicationLifetimes.ClassicDesktopStyleApplicationLifetime.Exit"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Avalonia.Controls.NameScopeEventArgs> Registered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NameScopeEventArgs>, global::Avalonia.Controls.NameScopeEventArgs>(eventHandler =>
+        public global::System.IObservable<global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeExitEventArgs> Exit => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeExitEventArgs>, global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeExitEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Avalonia.Controls.NameScopeEventArgs e) => eventHandler(e);
+            void Handler(object sender, global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeExitEventArgs e) => eventHandler(e);
             return Handler;
         }
 
-        , x => _data.Registered += x, x => _data.Registered -= x);
+        , x => _data.Exit += x, x => _data.Exit -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Embedding.EmbeddableControlRoot.Unregistered"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.ApplicationLifetimes.ClassicDesktopStyleApplicationLifetime.Startup"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Avalonia.Controls.NameScopeEventArgs> Unregistered => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.NameScopeEventArgs>, global::Avalonia.Controls.NameScopeEventArgs>(eventHandler =>
+        public global::System.IObservable<global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeStartupEventArgs> Startup => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeStartupEventArgs>, global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeStartupEventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Avalonia.Controls.NameScopeEventArgs e) => eventHandler(e);
+            void Handler(object sender, global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeStartupEventArgs e) => eventHandler(e);
             return Handler;
         }
 
-        , x => _data.Unregistered += x, x => _data.Unregistered -= x);
+        , x => _data.Startup += x, x => _data.Startup -= x);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.ApplicationLifetimes.IControlledApplicationLifetime"/> class as observables.
+    /// </summary>
+    public class RxIControlledApplicationLifetimeEvents
+    {
+        private readonly global::Avalonia.Controls.ApplicationLifetimes.IControlledApplicationLifetime _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.ApplicationLifetimes.IControlledApplicationLifetime"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxIControlledApplicationLifetimeEvents(global::Avalonia.Controls.ApplicationLifetimes.IControlledApplicationLifetime data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.ApplicationLifetimes.IControlledApplicationLifetime.Exit"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeExitEventArgs> Exit => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeExitEventArgs>, global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeExitEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeExitEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Exit += x, x => _data.Exit -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.ApplicationLifetimes.IControlledApplicationLifetime.Startup"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeStartupEventArgs> Startup => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeStartupEventArgs>, global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeStartupEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Avalonia.Controls.ApplicationLifetimes.ControlledApplicationLifetimeStartupEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Startup += x, x => _data.Startup -= x);
     }
 }
 
@@ -1180,28 +1211,28 @@ namespace Avalonia.Controls.Generators
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Generators.IItemContainerGenerator"/> class.
         /// </summary>
-        public static IItemContainerGeneratorEvents Events(this global::Avalonia.Controls.Generators.IItemContainerGenerator item) => new IItemContainerGeneratorEvents(item);
+        public static RxIItemContainerGeneratorEvents Events(this global::Avalonia.Controls.Generators.IItemContainerGenerator item) => new RxIItemContainerGeneratorEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Generators.ItemContainerGenerator"/> class.
         /// </summary>
-        public static ItemContainerGeneratorEvents Events(this global::Avalonia.Controls.Generators.ItemContainerGenerator item) => new ItemContainerGeneratorEvents(item);
+        public static RxItemContainerGeneratorEvents Events(this global::Avalonia.Controls.Generators.ItemContainerGenerator item) => new RxItemContainerGeneratorEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Generators.TreeContainerIndex"/> class.
         /// </summary>
-        public static TreeContainerIndexEvents Events(this global::Avalonia.Controls.Generators.TreeContainerIndex item) => new TreeContainerIndexEvents(item);
+        public static RxTreeContainerIndexEvents Events(this global::Avalonia.Controls.Generators.TreeContainerIndex item) => new RxTreeContainerIndexEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Generators.IItemContainerGenerator"/> class as observables.
     /// </summary>
-    public class IItemContainerGeneratorEvents
+    public class RxIItemContainerGeneratorEvents
     {
         private readonly global::Avalonia.Controls.Generators.IItemContainerGenerator _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Generators.IItemContainerGenerator"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IItemContainerGeneratorEvents(global::Avalonia.Controls.Generators.IItemContainerGenerator data)
+        public RxIItemContainerGeneratorEvents(global::Avalonia.Controls.Generators.IItemContainerGenerator data)
         {
             _data = data;
         }
@@ -1241,14 +1272,14 @@ namespace Avalonia.Controls.Generators
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Generators.ItemContainerGenerator"/> class as observables.
     /// </summary>
-    public class ItemContainerGeneratorEvents
+    public class RxItemContainerGeneratorEvents
     {
         private readonly global::Avalonia.Controls.Generators.ItemContainerGenerator _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Generators.ItemContainerGenerator"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ItemContainerGeneratorEvents(global::Avalonia.Controls.Generators.ItemContainerGenerator data)
+        public RxItemContainerGeneratorEvents(global::Avalonia.Controls.Generators.ItemContainerGenerator data)
         {
             _data = data;
         }
@@ -1288,14 +1319,14 @@ namespace Avalonia.Controls.Generators
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Generators.TreeContainerIndex"/> class as observables.
     /// </summary>
-    public class TreeContainerIndexEvents
+    public class RxTreeContainerIndexEvents
     {
         private readonly global::Avalonia.Controls.Generators.TreeContainerIndex _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Generators.TreeContainerIndex"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TreeContainerIndexEvents(global::Avalonia.Controls.Generators.TreeContainerIndex data)
+        public RxTreeContainerIndexEvents(global::Avalonia.Controls.Generators.TreeContainerIndex data)
         {
             _data = data;
         }
@@ -1323,6 +1354,47 @@ namespace Avalonia.Controls.Generators
     }
 }
 
+namespace Avalonia.Controls.Notifications
+{
+    /// <summary>
+    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Avalonia.Controls.Notifications"/> namespace.
+    /// </summary>
+    public static class EventExtensions
+    {
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Notifications.NotificationCard"/> class.
+        /// </summary>
+        public static RxNotificationCardEvents Events(this global::Avalonia.Controls.Notifications.NotificationCard item) => new RxNotificationCardEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Notifications.NotificationCard"/> class as observables.
+    /// </summary>
+    public class RxNotificationCardEvents : global::Avalonia.Controls.Primitives.RxTemplatedControlEvents
+    {
+        private readonly global::Avalonia.Controls.Notifications.NotificationCard _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Notifications.NotificationCard"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxNotificationCardEvents(global::Avalonia.Controls.Notifications.NotificationCard data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Notifications.NotificationCard.NotificationClosed"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> NotificationClosed => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Avalonia.Interactivity.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.NotificationClosed += x, x => _data.NotificationClosed -= x);
+    }
+}
+
 namespace Avalonia.Controls.Platform
 {
     /// <summary>
@@ -1333,20 +1405,24 @@ namespace Avalonia.Controls.Platform
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Platform.InternalPlatformThreadingInterface"/> class.
         /// </summary>
-        public static InternalPlatformThreadingInterfaceEvents Events(this global::Avalonia.Controls.Platform.InternalPlatformThreadingInterface item) => new InternalPlatformThreadingInterfaceEvents(item);
+        public static RxInternalPlatformThreadingInterfaceEvents Events(this global::Avalonia.Controls.Platform.InternalPlatformThreadingInterface item) => new RxInternalPlatformThreadingInterfaceEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Platform.ITopLevelNativeMenuExporter"/> class.
+        /// </summary>
+        public static RxITopLevelNativeMenuExporterEvents Events(this global::Avalonia.Controls.Platform.ITopLevelNativeMenuExporter item) => new RxITopLevelNativeMenuExporterEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Platform.InternalPlatformThreadingInterface"/> class as observables.
     /// </summary>
-    public class InternalPlatformThreadingInterfaceEvents
+    public class RxInternalPlatformThreadingInterfaceEvents
     {
         private readonly global::Avalonia.Controls.Platform.InternalPlatformThreadingInterface _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Platform.InternalPlatformThreadingInterface"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public InternalPlatformThreadingInterfaceEvents(global::Avalonia.Controls.Platform.InternalPlatformThreadingInterface data)
+        public RxInternalPlatformThreadingInterfaceEvents(global::Avalonia.Controls.Platform.InternalPlatformThreadingInterface data)
         {
             _data = data;
         }
@@ -1372,46 +1448,32 @@ namespace Avalonia.Controls.Platform
 
         , x => _data.Tick += x, x => _data.Tick -= x);
     }
-}
-
-namespace Avalonia.Controls.Presenters
-{
-    /// <summary>
-    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Avalonia.Controls.Presenters"/> namespace.
-    /// </summary>
-    public static class EventExtensions
-    {
-        /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Presenters.IContentPresenter"/> class.
-        /// </summary>
-        public static IContentPresenterEvents Events(this global::Avalonia.Controls.Presenters.IContentPresenter item) => new IContentPresenterEvents(item);
-    }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Presenters.IContentPresenter"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Platform.ITopLevelNativeMenuExporter"/> class as observables.
     /// </summary>
-    public class IContentPresenterEvents
+    public class RxITopLevelNativeMenuExporterEvents
     {
-        private readonly global::Avalonia.Controls.Presenters.IContentPresenter _data;
+        private readonly global::Avalonia.Controls.Platform.ITopLevelNativeMenuExporter _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Presenters.IContentPresenter"/> class.
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Platform.ITopLevelNativeMenuExporter"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IContentPresenterEvents(global::Avalonia.Controls.Presenters.IContentPresenter data)
+        public RxITopLevelNativeMenuExporterEvents(global::Avalonia.Controls.Platform.ITopLevelNativeMenuExporter data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Presenters.IContentPresenter.ChildChanging"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Platform.ITopLevelNativeMenuExporter.OnIsNativeMenuExportedChanged"/> event triggers.
         /// </summary>
-        public global::System.IObservable<global::Avalonia.AvaloniaPropertyChangedEventArgs> ChildChanging => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.AvaloniaPropertyChangedEventArgs>, global::Avalonia.AvaloniaPropertyChangedEventArgs>(eventHandler =>
+        public global::System.IObservable<global::System.EventArgs> OnIsNativeMenuExportedChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
         {
-            void Handler(object sender, global::Avalonia.AvaloniaPropertyChangedEventArgs e) => eventHandler(e);
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
         }
 
-        , x => _data.ChildChanging += x, x => _data.ChildChanging -= x);
+        , x => _data.OnIsNativeMenuExportedChanged += x, x => _data.OnIsNativeMenuExportedChanged -= x);
     }
 }
 
@@ -1425,44 +1487,52 @@ namespace Avalonia.Controls.Primitives
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Primitives.CalendarButton"/> class.
         /// </summary>
-        public static CalendarButtonEvents Events(this global::Avalonia.Controls.Primitives.CalendarButton item) => new CalendarButtonEvents(item);
+        public static RxCalendarButtonEvents Events(this global::Avalonia.Controls.Primitives.CalendarButton item) => new RxCalendarButtonEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Primitives.CalendarDayButton"/> class.
         /// </summary>
-        public static CalendarDayButtonEvents Events(this global::Avalonia.Controls.Primitives.CalendarDayButton item) => new CalendarDayButtonEvents(item);
+        public static RxCalendarDayButtonEvents Events(this global::Avalonia.Controls.Primitives.CalendarDayButton item) => new RxCalendarDayButtonEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Primitives.IPopupHost"/> class.
+        /// </summary>
+        public static RxIPopupHostEvents Events(this global::Avalonia.Controls.Primitives.IPopupHost item) => new RxIPopupHostEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Primitives.Popup"/> class.
         /// </summary>
-        public static PopupEvents Events(this global::Avalonia.Controls.Primitives.Popup item) => new PopupEvents(item);
+        public static RxPopupEvents Events(this global::Avalonia.Controls.Primitives.Popup item) => new RxPopupEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Primitives.ScrollBar"/> class.
         /// </summary>
-        public static ScrollBarEvents Events(this global::Avalonia.Controls.Primitives.ScrollBar item) => new ScrollBarEvents(item);
+        public static RxScrollBarEvents Events(this global::Avalonia.Controls.Primitives.ScrollBar item) => new RxScrollBarEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Primitives.SelectingItemsControl"/> class.
         /// </summary>
-        public static SelectingItemsControlEvents Events(this global::Avalonia.Controls.Primitives.SelectingItemsControl item) => new SelectingItemsControlEvents(item);
+        public static RxSelectingItemsControlEvents Events(this global::Avalonia.Controls.Primitives.SelectingItemsControl item) => new RxSelectingItemsControlEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Primitives.TemplatedControl"/> class.
         /// </summary>
-        public static TemplatedControlEvents Events(this global::Avalonia.Controls.Primitives.TemplatedControl item) => new TemplatedControlEvents(item);
+        public static RxTemplatedControlEvents Events(this global::Avalonia.Controls.Primitives.TemplatedControl item) => new RxTemplatedControlEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Primitives.Thumb"/> class.
         /// </summary>
-        public static ThumbEvents Events(this global::Avalonia.Controls.Primitives.Thumb item) => new ThumbEvents(item);
+        public static RxThumbEvents Events(this global::Avalonia.Controls.Primitives.Thumb item) => new RxThumbEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Primitives.ToggleButton"/> class.
+        /// </summary>
+        public static RxToggleButtonEvents Events(this global::Avalonia.Controls.Primitives.ToggleButton item) => new RxToggleButtonEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Primitives.CalendarButton"/> class as observables.
     /// </summary>
-    public class CalendarButtonEvents : global::Avalonia.Controls.ButtonEvents
+    public class RxCalendarButtonEvents : global::Avalonia.Controls.RxButtonEvents
     {
         private readonly global::Avalonia.Controls.Primitives.CalendarButton _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.CalendarButton"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CalendarButtonEvents(global::Avalonia.Controls.Primitives.CalendarButton data): base(data)
+        public RxCalendarButtonEvents(global::Avalonia.Controls.Primitives.CalendarButton data): base(data)
         {
             _data = data;
         }
@@ -1492,14 +1562,14 @@ namespace Avalonia.Controls.Primitives
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Primitives.CalendarDayButton"/> class as observables.
     /// </summary>
-    public class CalendarDayButtonEvents : global::Avalonia.Controls.ButtonEvents
+    public class RxCalendarDayButtonEvents : global::Avalonia.Controls.RxButtonEvents
     {
         private readonly global::Avalonia.Controls.Primitives.CalendarDayButton _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.CalendarDayButton"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public CalendarDayButtonEvents(global::Avalonia.Controls.Primitives.CalendarDayButton data): base(data)
+        public RxCalendarDayButtonEvents(global::Avalonia.Controls.Primitives.CalendarDayButton data): base(data)
         {
             _data = data;
         }
@@ -1527,16 +1597,43 @@ namespace Avalonia.Controls.Primitives
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Primitives.IPopupHost"/> class as observables.
+    /// </summary>
+    public class RxIPopupHostEvents
+    {
+        private readonly global::Avalonia.Controls.Primitives.IPopupHost _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.IPopupHost"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxIPopupHostEvents(global::Avalonia.Controls.Primitives.IPopupHost data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.IPopupHost.TemplateApplied"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Avalonia.Controls.Primitives.TemplateAppliedEventArgs> TemplateApplied => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Controls.Primitives.TemplateAppliedEventArgs>, global::Avalonia.Controls.Primitives.TemplateAppliedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Avalonia.Controls.Primitives.TemplateAppliedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.TemplateApplied += x, x => _data.TemplateApplied -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Primitives.Popup"/> class as observables.
     /// </summary>
-    public class PopupEvents : global::Avalonia.Input.InputElementEvents
+    public class RxPopupEvents : global::Avalonia.Input.RxInputElementEvents
     {
         private readonly global::Avalonia.Controls.Primitives.Popup _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.Popup"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public PopupEvents(global::Avalonia.Controls.Primitives.Popup data): base(data)
+        public RxPopupEvents(global::Avalonia.Controls.Primitives.Popup data): base(data)
         {
             _data = data;
         }
@@ -1561,29 +1658,19 @@ namespace Avalonia.Controls.Primitives
         }
 
         , x => _data.Opened += x, x => _data.Opened -= x);
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.Popup.PopupRootCreated"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<global::System.EventArgs> PopupRootCreated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
-            return Handler;
-        }
-
-        , x => _data.PopupRootCreated += x, x => _data.PopupRootCreated -= x);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Primitives.ScrollBar"/> class as observables.
     /// </summary>
-    public class ScrollBarEvents : global::Avalonia.Controls.Primitives.TemplatedControlEvents
+    public class RxScrollBarEvents : global::Avalonia.Controls.Primitives.RxTemplatedControlEvents
     {
         private readonly global::Avalonia.Controls.Primitives.ScrollBar _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.ScrollBar"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ScrollBarEvents(global::Avalonia.Controls.Primitives.ScrollBar data): base(data)
+        public RxScrollBarEvents(global::Avalonia.Controls.Primitives.ScrollBar data): base(data)
         {
             _data = data;
         }
@@ -1603,14 +1690,14 @@ namespace Avalonia.Controls.Primitives
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Primitives.SelectingItemsControl"/> class as observables.
     /// </summary>
-    public class SelectingItemsControlEvents : global::Avalonia.Controls.Primitives.TemplatedControlEvents
+    public class RxSelectingItemsControlEvents : global::Avalonia.Controls.Primitives.RxTemplatedControlEvents
     {
         private readonly global::Avalonia.Controls.Primitives.SelectingItemsControl _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.SelectingItemsControl"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SelectingItemsControlEvents(global::Avalonia.Controls.Primitives.SelectingItemsControl data): base(data)
+        public RxSelectingItemsControlEvents(global::Avalonia.Controls.Primitives.SelectingItemsControl data): base(data)
         {
             _data = data;
         }
@@ -1630,14 +1717,14 @@ namespace Avalonia.Controls.Primitives
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Primitives.TemplatedControl"/> class as observables.
     /// </summary>
-    public class TemplatedControlEvents : global::Avalonia.Input.InputElementEvents
+    public class RxTemplatedControlEvents : global::Avalonia.Input.RxInputElementEvents
     {
         private readonly global::Avalonia.Controls.Primitives.TemplatedControl _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.TemplatedControl"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TemplatedControlEvents(global::Avalonia.Controls.Primitives.TemplatedControl data): base(data)
+        public RxTemplatedControlEvents(global::Avalonia.Controls.Primitives.TemplatedControl data): base(data)
         {
             _data = data;
         }
@@ -1657,14 +1744,14 @@ namespace Avalonia.Controls.Primitives
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Primitives.Thumb"/> class as observables.
     /// </summary>
-    public class ThumbEvents : global::Avalonia.Controls.Primitives.TemplatedControlEvents
+    public class RxThumbEvents : global::Avalonia.Controls.Primitives.RxTemplatedControlEvents
     {
         private readonly global::Avalonia.Controls.Primitives.Thumb _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.Thumb"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ThumbEvents(global::Avalonia.Controls.Primitives.Thumb data): base(data)
+        public RxThumbEvents(global::Avalonia.Controls.Primitives.Thumb data): base(data)
         {
             _data = data;
         }
@@ -1700,6 +1787,53 @@ namespace Avalonia.Controls.Primitives
 
         , x => _data.DragStarted += x, x => _data.DragStarted -= x);
     }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Primitives.ToggleButton"/> class as observables.
+    /// </summary>
+    public class RxToggleButtonEvents : global::Avalonia.Controls.RxButtonEvents
+    {
+        private readonly global::Avalonia.Controls.Primitives.ToggleButton _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Primitives.ToggleButton"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxToggleButtonEvents(global::Avalonia.Controls.Primitives.ToggleButton data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.ToggleButton.Checked"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> Checked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Avalonia.Interactivity.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Checked += x, x => _data.Checked -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.ToggleButton.Indeterminate"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> Indeterminate => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Avalonia.Interactivity.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Indeterminate += x, x => _data.Indeterminate -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Controls.Primitives.ToggleButton.Unchecked"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Avalonia.Interactivity.RoutedEventArgs> Unchecked => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Interactivity.RoutedEventArgs>, global::Avalonia.Interactivity.RoutedEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Avalonia.Interactivity.RoutedEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Unchecked += x, x => _data.Unchecked -= x);
+    }
 }
 
 namespace Avalonia.Controls.Utils
@@ -1712,24 +1846,24 @@ namespace Avalonia.Controls.Utils
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Utils.ISelectionAdapter"/> class.
         /// </summary>
-        public static ISelectionAdapterEvents Events(this global::Avalonia.Controls.Utils.ISelectionAdapter item) => new ISelectionAdapterEvents(item);
+        public static RxISelectionAdapterEvents Events(this global::Avalonia.Controls.Utils.ISelectionAdapter item) => new RxISelectionAdapterEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter"/> class.
         /// </summary>
-        public static SelectingItemsControlSelectionAdapterEvents Events(this global::Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter item) => new SelectingItemsControlSelectionAdapterEvents(item);
+        public static RxSelectingItemsControlSelectionAdapterEvents Events(this global::Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter item) => new RxSelectingItemsControlSelectionAdapterEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Utils.ISelectionAdapter"/> class as observables.
     /// </summary>
-    public class ISelectionAdapterEvents
+    public class RxISelectionAdapterEvents
     {
         private readonly global::Avalonia.Controls.Utils.ISelectionAdapter _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Utils.ISelectionAdapter"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ISelectionAdapterEvents(global::Avalonia.Controls.Utils.ISelectionAdapter data)
+        public RxISelectionAdapterEvents(global::Avalonia.Controls.Utils.ISelectionAdapter data)
         {
             _data = data;
         }
@@ -1769,14 +1903,14 @@ namespace Avalonia.Controls.Utils
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter"/> class as observables.
     /// </summary>
-    public class SelectingItemsControlSelectionAdapterEvents
+    public class RxSelectingItemsControlSelectionAdapterEvents
     {
         private readonly global::Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public SelectingItemsControlSelectionAdapterEvents(global::Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter data)
+        public RxSelectingItemsControlSelectionAdapterEvents(global::Avalonia.Controls.Utils.SelectingItemsControlSelectionAdapter data)
         {
             _data = data;
         }
@@ -1814,47 +1948,6 @@ namespace Avalonia.Controls.Utils
     }
 }
 
-namespace Avalonia.Diagnostics.ViewModels
-{
-    /// <summary>
-    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Avalonia.Diagnostics.ViewModels"/> namespace.
-    /// </summary>
-    public static class EventExtensions
-    {
-        /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Diagnostics.ViewModels.ViewModelBase"/> class.
-        /// </summary>
-        public static ViewModelBaseEvents Events(this global::Avalonia.Diagnostics.ViewModels.ViewModelBase item) => new ViewModelBaseEvents(item);
-    }
-
-    /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Diagnostics.ViewModels.ViewModelBase"/> class as observables.
-    /// </summary>
-    public class ViewModelBaseEvents
-    {
-        private readonly global::Avalonia.Diagnostics.ViewModels.ViewModelBase _data;
-        /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Avalonia.Diagnostics.ViewModels.ViewModelBase"/> class.
-        /// </summary>
-        /// <param name = "data">The class that is being wrapped.</param>
-        public ViewModelBaseEvents(global::Avalonia.Diagnostics.ViewModels.ViewModelBase data)
-        {
-            _data = data;
-        }
-
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Diagnostics.ViewModels.ViewModelBase.PropertyChanged"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
-            return Handler;
-        }
-
-        , x => _data.PropertyChanged += x, x => _data.PropertyChanged -= x);
-    }
-}
-
 namespace Avalonia.Input
 {
     /// <summary>
@@ -1865,36 +1958,36 @@ namespace Avalonia.Input
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Input.ICloseable"/> class.
         /// </summary>
-        public static ICloseableEvents Events(this global::Avalonia.Input.ICloseable item) => new ICloseableEvents(item);
+        public static RxICloseableEvents Events(this global::Avalonia.Input.ICloseable item) => new RxICloseableEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Input.IInputElement"/> class.
         /// </summary>
-        public static IInputElementEvents Events(this global::Avalonia.Input.IInputElement item) => new IInputElementEvents(item);
+        public static RxIInputElementEvents Events(this global::Avalonia.Input.IInputElement item) => new RxIInputElementEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Input.IMainMenu"/> class.
         /// </summary>
-        public static IMainMenuEvents Events(this global::Avalonia.Input.IMainMenu item) => new IMainMenuEvents(item);
+        public static RxIMainMenuEvents Events(this global::Avalonia.Input.IMainMenu item) => new RxIMainMenuEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Input.InputElement"/> class.
         /// </summary>
-        public static InputElementEvents Events(this global::Avalonia.Input.InputElement item) => new InputElementEvents(item);
+        public static RxInputElementEvents Events(this global::Avalonia.Input.InputElement item) => new RxInputElementEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Input.KeyboardDevice"/> class.
         /// </summary>
-        public static KeyboardDeviceEvents Events(this global::Avalonia.Input.KeyboardDevice item) => new KeyboardDeviceEvents(item);
+        public static RxKeyboardDeviceEvents Events(this global::Avalonia.Input.KeyboardDevice item) => new RxKeyboardDeviceEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Input.ICloseable"/> class as observables.
     /// </summary>
-    public class ICloseableEvents
+    public class RxICloseableEvents
     {
         private readonly global::Avalonia.Input.ICloseable _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Input.ICloseable"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ICloseableEvents(global::Avalonia.Input.ICloseable data)
+        public RxICloseableEvents(global::Avalonia.Input.ICloseable data)
         {
             _data = data;
         }
@@ -1914,14 +2007,14 @@ namespace Avalonia.Input
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Input.IInputElement"/> class as observables.
     /// </summary>
-    public class IInputElementEvents
+    public class RxIInputElementEvents
     {
         private readonly global::Avalonia.Input.IInputElement _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Input.IInputElement"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IInputElementEvents(global::Avalonia.Input.IInputElement data)
+        public RxIInputElementEvents(global::Avalonia.Input.IInputElement data)
         {
             _data = data;
         }
@@ -2041,14 +2134,14 @@ namespace Avalonia.Input
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Input.IMainMenu"/> class as observables.
     /// </summary>
-    public class IMainMenuEvents
+    public class RxIMainMenuEvents
     {
         private readonly global::Avalonia.Input.IMainMenu _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Input.IMainMenu"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IMainMenuEvents(global::Avalonia.Input.IMainMenu data)
+        public RxIMainMenuEvents(global::Avalonia.Input.IMainMenu data)
         {
             _data = data;
         }
@@ -2068,14 +2161,14 @@ namespace Avalonia.Input
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Input.InputElement"/> class as observables.
     /// </summary>
-    public class InputElementEvents : global::Avalonia.Layout.LayoutableEvents
+    public class RxInputElementEvents : global::Avalonia.Layout.RxLayoutableEvents
     {
         private readonly global::Avalonia.Input.InputElement _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Input.InputElement"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public InputElementEvents(global::Avalonia.Input.InputElement data): base(data)
+        public RxInputElementEvents(global::Avalonia.Input.InputElement data): base(data)
         {
             _data = data;
         }
@@ -2130,6 +2223,16 @@ namespace Avalonia.Input
         }
 
         , x => _data.LostFocus += x, x => _data.LostFocus -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.PointerCaptureLost"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::Avalonia.Input.PointerCaptureLostEventArgs> PointerCaptureLost => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Avalonia.Input.PointerCaptureLostEventArgs>, global::Avalonia.Input.PointerCaptureLostEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Avalonia.Input.PointerCaptureLostEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.PointerCaptureLost += x, x => _data.PointerCaptureLost -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Avalonia.Input.InputElement.PointerEnter"/> event triggers.
         /// </summary>
@@ -2215,14 +2318,14 @@ namespace Avalonia.Input
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Input.KeyboardDevice"/> class as observables.
     /// </summary>
-    public class KeyboardDeviceEvents
+    public class RxKeyboardDeviceEvents
     {
         private readonly global::Avalonia.Input.KeyboardDevice _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Input.KeyboardDevice"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public KeyboardDeviceEvents(global::Avalonia.Input.KeyboardDevice data)
+        public RxKeyboardDeviceEvents(global::Avalonia.Input.KeyboardDevice data)
         {
             _data = data;
         }
@@ -2248,22 +2351,63 @@ namespace Avalonia.Layout
     public static class EventExtensions
     {
         /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Layout.AttachedLayout"/> class.
+        /// </summary>
+        public static RxAttachedLayoutEvents Events(this global::Avalonia.Layout.AttachedLayout item) => new RxAttachedLayoutEvents(item);
+        /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Layout.Layoutable"/> class.
         /// </summary>
-        public static LayoutableEvents Events(this global::Avalonia.Layout.Layoutable item) => new LayoutableEvents(item);
+        public static RxLayoutableEvents Events(this global::Avalonia.Layout.Layoutable item) => new RxLayoutableEvents(item);
+    }
+
+    /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Layout.AttachedLayout"/> class as observables.
+    /// </summary>
+    public class RxAttachedLayoutEvents : global::Avalonia.RxAvaloniaObjectEvents
+    {
+        private readonly global::Avalonia.Layout.AttachedLayout _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Layout.AttachedLayout"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxAttachedLayoutEvents(global::Avalonia.Layout.AttachedLayout data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Layout.AttachedLayout.ArrangeInvalidated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> ArrangeInvalidated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.ArrangeInvalidated += x, x => _data.ArrangeInvalidated -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Layout.AttachedLayout.MeasureInvalidated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> MeasureInvalidated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.MeasureInvalidated += x, x => _data.MeasureInvalidated -= x);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Layout.Layoutable"/> class as observables.
     /// </summary>
-    public class LayoutableEvents : global::Avalonia.VisualEvents
+    public class RxLayoutableEvents : global::Avalonia.RxVisualEvents
     {
         private readonly global::Avalonia.Layout.Layoutable _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Layout.Layoutable"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public LayoutableEvents(global::Avalonia.Layout.Layoutable data): base(data)
+        public RxLayoutableEvents(global::Avalonia.Layout.Layoutable data): base(data)
         {
             _data = data;
         }
@@ -2291,20 +2435,20 @@ namespace Avalonia.LogicalTree
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.LogicalTree.ILogical"/> class.
         /// </summary>
-        public static ILogicalEvents Events(this global::Avalonia.LogicalTree.ILogical item) => new ILogicalEvents(item);
+        public static RxILogicalEvents Events(this global::Avalonia.LogicalTree.ILogical item) => new RxILogicalEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.LogicalTree.ILogical"/> class as observables.
     /// </summary>
-    public class ILogicalEvents
+    public class RxILogicalEvents
     {
         private readonly global::Avalonia.LogicalTree.ILogical _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.LogicalTree.ILogical"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ILogicalEvents(global::Avalonia.LogicalTree.ILogical data)
+        public RxILogicalEvents(global::Avalonia.LogicalTree.ILogical data)
         {
             _data = data;
         }
@@ -2342,20 +2486,20 @@ namespace Avalonia.Markup.Xaml.MarkupExtensions
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Markup.Xaml.MarkupExtensions.ResourceInclude"/> class.
         /// </summary>
-        public static ResourceIncludeEvents Events(this global::Avalonia.Markup.Xaml.MarkupExtensions.ResourceInclude item) => new ResourceIncludeEvents(item);
+        public static RxResourceIncludeEvents Events(this global::Avalonia.Markup.Xaml.MarkupExtensions.ResourceInclude item) => new RxResourceIncludeEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Markup.Xaml.MarkupExtensions.ResourceInclude"/> class as observables.
     /// </summary>
-    public class ResourceIncludeEvents
+    public class RxResourceIncludeEvents
     {
         private readonly global::Avalonia.Markup.Xaml.MarkupExtensions.ResourceInclude _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Markup.Xaml.MarkupExtensions.ResourceInclude"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ResourceIncludeEvents(global::Avalonia.Markup.Xaml.MarkupExtensions.ResourceInclude data)
+        public RxResourceIncludeEvents(global::Avalonia.Markup.Xaml.MarkupExtensions.ResourceInclude data)
         {
             _data = data;
         }
@@ -2383,20 +2527,20 @@ namespace Avalonia.Markup.Xaml.Styling
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Markup.Xaml.Styling.StyleInclude"/> class.
         /// </summary>
-        public static StyleIncludeEvents Events(this global::Avalonia.Markup.Xaml.Styling.StyleInclude item) => new StyleIncludeEvents(item);
+        public static RxStyleIncludeEvents Events(this global::Avalonia.Markup.Xaml.Styling.StyleInclude item) => new RxStyleIncludeEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Markup.Xaml.Styling.StyleInclude"/> class as observables.
     /// </summary>
-    public class StyleIncludeEvents
+    public class RxStyleIncludeEvents
     {
         private readonly global::Avalonia.Markup.Xaml.Styling.StyleInclude _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Markup.Xaml.Styling.StyleInclude"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StyleIncludeEvents(global::Avalonia.Markup.Xaml.Styling.StyleInclude data)
+        public RxStyleIncludeEvents(global::Avalonia.Markup.Xaml.Styling.StyleInclude data)
         {
             _data = data;
         }
@@ -2424,32 +2568,40 @@ namespace Avalonia.Media
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Media.Brush"/> class.
         /// </summary>
-        public static BrushEvents Events(this global::Avalonia.Media.Brush item) => new BrushEvents(item);
+        public static RxBrushEvents Events(this global::Avalonia.Media.Brush item) => new RxBrushEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Media.DashStyle"/> class.
+        /// </summary>
+        public static RxDashStyleEvents Events(this global::Avalonia.Media.DashStyle item) => new RxDashStyleEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Media.Geometry"/> class.
         /// </summary>
-        public static GeometryEvents Events(this global::Avalonia.Media.Geometry item) => new GeometryEvents(item);
+        public static RxGeometryEvents Events(this global::Avalonia.Media.Geometry item) => new RxGeometryEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Media.IAffectsRender"/> class.
         /// </summary>
-        public static IAffectsRenderEvents Events(this global::Avalonia.Media.IAffectsRender item) => new IAffectsRenderEvents(item);
+        public static RxIAffectsRenderEvents Events(this global::Avalonia.Media.IAffectsRender item) => new RxIAffectsRenderEvents(item);
+        /// <summary>
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Media.Pen"/> class.
+        /// </summary>
+        public static RxPenEvents Events(this global::Avalonia.Media.Pen item) => new RxPenEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Media.Transform"/> class.
         /// </summary>
-        public static TransformEvents Events(this global::Avalonia.Media.Transform item) => new TransformEvents(item);
+        public static RxTransformEvents Events(this global::Avalonia.Media.Transform item) => new RxTransformEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Media.Brush"/> class as observables.
     /// </summary>
-    public class BrushEvents : global::Avalonia.AvaloniaObjectEvents
+    public class RxBrushEvents : global::Avalonia.RxAvaloniaObjectEvents
     {
         private readonly global::Avalonia.Media.Brush _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Media.Brush"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public BrushEvents(global::Avalonia.Media.Brush data): base(data)
+        public RxBrushEvents(global::Avalonia.Media.Brush data): base(data)
         {
             _data = data;
         }
@@ -2467,16 +2619,43 @@ namespace Avalonia.Media
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Media.DashStyle"/> class as observables.
+    /// </summary>
+    public class RxDashStyleEvents : global::Avalonia.RxAvaloniaObjectEvents
+    {
+        private readonly global::Avalonia.Media.DashStyle _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Media.DashStyle"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxDashStyleEvents(global::Avalonia.Media.DashStyle data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Media.DashStyle.Invalidated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Invalidated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Invalidated += x, x => _data.Invalidated -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Media.Geometry"/> class as observables.
     /// </summary>
-    public class GeometryEvents : global::Avalonia.AvaloniaObjectEvents
+    public class RxGeometryEvents : global::Avalonia.RxAvaloniaObjectEvents
     {
         private readonly global::Avalonia.Media.Geometry _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Media.Geometry"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public GeometryEvents(global::Avalonia.Media.Geometry data): base(data)
+        public RxGeometryEvents(global::Avalonia.Media.Geometry data): base(data)
         {
             _data = data;
         }
@@ -2496,14 +2675,14 @@ namespace Avalonia.Media
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Media.IAffectsRender"/> class as observables.
     /// </summary>
-    public class IAffectsRenderEvents
+    public class RxIAffectsRenderEvents
     {
         private readonly global::Avalonia.Media.IAffectsRender _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Media.IAffectsRender"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IAffectsRenderEvents(global::Avalonia.Media.IAffectsRender data)
+        public RxIAffectsRenderEvents(global::Avalonia.Media.IAffectsRender data)
         {
             _data = data;
         }
@@ -2521,16 +2700,43 @@ namespace Avalonia.Media
     }
 
     /// <summary>
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Media.Pen"/> class as observables.
+    /// </summary>
+    public class RxPenEvents : global::Avalonia.RxAvaloniaObjectEvents
+    {
+        private readonly global::Avalonia.Media.Pen _data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Media.Pen"/> class.
+        /// </summary>
+        /// <param name = "data">The class that is being wrapped.</param>
+        public RxPenEvents(global::Avalonia.Media.Pen data): base(data)
+        {
+            _data = data;
+        }
+
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Media.Pen.Invalidated"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> Invalidated => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.Invalidated += x, x => _data.Invalidated -= x);
+    }
+
+    /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Media.Transform"/> class as observables.
     /// </summary>
-    public class TransformEvents : global::Avalonia.AvaloniaObjectEvents
+    public class RxTransformEvents : global::Avalonia.RxAvaloniaObjectEvents
     {
         private readonly global::Avalonia.Media.Transform _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Media.Transform"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public TransformEvents(global::Avalonia.Media.Transform data): base(data)
+        public RxTransformEvents(global::Avalonia.Media.Transform data): base(data)
         {
             _data = data;
         }
@@ -2558,24 +2764,24 @@ namespace Avalonia.Platform
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Platform.IEmbeddableWindowImpl"/> class.
         /// </summary>
-        public static IEmbeddableWindowImplEvents Events(this global::Avalonia.Platform.IEmbeddableWindowImpl item) => new IEmbeddableWindowImplEvents(item);
+        public static RxIEmbeddableWindowImplEvents Events(this global::Avalonia.Platform.IEmbeddableWindowImpl item) => new RxIEmbeddableWindowImplEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Platform.IPlatformThreadingInterface"/> class.
         /// </summary>
-        public static IPlatformThreadingInterfaceEvents Events(this global::Avalonia.Platform.IPlatformThreadingInterface item) => new IPlatformThreadingInterfaceEvents(item);
+        public static RxIPlatformThreadingInterfaceEvents Events(this global::Avalonia.Platform.IPlatformThreadingInterface item) => new RxIPlatformThreadingInterfaceEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Platform.IEmbeddableWindowImpl"/> class as observables.
     /// </summary>
-    public class IEmbeddableWindowImplEvents
+    public class RxIEmbeddableWindowImplEvents
     {
         private readonly global::Avalonia.Platform.IEmbeddableWindowImpl _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Platform.IEmbeddableWindowImpl"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IEmbeddableWindowImplEvents(global::Avalonia.Platform.IEmbeddableWindowImpl data)
+        public RxIEmbeddableWindowImplEvents(global::Avalonia.Platform.IEmbeddableWindowImpl data)
         {
             _data = data;
         }
@@ -2595,14 +2801,14 @@ namespace Avalonia.Platform
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Platform.IPlatformThreadingInterface"/> class as observables.
     /// </summary>
-    public class IPlatformThreadingInterfaceEvents
+    public class RxIPlatformThreadingInterfaceEvents
     {
         private readonly global::Avalonia.Platform.IPlatformThreadingInterface _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Platform.IPlatformThreadingInterface"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IPlatformThreadingInterfaceEvents(global::Avalonia.Platform.IPlatformThreadingInterface data)
+        public RxIPlatformThreadingInterfaceEvents(global::Avalonia.Platform.IPlatformThreadingInterface data)
         {
             _data = data;
         }
@@ -2630,36 +2836,36 @@ namespace Avalonia.Rendering
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Rendering.DefaultRenderTimer"/> class.
         /// </summary>
-        public static DefaultRenderTimerEvents Events(this global::Avalonia.Rendering.DefaultRenderTimer item) => new DefaultRenderTimerEvents(item);
+        public static RxDefaultRenderTimerEvents Events(this global::Avalonia.Rendering.DefaultRenderTimer item) => new RxDefaultRenderTimerEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Rendering.DeferredRenderer"/> class.
         /// </summary>
-        public static DeferredRendererEvents Events(this global::Avalonia.Rendering.DeferredRenderer item) => new DeferredRendererEvents(item);
+        public static RxDeferredRendererEvents Events(this global::Avalonia.Rendering.DeferredRenderer item) => new RxDeferredRendererEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Rendering.ImmediateRenderer"/> class.
         /// </summary>
-        public static ImmediateRendererEvents Events(this global::Avalonia.Rendering.ImmediateRenderer item) => new ImmediateRendererEvents(item);
+        public static RxImmediateRendererEvents Events(this global::Avalonia.Rendering.ImmediateRenderer item) => new RxImmediateRendererEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Rendering.IRenderer"/> class.
         /// </summary>
-        public static IRendererEvents Events(this global::Avalonia.Rendering.IRenderer item) => new IRendererEvents(item);
+        public static RxIRendererEvents Events(this global::Avalonia.Rendering.IRenderer item) => new RxIRendererEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Rendering.IRenderTimer"/> class.
         /// </summary>
-        public static IRenderTimerEvents Events(this global::Avalonia.Rendering.IRenderTimer item) => new IRenderTimerEvents(item);
+        public static RxIRenderTimerEvents Events(this global::Avalonia.Rendering.IRenderTimer item) => new RxIRenderTimerEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Rendering.DefaultRenderTimer"/> class as observables.
     /// </summary>
-    public class DefaultRenderTimerEvents
+    public class RxDefaultRenderTimerEvents
     {
         private readonly global::Avalonia.Rendering.DefaultRenderTimer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Rendering.DefaultRenderTimer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public DefaultRenderTimerEvents(global::Avalonia.Rendering.DefaultRenderTimer data)
+        public RxDefaultRenderTimerEvents(global::Avalonia.Rendering.DefaultRenderTimer data)
         {
             _data = data;
         }
@@ -2679,14 +2885,14 @@ namespace Avalonia.Rendering
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Rendering.DeferredRenderer"/> class as observables.
     /// </summary>
-    public class DeferredRendererEvents
+    public class RxDeferredRendererEvents
     {
         private readonly global::Avalonia.Rendering.DeferredRenderer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Rendering.DeferredRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public DeferredRendererEvents(global::Avalonia.Rendering.DeferredRenderer data)
+        public RxDeferredRendererEvents(global::Avalonia.Rendering.DeferredRenderer data)
         {
             _data = data;
         }
@@ -2706,14 +2912,14 @@ namespace Avalonia.Rendering
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Rendering.ImmediateRenderer"/> class as observables.
     /// </summary>
-    public class ImmediateRendererEvents
+    public class RxImmediateRendererEvents
     {
         private readonly global::Avalonia.Rendering.ImmediateRenderer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Rendering.ImmediateRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public ImmediateRendererEvents(global::Avalonia.Rendering.ImmediateRenderer data)
+        public RxImmediateRendererEvents(global::Avalonia.Rendering.ImmediateRenderer data)
         {
             _data = data;
         }
@@ -2733,14 +2939,14 @@ namespace Avalonia.Rendering
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Rendering.IRenderer"/> class as observables.
     /// </summary>
-    public class IRendererEvents
+    public class RxIRendererEvents
     {
         private readonly global::Avalonia.Rendering.IRenderer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Rendering.IRenderer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IRendererEvents(global::Avalonia.Rendering.IRenderer data)
+        public RxIRendererEvents(global::Avalonia.Rendering.IRenderer data)
         {
             _data = data;
         }
@@ -2760,14 +2966,14 @@ namespace Avalonia.Rendering
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Rendering.IRenderTimer"/> class as observables.
     /// </summary>
-    public class IRenderTimerEvents
+    public class RxIRenderTimerEvents
     {
         private readonly global::Avalonia.Rendering.IRenderTimer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Rendering.IRenderTimer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IRenderTimerEvents(global::Avalonia.Rendering.IRenderTimer data)
+        public RxIRenderTimerEvents(global::Avalonia.Rendering.IRenderTimer data)
         {
             _data = data;
         }
@@ -2795,24 +3001,24 @@ namespace Avalonia.Styling
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Styling.Style"/> class.
         /// </summary>
-        public static StyleEvents Events(this global::Avalonia.Styling.Style item) => new StyleEvents(item);
+        public static RxStyleEvents Events(this global::Avalonia.Styling.Style item) => new RxStyleEvents(item);
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Styling.Styles"/> class.
         /// </summary>
-        public static StylesEvents Events(this global::Avalonia.Styling.Styles item) => new StylesEvents(item);
+        public static RxStylesEvents Events(this global::Avalonia.Styling.Styles item) => new RxStylesEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Styling.Style"/> class as observables.
     /// </summary>
-    public class StyleEvents : global::Avalonia.AvaloniaObjectEvents
+    public class RxStyleEvents : global::Avalonia.RxAvaloniaObjectEvents
     {
         private readonly global::Avalonia.Styling.Style _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Styling.Style"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StyleEvents(global::Avalonia.Styling.Style data): base(data)
+        public RxStyleEvents(global::Avalonia.Styling.Style data): base(data)
         {
             _data = data;
         }
@@ -2832,14 +3038,14 @@ namespace Avalonia.Styling
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Styling.Styles"/> class as observables.
     /// </summary>
-    public class StylesEvents : global::Avalonia.AvaloniaObjectEvents
+    public class RxStylesEvents : global::Avalonia.RxAvaloniaObjectEvents
     {
         private readonly global::Avalonia.Styling.Styles _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Styling.Styles"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public StylesEvents(global::Avalonia.Styling.Styles data): base(data)
+        public RxStylesEvents(global::Avalonia.Styling.Styles data): base(data)
         {
             _data = data;
         }
@@ -2877,20 +3083,20 @@ namespace Avalonia.Threading
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Threading.DispatcherTimer"/> class.
         /// </summary>
-        public static DispatcherTimerEvents Events(this global::Avalonia.Threading.DispatcherTimer item) => new DispatcherTimerEvents(item);
+        public static RxDispatcherTimerEvents Events(this global::Avalonia.Threading.DispatcherTimer item) => new RxDispatcherTimerEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Threading.DispatcherTimer"/> class as observables.
     /// </summary>
-    public class DispatcherTimerEvents
+    public class RxDispatcherTimerEvents
     {
         private readonly global::Avalonia.Threading.DispatcherTimer _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.Threading.DispatcherTimer"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public DispatcherTimerEvents(global::Avalonia.Threading.DispatcherTimer data)
+        public RxDispatcherTimerEvents(global::Avalonia.Threading.DispatcherTimer data)
         {
             _data = data;
         }
@@ -2918,20 +3124,20 @@ namespace Avalonia.VisualTree
         /// <summary>
         /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.VisualTree.IVisual"/> class.
         /// </summary>
-        public static IVisualEvents Events(this global::Avalonia.VisualTree.IVisual item) => new IVisualEvents(item);
+        public static RxIVisualEvents Events(this global::Avalonia.VisualTree.IVisual item) => new RxIVisualEvents(item);
     }
 
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.VisualTree.IVisual"/> class as observables.
     /// </summary>
-    public class IVisualEvents
+    public class RxIVisualEvents
     {
         private readonly global::Avalonia.VisualTree.IVisual _data;
         /// <summary>
         /// Initializes a new instance of the <see cref = "global::Avalonia.VisualTree.IVisual"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public IVisualEvents(global::Avalonia.VisualTree.IVisual data)
+        public RxIVisualEvents(global::Avalonia.VisualTree.IVisual data)
         {
             _data = data;
         }
@@ -2956,46 +3162,5 @@ namespace Avalonia.VisualTree
         }
 
         , x => _data.DetachedFromVisualTree += x, x => _data.DetachedFromVisualTree -= x);
-    }
-}
-
-namespace Portable.Xaml
-{
-    /// <summary>
-    /// A class that contains extension methods to wrap events for classes contained within the <see cref = "Portable.Xaml"/> namespace.
-    /// </summary>
-    public static class EventExtensions
-    {
-        /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Portable.Xaml.IXamlNameResolver"/> class.
-        /// </summary>
-        public static IXamlNameResolverEvents Events(this global::Portable.Xaml.IXamlNameResolver item) => new IXamlNameResolverEvents(item);
-    }
-
-    /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Portable.Xaml.IXamlNameResolver"/> class as observables.
-    /// </summary>
-    public class IXamlNameResolverEvents
-    {
-        private readonly global::Portable.Xaml.IXamlNameResolver _data;
-        /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Portable.Xaml.IXamlNameResolver"/> class.
-        /// </summary>
-        /// <param name = "data">The class that is being wrapped.</param>
-        public IXamlNameResolverEvents(global::Portable.Xaml.IXamlNameResolver data)
-        {
-            _data = data;
-        }
-
-        /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Portable.Xaml.IXamlNameResolver.OnNameScopeInitializationComplete"/> event triggers.
-        /// </summary>
-        public global::System.IObservable<global::System.EventArgs> OnNameScopeInitializationComplete => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
-        {
-            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
-            return Handler;
-        }
-
-        , x => _data.OnNameScopeInitializationComplete += x, x => _data.OnNameScopeInitializationComplete -= x);
     }
 }
