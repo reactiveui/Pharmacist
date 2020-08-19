@@ -65,26 +65,23 @@ namespace Pharmacist.Core.Generation.Generators
                             if (declaration.IsUnboundGenericTypeDefinition())
                             {
                                 var args = string.Join(", ", declaration.TypeArguments.Select(param => param.FullName));
-                                var eventsClassName = IdentifierName("Rx" + declaration.Name + "Events<" + args + ">");
-                                return MethodDeclaration(eventsClassName, Identifier("Events"))
-                                    .WithTypeParameterList(
-                                        TypeParameterList(Token(SyntaxKind.LessThanToken),
-                                            SeparatedList(declaration.TypeArguments.Select(arg => TypeParameter(arg.FullName))),
-                                            Token(SyntaxKind.GreaterThanToken)))
+                                var genericEventsClassName = IdentifierName("Rx" + declaration.Name + "Events<" + args + ">");
+                                return MethodDeclaration(genericEventsClassName, Identifier("Events"))
+                                    .WithTypeParameterList(TypeParameterList(Token(SyntaxKind.LessThanToken),
+                                        SeparatedList(declaration.TypeArguments.Select(arg => TypeParameter(arg.FullName))),
+                                        Token(SyntaxKind.GreaterThanToken)))
                                     .WithExpressionBody(ArrowExpressionClause(
-                                        ObjectCreationExpression(eventsClassName)
+                                        ObjectCreationExpression(genericEventsClassName)
                                             .WithArgumentList(ArgumentList(SingletonSeparatedList(
                                                 Argument(IdentifierName("item")))))));
                             }
-                            else
-                            {
-                                var eventsClassName = IdentifierName("Rx" + declaration.Name + "Events");
-                                return MethodDeclaration(eventsClassName, Identifier("Events"))
-                                    .WithExpressionBody(ArrowExpressionClause(
-                                        ObjectCreationExpression(eventsClassName)
-                                            .WithArgumentList(ArgumentList(SingletonSeparatedList(
-                                                Argument(IdentifierName("item")))))));
-                            }
+
+                            var eventsClassName = IdentifierName("Rx" + declaration.Name + "Events");
+                            return MethodDeclaration(eventsClassName, Identifier("Events"))
+                                .WithExpressionBody(ArrowExpressionClause(
+                                    ObjectCreationExpression(eventsClassName)
+                                        .WithArgumentList(ArgumentList(SingletonSeparatedList(
+                                            Argument(IdentifierName("item")))))));
                         }
                     })));
         }
@@ -137,12 +134,12 @@ namespace Pharmacist.Core.Generation.Generators
 
             if (typeDefinition.IsUnboundGenericTypeDefinition())
             {
-                classDeclaration = classDeclaration.WithTypeParameterList(
-                    TypeParameterList(Token(SyntaxKind.LessThanToken),
-                        SeparatedList(typeDefinition.TypeArguments.Select(arg => TypeParameter(arg.FullName))),
-                        Token(SyntaxKind.GreaterThanToken)));
+                classDeclaration = classDeclaration.WithTypeParameterList(TypeParameterList(
+                    Token(SyntaxKind.LessThanToken),
+                    SeparatedList(typeDefinition.TypeArguments.Select(arg => TypeParameter(arg.FullName))),
+                    Token(SyntaxKind.GreaterThanToken)));
             }
-            
+
             if (baseTypeDefinition != null)
             {
                 var baseTypeName = $"global::{baseTypeDefinition.Namespace}.Rx{baseTypeDefinition.Name}Events";
