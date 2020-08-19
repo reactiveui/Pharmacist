@@ -50,19 +50,40 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class that contains extension methods to wrap events for classes contained within the {0} namespace.", namespaceName))
                 .WithMembers(List<MemberDeclarationSyntax>(declarations.Select(declaration =>
                     {
-                        var eventsClassName = IdentifierName("Rx" + declaration.Name + "Events");
-                        return MethodDeclaration(eventsClassName, Identifier("Events"))
+                        return BuildMethodDeclaration(declaration)
                             .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword)))
                             .WithParameterList(ParameterList(SingletonSeparatedList(
                                 Parameter(Identifier("item"))
                                     .WithModifiers(TokenList(Token(SyntaxKind.ThisKeyword)))
                                     .WithType(IdentifierName(declaration.GenerateFullGenericName())))))
-                            .WithExpressionBody(ArrowExpressionClause(
-                                ObjectCreationExpression(eventsClassName)
-                                    .WithArgumentList(ArgumentList(SingletonSeparatedList(Argument(IdentifierName("item")))))))
                             .WithSemicolonToken(Token(SyntaxKind.SemicolonToken))
                             .WithObsoleteAttribute(declaration)
                             .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A wrapper class which wraps all the events contained within the {0} class.", declaration.ConvertToDocument()));
+
+                        static MethodDeclarationSyntax BuildMethodDeclaration(ITypeDefinition declaration)
+                        {
+                            if (declaration.IsUnboundGenericTypeDefinition())
+                            {
+                                var args = string.Join(", ", declaration.TypeArguments.Select(param => param.FullName));
+                                var genericEventsClassName = IdentifierName("Rx" + declaration.Name + "Events<" + args + ">");
+                                return MethodDeclaration(genericEventsClassName, Identifier("Events"))
+                                    .WithTypeParameterList(TypeParameterList(
+                                        Token(SyntaxKind.LessThanToken),
+                                        SeparatedList(declaration.TypeArguments.Select(arg => TypeParameter(arg.FullName))),
+                                        Token(SyntaxKind.GreaterThanToken)))
+                                    .WithExpressionBody(ArrowExpressionClause(
+                                        ObjectCreationExpression(genericEventsClassName)
+                                            .WithArgumentList(ArgumentList(SingletonSeparatedList(
+                                                Argument(IdentifierName("item")))))));
+                            }
+
+                            var eventsClassName = IdentifierName("Rx" + declaration.Name + "Events");
+                            return MethodDeclaration(eventsClassName, Identifier("Events"))
+                                .WithExpressionBody(ArrowExpressionClause(
+                                    ObjectCreationExpression(eventsClassName)
+                                        .WithArgumentList(ArgumentList(SingletonSeparatedList(
+                                            Argument(IdentifierName("item")))))));
+                        }
                     })));
         }
 
@@ -112,9 +133,29 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithObsoleteAttribute(typeDefinition)
                 .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class which wraps the events contained within the {0} class as observables.", typeDefinition.ConvertToDocument()));
 
+            if (typeDefinition.IsUnboundGenericTypeDefinition())
+            {
+                classDeclaration = classDeclaration.WithTypeParameterList(TypeParameterList(
+                    Token(SyntaxKind.LessThanToken),
+                    SeparatedList(typeDefinition.TypeArguments.Select(arg => TypeParameter(arg.FullName))),
+                    Token(SyntaxKind.GreaterThanToken)));
+            }
+
             if (baseTypeDefinition != null)
             {
-                classDeclaration = classDeclaration.WithBaseList(BaseList(SingletonSeparatedList<BaseTypeSyntax>(SimpleBaseType(IdentifierName($"global::{baseTypeDefinition.Namespace}.Rx{baseTypeDefinition.Name}Events")))));
+                var baseTypeName = $"global::{baseTypeDefinition.Namespace}.Rx{baseTypeDefinition.Name}Events";
+                if (baseTypeDefinition.IsUnboundGenericTypeDefinition())
+                {
+                    var directBaseType = typeDefinition.DirectBaseTypes
+                        .First(directBase => directBase.FullName == baseTypeDefinition.FullName);
+                    var argumentList = directBaseType.TypeArguments.Select(arg => arg.GenerateFullGenericName());
+                    var argumentString = "<" + string.Join(", ", argumentList) + ">";
+                    baseTypeName += argumentString;
+                }
+
+                classDeclaration = classDeclaration.WithBaseList(BaseList(
+                    SingletonSeparatedList<BaseTypeSyntax>(SimpleBaseType(
+                        IdentifierName(baseTypeName)))));
             }
 
             return classDeclaration;

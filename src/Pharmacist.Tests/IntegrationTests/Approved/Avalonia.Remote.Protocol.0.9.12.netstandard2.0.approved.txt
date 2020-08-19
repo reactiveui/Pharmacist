@@ -1,4 +1,3 @@
-
 using global::System;
 using global::System.Reactive;
 using global::System.Reactive.Linq;

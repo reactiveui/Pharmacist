@@ -165,12 +165,24 @@ namespace Pharmacist.Core.Generation
 
             if (currentType.TypeParameterCount > 0)
             {
-                sb.Append('<')
-                    .Append(string.Join(", ", currentType.TypeArguments.Select(GenerateFullGenericName)))
-                    .Append('>');
+                var isUnbound = currentType.IsUnbound();
+                var arguments = string.Join(", ", currentType.TypeArguments.Select(GenerateName));
+                sb.Append('<').Append(arguments).Append('>');
+
+                string GenerateName(IType type) => isUnbound ? type.FullName : GenerateFullGenericName(type);
             }
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Checks if the specified generic type definition is unbound.
+        /// </summary>
+        /// <param name="definition">The type to check properties for.</param>
+        /// <returns>Returns true if type is an unbound generic type, otherwise false.</returns>
+        public static bool IsUnboundGenericTypeDefinition(this ITypeDefinition definition)
+        {
+            return definition.TypeParameterCount > 0 && definition.IsUnbound();
         }
 
         private static IEnumerable<ITypeDefinition> GetPublicTypeDefinitionsWithEvents(ICompilation compilation)
