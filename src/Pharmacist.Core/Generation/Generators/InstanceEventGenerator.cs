@@ -62,7 +62,7 @@ namespace Pharmacist.Core.Generation.Generators
 
                         static MethodDeclarationSyntax BuildMethodDeclaration(ITypeDefinition declaration)
                         {
-                            if (declaration.TypeParameterCount > 0 && declaration.IsUnbound())
+                            if (declaration.IsUnboundGenericTypeDefinition())
                             {
                                 var args = string.Join(", ", declaration.TypeArguments.Select(param => param.FullName));
                                 var eventsClassName = IdentifierName("Rx" + declaration.Name + "Events<" + args + ">");
@@ -135,17 +135,29 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithObsoleteAttribute(typeDefinition)
                 .WithLeadingTrivia(XmlSyntaxFactory.GenerateSummarySeeAlsoComment("A class which wraps the events contained within the {0} class as observables.", typeDefinition.ConvertToDocument()));
 
-            if (baseTypeDefinition != null)
-            {
-                classDeclaration = classDeclaration.WithBaseList(BaseList(SingletonSeparatedList<BaseTypeSyntax>(SimpleBaseType(IdentifierName($"global::{baseTypeDefinition.Namespace}.Rx{baseTypeDefinition.Name}Events")))));
-            }
-
-            if (typeDefinition.TypeParameterCount > 0 && typeDefinition.IsUnbound())
+            if (typeDefinition.IsUnboundGenericTypeDefinition())
             {
                 classDeclaration = classDeclaration.WithTypeParameterList(
                     TypeParameterList(Token(SyntaxKind.LessThanToken),
                         SeparatedList(typeDefinition.TypeArguments.Select(arg => TypeParameter(arg.FullName))),
                         Token(SyntaxKind.GreaterThanToken)));
+            }
+            
+            if (baseTypeDefinition != null)
+            {
+                var baseTypeName = $"global::{baseTypeDefinition.Namespace}.Rx{baseTypeDefinition.Name}Events";
+                if (baseTypeDefinition.IsUnboundGenericTypeDefinition())
+                {
+                    var directBaseType = typeDefinition.DirectBaseTypes
+                        .First(directBase => directBase.FullName == baseTypeDefinition.FullName);
+                    var argumentList = directBaseType.TypeArguments.Select(arg => arg.GenerateFullGenericName());
+                    var argumentString = "<" + string.Join(", ", argumentList) + ">";
+                    baseTypeName += argumentString;
+                }
+
+                classDeclaration = classDeclaration.WithBaseList(BaseList(
+                    SingletonSeparatedList<BaseTypeSyntax>(SimpleBaseType(
+                        IdentifierName(baseTypeName)))));
             }
 
             return classDeclaration;

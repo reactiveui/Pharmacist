@@ -175,6 +175,16 @@ namespace Pharmacist.Core.Generation
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Checks if the specified generic type definition is unbound.
+        /// </summary>
+        /// <param name="definition">The type to check properties for.</param>
+        /// <returns>Returns true if type is an unbound generic type, otherwise false.</returns>
+        public static bool IsUnboundGenericTypeDefinition(this ITypeDefinition definition)
+        {
+            return definition.TypeParameterCount > 0 && definition.IsUnbound();
+        }
+
         private static IEnumerable<ITypeDefinition> GetPublicTypeDefinitionsWithEvents(ICompilation compilation)
         {
             return _publicEventsTypeMapping.GetOrAdd(
