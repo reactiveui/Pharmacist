@@ -165,11 +165,10 @@ namespace Pharmacist.Core.Generation
 
             if (currentType.TypeParameterCount > 0)
             {
-                sb.Append('<');
-                sb.Append(currentType.IsUnbound()
+                var arguments = currentType.IsUnbound()
                     ? string.Join(", ", currentType.TypeArguments.Select(param => param.FullName))
-                    : string.Join(", ", currentType.TypeArguments.Select(GenerateFullGenericName)));
-                sb.Append('>');
+                    : string.Join(", ", currentType.TypeArguments.Select(GenerateFullGenericName));
+                sb.Append('<').Append(arguments).Append('>');
             }
 
             return sb.ToString();

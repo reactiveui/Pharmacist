@@ -67,7 +67,8 @@ namespace Pharmacist.Core.Generation.Generators
                                 var args = string.Join(", ", declaration.TypeArguments.Select(param => param.FullName));
                                 var genericEventsClassName = IdentifierName("Rx" + declaration.Name + "Events<" + args + ">");
                                 return MethodDeclaration(genericEventsClassName, Identifier("Events"))
-                                    .WithTypeParameterList(TypeParameterList(Token(SyntaxKind.LessThanToken),
+                                    .WithTypeParameterList(TypeParameterList(
+                                        Token(SyntaxKind.LessThanToken),
                                         SeparatedList(declaration.TypeArguments.Select(arg => TypeParameter(arg.FullName))),
                                         Token(SyntaxKind.GreaterThanToken)))
                                     .WithExpressionBody(ArrowExpressionClause(
