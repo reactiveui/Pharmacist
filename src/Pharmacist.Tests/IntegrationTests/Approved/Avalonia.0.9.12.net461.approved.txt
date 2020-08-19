@@ -268,28 +268,28 @@ namespace Avalonia.Collections
     public static class EventExtensions
     {
         /// <summary>
-        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{global::TKey, global::TValue}"/> class.
+        /// A wrapper class which wraps all the events contained within the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{TKey, TValue}"/> class.
         /// </summary>
-        public static RxAvaloniaDictionaryEvents Events(this global::Avalonia.Collections.AvaloniaDictionary<global::TKey, global::TValue> item) => new RxAvaloniaDictionaryEvents(item);
+        public static RxAvaloniaDictionaryEvents<TKey, TValue> Events<TKey, TValue>(this global::Avalonia.Collections.AvaloniaDictionary<TKey, TValue> item) => new RxAvaloniaDictionaryEvents<TKey, TValue>(item);
     }
 
     /// <summary>
-    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{global::TKey, global::TValue}"/> class as observables.
+    /// A class which wraps the events contained within the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{TKey, TValue}"/> class as observables.
     /// </summary>
-    public class RxAvaloniaDictionaryEvents
+    public class RxAvaloniaDictionaryEvents<TKey, TValue>
     {
-        private readonly global::Avalonia.Collections.AvaloniaDictionary<global::TKey, global::TValue> _data;
+        private readonly global::Avalonia.Collections.AvaloniaDictionary<TKey, TValue> _data;
         /// <summary>
-        /// Initializes a new instance of the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{global::TKey, global::TValue}"/> class.
+        /// Initializes a new instance of the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{TKey, TValue}"/> class.
         /// </summary>
         /// <param name = "data">The class that is being wrapped.</param>
-        public RxAvaloniaDictionaryEvents(global::Avalonia.Collections.AvaloniaDictionary<global::TKey, global::TValue> data)
+        public RxAvaloniaDictionaryEvents(global::Avalonia.Collections.AvaloniaDictionary<TKey, TValue> data)
         {
             _data = data;
         }
 
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{global::TKey, global::TValue}.CollectionChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{TKey, TValue}.CollectionChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.Collections.Specialized.NotifyCollectionChangedEventArgs> CollectionChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.Collections.Specialized.NotifyCollectionChangedEventHandler, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs>(eventHandler =>
         {
@@ -299,7 +299,7 @@ namespace Avalonia.Collections
 
         , x => _data.CollectionChanged += x, x => _data.CollectionChanged -= x);
         /// <summary>
-        /// Gets an observable which signals when the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{global::TKey, global::TValue}.PropertyChanged"/> event triggers.
+        /// Gets an observable which signals when the <see cref = "global::Avalonia.Collections.AvaloniaDictionary{TKey, TValue}.PropertyChanged"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::System.ComponentModel.PropertyChangedEventArgs> PropertyChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.ComponentModel.PropertyChangedEventHandler, global::System.ComponentModel.PropertyChangedEventArgs>(eventHandler =>
         {
@@ -919,7 +919,7 @@ namespace Avalonia.Controls
     /// <summary>
     /// A class which wraps the events contained within the <see cref = "global::Avalonia.Controls.ResourceDictionary"/> class as observables.
     /// </summary>
-    public class RxResourceDictionaryEvents : global::Avalonia.Collections.RxAvaloniaDictionaryEvents
+    public class RxResourceDictionaryEvents : global::Avalonia.Collections.RxAvaloniaDictionaryEvents<object, object>
     {
         private readonly global::Avalonia.Controls.ResourceDictionary _data;
         /// <summary>
