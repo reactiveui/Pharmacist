@@ -1,4 +1,4 @@
-[![Build Status](https://dev.azure.com/dotnet/ReactiveUI/_apis/build/status/Pharmacist-CI)](https://dev.azure.com/dotnet/ReactiveUI/_build/latest?definitionId=82) [![Code Coverage](https://codecov.io/gh/reactiveui/pharmacist/branch/master/graph/badge.svg)](https://codecov.io/gh/reactiveui/pharmacist)
+![Build](https://github.com/reactiveui/Pharmacist/workflows/Build/badge.svg) [![Code Coverage](https://codecov.io/gh/reactiveui/pharmacist/branch/master/graph/badge.svg)](https://codecov.io/gh/reactiveui/pharmacist)
 <a href="#backers">
         <img src="https://opencollective.com/reactiveui/backers/badge.svg">
 </a>

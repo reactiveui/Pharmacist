@@ -14,7 +14,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-
+using FluentAssertions;
 using NuGet.Configuration;
 using NuGet.Frameworks;
 using NuGet.LibraryModel;
@@ -23,8 +23,6 @@ using NuGet.Protocol.Core.Types;
 
 using Pharmacist.Core;
 using Pharmacist.Core.NuGet;
-
-using Shouldly;
 
 namespace Pharmacist.Tests.IntegrationTests
 {
@@ -84,9 +82,9 @@ namespace Pharmacist.Tests.IntegrationTests
                 File.WriteAllText(receivedFileName, actualContents);
                 try
                 {
-                    ShouldlyConfiguration.DiffTools.GetDiffTool().Open(receivedFileName, approvedFileName, true);
+                    DiffEngine.DiffRunner.Launch(receivedFileName, approvedFileName);
                 }
-                catch (ShouldAssertException)
+                catch (Exception)
                 {
                     var process = new Process
                     {
@@ -116,7 +114,7 @@ namespace Pharmacist.Tests.IntegrationTests
                 }
             }
 
-            normalizedActual.ShouldNotBeEmpty();
+            normalizedActual.Should().NotBeEmpty();
 
             if (CultureInfo.CurrentCulture.CompareInfo.Compare(normalizedActual, normalizedExpected, CompareOptions.IgnoreSymbols) != 0)
             {

@@ -183,6 +183,46 @@ namespace UIKit
         }
 
         /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.DidCollapse"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DidCollapse => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DidCollapse += x, x => _data.DidCollapse -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.DidExpand"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> DidExpand => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.DidExpand += x, x => _data.DidExpand -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.InteractivePresentationGestureDidEnd"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> InteractivePresentationGestureDidEnd => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.InteractivePresentationGestureDidEnd += x, x => _data.InteractivePresentationGestureDidEnd -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.InteractivePresentationGestureWillBegin"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::System.EventArgs> InteractivePresentationGestureWillBegin => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler, global::System.EventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.InteractivePresentationGestureWillBegin += x, x => _data.InteractivePresentationGestureWillBegin -= x);
+        /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillChangeDisplayMode"/> event triggers.
         /// </summary>
         public global::System.IObservable<global::UIKit.UISplitViewControllerDisplayModeEventArgs> WillChangeDisplayMode => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISplitViewControllerDisplayModeEventArgs>, global::UIKit.UISplitViewControllerDisplayModeEventArgs>(eventHandler =>
@@ -192,6 +232,16 @@ namespace UIKit
         }
 
         , x => _data.WillChangeDisplayMode += x, x => _data.WillChangeDisplayMode -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillHideColumn"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UISplitViewControllerWillShowHideColumnEventArgs> WillHideColumn => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISplitViewControllerWillShowHideColumnEventArgs>, global::UIKit.UISplitViewControllerWillShowHideColumnEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UISplitViewControllerWillShowHideColumnEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillHideColumn += x, x => _data.WillHideColumn -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillHideViewController"/> event triggers.
         /// </summary>
@@ -212,6 +262,16 @@ namespace UIKit
         }
 
         , x => _data.WillPresentViewController += x, x => _data.WillPresentViewController -= x);
+        /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillShowColumn"/> event triggers.
+        /// </summary>
+        public global::System.IObservable<global::UIKit.UISplitViewControllerWillShowHideColumnEventArgs> WillShowColumn => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::UIKit.UISplitViewControllerWillShowHideColumnEventArgs>, global::UIKit.UISplitViewControllerWillShowHideColumnEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::UIKit.UISplitViewControllerWillShowHideColumnEventArgs e) => eventHandler(e);
+            return Handler;
+        }
+
+        , x => _data.WillShowColumn += x, x => _data.WillShowColumn -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillShowViewController"/> event triggers.
         /// </summary>
