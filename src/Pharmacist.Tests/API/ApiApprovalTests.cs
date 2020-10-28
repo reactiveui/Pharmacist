@@ -15,8 +15,6 @@ using Pharmacist.Core.Generation;
 
 using PublicApiGenerator;
 
-using Shouldly;
-
 using Splat;
 
 using Xunit;
@@ -66,7 +64,7 @@ namespace Pharmacist.Tests.API
             if (!string.Equals(receivedPublicApi, approvedPublicApi, StringComparison.InvariantCulture))
             {
                 File.WriteAllText(receivedFileName, receivedPublicApi);
-                ShouldlyConfiguration.DiffTools.GetDiffTool().Open(receivedFileName, approvedFileName, true);
+                DiffEngine.DiffRunner.Launch(receivedFileName, approvedFileName);
             }
 
             Assert.Equal(approvedPublicApi, receivedPublicApi);

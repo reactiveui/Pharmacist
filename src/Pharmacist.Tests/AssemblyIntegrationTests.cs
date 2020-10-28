@@ -6,14 +6,13 @@
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-
+using FluentAssertions;
 using NuGet.Frameworks;
 using NuGet.Packaging.Core;
 using NuGet.Versioning;
 
 using Pharmacist.Core;
 using Pharmacist.Core.NuGet;
-using Shouldly;
 
 using Xunit;
 
@@ -47,7 +46,7 @@ namespace Pharmacist.Tests
                 {
                     var contents = sr.ReadToEnd();
 
-                    contents.ShouldNotBeEmpty();
+                    contents.Should().NotBeEmpty();
                 }
             }
         }

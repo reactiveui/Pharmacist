@@ -7,14 +7,12 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-
+using FluentAssertions;
 using NuGet.Frameworks;
 using NuGet.Packaging.Core;
 using NuGet.Versioning;
 
 using Pharmacist.Core.NuGet;
-
-using Shouldly;
 
 using Xunit;
 
@@ -143,8 +141,8 @@ namespace Pharmacist.Tests
                               .ConfigureAwait(false);
 
             var includeFiles = result.IncludeGroup.GetAllFileNames().ToList();
-            includeFiles.ShouldNotBeEmpty();
-            includeFiles.Where(x => x.EndsWith(".dll")).ShouldNotBeEmpty();
+            includeFiles.Should().NotBeEmpty();
+            includeFiles.Where(x => x.EndsWith(".dll")).Should().NotBeEmpty();
         }
 
         [Fact]
@@ -158,8 +156,8 @@ namespace Pharmacist.Tests
                               .ConfigureAwait(false);
 
             var includeFiles = result.IncludeGroup.GetAllFileNames().ToList();
-            includeFiles.ShouldNotBeEmpty();
-            includeFiles.Where(x => x.EndsWith(".dll")).ShouldNotBeEmpty();
+            includeFiles.Should().NotBeEmpty();
+            includeFiles.Where(x => x.EndsWith(".dll")).Should().NotBeEmpty();
         }
 
         [Fact]
@@ -174,8 +172,8 @@ namespace Pharmacist.Tests
                               .ConfigureAwait(false);
 
             var includeFiles = result.IncludeGroup.GetAllFileNames().ToList();
-            includeFiles.ShouldNotBeEmpty();
-            includeFiles.Where(x => x.EndsWith(".dll")).ShouldNotBeEmpty();
+            includeFiles.Should().NotBeEmpty();
+            includeFiles.Where(x => x.EndsWith(".dll")).Should().NotBeEmpty();
         }
 
         private static async Task GetAndCheckTizenPackage()
@@ -191,8 +189,8 @@ namespace Pharmacist.Tests
 
             var includeFiles = result.IncludeGroup.GetAllFileNames().ToList();
             var actualFiles = includeFiles.Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)).ToList();
-            includeFiles.ShouldNotBeEmpty();
-            actualFiles.ShouldNotBeEmpty();
+            includeFiles.Should().NotBeEmpty();
+            actualFiles.Should().NotBeEmpty();
 
             Assert.True(actualFiles.All(File.Exists));
 
