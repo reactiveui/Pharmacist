@@ -22,7 +22,6 @@ namespace Pharmacist.Tests.IntegrationTests
         /// </summary>
         /// <param name="autoPlatform">The platform to test.</param>
         /// <returns>A task to monitor the progress.</returns>
-        /// <remarks>[InlineData(AutoPlatform.UWP)]</remarks>
         [Theory]
         [InlineData(AutoPlatform.Winforms)]
         [InlineData(AutoPlatform.Android)]
