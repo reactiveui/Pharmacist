@@ -27,6 +27,7 @@ namespace Pharmacist.Tests.IntegrationTests
         [InlineData(AutoPlatform.Android)]
         [InlineData(AutoPlatform.Mac)]
         [InlineData(AutoPlatform.TVOS)]
+        [InlineData(AutoPlatform.UWP, Skip = "Failing")]
         [InlineData(AutoPlatform.WPF)]
         [InlineData(AutoPlatform.iOS)]
         public async Task PlatformGeneratesCode(AutoPlatform autoPlatform)
