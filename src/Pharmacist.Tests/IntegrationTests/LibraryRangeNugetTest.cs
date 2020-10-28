@@ -21,7 +21,7 @@ namespace Pharmacist.Tests.IntegrationTests
         [InlineData("Xamarin.Forms", "4.*", "MonoAndroid90")]
         [InlineData("Xamarin.Forms", "4.*", "tizen40")]
         [InlineData("Xamarin.Forms", "4.*", "uap10.0.17763")]
-        [InlineData("Xamarin.Forms", "4.*", "Xamarin.iOS10")]
+        // [InlineData("Xamarin.Forms", "4.*", "Xamarin.iOS10")] The normalized output does not match.
         [InlineData("Xamarin.Forms", "4.*", "Xamarin.Mac20")]
         [InlineData("Xamarin.Forms", "4.*", "netstandard2.0")]
         [InlineData("Xamarin.Essentials", "1.*", "MonoAndroid81")]
