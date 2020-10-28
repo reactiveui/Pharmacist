@@ -23,7 +23,7 @@ namespace Pharmacist.Tests.IntegrationTests
         [InlineData("Xamarin.Forms", "4.3.0.991250", "MonoAndroid90")]
         [InlineData("Xamarin.Forms", "4.3.0.991250", "tizen40")]
         [InlineData("Xamarin.Forms", "4.3.0.991250", "uap10.0.17763")]
-        [InlineData("Xamarin.Forms", "4.3.0.991250", "Xamarin.iOS10", Skip = "Failing")]
+        [InlineData("Xamarin.Forms", "4.3.0.991250", "Xamarin.iOS10")]
         [InlineData("Xamarin.Forms", "4.3.0.991250", "Xamarin.Mac20")]
         [InlineData("Xamarin.Forms", "4.3.0.991250", "netstandard2.0")]
         [InlineData("Xamarin.Essentials", "1.0.0", "MonoAndroid81")]
