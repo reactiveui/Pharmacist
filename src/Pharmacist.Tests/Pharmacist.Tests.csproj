@@ -29,7 +29,7 @@
     </PackageReference>
     <PackageReference Include="Xunit.StaFact" Version="1.0.37" />
     <PackageReference Include="DiffEngine" Version="6.1.4" />
-    <PackageReference Include="FluentAssertions" Version="5.6.0" />
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Microsoft.Reactive.Testing" Version="4.4.1" />
     <PackageReference Include="PublicApiGenerator" Version="10.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />
