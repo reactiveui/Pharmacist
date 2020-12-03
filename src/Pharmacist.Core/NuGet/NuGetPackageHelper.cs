@@ -1,4 +1,4 @@
-// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -16,7 +16,6 @@ using NuGet.Frameworks;
 using NuGet.LibraryModel;
 using NuGet.Packaging;
 using NuGet.Packaging.Core;
-using NuGet.Protocol;
 using NuGet.Protocol.Core.Types;
 using NuGet.Versioning;
 
@@ -42,9 +41,9 @@ namespace Pharmacist.Core.NuGet
 
         // Bunch of NuGet based objects we can cache and only create once.
         private static readonly string _globalPackagesPath;
-        private static readonly NuGetLogger _logger = new NuGetLogger();
+        private static readonly NuGetLogger _logger = new();
         private static readonly SourceCacheContext _sourceCacheContext = NullSourceCacheContext.Instance;
-        private static readonly PackageDownloadContext _downloadContext = new PackageDownloadContext(_sourceCacheContext);
+        private static readonly PackageDownloadContext _downloadContext = new(_sourceCacheContext);
         private static readonly IFrameworkNameProvider _frameworkNameProvider = DefaultFrameworkNameProvider.Instance;
 
         static NuGetPackageHelper()
@@ -227,15 +226,7 @@ namespace Pharmacist.Core.NuGet
                 var count = stack.TryPopRange(processingItems);
 
                 var currentItems = processingItems.Take(count).Where(
-                    item =>
-                    {
-                        if (packagesToCopy.TryGetValue(item.PackageIdentity, out var existingValue) && item.PackageIdentity.Version <= existingValue.PackageIdentity.Version)
-                        {
-                            return false;
-                        }
-
-                        return true;
-                    }).ToList();
+                    item => !packagesToCopy.TryGetValue(item.PackageIdentity, out var existingValue) || item.PackageIdentity.Version > existingValue.PackageIdentity.Version).ToList();
 
                 // Download the resource into the global packages path. We get a result which allows us to copy or do other operations based on the files.
                 (DownloadResourceResult DownloadResourceResult, PackageIdentity PackageIdentity, bool IncludeFilesInOutput)[] results = await Task.WhenAll(
@@ -415,23 +406,25 @@ namespace Pharmacist.Core.NuGet
         {
             var nuGetFramework = NuGetFramework.AnyFramework;
             var strArray = path.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
-            if ((strArray.Length == 3 || strArray.Length > 3) && allowSubFolders)
+            if ((strArray.Length != 3 && strArray.Length <= 3) || !allowSubFolders)
             {
-                var folderName = strArray[1];
-                NuGetFramework folder;
-                try
-                {
-                    folder = NuGetFramework.ParseFolder(folderName, _frameworkNameProvider);
-                }
-                catch (ArgumentException ex)
-                {
-                    throw new PackagingException(string.Format(CultureInfo.CurrentCulture, "There is a invalid project {0}, {1}", path, reader.GetIdentity()), ex);
-                }
+                return nuGetFramework;
+            }
 
-                if (folder.IsSpecificFramework)
-                {
-                    nuGetFramework = folder;
-                }
+            var folderName = strArray[1];
+            NuGetFramework folder;
+            try
+            {
+                folder = NuGetFramework.ParseFolder(folderName, _frameworkNameProvider);
+            }
+            catch (ArgumentException ex)
+            {
+                throw new PackagingException(string.Format(CultureInfo.CurrentCulture, "There is a invalid project {0}, {1}", path, reader.GetIdentity()), ex);
+            }
+
+            if (folder.IsSpecificFramework)
+            {
+                nuGetFramework = folder;
             }
 
             return nuGetFramework;

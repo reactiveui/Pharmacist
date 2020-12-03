@@ -1,4 +1,4 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
@@ -16,7 +16,8 @@
 
   <ItemGroup>
     <PackageReference Condition="'$(TargetFramework)' == 'net461' " Include="Microsoft.Build.Tasks.Core" Version="14.3" PrivateAssets="all" />
-    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="16.6.0" PrivateAssets="all" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="16.8.0" PrivateAssets="all" />
+    <PackageReference Condition="'$(TargetFramework)' == 'net5.0' " Include="Microsoft.Build.Tasks.Core" Version="16.8.0" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="Package">
@@ -24,6 +25,8 @@
     <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\net461" Pack="true" />
     <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\netstandard2.0" Pack="true" />
     <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\net5.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\net5.0" Pack="true" />
   </ItemGroup>
 
   <Target Name="PackBuildOutputs">

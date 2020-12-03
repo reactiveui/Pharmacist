@@ -1,4 +1,4 @@
-// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -32,8 +32,8 @@ namespace Pharmacist.Core.Generation.Compilation
     internal sealed class EventBuilderCompiler : ICompilation, IDisposable
     {
         private readonly KnownTypeCache _knownTypeCache;
-        private readonly List<IModule> _assemblies = new List<IModule>();
-        private readonly List<IModule> _referencedAssemblies = new List<IModule>();
+        private readonly List<IModule> _assemblies = new();
+        private readonly List<IModule> _referencedAssemblies = new();
         private readonly INamespace _rootNamespace;
 
         public EventBuilderCompiler(InputAssembliesGroup input, NuGetFramework framework)
@@ -60,7 +60,7 @@ namespace Pharmacist.Core.Generation.Compilation
         /// Gets the main module we are extracting information from.
         /// This is mostly just here due to ILDecompile needing it.
         /// </summary>
-        public IModule MainModule
+        public IModule? MainModule
         {
             get
             {
@@ -110,7 +110,7 @@ namespace Pharmacist.Core.Generation.Compilation
         /// <summary>
         /// Gets the cache manager. This is mostly here for ILDecompile.
         /// </summary>
-        public CacheManager CacheManager { get; } = new CacheManager();
+        public CacheManager CacheManager { get; } = new();
 
         public INamespace? GetNamespaceForExternAlias(string alias)
         {

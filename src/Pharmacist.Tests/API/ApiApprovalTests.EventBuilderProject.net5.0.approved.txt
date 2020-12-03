@@ -1,0 +1,140 @@
+[assembly: System.Reflection.AssemblyMetadata("RepositoryUrl", "https://github.com/reactiveui/Pharmacist")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Pharmacist.Benchmarks")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Pharmacist.Tests")]
+[assembly: System.Runtime.Versioning.TargetFramework(".NETCoreApp,Version=v5.0", FrameworkDisplayName="")]
+namespace Pharmacist.Core.Extractors
+{
+    public interface IExtractor
+    {
+        Pharmacist.Core.Groups.InputAssembliesGroup? Input { get; }
+    }
+    public class NuGetExtractor : Pharmacist.Core.Extractors.IExtractor
+    {
+        public NuGetExtractor() { }
+        public Pharmacist.Core.Groups.InputAssembliesGroup? Input { get; set; }
+        public System.Threading.Tasks.Task Extract(System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> targetFrameworks, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> packages, string? packageOutputDirectory) { }
+        public System.Threading.Tasks.Task Extract(System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> targetFrameworks, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packages, string? packageOutputDirectory) { }
+    }
+}
+namespace Pharmacist.Core.Extractors.PlatformExtractors
+{
+    public class Android : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public Android() { }
+        public override bool CanExtract(NuGet.Frameworks.NuGetFramework[] frameworks) { }
+        public override System.Threading.Tasks.Task Extract(NuGet.Frameworks.NuGetFramework[] frameworks, string referenceAssembliesLocation) { }
+    }
+    public abstract class BasePlatform : Pharmacist.Core.Extractors.IExtractor, Pharmacist.Core.Extractors.PlatformExtractors.IPlatformExtractor
+    {
+        protected BasePlatform() { }
+        public Pharmacist.Core.Groups.InputAssembliesGroup Input { get; }
+        public abstract bool CanExtract(NuGet.Frameworks.NuGetFramework[] frameworks);
+        public abstract System.Threading.Tasks.Task Extract(NuGet.Frameworks.NuGetFramework[] frameworks, string referenceAssembliesLocation);
+    }
+    public interface IPlatformExtractor : Pharmacist.Core.Extractors.IExtractor
+    {
+        bool CanExtract(NuGet.Frameworks.NuGetFramework[] frameworks);
+        System.Threading.Tasks.Task Extract(NuGet.Frameworks.NuGetFramework[] frameworks, string referenceAssembliesLocation);
+    }
+    public class Mac : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public Mac() { }
+        public override bool CanExtract(NuGet.Frameworks.NuGetFramework[] frameworks) { }
+        public override System.Threading.Tasks.Task Extract(NuGet.Frameworks.NuGetFramework[] frameworks, string referenceAssembliesLocation) { }
+    }
+    public class TVOS : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public TVOS() { }
+        public override bool CanExtract(NuGet.Frameworks.NuGetFramework[] frameworks) { }
+        public override System.Threading.Tasks.Task Extract(NuGet.Frameworks.NuGetFramework[] frameworks, string referenceAssembliesLocation) { }
+    }
+    public class UWP : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public UWP() { }
+        public override bool CanExtract(NuGet.Frameworks.NuGetFramework[] frameworks) { }
+        public override System.Threading.Tasks.Task Extract(NuGet.Frameworks.NuGetFramework[] frameworks, string referenceAssembliesLocation) { }
+    }
+    public class WatchOs : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public WatchOs() { }
+        public override bool CanExtract(NuGet.Frameworks.NuGetFramework[] frameworks) { }
+        public override System.Threading.Tasks.Task Extract(NuGet.Frameworks.NuGetFramework[] frameworks, string referenceAssembliesLocation) { }
+    }
+    public class iOS : Pharmacist.Core.Extractors.PlatformExtractors.BasePlatform
+    {
+        public iOS() { }
+        public override bool CanExtract(NuGet.Frameworks.NuGetFramework[] frameworks) { }
+        public override System.Threading.Tasks.Task Extract(NuGet.Frameworks.NuGetFramework[] frameworks, string referenceAssembliesLocation) { }
+    }
+}
+namespace Pharmacist.Core.Groups
+{
+    public class FilesGroup
+    {
+        public FilesGroup() { }
+        public void AddFiles(System.Collections.Generic.IEnumerable<string> files) { }
+        public System.Collections.Generic.IEnumerable<string> GetAllFileNames() { }
+        public string? GetFullFilePath(string fileName) { }
+    }
+    public class InputAssembliesGroup
+    {
+        public InputAssembliesGroup() { }
+        public Pharmacist.Core.Groups.FilesGroup IncludeGroup { get; }
+        public Pharmacist.Core.Groups.FilesGroup SupportGroup { get; }
+        public Pharmacist.Core.Groups.InputAssembliesGroup Combine(Pharmacist.Core.Groups.InputAssembliesGroup secondGroup) { }
+        public static Pharmacist.Core.Groups.InputAssembliesGroup Combine(Pharmacist.Core.Groups.InputAssembliesGroup firstGroup, Pharmacist.Core.Groups.InputAssembliesGroup secondGroup) { }
+    }
+}
+namespace Pharmacist.Core.NuGet
+{
+    public static class NuGetFrameworkHelper
+    {
+        public static System.Collections.Generic.IEnumerable<NuGet.Packaging.Core.PackageIdentity> GetSupportLibraries(this NuGet.Frameworks.NuGetFramework framework) { }
+        public static System.Collections.Generic.IReadOnlyList<NuGet.Frameworks.NuGetFramework> ToFrameworks(this string frameworkName) { }
+    }
+    public static class NuGetPackageHelper
+    {
+        public const string DefaultNuGetSource = "https://api.nuget.org/v3/index.json";
+        public static System.Collections.Generic.List<System.Lazy<NuGet.Protocol.Core.Types.INuGetResourceProvider>> Providers { get; }
+        public static System.Threading.Tasks.Task<Pharmacist.Core.Groups.InputAssembliesGroup> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> libraryIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework>? frameworks = null, NuGet.Configuration.PackageSource? nugetSource = null, bool getDependencies = true, System.Collections.Generic.IReadOnlyCollection<string>? packageFolders = null, string? packageOutputDirectory = null, System.Threading.CancellationToken token = default) { }
+        public static System.Threading.Tasks.Task<Pharmacist.Core.Groups.InputAssembliesGroup> DownloadPackageFilesAndFolder(System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packageIdentities, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework>? frameworks = null, NuGet.Configuration.PackageSource? nugetSource = null, bool getDependencies = true, System.Collections.Generic.IReadOnlyCollection<string>? packageFolders = null, string? packageOutputDirectory = null, System.Threading.CancellationToken token = default) { }
+        public static System.Threading.Tasks.Task<NuGet.Packaging.Core.PackageIdentity> GetBestMatch(NuGet.LibraryModel.LibraryRange identity, NuGet.Configuration.PackageSource? nugetSource = null, System.Threading.CancellationToken token = default) { }
+        public static System.Threading.Tasks.Task<NuGet.Packaging.Core.PackageIdentity> GetBestMatch(NuGet.LibraryModel.LibraryRange identity, NuGet.Protocol.Core.Types.FindPackageByIdResource findPackageResource, System.Threading.CancellationToken token) { }
+    }
+}
+namespace Pharmacist.Core
+{
+    public static class ObservablesForEventGenerator
+    {
+        public static System.Threading.Tasks.Task ExtractEventsFromAssemblies(System.IO.TextWriter writer, Pharmacist.Core.Groups.InputAssembliesGroup input, NuGet.Frameworks.NuGetFramework framework) { }
+        public static System.Threading.Tasks.Task ExtractEventsFromAssemblies(System.IO.TextWriter writer, System.Collections.Generic.IEnumerable<string> assemblies, System.Collections.Generic.IEnumerable<string> searchDirectories, string targetFramework) { }
+        public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.TextWriter writer, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> packages, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks, string? packageOutputFolder = null) { }
+        public static System.Threading.Tasks.Task ExtractEventsFromNuGetPackages(System.IO.TextWriter writer, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packages, System.Collections.Generic.IReadOnlyCollection<NuGet.Frameworks.NuGetFramework> frameworks, string? packageOutputFolder = null) { }
+        public static System.Threading.Tasks.Task ExtractEventsFromPlatforms(string outputPath, string prefix, string suffix, string defaultReferenceAssemblyLocation, string targetFramework, bool isWpf, bool isWinForms, string? packageOutputFolder = null, bool includeHeader = true) { }
+        public static System.Threading.Tasks.Task ExtractEventsFromTargetFramework(System.IO.TextWriter writer, System.Collections.Generic.IReadOnlyList<NuGet.Frameworks.NuGetFramework> frameworks) { }
+        public static System.Threading.Tasks.Task WriteHeader(System.IO.TextWriter writer) { }
+        public static System.Threading.Tasks.Task WriteHeader(System.IO.TextWriter writer, NuGet.Frameworks.NuGetFramework targetFramework) { }
+        public static System.Threading.Tasks.Task WriteHeader(System.IO.TextWriter writer, System.Collections.Generic.IEnumerable<string> fileNames) { }
+        public static System.Threading.Tasks.Task WriteHeader(System.IO.TextWriter writer, System.Collections.Generic.IReadOnlyCollection<NuGet.LibraryModel.LibraryRange> libraryRanges) { }
+        public static System.Threading.Tasks.Task WriteHeader(System.IO.TextWriter writer, System.Collections.Generic.IReadOnlyCollection<NuGet.Packaging.Core.PackageIdentity> packageIdentities) { }
+    }
+    public static class PlatformHelper
+    {
+        public static bool IsRunningOnMono() { }
+    }
+}
+namespace Pharmacist.Core.ReferenceLocators
+{
+    [System.Serializable]
+    public class ReferenceLocationNotFoundException : System.Exception
+    {
+        public ReferenceLocationNotFoundException() { }
+        public ReferenceLocationNotFoundException(string message) { }
+        protected ReferenceLocationNotFoundException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) { }
+        public ReferenceLocationNotFoundException(string message, System.Exception innerException) { }
+    }
+    public static class ReferenceLocator
+    {
+        public static string GetReferenceLocation(bool includePreRelease = true) { }
+    }
+}

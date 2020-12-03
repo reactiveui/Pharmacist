@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+﻿// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -133,11 +133,21 @@ namespace Pharmacist.Core.Generation
                 return null;
             }
 
-            var message = obsoleteAttribute.FixedArguments.FirstOrDefault().Value.ToString();
-            var isError = bool.Parse(obsoleteAttribute.FixedArguments.ElementAtOrDefault(1).Value?.ToString() ?? bool.FalseString) ? SyntaxKind.TrueLiteralExpression : SyntaxKind.FalseLiteralExpression;
-            var attribute = Attribute(
-                IdentifierName("global::System.ObsoleteAttribute"),
-                AttributeArgumentList(SeparatedList(new[] { AttributeArgument(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(message))), AttributeArgument(LiteralExpression(isError)) })));
+            var message = obsoleteAttribute.FixedArguments.FirstOrDefault().Value?.ToString();
+
+            AttributeSyntax attribute;
+            if (message is null || string.IsNullOrWhiteSpace(message))
+            {
+                attribute = Attribute(
+                    IdentifierName("global::System.ObsoleteAttribute"));
+            }
+            else
+            {
+                var isError = bool.Parse(obsoleteAttribute.FixedArguments.ElementAtOrDefault(1).Value?.ToString() ?? bool.FalseString) ? SyntaxKind.TrueLiteralExpression : SyntaxKind.FalseLiteralExpression;
+                attribute = Attribute(
+                    IdentifierName("global::System.ObsoleteAttribute"),
+                    AttributeArgumentList(SeparatedList(new[] { AttributeArgument(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(message))), AttributeArgument(LiteralExpression(isError)) })));
+            }
 
             return AttributeList(SingletonSeparatedList(attribute));
         }

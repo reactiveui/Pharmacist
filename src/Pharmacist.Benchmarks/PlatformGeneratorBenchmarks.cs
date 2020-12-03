@@ -15,7 +15,7 @@ namespace Pharmacist.Benchmarks
     /// <summary>
     /// Benchmarks for the NavigationStack and the RoutingState objects.
     /// </summary>
-    [SimpleJob(RuntimeMoniker.Net472)]
+    [SimpleJob(RuntimeMoniker.Net461)]
     [SimpleJob(RuntimeMoniker.NetCoreApp31)]
     [MemoryDiagnoser]
     [MarkdownExporterAttribute.GitHub]

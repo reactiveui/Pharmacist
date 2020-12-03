@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+﻿// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -26,9 +26,9 @@ namespace Pharmacist.Core.ReferenceLocators
     /// </summary>
     public static class ReferenceLocator
     {
-        private static readonly PackageIdentity VSWherePackageIdentity = new PackageIdentity("VSWhere", new NuGetVersion("2.6.7"));
+        private static readonly PackageIdentity VSWherePackageIdentity = new("VSWhere", new NuGetVersion("2.6.7"));
 
-        private static readonly ConcurrentDictionary<bool, string> _windowsInstallationDirectory = new ConcurrentDictionary<bool, string>();
+        private static readonly ConcurrentDictionary<bool, string> _windowsInstallationDirectory = new();
 
         /// <summary>
         /// Gets the reference location.
@@ -81,21 +81,19 @@ namespace Pharmacist.Core.ReferenceLocators
                                 parameters.Append(" -prerelease");
                             }
 
-                            using (var process = new Process())
-                            {
-                                process.StartInfo.FileName = fileName;
-                                process.StartInfo.Arguments = parameters.ToString();
-                                process.StartInfo.UseShellExecute = false;
-                                process.StartInfo.RedirectStandardOutput = true;
+                            using var process = new Process();
+                            process.StartInfo.FileName = fileName;
+                            process.StartInfo.Arguments = parameters.ToString();
+                            process.StartInfo.UseShellExecute = false;
+                            process.StartInfo.RedirectStandardOutput = true;
 
-                                process.Start();
+                            process.Start();
 
-                                // To avoid deadlocks, always read the output stream first and then wait.
-                                var output = process.StandardOutput.ReadToEnd().Replace(Environment.NewLine, string.Empty);
-                                process.WaitForExit();
+                            // To avoid deadlocks, always read the output stream first and then wait.
+                            var output = process.StandardOutput.ReadToEnd().Replace(Environment.NewLine, string.Empty);
+                            process.WaitForExit();
 
-                                return output;
-                            }
+                            return output;
                         }).ConfigureAwait(false).GetAwaiter().GetResult();
                 });
         }

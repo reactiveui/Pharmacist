@@ -17,7 +17,7 @@ namespace Pharmacist.Tests.IntegrationTests
     public class LibraryRangeNuGetTest
     {
         [Theory]
-        [InlineData("Xamarin.Forms", "4.*", "MonoAndroid81")]
+        [InlineData("Xamarin.Forms", "4.*", "MonoAndroid10.0")]
         [InlineData("Xamarin.Forms", "4.*", "MonoAndroid90")]
         [InlineData("Xamarin.Forms", "4.*", "tizen40")]
         [InlineData("Xamarin.Forms", "4.*", "uap10.0.17763")]
@@ -32,16 +32,17 @@ namespace Pharmacist.Tests.IntegrationTests
         [InlineData("Xamarin.Essentials", "1.*", "netstandard2.0")]
         [InlineData("Tizen.NET.API4", "4.*", "netstandard2.0")]
         [InlineData("Avalonia", "0.9.*", "netstandard2.0")]
-        [InlineData("Avalonia", "0.9.*", "netcoreapp2.0")]
-        [InlineData("Avalonia", "0.9.*", "net461")]
+        [InlineData("Avalonia", "0.9.*", "net5.0")]
+        [InlineData("Avalonia", "0.9.*", "net472")]
         [InlineData("Avalonia.Remote.Protocol", "0.9.*", "netstandard2.0")]
         [InlineData("Uno.UI", "1.44.*", "netstandard2.0")]
         [InlineData("Uno.UI", "1.44.*", "MonoAndroid80")]
         [InlineData("Uno.UI", "1.44.*", "MonoAndroid90")]
         [InlineData("Uno.UI", "1.44.*", "Xamarin.iOS10")]
         [InlineData("Uno.Core", "1.27.*", "netstandard2.0")]
-        [InlineData("Uno.Core", "1.27.*", "net461")]
+        [InlineData("Uno.Core", "1.27.*", "net472")]
         [InlineData("Uno.Core", "1.27.*", "uap10.0.17763")]
+        [InlineData("Uno.Core", "1.27.*", "net5.0")]
         public Task ProcessLibraryRange(string packageName, string nugetVersion, string framework)
         {
             var package = new[] { new LibraryRange(packageName, VersionRange.Parse(nugetVersion), LibraryDependencyTarget.Package) };

@@ -52,9 +52,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DecelerationEnded += x, x => _data.DecelerationEnded -= x);
+        }, x => _data.DecelerationEnded += x, x => _data.DecelerationEnded -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DecelerationStarted"/> event triggers.
         /// </summary>
@@ -62,9 +60,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DecelerationStarted += x, x => _data.DecelerationStarted -= x);
+        }, x => _data.DecelerationStarted += x, x => _data.DecelerationStarted -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DidChangeAdjustedContentInset"/> event triggers.
         /// </summary>
@@ -72,9 +68,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DidChangeAdjustedContentInset += x, x => _data.DidChangeAdjustedContentInset -= x);
+        }, x => _data.DidChangeAdjustedContentInset += x, x => _data.DidChangeAdjustedContentInset -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DidZoom"/> event triggers.
         /// </summary>
@@ -82,9 +76,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DidZoom += x, x => _data.DidZoom -= x);
+        }, x => _data.DidZoom += x, x => _data.DidZoom -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DraggingEnded"/> event triggers.
         /// </summary>
@@ -92,9 +84,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.DraggingEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DraggingEnded += x, x => _data.DraggingEnded -= x);
+        }, x => _data.DraggingEnded += x, x => _data.DraggingEnded -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.DraggingStarted"/> event triggers.
         /// </summary>
@@ -102,9 +92,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DraggingStarted += x, x => _data.DraggingStarted -= x);
+        }, x => _data.DraggingStarted += x, x => _data.DraggingStarted -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.ScrollAnimationEnded"/> event triggers.
         /// </summary>
@@ -112,9 +100,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ScrollAnimationEnded += x, x => _data.ScrollAnimationEnded -= x);
+        }, x => _data.ScrollAnimationEnded += x, x => _data.ScrollAnimationEnded -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.Scrolled"/> event triggers.
         /// </summary>
@@ -122,9 +108,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Scrolled += x, x => _data.Scrolled -= x);
+        }, x => _data.Scrolled += x, x => _data.Scrolled -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.ScrolledToTop"/> event triggers.
         /// </summary>
@@ -132,9 +116,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ScrolledToTop += x, x => _data.ScrolledToTop -= x);
+        }, x => _data.ScrolledToTop += x, x => _data.ScrolledToTop -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.WillEndDragging"/> event triggers.
         /// </summary>
@@ -142,9 +124,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.WillEndDraggingEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.WillEndDragging += x, x => _data.WillEndDragging -= x);
+        }, x => _data.WillEndDragging += x, x => _data.WillEndDragging -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.ZoomingEnded"/> event triggers.
         /// </summary>
@@ -152,9 +132,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.ZoomingEndedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ZoomingEnded += x, x => _data.ZoomingEnded -= x);
+        }, x => _data.ZoomingEnded += x, x => _data.ZoomingEnded -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIScrollView.ZoomingStarted"/> event triggers.
         /// </summary>
@@ -162,9 +140,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.UIScrollViewZoomingEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ZoomingStarted += x, x => _data.ZoomingStarted -= x);
+        }, x => _data.ZoomingStarted += x, x => _data.ZoomingStarted -= x);
     }
 
     /// <summary>
@@ -189,9 +165,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DidCollapse += x, x => _data.DidCollapse -= x);
+        }, x => _data.DidCollapse += x, x => _data.DidCollapse -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.DidExpand"/> event triggers.
         /// </summary>
@@ -199,9 +173,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DidExpand += x, x => _data.DidExpand -= x);
+        }, x => _data.DidExpand += x, x => _data.DidExpand -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.InteractivePresentationGestureDidEnd"/> event triggers.
         /// </summary>
@@ -209,9 +181,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.InteractivePresentationGestureDidEnd += x, x => _data.InteractivePresentationGestureDidEnd -= x);
+        }, x => _data.InteractivePresentationGestureDidEnd += x, x => _data.InteractivePresentationGestureDidEnd -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.InteractivePresentationGestureWillBegin"/> event triggers.
         /// </summary>
@@ -219,9 +189,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.InteractivePresentationGestureWillBegin += x, x => _data.InteractivePresentationGestureWillBegin -= x);
+        }, x => _data.InteractivePresentationGestureWillBegin += x, x => _data.InteractivePresentationGestureWillBegin -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillChangeDisplayMode"/> event triggers.
         /// </summary>
@@ -229,9 +197,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.UISplitViewControllerDisplayModeEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.WillChangeDisplayMode += x, x => _data.WillChangeDisplayMode -= x);
+        }, x => _data.WillChangeDisplayMode += x, x => _data.WillChangeDisplayMode -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillHideColumn"/> event triggers.
         /// </summary>
@@ -239,9 +205,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.UISplitViewControllerWillShowHideColumnEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.WillHideColumn += x, x => _data.WillHideColumn -= x);
+        }, x => _data.WillHideColumn += x, x => _data.WillHideColumn -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillHideViewController"/> event triggers.
         /// </summary>
@@ -249,9 +213,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.UISplitViewHideEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.WillHideViewController += x, x => _data.WillHideViewController -= x);
+        }, x => _data.WillHideViewController += x, x => _data.WillHideViewController -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillPresentViewController"/> event triggers.
         /// </summary>
@@ -259,9 +221,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.UISplitViewPresentEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.WillPresentViewController += x, x => _data.WillPresentViewController -= x);
+        }, x => _data.WillPresentViewController += x, x => _data.WillPresentViewController -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillShowColumn"/> event triggers.
         /// </summary>
@@ -269,9 +229,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.UISplitViewControllerWillShowHideColumnEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.WillShowColumn += x, x => _data.WillShowColumn -= x);
+        }, x => _data.WillShowColumn += x, x => _data.WillShowColumn -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UISplitViewController.WillShowViewController"/> event triggers.
         /// </summary>
@@ -279,9 +237,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.UISplitViewShowEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.WillShowViewController += x, x => _data.WillShowViewController -= x);
+        }, x => _data.WillShowViewController += x, x => _data.WillShowViewController -= x);
     }
 
     /// <summary>
@@ -306,9 +262,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.UITabBarCustomizeChangeEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.FinishedCustomizingViewControllers += x, x => _data.FinishedCustomizingViewControllers -= x);
+        }, x => _data.FinishedCustomizingViewControllers += x, x => _data.FinishedCustomizingViewControllers -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UITabBarController.OnCustomizingViewControllers"/> event triggers.
         /// </summary>
@@ -316,9 +270,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.UITabBarCustomizeEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.OnCustomizingViewControllers += x, x => _data.OnCustomizingViewControllers -= x);
+        }, x => _data.OnCustomizingViewControllers += x, x => _data.OnCustomizingViewControllers -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UITabBarController.OnEndCustomizingViewControllers"/> event triggers.
         /// </summary>
@@ -326,9 +278,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.UITabBarCustomizeChangeEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.OnEndCustomizingViewControllers += x, x => _data.OnEndCustomizingViewControllers -= x);
+        }, x => _data.OnEndCustomizingViewControllers += x, x => _data.OnEndCustomizingViewControllers -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UITabBarController.ViewControllerSelected"/> event triggers.
         /// </summary>
@@ -336,9 +286,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.UITabBarSelectionEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ViewControllerSelected += x, x => _data.ViewControllerSelected -= x);
+        }, x => _data.ViewControllerSelected += x, x => _data.ViewControllerSelected -= x);
     }
 
     /// <summary>
@@ -363,9 +311,7 @@ namespace UIKit
         {
             void Handler(object sender, global::UIKit.UIWebErrorArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.LoadError += x, x => _data.LoadError -= x);
+        }, x => _data.LoadError += x, x => _data.LoadError -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIWebView.LoadFinished"/> event triggers.
         /// </summary>
@@ -373,9 +319,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.LoadFinished += x, x => _data.LoadFinished -= x);
+        }, x => _data.LoadFinished += x, x => _data.LoadFinished -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::UIKit.UIWebView.LoadStarted"/> event triggers.
         /// </summary>
@@ -383,9 +327,7 @@ namespace UIKit
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.LoadStarted += x, x => _data.LoadStarted -= x);
+        }, x => _data.LoadStarted += x, x => _data.LoadStarted -= x);
     }
 }
 
@@ -664,9 +606,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ModalPoppedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ModalPopped += x, x => _data.ModalPopped -= x);
+        }, x => _data.ModalPopped += x, x => _data.ModalPopped -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Application.ModalPopping"/> event triggers.
         /// </summary>
@@ -674,9 +614,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ModalPoppingEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ModalPopping += x, x => _data.ModalPopping -= x);
+        }, x => _data.ModalPopping += x, x => _data.ModalPopping -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Application.ModalPushed"/> event triggers.
         /// </summary>
@@ -684,9 +622,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ModalPushedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ModalPushed += x, x => _data.ModalPushed -= x);
+        }, x => _data.ModalPushed += x, x => _data.ModalPushed -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Application.ModalPushing"/> event triggers.
         /// </summary>
@@ -694,9 +630,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ModalPushingEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ModalPushing += x, x => _data.ModalPushing -= x);
+        }, x => _data.ModalPushing += x, x => _data.ModalPushing -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Application.PageAppearing"/> event triggers.
         /// </summary>
@@ -704,9 +638,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Page e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PageAppearing += x, x => _data.PageAppearing -= x);
+        }, x => _data.PageAppearing += x, x => _data.PageAppearing -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Application.PageDisappearing"/> event triggers.
         /// </summary>
@@ -714,9 +646,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Page e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PageDisappearing += x, x => _data.PageDisappearing -= x);
+        }, x => _data.PageDisappearing += x, x => _data.PageDisappearing -= x);
     }
 
     /// <summary>
@@ -741,9 +671,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Appearing += x, x => _data.Appearing -= x);
+        }, x => _data.Appearing += x, x => _data.Appearing -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.BaseShellItem.Disappearing"/> event triggers.
         /// </summary>
@@ -751,9 +679,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Disappearing += x, x => _data.Disappearing -= x);
+        }, x => _data.Disappearing += x, x => _data.Disappearing -= x);
     }
 
     /// <summary>
@@ -778,9 +704,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.BindingContextChanged += x, x => _data.BindingContextChanged -= x);
+        }, x => _data.BindingContextChanged += x, x => _data.BindingContextChanged -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.BindableObject.PropertyChanged"/> event triggers.
         /// </summary>
@@ -788,9 +712,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PropertyChanged += x, x => _data.PropertyChanged -= x);
+        }, x => _data.PropertyChanged += x, x => _data.PropertyChanged -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.BindableObject.PropertyChanging"/> event triggers.
         /// </summary>
@@ -798,9 +720,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.PropertyChangingEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PropertyChanging += x, x => _data.PropertyChanging -= x);
+        }, x => _data.PropertyChanging += x, x => _data.PropertyChanging -= x);
     }
 
     /// <summary>
@@ -825,9 +745,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Clicked += x, x => _data.Clicked -= x);
+        }, x => _data.Clicked += x, x => _data.Clicked -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Button.Pressed"/> event triggers.
         /// </summary>
@@ -835,9 +753,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Pressed += x, x => _data.Pressed -= x);
+        }, x => _data.Pressed += x, x => _data.Pressed -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Button.Released"/> event triggers.
         /// </summary>
@@ -845,9 +761,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Released += x, x => _data.Released -= x);
+        }, x => _data.Released += x, x => _data.Released -= x);
     }
 
     /// <summary>
@@ -872,9 +786,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.CurrentItemChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.CurrentItemChanged += x, x => _data.CurrentItemChanged -= x);
+        }, x => _data.CurrentItemChanged += x, x => _data.CurrentItemChanged -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.CarouselView.PositionChanged"/> event triggers.
         /// </summary>
@@ -882,9 +794,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.PositionChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PositionChanged += x, x => _data.PositionChanged -= x);
+        }, x => _data.PositionChanged += x, x => _data.PositionChanged -= x);
     }
 
     /// <summary>
@@ -909,9 +819,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Appearing += x, x => _data.Appearing -= x);
+        }, x => _data.Appearing += x, x => _data.Appearing -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Cell.Disappearing"/> event triggers.
         /// </summary>
@@ -919,9 +827,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Disappearing += x, x => _data.Disappearing -= x);
+        }, x => _data.Disappearing += x, x => _data.Disappearing -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Cell.ForceUpdateSizeRequested"/> event triggers.
         /// </summary>
@@ -929,9 +835,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ForceUpdateSizeRequested += x, x => _data.ForceUpdateSizeRequested -= x);
+        }, x => _data.ForceUpdateSizeRequested += x, x => _data.ForceUpdateSizeRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Cell.Tapped"/> event triggers.
         /// </summary>
@@ -939,9 +843,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Tapped += x, x => _data.Tapped -= x);
+        }, x => _data.Tapped += x, x => _data.Tapped -= x);
     }
 
     /// <summary>
@@ -966,9 +868,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.CheckedChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.CheckedChanged += x, x => _data.CheckedChanged -= x);
+        }, x => _data.CheckedChanged += x, x => _data.CheckedChanged -= x);
     }
 
     /// <summary>
@@ -993,9 +893,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PropertyChanged += x, x => _data.PropertyChanged -= x);
+        }, x => _data.PropertyChanged += x, x => _data.PropertyChanged -= x);
     }
 
     /// <summary>
@@ -1020,9 +918,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Clicked += x, x => _data.Clicked -= x);
+        }, x => _data.Clicked += x, x => _data.Clicked -= x);
     }
 
     /// <summary>
@@ -1047,9 +943,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
+        }, x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
     }
 
     /// <summary>
@@ -1074,9 +968,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.CanExecuteChanged += x, x => _data.CanExecuteChanged -= x);
+        }, x => _data.CanExecuteChanged += x, x => _data.CanExecuteChanged -= x);
     }
 
     /// <summary>
@@ -1101,9 +993,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.DateChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DateSelected += x, x => _data.DateSelected -= x);
+        }, x => _data.DateSelected += x, x => _data.DateSelected -= x);
     }
 
     /// <summary>
@@ -1128,9 +1018,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Completed += x, x => _data.Completed -= x);
+        }, x => _data.Completed += x, x => _data.Completed -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Editor.TextChanged"/> event triggers.
         /// </summary>
@@ -1138,9 +1026,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.TextChanged += x, x => _data.TextChanged -= x);
+        }, x => _data.TextChanged += x, x => _data.TextChanged -= x);
     }
 
     /// <summary>
@@ -1165,9 +1051,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ElementEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ChildAdded += x, x => _data.ChildAdded -= x);
+        }, x => _data.ChildAdded += x, x => _data.ChildAdded -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Element.ChildRemoved"/> event triggers.
         /// </summary>
@@ -1175,9 +1059,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ElementEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ChildRemoved += x, x => _data.ChildRemoved -= x);
+        }, x => _data.ChildRemoved += x, x => _data.ChildRemoved -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Element.DescendantAdded"/> event triggers.
         /// </summary>
@@ -1185,9 +1067,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ElementEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DescendantAdded += x, x => _data.DescendantAdded -= x);
+        }, x => _data.DescendantAdded += x, x => _data.DescendantAdded -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Element.DescendantRemoved"/> event triggers.
         /// </summary>
@@ -1195,9 +1075,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ElementEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DescendantRemoved += x, x => _data.DescendantRemoved -= x);
+        }, x => _data.DescendantRemoved += x, x => _data.DescendantRemoved -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Element.PlatformSet"/> event triggers.
         /// </summary>
@@ -1206,9 +1084,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PlatformSet += x, x => _data.PlatformSet -= x);
+        }, x => _data.PlatformSet += x, x => _data.PlatformSet -= x);
     }
 
     /// <summary>
@@ -1233,9 +1109,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Completed += x, x => _data.Completed -= x);
+        }, x => _data.Completed += x, x => _data.Completed -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Entry.TextChanged"/> event triggers.
         /// </summary>
@@ -1243,9 +1117,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.TextChanged += x, x => _data.TextChanged -= x);
+        }, x => _data.TextChanged += x, x => _data.TextChanged -= x);
     }
 
     /// <summary>
@@ -1270,9 +1142,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Completed += x, x => _data.Completed -= x);
+        }, x => _data.Completed += x, x => _data.Completed -= x);
     }
 
     /// <summary>
@@ -1297,9 +1167,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ForceUpdateSizeRequested += x, x => _data.ForceUpdateSizeRequested -= x);
+        }, x => _data.ForceUpdateSizeRequested += x, x => _data.ForceUpdateSizeRequested -= x);
     }
 
     /// <summary>
@@ -1324,9 +1192,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
+        }, x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
     }
 
     /// <summary>
@@ -1352,9 +1218,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PlatformSet += x, x => _data.PlatformSet -= x);
+        }, x => _data.PlatformSet += x, x => _data.PlatformSet -= x);
     }
 
     /// <summary>
@@ -1379,9 +1243,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.LayoutChanged += x, x => _data.LayoutChanged -= x);
+        }, x => _data.LayoutChanged += x, x => _data.LayoutChanged -= x);
     }
 
     /// <summary>
@@ -1406,9 +1268,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.CollectionChanged += x, x => _data.CollectionChanged -= x);
+        }, x => _data.CollectionChanged += x, x => _data.CollectionChanged -= x);
     }
 
     /// <summary>
@@ -1433,9 +1293,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ScrollToRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ScrollToRequested += x, x => _data.ScrollToRequested -= x);
+        }, x => _data.ScrollToRequested += x, x => _data.ScrollToRequested -= x);
     }
 
     /// <summary>
@@ -1460,9 +1318,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Clicked += x, x => _data.Clicked -= x);
+        }, x => _data.Clicked += x, x => _data.Clicked -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ImageButton.Pressed"/> event triggers.
         /// </summary>
@@ -1470,9 +1326,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Pressed += x, x => _data.Pressed -= x);
+        }, x => _data.Pressed += x, x => _data.Pressed -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ImageButton.Released"/> event triggers.
         /// </summary>
@@ -1480,9 +1334,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Released += x, x => _data.Released -= x);
+        }, x => _data.Released += x, x => _data.Released -= x);
     }
 
     /// <summary>
@@ -1507,9 +1359,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.BackButtonPressedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.BackButtonPressed += x, x => _data.BackButtonPressed -= x);
+        }, x => _data.BackButtonPressed += x, x => _data.BackButtonPressed -= x);
     }
 
     /// <summary>
@@ -1534,9 +1384,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.InsertPageBeforeRequested += x, x => _data.InsertPageBeforeRequested -= x);
+        }, x => _data.InsertPageBeforeRequested += x, x => _data.InsertPageBeforeRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.INavigationPageController.PopRequested"/> event triggers.
         /// </summary>
@@ -1544,9 +1392,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PopRequested += x, x => _data.PopRequested -= x);
+        }, x => _data.PopRequested += x, x => _data.PopRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.INavigationPageController.PopToRootRequested"/> event triggers.
         /// </summary>
@@ -1554,9 +1400,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PopToRootRequested += x, x => _data.PopToRootRequested -= x);
+        }, x => _data.PopToRootRequested += x, x => _data.PopToRootRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.INavigationPageController.PushRequested"/> event triggers.
         /// </summary>
@@ -1564,9 +1408,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PushRequested += x, x => _data.PushRequested -= x);
+        }, x => _data.PushRequested += x, x => _data.PushRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.INavigationPageController.RemovePageRequested"/> event triggers.
         /// </summary>
@@ -1574,9 +1416,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.RemovePageRequested += x, x => _data.RemovePageRequested -= x);
+        }, x => _data.RemovePageRequested += x, x => _data.RemovePageRequested -= x);
     }
 
     /// <summary>
@@ -1601,9 +1441,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DisplayRequested += x, x => _data.DisplayRequested -= x);
+        }, x => _data.DisplayRequested += x, x => _data.DisplayRequested -= x);
     }
 
     /// <summary>
@@ -1628,9 +1466,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ScrollToRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ScrollToRequested += x, x => _data.ScrollToRequested -= x);
+        }, x => _data.ScrollToRequested += x, x => _data.ScrollToRequested -= x);
     }
 
     /// <summary>
@@ -1655,9 +1491,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ListProxyChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ListProxyChanged += x, x => _data.ListProxyChanged -= x);
+        }, x => _data.ListProxyChanged += x, x => _data.ListProxyChanged -= x);
     }
 
     /// <summary>
@@ -1682,9 +1516,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.StructureChanged += x, x => _data.StructureChanged -= x);
+        }, x => _data.StructureChanged += x, x => _data.StructureChanged -= x);
     }
 
     /// <summary>
@@ -1709,9 +1541,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.NavigationRequested += x, x => _data.NavigationRequested -= x);
+        }, x => _data.NavigationRequested += x, x => _data.NavigationRequested -= x);
     }
 
     /// <summary>
@@ -1736,9 +1566,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ModelChanged += x, x => _data.ModelChanged -= x);
+        }, x => _data.ModelChanged += x, x => _data.ModelChanged -= x);
     }
 
     /// <summary>
@@ -1763,9 +1591,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.RemainingItemsThresholdReached += x, x => _data.RemainingItemsThresholdReached -= x);
+        }, x => _data.RemainingItemsThresholdReached += x, x => _data.RemainingItemsThresholdReached -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ItemsView.Scrolled"/> event triggers.
         /// </summary>
@@ -1773,9 +1599,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ItemsViewScrolledEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Scrolled += x, x => _data.Scrolled -= x);
+        }, x => _data.Scrolled += x, x => _data.Scrolled -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ItemsView.ScrollToRequested"/> event triggers.
         /// </summary>
@@ -1783,9 +1607,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ScrollToRequestEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ScrollToRequested += x, x => _data.ScrollToRequested -= x);
+        }, x => _data.ScrollToRequested += x, x => _data.ScrollToRequested -= x);
     }
 
     /// <summary>
@@ -1810,9 +1632,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement> e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.BatchCommitted += x, x => _data.BatchCommitted -= x);
+        }, x => _data.BatchCommitted += x, x => _data.BatchCommitted -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IVisualElementController.FocusChangeRequested"/> event triggers.
         /// </summary>
@@ -1820,9 +1640,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.VisualElement.FocusRequestArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.FocusChangeRequested += x, x => _data.FocusChangeRequested -= x);
+        }, x => _data.FocusChangeRequested += x, x => _data.FocusChangeRequested -= x);
     }
 
     /// <summary>
@@ -1847,9 +1665,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.EvalRequested e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.EvalRequested += x, x => _data.EvalRequested -= x);
+        }, x => _data.EvalRequested += x, x => _data.EvalRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IWebViewController.GoBackRequested"/> event triggers.
         /// </summary>
@@ -1857,9 +1673,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.GoBackRequested += x, x => _data.GoBackRequested -= x);
+        }, x => _data.GoBackRequested += x, x => _data.GoBackRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IWebViewController.GoForwardRequested"/> event triggers.
         /// </summary>
@@ -1867,9 +1681,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.GoForwardRequested += x, x => _data.GoForwardRequested -= x);
+        }, x => _data.GoForwardRequested += x, x => _data.GoForwardRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.IWebViewController.ReloadRequested"/> event triggers.
         /// </summary>
@@ -1877,9 +1689,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ReloadRequested += x, x => _data.ReloadRequested -= x);
+        }, x => _data.ReloadRequested += x, x => _data.ReloadRequested -= x);
     }
 
     /// <summary>
@@ -1904,9 +1714,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.LayoutChanged += x, x => _data.LayoutChanged -= x);
+        }, x => _data.LayoutChanged += x, x => _data.LayoutChanged -= x);
     }
 
     /// <summary>
@@ -1931,9 +1739,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ItemVisibilityEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ItemAppearing += x, x => _data.ItemAppearing -= x);
+        }, x => _data.ItemAppearing += x, x => _data.ItemAppearing -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ListView.ItemDisappearing"/> event triggers.
         /// </summary>
@@ -1941,9 +1747,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ItemVisibilityEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ItemDisappearing += x, x => _data.ItemDisappearing -= x);
+        }, x => _data.ItemDisappearing += x, x => _data.ItemDisappearing -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ListView.ItemSelected"/> event triggers.
         /// </summary>
@@ -1951,9 +1755,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.SelectedItemChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ItemSelected += x, x => _data.ItemSelected -= x);
+        }, x => _data.ItemSelected += x, x => _data.ItemSelected -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ListView.ItemTapped"/> event triggers.
         /// </summary>
@@ -1961,9 +1763,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ItemTappedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ItemTapped += x, x => _data.ItemTapped -= x);
+        }, x => _data.ItemTapped += x, x => _data.ItemTapped -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ListView.Refreshing"/> event triggers.
         /// </summary>
@@ -1971,9 +1771,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Refreshing += x, x => _data.Refreshing -= x);
+        }, x => _data.Refreshing += x, x => _data.Refreshing -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ListView.Scrolled"/> event triggers.
         /// </summary>
@@ -1981,9 +1779,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ScrolledEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Scrolled += x, x => _data.Scrolled -= x);
+        }, x => _data.Scrolled += x, x => _data.Scrolled -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ListView.ScrollToRequested"/> event triggers.
         /// </summary>
@@ -1991,9 +1787,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ScrollToRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ScrollToRequested += x, x => _data.ScrollToRequested -= x);
+        }, x => _data.ScrollToRequested += x, x => _data.ScrollToRequested -= x);
     }
 
     /// <summary>
@@ -2018,9 +1812,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.BackButtonPressedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.BackButtonPressed += x, x => _data.BackButtonPressed -= x);
+        }, x => _data.BackButtonPressed += x, x => _data.BackButtonPressed -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.MasterDetailPage.IsPresentedChanged"/> event triggers.
         /// </summary>
@@ -2028,9 +1820,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.IsPresentedChanged += x, x => _data.IsPresentedChanged -= x);
+        }, x => _data.IsPresentedChanged += x, x => _data.IsPresentedChanged -= x);
     }
 
     /// <summary>
@@ -2055,9 +1845,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Clicked += x, x => _data.Clicked -= x);
+        }, x => _data.Clicked += x, x => _data.Clicked -= x);
     }
 
     /// <summary>
@@ -2082,9 +1870,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.InsertPageBeforeRequested += x, x => _data.InsertPageBeforeRequested -= x);
+        }, x => _data.InsertPageBeforeRequested += x, x => _data.InsertPageBeforeRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.Popped"/> event triggers.
         /// </summary>
@@ -2092,9 +1878,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.NavigationEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Popped += x, x => _data.Popped -= x);
+        }, x => _data.Popped += x, x => _data.Popped -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.PoppedToRoot"/> event triggers.
         /// </summary>
@@ -2102,9 +1886,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.NavigationEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PoppedToRoot += x, x => _data.PoppedToRoot -= x);
+        }, x => _data.PoppedToRoot += x, x => _data.PoppedToRoot -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.PopRequested"/> event triggers.
         /// </summary>
@@ -2112,9 +1894,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PopRequested += x, x => _data.PopRequested -= x);
+        }, x => _data.PopRequested += x, x => _data.PopRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.PopToRootRequested"/> event triggers.
         /// </summary>
@@ -2122,9 +1902,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PopToRootRequested += x, x => _data.PopToRootRequested -= x);
+        }, x => _data.PopToRootRequested += x, x => _data.PopToRootRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.Pushed"/> event triggers.
         /// </summary>
@@ -2132,9 +1910,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.NavigationEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Pushed += x, x => _data.Pushed -= x);
+        }, x => _data.Pushed += x, x => _data.Pushed -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.PushRequested"/> event triggers.
         /// </summary>
@@ -2142,9 +1918,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PushRequested += x, x => _data.PushRequested -= x);
+        }, x => _data.PushRequested += x, x => _data.PushRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.NavigationPage.RemovePageRequested"/> event triggers.
         /// </summary>
@@ -2152,9 +1926,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.NavigationRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.RemovePageRequested += x, x => _data.RemovePageRequested -= x);
+        }, x => _data.RemovePageRequested += x, x => _data.RemovePageRequested -= x);
     }
 
     /// <summary>
@@ -2179,9 +1951,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DisplayRequested += x, x => _data.DisplayRequested -= x);
+        }, x => _data.DisplayRequested += x, x => _data.DisplayRequested -= x);
     }
 
     /// <summary>
@@ -2206,9 +1976,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Appearing += x, x => _data.Appearing -= x);
+        }, x => _data.Appearing += x, x => _data.Appearing -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Page.Disappearing"/> event triggers.
         /// </summary>
@@ -2216,9 +1984,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Disappearing += x, x => _data.Disappearing -= x);
+        }, x => _data.Disappearing += x, x => _data.Disappearing -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Page.LayoutChanged"/> event triggers.
         /// </summary>
@@ -2226,9 +1992,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.LayoutChanged += x, x => _data.LayoutChanged -= x);
+        }, x => _data.LayoutChanged += x, x => _data.LayoutChanged -= x);
     }
 
     /// <summary>
@@ -2253,9 +2017,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.PanUpdatedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PanUpdated += x, x => _data.PanUpdated -= x);
+        }, x => _data.PanUpdated += x, x => _data.PanUpdated -= x);
     }
 
     /// <summary>
@@ -2280,9 +2042,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.SelectedIndexChanged += x, x => _data.SelectedIndexChanged -= x);
+        }, x => _data.SelectedIndexChanged += x, x => _data.SelectedIndexChanged -= x);
     }
 
     /// <summary>
@@ -2307,9 +2067,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.PinchGestureUpdatedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PinchUpdated += x, x => _data.PinchUpdated -= x);
+        }, x => _data.PinchUpdated += x, x => _data.PinchUpdated -= x);
     }
 
     /// <summary>
@@ -2334,9 +2092,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Refreshing += x, x => _data.Refreshing -= x);
+        }, x => _data.Refreshing += x, x => _data.Refreshing -= x);
     }
 
     /// <summary>
@@ -2361,9 +2117,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
+        }, x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
     }
 
     /// <summary>
@@ -2388,9 +2142,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ScrolledEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Scrolled += x, x => _data.Scrolled -= x);
+        }, x => _data.Scrolled += x, x => _data.Scrolled -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.ScrollView.ScrollToRequested"/> event triggers.
         /// </summary>
@@ -2398,9 +2150,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ScrollToRequestedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ScrollToRequested += x, x => _data.ScrollToRequested -= x);
+        }, x => _data.ScrollToRequested += x, x => _data.ScrollToRequested -= x);
     }
 
     /// <summary>
@@ -2425,9 +2175,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.SearchButtonPressed += x, x => _data.SearchButtonPressed -= x);
+        }, x => _data.SearchButtonPressed += x, x => _data.SearchButtonPressed -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SearchBar.TextChanged"/> event triggers.
         /// </summary>
@@ -2435,9 +2183,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.TextChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.TextChanged += x, x => _data.TextChanged -= x);
+        }, x => _data.TextChanged += x, x => _data.TextChanged -= x);
     }
 
     /// <summary>
@@ -2462,9 +2208,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.VisualElement.FocusRequestArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.FocusChangeRequested += x, x => _data.FocusChangeRequested -= x);
+        }, x => _data.FocusChangeRequested += x, x => _data.FocusChangeRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SearchHandler.Focused"/> event triggers.
         /// </summary>
@@ -2472,9 +2216,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Focused += x, x => _data.Focused -= x);
+        }, x => _data.Focused += x, x => _data.Focused -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.SearchHandler.Unfocused"/> event triggers.
         /// </summary>
@@ -2482,9 +2224,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Unfocused += x, x => _data.Unfocused -= x);
+        }, x => _data.Unfocused += x, x => _data.Unfocused -= x);
     }
 
     /// <summary>
@@ -2509,9 +2249,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.SelectionChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.SelectionChanged += x, x => _data.SelectionChanged -= x);
+        }, x => _data.SelectionChanged += x, x => _data.SelectionChanged -= x);
     }
 
     /// <summary>
@@ -2536,9 +2274,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ShellNavigatedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Navigated += x, x => _data.Navigated -= x);
+        }, x => _data.Navigated += x, x => _data.Navigated -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Shell.Navigating"/> event triggers.
         /// </summary>
@@ -2546,9 +2282,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ShellNavigatingEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Navigating += x, x => _data.Navigating -= x);
+        }, x => _data.Navigating += x, x => _data.Navigating -= x);
     }
 
     /// <summary>
@@ -2573,9 +2307,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DragCompleted += x, x => _data.DragCompleted -= x);
+        }, x => _data.DragCompleted += x, x => _data.DragCompleted -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Slider.DragStarted"/> event triggers.
         /// </summary>
@@ -2583,9 +2315,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DragStarted += x, x => _data.DragStarted -= x);
+        }, x => _data.DragStarted += x, x => _data.DragStarted -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Slider.ValueChanged"/> event triggers.
         /// </summary>
@@ -2593,9 +2323,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ValueChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ValueChanged += x, x => _data.ValueChanged -= x);
+        }, x => _data.ValueChanged += x, x => _data.ValueChanged -= x);
     }
 
     /// <summary>
@@ -2620,9 +2348,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ValueChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ValueChanged += x, x => _data.ValueChanged -= x);
+        }, x => _data.ValueChanged += x, x => _data.ValueChanged -= x);
     }
 
     /// <summary>
@@ -2647,9 +2373,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.SwipedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Swiped += x, x => _data.Swiped -= x);
+        }, x => _data.Swiped += x, x => _data.Swiped -= x);
     }
 
     /// <summary>
@@ -2674,9 +2398,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ToggledEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Toggled += x, x => _data.Toggled -= x);
+        }, x => _data.Toggled += x, x => _data.Toggled -= x);
     }
 
     /// <summary>
@@ -2701,9 +2423,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ToggledEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.OnChanged += x, x => _data.OnChanged -= x);
+        }, x => _data.OnChanged += x, x => _data.OnChanged -= x);
     }
 
     /// <summary>
@@ -2728,9 +2448,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ModelChanged += x, x => _data.ModelChanged -= x);
+        }, x => _data.ModelChanged += x, x => _data.ModelChanged -= x);
     }
 
     /// <summary>
@@ -2755,9 +2473,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Tapped += x, x => _data.Tapped -= x);
+        }, x => _data.Tapped += x, x => _data.Tapped -= x);
     }
 
     /// <summary>
@@ -2783,9 +2499,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Activated += x, x => _data.Activated -= x);
+        }, x => _data.Activated += x, x => _data.Activated -= x);
     }
 
     /// <summary>
@@ -2810,9 +2524,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.EventArg<global::Xamarin.Forms.VisualElement> e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.BatchCommitted += x, x => _data.BatchCommitted -= x);
+        }, x => _data.BatchCommitted += x, x => _data.BatchCommitted -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.ChildrenReordered"/> event triggers.
         /// </summary>
@@ -2820,9 +2532,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ChildrenReordered += x, x => _data.ChildrenReordered -= x);
+        }, x => _data.ChildrenReordered += x, x => _data.ChildrenReordered -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.FocusChangeRequested"/> event triggers.
         /// </summary>
@@ -2830,9 +2540,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.VisualElement.FocusRequestArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.FocusChangeRequested += x, x => _data.FocusChangeRequested -= x);
+        }, x => _data.FocusChangeRequested += x, x => _data.FocusChangeRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.Focused"/> event triggers.
         /// </summary>
@@ -2840,9 +2548,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.FocusEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Focused += x, x => _data.Focused -= x);
+        }, x => _data.Focused += x, x => _data.Focused -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.MeasureInvalidated"/> event triggers.
         /// </summary>
@@ -2850,9 +2556,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.MeasureInvalidated += x, x => _data.MeasureInvalidated -= x);
+        }, x => _data.MeasureInvalidated += x, x => _data.MeasureInvalidated -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.SizeChanged"/> event triggers.
         /// </summary>
@@ -2860,9 +2564,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
+        }, x => _data.SizeChanged += x, x => _data.SizeChanged -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.VisualElement.Unfocused"/> event triggers.
         /// </summary>
@@ -2870,9 +2572,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.FocusEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Unfocused += x, x => _data.Unfocused -= x);
+        }, x => _data.Unfocused += x, x => _data.Unfocused -= x);
     }
 
     /// <summary>
@@ -2897,9 +2597,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.EvalRequested e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.EvalRequested += x, x => _data.EvalRequested -= x);
+        }, x => _data.EvalRequested += x, x => _data.EvalRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.WebView.GoBackRequested"/> event triggers.
         /// </summary>
@@ -2907,9 +2605,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.GoBackRequested += x, x => _data.GoBackRequested -= x);
+        }, x => _data.GoBackRequested += x, x => _data.GoBackRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.WebView.GoForwardRequested"/> event triggers.
         /// </summary>
@@ -2917,9 +2613,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.GoForwardRequested += x, x => _data.GoForwardRequested -= x);
+        }, x => _data.GoForwardRequested += x, x => _data.GoForwardRequested -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.WebView.Navigated"/> event triggers.
         /// </summary>
@@ -2927,9 +2621,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.WebNavigatedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Navigated += x, x => _data.Navigated -= x);
+        }, x => _data.Navigated += x, x => _data.Navigated -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.WebView.Navigating"/> event triggers.
         /// </summary>
@@ -2937,9 +2629,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.WebNavigatingEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Navigating += x, x => _data.Navigating -= x);
+        }, x => _data.Navigating += x, x => _data.Navigating -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.WebView.ReloadRequested"/> event triggers.
         /// </summary>
@@ -2947,9 +2637,7 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ReloadRequested += x, x => _data.ReloadRequested -= x);
+        }, x => _data.ReloadRequested += x, x => _data.ReloadRequested -= x);
     }
 }
 
@@ -3000,9 +2688,7 @@ namespace Xamarin.Forms.Internals
         {
             void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.PropertyChanged += x, x => _data.PropertyChanged -= x);
+        }, x => _data.PropertyChanged += x, x => _data.PropertyChanged -= x);
     }
 
     /// <summary>
@@ -3027,9 +2713,7 @@ namespace Xamarin.Forms.Internals
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.ResourcesChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ValuesChanged += x, x => _data.ValuesChanged -= x);
+        }, x => _data.ValuesChanged += x, x => _data.ValuesChanged -= x);
     }
 
     /// <summary>
@@ -3054,9 +2738,7 @@ namespace Xamarin.Forms.Internals
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.EventArg<object> e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ItemLongPressed += x, x => _data.ItemLongPressed -= x);
+        }, x => _data.ItemLongPressed += x, x => _data.ItemLongPressed -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Internals.TableModel.ItemSelected"/> event triggers.
         /// </summary>
@@ -3064,9 +2746,7 @@ namespace Xamarin.Forms.Internals
         {
             void Handler(object sender, global::Xamarin.Forms.Internals.EventArg<object> e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ItemSelected += x, x => _data.ItemSelected -= x);
+        }, x => _data.ItemSelected += x, x => _data.ItemSelected -= x);
     }
 
     /// <summary>
@@ -3091,9 +2771,7 @@ namespace Xamarin.Forms.Internals
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.CollectionChanged += x, x => _data.CollectionChanged -= x);
+        }, x => _data.CollectionChanged += x, x => _data.CollectionChanged -= x);
     }
 }
 
@@ -3212,9 +2890,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        }, x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 
     /// <summary>
@@ -3239,9 +2915,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::Xamarin.Forms.Platform.iOS.ElementChangedEventArgs<global::Xamarin.Forms.Button> e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        }, x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 
     /// <summary>
@@ -3266,9 +2940,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.WillAppear += x, x => _data.WillAppear -= x);
+        }, x => _data.WillAppear += x, x => _data.WillAppear -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IShellFlyoutContentRenderer.WillDisappear"/> event triggers.
         /// </summary>
@@ -3276,9 +2948,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.WillDisappear += x, x => _data.WillDisappear -= x);
+        }, x => _data.WillDisappear += x, x => _data.WillDisappear -= x);
     }
 
     /// <summary>
@@ -3303,9 +2973,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, object e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ItemSelected += x, x => _data.ItemSelected -= x);
+        }, x => _data.ItemSelected += x, x => _data.ItemSelected -= x);
     }
 
     /// <summary>
@@ -3330,9 +2998,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        }, x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 
     /// <summary>
@@ -3357,9 +3023,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ControlChanged += x, x => _data.ControlChanged -= x);
+        }, x => _data.ControlChanged += x, x => _data.ControlChanged -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer.ControlChanging"/> event triggers.
         /// </summary>
@@ -3367,9 +3031,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ControlChanging += x, x => _data.ControlChanging -= x);
+        }, x => _data.ControlChanging += x, x => _data.ControlChanging -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.IVisualNativeElementRenderer.ElementPropertyChanged"/> event triggers.
         /// </summary>
@@ -3377,9 +3039,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::System.ComponentModel.PropertyChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementPropertyChanged += x, x => _data.ElementPropertyChanged -= x);
+        }, x => _data.ElementPropertyChanged += x, x => _data.ElementPropertyChanged -= x);
     }
 
     /// <summary>
@@ -3404,9 +3064,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.DidAppear += x, x => _data.DidAppear -= x);
+        }, x => _data.DidAppear += x, x => _data.DidAppear -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.EventedViewController.MasterView.WillDisappear"/> event triggers.
         /// </summary>
@@ -3414,9 +3072,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.WillDisappear += x, x => _data.WillDisappear -= x);
+        }, x => _data.WillDisappear += x, x => _data.WillDisappear -= x);
     }
 
     /// <summary>
@@ -3441,9 +3097,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        }, x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 
     /// <summary>
@@ -3468,9 +3122,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        }, x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 
     /// <summary>
@@ -3495,9 +3147,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        }, x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 
     /// <summary>
@@ -3522,9 +3172,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        }, x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 
     /// <summary>
@@ -3549,9 +3197,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.WillAppear += x, x => _data.WillAppear -= x);
+        }, x => _data.WillAppear += x, x => _data.WillAppear -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Forms.Platform.iOS.ShellFlyoutContentRenderer.WillDisappear"/> event triggers.
         /// </summary>
@@ -3559,9 +3205,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.WillDisappear += x, x => _data.WillDisappear -= x);
+        }, x => _data.WillDisappear += x, x => _data.WillDisappear -= x);
     }
 
     /// <summary>
@@ -3586,9 +3230,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        }, x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 
     /// <summary>
@@ -3613,9 +3255,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, object e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ItemSelected += x, x => _data.ItemSelected -= x);
+        }, x => _data.ItemSelected += x, x => _data.ItemSelected -= x);
     }
 
     /// <summary>
@@ -3640,9 +3280,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::UIKit.UIScrollView e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ScrolledEvent += x, x => _data.ScrolledEvent -= x);
+        }, x => _data.ScrolledEvent += x, x => _data.ScrolledEvent -= x);
     }
 
     /// <summary>
@@ -3667,9 +3305,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        }, x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 
     /// <summary>
@@ -3694,9 +3330,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        }, x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 
     /// <summary>
@@ -3721,9 +3355,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ContentSizeChanged += x, x => _data.ContentSizeChanged -= x);
+        }, x => _data.ContentSizeChanged += x, x => _data.ContentSizeChanged -= x);
     }
 
     /// <summary>
@@ -3748,9 +3380,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.NativeControlUpdated += x, x => _data.NativeControlUpdated -= x);
+        }, x => _data.NativeControlUpdated += x, x => _data.NativeControlUpdated -= x);
     }
 
     /// <summary>
@@ -3775,9 +3405,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        }, x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 
     /// <summary>
@@ -3802,9 +3430,7 @@ namespace Xamarin.Forms.Platform.iOS
         {
             void Handler(object sender, global::Xamarin.Forms.Platform.iOS.VisualElementChangedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
+        }, x => _data.ElementChanged += x, x => _data.ElementChanged -= x);
     }
 }
 
@@ -3822,8 +3448,6 @@ namespace Xamarin.Forms
         {
             void Handler(object sender, global::Xamarin.Forms.ViewInitializedEventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => global::Xamarin.Forms.Forms.ViewInitialized += x, x => global::Xamarin.Forms.Forms.ViewInitialized -= x);
+        }, x => global::Xamarin.Forms.Forms.ViewInitialized += x, x => global::Xamarin.Forms.Forms.ViewInitialized -= x);
     }
 }

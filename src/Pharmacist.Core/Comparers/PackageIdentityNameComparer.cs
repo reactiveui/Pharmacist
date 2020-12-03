@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+﻿// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -12,12 +12,22 @@ namespace Pharmacist.Core.Comparers
 {
     internal class PackageIdentityNameComparer : IEqualityComparer<PackageIdentity>
     {
-        public static PackageIdentityNameComparer Default { get; } = new PackageIdentityNameComparer();
+        public static PackageIdentityNameComparer Default { get; } = new();
 
         /// <inheritdoc />
-        public bool Equals(PackageIdentity x, PackageIdentity y)
+        public bool Equals(PackageIdentity? x, PackageIdentity? y)
         {
-            if (x == y)
+            if (x == null && y == null)
+            {
+                return true;
+            }
+
+            if (x == null || y == null)
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(x, y))
             {
                 return true;
             }

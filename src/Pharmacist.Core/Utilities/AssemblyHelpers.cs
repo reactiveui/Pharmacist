@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+﻿// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -39,12 +39,7 @@ namespace Pharmacist.Core.Utilities
 
             var file = Path.Combine(basePath, name + ".winmd");
 
-            if (!File.Exists(file))
-            {
-                return null;
-            }
-
-            return file;
+            return !File.Exists(file) ? null : file;
         }
 
         internal static string? FindWindowsMetadataFile(string name, Version version)
@@ -71,23 +66,13 @@ namespace Pharmacist.Core.Utilities
 
             var file = Path.Combine(basePath, name + ".winmd");
 
-            if (!File.Exists(file))
-            {
-                return FindWindowsMetadataInSystemDirectory(name);
-            }
-
-            return file;
+            return !File.Exists(file) ? FindWindowsMetadataInSystemDirectory(name) : file;
         }
 
         private static string? FindWindowsMetadataInSystemDirectory(string name)
         {
             var file = Path.Combine(Environment.SystemDirectory, "WinMetadata", name + ".winmd");
-            if (File.Exists(file))
-            {
-                return file;
-            }
-
-            return null;
+            return File.Exists(file) ? file : null;
         }
 
         private static string FindClosestVersionDirectory(string basePath, Version version)
@@ -96,12 +81,12 @@ namespace Pharmacist.Core.Utilities
             foreach (var folder in new DirectoryInfo(basePath)
                 .EnumerateDirectories()
                 .Select(d => ConvertToVersion(d.Name))
-                .Where(v => v.Item1 != null)
-                .OrderByDescending(v => v.Item1))
+                .Where(v => v.Version != null)
+                .OrderBy(v => v.Version))
             {
-                if (path == null || folder.Item1 >= version)
+                if (path == null || folder.Version >= version)
                 {
-                    path = folder.Item2;
+                    path = folder.Name;
                 }
             }
 

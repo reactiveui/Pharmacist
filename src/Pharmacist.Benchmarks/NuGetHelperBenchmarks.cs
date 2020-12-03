@@ -12,7 +12,7 @@ using Pharmacist.Core.NuGet;
 
 namespace Pharmacist.Benchmarks
 {
-    [SimpleJob(RuntimeMoniker.Net472)]
+    [SimpleJob(RuntimeMoniker.Net461)]
     [SimpleJob(RuntimeMoniker.NetCoreApp31)]
     [MemoryDiagnoser]
     [MarkdownExporterAttribute.GitHub]

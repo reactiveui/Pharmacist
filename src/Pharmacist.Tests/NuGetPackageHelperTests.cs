@@ -142,7 +142,7 @@ namespace Pharmacist.Tests
 
             var includeFiles = result.IncludeGroup.GetAllFileNames().ToList();
             includeFiles.Should().NotBeEmpty();
-            includeFiles.Where(x => x.EndsWith(".dll")).Should().NotBeEmpty();
+            includeFiles.Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)).Should().NotBeEmpty();
         }
 
         [Fact]
@@ -157,13 +157,13 @@ namespace Pharmacist.Tests
 
             var includeFiles = result.IncludeGroup.GetAllFileNames().ToList();
             includeFiles.Should().NotBeEmpty();
-            includeFiles.Where(x => x.EndsWith(".dll")).Should().NotBeEmpty();
+            includeFiles.Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)).Should().NotBeEmpty();
         }
 
         [Fact]
         public async Task CanGetNetFramework()
         {
-            var package = new[] { new PackageIdentity("Microsoft.NETFramework.ReferenceAssemblies.net461", new NuGetVersion("1.0.0-preview.2")) };
+            var package = new[] { new PackageIdentity("Microsoft.NETFramework.ReferenceAssemblies.net472", new NuGetVersion("1.0.0-preview.2")) };
 
             var frameworks = new[] { FrameworkConstants.CommonFrameworks.Net461 };
 
@@ -173,7 +173,7 @@ namespace Pharmacist.Tests
 
             var includeFiles = result.IncludeGroup.GetAllFileNames().ToList();
             includeFiles.Should().NotBeEmpty();
-            includeFiles.Where(x => x.EndsWith(".dll")).Should().NotBeEmpty();
+            includeFiles.Where(x => x.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase)).Should().NotBeEmpty();
         }
 
         private static async Task GetAndCheckTizenPackage()

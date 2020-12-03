@@ -32,15 +32,13 @@ namespace Pharmacist.Tests.IntegrationTests
 
         public static async Task CheckResultsAgainstTemplate(PackageIdentity[] package, IReadOnlyList<NuGetFramework> frameworks, [CallerFilePath]string filePath = null, [CallerMemberName]string memberName = null)
         {
-            using (var memoryStream = new MemoryStream())
+            using var memoryStream = new MemoryStream();
+            using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8, 1024, true))
             {
-                using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8, 1024, true))
-                {
-                    await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(streamWriter, package, frameworks, TestUtilities.GetPackageDirectory(memberName, filePath)).ConfigureAwait(false);
-                }
-
-                CheckPackageIdentityContents(memoryStream, package[0], frameworks[0], filePath);
+                await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(streamWriter, package, frameworks, TestUtilities.GetPackageDirectory(memberName, filePath)).ConfigureAwait(false);
             }
+
+            CheckPackageIdentityContents(memoryStream, package[0], frameworks[0], filePath);
         }
 
         public static async Task CheckResultsAgainstTemplate(LibraryRange[] package, IReadOnlyList<NuGetFramework> frameworks, [CallerFilePath]string filePath = null, [CallerMemberName]string memberName = null)
@@ -49,15 +47,13 @@ namespace Pharmacist.Tests.IntegrationTests
             var findResource = await sourceRepository.GetResourceAsync<FindPackageByIdResource>().ConfigureAwait(false);
             var bestPackageIdentity = await NuGetPackageHelper.GetBestMatch(package[0], findResource, CancellationToken.None).ConfigureAwait(false);
 
-            using (var memoryStream = new MemoryStream())
+            using var memoryStream = new MemoryStream();
+            using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8, 1024, true))
             {
-                using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8, 1024, true))
-                {
-                    await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(streamWriter, package, frameworks, TestUtilities.GetPackageDirectory(memberName, filePath)).ConfigureAwait(false);
-                }
-
-                CheckPackageIdentityContents(memoryStream, bestPackageIdentity, frameworks[0], filePath);
+                await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(streamWriter, package, frameworks, TestUtilities.GetPackageDirectory(memberName, filePath)).ConfigureAwait(false);
             }
+
+            CheckPackageIdentityContents(memoryStream, bestPackageIdentity, frameworks[0], filePath);
         }
 
         public static void CheckContents(string actualContents, string approvedFileName, string receivedFileName)
@@ -138,10 +134,10 @@ namespace Pharmacist.Tests.IntegrationTests
 
             memoryStream.Flush();
             memoryStream.Position = 0;
-            using (var sr = new StreamReader(memoryStream))
-            {
-                CheckContents(sr.ReadToEnd().Trim('\n').Trim('\r'), approvedFileName, receivedFileName);
-            }
+            using var sr = new StreamReader(memoryStream);
+
+            var contents = sr.ReadToEnd();
+            CheckContents(contents.Trim('\n').Trim('\r'), approvedFileName, receivedFileName);
         }
     }
 }

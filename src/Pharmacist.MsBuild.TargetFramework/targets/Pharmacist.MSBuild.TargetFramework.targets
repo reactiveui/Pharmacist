@@ -10,7 +10,7 @@
   <PropertyGroup>
     <IntermediateOutputPath Condition="$(IntermediateOutputPath) == '' Or $(IntermediateOutputPath) == '*Undefined*'">$(MSBuildProjectDirectory)\obj\$(Configuration)\</IntermediateOutputPath>
     <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Full'">$(MSBuildThisFileDirectory)..\..\build\netstandard2.0\Pharmacist.MSBuild.TargetFramework.dll</PharmacistTaskAssemblyFile>
-    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildThisFileDirectory)..\..\build\net461\Pharmacist.MSBuild.TargetFramework.dll</PharmacistTaskAssemblyFile>
+    <PharmacistTaskAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Full'">$(MSBuildThisFileDirectory)..\..\build\net472\Pharmacist.MSBuild.TargetFramework.dll</PharmacistTaskAssemblyFile>
   </PropertyGroup>
 
   <UsingTask TaskName="Pharmacist.MsBuild.TargetFramework.PharmacistTargetFrameworkTask" AssemblyFile="$(PharmacistTaskAssemblyFile)" />

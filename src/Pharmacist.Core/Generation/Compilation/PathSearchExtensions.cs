@@ -1,4 +1,4 @@
-// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -253,39 +253,30 @@ namespace Pharmacist.Core.Generation.Compilation
 
         private static string? GetMonoMscorlibBasePath(Version version)
         {
-            var path = Directory.GetParent(typeof(object).Module.FullyQualifiedName).Parent?.FullName;
+            var moduleName = typeof(object).Module.FullyQualifiedName;
 
-            if (string.IsNullOrWhiteSpace(path))
+            if (moduleName is null)
             {
                 return null;
             }
 
-            if (version.Major == 1)
+            var path = Directory.GetParent(moduleName)?.Parent?.FullName;
+
+            if (path is null || string.IsNullOrWhiteSpace(path))
             {
-                path = Path.Combine(path, "1.0");
-            }
-            else if (version.Major == 2)
-            {
-                if (version.MajorRevision == 5)
-                {
-                    path = Path.Combine(path, "2.1");
-                }
-                else
-                {
-                    path = Path.Combine(path, "2.0");
-                }
-            }
-            else if (version.Major == 4)
-            {
-                path = Path.Combine(path, "4.0");
+                return null;
             }
 
-            if (Directory.Exists(path))
+            path = version.Major switch
             {
-                return path;
-            }
+                1 => Path.Combine(path, "1.0"),
+                2 when version.MajorRevision == 5 => Path.Combine(path, "2.1"),
+                2 => Path.Combine(path, "2.0"),
+                4 => Path.Combine(path, "4.0"),
+                _ => path
+            };
 
-            return null;
+            return Directory.Exists(path) ? path : null;
         }
 
         private static bool IsSpecialVersionOrRetargetable(IAssemblyReference reference)

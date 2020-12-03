@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+﻿// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -14,7 +14,7 @@ namespace Pharmacist.Core.Groups
     /// </summary>
     public class FilesGroup
     {
-        private readonly DirectoryNode _rootNode = new DirectoryNode(string.Empty);
+        private readonly DirectoryNode _rootNode = new(string.Empty);
 
         /// <summary>
         /// Gets for a file name, the nearest matching full name in the shallowest of the hierarchy.
@@ -96,10 +96,10 @@ namespace Pharmacist.Core.Groups
 
         private class DirectoryNode : IEqualityComparer<DirectoryNode>, IComparable<DirectoryNode>
         {
-            private readonly Dictionary<string, DirectoryNode> _childNodesDict = new Dictionary<string, DirectoryNode>();
-            private readonly List<DirectoryNode> _childNodes = new List<DirectoryNode>();
-            private readonly List<FileNode> _files = new List<FileNode>();
-            private readonly Dictionary<string, FileNode> _filesDict = new Dictionary<string, FileNode>();
+            private readonly Dictionary<string, DirectoryNode> _childNodesDict = new();
+            private readonly List<DirectoryNode> _childNodes = new();
+            private readonly List<FileNode> _files = new();
+            private readonly Dictionary<string, FileNode> _filesDict = new();
 
             public DirectoryNode(DirectoryNode? parent, string name)
             {
@@ -181,8 +181,23 @@ namespace Pharmacist.Core.Groups
             }
 
             /// <inheritdoc />
-            public bool Equals(DirectoryNode x, DirectoryNode y)
+            public bool Equals(DirectoryNode? x, DirectoryNode? y)
             {
+                if (x == null && y == null)
+                {
+                    return true;
+                }
+
+                if (x == null || y == null)
+                {
+                    return false;
+                }
+
+                if (ReferenceEquals(x, y))
+                {
+                    return true;
+                }
+
                 return StringComparer.InvariantCultureIgnoreCase.Equals(x?.Name, y?.Name);
             }
 
@@ -193,7 +208,7 @@ namespace Pharmacist.Core.Groups
             }
 
             /// <inheritdoc />
-            public int CompareTo(DirectoryNode other)
+            public int CompareTo(DirectoryNode? other)
             {
                 if (ReferenceEquals(this, other))
                 {
@@ -222,8 +237,23 @@ namespace Pharmacist.Core.Groups
             public string FileName { get; }
 
             /// <inheritdoc />
-            public bool Equals(FileNode x, FileNode y)
+            public bool Equals(FileNode? x, FileNode? y)
             {
+                if (x == null && y == null)
+                {
+                    return true;
+                }
+
+                if (x == null || y == null)
+                {
+                    return false;
+                }
+
+                if (ReferenceEquals(x, y))
+                {
+                    return true;
+                }
+
                 return StringComparer.InvariantCultureIgnoreCase.Equals(x?.FullPath, y?.FullPath);
             }
 
@@ -234,7 +264,7 @@ namespace Pharmacist.Core.Groups
             }
 
             /// <inheritdoc />
-            public int CompareTo(FileNode other)
+            public int CompareTo(FileNode? other)
             {
                 return StringComparer.InvariantCultureIgnoreCase.Compare(FullPath, other?.FullPath);
             }
