@@ -44,8 +44,8 @@ namespace ICSharpCode.Decompiler.Util
 			this.Intervals = intervals;
 #if DEBUG
 			// Check invariant
-			long minValue = long.MinValue;
-			for (int i = 0; i < intervals.Length; i++)
+			var minValue = long.MinValue;
+			for (var i = 0; i < intervals.Length; i++)
 			{
 				Debug.Assert(!intervals[i].IsEmpty);
 				Debug.Assert(minValue <= intervals[i].Start);
@@ -127,13 +127,13 @@ namespace ICSharpCode.Decompiler.Util
 		{
 			var enumA = this.Intervals.GetEnumerator();
 			var enumB = other.Intervals.GetEnumerator();
-			bool moreA = enumA.MoveNext();
-			bool moreB = enumB.MoveNext();
+			var moreA = enumA.MoveNext();
+			var moreB = enumB.MoveNext();
 			while (moreA && moreB)
 			{
-				LongInterval a = enumA.Current;
-				LongInterval b = enumB.Current;
-				LongInterval intersection = a.Intersect(b);
+				var a = enumA.Current;
+				var b = enumB.Current;
+				var intersection = a.Intersect(b);
 				if (!intersection.IsEmpty)
 				{
 					yield return intersection;
@@ -165,9 +165,9 @@ namespace ICSharpCode.Decompiler.Util
 		/// </summary>
 		static IEnumerable<LongInterval> MergeOverlapping(IEnumerable<LongInterval> input)
 		{
-			long start = long.MinValue;
-			long end = long.MinValue;
-			bool empty = true;
+			var start = long.MinValue;
+			var end = long.MinValue;
+			var empty = true;
 			foreach (var element in input)
 			{
 				Debug.Assert(start <= element.Start);
@@ -232,8 +232,8 @@ namespace ICSharpCode.Decompiler.Util
 			var newIntervals = new List<LongInterval>(Intervals.Length + 1);
 			foreach (var element in Intervals)
 			{
-				long newStart = unchecked(element.Start + val);
-				long newInclusiveEnd = unchecked(element.InclusiveEnd + val);
+				var newStart = unchecked(element.Start + val);
+				var newInclusiveEnd = unchecked(element.InclusiveEnd + val);
 				if (newStart <= newInclusiveEnd)
 				{
 					newIntervals.Add(LongInterval.Inclusive(newStart, newInclusiveEnd));
@@ -267,8 +267,8 @@ namespace ICSharpCode.Decompiler.Util
 			{
 				return Universe;
 			}
-			List<LongInterval> newIntervals = new List<LongInterval>(Intervals.Length + 1);
-			long prevEnd = long.MinValue; // previous exclusive end
+			var newIntervals = new List<LongInterval>(Intervals.Length + 1);
+			var prevEnd = long.MinValue; // previous exclusive end
 			foreach (var interval in Intervals)
 			{
 				if (interval.Start > prevEnd)
@@ -314,7 +314,7 @@ namespace ICSharpCode.Decompiler.Util
 
 		public bool Contains(long val)
 		{
-			int index = upper_bound(val);
+			var index = upper_bound(val);
 			return index > 0 && Intervals[index - 1].Contains(val);
 		}
 
@@ -323,8 +323,8 @@ namespace ICSharpCode.Decompiler.Util
 			int min = 0, max = Intervals.Length - 1;
 			while (max >= min)
 			{
-				int m = min + (max - min) / 2;
-				LongInterval i = Intervals[m];
+				var m = min + (max - min) / 2;
+				var i = Intervals[m];
 				if (val < i.Start)
 				{
 					max = m - 1;
@@ -370,7 +370,7 @@ namespace ICSharpCode.Decompiler.Util
 		{
 			if (Intervals.Length != other.Intervals.Length)
 				return false;
-			for (int i = 0; i < Intervals.Length; i++)
+			for (var i = 0; i < Intervals.Length; i++)
 			{
 				if (Intervals[i] != other.Intervals[i])
 					return false;

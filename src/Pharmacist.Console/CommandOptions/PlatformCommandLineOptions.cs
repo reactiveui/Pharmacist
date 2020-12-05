@@ -7,8 +7,6 @@ using System.Collections.Generic;
 
 using CommandLine;
 
-using Pharmacist.Core;
-
 namespace Pharmacist.Console.CommandOptions
 {
     /// <summary>

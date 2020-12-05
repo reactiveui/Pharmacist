@@ -16,7 +16,6 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
 using System.Collections.Generic;
 
 using ICSharpCode.Decompiler.Util;
@@ -78,10 +77,10 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 		IReadOnlyList<TypeConstraint> MakeConstraints(IReadOnlyList<IType> constraints)
 		{
 			var result = new List<TypeConstraint>();
-			bool hasNonInterfaceConstraint = false;
+			var hasNonInterfaceConstraint = false;
 			if (constraints != null)
 			{
-				foreach (IType c in constraints)
+				foreach (var c in constraints)
 				{
 					result.Add(new TypeConstraint(c));
 					if (c.Kind != TypeKind.Interface)

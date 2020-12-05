@@ -78,15 +78,15 @@ namespace Pharmacist.Core.Utilities
         private static string FindClosestVersionDirectory(string basePath, Version version)
         {
             string? path = null;
-            foreach (var folder in new DirectoryInfo(basePath)
+            foreach (var (versionFolder, name) in new DirectoryInfo(basePath)
                 .EnumerateDirectories()
                 .Select(d => ConvertToVersion(d.Name))
                 .Where(v => v.Version != null)
                 .OrderBy(v => v.Version))
             {
-                if (path == null || folder.Version >= version)
+                if (path == null || versionFolder >= version)
                 {
-                    path = folder.Name;
+                    path = name;
                 }
             }
 

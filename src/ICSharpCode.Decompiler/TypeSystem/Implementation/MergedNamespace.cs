@@ -140,7 +140,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 			ITypeDefinition anyTypeDef = null;
 			foreach (var ns in namespaces)
 			{
-				ITypeDefinition typeDef = ns.GetTypeDefinition(name, typeParameterCount);
+				var typeDef = ns.GetTypeDefinition(name, typeParameterCount);
 				if (typeDef != null)
 				{
 					if (typeDef.Accessibility == Accessibility.Public)

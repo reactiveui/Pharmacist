@@ -24,11 +24,8 @@ using System.Reflection;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
 
 using ICSharpCode.Decompiler.Metadata;
-using ICSharpCode.Decompiler.Semantics;
 using ICSharpCode.Decompiler.Util;
 
 namespace ICSharpCode.Decompiler.TypeSystem.Implementation
@@ -91,7 +88,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				this.NullableContext = td.GetCustomAttributes().GetNullableContext(metadata) ?? module.NullableContext;
 
 				var topLevelTypeName = fullTypeName.TopLevelTypeName;
-				for (int i = 0; i < KnownTypeReference.KnownTypeCodeCount; i++)
+				for (var i = 0; i < KnownTypeReference.KnownTypeCodeCount; i++)
 				{
 					var ktr = KnownTypeReference.Get((KnownTypeCode)i);
 					if (ktr != null && ktr.TypeName == topLevelTypeName)
@@ -151,7 +148,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				var metadata = module.metadata;
 				var nestedTypeCollection = metadata.GetTypeDefinition(handle).GetNestedTypes();
 				var nestedTypeList = new List<ITypeDefinition>(nestedTypeCollection.Length);
-				foreach (TypeDefinitionHandle h in nestedTypeCollection)
+				foreach (var h in nestedTypeCollection)
 				{
 					nestedTypeList.Add(module.GetDefinition(h));
 				}
@@ -180,7 +177,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				var metadata = module.metadata;
 				var fieldCollection = metadata.GetTypeDefinition(handle).GetFields();
 				var fieldList = new List<IField>(fieldCollection.Count);
-				foreach (FieldDefinitionHandle h in fieldCollection)
+				foreach (var h in fieldCollection)
 				{
 					var field = metadata.GetFieldDefinition(h);
 					var attr = field.Attributes;
@@ -202,12 +199,12 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				var metadata = module.metadata;
 				var propertyCollection = metadata.GetTypeDefinition(handle).GetProperties();
 				var propertyList = new List<IProperty>(propertyCollection.Count);
-				foreach (PropertyDefinitionHandle h in propertyCollection)
+				foreach (var h in propertyCollection)
 				{
 					var property = metadata.GetPropertyDefinition(h);
 					var accessors = property.GetAccessors();
-					bool getterVisible = !accessors.Getter.IsNil && module.IsVisible(metadata.GetMethodDefinition(accessors.Getter).Attributes);
-					bool setterVisible = !accessors.Setter.IsNil && module.IsVisible(metadata.GetMethodDefinition(accessors.Setter).Attributes);
+					var getterVisible = !accessors.Getter.IsNil && module.IsVisible(metadata.GetMethodDefinition(accessors.Getter).Attributes);
+					var setterVisible = !accessors.Setter.IsNil && module.IsVisible(metadata.GetMethodDefinition(accessors.Setter).Attributes);
 					if (getterVisible || setterVisible)
 					{
 						propertyList.Add(module.GetDefinition(h));
@@ -226,7 +223,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				var metadata = module.metadata;
 				var eventCollection = metadata.GetTypeDefinition(handle).GetEvents();
 				var eventList = new List<IEvent>(eventCollection.Count);
-				foreach (EventDefinitionHandle h in eventCollection)
+				foreach (var h in eventCollection)
 				{
 					var ev = metadata.GetEventDefinition(h);
 					var accessors = ev.GetAccessors();
@@ -252,7 +249,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				var methodsCollection = metadata.GetTypeDefinition(handle).GetMethods();
 				var methodsList = new List<IMethod>(methodsCollection.Count);
 				var methodSemantics = module.PEFile.MethodSemanticsLookup;
-				foreach (MethodDefinitionHandle h in methodsCollection)
+				foreach (var h in methodsCollection)
 				{
 					var md = metadata.GetMethodDefinition(h);
 					if (methodSemantics.GetSemantics(h).Item2 == 0 && module.IsVisible(md.Attributes))
@@ -313,7 +310,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				IType baseType = null;
 				try
 				{
-					EntityHandle baseTypeHandle = td.BaseType;
+					var baseTypeHandle = td.BaseType;
 					if (!baseTypeHandle.IsNil)
 					{
 						baseType = module.ResolveType(baseTypeHandle, context);
@@ -365,7 +362,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				b.Add(KnownAttribute.ComImport);
 
 			#region StructLayoutAttribute
-			LayoutKind layoutKind = LayoutKind.Auto;
+			var layoutKind = LayoutKind.Auto;
 			switch (typeDefinition.Attributes & TypeAttributes.LayoutMask)
 			{
 				case TypeAttributes.SequentialLayout:
@@ -375,7 +372,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 					layoutKind = LayoutKind.Explicit;
 					break;
 			}
-			CharSet charSet = CharSet.None;
+			var charSet = CharSet.None;
 			switch (typeDefinition.Attributes & TypeAttributes.StringFormatMask)
 			{
 				case TypeAttributes.AnsiClass:
@@ -389,7 +386,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 					break;
 			}
 			var layout = typeDefinition.GetLayout();
-			LayoutKind defaultLayoutKind = Kind == TypeKind.Struct ? LayoutKind.Sequential : LayoutKind.Auto;
+			var defaultLayoutKind = Kind == TypeKind.Struct ? LayoutKind.Sequential : LayoutKind.Auto;
 			if (layoutKind != defaultLayoutKind || charSet != CharSet.Ansi || layout.PackingSize > 0 || layout.Size > 0)
 			{
 				var structLayout = new AttributeBuilder(module, KnownAttribute.StructLayout);
@@ -421,7 +418,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public string DefaultMemberName {
 			get {
-				string defaultMemberName = LazyInit.VolatileRead(ref this.defaultMemberName);
+				var defaultMemberName = LazyInit.VolatileRead(ref this.defaultMemberName);
 				if (defaultMemberName != null)
 					return defaultMemberName;
 				var metadata = module.metadata;
@@ -586,7 +583,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				return EmptyList<IMethod>.Instance;
 			if (ComHelper.IsComImport(this))
 			{
-				IType coClass = ComHelper.GetCoClass(this);
+				var coClass = ComHelper.GetCoClass(this);
 				using (var busyLock = BusyManager.Enter(this))
 				{
 					if (busyLock.Success)

@@ -79,7 +79,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			{
 				allBaseTypes = member.DeclaringTypeDefinition.GetNonInterfaceBaseTypes();
 			}
-			foreach (IType baseType in allBaseTypes.Reverse())
+			foreach (var baseType in allBaseTypes.Reverse())
 			{
 				if (baseType == member.DeclaringTypeDefinition)
 					continue;
@@ -93,7 +93,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 				{
 					baseMembers = baseType.GetMembers(m => m.Name == member.Name && m.Accessibility > Accessibility.Private, GetMemberOptions.IgnoreInheritedMembers);
 				}
-				foreach (IMember baseMember in baseMembers)
+				foreach (var baseMember in baseMembers)
 				{
 					System.Diagnostics.Debug.Assert(baseMember.Accessibility != Accessibility.Private);
 					if (SignatureComparer.Ordinal.Equals(member, baseMember))
@@ -120,11 +120,11 @@ namespace ICSharpCode.Decompiler.TypeSystem
 				throw new ArgumentException("baseMember and derivedType must be from the same compilation");
 
 			baseMember = baseMember.MemberDefinition;
-			bool includeInterfaces = baseMember.DeclaringTypeDefinition.Kind == TypeKind.Interface;
-			IMethod method = baseMember as IMethod;
+			var includeInterfaces = baseMember.DeclaringTypeDefinition.Kind == TypeKind.Interface;
+			var method = baseMember as IMethod;
 			if (method != null)
 			{
-				foreach (IMethod derivedMethod in derivedType.Methods)
+				foreach (var derivedMethod in derivedType.Methods)
 				{
 					if (derivedMethod.Name == method.Name && derivedMethod.Parameters.Count == method.Parameters.Count)
 					{
@@ -137,10 +137,10 @@ namespace ICSharpCode.Decompiler.TypeSystem
 					}
 				}
 			}
-			IProperty property = baseMember as IProperty;
+			var property = baseMember as IProperty;
 			if (property != null)
 			{
-				foreach (IProperty derivedProperty in derivedType.Properties)
+				foreach (var derivedProperty in derivedType.Properties)
 				{
 					if (derivedProperty.Name == property.Name && derivedProperty.Parameters.Count == property.Parameters.Count)
 					{
@@ -152,7 +152,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			}
 			if (baseMember is IEvent)
 			{
-				foreach (IEvent derivedEvent in derivedType.Events)
+				foreach (var derivedEvent in derivedType.Events)
 				{
 					if (derivedEvent.Name == baseMember.Name)
 						return derivedEvent;
@@ -160,7 +160,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			}
 			if (baseMember is IField)
 			{
-				foreach (IField derivedField in derivedType.Fields)
+				foreach (var derivedField in derivedType.Fields)
 				{
 					if (derivedField.Name == baseMember.Name)
 						return derivedField;
@@ -175,7 +175,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		{
 			foreach (var baseType in typeDef.GetNonInterfaceBaseTypes().Reverse())
 			{
-				ITypeDefinition baseTypeDef = baseType.GetDefinition();
+				var baseTypeDef = baseType.GetDefinition();
 				if (baseTypeDef == null)
 					continue;
 				foreach (var attr in baseTypeDef.GetAttributes())
@@ -187,7 +187,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		internal static IEnumerable<IAttribute> GetAttributes(IMember member)
 		{
-			HashSet<IMember> visitedMembers = new HashSet<IMember>();
+			var visitedMembers = new HashSet<IMember>();
 			do
 			{
 				member = member.MemberDefinition; // it's sufficient to look at the definitions

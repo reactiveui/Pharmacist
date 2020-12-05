@@ -27,12 +27,7 @@ namespace Pharmacist.Core.Generation.Compilation
         public IType FindType(KnownTypeCode typeCode)
         {
             var type = LazyInit.VolatileRead(ref _knownTypes[(int)typeCode]);
-            if (type != null)
-            {
-                return type;
-            }
-
-            return LazyInit.GetOrSet(ref _knownTypes[(int)typeCode], SearchType(typeCode));
+            return type ?? LazyInit.GetOrSet(ref _knownTypes[(int)typeCode], SearchType(typeCode));
         }
 
         private IType SearchType(KnownTypeCode typeCode)

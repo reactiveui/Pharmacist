@@ -5,7 +5,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+
 using NuGet.Frameworks;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors
@@ -48,12 +48,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
                 return true;
             }
 
-            if (framework.Framework.Equals(FrameworkConstants.CommonFrameworks.Net50.Framework))
-            {
-                return true;
-            }
-
-            return false;
+            return framework.Framework.Equals(FrameworkConstants.CommonFrameworks.Net50.Framework);
         }
     }
 }

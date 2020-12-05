@@ -130,16 +130,16 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public IType GetTypeFromDefinition(SRM.MetadataReader reader, SRM.TypeDefinitionHandle handle, byte rawTypeKind)
 		{
-			ITypeDefinition td = module?.GetDefinition(handle);
+			var td = module?.GetDefinition(handle);
 			if (td != null)
 				return td;
-			bool? isReferenceType = IsReferenceType(reader, handle, rawTypeKind);
+			var isReferenceType = IsReferenceType(reader, handle, rawTypeKind);
 			return new UnknownType(handle.GetFullTypeName(reader), isReferenceType);
 		}
 
 		public IType GetTypeFromReference(SRM.MetadataReader reader, SRM.TypeReferenceHandle handle, byte rawTypeKind)
 		{
-			IModule resolvedModule = module.GetDeclaringModule(handle);
+			var resolvedModule = module.GetDeclaringModule(handle);
 			var fullTypeName = handle.GetFullTypeName(reader);
 			IType type;
 			if (resolvedModule != null)

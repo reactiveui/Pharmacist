@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Runtime.InteropServices;
 
@@ -35,12 +36,7 @@ namespace Pharmacist.Core.Generation.Compilation
         {
             var fileName = GetFileName(reference, parent, input, framework);
 
-            if (string.IsNullOrWhiteSpace(fileName))
-            {
-                return null;
-            }
-
-            return new PEFile(fileName, parameters);
+            return string.IsNullOrWhiteSpace(fileName) ? null : new PEFile(fileName, parameters);
         }
 
         private static string? GetFileName(IAssemblyReference reference, IModule parent, InputAssembliesGroup input, NuGetFramework framework)
@@ -72,88 +68,31 @@ namespace Pharmacist.Core.Generation.Compilation
 
             file = SearchDirectories(reference, input, extensions);
 
-            if (!string.IsNullOrWhiteSpace(file))
-            {
-                return file;
-            }
-
-            return SearchNugetFrameworkDirectories(reference, extensions, framework);
+            return !string.IsNullOrWhiteSpace(file) ? file : SearchNugetFrameworkDirectories(reference, extensions, framework);
         }
 
         private static string? FindInParentDirectory(IAssemblyReference reference, IModule parent, IEnumerable<string> extensions)
         {
-            if (parent == null)
-            {
-                return null;
-            }
-
             var baseDirectory = Path.GetDirectoryName(parent.PEFile.FileName);
 
-            if (string.IsNullOrWhiteSpace(baseDirectory))
+            if (baseDirectory == null || string.IsNullOrWhiteSpace(baseDirectory))
             {
                 return null;
             }
 
-            foreach (var extension in extensions)
-            {
-                var moduleFileName = Path.Combine(baseDirectory, reference.Name + extension);
-                if (!File.Exists(moduleFileName))
-                {
-                    continue;
-                }
-
-                return moduleFileName;
-            }
-
-            return null;
+            return extensions.Select(extension => Path.Combine(baseDirectory, reference.Name + extension)).FirstOrDefault(File.Exists);
         }
 
         private static string? SearchNugetFrameworkDirectories(IAssemblyReference reference, IReadOnlyCollection<string> extensions, NuGetFramework framework)
         {
             var folders = framework.GetNuGetFrameworkFolders();
 
-            foreach (var folder in folders)
-            {
-                foreach (var extension in extensions)
-                {
-                    var testName = Path.Combine(folder, reference.Name + extension);
-
-                    if (string.IsNullOrWhiteSpace(testName))
-                    {
-                        continue;
-                    }
-
-                    if (!File.Exists(testName))
-                    {
-                        continue;
-                    }
-
-                    return testName;
-                }
-            }
-
-            return null;
+            return folders.SelectMany(_ => extensions, (folder, extension) => Path.Combine(folder, reference.Name + extension)).Where(testName => !string.IsNullOrWhiteSpace(testName)).FirstOrDefault(File.Exists);
         }
 
         private static string? SearchDirectories(IAssemblyReference name, InputAssembliesGroup input, IEnumerable<string> extensions)
         {
-            foreach (var extension in extensions)
-            {
-                var testName = input.SupportGroup.GetFullFilePath(name.Name + extension);
-                if (string.IsNullOrWhiteSpace(testName))
-                {
-                    continue;
-                }
-
-                if (!File.Exists(testName))
-                {
-                    continue;
-                }
-
-                return testName;
-            }
-
-            return null;
+            return extensions.Select(extension => input.SupportGroup.GetFullFilePath(name.Name + extension)).Where(testName => !string.IsNullOrWhiteSpace(testName)).FirstOrDefault(File.Exists);
         }
 
         private static string? GetCorlib(IAssemblyReference reference)
@@ -166,15 +105,9 @@ namespace Pharmacist.Core.Generation.Compilation
                 return typeof(object).Module.FullyQualifiedName;
             }
 
-            string? path;
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                path = GetMscorlibBasePath(version, reference.PublicKeyToken.ToHexString(8));
-            }
-            else
-            {
-                path = GetMonoMscorlibBasePath(version);
-            }
+            var path = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
+                           GetMscorlibBasePath(version, reference.PublicKeyToken.ToHexString(8)) :
+                           GetMonoMscorlibBasePath(version);
 
             if (path == null)
             {
@@ -182,34 +115,20 @@ namespace Pharmacist.Core.Generation.Compilation
             }
 
             var file = Path.Combine(path, "mscorlib.dll");
-            if (File.Exists(file))
-            {
-                return file;
-            }
-
-            return null;
+            return File.Exists(file) ? file : null;
         }
 
         private static string? GetMscorlibBasePath(Version version, string publicKeyToken)
         {
             string? GetSubFolderForVersion()
             {
-                switch (version.Major)
+                return version.Major switch
                 {
-                    case 1:
-                        if (version.MajorRevision == 3300)
-                        {
-                            return "v1.0.3705";
-                        }
-
-                        return "v1.1.4322";
-                    case 2:
-                        return "v2.0.50727";
-                    case 4:
-                        return "v4.0.30319";
-                    default:
-                        return null;
-                }
+                    1 => version.MajorRevision == 3300 ? "v1.0.3705" : "v1.1.4322",
+                    2 => "v2.0.50727",
+                    4 => "v4.0.30319",
+                    _ => null
+                };
             }
 
             if (publicKeyToken == "969db8053d3322ac")
@@ -235,17 +154,7 @@ namespace Pharmacist.Core.Generation.Compilation
 
                 var folder = GetSubFolderForVersion();
 
-                if (folder != null)
-                {
-                    foreach (var path in frameworkPaths)
-                    {
-                        var basePath = Path.Combine(path, folder);
-                        if (Directory.Exists(basePath))
-                        {
-                            return basePath;
-                        }
-                    }
-                }
+                return folder == null ? null : frameworkPaths.Select(path => Path.Combine(path, folder)).FirstOrDefault(Directory.Exists);
             }
 
             return null;
@@ -254,11 +163,6 @@ namespace Pharmacist.Core.Generation.Compilation
         private static string? GetMonoMscorlibBasePath(Version version)
         {
             var moduleName = typeof(object).Module.FullyQualifiedName;
-
-            if (moduleName is null)
-            {
-                return null;
-            }
 
             var path = Directory.GetParent(moduleName)?.Parent?.FullName;
 

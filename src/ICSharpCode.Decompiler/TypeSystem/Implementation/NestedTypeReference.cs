@@ -67,10 +67,10 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public IType Resolve(ITypeResolveContext context)
 		{
-			ITypeDefinition declaringType = declaringTypeRef.Resolve(context) as ITypeDefinition;
+			var declaringType = declaringTypeRef.Resolve(context) as ITypeDefinition;
 			if (declaringType != null)
 			{
-				int tpc = declaringType.TypeParameterCount;
+				var tpc = declaringType.TypeParameterCount;
 				foreach (IType type in declaringType.NestedTypes)
 				{
 					if (type.Name == name && type.TypeParameterCount == tpc + additionalTypeParameterCount)
@@ -95,7 +95,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		bool ISupportsInterning.EqualsForInterning(ISupportsInterning other)
 		{
-			NestedTypeReference o = other as NestedTypeReference;
+			var o = other as NestedTypeReference;
 			return o != null && declaringTypeRef == o.declaringTypeRef && name == o.name
 				&& additionalTypeParameterCount == o.additionalTypeParameterCount
 				&& isReferenceType == o.isReferenceType;

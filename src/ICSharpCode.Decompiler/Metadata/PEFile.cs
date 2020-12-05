@@ -75,7 +75,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		public TargetRuntime GetRuntime()
 		{
-			string version = Metadata.MetadataVersion;
+			var version = Metadata.MetadataVersion;
 			if (version == null || version.Length <= 1)
 				return TargetRuntime.Unknown;
 			switch (version[1])
@@ -140,8 +140,8 @@ namespace ICSharpCode.Decompiler.Metadata
 						continue; // nested type
 					}
 					var nsHandle = td.Namespace;
-					string ns = nsHandle.IsNil ? string.Empty : Metadata.GetString(nsHandle);
-					string name = ReflectionHelper.SplitTypeParameterCountFromReflectionName(Metadata.GetString(td.Name), out int typeParameterCount);
+					var ns = nsHandle.IsNil ? string.Empty : Metadata.GetString(nsHandle);
+					var name = ReflectionHelper.SplitTypeParameterCountFromReflectionName(Metadata.GetString(td.Name), out var typeParameterCount);
 					lookup[new TopLevelTypeName(ns, name, typeParameterCount)] = handle;
 				}
 				lookup = LazyInit.GetOrSet(ref typeLookup, lookup);

@@ -123,7 +123,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 			if (mainAssemblyFileName != null)
 			{
-				string baseDirectory = Path.GetDirectoryName(mainAssemblyFileName);
+				var baseDirectory = Path.GetDirectoryName(mainAssemblyFileName);
 				if (string.IsNullOrWhiteSpace(this.baseDirectory))
 					this.baseDirectory = Environment.CurrentDirectory;
 				AddSearchDirectory(baseDirectory);
@@ -132,7 +132,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		internal static (TargetFrameworkIdentifier, Version) ParseTargetFramework(string targetFramework)
 		{
-			string[] tokens = targetFramework.Split(',');
+			var tokens = targetFramework.Split(',');
 			TargetFrameworkIdentifier identifier;
 
 			switch (tokens[0].Trim().ToUpperInvariant())
@@ -153,7 +153,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 			Version version = null;
 
-			for (int i = 1; i < tokens.Length; i++)
+			for (var i = 1; i < tokens.Length; i++)
 			{
 				var pair = tokens[i].Trim().Split('=');
 
@@ -194,8 +194,8 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		public PEFile ResolveModule(PEFile mainModule, string moduleName)
 		{
-			string baseDirectory = Path.GetDirectoryName(mainModule.FileName);
-			string moduleFileName = Path.Combine(baseDirectory, moduleName);
+			var baseDirectory = Path.GetDirectoryName(mainModule.FileName);
+			var moduleFileName = Path.Combine(baseDirectory, moduleName);
 			if (!File.Exists(moduleFileName))
 			{
 				if (throwOnError)
@@ -259,7 +259,7 @@ namespace ICSharpCode.Decompiler.Metadata
 				return null;
 
 			// TODO : Find a way to detect the base directory for the required Windows SDK.
-			string basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Windows Kits", "10", "References");
+			var basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Windows Kits", "10", "References");
 
 			if (!Directory.Exists(basePath))
 				return FindWindowsMetadataInSystemDirectory(name);
@@ -285,7 +285,7 @@ namespace ICSharpCode.Decompiler.Metadata
 			if (!Directory.Exists(basePath))
 				return FindWindowsMetadataInSystemDirectory(name);
 
-			string file = Path.Combine(basePath, name.Name + ".winmd");
+			var file = Path.Combine(basePath, name.Name + ".winmd");
 
 			if (!File.Exists(file))
 				return FindWindowsMetadataInSystemDirectory(name);
@@ -295,7 +295,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		string FindWindowsMetadataInSystemDirectory(IAssemblyReference name)
 		{
-			string file = Path.Combine(Environment.SystemDirectory, "WinMetadata", name.Name + ".winmd");
+			var file = Path.Combine(Environment.SystemDirectory, "WinMetadata", name.Name + ".winmd");
 			if (File.Exists(file))
 				return file;
 			return null;
@@ -392,7 +392,7 @@ namespace ICSharpCode.Decompiler.Metadata
 		{
 			foreach (var directory in directories)
 			{
-				string file = SearchDirectory(name, directory);
+				var file = SearchDirectory(name, directory);
 				if (file != null)
 					return file;
 			}
@@ -410,7 +410,7 @@ namespace ICSharpCode.Decompiler.Metadata
 			var extensions = name.IsWindowsRuntime ? new[] { ".winmd", ".dll" } : new[] { ".exe", ".dll" };
 			foreach (var extension in extensions)
 			{
-				string file = Path.Combine(directory, name.Name + extension);
+				var file = Path.Combine(directory, name.Name + extension);
 				if (!File.Exists(file))
 					continue;
 				try
@@ -491,23 +491,23 @@ namespace ICSharpCode.Decompiler.Metadata
 
 			if (publicKeyToken == "969db8053d3322ac")
 			{
-				string programFiles = Environment.Is64BitOperatingSystem ?
-					Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) :
-					Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-				string cfPath = $@"Microsoft.NET\SDK\CompactFramework\v{version.Major}.{version.Minor}\WindowsCE\";
-				string cfBasePath = Path.Combine(programFiles, cfPath);
+				var programFiles = Environment.Is64BitOperatingSystem ?
+                                       Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) :
+                                       Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+				var cfPath = $@"Microsoft.NET\SDK\CompactFramework\v{version.Major}.{version.Minor}\WindowsCE\";
+				var cfBasePath = Path.Combine(programFiles, cfPath);
 				if (Directory.Exists(cfBasePath))
 					return cfBasePath;
 			}
 			else
 			{
-				string rootPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Microsoft.NET");
-				string[] frameworkPaths = new[] {
-					Path.Combine(rootPath, "Framework"),
-					Path.Combine(rootPath, "Framework64")
-				};
+				var rootPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "Microsoft.NET");
+				var frameworkPaths = new[] {
+                                               Path.Combine(rootPath, "Framework"),
+                                               Path.Combine(rootPath, "Framework64")
+                                           };
 
-				string folder = GetSubFolderForVersion();
+				var folder = GetSubFolderForVersion();
 
 				if (folder != null)
 				{
@@ -609,7 +609,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		static string GetAssemblyInMonoGac(IAssemblyReference reference)
 		{
-			for (int i = 0; i < gac_paths.Count; i++)
+			for (var i = 0; i < gac_paths.Count; i++)
 			{
 				var gac_path = gac_paths[i];
 				var file = GetAssemblyFile(reference, string.Empty, gac_path);
@@ -625,9 +625,9 @@ namespace ICSharpCode.Decompiler.Metadata
 			var gacs = new[] { "GAC_MSIL", "GAC_32", "GAC_64", "GAC" };
 			var prefixes = new[] { string.Empty, "v4.0_" };
 
-			for (int i = 0; i < gac_paths.Count; i++)
+			for (var i = 0; i < gac_paths.Count; i++)
 			{
-				for (int j = 0; j < gacs.Length; j++)
+				for (var j = 0; j < gacs.Length; j++)
 				{
 					var gac = Path.Combine(gac_paths[i], gacs[j]);
 					var file = GetAssemblyFile(reference, prefixes[i], gac);
@@ -646,7 +646,7 @@ namespace ICSharpCode.Decompiler.Metadata
 				.Append(reference.Version)
 				.Append("__");
 
-			for (int i = 0; i < reference.PublicKeyToken.Length; i++)
+			for (var i = 0; i < reference.PublicKeyToken.Length; i++)
 				gac_folder.Append(reference.PublicKeyToken[i].ToString("x2"));
 
 			return Path.Combine(
@@ -665,18 +665,18 @@ namespace ICSharpCode.Decompiler.Metadata
 			{
 				foreach (var gac in gacs)
 				{
-					string rootPath = Path.Combine(path, gac);
+					var rootPath = Path.Combine(path, gac);
 					if (!Directory.Exists(rootPath))
 						continue;
 					foreach (var item in new DirectoryInfo(rootPath).EnumerateFiles("*.dll", SearchOption.AllDirectories))
 					{
-						string[] name = Path.GetDirectoryName(item.FullName).Substring(rootPath.Length + 1).Split(new[] { "\\" }, StringSplitOptions.RemoveEmptyEntries);
+						var name = Path.GetDirectoryName(item.FullName).Substring(rootPath.Length + 1).Split(new[] { "\\" }, StringSplitOptions.RemoveEmptyEntries);
 						if (name.Length != 2)
 							continue;
 						var match = Regex.Match(name[1], $"(v4.0_)?(?<version>[^_]+)_(?<culture>[^_]+)?_(?<publicKey>[^_]+)");
 						if (!match.Success)
 							continue;
-						string culture = match.Groups["culture"].Value;
+						var culture = match.Groups["culture"].Value;
 						if (string.IsNullOrEmpty(culture))
 							culture = "neutral";
 						yield return AssemblyNameReference.Parse(name[0] + ", Version=" + match.Groups["version"].Value + ", Culture=" + culture + ", PublicKeyToken=" + match.Groups["publicKey"].Value);

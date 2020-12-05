@@ -64,7 +64,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				// The method is generic, so we need to specialize the type parameters
 				// (for specializing the constraints, and also to set the correct Owner)
 				specializedTypeParameters = new ITypeParameter[methodDefinition.TypeParameters.Count];
-				for (int i = 0; i < specializedTypeParameters.Length; i++)
+				for (var i = 0; i < specializedTypeParameters.Length; i++)
 				{
 					specializedTypeParameters[i] = new SpecializedTypeParameter(methodDefinition.TypeParameters[i], this);
 				}
@@ -175,7 +175,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public override bool Equals(IMember obj, TypeVisitor typeNormalization)
 		{
-			SpecializedMethod other = obj as SpecializedMethod;
+			var other = obj as SpecializedMethod;
 			if (other == null)
 				return false;
 			return this.baseMember.Equals(other.baseMember, typeNormalization)
@@ -184,7 +184,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public override bool Equals(object obj)
 		{
-			SpecializedMethod other = obj as SpecializedMethod;
+			var other = obj as SpecializedMethod;
 			if (other == null)
 				return false;
 			return this.baseMember.Equals(other.baseMember) && this.substitutionWithoutSpecializedTypeParameters.Equals(other.substitutionWithoutSpecializedTypeParameters);
@@ -210,7 +210,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public override string ToString()
 		{
-			StringBuilder b = new StringBuilder("[");
+			var b = new StringBuilder("[");
 			b.Append(GetType().Name);
 			b.Append(' ');
 			b.Append(this.DeclaringType.ReflectionName);
@@ -219,7 +219,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 			if (this.TypeArguments.Count > 0)
 			{
 				b.Append('[');
-				for (int i = 0; i < this.TypeArguments.Count; i++)
+				for (var i = 0; i < this.TypeArguments.Count; i++)
 				{
 					if (i > 0)
 						b.Append(", ");
@@ -233,7 +233,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				b.Append(this.TypeParameters.Count);
 			}
 			b.Append('(');
-			for (int i = 0; i < this.Parameters.Count; i++)
+			for (var i = 0; i < this.Parameters.Count; i++)
 			{
 				if (i > 0)
 					b.Append(", ");
@@ -270,7 +270,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 			public override bool Equals(IType other)
 			{
 				// Compare the owner, not the substitution, because the substitution may contain this specialized type parameter recursively
-				SpecializedTypeParameter o = other as SpecializedTypeParameter;
+				var o = other as SpecializedTypeParameter;
 				return o != null && baseTp.Equals(o.baseTp) && this.Owner.Equals(o.Owner);
 			}
 

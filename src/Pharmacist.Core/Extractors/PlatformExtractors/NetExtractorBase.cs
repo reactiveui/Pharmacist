@@ -9,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using NuGet.Frameworks;
-using NuGet.LibraryModel;
 using NuGet.Packaging.Core;
 using NuGet.Versioning;
 using Pharmacist.Core.Groups;
@@ -69,7 +68,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
                 return;
             }
 
-            var fileMetadataEnumerable = Input.IncludeGroup.GetAllFileNames().Where(file => WantedFileNames.Contains(Path.GetFileName(file), StringComparer.InvariantCultureIgnoreCase));
+            var fileMetadataEnumerable = Input.IncludeGroup.GetAllFileNames().Where(file => WantedFileNames.Contains(Path.GetFileName(file)));
 
             var newInput = new InputAssembliesGroup();
             newInput.IncludeGroup.AddFiles(fileMetadataEnumerable);

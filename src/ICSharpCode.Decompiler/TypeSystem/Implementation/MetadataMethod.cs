@@ -74,7 +74,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
             }
             else if ((attributes & (MethodAttributes.SpecialName | MethodAttributes.RTSpecialName)) != 0)
             {
-                string name = this.Name;
+                var name = this.Name;
                 if (name == ".cctor" || name == ".ctor")
                     this.symbolKind = SymbolKind.Constructor;
                 else if (name.StartsWith("op_", StringComparison.Ordinal))
@@ -82,7 +82,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
             }
             else if ((attributes & finalizerAttributes) == finalizerAttributes)
             {
-                string name = this.Name;
+                var name = this.Name;
                 if (name == "Finalize" && Parameters.Count == 0)
                 {
                     this.symbolKind = SymbolKind.Destructor;
@@ -104,7 +104,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
         {
             get
             {
-                string name = LazyInit.VolatileRead(ref this.name);
+                var name = LazyInit.VolatileRead(ref this.name);
                 if (name != null)
                     return name;
                 var metadata = module.metadata;
@@ -217,9 +217,9 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
             CustomAttributeHandleCollection? returnTypeAttributes = null)
         {
             var metadata = module.metadata;
-            int i = 0;
-            IParameter[] parameters = new IParameter[signature.RequiredParameterCount
-                + (signature.Header.CallingConvention == SignatureCallingConvention.VarArgs ? 1 : 0)];
+            var i = 0;
+            var parameters = new IParameter[signature.RequiredParameterCount
+                                            + (signature.Header.CallingConvention == SignatureCallingConvention.VarArgs ? 1 : 0)];
             IType parameterType;
             if (parameterHandles != null)
             {
@@ -342,7 +342,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
             var metadata = module.metadata;
             var def = metadata.GetMethodDefinition(handle);
-            MethodImplAttributes implAttributes = def.ImplAttributes & ~MethodImplAttributes.CodeTypeMask;
+            var implAttributes = def.ImplAttributes & ~MethodImplAttributes.CodeTypeMask;
 
             #region DllImportAttribute
             var info = def.GetImport();
@@ -389,7 +389,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
                     dllImport.AddNamedArg("CallingConvention", callingConventionType, (int)callingConvention);
                 }
 
-                CharSet charSet = CharSet.None;
+                var charSet = CharSet.None;
                 switch (info.Attributes & MethodImportAttributes.CharSetMask)
                 {
                     case MethodImportAttributes.CharSetAnsi:
@@ -494,7 +494,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
                 var metadata = module.metadata;
                 var methodDefinition = metadata.GetMethodDefinition(handle);
                 var parameters = methodDefinition.GetParameters();
-                bool hasReadOnlyAttr = false;
+                var hasReadOnlyAttr = false;
                 if (parameters.Count > 0)
                 {
                     var retParam = metadata.GetParameter(parameters.First());
@@ -518,7 +518,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
                 }
                 var metadata = module.metadata;
                 var methodDefinition = metadata.GetMethodDefinition(handle);
-                bool hasReadOnlyAttr = DeclaringTypeDefinition?.IsReadOnly ?? false;
+                var hasReadOnlyAttr = DeclaringTypeDefinition?.IsReadOnly ?? false;
                 hasReadOnlyAttr |= methodDefinition.GetCustomAttributes().HasKnownAttribute(metadata, KnownAttribute.IsReadOnly);
                 this.thisIsRefReadonly = ThreeState.From(hasReadOnlyAttr);
                 return hasReadOnlyAttr;

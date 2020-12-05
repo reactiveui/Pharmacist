@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Reflection;
+﻿using System.Collections.Immutable;
 using System.Reflection.Metadata;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-
-using ICSharpCode.Decompiler.Metadata;
 
 namespace ICSharpCode.Decompiler
 {

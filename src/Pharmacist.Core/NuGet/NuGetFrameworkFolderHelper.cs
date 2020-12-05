@@ -25,28 +25,15 @@ namespace Pharmacist.Core.NuGet
         /// <returns>A list of additional paths.</returns>
         public static IEnumerable<string> GetNuGetFrameworkFolders(this NuGetFramework framework)
         {
-            IEnumerable<string> folders;
-            switch (framework.Framework.ToLowerInvariant())
+            IEnumerable<string> folders = framework.Framework.ToLowerInvariant() switch
             {
-                case "monoandroid":
-                    folders = HandleAndroid(framework);
-                    break;
-                case "xamarin.ios":
-                    folders = HandleiOS();
-                    break;
-                case "xamarin.tvos":
-                    folders = HandleTVOS();
-                    break;
-                case "xamarin.watchos":
-                    folders = HandleWatchOS();
-                    break;
-                case "xamarin.mac":
-                    folders = HandleMac();
-                    break;
-                default:
-                    folders = Array.Empty<string>();
-                    break;
-            }
+                "monoandroid" => HandleAndroid(framework),
+                "xamarin.ios" => HandleiOS(),
+                "xamarin.tvos" => HandleTVOS(),
+                "xamarin.watchos" => HandleWatchOS(),
+                "xamarin.mac" => HandleMac(),
+                _ => Array.Empty<string>()
+            };
 
             return FileSystemHelpers.GetSubdirectoriesWithMatch(folders, AssemblyHelpers.AssemblyFileExtensionsSet);
         }
@@ -73,7 +60,6 @@ namespace Pharmacist.Core.NuGet
             return new[] { Path.Combine(referenceAssembliesLocation, "Xamarin.iOS") };
         }
 
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1300:Element should begin with upper-case letter", Justification = "iOS special naming scheme.")]
         private static IEnumerable<string> HandleMac()
         {
             var referenceAssembliesLocation = GetReferenceLocation("/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/lib/mono/");

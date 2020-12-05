@@ -23,10 +23,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
-using System.Text;
 
 using ICSharpCode.Decompiler.Metadata;
-using ICSharpCode.Decompiler.Semantics;
 using ICSharpCode.Decompiler.Util;
 
 using SRM = System.Reflection.Metadata;
@@ -105,7 +103,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 		IAttribute ConvertMarshalInfo(SRM.BlobReader marshalInfo)
 		{
 			var b = new AttributeBuilder(module, KnownAttribute.MarshalAs);
-			IType unmanagedTypeType = module.Compilation.FindType(new TopLevelTypeName(InteropServices, nameof(UnmanagedType)));
+			var unmanagedTypeType = module.Compilation.FindType(new TopLevelTypeName(InteropServices, nameof(UnmanagedType)));
 
 			int type = marshalInfo.ReadByte();
 			b.AddFixedArg(unmanagedTypeType, type);
@@ -127,7 +125,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				case 0x1d: // SafeArray
 					if (marshalInfo.RemainingBytes > 0)
 					{
-						VarEnum varType = (VarEnum)marshalInfo.ReadByte();
+						var varType = (VarEnum)marshalInfo.ReadByte();
 						if (varType != VarEnum.VT_EMPTY)
 						{
 							var varEnumType = new TopLevelTypeName(InteropServices, nameof(VarEnum));
@@ -148,9 +146,9 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 					{ // Max
 						b.AddNamedArg("ArraySubType", unmanagedTypeType, type);
 					}
-					int sizeParameterIndex = marshalInfo.TryReadCompressedInteger(out int value) ? value : -1;
+					var sizeParameterIndex = marshalInfo.TryReadCompressedInteger(out var value) ? value : -1;
 					size = marshalInfo.TryReadCompressedInteger(out value) ? value : -1;
-					int sizeParameterMultiplier = marshalInfo.TryReadCompressedInteger(out value) ? value : -1;
+					var sizeParameterMultiplier = marshalInfo.TryReadCompressedInteger(out value) ? value : -1;
 					if (size >= 0)
 					{
 						b.AddNamedArg("SizeConst", KnownTypeCode.Int32, size);
@@ -161,10 +159,10 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 					}
 					break;
 				case 0x2c: // CustomMarshaler
-					string guidValue = marshalInfo.ReadSerializedString();
-					string unmanagedType = marshalInfo.ReadSerializedString();
-					string managedType = marshalInfo.ReadSerializedString();
-					string cookie = marshalInfo.ReadSerializedString();
+					var guidValue = marshalInfo.ReadSerializedString();
+					var unmanagedType = marshalInfo.ReadSerializedString();
+					var managedType = marshalInfo.ReadSerializedString();
+					var cookie = marshalInfo.ReadSerializedString();
 					if (managedType != null)
 					{
 						b.AddNamedArg("MarshalType", KnownTypeCode.String, managedType);
@@ -287,8 +285,8 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 			if (reader.ReadByte() == '.')
 			{
 				// binary attribute
-				int attributeCount = reader.ReadCompressedInteger();
-				for (int i = 0; i < attributeCount; i++)
+				var attributeCount = reader.ReadCompressedInteger();
+				for (var i = 0; i < attributeCount; i++)
 				{
 					Add(ReadBinarySecurityAttribute(ref reader, securityAction));
 				}
@@ -303,7 +301,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		private IAttribute ReadXmlSecurityAttribute(ref SRM.BlobReader reader, CustomAttributeTypedArgument<IType> securityAction)
 		{
-			string xml = reader.ReadUTF16(reader.RemainingBytes);
+			var xml = reader.ReadUTF16(reader.RemainingBytes);
 			var b = new AttributeBuilder(module, KnownAttribute.PermissionSet);
 			b.AddFixedArg(securityAction);
 			b.AddNamedArg("XML", KnownTypeCode.String, xml);
@@ -312,12 +310,12 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		private IAttribute ReadBinarySecurityAttribute(ref SRM.BlobReader reader, CustomAttributeTypedArgument<IType> securityAction)
 		{
-			string attributeTypeName = reader.ReadSerializedString();
-			IType attributeType = module.TypeProvider.GetTypeFromSerializedName(attributeTypeName);
+			var attributeTypeName = reader.ReadSerializedString();
+			var attributeType = module.TypeProvider.GetTypeFromSerializedName(attributeTypeName);
 
 			reader.ReadCompressedInteger(); // ??
 											// The specification seems to be incorrect here, so I'm using the logic from Cecil instead.
-			int numNamed = reader.ReadCompressedInteger();
+			var numNamed = reader.ReadCompressedInteger();
 
 			var decoder = new Metadata.CustomAttributeDecoder<IType>(module.TypeProvider, module.metadata);
 			var namedArgs = decoder.DecodeNamedArguments(ref reader, numNamed);

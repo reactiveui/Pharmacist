@@ -24,10 +24,10 @@ namespace ICSharpCode.Decompiler.Util
 				throw new ArgumentNullException(nameof(pe));
 			}
 
-			int rva = pe.PEHeaders.PEHeader.ResourceTableDirectory.RelativeVirtualAddress;
+			var rva = pe.PEHeaders.PEHeader.ResourceTableDirectory.RelativeVirtualAddress;
 			if (rva == 0)
 				return null;
-			byte* pRoot = pe.GetSectionData(rva).Pointer;
+			var pRoot = pe.GetSectionData(rva).Pointer;
 			return new Win32ResourceDirectory(pe, pRoot, 0, new Win32ResourceName("Root"));
 		}
 
@@ -106,8 +106,8 @@ namespace ICSharpCode.Decompiler.Util
 			Directories = new List<Win32ResourceDirectory>();
 			Datas = new List<Win32ResourceData>();
 			var pEntries = (IMAGE_RESOURCE_DIRECTORY_ENTRY*)(p + 1);
-			int total = NumberOfNamedEntries + NumberOfIdEntries;
-			for (int i = 0; i < total; i++)
+			var total = NumberOfNamedEntries + NumberOfIdEntries;
+			for (var i = 0; i < total; i++)
 			{
 				var pEntry = pEntries + i;
 				name = new Win32ResourceName(pRoot, pEntry);
@@ -171,7 +171,7 @@ namespace ICSharpCode.Decompiler.Util
 
 		public byte[] Data {
 			get {
-				byte[] data = new byte[Size];
+				var data = new byte[Size];
 				fixed (void* pData = data)
 					Buffer.MemoryCopy(_pointer, pData, Size, Size);
 				return data;

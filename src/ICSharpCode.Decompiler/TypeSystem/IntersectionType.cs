@@ -46,8 +46,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public static IType Create(IEnumerable<IType> types)
 		{
-			IType[] arr = types.Distinct().ToArray();
-			foreach (IType type in arr)
+			var arr = types.Distinct().ToArray();
+			foreach (var type in arr)
 			{
 				if (type == null)
 					throw new ArgumentNullException();
@@ -66,7 +66,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public override string Name {
 			get {
-				StringBuilder b = new StringBuilder();
+				var b = new StringBuilder();
 				foreach (var t in types)
 				{
 					if (b.Length > 0)
@@ -79,7 +79,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public override string ReflectionName {
 			get {
-				StringBuilder b = new StringBuilder();
+				var b = new StringBuilder();
 				foreach (var t in types)
 				{
 					if (b.Length > 0)
@@ -94,7 +94,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			get {
 				foreach (var t in types)
 				{
-					bool? isReferenceType = t.IsReferenceType;
+					var isReferenceType = t.IsReferenceType;
 					if (isReferenceType.HasValue)
 						return isReferenceType.Value;
 				}
@@ -104,7 +104,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public override int GetHashCode()
 		{
-			int hashCode = 0;
+			var hashCode = 0;
 			unchecked
 			{
 				foreach (var t in types)
@@ -118,10 +118,10 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public override bool Equals(IType other)
 		{
-			IntersectionType o = other as IntersectionType;
+			var o = other as IntersectionType;
 			if (o != null && types.Count == o.types.Count)
 			{
-				for (int i = 0; i < types.Count; i++)
+				for (var i = 0; i < types.Count; i++)
 				{
 					if (!types[i].Equals(o.types[i]))
 						return false;

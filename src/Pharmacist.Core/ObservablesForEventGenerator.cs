@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -68,7 +67,7 @@ namespace Pharmacist.Core
                                          new Mac(),
                                          new TVOS(),
                                          new UWP(),
-                                         new WatchOs(),
+                                         new WatchOs()
                                      };
 
             if (isWinForms)
@@ -322,7 +321,7 @@ namespace Pharmacist.Core
                 throw new ArgumentNullException(nameof(writer));
             }
 
-            using var compilation = new EventBuilderCompiler(input, framework);
+            var compilation = new EventBuilderCompiler(input, framework);
             var compilationOutputSyntax = CompilationUnit()
                 .WithMembers(List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))))
                 .WithUsings(List(new[]
@@ -337,6 +336,8 @@ namespace Pharmacist.Core
             await writer.WriteAsync(Environment.NewLine).ConfigureAwait(false);
             await writer.WriteAsync(compilationOutputSyntax.NormalizeWhitespace(elasticTrivia: true).ToString()).ConfigureAwait(false);
             await writer.FlushAsync().ConfigureAwait(false);
+
+            compilation.Dispose();
         }
 
         /// <summary>

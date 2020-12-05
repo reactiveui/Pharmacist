@@ -16,7 +16,6 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -41,7 +40,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			var paramList = new List<IParameter>(baseMethod.Parameters);
 			Debug.Assert(paramList.Last().Type.Kind == TypeKind.ArgList);
 			paramList.RemoveAt(paramList.Count - 1);
-			foreach (IType varArg in varArgTypes)
+			foreach (var varArg in varArgTypes)
 			{
 				paramList.Add(new DefaultParameter(varArg, name: string.Empty, owner: this));
 			}
@@ -60,7 +59,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public override bool Equals(object obj)
 		{
-			VarArgInstanceMethod other = obj as VarArgInstanceMethod;
+			var other = obj as VarArgInstanceMethod;
 			return other != null && baseMethod.Equals(other.baseMethod);
 		}
 
@@ -71,13 +70,13 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public bool Equals(IMember obj, TypeVisitor typeNormalization)
 		{
-			VarArgInstanceMethod other = obj as VarArgInstanceMethod;
+			var other = obj as VarArgInstanceMethod;
 			return other != null && baseMethod.Equals(other.baseMethod, typeNormalization);
 		}
 
 		public override string ToString()
 		{
-			StringBuilder b = new StringBuilder("[");
+			var b = new StringBuilder("[");
 			b.Append(this.SymbolKind);
 			if (this.DeclaringType != null)
 			{
@@ -91,7 +90,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 				b.Append(this.TypeParameters.Count);
 			}
 			b.Append('(');
-			for (int i = 0; i < this.Parameters.Count; i++)
+			for (var i = 0; i < this.Parameters.Count; i++)
 			{
 				if (i > 0)
 					b.Append(", ");

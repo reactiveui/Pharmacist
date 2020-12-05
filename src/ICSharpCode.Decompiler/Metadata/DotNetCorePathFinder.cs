@@ -93,8 +93,8 @@ namespace ICSharpCode.Decompiler.Metadata
 		public DotNetCorePathFinder(string parentAssemblyFileName, string targetFrameworkIdString, TargetFrameworkIdentifier targetFramework, Version targetFrameworkVersion, ReferenceLoadInfo loadInfo = null)
 			: this(targetFramework, targetFrameworkVersion)
 		{
-			string assemblyName = Path.GetFileNameWithoutExtension(parentAssemblyFileName);
-			string basePath = Path.GetDirectoryName(parentAssemblyFileName);
+			var assemblyName = Path.GetFileNameWithoutExtension(parentAssemblyFileName);
+			var basePath = Path.GetDirectoryName(parentAssemblyFileName);
 
 			searchPaths.Add(basePath);
 
@@ -182,10 +182,10 @@ namespace ICSharpCode.Decompiler.Metadata
 				var type = library.Value["type"].AsString;
 				var path = library.Value["path"].AsString;
 				var runtimeInfo = runtimeInfos[library.Key].AsJsonObject?["runtime"].AsJsonObject;
-				string[] components = new string[runtimeInfo?.Count ?? 0];
+				var components = new string[runtimeInfo?.Count ?? 0];
 				if (runtimeInfo != null)
 				{
-					int i = 0;
+					var i = 0;
 					foreach (var component in runtimeInfo)
 					{
 						components[i] = component.Key;
@@ -203,10 +203,10 @@ namespace ICSharpCode.Decompiler.Metadata
 				runtimePack = null;
 				return null;
 			}
-			foreach (string pack in RuntimePacks)
+			foreach (var pack in RuntimePacks)
 			{
 				runtimePack = pack;
-				string basePath = Path.Combine(dotnetBasePath, "shared", pack);
+				var basePath = Path.Combine(dotnetBasePath, "shared", pack);
 				if (!Directory.Exists(basePath))
 					continue;
 				var closestVersion = GetClosestVersionFolder(basePath, targetFrameworkVersion);
@@ -240,8 +240,8 @@ namespace ICSharpCode.Decompiler.Metadata
 		{
 			string RemoveTrailingVersionInfo()
 			{
-				string shortName = name;
-				int dashIndex = shortName.IndexOf('-');
+				var shortName = name;
+				var dashIndex = shortName.IndexOf('-');
 				if (dashIndex > 0)
 				{
 					shortName = shortName.Remove(dashIndex);
@@ -262,12 +262,12 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		public static string FindDotNetExeDirectory()
 		{
-			string dotnetExeName = (Environment.OSVersion.Platform == PlatformID.Unix) ? "dotnet" : "dotnet.exe";
+			var dotnetExeName = (Environment.OSVersion.Platform == PlatformID.Unix) ? "dotnet" : "dotnet.exe";
 			foreach (var item in Environment.GetEnvironmentVariable("PATH").Split(Path.PathSeparator))
 			{
 				try
 				{
-					string fileName = Path.Combine(item, dotnetExeName);
+					var fileName = Path.Combine(item, dotnetExeName);
 					if (!File.Exists(fileName))
 						continue;
 					if (Environment.OSVersion.Platform == PlatformID.Unix)

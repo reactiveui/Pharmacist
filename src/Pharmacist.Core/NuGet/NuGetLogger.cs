@@ -36,6 +36,12 @@ namespace Pharmacist.Core.NuGet
                 case LogLevel.Debug:
                     this.Log().Debug(data);
                     break;
+                case LogLevel.Verbose:
+                    this.Log().Info(data);
+                    break;
+                case LogLevel.Minimal:
+                    this.Log().Info(data);
+                    break;
                 default:
                     this.Log().Info(data);
                     break;

@@ -16,7 +16,6 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 using System;
-using System.Collections.Generic;
 
 using ICSharpCode.Decompiler.Documentation;
 using ICSharpCode.Decompiler.TypeSystem;
@@ -60,7 +59,7 @@ namespace ICSharpCode.Decompiler
 			if (string.IsNullOrEmpty(type.Namespace) && type.HasGeneratedName()
 				&& (type.Name.Contains("AnonType") || type.Name.Contains("AnonymousType")))
 			{
-				ITypeDefinition td = type.GetDefinition();
+				var td = type.GetDefinition();
 				return td != null && td.IsCompilerGenerated();
 			}
 			return false;

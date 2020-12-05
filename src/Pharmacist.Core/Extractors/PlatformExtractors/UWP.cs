@@ -4,13 +4,10 @@
 // See the LICENSE file in the project root for full license information.
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using NuGet.Frameworks;
 
-using Pharmacist.Core.Groups;
-using Pharmacist.Core.NuGet;
 using Pharmacist.Core.Utilities;
 
 namespace Pharmacist.Core.Extractors.PlatformExtractors

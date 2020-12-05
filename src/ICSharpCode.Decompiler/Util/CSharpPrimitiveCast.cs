@@ -48,7 +48,7 @@ namespace ICSharpCode.Decompiler.Util
 		{
 			checked
 			{
-				TypeCode sourceType = Type.GetTypeCode(input.GetType());
+				var sourceType = Type.GetTypeCode(input.GetType());
 				if (sourceType == targetType)
 					return input;
 				switch (targetType)
@@ -410,7 +410,7 @@ namespace ICSharpCode.Decompiler.Util
 		{
 			unchecked
 			{
-				TypeCode sourceType = Type.GetTypeCode(input.GetType());
+				var sourceType = Type.GetTypeCode(input.GetType());
 				if (sourceType == targetType)
 					return input;
 				switch (targetType)

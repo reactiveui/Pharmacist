@@ -34,7 +34,6 @@ namespace Pharmacist.Core.Generation.Compilation
         private readonly KnownTypeCache _knownTypeCache;
         private readonly List<IModule> _assemblies = new();
         private readonly List<IModule> _referencedAssemblies = new();
-        private readonly INamespace _rootNamespace;
 
         public EventBuilderCompiler(InputAssembliesGroup input, NuGetFramework framework)
         {
@@ -53,7 +52,7 @@ namespace Pharmacist.Core.Generation.Compilation
             _assemblies.AddRange(moduleReferences.Select(x => x.Resolve(context)));
 
             _referencedAssemblies.AddRange(GetReferenceModules(_assemblies, input, framework, context));
-            _rootNamespace = CreateRootNamespace();
+            RootNamespace = CreateRootNamespace();
         }
 
         /// <summary>
@@ -94,16 +93,10 @@ namespace Pharmacist.Core.Generation.Compilation
         /// <summary>
         /// Gets the root namespace for our assemblies. We can start analyzing from here.
         /// </summary>
-        public INamespace RootNamespace
-        {
-            get
-            {
-                return _rootNamespace;
-            }
-        }
+        public INamespace RootNamespace { get; }
 
         /// <summary>
-        /// Gets the comparer we are going to use for comparing names of items. We just compare ordinally.
+        /// Gets the comparer we are going to use for comparing names of items.
         /// </summary>
         public StringComparer NameComparer => StringComparer.Ordinal;
 
@@ -114,13 +107,7 @@ namespace Pharmacist.Core.Generation.Compilation
 
         public INamespace? GetNamespaceForExternAlias(string alias)
         {
-            if (string.IsNullOrEmpty(alias))
-            {
-                return RootNamespace;
-            }
-
-            // SimpleCompilation does not support extern aliases; but derived classes might.
-            return null;
+            return string.IsNullOrEmpty(alias) ? RootNamespace : null;
         }
 
         public IType FindType(KnownTypeCode typeCode)
@@ -149,15 +136,15 @@ namespace Pharmacist.Core.Generation.Compilation
             var referenceModulesToProcess = new Stack<(IModule Parent, IAssemblyReference Reference)>(mainModules.SelectMany(x => x.PEFile.AssemblyReferences.Select(reference => (x, (IAssemblyReference)reference))));
             while (referenceModulesToProcess.Count > 0)
             {
-                var current = referenceModulesToProcess.Pop();
+                var (parent, reference) = referenceModulesToProcess.Pop();
 
-                if (!assemblyReferencesSeen.Add(current.Reference))
+                if (!assemblyReferencesSeen.Add(reference))
                 {
                     continue;
                 }
 
 #pragma warning disable CA2000 // Dispose objects before losing scope
-                var moduleReference = (IModuleReference?)current.Reference.Resolve(current.Parent, input, framework);
+                var moduleReference = (IModuleReference?)reference.Resolve(parent, input, framework);
 #pragma warning restore CA2000 // Dispose objects before losing scope
 
                 if (moduleReference == null)
@@ -184,10 +171,7 @@ namespace Pharmacist.Core.Generation.Compilation
                 // SimpleCompilation does not support extern aliases; but derived classes might.
                 // CreateRootNamespace() is virtual so that derived classes can change the global namespace.
                 namespaces.Add(module.RootNamespace);
-                for (var i = 0; i < _referencedAssemblies.Count; i++)
-                {
-                    namespaces.Add(_referencedAssemblies[i].RootNamespace);
-                }
+                namespaces.AddRange(_referencedAssemblies.Select(assembly => assembly.RootNamespace));
             }
 
             return new MergedNamespace(this, namespaces.ToArray());

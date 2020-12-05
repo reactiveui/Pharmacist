@@ -23,7 +23,6 @@ using System.Linq;
 using System.Reflection.Metadata;
 
 using ICSharpCode.Decompiler.TypeSystem.Implementation;
-using ICSharpCode.Decompiler.Util;
 
 namespace ICSharpCode.Decompiler.TypeSystem
 {
@@ -31,8 +30,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
     {
         public static FunctionPointerType FromSignature(MethodSignature<IType> signature, MetadataModule module)
         {
-            IType returnType = signature.ReturnType;
-            bool returnIsRefReadOnly = false;
+            var returnType = signature.ReturnType;
+            var returnIsRefReadOnly = false;
             var customCallConvs = ImmutableArray.CreateBuilder<IType>();
             while (returnType is ModifiedType modReturn)
             {
@@ -56,8 +55,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
             var parameterReferenceKinds = ImmutableArray.CreateBuilder<ReferenceKind>(signature.ParameterTypes.Length);
             foreach (var p in signature.ParameterTypes)
             {
-                IType paramType = p;
-                ReferenceKind kind = ReferenceKind.None;
+                var paramType = p;
+                var kind = ReferenceKind.None;
                 if (p is ModifiedType modreq)
                 {
                     if (modreq.Modifier.IsKnownType(KnownAttribute.In))
@@ -130,19 +129,19 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
         public override IType VisitChildren(TypeVisitor visitor)
         {
-            IType r = ReturnType.AcceptVisitor(visitor);
+            var r = ReturnType.AcceptVisitor(visitor);
             // Keep ta == null as long as no elements changed, allocate the array only if necessary.
-            IType[] pt = (r != ReturnType) ? new IType[ParameterTypes.Length] : null;
-            for (int i = 0; i < ParameterTypes.Length; i++)
+            var pt = (r != ReturnType) ? new IType[ParameterTypes.Length] : null;
+            for (var i = 0; i < ParameterTypes.Length; i++)
             {
-                IType p = ParameterTypes[i].AcceptVisitor(visitor);
+                var p = ParameterTypes[i].AcceptVisitor(visitor);
                 if (p == null)
                     throw new NullReferenceException("TypeVisitor.Visit-method returned null");
                 if (pt == null && p != ParameterTypes[i])
                 {
                     // we found a difference, so we need to allocate the array
                     pt = new IType[ParameterTypes.Length];
-                    for (int j = 0; j < i; j++)
+                    for (var j = 0; j < i; j++)
                     {
                         pt[j] = ParameterTypes[j];
                     }
@@ -175,7 +174,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
         {
             unchecked
             {
-                int hash = ReturnType.GetHashCode() ^ CallingConvention.GetHashCode();
+                var hash = ReturnType.GetHashCode() ^ CallingConvention.GetHashCode();
                 return hash;
             }
         }

@@ -18,6 +18,6 @@ namespace Pharmacist.Console
         /// <summary>
         /// Error.
         /// </summary>
-        Error = 1,
+        Error = 1
     }
 }

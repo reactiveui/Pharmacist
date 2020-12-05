@@ -111,7 +111,7 @@ namespace ICSharpCode.Decompiler.Metadata
 				var pk_token = PublicKeyToken;
 				if (pk_token != null && pk_token.Length > 0)
 				{
-					for (int i = 0; i < pk_token.Length; i++)
+					for (var i = 0; i < pk_token.Length; i++)
 					{
 						builder.Append(pk_token[i].ToString("x2"));
 					}
@@ -148,7 +148,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 			var name = new AssemblyNameReference();
 			var tokens = fullName.Split(',');
-			for (int i = 0; i < tokens.Length; i++)
+			for (var i = 0; i < tokens.Length; i++)
 			{
 				var token = tokens[i].Trim();
 
@@ -176,7 +176,7 @@ namespace ICSharpCode.Decompiler.Metadata
 							break;
 
 						name.PublicKeyToken = new byte[pk_token.Length / 2];
-						for (int j = 0; j < name.PublicKeyToken.Length; j++)
+						for (var j = 0; j < name.PublicKeyToken.Length; j++)
 							name.PublicKeyToken[j] = Byte.Parse(pk_token.Substring(j * 2, 2), System.Globalization.NumberStyles.HexNumber);
 
 						break;

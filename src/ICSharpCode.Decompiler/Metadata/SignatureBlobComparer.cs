@@ -40,13 +40,13 @@ namespace ICSharpCode.Decompiler.Metadata
 					return false;
 			}
 			// read & compare parameter count
-			if (!IsSameCompressedInteger(ref a, ref b, out int totalParameterCount))
+			if (!IsSameCompressedInteger(ref a, ref b, out var totalParameterCount))
 				return false;
-			if (!IsSameCompressedInteger(ref a, ref b, out int typeCode))
+			if (!IsSameCompressedInteger(ref a, ref b, out var typeCode))
 				return false;
 			if (!TypesAreEqual(ref a, ref b, contextForA, contextForB, typeCode))
 				return false;
-			int i = 0;
+			var i = 0;
 			for (; i < totalParameterCount; i++)
 			{
 				if (!IsSameCompressedInteger(ref a, ref b, out typeCode))
@@ -74,19 +74,19 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		static bool EqualsTypeSignature(ref BlobReader a, ref BlobReader b, MetadataReader contextForA, MetadataReader contextForB)
 		{
-			if (!IsSameCompressedInteger(ref a, ref b, out int typeCode))
+			if (!IsSameCompressedInteger(ref a, ref b, out var typeCode))
 				return false;
 			return TypesAreEqual(ref a, ref b, contextForA, contextForB, typeCode);
 		}
 
 		static bool IsSameCompressedInteger(ref BlobReader a, ref BlobReader b, out int value)
 		{
-			return a.TryReadCompressedInteger(out value) && b.TryReadCompressedInteger(out int otherValue) && value == otherValue;
+			return a.TryReadCompressedInteger(out value) && b.TryReadCompressedInteger(out var otherValue) && value == otherValue;
 		}
 
 		static bool IsSameCompressedSignedInteger(ref BlobReader a, ref BlobReader b, out int value)
 		{
-			return a.TryReadCompressedSignedInteger(out value) && b.TryReadCompressedSignedInteger(out int otherValue) && value == otherValue;
+			return a.TryReadCompressedSignedInteger(out value) && b.TryReadCompressedSignedInteger(out var otherValue) && value == otherValue;
 		}
 
 		static bool TypesAreEqual(ref BlobReader a, ref BlobReader b, MetadataReader contextForA, MetadataReader contextForB, int typeCode)
@@ -135,17 +135,17 @@ namespace ICSharpCode.Decompiler.Metadata
 					if (!IsSameCompressedInteger(ref a, ref b, out _))
 						return false;
 					// sizes
-					if (!IsSameCompressedInteger(ref a, ref b, out int numOfSizes))
+					if (!IsSameCompressedInteger(ref a, ref b, out var numOfSizes))
 						return false;
-					for (int i = 0; i < numOfSizes; i++)
+					for (var i = 0; i < numOfSizes; i++)
 					{
 						if (!IsSameCompressedInteger(ref a, ref b, out _))
 							return false;
 					}
 					// lower bounds
-					if (!IsSameCompressedInteger(ref a, ref b, out int numOfLowerBounds))
+					if (!IsSameCompressedInteger(ref a, ref b, out var numOfLowerBounds))
 						return false;
-					for (int i = 0; i < numOfLowerBounds; i++)
+					for (var i = 0; i < numOfLowerBounds; i++)
 					{
 						if (!IsSameCompressedSignedInteger(ref a, ref b, out _))
 							return false;
@@ -168,9 +168,9 @@ namespace ICSharpCode.Decompiler.Metadata
 						return false;
 					if (!TypesAreEqual(ref a, ref b, contextForA, contextForB, typeCode))
 						return false;
-					if (!IsSameCompressedInteger(ref a, ref b, out int numOfArguments))
+					if (!IsSameCompressedInteger(ref a, ref b, out var numOfArguments))
 						return false;
-					for (int i = 0; i < numOfArguments; i++)
+					for (var i = 0; i < numOfArguments; i++)
 					{
 						if (!IsSameCompressedInteger(ref a, ref b, out typeCode))
 							return false;

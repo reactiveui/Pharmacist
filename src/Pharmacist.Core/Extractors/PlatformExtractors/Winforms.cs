@@ -25,7 +25,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
         {
             "System.DirectoryServices.dll",
             "System.Windows.Forms.dll",
-            "System.Drawing.dll",
+            "System.Drawing.dll"
         };
 
         public override bool CanExtract(NuGetFramework[] frameworks)
@@ -48,12 +48,7 @@ namespace Pharmacist.Core.Extractors.PlatformExtractors
                 return true;
             }
 
-            if (framework.Framework.Equals(FrameworkConstants.CommonFrameworks.Net50.Framework))
-            {
-                return true;
-            }
-
-            return false;
+            return framework.Framework.Equals(FrameworkConstants.CommonFrameworks.Net50.Framework);
         }
     }
 }

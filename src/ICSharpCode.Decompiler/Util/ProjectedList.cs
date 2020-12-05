@@ -40,7 +40,7 @@ namespace ICSharpCode.Decompiler.Util
 
 		public TOutput this[int index] {
 			get {
-				TOutput output = LazyInit.VolatileRead(ref items[index]);
+				var output = LazyInit.VolatileRead(ref items[index]);
 				if (output != null)
 				{
 					return output;
@@ -55,7 +55,7 @@ namespace ICSharpCode.Decompiler.Util
 
 		public IEnumerator<TOutput> GetEnumerator()
 		{
-			for (int i = 0; i < this.Count; i++)
+			for (var i = 0; i < this.Count; i++)
 			{
 				yield return this[i];
 			}
@@ -88,7 +88,7 @@ namespace ICSharpCode.Decompiler.Util
 
 		public TOutput this[int index] {
 			get {
-				TOutput output = LazyInit.VolatileRead(ref items[index]);
+				var output = LazyInit.VolatileRead(ref items[index]);
 				if (output != null)
 				{
 					return output;
@@ -103,7 +103,7 @@ namespace ICSharpCode.Decompiler.Util
 
 		public IEnumerator<TOutput> GetEnumerator()
 		{
-			for (int i = 0; i < this.Count; i++)
+			for (var i = 0; i < this.Count; i++)
 			{
 				yield return this[i];
 			}

@@ -6,11 +6,6 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-using NuGet.Frameworks;
-
-using Pharmacist.Core.Generation.Compilation;
-using Pharmacist.Core.Groups;
-
 namespace Pharmacist.Core.Generation
 {
     /// <summary>

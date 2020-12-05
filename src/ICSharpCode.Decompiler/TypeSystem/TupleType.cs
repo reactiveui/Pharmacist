@@ -75,9 +75,9 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		static ParameterizedType CreateUnderlyingType(ICompilation compilation, ImmutableArray<IType> elementTypes, IModule valueTupleAssembly)
 		{
-			int remainder = (elementTypes.Length - 1) % (RestPosition - 1) + 1;
+			var remainder = (elementTypes.Length - 1) % (RestPosition - 1) + 1;
 			Debug.Assert(remainder >= 1 && remainder < RestPosition);
-			int pos = elementTypes.Length - remainder;
+			var pos = elementTypes.Length - remainder;
 			var type = new ParameterizedType(
 				FindValueTupleType(compilation, valueTupleAssembly, remainder),
 				elementTypes.Slice(pos));
@@ -119,7 +119,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 				case TypeKind.Struct:
 					if (type.Namespace == "System" && type.Name == "ValueTuple")
 					{
-						int tpc = type.TypeParameterCount;
+						var tpc = type.TypeParameterCount;
 						if (tpc > 0 && tpc < RestPosition)
 						{
 							tupleCardinality = tpc;
@@ -191,7 +191,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 						{
 							if (output == null)
 								output = new List<IType>();
-							int tpc = type.TypeParameterCount;
+							var tpc = type.TypeParameterCount;
 							if (tpc > 0 && tpc < RestPosition)
 							{
 								output.AddRange(type.TypeArguments);
@@ -235,8 +235,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		{
 			unchecked
 			{
-				int hash = UnderlyingType.GetHashCode();
-				foreach (string name in ElementNames)
+				var hash = UnderlyingType.GetHashCode();
+				foreach (var name in ElementNames)
 				{
 					hash *= 31;
 					hash += name != null ? name.GetHashCode() : 0;
@@ -247,9 +247,9 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public override string ToString()
 		{
-			StringBuilder b = new StringBuilder();
+			var b = new StringBuilder();
 			b.Append('(');
-			for (int i = 0; i < ElementTypes.Length; i++)
+			for (var i = 0; i < ElementTypes.Length; i++)
 			{
 				if (i > 0)
 					b.Append(", ");
@@ -272,9 +272,9 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		public override IType VisitChildren(TypeVisitor visitor)
 		{
 			IType[] newElementTypes = null;
-			for (int i = 0; i < ElementTypes.Length; i++)
+			for (var i = 0; i < ElementTypes.Length; i++)
 			{
-				IType type = ElementTypes[i];
+				var type = ElementTypes[i];
 				var newType = type.AcceptVisitor(visitor);
 				if (newType != type)
 				{

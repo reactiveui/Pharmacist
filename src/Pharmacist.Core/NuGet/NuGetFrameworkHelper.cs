@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Text.RegularExpressions;
 
 using NuGet.Frameworks;
 using NuGet.Packaging.Core;

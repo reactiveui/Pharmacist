@@ -182,7 +182,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		{
 			if (!attributeType.GetNonInterfaceBaseTypes().Any(t => t.IsKnownType(KnownTypeCode.Attribute)))
 				return KnownAttribute.None;
-			for (int i = 1; i < typeNames.Length; i++)
+			for (var i = 1; i < typeNames.Length; i++)
 			{
 				if (typeNames[i] == attributeType.FullTypeName)
 					return (KnownAttribute)i;

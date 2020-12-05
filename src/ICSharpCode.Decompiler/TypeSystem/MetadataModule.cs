@@ -139,7 +139,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
         {
             if (this == module)
                 return true;
-            foreach (string shortName in GetInternalsVisibleTo())
+            foreach (var shortName in GetInternalsVisibleTo())
             {
                 if (string.Equals(module.AssemblyName, shortName, StringComparison.OrdinalIgnoreCase))
                     return true;
@@ -187,7 +187,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
         {
             if (fullAssemblyName == null)
                 return null;
-            int pos = fullAssemblyName.IndexOf(',');
+            var pos = fullAssemblyName.IndexOf(',');
             if (pos < 0)
                 return fullAssemblyName;
             else
@@ -216,7 +216,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
                 return null;
             if (typeDefs == null)
                 return new MetadataTypeDefinition(this, handle);
-            int row = MetadataTokens.GetRowNumber(handle);
+            var row = MetadataTokens.GetRowNumber(handle);
             if (row >= typeDefs.Length)
                 HandleOutOfRange(handle);
             var typeDef = LazyInit.VolatileRead(ref typeDefs[row]);
@@ -232,7 +232,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
                 return null;
             if (fieldDefs == null)
                 return new MetadataField(this, handle);
-            int row = MetadataTokens.GetRowNumber(handle);
+            var row = MetadataTokens.GetRowNumber(handle);
             if (row >= fieldDefs.Length)
                 HandleOutOfRange(handle);
             var field = LazyInit.VolatileRead(ref fieldDefs[row]);
@@ -248,7 +248,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
                 return null;
             if (methodDefs == null)
                 return new MetadataMethod(this, handle);
-            int row = MetadataTokens.GetRowNumber(handle);
+            var row = MetadataTokens.GetRowNumber(handle);
             Debug.Assert(row != 0);
             if (row >= methodDefs.Length)
                 HandleOutOfRange(handle);
@@ -265,7 +265,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
                 return null;
             if (propertyDefs == null)
                 return new MetadataProperty(this, handle);
-            int row = MetadataTokens.GetRowNumber(handle);
+            var row = MetadataTokens.GetRowNumber(handle);
             Debug.Assert(row != 0);
             if (row >= methodDefs.Length)
                 HandleOutOfRange(handle);
@@ -282,7 +282,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
                 return null;
             if (eventDefs == null)
                 return new MetadataEvent(this, handle);
-            int row = MetadataTokens.GetRowNumber(handle);
+            var row = MetadataTokens.GetRowNumber(handle);
             Debug.Assert(row != 0);
             if (row >= methodDefs.Length)
                 HandleOutOfRange(handle);
@@ -308,7 +308,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
             if (referencedAssemblies == null)
                 return ResolveModuleUncached(handle);
-            int row = MetadataTokens.GetRowNumber(handle);
+            var row = MetadataTokens.GetRowNumber(handle);
 
             if (row < 0)
             {
@@ -335,7 +335,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
             if (handle.IsNil)
                 return null;
             var modRef = metadata.GetModuleReference(handle);
-            string name = metadata.GetString(modRef.Name);
+            var name = metadata.GetString(modRef.Name);
             foreach (var mod in Compilation.Modules)
             {
                 if (mod.Name == name)
@@ -484,7 +484,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
                 }
                 // Note: declaringType might be parameterized, but the signature is for the original method definition.
                 // We'll have to search the member directly on declaringTypeDefinition.
-                string name = metadata.GetString(memberRef.Name);
+                var name = metadata.GetString(memberRef.Name);
                 signature = memberRef.DecodeMethodSignature(TypeProvider,
                     new GenericContext(declaringTypeDefinition?.TypeParameters));
                 if (declaringTypeDefinition != null)
@@ -558,8 +558,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
         static bool CompareTypes(IType a, IType b)
         {
-            IType type1 = a.AcceptVisitor(normalizeTypeVisitor);
-            IType type2 = b.AcceptVisitor(normalizeTypeVisitor);
+            var type1 = a.AcceptVisitor(normalizeTypeVisitor);
+            var type2 = b.AcceptVisitor(normalizeTypeVisitor);
             return type1.Equals(type2);
         }
 
@@ -567,7 +567,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
         {
             if (parameterTypes.Length != parameters.Count)
                 return false;
-            for (int i = 0; i < parameterTypes.Length; i++)
+            for (var i = 0; i < parameterTypes.Length; i++)
             {
                 if (!CompareTypes(parameterTypes[i], parameters[i].Type))
                     return false;
@@ -580,7 +580,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
         /// </summary>
         IMethod CreateFakeMethod(IType declaringType, string name, MethodSignature<IType> signature)
         {
-            SymbolKind symbolKind = SymbolKind.Method;
+            var symbolKind = SymbolKind.Method;
             if (name == ".ctor" || name == ".cctor")
                 symbolKind = SymbolKind.Constructor;
             var m = new FakeMethod(Compilation, symbolKind);
@@ -593,7 +593,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
             if (signature.GenericParameterCount > 0)
             {
                 var typeParameters = new List<ITypeParameter>();
-                for (int i = 0; i < signature.GenericParameterCount; i++)
+                for (var i = 0; i < signature.GenericParameterCount; i++)
                 {
                     typeParameters.Add(new DefaultTypeParameter(m, i));
                 }
@@ -605,7 +605,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
                 substitution = declaringType.GetSubstitution();
             }
             var parameters = new List<IParameter>();
-            for (int i = 0; i < signature.RequiredParameterCount; i++)
+            for (var i = 0; i < signature.RequiredParameterCount; i++)
             {
                 var type = signature.ParameterTypes[i];
                 if (substitution != null)
@@ -674,7 +674,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
             var memberRef = metadata.GetMemberReference(memberReferenceHandle);
             var declaringType = ResolveDeclaringType(memberRef.Parent, context);
             var declaringTypeDefinition = declaringType.GetDefinition();
-            string name = metadata.GetString(memberRef.Name);
+            var name = metadata.GetString(memberRef.Name);
             // field signature is for the definition, not the generic instance
             var signature = memberRef.DecodeFieldSignature(TypeProvider,
                 new GenericContext(declaringTypeDefinition?.TypeParameters));
@@ -760,7 +760,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
         void AddTypeForwarderAttributes(ref AttributeListBuilder b)
         {
-            foreach (ExportedTypeHandle t in metadata.ExportedTypes)
+            foreach (var t in metadata.ExportedTypes)
             {
                 var type = metadata.GetExportedType(t);
                 if (type.IsForwarder)
@@ -772,7 +772,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
         IType ResolveForwardedType(ExportedType forwarder)
         {
-            IModule module = ResolveModule(forwarder);
+            var module = ResolveModule(forwarder);
             var typeName = forwarder.GetFullTypeName(metadata);
             if (module == null)
                 return new UnknownType(typeName);
@@ -801,7 +801,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
                         return ResolveModule(outerType);
                     case HandleKind.AssemblyReference:
                         var asmRef = metadata.GetAssemblyReference((AssemblyReferenceHandle)type.Implementation);
-                        string shortName = metadata.GetString(asmRef.Name);
+                        var shortName = metadata.GetString(asmRef.Name);
                         foreach (var asm in Compilation.Modules)
                         {
                             if (string.Equals(asm.AssemblyName, shortName, StringComparison.OrdinalIgnoreCase))

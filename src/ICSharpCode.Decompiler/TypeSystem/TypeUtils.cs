@@ -114,7 +114,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		/// </summary>
 		public static bool IsSmallIntegerType(this IType type)
 		{
-			int size = GetSize(type);
+			var size = GetSize(type);
 			return size > 0 && size < 4;
 		}
 
@@ -247,8 +247,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			if (memoryType.IsReferenceType == true && accessType.IsReferenceType == true)
 				return true;
 			// 2) Both types are integer types of equal size
-			StackType memoryStackType = memoryType.GetStackType();
-			StackType accessStackType = accessType.GetStackType();
+			var memoryStackType = memoryType.GetStackType();
+			var accessStackType = accessType.GetStackType();
 			if (memoryStackType == accessStackType && memoryStackType.IsIntegerType() && GetSize(memoryType) == GetSize(accessType))
 				return true;
 			// 3) Any of the types is unknown: we assume they are compatible.

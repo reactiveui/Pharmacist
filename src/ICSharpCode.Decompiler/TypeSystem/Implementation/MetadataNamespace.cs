@@ -16,7 +16,6 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection.Metadata;
@@ -58,10 +57,10 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				}
 				var nsDefs = ns.NamespaceDefinitions;
 				children = new INamespace[nsDefs.Length];
-				for (int i = 0; i < children.Length; i++)
+				for (var i = 0; i < children.Length; i++)
 				{
 					var nsHandle = nsDefs[i];
-					string fullName = module.metadata.GetString(nsHandle);
+					var fullName = module.metadata.GetString(nsHandle);
 					children[i] = new MetadataNamespace(module, this, fullName,
 						module.metadata.GetNamespaceDefinition(nsHandle));
 				}

@@ -123,7 +123,7 @@ namespace LightJson.Serialization
 		{
 			while (true)
 			{
-				int next = this.scanner.Peek(throwAtEndOfFile: false);
+				var next = this.scanner.Peek(throwAtEndOfFile: false);
 				if (next == -1 || !char.IsNumber((char)next))
 				{
 					return;
@@ -310,7 +310,7 @@ namespace LightJson.Serialization
 
 		private char ReadUnicodeLiteral()
 		{
-			int value = 0;
+			var value = 0;
 
 			value += this.ReadHexDigit() * 4096; // 16^3
 			value += this.ReadHexDigit() * 256;  // 16^2

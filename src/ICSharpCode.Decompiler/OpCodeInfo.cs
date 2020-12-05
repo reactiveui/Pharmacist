@@ -17,12 +17,7 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection.Metadata;
-using System.Reflection.Metadata.Ecma335;
-
-using ICSharpCode.Decompiler.Metadata;
 
 namespace ICSharpCode.Decompiler.Disassembler
 {
@@ -86,8 +81,8 @@ namespace ICSharpCode.Decompiler.Disassembler
 						encodedName = "Volatile";
 						return encodedName;
 				}
-				string text = "";
-				bool toUpperCase = true;
+				var text = "";
+				var toUpperCase = true;
 				foreach (var ch in Name)
 				{
 					if (ch == '.')

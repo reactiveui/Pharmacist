@@ -46,7 +46,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		{
 			if (type == null)
 				throw new ArgumentNullException(nameof(type));
-			BaseTypeCollector collector = new BaseTypeCollector();
+			var collector = new BaseTypeCollector();
 			collector.CollectBaseTypes(type);
 			return collector;
 		}
@@ -63,7 +63,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		{
 			if (type == null)
 				throw new ArgumentNullException(nameof(type));
-			BaseTypeCollector collector = new BaseTypeCollector();
+			var collector = new BaseTypeCollector();
 			collector.SkipImplementedInterfaces = true;
 			collector.CollectBaseTypes(type);
 			return collector;
@@ -147,7 +147,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 				isOpen = true;
 				// If both classes and methods, or different classes (nested types)
 				// are involved, find the most specific one
-				int newNestingLevel = GetNestingLevel(type.Owner);
+				var newNestingLevel = GetNestingLevel(type.Owner);
 				if (newNestingLevel > typeParameterOwnerNestingLevel)
 				{
 					typeParameterOwner = type.Owner;
@@ -158,7 +158,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 			static int GetNestingLevel(IEntity entity)
 			{
-				int level = 0;
+				var level = 0;
 				while (entity != null)
 				{
 					level++;
@@ -185,7 +185,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		{
 			if (type == null)
 				throw new ArgumentNullException(nameof(type));
-			TypeClassificationVisitor v = new TypeClassificationVisitor();
+			var v = new TypeClassificationVisitor();
 			type.AcceptVisitor(v);
 			return v.isOpen;
 		}
@@ -200,7 +200,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		{
 			if (type == null)
 				throw new ArgumentNullException(nameof(type));
-			TypeClassificationVisitor v = new TypeClassificationVisitor();
+			var v = new TypeClassificationVisitor();
 			type.AcceptVisitor(v);
 			return v.typeParameterOwner;
 		}
@@ -354,9 +354,9 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		{
 			if (compilation == null)
 				throw new ArgumentNullException(nameof(compilation));
-			foreach (IModule asm in compilation.Modules)
+			foreach (var asm in compilation.Modules)
 			{
-				ITypeDefinition def = asm.GetTypeDefinition(fullTypeName);
+				var def = asm.GetTypeDefinition(fullTypeName);
 				if (def != null)
 					return def;
 			}
@@ -371,14 +371,14 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		{
 			if (module == null)
 				throw new ArgumentNullException("assembly");
-			TopLevelTypeName topLevelTypeName = fullTypeName.TopLevelTypeName;
-			ITypeDefinition typeDef = module.GetTypeDefinition(topLevelTypeName);
+			var topLevelTypeName = fullTypeName.TopLevelTypeName;
+			var typeDef = module.GetTypeDefinition(topLevelTypeName);
 			if (typeDef == null)
 				return null;
-			int typeParameterCount = topLevelTypeName.TypeParameterCount;
-			for (int i = 0; i < fullTypeName.NestingLevel; i++)
+			var typeParameterCount = topLevelTypeName.TypeParameterCount;
+			for (var i = 0; i < fullTypeName.NestingLevel; i++)
 			{
-				string name = fullTypeName.GetNestedTypeName(i);
+				var name = fullTypeName.GetNestedTypeName(i);
 				typeParameterCount += fullTypeName.GetNestedTypeAdditionalTypeParameterCount(i);
 				typeDef = FindNestedType(typeDef, name, typeParameterCount);
 				if (typeDef == null)
@@ -536,16 +536,16 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public static IType GetElementTypeFromIEnumerable(this IType collectionType, ICompilation compilation, bool allowIEnumerator, out bool? isGeneric)
 		{
-			bool foundNonGenericIEnumerable = false;
-			foreach (IType baseType in collectionType.GetAllBaseTypes())
+			var foundNonGenericIEnumerable = false;
+			foreach (var baseType in collectionType.GetAllBaseTypes())
 			{
-				ITypeDefinition baseTypeDef = baseType.GetDefinition();
+				var baseTypeDef = baseType.GetDefinition();
 				if (baseTypeDef != null)
 				{
-					KnownTypeCode typeCode = baseTypeDef.KnownTypeCode;
+					var typeCode = baseTypeDef.KnownTypeCode;
 					if (typeCode == KnownTypeCode.IEnumerableOfT || (allowIEnumerator && typeCode == KnownTypeCode.IEnumeratorOfT))
 					{
-						ParameterizedType pt = baseType as ParameterizedType;
+						var pt = baseType as ParameterizedType;
 						if (pt != null)
 						{
 							isGeneric = true;

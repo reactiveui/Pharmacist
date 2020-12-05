@@ -21,9 +21,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
-using System.Text;
-
-using ICSharpCode.Decompiler.Util;
 
 namespace ICSharpCode.Decompiler.Metadata
 {
@@ -93,7 +90,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		public (EntityHandle, MethodSemanticsAttributes) GetSemantics(MethodDefinitionHandle method)
 		{
-			int pos = entries.BinarySearch(new Entry(0, method, default(EntityHandle)));
+			var pos = entries.BinarySearch(new Entry(0, method, default(EntityHandle)));
 			if (pos >= 0)
 			{
 				return (entries[pos].Association, entries[pos].Semantics);

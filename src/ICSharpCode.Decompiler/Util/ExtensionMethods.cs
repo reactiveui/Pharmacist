@@ -17,7 +17,6 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 
 namespace ICSharpCode.Decompiler.Util
 {
@@ -37,7 +36,7 @@ namespace ICSharpCode.Decompiler.Util
 
 		public static void Swap<T>(ref T a, ref T b)
 		{
-			T tmp = a;
+			var tmp = a;
 			a = b;
 			b = tmp;
 		}

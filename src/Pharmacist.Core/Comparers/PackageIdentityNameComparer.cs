@@ -27,12 +27,7 @@ namespace Pharmacist.Core.Comparers
                 return false;
             }
 
-            if (ReferenceEquals(x, y))
-            {
-                return true;
-            }
-
-            return StringComparer.OrdinalIgnoreCase.Equals(x?.Id, y?.Id);
+            return ReferenceEquals(x, y) || StringComparer.OrdinalIgnoreCase.Equals(x.Id, y.Id);
         }
 
         /// <inheritdoc />

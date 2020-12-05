@@ -184,7 +184,7 @@ namespace Pharmacist.Core.NuGet
         /// <param name="token">A cancellation token.</param>
         /// <returns>The directory where the NuGet packages are unzipped to. Also the files contained within the requested package only.</returns>
         private static async Task<InputAssembliesGroup> DownloadPackageFilesAndFolder(
-            IReadOnlyCollection<PackageIdentity> packageIdentities,
+            IEnumerable<PackageIdentity> packageIdentities,
             IReadOnlyCollection<NuGetFramework> frameworks,
             DownloadResource downloadResource,
             bool getDependencies = true,
@@ -201,7 +201,7 @@ namespace Pharmacist.Core.NuGet
         }
 
         private static async Task<IReadOnlyCollection<(DownloadResourceResult DownloadResourceResult, PackageIdentity PackageIdentity, bool IncludeFilesInOutput)>> GetPackagesToCopy(
-            IReadOnlyCollection<PackageIdentity> startingPackages,
+            IEnumerable<PackageIdentity> startingPackages,
             DownloadResource downloadResource,
             IReadOnlyCollection<NuGetFramework> frameworks,
             bool getDependencies,
@@ -247,7 +247,7 @@ namespace Pharmacist.Core.NuGet
         }
 
         private static InputAssembliesGroup CopyPackageFiles(
-            IReadOnlyCollection<(DownloadResourceResult DownloadResourceResult, PackageIdentity PackageIdentity, bool IncludeFilesInOutput)> packagesToProcess,
+            IEnumerable<(DownloadResourceResult DownloadResourceResult, PackageIdentity PackageIdentity, bool IncludeFilesInOutput)> packagesToProcess,
             IReadOnlyCollection<NuGetFramework> frameworks,
             IReadOnlyCollection<string> packageFolders,
             string packageDirectory,
@@ -279,15 +279,15 @@ namespace Pharmacist.Core.NuGet
                                  _logger,
                                  token)));
 
-                foreach (var folder in folders)
+                foreach (var (_, files) in folders)
                 {
                     if (includeFilesInOutput)
                     {
-                        inputAssembliesGroup.IncludeGroup.AddFiles(folder.files);
+                        inputAssembliesGroup.IncludeGroup.AddFiles(files);
                     }
                     else
                     {
-                        inputAssembliesGroup.SupportGroup.AddFiles(folder.files);
+                        inputAssembliesGroup.SupportGroup.AddFiles(files);
                     }
                 }
             }
@@ -320,15 +320,12 @@ namespace Pharmacist.Core.NuGet
                 .FirstOrDefault();
 
             // If no packages match our framework just return an empty array.
-            if (highestFramework == null)
-            {
-                return Array.Empty<PackageIdentity>();
-            }
-
-            return highestFramework.Packages.Select(package => new PackageIdentity(package.Id, package.VersionRange.MinVersion));
+            return highestFramework == null ?
+                       Array.Empty<PackageIdentity>() :
+                       highestFramework.Packages.Select(package => new PackageIdentity(package.Id, package.VersionRange.MinVersion));
         }
 
-        private static IEnumerable<(string Folder, IEnumerable<string> Files)> GetFileGroups(this PackageReaderBase reader, IReadOnlyCollection<string> folders, IReadOnlyCollection<NuGetFramework> frameworksToInclude)
+        private static IEnumerable<(string Folder, IEnumerable<string> Files)> GetFileGroups(this IPackageCoreReader reader, IReadOnlyCollection<string> folders, IReadOnlyCollection<NuGetFramework> frameworksToInclude)
         {
             var groups = new Dictionary<NuGetFramework, Dictionary<string, List<string>>>(new NuGetFrameworkFullComparer());
             foreach (var folder in folders)

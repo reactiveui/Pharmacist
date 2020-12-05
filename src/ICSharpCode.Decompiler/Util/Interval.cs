@@ -94,8 +94,8 @@ namespace ICSharpCode.Decompiler.Util
 		/// </summary>
 		public Interval Intersect(Interval other)
 		{
-			int start = Math.Max(this.Start, other.Start);
-			int inclusiveEnd = Math.Min(this.InclusiveEnd, other.InclusiveEnd);
+			var start = Math.Max(this.Start, other.Start);
+			var inclusiveEnd = Math.Min(this.InclusiveEnd, other.InclusiveEnd);
 			if (start <= inclusiveEnd)
 				return new Interval(start, unchecked(inclusiveEnd + 1));
 			else
@@ -230,8 +230,8 @@ namespace ICSharpCode.Decompiler.Util
 		/// </summary>
 		public LongInterval Intersect(LongInterval other)
 		{
-			long start = Math.Max(this.Start, other.Start);
-			long inclusiveEnd = Math.Min(this.InclusiveEnd, other.InclusiveEnd);
+			var start = Math.Max(this.Start, other.Start);
+			var inclusiveEnd = Math.Min(this.InclusiveEnd, other.InclusiveEnd);
 			if (start <= inclusiveEnd)
 				return new LongInterval(start, unchecked(inclusiveEnd + 1));
 			else
@@ -245,7 +245,7 @@ namespace ICSharpCode.Decompiler.Util
 		{
 			if (End == long.MinValue)
 			{
-				long i = Start;
+				var i = Start;
 				while (true)
 				{
 					yield return i;
@@ -256,7 +256,7 @@ namespace ICSharpCode.Decompiler.Util
 			}
 			else
 			{
-				for (long i = Start; i < End; i++)
+				for (var i = Start; i < End; i++)
 					yield return i;
 			}
 		}

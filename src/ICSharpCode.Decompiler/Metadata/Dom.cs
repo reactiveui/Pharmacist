@@ -109,7 +109,7 @@ namespace ICSharpCode.Decompiler.Metadata
 				throw new BadImageFormatException("RVA could not be found in any section!");
 			var reader = sectionData.GetReader();
 			reader.Offset += (int)This().Offset;
-			int length = reader.ReadInt32();
+			var length = reader.ReadInt32();
 			if (length < 0 || length > reader.RemainingBytes)
 				throw new BadImageFormatException("Resource stream length invalid");
 			return new ResourceMemoryStream(Module.Reader, reader.CurrentPointer, length);
@@ -267,7 +267,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		public string GetGenericTypeParameterName(int index)
 		{
-			GenericParameterHandle genericParameter = GetGenericTypeParameterHandleOrNull(index);
+			var genericParameter = GetGenericTypeParameterHandleOrNull(index);
 			if (genericParameter.IsNil)
 				return index.ToString();
 			return metadata.GetString(metadata.GetGenericParameter(genericParameter).Name);
@@ -275,7 +275,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		public string GetGenericMethodTypeParameterName(int index)
 		{
-			GenericParameterHandle genericParameter = GetGenericMethodTypeParameterHandleOrNull(index);
+			var genericParameter = GetGenericMethodTypeParameterHandleOrNull(index);
 			if (genericParameter.IsNil)
 				return index.ToString();
 			return metadata.GetString(metadata.GetGenericParameter(genericParameter).Name);

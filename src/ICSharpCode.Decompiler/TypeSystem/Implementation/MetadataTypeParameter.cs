@@ -16,10 +16,8 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
@@ -47,7 +45,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				return Empty<ITypeParameter>.Array;
 			var outerTps = copyFromOuter.TypeParameters;
 			var tps = new ITypeParameter[handles.Count];
-			int i = 0;
+			var i = 0;
 			foreach (var handle in handles)
 			{
 				if (i < outerTps.Count)
@@ -64,7 +62,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 			if (handles.Count == 0)
 				return Empty<ITypeParameter>.Array;
 			var tps = new ITypeParameter[handles.Count];
-			int i = 0;
+			var i = 0;
 			foreach (var handle in handles)
 			{
 				tps[i] = Create(module, owner, i, handle);
@@ -215,7 +213,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 			var constraintHandleCollection = gp.GetConstraints();
 			var result = new List<TypeConstraint>(constraintHandleCollection.Count + 1);
-			bool hasNonInterfaceConstraint = false;
+			var hasNonInterfaceConstraint = false;
 			foreach (var constraintHandle in constraintHandleCollection)
 			{
 				var constraint = metadata.GetGenericParameterConstraint(constraintHandle);
@@ -227,7 +225,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				}
 				else
 				{
-					AttributeListBuilder b = new AttributeListBuilder(module);
+					var b = new AttributeListBuilder(module);
 					b.Add(attrs, SymbolKind.Constraint);
 					result.Add(new TypeConstraint(ty, b.Build()));
 				}

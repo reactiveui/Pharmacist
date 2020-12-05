@@ -86,7 +86,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		/// </remarks>
 		public FullTypeName(string reflectionName)
 		{
-			int pos = reflectionName.IndexOf('+');
+			var pos = reflectionName.IndexOf('+');
 			if (pos < 0)
 			{
 				// top-level type
@@ -96,13 +96,13 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			else
 			{
 				// nested type
-				string[] parts = reflectionName.Split('+');
+				var parts = reflectionName.Split('+');
 				this.topLevelType = new TopLevelTypeName(parts[0]);
 				this.nestedTypes = new NestedTypeName[parts.Length - 1];
-				for (int i = 0; i < nestedTypes.Length; i++)
+				for (var i = 0; i < nestedTypes.Length; i++)
 				{
 					int tpc;
-					string name = ReflectionHelper.SplitTypeParameterCountFromReflectionName(parts[i + 1], out tpc);
+					var name = ReflectionHelper.SplitTypeParameterCountFromReflectionName(parts[i + 1], out tpc);
 					nestedTypes[i] = new NestedTypeName(name, tpc);
 				}
 			}
@@ -150,8 +150,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			get {
 				if (nestedTypes == null)
 					return topLevelType.ReflectionName;
-				StringBuilder b = new StringBuilder(topLevelType.ReflectionName);
-				foreach (NestedTypeName nt in nestedTypes)
+				var b = new StringBuilder(topLevelType.ReflectionName);
+				foreach (var nt in nestedTypes)
 				{
 					b.Append('+');
 					b.Append(nt.Name);
@@ -170,7 +170,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		/// </summary>
 		public int TypeParameterCount {
 			get {
-				int tpc = topLevelType.TypeParameterCount;
+				var tpc = topLevelType.TypeParameterCount;
 				if (nestedTypes != null)
 				{
 					foreach (var nt in nestedTypes)
@@ -213,7 +213,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 				throw new InvalidOperationException();
 			if (nestedTypes.Length == 1)
 				return topLevelType;
-			NestedTypeName[] outerNestedTypeNames = new NestedTypeName[nestedTypes.Length - 1];
+			var outerNestedTypeNames = new NestedTypeName[nestedTypes.Length - 1];
 			Array.Copy(nestedTypes, 0, outerNestedTypeNames, 0, outerNestedTypeNames.Length);
 			return new FullTypeName(topLevelType, outerNestedTypeNames);
 		}
@@ -229,7 +229,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			var newNestedType = new NestedTypeName(name, additionalTypeParameterCount);
 			if (nestedTypes == null)
 				return new FullTypeName(topLevelType, new[] { newNestedType });
-			NestedTypeName[] newNestedTypeNames = new NestedTypeName[nestedTypes.Length + 1];
+			var newNestedTypeNames = new NestedTypeName[nestedTypes.Length + 1];
 			nestedTypes.CopyTo(newNestedTypeNames, 0);
 			newNestedTypeNames[newNestedTypeNames.Length - 1] = newNestedType;
 			return new FullTypeName(topLevelType, newNestedTypeNames);
@@ -290,13 +290,13 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		{
 			if (x.NestingLevel != y.NestingLevel)
 				return false;
-			TopLevelTypeName topX = x.TopLevelTypeName;
-			TopLevelTypeName topY = y.TopLevelTypeName;
+			var topX = x.TopLevelTypeName;
+			var topY = y.TopLevelTypeName;
 			if (topX.TypeParameterCount == topY.TypeParameterCount
 				&& NameComparer.Equals(topX.Name, topY.Name)
 				&& NameComparer.Equals(topX.Namespace, topY.Namespace))
 			{
-				for (int i = 0; i < x.NestingLevel; i++)
+				for (var i = 0; i < x.NestingLevel; i++)
 				{
 					if (x.GetNestedTypeAdditionalTypeParameterCount(i) != y.GetNestedTypeAdditionalTypeParameterCount(i))
 						return false;
@@ -310,11 +310,11 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public int GetHashCode(FullTypeName obj)
 		{
-			TopLevelTypeName top = obj.TopLevelTypeName;
-			int hash = NameComparer.GetHashCode(top.Name) ^ NameComparer.GetHashCode(top.Namespace) ^ top.TypeParameterCount;
+			var top = obj.TopLevelTypeName;
+			var hash = NameComparer.GetHashCode(top.Name) ^ NameComparer.GetHashCode(top.Namespace) ^ top.TypeParameterCount;
 			unchecked
 			{
-				for (int i = 0; i < obj.NestingLevel; i++)
+				for (var i = 0; i < obj.NestingLevel; i++)
 				{
 					hash *= 31;
 					hash += NameComparer.GetHashCode(obj.Name) ^ obj.TypeParameterCount;

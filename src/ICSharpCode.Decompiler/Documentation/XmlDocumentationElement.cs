@@ -23,7 +23,6 @@ using System.Text;
 using System.Threading;
 using System.Xml.Linq;
 
-using ICSharpCode.Decompiler.Documentation;
 using ICSharpCode.Decompiler.TypeSystem;
 using ICSharpCode.Decompiler.Util;
 
@@ -92,7 +91,7 @@ namespace ICSharpCode.Decompiler.Documentation
 			get {
 				if (!referencedEntityInitialized)
 				{
-					string cref = GetAttribute("cref");
+					var cref = GetAttribute("cref");
 					try
 					{
 						if (!string.IsNullOrEmpty(cref) && crefResolver != null)
@@ -139,7 +138,7 @@ namespace ICSharpCode.Decompiler.Documentation
 			get {
 				if (textContent == null)
 				{
-					StringBuilder b = new StringBuilder();
+					var b = new StringBuilder();
 					foreach (var child in this.Children)
 						b.Append(child.TextContent);
 					textContent = b.ToString();
@@ -170,7 +169,7 @@ namespace ICSharpCode.Decompiler.Documentation
 
 		static List<XmlDocumentationElement> CreateElements(IEnumerable<XObject> childObjects, IEntity declaringEntity, Func<string, IEntity> crefResolver, int nestingLevel)
 		{
-			List<XmlDocumentationElement> list = new List<XmlDocumentationElement>();
+			var list = new List<XmlDocumentationElement>();
 			foreach (var child in childObjects)
 			{
 				var childText = child as XText;
@@ -188,7 +187,7 @@ namespace ICSharpCode.Decompiler.Documentation
 				{
 					if (nestingLevel < 5 && childElement.Name == "inheritdoc")
 					{
-						string cref = childElement.Attribute("cref").Value;
+						var cref = childElement.Attribute("cref").Value;
 						IEntity inheritedFrom = null;
 						string inheritedDocumentation = null;
 						if (cref != null)
@@ -199,7 +198,7 @@ namespace ICSharpCode.Decompiler.Documentation
 						}
 						else
 						{
-							foreach (IMember baseMember in InheritanceHelper.GetBaseMembers((IMember)declaringEntity, includeImplementedInterfaces: true))
+							foreach (var baseMember in InheritanceHelper.GetBaseMembers((IMember)declaringEntity, includeImplementedInterfaces: true))
 							{
 								inheritedDocumentation = baseMember.GetDocumentation();
 								if (inheritedDocumentation != null)
@@ -218,14 +217,14 @@ namespace ICSharpCode.Decompiler.Documentation
 							if (childElement.Parent == null && childElement.Attribute("select").Value == null)
 							{
 								// Inheriting documentation at the root level
-								List<string> doNotInherit = new List<string>();
+								var doNotInherit = new List<string>();
 								doNotInherit.Add("overloads");
 								doNotInherit.AddRange(childObjects.OfType<XElement>().Select(e => e.Name.LocalName).Intersect(
 									doNotInheritIfAlreadyPresent));
 
 								var inheritedChildren = doc.Nodes().Where(
 									inheritedObject => {
-										XElement inheritedElement = inheritedObject as XElement;
+										var inheritedElement = inheritedObject as XElement;
 										return !(inheritedElement != null && doNotInherit.Contains(inheritedElement.Name.LocalName));
 									});
 

@@ -35,7 +35,7 @@ namespace ICSharpCode.Decompiler.Util
 
 			int i;
 
-			bool isWeb = false;
+			var isWeb = false;
 			for (i = 0; i < fileName.Length; i++)
 			{
 				if (fileName[i] == '/' || fileName[i] == '\\')
@@ -48,11 +48,11 @@ namespace ICSharpCode.Decompiler.Util
 				}
 			}
 
-			char outputSeparator = '/';
+			var outputSeparator = '/';
 			bool isRelative;
-			bool isAbsoluteUnixPath = false;
+			var isAbsoluteUnixPath = false;
 
-			StringBuilder result = new StringBuilder();
+			var result = new StringBuilder();
 			if (isWeb == false && IsUNCPath(fileName))
 			{
 				// UNC path
@@ -71,13 +71,13 @@ namespace ICSharpCode.Decompiler.Util
 					outputSeparator = '\\';
 				}
 			}
-			int levelsBack = 0;
-			int segmentStartPos = i;
+			var levelsBack = 0;
+			var segmentStartPos = i;
 			for (; i <= fileName.Length; i++)
 			{
 				if (i == fileName.Length || fileName[i] == '/' || fileName[i] == '\\')
 				{
-					int segmentLength = i - segmentStartPos;
+					var segmentLength = i - segmentStartPos;
 					switch (segmentLength)
 					{
 						case 0:
@@ -139,7 +139,7 @@ namespace ICSharpCode.Decompiler.Util
 			{
 				if (isRelative)
 				{
-					for (int j = 0; j < levelsBack; j++)
+					for (var j = 0; j < levelsBack; j++)
 					{
 						result.Insert(0, ".." + outputSeparator);
 					}
@@ -222,9 +222,9 @@ namespace ICSharpCode.Decompiler.Util
 			baseDirectoryPath = NormalizePath(baseDirectoryPath);
 			absPath = NormalizePath(absPath);
 
-			string[] bPath = baseDirectoryPath != "." ? baseDirectoryPath.TrimEnd(separators).Split(separators) : new string[0];
-			string[] aPath = absPath != "." ? absPath.TrimEnd(separators).Split(separators) : new string[0];
-			int indx = 0;
+			var bPath = baseDirectoryPath != "." ? baseDirectoryPath.TrimEnd(separators).Split(separators) : new string[0];
+			var aPath = absPath != "." ? absPath.TrimEnd(separators).Split(separators) : new string[0];
+			var indx = 0;
 			for (; indx < Math.Min(bPath.Length, aPath.Length); ++indx)
 			{
 				if (!bPath[indx].Equals(aPath[indx], StringComparison.OrdinalIgnoreCase))
@@ -240,8 +240,8 @@ namespace ICSharpCode.Decompiler.Util
 			{
 				return ".";
 			}
-			StringBuilder erg = new StringBuilder();
-			for (int i = indx; i < bPath.Length; ++i)
+			var erg = new StringBuilder();
+			for (var i = indx; i < bPath.Length; ++i)
 			{
 				erg.Append("..");
 				erg.Append(Path.DirectorySeparatorChar);
@@ -259,14 +259,14 @@ namespace ICSharpCode.Decompiler.Util
 
 			if (path == null || path.Length <= max_chars)
 				return path;
-			char sep = Path.DirectorySeparatorChar;
+			var sep = Path.DirectorySeparatorChar;
 			if (path.IndexOf(Path.AltDirectorySeparatorChar) >= 0 && path.IndexOf(Path.DirectorySeparatorChar) < 0)
 			{
 				sep = Path.AltDirectorySeparatorChar;
 			}
-			string[] parts = path.Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
-			int len = ellipsisLength; // For initial ellipsis
-			int index = parts.Length;
+			var parts = path.Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+			var len = ellipsisLength; // For initial ellipsis
+			var index = parts.Length;
 			// From the end of the path, fit as many parts as possible:
 			while (index > 1 && len + parts[index - 1].Length < max_chars)
 			{
@@ -274,7 +274,7 @@ namespace ICSharpCode.Decompiler.Util
 				index--;
 			}
 
-			StringBuilder result = new StringBuilder();
+			var result = new StringBuilder();
 			result.Append(ellipsis);
 			// If there's 5 chars left, partially fit another part:
 			if (index > 1 && len + 5 <= max_chars)

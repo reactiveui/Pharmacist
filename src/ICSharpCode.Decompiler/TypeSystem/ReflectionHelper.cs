@@ -86,11 +86,11 @@ namespace ICSharpCode.Decompiler.TypeSystem
 				return SpecialType.UnknownType;
 			if (type.IsGenericType && !type.IsGenericTypeDefinition)
 			{
-				ITypeReference def = ToTypeReference(type.GetGenericTypeDefinition());
-				Type[] arguments = type.GetGenericArguments();
-				ITypeReference[] args = new ITypeReference[arguments.Length];
-				bool allUnbound = true;
-				for (int i = 0; i < arguments.Length; i++)
+				var def = ToTypeReference(type.GetGenericTypeDefinition());
+				var arguments = type.GetGenericArguments();
+				var args = new ITypeReference[arguments.Length];
+				var allUnbound = true;
+				for (var i = 0; i < arguments.Length; i++)
 				{
 					args[i] = ToTypeReference(arguments[i]);
 					allUnbound &= args[i].Equals(SpecialType.UnboundTypeArgument);
@@ -135,16 +135,16 @@ namespace ICSharpCode.Decompiler.TypeSystem
 					return SpecialType.NullType;
 				else if (type == typeof(UnboundTypeArgument))
 					return SpecialType.UnboundTypeArgument;
-				ITypeReference baseTypeRef = ToTypeReference(type.DeclaringType);
+				var baseTypeRef = ToTypeReference(type.DeclaringType);
 				int typeParameterCount;
-				string name = SplitTypeParameterCountFromReflectionName(type.Name, out typeParameterCount);
+				var name = SplitTypeParameterCountFromReflectionName(type.Name, out typeParameterCount);
 				return new NestedTypeReference(baseTypeRef, name, typeParameterCount);
 			}
 			else
 			{
 				IModuleReference assemblyReference = new DefaultAssemblyReference(type.Assembly.FullName);
 				int typeParameterCount;
-				string name = SplitTypeParameterCountFromReflectionName(type.Name, out typeParameterCount);
+				var name = SplitTypeParameterCountFromReflectionName(type.Name, out typeParameterCount);
 				return new GetClassTypeReference(assemblyReference, type.Namespace, name, typeParameterCount);
 			}
 		}
@@ -157,7 +157,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		/// <remarks>Do not use this method with the full name of inner classes.</remarks>
 		public static string SplitTypeParameterCountFromReflectionName(string reflectionName)
 		{
-			int pos = reflectionName.LastIndexOf('`');
+			var pos = reflectionName.LastIndexOf('`');
 			if (pos < 0)
 			{
 				return reflectionName;
@@ -174,7 +174,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		/// <remarks>Do not use this method with the full name of inner classes.</remarks>
 		public static string SplitTypeParameterCountFromReflectionName(string reflectionName, out int typeParameterCount)
 		{
-			int pos = reflectionName.LastIndexOf('`');
+			var pos = reflectionName.LastIndexOf('`');
 			if (pos < 0)
 			{
 				typeParameterCount = 0;
@@ -182,7 +182,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			}
 			else
 			{
-				string typeCount = reflectionName.Substring(pos + 1);
+				var typeCount = reflectionName.Substring(pos + 1);
 				if (int.TryParse(typeCount, out typeParameterCount))
 					return reflectionName.Substring(0, pos);
 				else
@@ -215,10 +215,10 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		/// </summary>
 		public static TypeCode GetTypeCode(this IType type)
 		{
-			ITypeDefinition def = type as ITypeDefinition;
+			var def = type as ITypeDefinition;
 			if (def != null)
 			{
-				KnownTypeCode typeCode = def.KnownTypeCode;
+				var typeCode = def.KnownTypeCode;
 				if (typeCode <= KnownTypeCode.String && typeCode != KnownTypeCode.Void)
 					return (TypeCode)typeCode;
 				else
@@ -250,8 +250,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		{
 			if (reflectionTypeName == null)
 				throw new ArgumentNullException(nameof(reflectionTypeName));
-			int pos = 0;
-			ITypeReference r = ParseReflectionName(reflectionTypeName, ref pos);
+			var pos = 0;
+			var r = ParseReflectionName(reflectionTypeName, ref pos);
 			if (pos < reflectionTypeName.Length)
 				throw new ReflectionNameParseException(pos, "Expected end of type name");
 			return r;
@@ -293,21 +293,21 @@ namespace ICSharpCode.Decompiler.TypeSystem
 				{
 					// method type parameter reference
 					pos++;
-					int index = ReadTypeParameterCount(reflectionTypeName, ref pos);
+					var index = ReadTypeParameterCount(reflectionTypeName, ref pos);
 					reference = TypeParameterReference.Create(SymbolKind.Method, index);
 				}
 				else
 				{
 					// class type parameter reference
-					int index = ReadTypeParameterCount(reflectionTypeName, ref pos);
+					var index = ReadTypeParameterCount(reflectionTypeName, ref pos);
 					reference = TypeParameterReference.Create(SymbolKind.TypeDefinition, index);
 				}
 			}
 			else
 			{
 				// not a type parameter reference: read the actual type name
-				string typeName = ReadTypeName(reflectionTypeName, ref pos, out int tpc);
-				string assemblyName = local ? null : SkipAheadAndReadAssemblyName(reflectionTypeName, pos);
+				var typeName = ReadTypeName(reflectionTypeName, ref pos, out var tpc);
+				var assemblyName = local ? null : SkipAheadAndReadAssemblyName(reflectionTypeName, pos);
 				reference = CreateGetClassTypeReference(assemblyName, typeName, tpc);
 			}
 			// read type suffixes
@@ -317,7 +317,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 				{
 					case '+':
 						int tpc;
-						string typeName = ReadTypeName(reflectionTypeName, ref pos, out tpc);
+						var typeName = ReadTypeName(reflectionTypeName, ref pos, out tpc);
 						reference = new NestedTypeReference(reference, typeName, tpc);
 						break;
 					case '*':
@@ -333,8 +333,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
 						if (reflectionTypeName[pos] != ']' && reflectionTypeName[pos] != ',')
 						{
 							// it's a generic type
-							List<ITypeReference> typeArguments = new List<ITypeReference>();
-							bool first = true;
+							var typeArguments = new List<ITypeReference>();
+							var first = true;
 							while (first || pos < reflectionTypeName.Length && reflectionTypeName[pos] == ',')
 							{
 								if (first)
@@ -377,7 +377,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 						else
 						{
 							// it's an array
-							int dimensions = 1;
+							var dimensions = 1;
 							while (pos < reflectionTypeName.Length && reflectionTypeName[pos] == ',')
 							{
 								dimensions++;
@@ -421,7 +421,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			{
 				assemblyReference = null;
 			}
-			int pos = typeName.LastIndexOf('.');
+			var pos = typeName.LastIndexOf('.');
 			if (pos < 0)
 				return new GetClassTypeReference(assemblyReference, string.Empty, typeName, tpc);
 			else
@@ -430,7 +430,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		static string SkipAheadAndReadAssemblyName(string reflectionTypeName, int pos)
 		{
-			int nestingLevel = 0;
+			var nestingLevel = 0;
 			while (pos < reflectionTypeName.Length)
 			{
 				switch (reflectionTypeName[pos++])
@@ -450,7 +450,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 							while (pos < reflectionTypeName.Length && reflectionTypeName[pos] == ' ')
 								pos++;
 							// everything up to the end/next ']' is the assembly name
-							int endPos = pos;
+							var endPos = pos;
 							while (endPos < reflectionTypeName.Length && reflectionTypeName[endPos] != ']')
 								endPos++;
 							return reflectionTypeName.Substring(pos, endPos - pos);
@@ -463,13 +463,13 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		static string ReadTypeName(string reflectionTypeName, ref int pos, out int tpc)
 		{
-			int startPos = pos;
+			var startPos = pos;
 			// skip the simple name portion:
 			while (pos < reflectionTypeName.Length && !IsReflectionNameSpecialCharacter(reflectionTypeName[pos]))
 				pos++;
 			if (pos == startPos)
 				throw new ReflectionNameParseException(pos, "Expected type name");
-			string typeName = reflectionTypeName.Substring(startPos, pos - startPos);
+			var typeName = reflectionTypeName.Substring(startPos, pos - startPos);
 			if (pos < reflectionTypeName.Length && reflectionTypeName[pos] == '`')
 			{
 				pos++;
@@ -484,10 +484,10 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		internal static int ReadTypeParameterCount(string reflectionTypeName, ref int pos)
 		{
-			int startPos = pos;
+			var startPos = pos;
 			while (pos < reflectionTypeName.Length)
 			{
-				char c = reflectionTypeName[pos];
+				var c = reflectionTypeName[pos];
 				if (c < '0' || c > '9')
 					break;
 				pos++;

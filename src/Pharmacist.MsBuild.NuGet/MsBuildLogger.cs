@@ -53,6 +53,9 @@ namespace Pharmacist.MsBuild.NuGet
                 case LogLevel.Fatal:
                     _log.LogError(message);
                     break;
+                default:
+                    _log.LogMessage(message);
+                    break;
             }
         }
 
@@ -79,6 +82,9 @@ namespace Pharmacist.MsBuild.NuGet
                 case LogLevel.Fatal:
                     _log.LogErrorFromException(exception);
                     break;
+                default:
+                    _log.LogMessage(exception?.ToString());
+                    break;
             }
         }
 
@@ -102,6 +108,9 @@ namespace Pharmacist.MsBuild.NuGet
                 case LogLevel.Error:
                 case LogLevel.Fatal:
                     _log.LogError(message);
+                    break;
+                default:
+                    _log.LogMessage(message);
                     break;
             }
         }
@@ -128,6 +137,9 @@ namespace Pharmacist.MsBuild.NuGet
                 case LogLevel.Error:
                 case LogLevel.Fatal:
                     _log.LogErrorFromException(exception);
+                    break;
+                default:
+                    _log.LogMessage(exception?.ToString());
                     break;
             }
         }

@@ -40,10 +40,10 @@ namespace ICSharpCode.Decompiler.Semantics
 		{
 			if (variable == null)
 				throw new ArgumentNullException(nameof(variable));
-			IType type = variable.Type;
+			var type = variable.Type;
 			if (type.Kind == TypeKind.ByReference)
 			{
-				IParameter p = variable as IParameter;
+				var p = variable as IParameter;
 				if (p != null && p.ReferenceKind != ReferenceKind.None)
 					return ((ByReferenceType)type).ElementType;
 			}

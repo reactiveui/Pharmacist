@@ -26,7 +26,7 @@ namespace Pharmacist.Core.Comparers
                 return false;
             }
 
-            return StringComparer.InvariantCulture.Equals(x?.FullName, y?.FullName);
+            return StringComparer.InvariantCulture.Equals(x.FullName, y.FullName);
         }
 
         /// <inheritdoc />

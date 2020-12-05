@@ -46,7 +46,7 @@ namespace ICSharpCode.Decompiler.Metadata
 	{
 		public static OperandType GetOperandType(this ILOpCode opCode)
 		{
-			ushort index = (ushort)((((int)opCode & 0x200) >> 1) | ((int)opCode & 0xff));
+			var index = (ushort)((((int)opCode & 0x200) >> 1) | ((int)opCode & 0xff));
 			if (index >= operandTypes.Length)
 				return (OperandType)255;
 			return (OperandType)operandTypes[index];
@@ -54,7 +54,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		public static string GetDisplayName(this ILOpCode opCode)
 		{
-			ushort index = (ushort)((((int)opCode & 0x200) >> 1) | ((int)opCode & 0xff));
+			var index = (ushort)((((int)opCode & 0x200) >> 1) | ((int)opCode & 0xff));
 			if (index >= operandNames.Length)
 				return "";
 			return operandNames[index];
@@ -104,7 +104,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		static HashSet<string> BuildKeywordList(params string[] keywords)
 		{
-			HashSet<string> s = new HashSet<string>(keywords);
+			var s = new HashSet<string>(keywords);
 			foreach (var inst in operandNames)
 			{
 				if (string.IsNullOrEmpty(inst))

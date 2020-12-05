@@ -49,14 +49,12 @@ namespace Pharmacist.Core.Comparers
         /// <inheritdoc />
         public int Compare(NuGetFramework? x, NuGetFramework? y)
         {
-            if (x is null && y is null)
+            switch (x)
             {
-                return 0;
-            }
-
-            if (x is null)
-            {
-                return 1;
+                case null when y is null:
+                    return 0;
+                case null:
+                    return 1;
             }
 
             if (y is null)

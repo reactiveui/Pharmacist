@@ -131,8 +131,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		/// </summary>
 		public static Accessibility EffectiveAccessibility(this IEntity entity)
 		{
-			Accessibility accessibility = entity.Accessibility;
-			for (ITypeDefinition typeDef = entity.DeclaringTypeDefinition; typeDef != null; typeDef = typeDef.DeclaringTypeDefinition)
+			var accessibility = entity.Accessibility;
+			for (var typeDef = entity.DeclaringTypeDefinition; typeDef != null; typeDef = typeDef.DeclaringTypeDefinition)
 			{
 				accessibility = Intersect(accessibility, typeDef.Accessibility);
 			}

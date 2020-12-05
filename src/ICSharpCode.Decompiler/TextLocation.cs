@@ -201,7 +201,7 @@ namespace ICSharpCode.Decompiler.CSharp.Syntax
 		{
 			if (value is string)
 			{
-				string[] parts = ((string)value).Split(';', ',');
+				var parts = ((string)value).Split(';', ',');
 				if (parts.Length == 2)
 				{
 					return new TextLocation(int.Parse(parts[0]), int.Parse(parts[1]));

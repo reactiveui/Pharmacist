@@ -68,7 +68,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public string Name {
 			get {
-				string name = LazyInit.VolatileRead(ref this.name);
+				var name = LazyInit.VolatileRead(ref this.name);
 				if (name != null)
 					return name;
 				var metadata = module.metadata;
@@ -140,7 +140,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 			var fieldDef = metadata.GetFieldDefinition(handle);
 
 			// FieldOffsetAttribute
-			int offset = fieldDef.GetOffset();
+			var offset = fieldDef.GetOffset();
 			if (offset != -1)
 			{
 				b.Add(KnownAttribute.FieldOffset, KnownTypeCode.Int32, offset);
@@ -223,7 +223,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public object GetConstantValue(bool throwOnInvalidMetadata)
 		{
-			object val = LazyInit.VolatileRead(ref this.constantValue);
+			var val = LazyInit.VolatileRead(ref this.constantValue);
 			if (val != null)
 				return val;
 			try

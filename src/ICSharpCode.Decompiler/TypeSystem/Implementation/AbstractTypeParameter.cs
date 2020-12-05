@@ -106,8 +106,8 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 			if (HasValueTypeConstraint)
 				return this.Compilation.FindType(KnownTypeCode.ValueType);
 
-			List<IType> classTypeConstraints = new List<IType>();
-			foreach (IType constraint in this.DirectBaseTypes)
+			var classTypeConstraints = new List<IType>();
+			foreach (var constraint in this.DirectBaseTypes)
 			{
 				if (constraint.Kind == TypeKind.Class)
 				{
@@ -115,7 +115,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				}
 				else if (constraint.Kind == TypeKind.TypeParameter)
 				{
-					IType baseClass = ((ITypeParameter)constraint).EffectiveBaseClass;
+					var baseClass = ((ITypeParameter)constraint).EffectiveBaseClass;
 					if (baseClass.Kind == TypeKind.Class)
 						classTypeConstraints.Add(baseClass);
 				}
@@ -123,8 +123,8 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 			if (classTypeConstraints.Count == 0)
 				return this.Compilation.FindType(KnownTypeCode.Object);
 			// Find the derived-most type in the resulting set:
-			IType result = classTypeConstraints[0];
-			for (int i = 1; i < classTypeConstraints.Count; i++)
+			var result = classTypeConstraints[0];
+			for (var i = 1; i < classTypeConstraints.Count; i++)
 			{
 				if (classTypeConstraints[i].GetDefinition().IsDerivedFrom(result.GetDefinition()))
 					result = classTypeConstraints[i];
@@ -156,8 +156,8 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		IReadOnlyCollection<IType> CalculateEffectiveInterfaceSet()
 		{
-			HashSet<IType> result = new HashSet<IType>();
-			foreach (IType constraint in this.DirectBaseTypes)
+			var result = new HashSet<IType>();
+			foreach (var constraint in this.DirectBaseTypes)
 			{
 				if (constraint.Kind == TypeKind.Interface)
 				{
@@ -190,10 +190,10 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 				// A type parameter is known to be a reference type if it has the reference type constraint
 				// or its effective base class is not object or System.ValueType.
-				IType effectiveBaseClass = this.EffectiveBaseClass;
+				var effectiveBaseClass = this.EffectiveBaseClass;
 				if (effectiveBaseClass.Kind == TypeKind.Class || effectiveBaseClass.Kind == TypeKind.Delegate)
 				{
-					ITypeDefinition effectiveBaseClassDef = effectiveBaseClass.GetDefinition();
+					var effectiveBaseClassDef = effectiveBaseClass.GetDefinition();
 					if (effectiveBaseClassDef != null)
 					{
 						switch (effectiveBaseClassDef.KnownTypeCode)

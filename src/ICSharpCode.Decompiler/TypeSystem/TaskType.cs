@@ -45,7 +45,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		/// </summary>
 		public static bool IsTask(IType type)
 		{
-			ITypeDefinition def = type.GetDefinition();
+			var def = type.GetDefinition();
 			if (def != null)
 			{
 				if (def.KnownTypeCode == KnownTypeCode.Task)
@@ -62,7 +62,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 		public static bool IsCustomTask(IType type, out IType builderType)
 		{
 			builderType = null;
-			ITypeDefinition def = type.GetDefinition();
+			var def = type.GetDefinition();
 			if (def != null)
 			{
 				if (def.TypeParameterCount > 1)
@@ -133,8 +133,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 			if (elementType.Kind == TypeKind.Void)
 				return compilation.FindType(KnownTypeCode.Task);
-			IType taskType = compilation.FindType(KnownTypeCode.TaskOfT);
-			ITypeDefinition taskTypeDef = taskType.GetDefinition();
+			var taskType = compilation.FindType(KnownTypeCode.TaskOfT);
+			var taskTypeDef = taskType.GetDefinition();
 			if (taskTypeDef != null)
 				return new ParameterizedType(taskTypeDef, new[] { elementType });
 			else

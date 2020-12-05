@@ -17,14 +17,11 @@
 // DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 
-using ICSharpCode.Decompiler.IL;
 using ICSharpCode.Decompiler.Metadata;
-using ICSharpCode.Decompiler.Util;
 
 using SRM = System.Reflection.Metadata;
 
@@ -72,7 +69,7 @@ namespace ICSharpCode.Decompiler.Disassembler
 
 		static string ToInvariantCultureString(object value)
 		{
-			IConvertible convertible = value as IConvertible;
+			var convertible = value as IConvertible;
 			return (null != convertible)
 				? convertible.ToString(System.Globalization.CultureInfo.InvariantCulture)
 				: value.ToString();
@@ -92,7 +89,7 @@ namespace ICSharpCode.Decompiler.Disassembler
 				// As a special case, .ctor and .cctor are valid despite starting with a dot
 				return identifier == ".ctor" || identifier == ".cctor";
 			}
-			for (int i = 1; i < identifier.Length; i++)
+			for (var i = 1; i < identifier.Length; i++)
 			{
 				if (!(char.IsLetterOrDigit(identifier[i]) || IsValidIdentifierCharacter(identifier[i]) || identifier[i] == '.'))
 					return false;
@@ -120,7 +117,7 @@ namespace ICSharpCode.Decompiler.Disassembler
 			var signature = methodDefinition.DecodeSignature(new FullTypeNameSignatureDecoder(metadata), default);
 			var parameters = methodDefinition.GetParameters().Select(p => metadata.GetParameter(p)).ToArray();
 			var signatureHeader = signature.Header;
-			int index = sequence;
+			var index = sequence;
 			if (signatureHeader.IsInstance && signature.ParameterTypes.Length == parameters.Length)
 			{
 				index--;
@@ -153,7 +150,7 @@ namespace ICSharpCode.Decompiler.Disassembler
 			if (operand == null)
 				throw new ArgumentNullException(nameof(operand));
 
-			string s = operand as string;
+			var s = operand as string;
 			if (s != null)
 			{
 				WriteOperand(writer, s);
@@ -199,9 +196,9 @@ namespace ICSharpCode.Decompiler.Disassembler
 			}
 			else if (float.IsInfinity(val) || float.IsNaN(val))
 			{
-				byte[] data = BitConverter.GetBytes(val);
+				var data = BitConverter.GetBytes(val);
 				writer.Write('(');
-				for (int i = 0; i < data.Length; i++)
+				for (var i = 0; i < data.Length; i++)
 				{
 					if (i > 0)
 						writer.Write(' ');
@@ -228,9 +225,9 @@ namespace ICSharpCode.Decompiler.Disassembler
 			}
 			else if (double.IsInfinity(val) || double.IsNaN(val))
 			{
-				byte[] data = BitConverter.GetBytes(val);
+				var data = BitConverter.GetBytes(val);
 				writer.Write('(');
-				for (int i = 0; i < data.Length; i++)
+				for (var i = 0; i < data.Length; i++)
 				{
 					if (i > 0)
 						writer.Write(' ');
@@ -253,8 +250,8 @@ namespace ICSharpCode.Decompiler.Disassembler
 
 		public static string EscapeString(string str)
 		{
-			StringBuilder sb = new StringBuilder();
-			foreach (char ch in str)
+			var sb = new StringBuilder();
+			foreach (var ch in str)
 			{
 				switch (ch)
 				{

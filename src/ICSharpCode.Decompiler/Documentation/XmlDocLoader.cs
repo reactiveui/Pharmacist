@@ -35,8 +35,8 @@ namespace ICSharpCode.Decompiler.Documentation
 
 		static XmlDocumentationProvider LoadMscorlibDocumentation()
 		{
-			string xmlDocFile = FindXmlDocumentation("mscorlib.dll", TargetRuntime.Net_4_0)
-				?? FindXmlDocumentation("mscorlib.dll", TargetRuntime.Net_2_0);
+			var xmlDocFile = FindXmlDocumentation("mscorlib.dll", TargetRuntime.Net_4_0)
+                             ?? FindXmlDocumentation("mscorlib.dll", TargetRuntime.Net_2_0);
 			if (xmlDocFile != null)
 				return new XmlDocumentationProvider(xmlDocFile);
 			else
@@ -53,9 +53,9 @@ namespace ICSharpCode.Decompiler.Documentation
 				throw new ArgumentNullException(nameof(module));
 			lock (cache)
 			{
-				if (!cache.TryGetValue(module, out XmlDocumentationProvider xmlDoc))
+				if (!cache.TryGetValue(module, out var xmlDoc))
 				{
-					string xmlDocFile = LookupLocalizedXmlDoc(module.FileName);
+					var xmlDocFile = LookupLocalizedXmlDoc(module.FileName);
 					if (xmlDocFile == null)
 					{
 						xmlDocFile = FindXmlDocumentation(Path.GetFileName(module.FileName), module.GetRuntime());
@@ -109,9 +109,9 @@ namespace ICSharpCode.Decompiler.Documentation
 			if (string.IsNullOrEmpty(fileName))
 				return null;
 
-			string xmlFileName = Path.ChangeExtension(fileName, ".xml");
-			string currentCulture = System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
-			string localizedXmlDocFile = GetLocalizedName(xmlFileName, currentCulture);
+			var xmlFileName = Path.ChangeExtension(fileName, ".xml");
+			var currentCulture = System.Threading.Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+			var localizedXmlDocFile = GetLocalizedName(xmlFileName, currentCulture);
 
 			Debug.WriteLine("Try find XMLDoc @" + localizedXmlDocFile);
 			if (File.Exists(localizedXmlDocFile))
@@ -125,7 +125,7 @@ namespace ICSharpCode.Decompiler.Documentation
 			}
 			if (currentCulture != "en")
 			{
-				string englishXmlDocFile = GetLocalizedName(xmlFileName, "en");
+				var englishXmlDocFile = GetLocalizedName(xmlFileName, "en");
 				Debug.WriteLine("Try find XMLDoc @" + englishXmlDocFile);
 				if (File.Exists(englishXmlDocFile))
 				{
@@ -137,7 +137,7 @@ namespace ICSharpCode.Decompiler.Documentation
 
 		static string GetLocalizedName(string fileName, string language)
 		{
-			string localizedXmlDocFile = Path.GetDirectoryName(fileName);
+			var localizedXmlDocFile = Path.GetDirectoryName(fileName);
 			localizedXmlDocFile = Path.Combine(localizedXmlDocFile, language);
 			localizedXmlDocFile = Path.Combine(localizedXmlDocFile, Path.GetFileName(fileName));
 			return localizedXmlDocFile;

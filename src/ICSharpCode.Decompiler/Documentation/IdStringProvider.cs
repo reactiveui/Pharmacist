@@ -38,7 +38,7 @@ namespace ICSharpCode.Decompiler.Documentation
 		/// </summary>
 		public static string GetIdString(this IEntity entity)
 		{
-			StringBuilder b = new StringBuilder();
+			var b = new StringBuilder();
 			switch (entity.SymbolKind)
 			{
 				case SymbolKind.TypeDefinition:
@@ -59,7 +59,7 @@ namespace ICSharpCode.Decompiler.Documentation
 					b.Append("M:");
 					break;
 			}
-			IMember member = (IMember)entity;
+			var member = (IMember)entity;
 			if (member.DeclaringType != null)
 			{
 				AppendTypeName(b, member.DeclaringType, false);
@@ -71,18 +71,18 @@ namespace ICSharpCode.Decompiler.Documentation
 				b.Append('#');
 			}
 			b.Append(member.Name.Replace('.', '#').Replace('<', '{').Replace('>', '}'));
-			IMethod method = member as IMethod;
+			var method = member as IMethod;
 			if (method != null && method.TypeParameters.Count > 0)
 			{
 				b.Append("``");
 				b.Append(method.TypeParameters.Count);
 			}
-			IParameterizedMember parameterizedMember = member as IParameterizedMember;
+			var parameterizedMember = member as IParameterizedMember;
 			if (parameterizedMember != null && parameterizedMember.Parameters.Count > 0)
 			{
 				b.Append('(');
 				var parameters = parameterizedMember.Parameters;
-				for (int i = 0; i < parameters.Count; i++)
+				for (var i = 0; i < parameters.Count; i++)
 				{
 					if (i > 0)
 						b.Append(',');
@@ -104,7 +104,7 @@ namespace ICSharpCode.Decompiler.Documentation
 		{
 			if (type == null)
 				throw new ArgumentNullException(nameof(type));
-			StringBuilder b = new StringBuilder();
+			var b = new StringBuilder();
 			AppendTypeName(b, type, false);
 			return b.ToString();
 		}
@@ -117,7 +117,7 @@ namespace ICSharpCode.Decompiler.Documentation
 					b.Append(explicitInterfaceImpl ? "System#Object" : "System.Object");
 					break;
 				case TypeKind.TypeParameter:
-					ITypeParameter tp = (ITypeParameter)type;
+					var tp = (ITypeParameter)type;
 					if (explicitInterfaceImpl)
 					{
 						b.Append(tp.Name);
@@ -131,12 +131,12 @@ namespace ICSharpCode.Decompiler.Documentation
 					}
 					break;
 				case TypeKind.Array:
-					ArrayType array = (ArrayType)type;
+					var array = (ArrayType)type;
 					AppendTypeName(b, array.ElementType, explicitInterfaceImpl);
 					b.Append('[');
 					if (array.Dimensions > 1)
 					{
-						for (int i = 0; i < array.Dimensions; i++)
+						for (var i = 0; i < array.Dimensions; i++)
 						{
 							if (i > 0)
 								b.Append(explicitInterfaceImpl ? '@' : ',');
@@ -155,7 +155,7 @@ namespace ICSharpCode.Decompiler.Documentation
 					b.Append('@');
 					break;
 				default:
-					IType declType = type.DeclaringType;
+					var declType = type.DeclaringType;
 					if (declType != null)
 					{
 						AppendTypeName(b, declType, explicitInterfaceImpl);
@@ -177,15 +177,15 @@ namespace ICSharpCode.Decompiler.Documentation
 
 		static void AppendTypeParameters(StringBuilder b, IType type, int outerTypeParameterCount, bool explicitInterfaceImpl)
 		{
-			int tpc = type.TypeParameterCount - outerTypeParameterCount;
+			var tpc = type.TypeParameterCount - outerTypeParameterCount;
 			if (tpc > 0)
 			{
-				ParameterizedType pt = type as ParameterizedType;
+				var pt = type as ParameterizedType;
 				if (pt != null)
 				{
 					b.Append('{');
 					var ta = pt.TypeArguments;
-					for (int i = outerTypeParameterCount; i < ta.Count; i++)
+					for (var i = outerTypeParameterCount; i < ta.Count; i++)
 					{
 						if (i > outerTypeParameterCount)
 							b.Append(explicitInterfaceImpl ? '@' : ',');
@@ -220,18 +220,18 @@ namespace ICSharpCode.Decompiler.Documentation
 				throw new ArgumentNullException(nameof(memberIdString));
 			if (memberIdString.Length < 2 || memberIdString[1] != ':')
 				throw new ReflectionNameParseException(0, "Missing type tag");
-			char typeChar = memberIdString[0];
-			int parenPos = memberIdString.IndexOf('(');
+			var typeChar = memberIdString[0];
+			var parenPos = memberIdString.IndexOf('(');
 			if (parenPos < 0)
 				parenPos = memberIdString.LastIndexOf('~');
 			if (parenPos < 0)
 				parenPos = memberIdString.Length;
-			int dotPos = memberIdString.LastIndexOf('.', parenPos - 1);
+			var dotPos = memberIdString.LastIndexOf('.', parenPos - 1);
 			if (dotPos < 0)
 				throw new ReflectionNameParseException(0, "Could not find '.' separating type name from member name");
-			string typeName = memberIdString.Substring(0, dotPos);
-			int pos = 2;
-			ITypeReference typeReference = ParseTypeName(typeName, ref pos);
+			var typeName = memberIdString.Substring(0, dotPos);
+			var pos = 2;
+			var typeReference = ParseTypeName(typeName, ref pos);
 			if (pos != typeName.Length)
 				throw new ReflectionNameParseException(pos, "Expected end of type name");
 			//			string memberName = memberIDString.Substring(dotPos + 1, parenPos - (dotPos + 1));
@@ -266,10 +266,10 @@ namespace ICSharpCode.Decompiler.Documentation
 		{
 			if (typeName == null)
 				throw new ArgumentNullException(nameof(typeName));
-			int pos = 0;
+			var pos = 0;
 			if (typeName.StartsWith("T:", StringComparison.Ordinal))
 				pos = 2;
-			ITypeReference r = ParseTypeName(typeName, ref pos);
+			var r = ParseTypeName(typeName, ref pos);
 			if (pos < typeName.Length)
 				throw new ReflectionNameParseException(pos, "Expected end of type name");
 			return r;
@@ -298,7 +298,7 @@ namespace ICSharpCode.Decompiler.Documentation
 
 		static ITypeReference ParseTypeName(string typeName, ref int pos)
 		{
-			string reflectionTypeName = typeName;
+			var reflectionTypeName = typeName;
 			if (pos == typeName.Length)
 				throw new ReflectionNameParseException(pos, "Unexpected end");
 			ITypeReference result;
@@ -312,26 +312,26 @@ namespace ICSharpCode.Decompiler.Documentation
 				{
 					// method type parameter reference
 					pos++;
-					int index = ReflectionHelper.ReadTypeParameterCount(reflectionTypeName, ref pos);
+					var index = ReflectionHelper.ReadTypeParameterCount(reflectionTypeName, ref pos);
 					result = TypeParameterReference.Create(SymbolKind.Method, index);
 				}
 				else
 				{
 					// class type parameter reference
-					int index = ReflectionHelper.ReadTypeParameterCount(reflectionTypeName, ref pos);
+					var index = ReflectionHelper.ReadTypeParameterCount(reflectionTypeName, ref pos);
 					result = TypeParameterReference.Create(SymbolKind.TypeDefinition, index);
 				}
 			}
 			else
 			{
 				// not a type parameter reference: read the actual type name
-				List<ITypeReference> typeArguments = new List<ITypeReference>();
-				string typeNameWithoutSuffix = ReadTypeName(typeName, ref pos, true, out int typeParameterCount, typeArguments);
+				var typeArguments = new List<ITypeReference>();
+				var typeNameWithoutSuffix = ReadTypeName(typeName, ref pos, true, out var typeParameterCount, typeArguments);
 				result = new GetPotentiallyNestedClassTypeReference(typeNameWithoutSuffix, typeParameterCount);
 				while (pos < typeName.Length && typeName[pos] == '.')
 				{
 					pos++;
-					string nestedTypeName = ReadTypeName(typeName, ref pos, false, out typeParameterCount, typeArguments);
+					var nestedTypeName = ReadTypeName(typeName, ref pos, false, out typeParameterCount, typeArguments);
 					result = new NestedTypeReference(result, nestedTypeName, typeParameterCount);
 				}
 				if (typeArguments.Count > 0)
@@ -344,7 +344,7 @@ namespace ICSharpCode.Decompiler.Documentation
 				switch (typeName[pos])
 				{
 					case '[':
-						int dimensions = 1;
+						var dimensions = 1;
 						do
 						{
 							pos++;
@@ -371,13 +371,13 @@ namespace ICSharpCode.Decompiler.Documentation
 
 		static string ReadTypeName(string typeName, ref int pos, bool allowDottedName, out int typeParameterCount, List<ITypeReference> typeArguments)
 		{
-			int startPos = pos;
+			var startPos = pos;
 			// skip the simple name portion:
 			while (pos < typeName.Length && !IsIDStringSpecialCharacter(typeName[pos]) && (allowDottedName || typeName[pos] != '.'))
 				pos++;
 			if (pos == startPos)
 				throw new ReflectionNameParseException(pos, "Expected type name");
-			string shortTypeName = typeName.Substring(startPos, pos - startPos);
+			var shortTypeName = typeName.Substring(startPos, pos - startPos);
 			// read type arguments:
 			typeParameterCount = 0;
 			if (pos < typeName.Length && typeName[pos] == '`')

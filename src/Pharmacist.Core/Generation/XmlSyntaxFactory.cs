@@ -84,9 +84,9 @@ namespace Pharmacist.Core.Generation
                 .Append("/// ").AppendLine(text)
                 .AppendLine("/// </summary>");
 
-            foreach (var parameter in parameters)
+            foreach (var (paramName, paramText) in parameters)
             {
-                sb.Append("/// <param name=\"").Append(parameter.ParamName).Append("\">").Append(parameter.ParamText).AppendLine("</param>");
+                sb.Append("/// <param name=\"").Append(paramName).Append("\">").Append(paramText).AppendLine("</param>");
             }
 
             return SyntaxFactory.ParseLeadingTrivia(sb.ToString());
@@ -135,9 +135,9 @@ namespace Pharmacist.Core.Generation
                 .Append("/// ").AppendLine(summaryText)
                 .AppendLine("/// </summary>");
 
-            foreach (var parameter in parameters)
+            foreach (var (paramName, paramText) in parameters)
             {
-                sb.Append("/// <param name=\"").Append(parameter.ParamName).Append("\">").Append(parameter.ParamText).AppendLine("</param>");
+                sb.Append("/// <param name=\"").Append(paramName).Append("\">").Append(paramText).AppendLine("</param>");
             }
 
             return SyntaxFactory.ParseLeadingTrivia(sb.ToString());
@@ -157,9 +157,9 @@ namespace Pharmacist.Core.Generation
                 .Append("/// ").AppendLine(summaryText)
                 .AppendLine("/// </summary>");
 
-            foreach (var parameter in parameters)
+            foreach (var (paramName, paramText) in parameters)
             {
-                sb.Append("/// <param name=\"").Append(parameter.ParamName).Append("\">").Append(parameter.ParamText).AppendLine("</param>");
+                sb.Append("/// <param name=\"").Append(paramName).Append("\">").Append(paramText).AppendLine("</param>");
             }
 
             sb.Append("/// <returns>").Append(returnValueText).AppendLine("</returns>");

@@ -15,7 +15,7 @@ namespace Pharmacist.Common
     /// <typeparam name="T">The type of signals given by the subject.</typeparam>
     public sealed class SingleAwaitSubject<T> : ISubject<T>, IDisposable
     {
-        private readonly Subject<T> _inner = new Subject<T>();
+        private readonly Subject<T> _inner = new();
 
         /// <summary>
         /// Gets the awaiter based on the first item in the collection.

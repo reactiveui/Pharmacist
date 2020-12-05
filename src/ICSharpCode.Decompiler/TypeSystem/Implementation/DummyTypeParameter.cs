@@ -16,7 +16,6 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -42,19 +41,19 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		static ITypeParameter GetTypeParameter(ref ITypeParameter[] typeParameters, SymbolKind symbolKind, int index)
 		{
-			ITypeParameter[] tps = typeParameters;
+			var tps = typeParameters;
 			while (index >= tps.Length)
 			{
 				// We don't have a normal type parameter for this index, so we need to extend our array.
 				// Because the array can be used concurrently from multiple threads, we have to use
 				// Interlocked.CompareExchange.
-				ITypeParameter[] newTps = new ITypeParameter[index + 1];
+				var newTps = new ITypeParameter[index + 1];
 				tps.CopyTo(newTps, 0);
-				for (int i = tps.Length; i < newTps.Length; i++)
+				for (var i = tps.Length; i < newTps.Length; i++)
 				{
 					newTps[i] = new DummyTypeParameter(symbolKind, i);
 				}
-				ITypeParameter[] oldTps = Interlocked.CompareExchange(ref typeParameters, newTps, tps);
+				var oldTps = Interlocked.CompareExchange(ref typeParameters, newTps, tps);
 				if (oldTps == tps)
 				{
 					// exchange successful
@@ -74,18 +73,18 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 		/// </summary>
 		internal static IReadOnlyList<ITypeParameter> GetClassTypeParameterList(int length)
 		{
-			IReadOnlyList<ITypeParameter>[] tps = classTypeParameterLists;
+			var tps = classTypeParameterLists;
 			while (length >= tps.Length)
 			{
 				// We don't have a normal type parameter for this index, so we need to extend our array.
 				// Because the array can be used concurrently from multiple threads, we have to use
 				// Interlocked.CompareExchange.
-				IReadOnlyList<ITypeParameter>[] newTps = new IReadOnlyList<ITypeParameter>[length + 1];
+				var newTps = new IReadOnlyList<ITypeParameter>[length + 1];
 				tps.CopyTo(newTps, 0);
-				for (int i = tps.Length; i < newTps.Length; i++)
+				for (var i = tps.Length; i < newTps.Length; i++)
 				{
 					var newList = new ITypeParameter[i];
-					for (int j = 0; j < newList.Length; j++)
+					for (var j = 0; j < newList.Length; j++)
 					{
 						newList[j] = GetClassTypeParameter(j);
 					}

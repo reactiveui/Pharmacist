@@ -43,7 +43,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			this.dimensions = dimensions;
 			this.nullability = nullability;
 
-			ICompilationProvider p = elementType as ICompilationProvider;
+			var p = elementType as ICompilationProvider;
 			if (p != null && p.Compilation != compilation)
 				throw new InvalidOperationException("Cannot create an array type using a different compilation from the element type.");
 		}
@@ -87,7 +87,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public override bool Equals(IType other)
 		{
-			ArrayType a = other as ArrayType;
+			var a = other as ArrayType;
 			return a != null && elementType.Equals(a.elementType) && a.dimensions == dimensions && a.nullability == nullability;
 		}
 
@@ -106,14 +106,14 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public override IEnumerable<IType> DirectBaseTypes {
 			get {
-				List<IType> baseTypes = new List<IType>();
-				IType t = compilation.FindType(KnownTypeCode.Array);
+				var baseTypes = new List<IType>();
+				var t = compilation.FindType(KnownTypeCode.Array);
 				if (t.Kind != TypeKind.Unknown)
 					baseTypes.Add(t);
 				if (dimensions == 1 && elementType.Kind != TypeKind.Pointer)
 				{
 					// single-dimensional arrays implement IList<T>
-					ITypeDefinition def = compilation.FindType(KnownTypeCode.IListOfT) as ITypeDefinition;
+					var def = compilation.FindType(KnownTypeCode.IListOfT) as ITypeDefinition;
 					if (def != null)
 						baseTypes.Add(new ParameterizedType(def, new[] { elementType }));
 					// And in .NET 4.5 they also implement IReadOnlyList<T>
@@ -167,7 +167,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public override IType VisitChildren(TypeVisitor visitor)
 		{
-			IType e = elementType.AcceptVisitor(visitor);
+			var e = elementType.AcceptVisitor(visitor);
 			if (e == elementType)
 				return this;
 			else
@@ -216,7 +216,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		bool ISupportsInterning.EqualsForInterning(ISupportsInterning other)
 		{
-			ArrayTypeReference o = other as ArrayTypeReference;
+			var o = other as ArrayTypeReference;
 			return o != null && elementType == o.elementType && dimensions == o.dimensions;
 		}
 	}

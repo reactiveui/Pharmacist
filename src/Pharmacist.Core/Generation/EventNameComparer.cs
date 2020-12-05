@@ -15,14 +15,12 @@ namespace Pharmacist.Core.Generation
 
         public int Compare(IEvent? x, IEvent? y)
         {
-            if (x == null && y == null)
+            switch (x)
             {
-                return 0;
-            }
-
-            if (x == null)
-            {
-                return 1;
+                case null when y == null:
+                    return 0;
+                case null:
+                    return 1;
             }
 
             if (y == null)
@@ -30,12 +28,7 @@ namespace Pharmacist.Core.Generation
                 return -1;
             }
 
-            if (ReferenceEquals(x, y))
-            {
-                return 0;
-            }
-
-            return string.Compare(x.Name, y.Name, StringComparison.InvariantCulture);
+            return ReferenceEquals(x, y) ? 0 : string.Compare(x.Name, y.Name, StringComparison.InvariantCulture);
         }
 
         public bool Equals(IEvent? x, IEvent? y)
@@ -50,12 +43,7 @@ namespace Pharmacist.Core.Generation
                 return false;
             }
 
-            if (ReferenceEquals(x, y))
-            {
-                return true;
-            }
-
-            return string.Equals(x.Name, y.Name, StringComparison.InvariantCulture);
+            return ReferenceEquals(x, y) || string.Equals(x.Name, y.Name, StringComparison.InvariantCulture);
         }
 
         public int GetHashCode(IEvent obj)

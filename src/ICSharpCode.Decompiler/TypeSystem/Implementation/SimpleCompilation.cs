@@ -58,9 +58,9 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				throw new ArgumentNullException(nameof(assemblyReferences));
 			var context = new SimpleTypeResolveContext(this);
 			this.mainModule = mainAssembly.Resolve(context);
-			List<IModule> assemblies = new List<IModule>();
+			var assemblies = new List<IModule>();
 			assemblies.Add(this.mainModule);
-			List<IModule> referencedAssemblies = new List<IModule>();
+			var referencedAssemblies = new List<IModule>();
 			foreach (var asmRef in assemblyReferences)
 			{
 				IModule asm;
@@ -109,7 +109,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public INamespace RootNamespace {
 			get {
-				INamespace ns = LazyInit.VolatileRead(ref this.rootNamespace);
+				var ns = LazyInit.VolatileRead(ref this.rootNamespace);
 				if (ns != null)
 				{
 					return ns;
@@ -127,9 +127,9 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 		{
 			// SimpleCompilation does not support extern aliases; but derived classes might.
 			// CreateRootNamespace() is virtual so that derived classes can change the global namespace.
-			INamespace[] namespaces = new INamespace[referencedAssemblies.Count + 1];
+			var namespaces = new INamespace[referencedAssemblies.Count + 1];
 			namespaces[0] = mainModule.RootNamespace;
-			for (int i = 0; i < referencedAssemblies.Count; i++)
+			for (var i = 0; i < referencedAssemblies.Count; i++)
 			{
 				namespaces[i + 1] = referencedAssemblies[i].RootNamespace;
 			}

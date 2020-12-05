@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 using NuGet.Frameworks;
 
-using Pharmacist.Core.Groups;
 using Pharmacist.Core.NuGet;
 using Pharmacist.Core.Utilities;
 

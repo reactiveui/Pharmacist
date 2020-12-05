@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ICSharpCode.Decompiler.TypeSystem
+﻿namespace ICSharpCode.Decompiler.TypeSystem
 {
 	public enum Nullability : byte
 	{

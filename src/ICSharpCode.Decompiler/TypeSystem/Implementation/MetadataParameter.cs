@@ -21,7 +21,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
-using System.Text;
 
 using ICSharpCode.Decompiler.Util;
 
@@ -121,7 +120,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
         {
             get
             {
-                string name = LazyInit.VolatileRead(ref this.name);
+                var name = LazyInit.VolatileRead(ref this.name);
                 if (name != null)
                     return name;
                 var metadata = module.metadata;

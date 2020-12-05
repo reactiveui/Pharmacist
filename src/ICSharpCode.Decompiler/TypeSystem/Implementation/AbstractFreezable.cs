@@ -37,7 +37,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 		{
 			if (list != null)
 			{
-				foreach (T item in list)
+				foreach (var item in list)
 					Freeze(item);
 			}
 			return FreezeList(list);
@@ -61,7 +61,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public static void Freeze(object item)
 		{
-			IFreezable f = item as IFreezable;
+			var f = item as IFreezable;
 			if (f != null)
 				f.Freeze();
 		}

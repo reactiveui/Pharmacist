@@ -33,8 +33,8 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 	{
 		public virtual string FullName {
 			get {
-				string ns = this.Namespace;
-				string name = this.Name;
+				var ns = this.Namespace;
+				var name = this.Name;
 				if (string.IsNullOrEmpty(ns))
 				{
 					return name;

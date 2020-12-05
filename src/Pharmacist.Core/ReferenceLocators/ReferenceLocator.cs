@@ -42,14 +42,16 @@ namespace Pharmacist.Core.ReferenceLocators
                 return "/Library/Frameworks";
             }
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                var visualStudioInstallation = GetWindowsInstallationDirectory(includePreRelease);
-
-                return Path.Combine(visualStudioInstallation, "Common7", "IDE", "ReferenceAssemblies", "Microsoft", "Framework");
+                throw new ReferenceLocationNotFoundException(
+                    "Visual Studio reference location not supported on this platform: "
+                    + RuntimeInformation.OSDescription);
             }
 
-            throw new ReferenceLocationNotFoundException("Visual Studio reference location not supported on this platform: " + RuntimeInformation.OSDescription);
+            var visualStudioInstallation = GetWindowsInstallationDirectory(includePreRelease);
+
+            return Path.Combine(visualStudioInstallation, "Common7", "IDE", "ReferenceAssemblies", "Microsoft", "Framework");
         }
 
         private static string GetWindowsInstallationDirectory(bool includePreRelease)
@@ -81,16 +83,21 @@ namespace Pharmacist.Core.ReferenceLocators
                                 parameters.Append(" -prerelease");
                             }
 
-                            using var process = new Process();
-                            process.StartInfo.FileName = fileName;
-                            process.StartInfo.Arguments = parameters.ToString();
-                            process.StartInfo.UseShellExecute = false;
-                            process.StartInfo.RedirectStandardOutput = true;
+                            using var process = new Process
+                                                {
+                                                    StartInfo =
+                                                    {
+                                                        FileName = fileName,
+                                                        Arguments = parameters.ToString(),
+                                                        UseShellExecute = false,
+                                                        RedirectStandardOutput = true
+                                                    }
+                                                };
 
                             process.Start();
 
                             // To avoid deadlocks, always read the output stream first and then wait.
-                            var output = process.StandardOutput.ReadToEnd().Replace(Environment.NewLine, string.Empty);
+                            var output = (await process.StandardOutput.ReadToEndAsync().ConfigureAwait(false)).Replace(Environment.NewLine, string.Empty);
                             process.WaitForExit();
 
                             return output;

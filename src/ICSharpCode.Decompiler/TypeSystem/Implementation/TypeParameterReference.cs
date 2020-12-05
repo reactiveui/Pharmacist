@@ -37,8 +37,8 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 		{
 			if (index >= 0 && index < 8 && (ownerType == SymbolKind.TypeDefinition || ownerType == SymbolKind.Method))
 			{
-				TypeParameterReference[] arr = (ownerType == SymbolKind.TypeDefinition) ? classTypeParameterReferences : methodTypeParameterReferences;
-				TypeParameterReference result = LazyInit.VolatileRead(ref arr[index]);
+				var arr = (ownerType == SymbolKind.TypeDefinition) ? classTypeParameterReferences : methodTypeParameterReferences;
+				var result = LazyInit.VolatileRead(ref arr[index]);
 				if (result == null)
 				{
 					result = LazyInit.GetOrSet(ref arr[index], new TypeParameterReference(ownerType, index));
@@ -70,7 +70,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 		{
 			if (ownerType == SymbolKind.Method)
 			{
-				IMethod method = context.CurrentMember as IMethod;
+				var method = context.CurrentMember as IMethod;
 				if (method != null && index < method.TypeParameters.Count)
 				{
 					return method.TypeParameters[index];
@@ -79,7 +79,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 			}
 			else if (ownerType == SymbolKind.TypeDefinition)
 			{
-				ITypeDefinition typeDef = context.CurrentTypeDefinition;
+				var typeDef = context.CurrentTypeDefinition;
 				if (typeDef != null && index < typeDef.TypeParameters.Count)
 				{
 					return typeDef.TypeParameters[index];

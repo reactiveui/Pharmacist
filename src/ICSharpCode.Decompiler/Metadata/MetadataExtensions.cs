@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata;
 using System.Reflection.Metadata.Ecma335;
-using System.Reflection.PortableExecutable;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 using ICSharpCode.Decompiler.TypeSystem;
 using ICSharpCode.Decompiler.TypeSystem.Implementation;
@@ -46,7 +43,7 @@ namespace ICSharpCode.Decompiler.Metadata
 		{
 			// Calculate public key token:
 			// 1. hash the public key using the appropriate algorithm.
-			byte[] publicKeyTokenBytes = reader.GetHashAlgorithm().ComputeHash(reader.GetBlobBytes(blob));
+			var publicKeyTokenBytes = reader.GetHashAlgorithm().ComputeHash(reader.GetBlobBytes(blob));
 			// 2. take the last 8 bytes
 			// 3. according to Cecil we need to reverse them, other sources did not mention this.
 			return publicKeyTokenBytes.TakeLast(8).Reverse().ToHexString(8);
@@ -57,7 +54,7 @@ namespace ICSharpCode.Decompiler.Metadata
 			if (!reader.IsAssembly)
 				return string.Empty;
 			var asm = reader.GetAssemblyDefinition();
-			string publicKey = "null";
+			var publicKey = "null";
 			if (!asm.PublicKey.IsNil)
 			{
 				// AssemblyFlags.PublicKey does not apply to assembly definitions
@@ -71,7 +68,7 @@ namespace ICSharpCode.Decompiler.Metadata
 			if (!reader.IsAssembly)
 				return string.Empty;
 			var asm = reader.GetAssemblyDefinition();
-			string publicKey = reader.GetPublicKeyToken();
+			var publicKey = reader.GetPublicKeyToken();
 			return $"{reader.GetString(asm.Name)}, " +
 				$"Version={asm.Version}, " +
 				$"Culture={(asm.Culture.IsNil ? "neutral" : reader.GetString(asm.Culture))}, " +
@@ -94,7 +91,7 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		public static string GetFullAssemblyName(this SRM.AssemblyReference reference, MetadataReader reader)
 		{
-			string publicKey = "null";
+			var publicKey = "null";
 			if (!reference.PublicKeyOrToken.IsNil)
 			{
 				if ((reference.Flags & AssemblyFlags.PublicKey) != 0)
@@ -106,7 +103,7 @@ namespace ICSharpCode.Decompiler.Metadata
 					publicKey = reader.GetBlobBytes(reference.PublicKeyOrToken).ToHexString(8);
 				}
 			}
-			string properties = "";
+			var properties = "";
 			if ((reference.Flags & AssemblyFlags.Retargetable) != 0)
 				properties = ", Retargetable=true";
 			return $"{reader.GetString(reference.Name)}, " +
@@ -134,7 +131,7 @@ namespace ICSharpCode.Decompiler.Metadata
 			if (bytes == null)
 				throw new ArgumentNullException(nameof(bytes));
 
-			StringBuilder sb = new StringBuilder(estimatedLength * 2);
+			var sb = new StringBuilder(estimatedLength * 2);
 			foreach (var b in bytes)
 				sb.AppendFormat("{0:x2}", b);
 			return sb.ToString();
@@ -142,8 +139,8 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		public static string ToHexString(this BlobReader reader)
 		{
-			StringBuilder sb = new StringBuilder(reader.Length * 3);
-			for (int i = 0; i < reader.Length; i++)
+			var sb = new StringBuilder(reader.Length * 3);
+			for (var i = 0; i < reader.Length; i++)
 			{
 				if (i == 0)
 					sb.AppendFormat("{0:X2}", reader.ReadByte());
@@ -171,7 +168,7 @@ namespace ICSharpCode.Decompiler.Metadata
 				name = typeName.Name;
 				if (!omitGenerics)
 				{
-					int localTypeParameterCount = typeName.GetNestedTypeAdditionalTypeParameterCount(typeName.NestingLevel - 1);
+					var localTypeParameterCount = typeName.GetNestedTypeAdditionalTypeParameterCount(typeName.NestingLevel - 1);
 					if (localTypeParameterCount > 0)
 						name += "`" + localTypeParameterCount;
 				}
@@ -320,7 +317,7 @@ namespace ICSharpCode.Decompiler.Metadata
 		public static IEnumerable<ModuleReferenceHandle> GetModuleReferences(this MetadataReader metadata)
 		{
 			var rowCount = metadata.GetTableRowCount(TableIndex.ModuleRef);
-			for (int row = 1; row <= rowCount; row++)
+			for (var row = 1; row <= rowCount; row++)
 			{
 				yield return MetadataTokens.ModuleReferenceHandle(row);
 			}
@@ -329,7 +326,7 @@ namespace ICSharpCode.Decompiler.Metadata
 		public static IEnumerable<TypeSpecificationHandle> GetTypeSpecifications(this MetadataReader metadata)
 		{
 			var rowCount = metadata.GetTableRowCount(TableIndex.TypeSpec);
-			for (int row = 1; row <= rowCount; row++)
+			for (var row = 1; row <= rowCount; row++)
 			{
 				yield return MetadataTokens.TypeSpecificationHandle(row);
 			}
@@ -338,7 +335,7 @@ namespace ICSharpCode.Decompiler.Metadata
 		public static IEnumerable<MethodSpecificationHandle> GetMethodSpecifications(this MetadataReader metadata)
 		{
 			var rowCount = metadata.GetTableRowCount(TableIndex.MethodSpec);
-			for (int row = 1; row <= rowCount; row++)
+			for (var row = 1; row <= rowCount; row++)
 			{
 				yield return MetadataTokens.MethodSpecificationHandle(row);
 			}
@@ -346,23 +343,23 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		public static IEnumerable<(Handle Handle, MethodSemanticsAttributes Semantics, MethodDefinitionHandle Method, EntityHandle Association)> GetMethodSemantics(this MetadataReader metadata)
 		{
-			int offset = metadata.GetTableMetadataOffset(TableIndex.MethodSemantics);
-			int rowSize = metadata.GetTableRowSize(TableIndex.MethodSemantics);
-			int rowCount = metadata.GetTableRowCount(TableIndex.MethodSemantics);
+			var offset = metadata.GetTableMetadataOffset(TableIndex.MethodSemantics);
+			var rowSize = metadata.GetTableRowSize(TableIndex.MethodSemantics);
+			var rowCount = metadata.GetTableRowCount(TableIndex.MethodSemantics);
 
-			bool methodSmall = metadata.GetTableRowCount(TableIndex.MethodDef) <= ushort.MaxValue;
-			bool assocSmall = metadata.GetTableRowCount(TableIndex.Property) <= ushort.MaxValue && metadata.GetTableRowCount(TableIndex.Event) <= ushort.MaxValue;
-			int assocOffset = (methodSmall ? 2 : 4) + 2;
-			for (int row = 0; row < rowCount; row++)
+			var methodSmall = metadata.GetTableRowCount(TableIndex.MethodDef) <= ushort.MaxValue;
+			var assocSmall = metadata.GetTableRowCount(TableIndex.Property) <= ushort.MaxValue && metadata.GetTableRowCount(TableIndex.Event) <= ushort.MaxValue;
+			var assocOffset = (methodSmall ? 2 : 4) + 2;
+			for (var row = 0; row < rowCount; row++)
 			{
 				yield return Read(row);
 			}
 
 			unsafe (Handle Handle, MethodSemanticsAttributes Semantics, MethodDefinitionHandle Method, EntityHandle Association) Read(int row)
 			{
-				byte* ptr = metadata.MetadataPointer + offset + rowSize * row;
-				int methodDef = methodSmall ? *(ushort*)(ptr + 2) : (int)*(uint*)(ptr + 2);
-				int assocDef = assocSmall ? *(ushort*)(ptr + assocOffset) : (int)*(uint*)(ptr + assocOffset);
+				var ptr = metadata.MetadataPointer + offset + rowSize * row;
+				var methodDef = methodSmall ? *(ushort*)(ptr + 2) : (int)*(uint*)(ptr + 2);
+				var assocDef = assocSmall ? *(ushort*)(ptr + assocOffset) : (int)*(uint*)(ptr + assocOffset);
 				EntityHandle propOrEvent;
 				if ((assocDef & 0x1) == 1)
 				{
@@ -379,7 +376,7 @@ namespace ICSharpCode.Decompiler.Metadata
 		public static IEnumerable<EntityHandle> GetFieldLayouts(this MetadataReader metadata)
 		{
 			var rowCount = metadata.GetTableRowCount(TableIndex.FieldLayout);
-			for (int row = 1; row <= rowCount; row++)
+			for (var row = 1; row <= rowCount; row++)
 			{
 				yield return MetadataTokens.EntityHandle(TableIndex.FieldLayout, row);
 			}
@@ -387,17 +384,17 @@ namespace ICSharpCode.Decompiler.Metadata
 
 		public unsafe static (int Offset, FieldDefinitionHandle FieldDef) GetFieldLayout(this MetadataReader metadata, EntityHandle fieldLayoutHandle)
 		{
-			byte* startPointer = metadata.MetadataPointer;
-			int offset = metadata.GetTableMetadataOffset(TableIndex.FieldLayout);
-			int rowSize = metadata.GetTableRowSize(TableIndex.FieldLayout);
-			int rowCount = metadata.GetTableRowCount(TableIndex.FieldLayout);
+			var startPointer = metadata.MetadataPointer;
+			var offset = metadata.GetTableMetadataOffset(TableIndex.FieldLayout);
+			var rowSize = metadata.GetTableRowSize(TableIndex.FieldLayout);
+			var rowCount = metadata.GetTableRowCount(TableIndex.FieldLayout);
 
-			int fieldRowNo = metadata.GetRowNumber(fieldLayoutHandle);
-			bool small = metadata.GetTableRowCount(TableIndex.Field) <= ushort.MaxValue;
-			for (int row = rowCount - 1; row >= 0; row--)
+			var fieldRowNo = metadata.GetRowNumber(fieldLayoutHandle);
+			var small = metadata.GetTableRowCount(TableIndex.Field) <= ushort.MaxValue;
+			for (var row = rowCount - 1; row >= 0; row--)
 			{
-				byte* ptr = startPointer + offset + rowSize * row;
-				uint rowNo = small ? *(ushort*)(ptr + 4) : *(uint*)(ptr + 4);
+				var ptr = startPointer + offset + rowSize * row;
+				var rowNo = small ? *(ushort*)(ptr + 4) : *(uint*)(ptr + 4);
 				if (fieldRowNo == rowNo)
 				{
 					return (*(int*)ptr, MetadataTokens.FieldDefinitionHandle(fieldRowNo));

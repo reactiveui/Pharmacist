@@ -91,8 +91,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		static IReadOnlyList<IType> GetComposedTypeArguments(IReadOnlyList<IType> input, TypeParameterSubstitution substitution)
 		{
-			IType[] result = new IType[input.Count];
-			for (int i = 0; i < result.Length; i++)
+			var result = new IType[input.Count];
+			for (var i = 0; i < result.Length; i++)
 			{
 				result[i] = input[i].AcceptVisitor(substitution);
 			}
@@ -111,7 +111,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public override bool Equals(object obj)
 		{
-			TypeParameterSubstitution other = obj as TypeParameterSubstitution;
+			var other = obj as TypeParameterSubstitution;
 			if (other == null)
 				return false;
 			return TypeListEquals(classTypeArguments, other.classTypeArguments)
@@ -134,7 +134,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 				return false;
 			if (a.Count != b.Count)
 				return false;
-			for (int i = 0; i < a.Count; i++)
+			for (var i = 0; i < a.Count; i++)
 			{
 				if (!a[i].Equals(b[i]))
 					return false;
@@ -150,7 +150,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 				return false;
 			if (a.Count != b.Count)
 				return false;
-			for (int i = 0; i < a.Count; i++)
+			for (var i = 0; i < a.Count; i++)
 			{
 				var an = a[i].AcceptVisitor(normalization);
 				var bn = b[i].AcceptVisitor(normalization);
@@ -166,7 +166,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 				return 0;
 			unchecked
 			{
-				int hashCode = 1;
+				var hashCode = 1;
 				foreach (var element in obj)
 				{
 					hashCode *= 27;
@@ -179,7 +179,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public override IType VisitTypeParameter(ITypeParameter type)
 		{
-			int index = type.Index;
+			var index = type.Index;
 			if (classTypeArguments != null && type.OwnerType == SymbolKind.TypeDefinition)
 			{
 				if (index >= 0 && index < classTypeArguments.Count)
@@ -222,12 +222,12 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public override string ToString()
 		{
-			StringBuilder b = new StringBuilder();
+			var b = new StringBuilder();
 			b.Append('[');
-			bool first = true;
+			var first = true;
 			if (classTypeArguments != null)
 			{
-				for (int i = 0; i < classTypeArguments.Count; i++)
+				for (var i = 0; i < classTypeArguments.Count; i++)
 				{
 					if (first)
 						first = false;
@@ -249,7 +249,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 			}
 			if (methodTypeArguments != null)
 			{
-				for (int i = 0; i < methodTypeArguments.Count; i++)
+				for (var i = 0; i < methodTypeArguments.Count; i++)
 				{
 					if (first)
 						first = false;

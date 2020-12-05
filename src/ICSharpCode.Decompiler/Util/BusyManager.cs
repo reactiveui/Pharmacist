@@ -60,10 +60,10 @@ namespace ICSharpCode.Decompiler.Util
 
 		public static BusyLock Enter(object obj)
 		{
-			List<object> activeObjects = _activeObjects;
+			var activeObjects = _activeObjects;
 			if (activeObjects == null)
 				activeObjects = _activeObjects = new List<object>();
-			for (int i = 0; i < activeObjects.Count; i++)
+			for (var i = 0; i < activeObjects.Count; i++)
 			{
 				if (activeObjects[i] == obj)
 					return BusyLock.Failed;

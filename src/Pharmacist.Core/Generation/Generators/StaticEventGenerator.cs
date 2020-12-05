@@ -36,20 +36,21 @@ namespace Pharmacist.Core.Generation.Generators
                         x =>
                             x.Events
                                 .OrderBy(eventDetails => eventDetails.Name)
-                                .Select(eventDetails => GenerateEventWrapperObservable(eventDetails, x.TypeDefinition.GenerateFullGenericName(), x.TypeDefinition.Name))
-                                .Where(y => y != null))
+                                .Select(eventDetails => GenerateEventWrapperObservable(eventDetails, x.TypeDefinition.GenerateFullGenericName(), x.TypeDefinition.Name)))
                     .ToList();
 
-                if (eventWrapperMembers.Count > 0)
+                if (eventWrapperMembers.Count == 0)
                 {
-                    var members = ClassDeclaration("Events")
-                        .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword)))
-                        .WithLeadingTrivia(GenerateSummarySeeAlsoComment("A class that contains extension methods to wrap events contained within static classes within the {0} namespace.", namespaceName))
-                        .WithMembers(List<MemberDeclarationSyntax>(eventWrapperMembers.Where(x => x != null).Select(x => x!)));
-
-                    yield return NamespaceDeclaration(IdentifierName(namespaceName))
-                        .WithMembers(SingletonList<MemberDeclarationSyntax>(members));
+                    continue;
                 }
+
+                var members = ClassDeclaration("Events")
+                    .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword)))
+                    .WithLeadingTrivia(GenerateSummarySeeAlsoComment("A class that contains extension methods to wrap events contained within static classes within the {0} namespace.", namespaceName))
+                    .WithMembers(List<MemberDeclarationSyntax>(eventWrapperMembers.Select(x => x!)));
+
+                yield return NamespaceDeclaration(IdentifierName(namespaceName))
+                    .WithMembers(SingletonList<MemberDeclarationSyntax>(members));
             }
         }
     }

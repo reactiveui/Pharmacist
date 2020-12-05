@@ -112,7 +112,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public static string ToString(IParameter parameter)
 		{
-			StringBuilder b = new StringBuilder();
+			var b = new StringBuilder();
 			if (parameter.IsRef)
 				b.Append("ref ");
 			if (parameter.IsOut)
@@ -127,7 +127,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 			if (parameter.IsOptional && parameter.HasConstantValueInSignature)
 			{
 				b.Append(" = ");
-				object val = parameter.GetConstantValue(throwOnInvalidMetadata: false);
+				var val = parameter.GetConstantValue(throwOnInvalidMetadata: false);
 				if (val != null)
 					b.Append(val.ToString());
 				else

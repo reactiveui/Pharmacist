@@ -35,7 +35,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public void CollectBaseTypes(IType type)
 		{
-			IType def = type.GetDefinition() ?? type;
+			var def = type.GetDefinition() ?? type;
 
 			// Maintain a stack of currently active type definitions, and avoid having one definition
 			// multiple times on that stack.
@@ -54,7 +54,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 			// (e.g. C implements I1 and I2, and both interfaces derive from Object)
 			if (!this.Contains(type))
 			{
-				foreach (IType baseType in type.DirectBaseTypes)
+				foreach (var baseType in type.DirectBaseTypes)
 				{
 					if (SkipImplementedInterfaces && def != null && def.Kind != TypeKind.Interface && def.Kind != TypeKind.TypeParameter)
 					{

@@ -16,11 +16,8 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 // DEALINGS IN THE SOFTWARE.
 
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Reflection.Metadata;
-
-using ICSharpCode.Decompiler.Semantics;
 
 namespace ICSharpCode.Decompiler.TypeSystem
 {

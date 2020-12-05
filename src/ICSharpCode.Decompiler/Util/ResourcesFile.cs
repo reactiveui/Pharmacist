@@ -107,15 +107,15 @@ namespace ICSharpCode.Decompiler.Util
 
 			// Read ResourceManager header
 			// Check for magic number
-			int magicNum = reader.ReadInt32();
+			var magicNum = reader.ReadInt32();
 			if (magicNum != MagicNumber)
 				throw new BadImageFormatException("Not a .resources file - invalid magic number");
 			// Assuming this is ResourceManager header V1 or greater, hopefully
 			// after the version number there is a number of bytes to skip
 			// to bypass the rest of the ResMgr header. For V2 or greater, we
 			// use this to skip to the end of the header
-			int resMgrHeaderVersion = reader.ReadInt32();
-			int numBytesToSkip = reader.ReadInt32();
+			var resMgrHeaderVersion = reader.ReadInt32();
+			var numBytesToSkip = reader.ReadInt32();
 			if (numBytesToSkip < 0 || resMgrHeaderVersion < 0)
 			{
 				throw new BadImageFormatException(ResourcesHeaderCorrupted);
@@ -148,13 +148,13 @@ namespace ICSharpCode.Decompiler.Util
 
 			// Read type positions into type positions array.
 			// But delay initialize the type table.
-			int numTypes = reader.ReadInt32();
+			var numTypes = reader.ReadInt32();
 			if (numTypes < 0)
 			{
 				throw new BadImageFormatException(ResourcesHeaderCorrupted);
 			}
 			typeTable = new string[numTypes];
-			for (int i = 0; i < numTypes; i++)
+			for (var i = 0; i < numTypes; i++)
 			{
 				typeTable[i] = reader.ReadString();
 			}
@@ -165,11 +165,11 @@ namespace ICSharpCode.Decompiler.Util
 			//  may be sufficient, but let's plan for the future)
 			//  Skip over alignment stuff.  All public .resources files
 			//  should be aligned   No need to verify the byte values.
-			long pos = reader.BaseStream.Position - fileStartPosition;
-			int alignBytes = unchecked((int)pos) & 7;
+			var pos = reader.BaseStream.Position - fileStartPosition;
+			var alignBytes = unchecked((int)pos) & 7;
 			if (alignBytes != 0)
 			{
-				for (int i = 0; i < 8 - alignBytes; i++)
+				for (var i = 0; i < 8 - alignBytes; i++)
 				{
 					reader.ReadByte();
 				}
@@ -187,9 +187,9 @@ namespace ICSharpCode.Decompiler.Util
 
 			// Read in the array of relative positions for all the names.
 			namePositions = new int[numResources];
-			for (int i = 0; i < numResources; i++)
+			for (var i = 0; i < numResources; i++)
 			{
-				int namePosition = reader.ReadInt32();
+				var namePosition = reader.ReadInt32();
 				if (namePosition < 0)
 				{
 					throw new BadImageFormatException(ResourcesHeaderCorrupted);
@@ -198,7 +198,7 @@ namespace ICSharpCode.Decompiler.Util
 			}
 
 			// Read location of data section.
-			int dataSectionOffset = reader.ReadInt32();
+			var dataSectionOffset = reader.ReadInt32();
 			if (dataSectionOffset < 0)
 			{
 				throw new BadImageFormatException(ResourcesHeaderCorrupted);
@@ -229,19 +229,19 @@ namespace ICSharpCode.Decompiler.Util
 
 		int GetResourceDataOffset(int index)
 		{
-			GetResourceName(index, out int dataOffset);
+			GetResourceName(index, out var dataOffset);
 			return dataOffset;
 		}
 
 		string GetResourceName(int index, out int dataOffset)
 		{
-			long pos = nameSectionPosition + namePositions[index];
+			var pos = nameSectionPosition + namePositions[index];
 			byte[] bytes;
 			lock (reader)
 			{
 				reader.Seek(pos, SeekOrigin.Begin);
 				// Can't use reader.ReadString, since it's using UTF-8!
-				int byteLen = reader.Read7BitEncodedInt();
+				var byteLen = reader.Read7BitEncodedInt();
 				if (byteLen < 0)
 				{
 					throw new BadImageFormatException("Resource name has negative length");
@@ -250,10 +250,10 @@ namespace ICSharpCode.Decompiler.Util
 				// We must read byteLen bytes, or we have a corrupted file.
 				// Use a blocking read in case the stream doesn't give us back
 				// everything immediately.
-				int count = byteLen;
+				var count = byteLen;
 				while (count > 0)
 				{
-					int n = reader.Read(bytes, byteLen - count, count);
+					var n = reader.Read(bytes, byteLen - count, count);
 					if (n == 0)
 						throw new BadImageFormatException("End of stream within a resource name");
 					count -= n;
@@ -273,9 +273,9 @@ namespace ICSharpCode.Decompiler.Util
 				return false;
 			lock (reader)
 			{
-				for (int i = 0; i < numResources; i++)
+				for (var i = 0; i < numResources; i++)
 				{
-					int dataOffset = GetResourceDataOffset(i);
+					var dataOffset = GetResourceDataOffset(i);
 					reader.Seek(dataSectionPosition + dataOffset, SeekOrigin.Begin);
 					var typeCode = (ResourceTypeCode)reader.Read7BitEncodedInt();
 					if (typeCode != ResourceTypeCode.Stream)
@@ -322,11 +322,11 @@ namespace ICSharpCode.Decompiler.Util
 		{
 			Debug.Assert(System.Threading.Monitor.IsEntered(reader));
 			reader.Seek(dataSectionPosition + dataOffset, SeekOrigin.Begin);
-			int typeIndex = reader.Read7BitEncodedInt();
+			var typeIndex = reader.Read7BitEncodedInt();
 			if (typeIndex == -1)
 				return null;
-			string typeName = FindType(typeIndex);
-			int comma = typeName.IndexOf(',');
+			var typeName = FindType(typeIndex);
+			var comma = typeName.IndexOf(',');
 			if (comma > 0)
 			{
 				// strip assembly name
@@ -363,8 +363,8 @@ namespace ICSharpCode.Decompiler.Util
 				case "System.TimeSpan":
 					return new TimeSpan(reader.ReadInt64());
 				case "System.Decimal":
-					int[] bits = new int[4];
-					for (int i = 0; i < bits.Length; i++)
+					var bits = new int[4];
+					for (var i = 0; i < bits.Length; i++)
 						bits[i] = reader.ReadInt32();
 					return new decimal(bits);
 				default:
@@ -426,17 +426,17 @@ namespace ICSharpCode.Decompiler.Util
 
 				case ResourceTypeCode.DateTime:
 					// Use DateTime's ToBinary & FromBinary.
-					long data = reader.ReadInt64();
+					var data = reader.ReadInt64();
 					return DateTime.FromBinary(data);
 
 				case ResourceTypeCode.TimeSpan:
-					long ticks = reader.ReadInt64();
+					var ticks = reader.ReadInt64();
 					return new TimeSpan(ticks);
 
 				// Special types
 				case ResourceTypeCode.ByteArray:
 				{
-					int len = reader.ReadInt32();
+					var len = reader.ReadInt32();
 					if (len < 0)
 					{
 						throw new BadImageFormatException("Resource with negative length");
@@ -446,12 +446,12 @@ namespace ICSharpCode.Decompiler.Util
 
 				case ResourceTypeCode.Stream:
 				{
-					int len = reader.ReadInt32();
+					var len = reader.ReadInt32();
 					if (len < 0)
 					{
 						throw new BadImageFormatException("Resource with negative length");
 					}
-					byte[] bytes = reader.ReadBytes(len);
+					var bytes = reader.ReadBytes(len);
 					return new MemoryStream(bytes, writable: false);
 				}
 
@@ -466,16 +466,16 @@ namespace ICSharpCode.Decompiler.Util
 
 		public object GetResourceValue(int index)
 		{
-			GetResourceName(index, out int dataOffset);
+			GetResourceName(index, out var dataOffset);
 			return LoadObject(dataOffset);
 		}
 
 		public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
 		{
-			for (int i = 0; i < numResources; i++)
+			for (var i = 0; i < numResources; i++)
 			{
-				string name = GetResourceName(i, out int dataOffset);
-				object val = LoadObject(dataOffset);
+				var name = GetResourceName(i, out var dataOffset);
+				var val = LoadObject(dataOffset);
 				yield return new KeyValuePair<string, object>(name, val);
 			}
 		}
@@ -487,7 +487,7 @@ namespace ICSharpCode.Decompiler.Util
 
 		long[] GetStartPositions()
 		{
-			long[] positions = LazyInit.VolatileRead(ref startPositions);
+			var positions = LazyInit.VolatileRead(ref startPositions);
 			if (positions != null)
 				return positions;
 			lock (reader)
@@ -497,8 +497,8 @@ namespace ICSharpCode.Decompiler.Util
 				if (positions != null)
 					return positions;
 				positions = new long[numResources * 2];
-				int outPos = 0;
-				for (int i = 0; i < numResources; i++)
+				var outPos = 0;
+				for (var i = 0; i < numResources; i++)
 				{
 					positions[outPos++] = nameSectionPosition + namePositions[i];
 					positions[outPos++] = dataSectionPosition + GetResourceDataOffset(i);
@@ -510,8 +510,8 @@ namespace ICSharpCode.Decompiler.Util
 
 		internal byte[] GetBytesForSerializedObject(long pos)
 		{
-			long[] positions = GetStartPositions();
-			int i = Array.BinarySearch(positions, pos);
+			var positions = GetStartPositions();
+			var i = Array.BinarySearch(positions, pos);
 			if (i < 0)
 			{
 				// 'pos' the the start position of the serialized object data
@@ -532,7 +532,7 @@ namespace ICSharpCode.Decompiler.Util
 				{
 					endPos = positions[i];
 				}
-				int len = (int)(endPos - pos);
+				var len = (int)(endPos - pos);
 				reader.Seek(pos, SeekOrigin.Begin);
 				return reader.ReadBytes(len);
 			}

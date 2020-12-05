@@ -103,21 +103,13 @@ namespace Pharmacist.Core.Generation
             var compilation = eventDetails.Compilation;
 
             // Find the EventArgs type parameter of the event via digging around via reflection
-            if (!eventDetails.CanAdd || !eventDetails.CanRemove)
+            if (eventDetails.CanAdd && eventDetails.CanRemove)
             {
-                LogHost.Default.Debug($"Type for {eventDetails.DeclaringType.FullName} is not valid");
-                return null;
+                return GetRealType(eventDetails.ReturnType, compilation);
             }
 
-            var type = GetRealType(eventDetails.ReturnType, compilation);
-
-            if (type == null)
-            {
-                LogHost.Default.Debug($"Type for {eventDetails.DeclaringType.FullName} is not valid");
-                return null;
-            }
-
-            return type;
+            LogHost.Default.Debug($"Type for {eventDetails.DeclaringType.FullName} is not valid");
+            return null;
         }
 
         /// <summary>
@@ -134,20 +126,22 @@ namespace Pharmacist.Core.Generation
             // since UnknownType is only if it's unknown in the current assembly only.
             // This scenario is fairly common with types in the netstandard libraries, eg System.EventHandler.
             var newType = type;
-            if (newType is UnknownType || newType.Kind == TypeKind.Unknown)
+            if (newType is not UnknownType && newType.Kind != TypeKind.Unknown)
             {
-                if (newType.TypeParameterCount == 0)
-                {
-                    newType = compilation.GetReferenceTypeDefinitionsWithFullName(newType.ReflectionName).FirstOrDefault();
-                }
-                else if (newType is ParameterizedType paramType)
-                {
-                    var genericType = compilation.GetReferenceTypeDefinitionsWithFullName(paramType.GenericType.ReflectionName).FirstOrDefault();
+                return newType;
+            }
 
-                    var typeArguments = newType.TypeArguments.Select(x => GetRealType(x, compilation));
+            if (newType.TypeParameterCount == 0)
+            {
+                newType = compilation.GetReferenceTypeDefinitionsWithFullName(newType.ReflectionName).FirstOrDefault();
+            }
+            else if (newType is ParameterizedType paramType)
+            {
+                var genericType = compilation.GetReferenceTypeDefinitionsWithFullName(paramType.GenericType.ReflectionName).FirstOrDefault();
 
-                    newType = new ParameterizedType(genericType, typeArguments);
-                }
+                var typeArguments = newType.TypeArguments.Select(x => GetRealType(x, compilation));
+
+                newType = new ParameterizedType(genericType, typeArguments);
             }
 
             return newType ?? type;
@@ -163,14 +157,16 @@ namespace Pharmacist.Core.Generation
             var (isBuiltIn, typeName) = GetBuiltInType(currentType.FullName);
             var sb = new StringBuilder(!isBuiltIn ? "global::" + typeName : typeName);
 
-            if (currentType.TypeParameterCount > 0)
+            if (currentType.TypeParameterCount <= 0)
             {
-                var isUnbound = currentType.IsUnbound();
-                var arguments = string.Join(", ", currentType.TypeArguments.Select(GenerateName));
-                sb.Append('<').Append(arguments).Append('>');
-
-                string GenerateName(IType type) => isUnbound ? type.FullName : GenerateFullGenericName(type);
+                return sb.ToString();
             }
+
+            var isUnbound = currentType.IsUnbound();
+            var arguments = string.Join(", ", currentType.TypeArguments.Select(GenerateName));
+            sb.Append('<').Append(arguments).Append('>');
+
+            string GenerateName(IType type) => isUnbound ? type.FullName : GenerateFullGenericName(type);
 
             return sb.ToString();
         }
@@ -200,12 +196,7 @@ namespace Pharmacist.Core.Generation
 
         private static (bool IsInternalType, string TypeName) GetBuiltInType(string typeName)
         {
-            if (TypesMetadata.FullToBuiltInTypes.TryGetValue(typeName, out var builtInName))
-            {
-                return (true, builtInName);
-            }
-
-            return (false, typeName);
+            return TypesMetadata.FullToBuiltInTypes.TryGetValue(typeName, out var builtInName) ? (true, builtInName) : (false, typeName);
         }
     }
 }

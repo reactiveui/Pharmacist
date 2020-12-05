@@ -101,7 +101,7 @@ namespace LightJson.Serialization
 		{
 			while (true)
 			{
-				char next = this.Peek();
+				var next = this.Peek();
 				if (char.IsWhiteSpace(next))
 				{
 					this.Read();
@@ -201,7 +201,7 @@ namespace LightJson.Serialization
 			// First character is the '*' of the opening '/*'
 			this.Read();
 
-			bool foundStar = false;
+			var foundStar = false;
 			while (true)
 			{
 				switch (this.reader.Peek())

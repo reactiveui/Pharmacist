@@ -46,7 +46,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public override IType ChangeNullability(Nullability nullability)
 		{
-			IType newElementType = elementType.ChangeNullability(nullability);
+			var newElementType = elementType.ChangeNullability(nullability);
 			if (newElementType == elementType)
 				return this;
 			else

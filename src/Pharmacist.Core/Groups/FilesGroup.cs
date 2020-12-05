@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Pharmacist.Core.Groups
 {
@@ -83,14 +84,9 @@ namespace Pharmacist.Core.Groups
 
                 var splitDirectory = directoryPath?.Split(new[] { Path.PathSeparator, Path.AltDirectorySeparatorChar }, StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
 
-                var directoryNode = _rootNode;
+                var directoryNode = splitDirectory.Aggregate(_rootNode, (current, currentPath) => current.AddChildNode(currentPath));
 
-                foreach (var currentPath in splitDirectory)
-                {
-                    directoryNode = directoryNode.AddChildNode(currentPath);
-                }
-
-                directoryNode?.AddFile(file);
+                directoryNode.AddFile(file);
             }
         }
 
@@ -101,42 +97,16 @@ namespace Pharmacist.Core.Groups
             private readonly List<FileNode> _files = new();
             private readonly Dictionary<string, FileNode> _filesDict = new();
 
-            public DirectoryNode(DirectoryNode? parent, string name)
+            public DirectoryNode(string name)
             {
                 Name = name;
-                Parent = parent;
             }
-
-            public DirectoryNode(string name)
-                : this(null, name)
-            {
-            }
-
-            public string Name { get; }
-
-            public string FullPath
-            {
-                get
-                {
-                    if (Parent == null || string.IsNullOrWhiteSpace(Parent.FullPath))
-                    {
-                        return Name;
-                    }
-
-                    return Parent.FullPath + Path.DirectorySeparatorChar + Name;
-                }
-            }
-
-            public DirectoryNode? Parent { get; }
 
             public IEnumerable<FileNode> Files => _files;
 
             public IEnumerable<DirectoryNode> ChildNodes => _childNodes;
 
-            public bool TryGetChildNode(string path, out DirectoryNode? outValue)
-            {
-                return _childNodesDict.TryGetValue(path, out outValue);
-            }
+            private string Name { get; }
 
             public bool TryGetFile(string name, out string? outValue)
             {
@@ -152,32 +122,34 @@ namespace Pharmacist.Core.Groups
 
             public DirectoryNode AddChildNode(string name)
             {
-                if (!_childNodesDict.TryGetValue(name, out var node))
+                if (_childNodesDict.TryGetValue(name, out var node))
                 {
-                    node = new DirectoryNode(this, name);
-                    _childNodesDict.Add(name, node);
-                    _childNodes.Add(node);
+                    return node;
                 }
+
+                node = new DirectoryNode(name);
+                _childNodesDict.Add(name, node);
+                _childNodes.Add(node);
 
                 return node;
             }
 
-            public FileNode AddFile(string fullPath)
+            public void AddFile(string fullPath)
             {
                 var name = Path.GetFileName(fullPath);
 
-                if (!_filesDict.TryGetValue(name, out var node))
+                if (_filesDict.TryGetValue(name, out var node))
                 {
-                    node = new FileNode(name, fullPath);
-                    _filesDict.Add(name, node);
-                    var index = _files.BinarySearch(node);
-                    if (index < 0)
-                    {
-                        _files.Insert(~index, node);
-                    }
+                    return;
                 }
 
-                return node;
+                node = new FileNode(fullPath);
+                _filesDict.Add(name, node);
+                var index = _files.BinarySearch(node);
+                if (index < 0)
+                {
+                    _files.Insert(~index, node);
+                }
             }
 
             /// <inheritdoc />
@@ -193,12 +165,7 @@ namespace Pharmacist.Core.Groups
                     return false;
                 }
 
-                if (ReferenceEquals(x, y))
-                {
-                    return true;
-                }
-
-                return StringComparer.InvariantCultureIgnoreCase.Equals(x?.Name, y?.Name);
+                return ReferenceEquals(x, y) || StringComparer.InvariantCultureIgnoreCase.Equals(x.Name, y.Name);
             }
 
             /// <inheritdoc />
@@ -215,26 +182,18 @@ namespace Pharmacist.Core.Groups
                     return 0;
                 }
 
-                if (ReferenceEquals(null, other))
-                {
-                    return 1;
-                }
-
-                return StringComparer.InvariantCultureIgnoreCase.Compare(this, other);
+                return ReferenceEquals(null, other) ? 1 : StringComparer.InvariantCultureIgnoreCase.Compare(this, other);
             }
         }
 
         private class FileNode : IEqualityComparer<FileNode>, IComparable<FileNode>
         {
-            public FileNode(string fileName, string fullPath)
+            public FileNode(string fullPath)
             {
                 FullPath = fullPath;
-                FileName = fileName;
             }
 
             public string FullPath { get; }
-
-            public string FileName { get; }
 
             /// <inheritdoc />
             public bool Equals(FileNode? x, FileNode? y)
@@ -249,12 +208,7 @@ namespace Pharmacist.Core.Groups
                     return false;
                 }
 
-                if (ReferenceEquals(x, y))
-                {
-                    return true;
-                }
-
-                return StringComparer.InvariantCultureIgnoreCase.Equals(x?.FullPath, y?.FullPath);
+                return ReferenceEquals(x, y) || StringComparer.InvariantCultureIgnoreCase.Equals(x.FullPath, y.FullPath);
             }
 
             /// <inheritdoc />

@@ -115,7 +115,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public override bool Equals(IType other)
 		{
-			UnknownType o = other as UnknownType;
+			var o = other as UnknownType;
 			if (o == null)
 				return false;
 			return this.namespaceKnown == o.namespaceKnown && this.fullTypeName == o.fullTypeName && this.isReferenceType == o.isReferenceType;

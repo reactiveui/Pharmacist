@@ -45,7 +45,7 @@ namespace ICSharpCode.Decompiler.Semantics
 			var thisRR = targetResult as ThisResolveResult;
 			this.isVirtualCall = member.IsOverridable && !(thisRR != null && thisRR.CausesNonVirtualInvocation);
 
-			IField field = member as IField;
+			var field = member as IField;
 			if (field != null)
 			{
 				isConstant = field.IsConst;
@@ -60,7 +60,7 @@ namespace ICSharpCode.Decompiler.Semantics
 			this.targetResult = targetResult;
 			this.member = member;
 			this.isVirtualCall = isVirtualCall;
-			IField field = member as IField;
+			var field = member as IField;
 			if (field != null)
 			{
 				isConstant = field.IsConst;

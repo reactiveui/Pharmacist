@@ -281,24 +281,24 @@ namespace ICSharpCode.Decompiler.Util
 			if (value != null && !value.GetType().IsSerializable)
 				throw new InvalidOperationException(String.Format("The element '{0}' of type '{1}' is not serializable.", name, value.GetType().Name));
 
-			TypeConverter converter = TypeDescriptor.GetConverter(value);
+			var converter = TypeDescriptor.GetConverter(value);
 
 			if (converter != null && converter.CanConvertTo(typeof(string)) && converter.CanConvertFrom(typeof(string)))
 			{
-				string str = (string)converter.ConvertToInvariantString(value);
+				var str = (string)converter.ConvertToInvariantString(value);
 				WriteString(name, str, value.GetType().AssemblyQualifiedName, comment);
 				return;
 			}
 
 			if (converter != null && converter.CanConvertTo(typeof(byte[])) && converter.CanConvertFrom(typeof(byte[])))
 			{
-				byte[] b = (byte[])converter.ConvertTo(value, typeof(byte[]));
+				var b = (byte[])converter.ConvertTo(value, typeof(byte[]));
 				WriteBytes(name, value.GetType(), b, comment);
 				return;
 			}
 
-			MemoryStream ms = new MemoryStream();
-			BinaryFormatter fmt = new BinaryFormatter();
+			var ms = new MemoryStream();
+			var fmt = new BinaryFormatter();
 			try
 			{
 				fmt.Serialize(ms, value);
@@ -414,12 +414,12 @@ namespace ICSharpCode.Decompiler.Util
 			if (writer == null)
 				InitWriter();
 
-			Type type = value.GetType();
+			var type = value.GetType();
 
-			TypeConverter converter = TypeDescriptor.GetConverter(value);
+			var converter = TypeDescriptor.GetConverter(value);
 			if (converter != null && converter.CanConvertTo(typeof(string)) && converter.CanConvertFrom(typeof(string)))
 			{
-				string str = (string)converter.ConvertToInvariantString(value);
+				var str = (string)converter.ConvertToInvariantString(value);
 				writer.WriteStartElement("metadata");
 				writer.WriteAttributeString("name", name);
 				if (type != null)
@@ -434,7 +434,7 @@ namespace ICSharpCode.Decompiler.Util
 
 			if (converter != null && converter.CanConvertTo(typeof(byte[])) && converter.CanConvertFrom(typeof(byte[])))
 			{
-				byte[] b = (byte[])converter.ConvertTo(value, typeof(byte[]));
+				var b = (byte[])converter.ConvertTo(value, typeof(byte[]));
 				writer.WriteStartElement("metadata");
 				writer.WriteAttributeString("name", name);
 
@@ -457,8 +457,8 @@ namespace ICSharpCode.Decompiler.Util
 				return;
 			}
 
-			MemoryStream ms = new MemoryStream();
-			BinaryFormatter fmt = new BinaryFormatter();
+			var ms = new MemoryStream();
+			var fmt = new BinaryFormatter();
 			try
 			{
 				fmt.Serialize(ms, value);

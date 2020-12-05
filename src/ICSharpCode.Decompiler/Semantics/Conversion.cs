@@ -170,7 +170,7 @@ namespace ICSharpCode.Decompiler.Semantics
 
 			public override bool Equals(Conversion other)
 			{
-				NumericOrEnumerationConversion o = other as NumericOrEnumerationConversion;
+				var o = other as NumericOrEnumerationConversion;
 				return o != null && isImplicit == o.isImplicit && isLifted == o.isLifted && isEnumeration == o.isEnumeration;
 			}
 
@@ -337,7 +337,7 @@ namespace ICSharpCode.Decompiler.Semantics
 
 			public override bool Equals(Conversion other)
 			{
-				UserDefinedConv o = other as UserDefinedConv;
+				var o = other as UserDefinedConv;
 				return o != null && isLifted == o.isLifted && isImplicit == o.isImplicit && isValid == o.isValid && method.Equals(o.method);
 			}
 
@@ -396,7 +396,7 @@ namespace ICSharpCode.Decompiler.Semantics
 
 			public override bool Equals(Conversion other)
 			{
-				MethodGroupConv o = other as MethodGroupConv;
+				var o = other as MethodGroupConv;
 				return o != null && method.Equals(o.method);
 			}
 
@@ -429,7 +429,7 @@ namespace ICSharpCode.Decompiler.Semantics
 			{
 				unchecked
 				{
-					int hash = 0;
+					var hash = 0;
 					foreach (var conv in ElementConversions)
 					{
 						hash *= 31;

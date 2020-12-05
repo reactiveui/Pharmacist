@@ -51,7 +51,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public override IType VisitChildren(TypeVisitor visitor)
 		{
-			IType newBase = baseType.AcceptVisitor(visitor);
+			var newBase = baseType.AcceptVisitor(visitor);
 			if (newBase != baseType)
 			{
 				if (newBase.Nullability == Nullability.Nullable)

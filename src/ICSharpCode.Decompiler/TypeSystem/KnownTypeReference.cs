@@ -238,7 +238,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
 		public static IEnumerable<KnownTypeReference> AllKnownTypes {
 			get {
-				for (int i = 0; i < KnownTypeCodeCount; i++)
+				for (var i = 0; i < KnownTypeCodeCount; i++)
 				{
 					var ktr = Get((KnownTypeCode)i);
 					if (ktr == null)

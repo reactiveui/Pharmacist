@@ -21,7 +21,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading;
 
 using ICSharpCode.Decompiler.Util;
 
@@ -88,8 +87,8 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				var result = LazyInit.VolatileRead(ref this.declaringType);
 				if (result != null)
 					return result;
-				IType definitionDeclaringType = baseMember.DeclaringType;
-				ITypeDefinition definitionDeclaringTypeDef = definitionDeclaringType as ITypeDefinition;
+				var definitionDeclaringType = baseMember.DeclaringType;
+				var definitionDeclaringTypeDef = definitionDeclaringType as ITypeDefinition;
 				if (definitionDeclaringTypeDef != null && definitionDeclaringType.TypeParameterCount > 0)
 				{
 					if (substitution.ClassTypeArguments != null && substitution.ClassTypeArguments.Count == definitionDeclaringType.TypeParameterCount)
@@ -222,7 +221,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public virtual bool Equals(IMember obj, TypeVisitor typeNormalization)
 		{
-			SpecializedMember other = obj as SpecializedMember;
+			var other = obj as SpecializedMember;
 			if (other == null)
 				return false;
 			return this.baseMember.Equals(other.baseMember, typeNormalization)
@@ -231,7 +230,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public override bool Equals(object obj)
 		{
-			SpecializedMember other = obj as SpecializedMember;
+			var other = obj as SpecializedMember;
 			if (other == null)
 				return false;
 			return this.baseMember.Equals(other.baseMember) && this.substitution.Equals(other.substitution);
@@ -247,7 +246,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public override string ToString()
 		{
-			StringBuilder b = new StringBuilder("[");
+			var b = new StringBuilder("[");
 			b.Append(GetType().Name);
 			b.Append(' ');
 			b.Append(this.DeclaringType.ToString());
@@ -297,10 +296,10 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 			else
 			{
 				var parameters = new IParameter[paramDefs.Count];
-				for (int i = 0; i < parameters.Length; i++)
+				for (var i = 0; i < parameters.Length; i++)
 				{
 					var p = paramDefs[i];
-					IType newType = substitution(p.Type);
+					var newType = substitution(p.Type);
 					parameters[i] = new SpecializedParameter(p, newType, this);
 				}
 				return parameters;
@@ -309,14 +308,14 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		public override string ToString()
 		{
-			StringBuilder b = new StringBuilder("[");
+			var b = new StringBuilder("[");
 			b.Append(GetType().Name);
 			b.Append(' ');
 			b.Append(this.DeclaringType.ReflectionName);
 			b.Append('.');
 			b.Append(this.Name);
 			b.Append('(');
-			for (int i = 0; i < this.Parameters.Count; i++)
+			for (var i = 0; i < this.Parameters.Count; i++)
 			{
 				if (i > 0)
 					b.Append(", ");

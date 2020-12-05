@@ -63,7 +63,7 @@ namespace ICSharpCode.Decompiler.Documentation
 
 		public IMember Resolve(ITypeResolveContext context)
 		{
-			IType declaringType = declaringTypeReference.Resolve(context);
+			var declaringType = declaringTypeReference.Resolve(context);
 			foreach (var member in declaringType.GetMembers(CanMatch, GetMemberOptions.IgnoreInheritedMembers))
 			{
 				if (IdStringProvider.GetIdString(member) == memberIdString)

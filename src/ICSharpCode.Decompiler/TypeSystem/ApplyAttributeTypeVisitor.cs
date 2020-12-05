@@ -21,7 +21,6 @@ using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
 
-using ICSharpCode.Decompiler.TypeSystem.Implementation;
 using ICSharpCode.Decompiler.Util;
 
 using SRM = System.Reflection.Metadata;
@@ -42,9 +41,9 @@ namespace ICSharpCode.Decompiler.TypeSystem
             bool typeChildrenOnly = false,
             bool isSignatureReturnType = false)
         {
-            bool hasDynamicAttribute = false;
+            var hasDynamicAttribute = false;
             bool[] dynamicAttributeData = null;
-            bool hasNativeIntegersAttribute = false;
+            var hasNativeIntegersAttribute = false;
             bool[] nativeIntegersAttributeData = null;
             string[] tupleElementNames = null;
             Nullability nullability;
@@ -212,8 +211,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
         public override IType VisitParameterizedType(ParameterizedType type)
         {
-            bool useTupleTypes = true;
-            if (useTupleTypes && TupleType.IsTupleCompatible(type, out int tupleCardinality))
+            var useTupleTypes = true;
+            if (useTupleTypes && TupleType.IsTupleCompatible(type, out var tupleCardinality))
             {
                 if (tupleCardinality > 1)
                 {
@@ -221,7 +220,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
                     ImmutableArray<string> elementNames = default;
                     if (tupleElementNames != null && tupleTypeIndex < tupleElementNames.Length)
                     {
-                        string[] extractedValues = new string[tupleCardinality];
+                        var extractedValues = new string[tupleCardinality];
                         Array.Copy(tupleElementNames, tupleTypeIndex, extractedValues, 0,
                             Math.Min(tupleCardinality, tupleElementNames.Length - tupleTypeIndex));
                         elementNames = ImmutableArray.CreateRange(extractedValues);
@@ -231,8 +230,8 @@ namespace ICSharpCode.Decompiler.TypeSystem
                     var elementTypes = ImmutableArray.CreateBuilder<IType>(tupleCardinality);
                     do
                     {
-                        int normalArgCount = Math.Min(type.TypeArguments.Count, TupleType.RestPosition - 1);
-                        for (int i = 0; i < normalArgCount; i++)
+                        var normalArgCount = Math.Min(type.TypeArguments.Count, TupleType.RestPosition - 1);
+                        for (var i = 0; i < normalArgCount; i++)
                         {
                             dynamicTypeIndex++;
                             elementTypes.Add(type.TypeArguments[i].AcceptVisitor(this));
@@ -242,7 +241,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
                             type = type.TypeArguments.Last() as ParameterizedType;
                             ExpectDummyNullabilityForGenericValueType();
                             dynamicTypeIndex++;
-                            if (type != null && TupleType.IsTupleCompatible(type, out int nestedCardinality))
+                            if (type != null && TupleType.IsTupleCompatible(type, out var nestedCardinality))
                             {
                                 tupleTypeIndex += nestedCardinality;
                             }
@@ -278,9 +277,9 @@ namespace ICSharpCode.Decompiler.TypeSystem
             {
                 ExpectDummyNullabilityForGenericValueType();
             }
-            bool changed = type.GenericType != genericType;
+            var changed = type.GenericType != genericType;
             var arguments = new IType[type.TypeArguments.Count];
-            for (int i = 0; i < type.TypeArguments.Count; i++)
+            for (var i = 0; i < type.TypeArguments.Count; i++)
             {
                 dynamicTypeIndex++;
                 arguments[i] = type.TypeArguments[i].AcceptVisitor(this);
@@ -299,9 +298,9 @@ namespace ICSharpCode.Decompiler.TypeSystem
                 dynamicTypeIndex++;
             }
             var returnType = type.ReturnType.AcceptVisitor(this);
-            bool changed = type.ReturnType != returnType;
+            var changed = type.ReturnType != returnType;
             var parameters = new IType[type.ParameterTypes.Length];
-            for (int i = 0; i < parameters.Length; i++)
+            for (var i = 0; i < parameters.Length; i++)
             {
                 dynamicTypeIndex += type.ParameterReferenceKinds[i] switch
                 {
@@ -341,7 +340,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
             }
             if (type.IsReferenceType == true)
             {
-                Nullability nullability = GetNullability();
+                var nullability = GetNullability();
                 return newType.ChangeNullability(nullability);
             }
             else
@@ -355,7 +354,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
             type = base.VisitOtherType(type);
             if (type.Kind == TypeKind.Unknown && type.IsReferenceType == true)
             {
-                Nullability nullability = GetNullability();
+                var nullability = GetNullability();
                 type = type.ChangeNullability(nullability);
             }
             return type;
@@ -363,7 +362,7 @@ namespace ICSharpCode.Decompiler.TypeSystem
 
         public override IType VisitTypeParameter(ITypeParameter type)
         {
-            Nullability nullability = GetNullability();
+            var nullability = GetNullability();
             return type.ChangeNullability(nullability);
         }
     }

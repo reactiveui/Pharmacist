@@ -119,7 +119,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 				// But if that's not loaded in the compilation, allow fall back to other assemblies.
 				// (the non-loaded assembly might be a facade containing type forwarders -
 				//  for example, when referencing a portable library from a non-portable project)
-				IModule asm = module.Resolve(context);
+				var asm = module.Resolve(context);
 				if (asm != null)
 				{
 					type = asm.GetTypeDefinition(fullTypeName);
@@ -147,7 +147,7 @@ namespace ICSharpCode.Decompiler.TypeSystem.Implementation
 
 		bool ISupportsInterning.EqualsForInterning(ISupportsInterning other)
 		{
-			GetClassTypeReference o = other as GetClassTypeReference;
+			var o = other as GetClassTypeReference;
 			return o != null && module == o.module && fullTypeName == o.fullTypeName && isReferenceType == o.isReferenceType;
 		}
 	}

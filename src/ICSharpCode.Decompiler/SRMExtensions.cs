@@ -42,7 +42,7 @@ namespace ICSharpCode.Decompiler
 
 		public static bool IsValueType(this TypeDefinition typeDefinition, MetadataReader reader)
 		{
-			EntityHandle baseType = typeDefinition.GetBaseTypeOrNil();
+			var baseType = typeDefinition.GetBaseTypeOrNil();
 			if (baseType.IsNil)
 				return false;
 			if (baseType.IsKnownType(reader, KnownTypeCode.Enum))
@@ -60,7 +60,7 @@ namespace ICSharpCode.Decompiler
 
 		public static bool IsEnum(this TypeDefinition typeDefinition, MetadataReader reader)
 		{
-			EntityHandle baseType = typeDefinition.GetBaseTypeOrNil();
+			var baseType = typeDefinition.GetBaseTypeOrNil();
 			if (baseType.IsNil)
 				return false;
 			return baseType.IsKnownType(reader, KnownTypeCode.Enum);
@@ -268,11 +268,11 @@ namespace ICSharpCode.Decompiler
 		public static FullTypeName GetFullTypeName(this TypeDefinition td, MetadataReader reader)
 		{
 			TypeDefinitionHandle declaringTypeHandle;
-			string name = ReflectionHelper.SplitTypeParameterCountFromReflectionName(
+			var name = ReflectionHelper.SplitTypeParameterCountFromReflectionName(
 				reader.GetString(td.Name), out var typeParameterCount);
 			if ((declaringTypeHandle = td.GetDeclaringType()).IsNil)
 			{
-				string @namespace = td.Namespace.IsNil ? "" : reader.GetString(td.Namespace);
+				var @namespace = td.Namespace.IsNil ? "" : reader.GetString(td.Namespace);
 				return new FullTypeName(new TopLevelTypeName(@namespace, name, typeParameterCount));
 			}
 			else
@@ -283,8 +283,8 @@ namespace ICSharpCode.Decompiler
 
 		public static FullTypeName GetFullTypeName(this ExportedType type, MetadataReader metadata)
 		{
-			string name = ReflectionHelper.SplitTypeParameterCountFromReflectionName(
-				metadata.GetString(type.Name), out int typeParameterCount);
+			var name = ReflectionHelper.SplitTypeParameterCountFromReflectionName(
+				metadata.GetString(type.Name), out var typeParameterCount);
 			if (type.Implementation.Kind == HandleKind.ExportedType)
 			{
 				var outerType = metadata.GetExportedType((ExportedTypeHandle)type.Implementation);
@@ -292,14 +292,14 @@ namespace ICSharpCode.Decompiler
 			}
 			else
 			{
-				string ns = type.Namespace.IsNil ? "" : metadata.GetString(type.Namespace);
+				var ns = type.Namespace.IsNil ? "" : metadata.GetString(type.Namespace);
 				return new TopLevelTypeName(ns, name, typeParameterCount);
 			}
 		}
 
 		public static bool IsAnonymousType(this TypeDefinition type, MetadataReader metadata)
 		{
-			string name = metadata.GetString(type.Name);
+			var name = metadata.GetString(type.Name);
 			if (type.Namespace.IsNil && type.HasGeneratedName(metadata)
 				&& (name.Contains("AnonType") || name.Contains("AnonymousType")))
 			{
@@ -349,10 +349,10 @@ namespace ICSharpCode.Decompiler
 		public static bool IsCompilerGeneratedOrIsInCompilerGeneratedClass(this MethodDefinitionHandle handle,
 			MetadataReader metadata)
 		{
-			MethodDefinition method = metadata.GetMethodDefinition(handle);
+			var method = metadata.GetMethodDefinition(handle);
 			if (method.IsCompilerGenerated(metadata))
 				return true;
-			TypeDefinitionHandle declaringTypeHandle = method.GetDeclaringType();
+			var declaringTypeHandle = method.GetDeclaringType();
 			if (!declaringTypeHandle.IsNil && declaringTypeHandle.IsCompilerGenerated(metadata))
 				return true;
 			return false;
@@ -361,10 +361,10 @@ namespace ICSharpCode.Decompiler
 		public static bool IsCompilerGeneratedOrIsInCompilerGeneratedClass(this TypeDefinitionHandle handle,
 			MetadataReader metadata)
 		{
-			TypeDefinition type = metadata.GetTypeDefinition(handle);
+			var type = metadata.GetTypeDefinition(handle);
 			if (type.IsCompilerGenerated(metadata))
 				return true;
-			TypeDefinitionHandle declaringTypeHandle = type.GetDeclaringType();
+			var declaringTypeHandle = type.GetDeclaringType();
 			if (!declaringTypeHandle.IsNil && declaringTypeHandle.IsCompilerGenerated(metadata))
 				return true;
 			return false;
@@ -473,10 +473,10 @@ namespace ICSharpCode.Decompiler
 		{
 			if (!field.HasFlag(FieldAttributes.HasFieldRVA))
 				return default;
-			int rva = field.GetRelativeVirtualAddress();
+			var rva = field.GetRelativeVirtualAddress();
 			if (rva == 0)
 				return default;
-			int size = field.DecodeSignature(new FieldValueSizeDecoder(typeSystem), default);
+			var size = field.DecodeSignature(new FieldValueSizeDecoder(typeSystem), default);
 			var sectionData = pefile.GetSectionData(rva);
 			if (sectionData.Length == 0 && size != 0)
 				throw new BadImageFormatException($"Field data (rva=0x{rva:x}) could not be found"

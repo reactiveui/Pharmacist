@@ -45,8 +45,8 @@ namespace ICSharpCode.Decompiler
 				0xee, 0x3b, 0x2d, 0xce, 0x24, 0xb3, 0x6a, 0xae
 			};
 
-			byte* end = data + (size - bundleSignature.Length);
-			for (byte* ptr = data; ptr < end; ptr++)
+			var end = data + (size - bundleSignature.Length);
+			for (var ptr = data; ptr < end; ptr++)
 			{
 				if (*ptr == 0x8b && bundleSignature.SequenceEqual(new ReadOnlySpan<byte>(ptr, bundleSignature.Length)))
 				{
@@ -105,7 +105,7 @@ namespace ICSharpCode.Decompiler
 
 		static UnmanagedMemoryStream AsStream(MemoryMappedViewAccessor view)
 		{
-			long size = checked((long)view.SafeMemoryMappedViewHandle.ByteLength);
+			var size = checked((long)view.SafeMemoryMappedViewHandle.ByteLength);
 			return new UnmanagedMemoryStream(view.SafeMemoryMappedViewHandle, 0, size);
 		}
 
@@ -143,7 +143,7 @@ namespace ICSharpCode.Decompiler
 				header.Flags = reader.ReadUInt64();
 			}
 			var entries = ImmutableArray.CreateBuilder<Entry>(header.FileCount);
-			for (int i = 0; i < header.FileCount; i++)
+			for (var i = 0; i < header.FileCount; i++)
 			{
 				entries.Add(ReadEntry(reader));
 			}

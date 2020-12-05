@@ -31,22 +31,12 @@ namespace Pharmacist.Core.Generation
         /// <inheritdoc />
         public int Compare(ITypeDefinition? x, ITypeDefinition? y)
         {
-            if (x == null && y == null)
+            return x switch
             {
-                return 0;
-            }
-
-            if (x == null)
-            {
-                return -1;
-            }
-
-            if (y == null)
-            {
-                return 1;
-            }
-
-            return string.CompareOrdinal(x.GenerateFullGenericName(), y.GenerateFullGenericName());
+                null when y == null => 0,
+                null => -1,
+                _ => y == null ? 1 : string.CompareOrdinal(x.GenerateFullGenericName(), y.GenerateFullGenericName())
+            };
         }
     }
 }
