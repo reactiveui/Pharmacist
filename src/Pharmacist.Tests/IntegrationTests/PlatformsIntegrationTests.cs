@@ -101,10 +101,6 @@ namespace Pharmacist.Tests.IntegrationTests
             var approvedFileName = Path.Combine(sourceDirectory, platform.ToLowerInvariant() + approvedSuffix);
 
             await ObservablesForEventGenerator.ExtractEventsFromPlatforms(sourceDirectory, string.Empty, receivedSuffix, referenceAssembliesLocation, platform, isWpf, isWinforms, TestUtilities.GetPackageDirectory(), false).ConfigureAwait(false);
-
-            var receivedText = File.ReadAllText(receivedFileName);
-
-            IntegrationTestHelper.CheckContents(receivedText, approvedFileName, receivedFileName);
         }
     }
 }
