@@ -40,8 +40,6 @@ namespace Uno
         {
             void Handler(object sender, global::System.EventArgs e) => eventHandler(e);
             return Handler;
-        }
-
-        , x => _data.Loaded += x, x => _data.Loaded -= x);
+        }, x => _data.Loaded += x, x => _data.Loaded -= x);
     }
 }

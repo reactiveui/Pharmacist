@@ -1,4 +1,4 @@
-// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -29,19 +29,19 @@ namespace Pharmacist.Console
     internal static class Program
     {
         [SuppressMessage("Design", "CA1031: Catch specific exceptions", Justification = "Final logging location for exceptions.")]
-        [SuppressMessage("Design", "CA2000: Dispose items", Justification = "Will be cleaned up when application ends.")]
         public static async Task<int> Main(string[] args)
         {
             // allow app to be debugged in visual studio.
             if (args.Length == 0 && Debugger.IsAttached)
             {
-                args = "generate-platform --platforms=uwp --output-path=test.txt".Split(' ');
+                args = "generate-platform --is-wpf --target-frameworks=net5.0,net461,net462,net463,net470,net471,net472,net48 --output-path=c:/temp --output-prefix=blah".Split(' ');
             }
 
             var funcLogManager = new FuncLogManager(type => new WrappingFullLogger(new WrappingPrefixLogger(new ConsoleLogger(), type)));
             Locator.CurrentMutable.RegisterConstant(funcLogManager, typeof(ILogManager));
 
-            var parserResult = new Parser(parserSettings => parserSettings.CaseInsensitiveEnumValues = true)
+            using var parser = new Parser(parserSettings => parserSettings.CaseInsensitiveEnumValues = true);
+            var parserResult = parser
                 .ParseArguments<CustomAssembliesCommandLineOptions, PlatformCommandLineOptions>(args);
 
             var result = await parserResult.MapResult(
@@ -50,7 +50,7 @@ namespace Pharmacist.Console
                     try
                     {
                         var referenceAssembliesLocation = !string.IsNullOrWhiteSpace(options.ReferenceAssemblies)
-                            ? options.ReferenceAssemblies!
+                            ? options.ReferenceAssemblies
                             : ReferenceLocator.GetReferenceLocation();
 
                         if (string.IsNullOrWhiteSpace(options.OutputPath))
@@ -63,12 +63,22 @@ namespace Pharmacist.Console
                             throw new Exception("Invalid output prefix for the event generation.");
                         }
 
-                        if (options.Platforms == null)
+                        if (options.TargetFrameworks == null)
                         {
-                            throw new Exception("Invalid platforms for the event generation.");
+                            throw new Exception("Invalid target framework for the event generation.");
                         }
 
-                        await ObservablesForEventGenerator.ExtractEventsFromPlatforms(options.OutputPath!, options.OutputPrefix!, ".cs", referenceAssembliesLocation, options.Platforms).ConfigureAwait(false);
+                        foreach (var targetFramework in options.TargetFrameworks)
+                        {
+                            await ObservablesForEventGenerator.ExtractEventsFromPlatforms(
+                                options.OutputPath,
+                                options.OutputPrefix,
+                                ".cs",
+                                referenceAssembliesLocation,
+                                targetFramework,
+                                options.IsWpf,
+                                options.IsWinForms).ConfigureAwait(false);
+                        }
 
                         return ExitCode.Success;
                     }
@@ -87,27 +97,26 @@ namespace Pharmacist.Console
                             throw new InvalidOperationException("There is no Output path specified.");
                         }
 
-                        using (var writer = new StreamWriter(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs")))
+                        await using var writer = new StreamWriter(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs"));
+
+                        if (options.Assemblies == null)
                         {
-                            if (options.Assemblies == null)
-                            {
-                                throw new Exception("Invalid specified assemblies for observable generation.");
-                            }
-
-                            if (options.SearchDirectories == null)
-                            {
-                                throw new Exception("Invalid search directories specified for observable generation.");
-                            }
-
-                            if (string.IsNullOrWhiteSpace(options.TargetFramework))
-                            {
-                                throw new Exception("Invalid target framework for the event generation.");
-                            }
-
-                            await ObservablesForEventGenerator.WriteHeader(writer, options.Assemblies!).ConfigureAwait(false);
-
-                            await ObservablesForEventGenerator.ExtractEventsFromAssemblies(writer, options.Assemblies!, options.SearchDirectories!, options.TargetFramework!).ConfigureAwait(false);
+                            throw new Exception("Invalid specified assemblies for observable generation.");
                         }
+
+                        if (options.SearchDirectories == null)
+                        {
+                            throw new Exception("Invalid search directories specified for observable generation.");
+                        }
+
+                        if (string.IsNullOrWhiteSpace(options.TargetFramework))
+                        {
+                            throw new Exception("Invalid target framework for the event generation.");
+                        }
+
+                        await ObservablesForEventGenerator.WriteHeader(writer, options.Assemblies).ConfigureAwait(false);
+
+                        await ObservablesForEventGenerator.ExtractEventsFromAssemblies(writer, options.Assemblies, options.SearchDirectories, options.TargetFramework).ConfigureAwait(false);
 
                         return ExitCode.Success;
                     }
@@ -126,18 +135,16 @@ namespace Pharmacist.Console
                             throw new InvalidOperationException("There is no Output path specified.");
                         }
 
-                        using (var writer = new StreamWriter(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs")))
+                        await using var writer = new StreamWriter(Path.Combine(options.OutputPath, options.OutputPrefix + ".cs"));
+                        if (string.IsNullOrWhiteSpace(options.TargetFramework))
                         {
-                            if (string.IsNullOrWhiteSpace(options.TargetFramework))
-                            {
-                                throw new Exception("Invalid target framework for the event generation.");
-                            }
-
-                            var packageIdentity = new[] { new LibraryRange(options.NugetPackageName, VersionRange.Parse(options.NugetVersion), LibraryDependencyTarget.Package) };
-                            var nugetFramework = options.TargetFramework!.ToFrameworks();
-                            await ObservablesForEventGenerator.WriteHeader(writer, packageIdentity).ConfigureAwait(false);
-                            await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(writer, packageIdentity, nugetFramework, options.PackageFolder).ConfigureAwait(false);
+                            throw new Exception("Invalid target framework for the event generation.");
                         }
+
+                        var packageIdentity = new[] { new LibraryRange(options.NugetPackageName, VersionRange.Parse(options.NugetVersion), LibraryDependencyTarget.Package) };
+                        var nugetFramework = options.TargetFramework.ToFrameworks();
+                        await ObservablesForEventGenerator.WriteHeader(writer, packageIdentity).ConfigureAwait(false);
+                        await ObservablesForEventGenerator.ExtractEventsFromNuGetPackages(writer, packageIdentity, nugetFramework, options.PackageFolder).ConfigureAwait(false);
 
                         return ExitCode.Success;
                     }

@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+﻿// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -129,7 +129,6 @@ namespace Pharmacist.Core.Generation.Generators
         private static MethodDeclarationSyntax GenerateMethodDeclaration(string observableName, IMethod method)
         {
             // Produces:
-            // /// <inheritdoc />
             // public override void MethodName(params..) => _methodName.OnNext(...);
             var methodBody = InvocationExpression(MemberAccessExpression(SyntaxKind.SimpleMemberAccessExpression, IdentifierName(observableName), IdentifierName("OnNext")));
 
@@ -140,14 +139,9 @@ namespace Pharmacist.Core.Generation.Generators
             {
                 // If we have only one member, just pass that directly, since our observable will have one generic type parameter.
                 // If we have more than one parameter we have to pass them by value tuples, since observables only have one generic type parameter.
-                if (method.Parameters.Count == 1)
-                {
-                    methodBody = methodBody.WithArgumentList(method.Parameters[0].GenerateArgumentList());
-                }
-                else
-                {
-                    methodBody = methodBody.WithArgumentList(method.Parameters.GenerateTupleArgumentList());
-                }
+                methodBody = methodBody.WithArgumentList(method.Parameters.Count == 1 ?
+                                                             method.Parameters[0].GenerateArgumentList() :
+                                                             method.Parameters.GenerateTupleArgumentList());
             }
             else
             {

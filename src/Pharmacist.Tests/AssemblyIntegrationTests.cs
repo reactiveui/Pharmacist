@@ -30,25 +30,21 @@ namespace Pharmacist.Tests
         [Fact]
         public async Task IntegrationTestAssemblyTest()
         {
-            using (var memoryStream = new MemoryStream())
+            using var memoryStream = new MemoryStream();
+            var input = await NuGetPackageHelper.DownloadPackageFilesAndFolder(new[] { new PackageIdentity("NETStandard.Library", new NuGetVersion("2.0.0")) }).ConfigureAwait(false);
+
+            using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8, 1024, true))
             {
-                var input = await NuGetPackageHelper.DownloadPackageFilesAndFolder(new[] { new PackageIdentity("NETStandard.Library", new NuGetVersion("2.0.0")) }).ConfigureAwait(false);
-
-                using (var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8, 1024, true))
-                {
-                    await ObservablesForEventGenerator.ExtractEventsFromAssemblies(streamWriter, input, FrameworkConstants.CommonFrameworks.NetStandard20).ConfigureAwait(false);
-                }
-
-                memoryStream.Flush();
-
-                memoryStream.Position = 0;
-                using (var sr = new StreamReader(memoryStream))
-                {
-                    var contents = sr.ReadToEnd();
-
-                    contents.Should().NotBeEmpty();
-                }
+                await ObservablesForEventGenerator.ExtractEventsFromAssemblies(streamWriter, input, FrameworkConstants.CommonFrameworks.NetStandard20).ConfigureAwait(false);
             }
+
+            memoryStream.Flush();
+
+            memoryStream.Position = 0;
+            using var sr = new StreamReader(memoryStream);
+            var contents = sr.ReadToEnd();
+
+            contents.Should().NotBeEmpty();
         }
     }
 }

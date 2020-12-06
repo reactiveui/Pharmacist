@@ -77,7 +77,8 @@ namespace Pharmacist.Tests.API
                 new[]
                 {
                     Environment.NewLine
-                }, StringSplitOptions.RemoveEmptyEntries)
+                },
+                StringSplitOptions.RemoveEmptyEntries)
                     .Where(l =>
                     !l.StartsWith("[assembly: AssemblyVersion(", StringComparison.InvariantCulture) &&
                     !l.StartsWith("[assembly: AssemblyFileVersion(", StringComparison.InvariantCulture) &&

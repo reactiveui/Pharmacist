@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+﻿// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -52,11 +52,12 @@ namespace Pharmacist.MsBuild.TargetFramework
 
             using (var writer = new StreamWriter(Path.Combine(OutputFile)))
             {
-                ObservablesForEventGenerator.WriteHeader(writer, TargetFramework).ConfigureAwait(false).GetAwaiter().GetResult();
+                var frameworks = TargetFramework.ToFrameworks();
+                ObservablesForEventGenerator.WriteHeader(writer, frameworks[0]).ConfigureAwait(false).GetAwaiter().GetResult();
 
                 try
                 {
-                    ObservablesForEventGenerator.ExtractEventsFromTargetFramework(writer, TargetFramework.ToFrameworks()).GetAwaiter().GetResult();
+                    ObservablesForEventGenerator.ExtractEventsFromTargetFramework(writer, frameworks).GetAwaiter().GetResult();
                 }
                 catch (Exception ex)
                 {

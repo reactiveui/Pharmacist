@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+﻿// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Pharmacist.Core.Groups
 {
@@ -14,7 +15,7 @@ namespace Pharmacist.Core.Groups
     /// </summary>
     public class FilesGroup
     {
-        private readonly DirectoryNode _rootNode = new DirectoryNode(string.Empty);
+        private readonly DirectoryNode _rootNode = new(string.Empty);
 
         /// <summary>
         /// Gets for a file name, the nearest matching full name in the shallowest of the hierarchy.
@@ -83,60 +84,29 @@ namespace Pharmacist.Core.Groups
 
                 var splitDirectory = directoryPath?.Split(new[] { Path.PathSeparator, Path.AltDirectorySeparatorChar }, StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
 
-                var directoryNode = _rootNode;
+                var directoryNode = splitDirectory.Aggregate(_rootNode, (current, currentPath) => current.AddChildNode(currentPath));
 
-                foreach (var currentPath in splitDirectory)
-                {
-                    directoryNode = directoryNode.AddChildNode(currentPath);
-                }
-
-                directoryNode?.AddFile(file);
+                directoryNode.AddFile(file);
             }
         }
 
         private class DirectoryNode : IEqualityComparer<DirectoryNode>, IComparable<DirectoryNode>
         {
-            private readonly Dictionary<string, DirectoryNode> _childNodesDict = new Dictionary<string, DirectoryNode>();
-            private readonly List<DirectoryNode> _childNodes = new List<DirectoryNode>();
-            private readonly List<FileNode> _files = new List<FileNode>();
-            private readonly Dictionary<string, FileNode> _filesDict = new Dictionary<string, FileNode>();
-
-            public DirectoryNode(DirectoryNode? parent, string name)
-            {
-                Name = name;
-                Parent = parent;
-            }
+            private readonly Dictionary<string, DirectoryNode> _childNodesDict = new();
+            private readonly List<DirectoryNode> _childNodes = new();
+            private readonly List<FileNode> _files = new();
+            private readonly Dictionary<string, FileNode> _filesDict = new();
 
             public DirectoryNode(string name)
-                : this(null, name)
             {
+                Name = name;
             }
-
-            public string Name { get; }
-
-            public string FullPath
-            {
-                get
-                {
-                    if (Parent == null || string.IsNullOrWhiteSpace(Parent.FullPath))
-                    {
-                        return Name;
-                    }
-
-                    return Parent.FullPath + Path.DirectorySeparatorChar + Name;
-                }
-            }
-
-            public DirectoryNode? Parent { get; }
 
             public IEnumerable<FileNode> Files => _files;
 
             public IEnumerable<DirectoryNode> ChildNodes => _childNodes;
 
-            public bool TryGetChildNode(string path, out DirectoryNode? outValue)
-            {
-                return _childNodesDict.TryGetValue(path, out outValue);
-            }
+            private string Name { get; }
 
             public bool TryGetFile(string name, out string? outValue)
             {
@@ -152,38 +122,50 @@ namespace Pharmacist.Core.Groups
 
             public DirectoryNode AddChildNode(string name)
             {
-                if (!_childNodesDict.TryGetValue(name, out var node))
+                if (_childNodesDict.TryGetValue(name, out var node))
                 {
-                    node = new DirectoryNode(this, name);
-                    _childNodesDict.Add(name, node);
-                    _childNodes.Add(node);
+                    return node;
                 }
+
+                node = new DirectoryNode(name);
+                _childNodesDict.Add(name, node);
+                _childNodes.Add(node);
 
                 return node;
             }
 
-            public FileNode AddFile(string fullPath)
+            public void AddFile(string fullPath)
             {
                 var name = Path.GetFileName(fullPath);
 
-                if (!_filesDict.TryGetValue(name, out var node))
+                if (_filesDict.TryGetValue(name, out var node))
                 {
-                    node = new FileNode(name, fullPath);
-                    _filesDict.Add(name, node);
-                    var index = _files.BinarySearch(node);
-                    if (index < 0)
-                    {
-                        _files.Insert(~index, node);
-                    }
+                    return;
                 }
 
-                return node;
+                node = new FileNode(fullPath);
+                _filesDict.Add(name, node);
+                var index = _files.BinarySearch(node);
+                if (index < 0)
+                {
+                    _files.Insert(~index, node);
+                }
             }
 
             /// <inheritdoc />
-            public bool Equals(DirectoryNode x, DirectoryNode y)
+            public bool Equals(DirectoryNode? x, DirectoryNode? y)
             {
-                return StringComparer.InvariantCultureIgnoreCase.Equals(x?.Name, y?.Name);
+                if (x == null && y == null)
+                {
+                    return true;
+                }
+
+                if (x == null || y == null)
+                {
+                    return false;
+                }
+
+                return ReferenceEquals(x, y) || StringComparer.InvariantCultureIgnoreCase.Equals(x.Name, y.Name);
             }
 
             /// <inheritdoc />
@@ -193,38 +175,40 @@ namespace Pharmacist.Core.Groups
             }
 
             /// <inheritdoc />
-            public int CompareTo(DirectoryNode other)
+            public int CompareTo(DirectoryNode? other)
             {
                 if (ReferenceEquals(this, other))
                 {
                     return 0;
                 }
 
-                if (ReferenceEquals(null, other))
-                {
-                    return 1;
-                }
-
-                return StringComparer.InvariantCultureIgnoreCase.Compare(this, other);
+                return ReferenceEquals(null, other) ? 1 : StringComparer.InvariantCultureIgnoreCase.Compare(this, other);
             }
         }
 
         private class FileNode : IEqualityComparer<FileNode>, IComparable<FileNode>
         {
-            public FileNode(string fileName, string fullPath)
+            public FileNode(string fullPath)
             {
                 FullPath = fullPath;
-                FileName = fileName;
             }
 
             public string FullPath { get; }
 
-            public string FileName { get; }
-
             /// <inheritdoc />
-            public bool Equals(FileNode x, FileNode y)
+            public bool Equals(FileNode? x, FileNode? y)
             {
-                return StringComparer.InvariantCultureIgnoreCase.Equals(x?.FullPath, y?.FullPath);
+                if (x == null && y == null)
+                {
+                    return true;
+                }
+
+                if (x == null || y == null)
+                {
+                    return false;
+                }
+
+                return ReferenceEquals(x, y) || StringComparer.InvariantCultureIgnoreCase.Equals(x.FullPath, y.FullPath);
             }
 
             /// <inheritdoc />
@@ -234,7 +218,7 @@ namespace Pharmacist.Core.Groups
             }
 
             /// <inheritdoc />
-            public int CompareTo(FileNode other)
+            public int CompareTo(FileNode? other)
             {
                 return StringComparer.InvariantCultureIgnoreCase.Compare(FullPath, other?.FullPath);
             }

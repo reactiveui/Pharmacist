@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+﻿// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -36,7 +36,7 @@ namespace Pharmacist.Core.Generation.Generators
         /// <param name="dataObjectName">The name of the item where the event is stored.</param>
         /// <param name="prefix">A prefix to append to the name.</param>
         /// <returns>The property declaration.</returns>
-        protected static PropertyDeclarationSyntax? GenerateEventWrapperObservable(IEvent eventDetails, string dataObjectName, string? prefix = null)
+        protected static PropertyDeclarationSyntax GenerateEventWrapperObservable(IEvent eventDetails, string dataObjectName, string? prefix = null)
         {
             prefix ??= string.Empty;
 
@@ -44,11 +44,6 @@ namespace Pharmacist.Core.Generation.Generators
 
             // Create "Observable.FromEvent" for our method.
             var (expressionBody, observableEventArgType) = GenerateFromEventExpression(eventDetails, invokeMethod, dataObjectName);
-
-            if (observableEventArgType == null || expressionBody == null)
-            {
-                return null;
-            }
 
             var modifiers = eventDetails.IsStatic
                 ? TokenList(Token(SyntaxKind.PublicKeyword), Token(SyntaxKind.StaticKeyword))
@@ -64,32 +59,32 @@ namespace Pharmacist.Core.Generation.Generators
                 .WithLeadingTrivia(GenerateSummarySeeAlsoComment("Gets an observable which signals when the {0} event triggers.", eventDetails.ConvertToDocument()));
         }
 
-        private static (ArrowExpressionClauseSyntax ArrowClause, TypeSyntax EventArgsType) GenerateFromEventExpression(IEvent eventDetails, IMethod invokeMethod, string dataObjectName)
+        private static (ArrowExpressionClauseSyntax ArrowClause, TypeSyntax EventArgsType) GenerateFromEventExpression(IMember eventDetails, IMethod invokeMethod, string dataObjectName)
         {
             var returnType = IdentifierName(eventDetails.ReturnType.GenerateFullGenericName());
 
             ArgumentListSyntax methodParametersArgumentList;
             TypeSyntax eventArgsType;
 
-            // If we are using a standard approach of using 2 parameters only send the "Value", not the sender.
-            if (invokeMethod.Parameters.Count == 2 && invokeMethod.Parameters[0].Type.FullName == "System.Object")
+            switch (invokeMethod.Parameters.Count)
             {
-                methodParametersArgumentList = invokeMethod.Parameters[1].GenerateArgumentList();
-                eventArgsType = IdentifierName(invokeMethod.Parameters[1].Type.GenerateFullGenericName());
-            }
-            else if (invokeMethod.Parameters.Count > 0)
-            {
-                // If we have any members call our observables with the parameters.
-                // If we have only one member, produces arguments: (arg1);
-                // If we have greater than one member, produces arguments with value type: ((arg1, arg2))
-                methodParametersArgumentList = invokeMethod.Parameters.Count == 1 ? invokeMethod.Parameters[0].GenerateArgumentList() : invokeMethod.Parameters.GenerateTupleArgumentList();
-                eventArgsType = invokeMethod.Parameters.Count == 1 ? IdentifierName(invokeMethod.Parameters[0].Type.GenerateFullGenericName()) : invokeMethod.Parameters.Select(x => (x.Type, x.Name)).GenerateTupleType();
-            }
-            else
-            {
-                // Produces argument: (global::System.Reactive.Unit.Default)
-                methodParametersArgumentList = RoslynHelpers.ReactiveUnitArgumentList;
-                eventArgsType = IdentifierName(RoslynHelpers.ObservableUnitName);
+                // If we are using a standard approach of using 2 parameters only send the "Value", not the sender.
+                case 2 when invokeMethod.Parameters[0].Type.FullName == "System.Object":
+                    methodParametersArgumentList = invokeMethod.Parameters[1].GenerateArgumentList();
+                    eventArgsType = IdentifierName(invokeMethod.Parameters[1].Type.GenerateFullGenericName());
+                    break;
+                case > 0:
+                    // If we have any members call our observables with the parameters.
+                    // If we have only one member, produces arguments: (arg1);
+                    // If we have greater than one member, produces arguments with value type: ((arg1, arg2))
+                    methodParametersArgumentList = invokeMethod.Parameters.Count == 1 ? invokeMethod.Parameters[0].GenerateArgumentList() : invokeMethod.Parameters.GenerateTupleArgumentList();
+                    eventArgsType = invokeMethod.Parameters.Count == 1 ? IdentifierName(invokeMethod.Parameters[0].Type.GenerateFullGenericName()) : invokeMethod.Parameters.Select(x => (x.Type, x.Name)).GenerateTupleType();
+                    break;
+                default:
+                    // Produces argument: (global::System.Reactive.Unit.Default)
+                    methodParametersArgumentList = RoslynHelpers.ReactiveUnitArgumentList;
+                    eventArgsType = IdentifierName(RoslynHelpers.ObservableUnitName);
+                    break;
             }
 
             var eventName = eventDetails.Name;

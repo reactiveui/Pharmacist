@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+﻿// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -28,7 +28,10 @@ namespace Pharmacist.Core.NuGet
             _nugetFrameworks = new Dictionary<string, IReadOnlyList<NuGetFramework>>(StringComparer.InvariantCultureIgnoreCase);
             foreach (var property in typeof(FrameworkConstants.CommonFrameworks).GetProperties(BindingFlags.NonPublic | BindingFlags.Static))
             {
-                _nugetFrameworks[property.Name] = new[] { (NuGetFramework)property.GetValue(null) };
+                if (property.GetValue(null) is NuGetFramework framework)
+                {
+                    _nugetFrameworks[property.Name] = new[] { framework };
+                }
             }
 
             // Some special cases for .net standard/.net app core since they require the '.' character in the numbers.
@@ -51,6 +54,7 @@ namespace Pharmacist.Core.NuGet
             _nugetFrameworks["NetCoreApp2.2"] = new[] { new NuGetFramework(".NETCoreApp", new Version(2, 1, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["NetCoreApp3.0"] = new[] { new NuGetFramework(".NETCoreApp", new Version(3, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["NetCoreApp3.1"] = new[] { new NuGetFramework(".NETCoreApp", new Version(3, 1, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["net5.0"] = new[] { FrameworkConstants.CommonFrameworks.Net50, FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["MonoAndroid50"] = new[] { new NuGetFramework("MonoAndroid", new Version(5, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["MonoAndroid51"] = new[] { new NuGetFramework("MonoAndroid", new Version(5, 1, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["MonoAndroid60"] = new[] { new NuGetFramework("MonoAndroid", new Version(6, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
@@ -59,7 +63,9 @@ namespace Pharmacist.Core.NuGet
             _nugetFrameworks["MonoAndroid80"] = new[] { new NuGetFramework("MonoAndroid", new Version(8, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["MonoAndroid81"] = new[] { new NuGetFramework("MonoAndroid", new Version(8, 1, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["MonoAndroid90"] = new[] { new NuGetFramework("MonoAndroid", new Version(9, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["MonoTouch10"] = new[] { new NuGetFramework("MonoAndroid", new Version(1, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["MonoAndroid10.0"] = new[] { new NuGetFramework("MonoAndroid", new Version(10, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["MonoAndroid11.0"] = new[] { new NuGetFramework("MonoAndroid", new Version(11, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["MonoTouch10"] = new[] { new NuGetFramework("MonoTouch", new Version(1, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["Xamarin.iOS10"] = new[] { new NuGetFramework("Xamarin.iOS", new Version(1, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["Xamarin.Mac20"] = new[] { new NuGetFramework("Xamarin.Mac", new Version(2, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["Xamarin.TVOS10"] = new[] { new NuGetFramework("Xamarin.TVOS", new Version(1, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
@@ -103,9 +109,20 @@ namespace Pharmacist.Core.NuGet
         /// <returns>The framework.</returns>
         public static IReadOnlyList<NuGetFramework> ToFrameworks(this string frameworkName)
         {
+            if (frameworkName is null)
+            {
+                throw new ArgumentNullException(nameof(frameworkName));
+            }
+
+            if (frameworkName.StartsWith("uap", StringComparison.CurrentCultureIgnoreCase))
+            {
+                var versionText = frameworkName.Substring(3);
+                return new[] { new NuGetFramework("UAP", new Version(versionText)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            }
+
             _nugetFrameworks.TryGetValue(frameworkName, out var framework);
 
-            return framework;
+            return framework ?? Array.Empty<NuGetFramework>();
         }
 
         /// <summary>
@@ -127,7 +144,7 @@ namespace Pharmacist.Core.NuGet
 
             if (framework.Framework.StartsWith(".NETCoreApp", StringComparison.OrdinalIgnoreCase))
             {
-                return new[] { new PackageIdentity("Microsoft.NETCore.App", new NuGetVersion(framework.Version)) };
+                return new[] { new PackageIdentity("Microsoft.NETCore.App.Ref", new NuGetVersion(framework.Version)) };
             }
 
             if (framework.Framework.StartsWith("Tizen", StringComparison.OrdinalIgnoreCase))

@@ -1,3 +1,4 @@
+
 using global::System;
 using global::System.Reactive;
 using global::System.Reactive.Linq;
@@ -43,9 +44,7 @@ namespace Avalonia.Remote.Protocol
         {
             void Handler(global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection arg1, global::System.Exception arg2) => eventHandler((arg1, arg2));
             return Handler;
-        }
-
-        , x => _data.OnException += x, x => _data.OnException -= x);
+        }, x => _data.OnException += x, x => _data.OnException -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection.OnMessage"/> event triggers.
         /// </summary>
@@ -53,9 +52,7 @@ namespace Avalonia.Remote.Protocol
         {
             void Handler(global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection arg1, object arg2) => eventHandler((arg1, arg2));
             return Handler;
-        }
-
-        , x => _data.OnMessage += x, x => _data.OnMessage -= x);
+        }, x => _data.OnMessage += x, x => _data.OnMessage -= x);
     }
 
     /// <summary>
@@ -80,9 +77,7 @@ namespace Avalonia.Remote.Protocol
         {
             void Handler(global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection arg1, global::System.Exception arg2) => eventHandler((arg1, arg2));
             return Handler;
-        }
-
-        , x => _data.OnException += x, x => _data.OnException -= x);
+        }, x => _data.OnException += x, x => _data.OnException -= x);
         /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Avalonia.Remote.Protocol.TransportConnectionWrapper.OnMessage"/> event triggers.
         /// </summary>
@@ -90,8 +85,6 @@ namespace Avalonia.Remote.Protocol
         {
             void Handler(global::Avalonia.Remote.Protocol.IAvaloniaRemoteTransportConnection arg1, object arg2) => eventHandler((arg1, arg2));
             return Handler;
-        }
-
-        , x => _data.OnMessage += x, x => _data.OnMessage -= x);
+        }, x => _data.OnMessage += x, x => _data.OnMessage -= x);
     }
 }

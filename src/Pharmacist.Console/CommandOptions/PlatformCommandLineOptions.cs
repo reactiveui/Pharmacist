@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+﻿// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -6,8 +6,6 @@
 using System.Collections.Generic;
 
 using CommandLine;
-
-using Pharmacist.Core;
 
 namespace Pharmacist.Console.CommandOptions
 {
@@ -18,10 +16,22 @@ namespace Pharmacist.Console.CommandOptions
     public class PlatformCommandLineOptions : CommandLineOptionsBase
     {
         /// <summary>
-        /// Gets or sets the platform.
+        /// Gets or sets the target framework.
         /// </summary>
-        [Option('p', "platforms", Separator = ',', Required = true, HelpText = "Platform to automatically generate. Possible options include: ANDROID, IOS, WPF, MAC, TIZEN, UWP, XAMFORMS, WINFORMS, TVOS, ESSENTIALS")]
-        public IEnumerable<AutoPlatform>? Platforms { get; set; }
+        [Option('t', "target-frameworks", Required = true, HelpText = "Specify the target framework monikiers.", Separator = ',')]
+        public IEnumerable<string>? TargetFrameworks { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to use WPF.
+        /// </summary>
+        [Option("is-wpf", Required = false, HelpText = "Specify if WPF libraries should be used.")]
+        public bool IsWpf { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to use WinForms.
+        /// </summary>
+        [Option("is-winforms", Required = false, HelpText = "Specify if WinForms libraries should be used.")]
+        public bool IsWinForms { get; set; }
 
         /// <summary>
         /// Gets or sets the reference assemblies.

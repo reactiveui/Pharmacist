@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+﻿// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -39,23 +39,22 @@ namespace Pharmacist.Core.Generation
 
         public static TypeArgumentListSyntax GenerateObservableTypeArguments(this IMethod method)
         {
-            TypeArgumentListSyntax argumentList;
-
-            // If we have no parameters, use the Unit type, if only one use the type directly, otherwise use a value tuple.
-            if (method.Parameters.Count == 0)
+            return method.Parameters.Count switch
             {
-                argumentList = TypeArgumentList(SingletonSeparatedList<TypeSyntax>(IdentifierName(RoslynHelpers.ObservableUnitName)));
-            }
-            else if (method.Parameters.Count == 1)
-            {
-                argumentList = TypeArgumentList(SingletonSeparatedList<TypeSyntax>(IdentifierName(method.Parameters[0].Type.GenerateFullGenericName())));
-            }
-            else
-            {
-                argumentList = TypeArgumentList(SingletonSeparatedList<TypeSyntax>(TupleType(SeparatedList(method.Parameters.Select(x => TupleElement(IdentifierName(x.Type.GenerateFullGenericName())).WithIdentifier(Identifier(x.Name)))))));
-            }
-
-            return argumentList;
+                // If we have no parameters, use the Unit type, if only one use the type directly, otherwise use a value tuple.
+                0 => TypeArgumentList(
+                    SingletonSeparatedList<TypeSyntax>(IdentifierName(RoslynHelpers.ObservableUnitName))),
+                1 => TypeArgumentList(
+                    SingletonSeparatedList<TypeSyntax>(
+                        IdentifierName(method.Parameters[0].Type.GenerateFullGenericName()))),
+                _ => TypeArgumentList(
+                    SingletonSeparatedList<TypeSyntax>(
+                        TupleType(
+                            SeparatedList(
+                                method.Parameters.Select(
+                                    x => TupleElement(IdentifierName(x.Type.GenerateFullGenericName()))
+                                        .WithIdentifier(Identifier(x.Name)))))))
+            };
         }
 
         public static TypeSyntax GenerateObservableType(this TypeArgumentListSyntax argumentList)
@@ -72,36 +71,21 @@ namespace Pharmacist.Core.Generation
         {
             var attribute = GenerateObsoleteAttributeList(eventDetails);
 
-            if (attribute == null)
-            {
-                return syntax;
-            }
-
-            return syntax.WithAttributeLists(SingletonList(attribute));
+            return attribute == null ? syntax : syntax.WithAttributeLists(SingletonList(attribute));
         }
 
         public static ClassDeclarationSyntax WithObsoleteAttribute(this ClassDeclarationSyntax syntax, IEntity eventDetails)
         {
             var attribute = GenerateObsoleteAttributeList(eventDetails);
 
-            if (attribute == null)
-            {
-                return syntax;
-            }
-
-            return syntax.WithAttributeLists(SingletonList(attribute));
+            return attribute == null ? syntax : syntax.WithAttributeLists(SingletonList(attribute));
         }
 
         public static MethodDeclarationSyntax WithObsoleteAttribute(this MethodDeclarationSyntax syntax, IEntity eventDetails)
         {
             var attribute = GenerateObsoleteAttributeList(eventDetails);
 
-            if (attribute == null)
-            {
-                return syntax;
-            }
-
-            return syntax.WithAttributeLists(SingletonList(attribute));
+            return attribute == null ? syntax : syntax.WithAttributeLists(SingletonList(attribute));
         }
 
         public static ParameterListSyntax GenerateMethodParameters(this IMethod method)
@@ -133,11 +117,21 @@ namespace Pharmacist.Core.Generation
                 return null;
             }
 
-            var message = obsoleteAttribute.FixedArguments.FirstOrDefault().Value.ToString();
-            var isError = bool.Parse(obsoleteAttribute.FixedArguments.ElementAtOrDefault(1).Value?.ToString() ?? bool.FalseString) ? SyntaxKind.TrueLiteralExpression : SyntaxKind.FalseLiteralExpression;
-            var attribute = Attribute(
-                IdentifierName("global::System.ObsoleteAttribute"),
-                AttributeArgumentList(SeparatedList(new[] { AttributeArgument(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(message))), AttributeArgument(LiteralExpression(isError)) })));
+            var message = obsoleteAttribute.FixedArguments.FirstOrDefault().Value?.ToString();
+
+            AttributeSyntax attribute;
+            if (message is null || string.IsNullOrWhiteSpace(message))
+            {
+                attribute = Attribute(
+                    IdentifierName("global::System.ObsoleteAttribute"));
+            }
+            else
+            {
+                var isError = bool.Parse(obsoleteAttribute.FixedArguments.ElementAtOrDefault(1).Value?.ToString() ?? bool.FalseString) ? SyntaxKind.TrueLiteralExpression : SyntaxKind.FalseLiteralExpression;
+                attribute = Attribute(
+                    IdentifierName("global::System.ObsoleteAttribute"),
+                    AttributeArgumentList(SeparatedList(new[] { AttributeArgument(LiteralExpression(SyntaxKind.StringLiteralExpression, Literal(message))), AttributeArgument(LiteralExpression(isError)) })));
+            }
 
             return AttributeList(SingletonSeparatedList(attribute));
         }

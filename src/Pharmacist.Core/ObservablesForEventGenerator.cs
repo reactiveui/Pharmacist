@@ -1,4 +1,4 @@
-// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -6,7 +6,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -22,7 +21,6 @@ using NuGet.Packaging.Core;
 
 using Pharmacist.Core.Extractors;
 using Pharmacist.Core.Extractors.PlatformExtractors;
-using Pharmacist.Core.Generation;
 using Pharmacist.Core.Generation.Compilation;
 using Pharmacist.Core.Generation.Resolvers;
 using Pharmacist.Core.Groups;
@@ -54,47 +52,75 @@ namespace Pharmacist.Core
         /// <param name="prefix">The prefix to add to the start of the output file.</param>
         /// <param name="suffix">The suffix to add to the end of output file names.</param>
         /// <param name="defaultReferenceAssemblyLocation">A directory path to where reference assemblies can be located.</param>
-        /// <param name="platforms">The platforms to generate for.</param>
+        /// <param name="targetFramework">The target platform to generate for.</param>
+        /// <param name="isWpf">If to generate for WPF.</param>
+        /// <param name="isWinForms">If to generate for WinForms.</param>
         /// <param name="packageOutputFolder">Directory for the packages, if null a random path in the temp folder will be used.</param>
+        /// <param name="includeHeader">If the header should be included.</param>
         /// <returns>A task to monitor the progress.</returns>
-        [SuppressMessage("Design", "CA2000: Dispose Object", Justification = "Analyzer can't handle loop based using statements.")]
-        public static async Task ExtractEventsFromPlatforms(string outputPath, string prefix, string suffix, string defaultReferenceAssemblyLocation, IEnumerable<AutoPlatform> platforms, string? packageOutputFolder = null)
+        public static async Task ExtractEventsFromPlatforms(string outputPath, string prefix, string suffix, string defaultReferenceAssemblyLocation, string targetFramework, bool isWpf, bool isWinForms, string? packageOutputFolder = null, bool includeHeader = true)
         {
-            var platformExtractors = new IPlatformExtractor[]
-                {
-                new Android(),
-                new iOS(),
-                new Mac(),
-                new TVOS(),
-                new UWP(),
-                new Winforms(packageOutputFolder),
-                new WPF(packageOutputFolder),
-                }.ToDictionary(x => x.Platform);
+            var platformExtractors = new List<IPlatformExtractor>
+                                     {
+                                         new Android(),
+                                         new iOS(),
+                                         new Mac(),
+                                         new TVOS(),
+                                         new UWP(),
+                                         new WatchOs()
+                                     };
 
-            if (platforms == null)
+            if (isWinForms)
             {
-                throw new ArgumentNullException(nameof(platforms));
+                platformExtractors.Add(new Winforms(packageOutputFolder));
             }
 
-            foreach (var platform in platforms)
+            if (isWpf)
             {
-                LogHost.Default.Info(CultureInfo.InvariantCulture, "Processing platform {0}", platform);
-                var platformExtractor = platformExtractors[platform];
-                await platformExtractor.Extract(defaultReferenceAssemblyLocation).ConfigureAwait(false);
+                platformExtractors.Add(new WPF(packageOutputFolder));
+            }
 
-                if (platformExtractor.Input == null)
+            LogHost.Default.Info("Starting to process " + targetFramework);
+
+            var frameworks = targetFramework.ToFrameworks().ToArray();
+
+            if (frameworks.Length == 0)
+            {
+                LogHost.Default.Error(CultureInfo.InvariantCulture, "Could not find any valid frameworks for {0}", targetFramework);
+                return;
+            }
+
+            var framework = frameworks[0];
+
+            var extractors = platformExtractors.Where(x => x.CanExtract(frameworks)).ToList();
+
+            if (extractors.Count == 0)
+            {
+                throw new InvalidOperationException(
+                    "Could not find valid extractors for framework " + framework);
+            }
+
+            var inputGroup = new InputAssembliesGroup();
+            foreach (var extractor in extractors)
+            {
+                await extractor.Extract(frameworks, defaultReferenceAssemblyLocation).ConfigureAwait(false);
+
+                if (extractor.Input == null)
                 {
                     throw new Exception("Cannot find valid input from the specified Platform.");
                 }
 
-                using (var streamWriter = new StreamWriter(Path.Combine(outputPath, prefix + platform.ToString().ToLowerInvariant() + suffix)))
-                {
-                    await WriteHeader(streamWriter, platform).ConfigureAwait(false);
-                    await ExtractEventsFromAssemblies(streamWriter, platformExtractor.Input, platformExtractor.Framework).ConfigureAwait(false);
-                }
-
-                LogHost.Default.Info(CultureInfo.InvariantCulture, "Finished platform {0}", platform);
+                inputGroup = inputGroup.Combine(extractor.Input);
             }
+
+            using var streamWriter = new StreamWriter(Path.Combine(outputPath, prefix + targetFramework.ToLowerInvariant() + suffix));
+
+            if (includeHeader)
+            {
+                await WriteHeader(streamWriter, framework).ConfigureAwait(false);
+            }
+
+            await ExtractEventsFromAssemblies(streamWriter, inputGroup, framework).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -186,7 +212,7 @@ namespace Pharmacist.Core
         /// <param name="writer">The writer where to output to.</param>
         /// <param name="targetFramework">The target framework being generated.</param>
         /// <returns>A task to monitor the progress.</returns>
-        public static async Task WriteHeader(TextWriter writer, string targetFramework)
+        public static async Task WriteHeader(TextWriter writer, NuGetFramework targetFramework)
         {
             if (writer == null)
             {
@@ -282,26 +308,6 @@ namespace Pharmacist.Core
         }
 
         /// <summary>
-        /// Writes the header for a output.
-        /// </summary>
-        /// <param name="writer">The writer where to output to.</param>
-        /// <param name="autoPlatform">The packages we are writing for..</param>
-        /// <returns>A task to monitor the progress.</returns>
-        public static async Task WriteHeader(TextWriter writer, AutoPlatform autoPlatform)
-        {
-            if (writer == null)
-            {
-                throw new ArgumentNullException(nameof(writer));
-            }
-
-            await WriteHeader(writer).ConfigureAwait(false);
-
-            await writer.WriteLineAsync($"// Platform included: {autoPlatform}").ConfigureAwait(false);
-
-            await writer.FlushAsync().ConfigureAwait(false);
-        }
-
-        /// <summary>
         /// Extracts the events and delegates from the specified platform.
         /// </summary>
         /// <param name="writer">The writer where to output to.</param>
@@ -315,23 +321,23 @@ namespace Pharmacist.Core
                 throw new ArgumentNullException(nameof(writer));
             }
 
-            using (var compilation = new EventBuilderCompiler(input, framework))
-            {
-                var compilationOutputSyntax = CompilationUnit()
-                    .WithMembers(List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))))
-                    .WithUsings(List(new[]
-                                     {
+            var compilation = new EventBuilderCompiler(input, framework);
+            var compilationOutputSyntax = CompilationUnit()
+                .WithMembers(List<MemberDeclarationSyntax>(_resolvers.SelectMany(x => x.Create(compilation))))
+                .WithUsings(List(new[]
+                                 {
                                          UsingDirective(IdentifierName("global::System")),
                                          UsingDirective(IdentifierName("global::System.Reactive")),
                                          UsingDirective(IdentifierName("global::System.Reactive.Linq")),
                                          UsingDirective(IdentifierName("global::System.Reactive.Subjects")),
                                          UsingDirective(IdentifierName("global::Pharmacist.Common"))
-                                     }));
+                                 }));
 
-                await writer.WriteAsync(Environment.NewLine).ConfigureAwait(false);
-                await writer.WriteAsync(compilationOutputSyntax.NormalizeWhitespace(elasticTrivia: true).ToString()).ConfigureAwait(false);
-                await writer.FlushAsync().ConfigureAwait(false);
-            }
+            await writer.WriteAsync(Environment.NewLine).ConfigureAwait(false);
+            await writer.WriteAsync(compilationOutputSyntax.NormalizeWhitespace(elasticTrivia: true).ToString()).ConfigureAwait(false);
+            await writer.FlushAsync().ConfigureAwait(false);
+
+            compilation.Dispose();
         }
 
         /// <summary>

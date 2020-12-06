@@ -1,4 +1,4 @@
-// Copyright (c) 2019 .NET Foundation and Contributors. All rights reserved.
+// Copyright (c) 2019-2020 .NET Foundation and Contributors. All rights reserved.
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for full license information.
@@ -38,7 +38,7 @@ namespace Pharmacist.Core.Generation.Resolvers
             IEnumerable<(ITypeDefinition TypeDefinition, bool IsAbstract, IEnumerable<IMethod> Methods)> values = compilation.GetPublicTypeDefinitions()
                 .Where(
                     x => x.Kind != TypeKind.Interface
-                    && (!IsMulticastDelegateDerived(x)
+                    && (!IsMultiCastDelegateDerived(x)
                     || !x.DirectBaseTypes.Any())
                     && !_garbageTypeList.Any(y => x.FullName.Contains(y))
                     && CocoaDelegateNames.Any(cocoaName => x.FullName.EndsWith(cocoaName, StringComparison.OrdinalIgnoreCase)))
@@ -49,7 +49,7 @@ namespace Pharmacist.Core.Generation.Resolvers
             return DelegateGenerator.Generate(values);
         }
 
-        private static bool IsMulticastDelegateDerived(ITypeDefinition typeDefinition)
+        private static bool IsMultiCastDelegateDerived(IType typeDefinition)
         {
             return typeDefinition.DirectBaseTypes.Any(x => x.FullName.Contains(DelegateName));
         }
