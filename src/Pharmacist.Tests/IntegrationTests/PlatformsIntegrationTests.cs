@@ -83,7 +83,7 @@ namespace Pharmacist.Tests.IntegrationTests
 
             var referenceAssembliesLocation = ReferenceLocator.GetReferenceLocation();
 
-            string nameSuffix = string.Empty;
+            var nameSuffix = string.Empty;
 
             if (isWpf)
             {
