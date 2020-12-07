@@ -44,16 +44,16 @@ namespace Pharmacist.Core.NuGet
             _nugetFrameworks["NetStandard1.6"] = new[] { FrameworkConstants.CommonFrameworks.NetStandard16 };
             _nugetFrameworks["NetStandard1.7"] = new[] { FrameworkConstants.CommonFrameworks.NetStandard17 };
             _nugetFrameworks["NetStandard2.0"] = new[] { FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["NetStandard2.1"] = new[] { new NuGetFramework(".NETStandard", new Version(2, 1, 0, 0)) };
+            _nugetFrameworks["NetStandard2.1"] = new[] { FrameworkConstants.CommonFrameworks.NetStandard21 };
             _nugetFrameworks["UAP"] = new[] { FrameworkConstants.CommonFrameworks.UAP10 };
             _nugetFrameworks["UAP10.0"] = new[] { FrameworkConstants.CommonFrameworks.UAP10 };
             _nugetFrameworks["NetCoreApp1.0"] = new[] { FrameworkConstants.CommonFrameworks.NetCoreApp10 };
             _nugetFrameworks["NetCoreApp1.1"] = new[] { FrameworkConstants.CommonFrameworks.NetCoreApp11 };
             _nugetFrameworks["NetCoreApp2.0"] = new[] { FrameworkConstants.CommonFrameworks.NetCoreApp20 };
             _nugetFrameworks["NetCoreApp2.1"] = new[] { FrameworkConstants.CommonFrameworks.NetCoreApp21 };
-            _nugetFrameworks["NetCoreApp2.2"] = new[] { new NuGetFramework(".NETCoreApp", new Version(2, 1, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["NetCoreApp3.0"] = new[] { new NuGetFramework(".NETCoreApp", new Version(3, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["NetCoreApp3.1"] = new[] { new NuGetFramework(".NETCoreApp", new Version(3, 1, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["NetCoreApp2.2"] = new[] { FrameworkConstants.CommonFrameworks.NetCoreApp22, FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["NetCoreApp3.0"] = new[] { FrameworkConstants.CommonFrameworks.NetCoreApp30, FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["NetCoreApp3.1"] = new[] { FrameworkConstants.CommonFrameworks.NetCoreApp31, FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["net5.0"] = new[] { FrameworkConstants.CommonFrameworks.Net50, FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["MonoAndroid50"] = new[] { new NuGetFramework("MonoAndroid", new Version(5, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["MonoAndroid51"] = new[] { new NuGetFramework("MonoAndroid", new Version(5, 1, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
@@ -87,18 +87,14 @@ namespace Pharmacist.Core.NuGet
             _nugetFrameworks["net472"] = new[] { new NuGetFramework(".NETFramework", new Version(4, 7, 2, 0)) };
             _nugetFrameworks["net48"] = new[] { new NuGetFramework(".NETFramework", new Version(4, 8, 0, 0)) };
 
+            _nugetFrameworks["tizen40"] = new[] { new NuGetFramework("Tizen", new Version(4, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["tizen50"] = new[] { new NuGetFramework("Tizen", new Version(5, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["tizen60"] = new[] { new NuGetFramework("Tizen", new Version(6, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["tizen70"] = new[] { new NuGetFramework("Tizen", new Version(7, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["tizen80"] = new[] { new NuGetFramework("Tizen", new Version(8, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+
             _nugetFrameworks["uap10.0"] = new[] { FrameworkConstants.CommonFrameworks.UAP10, FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["uap"] = new[] { FrameworkConstants.CommonFrameworks.UAP10, FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.18362"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 18362, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.17763"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 17763, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.17134"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 17134, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.16299"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 16299, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.15063"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 15063, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.14393"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 14393, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.10586"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 10586, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.10240"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 10240, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-
-            _nugetFrameworks["Tizen40"] = new[] { FrameworkConstants.CommonFrameworks.Tizen4, FrameworkConstants.CommonFrameworks.NetStandard20 };
         }
 
         /// <summary>
@@ -114,15 +110,37 @@ namespace Pharmacist.Core.NuGet
                 throw new ArgumentNullException(nameof(frameworkName));
             }
 
-            if (frameworkName.StartsWith("uap", StringComparison.CurrentCultureIgnoreCase))
-            {
-                var versionText = frameworkName.Substring(3);
-                return new[] { new NuGetFramework("UAP", new Version(versionText)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            }
-
             _nugetFrameworks.TryGetValue(frameworkName, out var framework);
 
-            return framework ?? Array.Empty<NuGetFramework>();
+            switch (framework)
+            {
+                case null when frameworkName.StartsWith("tizen", StringComparison.CurrentCultureIgnoreCase):
+                {
+                    var versionText = frameworkName.Substring("tizen".Length);
+                    return new[] { new NuGetFramework("Tizen", new Version(versionText)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+                }
+
+                case null when frameworkName.StartsWith("uap", StringComparison.CurrentCultureIgnoreCase):
+                {
+                    var versionText = frameworkName.Substring("uap".Length);
+                    return new[] { new NuGetFramework("UAP", new Version(versionText)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+                }
+
+                case null when frameworkName.StartsWith("netstandard", StringComparison.CurrentCultureIgnoreCase):
+                {
+                    var versionText = frameworkName.Substring("netstandard".Length);
+                    return new[] { new NuGetFramework(".NETStandard", new Version(versionText)) };
+                }
+
+                case null when frameworkName.StartsWith("NetCoreApp", StringComparison.CurrentCultureIgnoreCase):
+                {
+                    var versionText = frameworkName.Substring("NetCoreApp".Length);
+                    return new[] { new NuGetFramework(".NETCoreApp", new Version(versionText)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+                }
+
+                default:
+                    return framework ?? Array.Empty<NuGetFramework>();
+            }
         }
 
         /// <summary>
