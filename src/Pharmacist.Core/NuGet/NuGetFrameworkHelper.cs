@@ -89,16 +89,6 @@ namespace Pharmacist.Core.NuGet
 
             _nugetFrameworks["uap10.0"] = new[] { FrameworkConstants.CommonFrameworks.UAP10, FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["uap"] = new[] { FrameworkConstants.CommonFrameworks.UAP10, FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.18362"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 18362, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.17763"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 17763, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.17134"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 17134, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.16299"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 16299, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.15063"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 15063, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.14393"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 14393, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.10586"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 10586, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-            _nugetFrameworks["uap10.0.10240"] = new[] { new NuGetFramework("UAP", new Version(10, 0, 10240, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
-
-            _nugetFrameworks["Tizen40"] = new[] { FrameworkConstants.CommonFrameworks.Tizen4, FrameworkConstants.CommonFrameworks.NetStandard20 };
         }
 
         /// <summary>
@@ -116,8 +106,20 @@ namespace Pharmacist.Core.NuGet
 
             if (frameworkName.StartsWith("uap", StringComparison.CurrentCultureIgnoreCase))
             {
-                var versionText = frameworkName.Substring(3);
+                var versionText = frameworkName.Substring("uap".Length);
                 return new[] { new NuGetFramework("UAP", new Version(versionText)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            }
+
+            if (frameworkName.StartsWith("tizen", StringComparison.CurrentCultureIgnoreCase))
+            {
+                var versionText = frameworkName.Substring("tizen".Length);
+                return new[] { new NuGetFramework("Tizen", new Version(versionText)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            }
+
+            if (frameworkName.StartsWith("tizen", StringComparison.CurrentCultureIgnoreCase))
+            {
+                var versionText = frameworkName.Substring("tizen".Length);
+                return new[] { new NuGetFramework("Tizen", new Version(versionText)), FrameworkConstants.CommonFrameworks.NetStandard20 };
             }
 
             _nugetFrameworks.TryGetValue(frameworkName, out var framework);
