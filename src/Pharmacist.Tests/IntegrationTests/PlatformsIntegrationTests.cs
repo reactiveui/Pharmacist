@@ -36,7 +36,7 @@ namespace Pharmacist.Tests.IntegrationTests
                                                                     "Xamarin.iOS10",
                                                                     "uap10.0.16299",
                                                                     "uap10.0.17763",
-                                                                    "uap10.0.19041"
+                                                                    "uap10.0.19041",
                                                                 };
 
         /// <summary>
