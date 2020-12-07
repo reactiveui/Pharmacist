@@ -87,11 +87,11 @@ namespace Pharmacist.Core.NuGet
             _nugetFrameworks["net472"] = new[] { new NuGetFramework(".NETFramework", new Version(4, 7, 2, 0)) };
             _nugetFrameworks["net48"] = new[] { new NuGetFramework(".NETFramework", new Version(4, 8, 0, 0)) };
 
-            _nugetFrameworks["tizen40"] = new[] { new NuGetFramework("Tizen", new Version(4, 0, 0, 0)) };
-            _nugetFrameworks["tizen50"] = new[] { new NuGetFramework("Tizen", new Version(5, 0, 0, 0)) };
-            _nugetFrameworks["tizen60"] = new[] { new NuGetFramework("Tizen", new Version(6, 0, 0, 0)) };
-            _nugetFrameworks["tizen70"] = new[] { new NuGetFramework("Tizen", new Version(7, 0, 0, 0)) };
-            _nugetFrameworks["tizen80"] = new[] { new NuGetFramework("Tizen", new Version(8, 0, 0, 0)) };
+            _nugetFrameworks["tizen40"] = new[] { new NuGetFramework("Tizen", new Version(4, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["tizen50"] = new[] { new NuGetFramework("Tizen", new Version(5, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["tizen60"] = new[] { new NuGetFramework("Tizen", new Version(6, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["tizen70"] = new[] { new NuGetFramework("Tizen", new Version(7, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
+            _nugetFrameworks["tizen80"] = new[] { new NuGetFramework("Tizen", new Version(8, 0, 0, 0)), FrameworkConstants.CommonFrameworks.NetStandard20 };
 
             _nugetFrameworks["uap10.0"] = new[] { FrameworkConstants.CommonFrameworks.UAP10, FrameworkConstants.CommonFrameworks.NetStandard20 };
             _nugetFrameworks["uap"] = new[] { FrameworkConstants.CommonFrameworks.UAP10, FrameworkConstants.CommonFrameworks.NetStandard20 };
