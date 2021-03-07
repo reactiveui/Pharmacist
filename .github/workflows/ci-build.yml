@@ -50,7 +50,7 @@ jobs:
       working-directory: src
 
     - name: Build
-      run: msbuild /t:build,pack /maxcpucount /p:NoPackageAnalysis=true /verbosity:minimal /p:Configuration=${{ env.configuration }}
+      run: msbuild /t:build,pack /p:NoPackageAnalysis=true /verbosity:minimal /p:Configuration=${{ env.configuration }}
       working-directory: src
 
     - name: Run Unit Tests and Generate Coverage
