@@ -14,7 +14,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.9.0" />
     <PackageReference Include="NuGet.Protocol" Version="5.9.0" />
     <PackageReference Include="NuGet.LibraryModel" Version="5.9.0" />
-    <PackageReference Include="polly" Version="7.2.1" />
+    <PackageReference Include="polly" Version="7.2.2" />
     <PackageReference Include="splat" Version="10.*" />
   </ItemGroup>
 
