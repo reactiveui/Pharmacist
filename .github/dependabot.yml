@@ -1,0 +1,46 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "00:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.Build.Tasks.Core
+    versions:
+    - "> 14.3"
+  - dependency-name: Nerdbank.GitVersioning
+    versions:
+    - 3.4.190
+  - dependency-name: DiffEngine
+    versions:
+    - 6.5.5
+    - 6.5.6
+    - 6.5.9
+    - 6.6.0
+  - dependency-name: NuGet.LibraryModel
+    versions:
+    - 5.9.0
+  - dependency-name: NuGet.Protocol
+    versions:
+    - 5.9.0
+  - dependency-name: Microsoft.CodeAnalysis.CSharp
+    versions:
+    - 3.9.0
+  - dependency-name: Microsoft.NET.Test.Sdk
+    versions:
+    - 16.9.1
+  - dependency-name: coverlet.msbuild
+    versions:
+    - 3.0.2
+    - 3.0.3
+  - dependency-name: Roslynator.Analyzers
+    versions:
+    - 3.1.0
+  - dependency-name: splat
+    versions:
+    - 10.0.1
+  - dependency-name: Microsoft.CodeAnalysis.NetAnalyzers
+    versions:
+    - 5.0.3
