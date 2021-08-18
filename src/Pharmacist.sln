@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.202
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pharmacist.Core", "Pharmacist.Core\Pharmacist.Core.csproj", "{1C0EC69F-FF82-4C25-8A23-8EF319A3EAD4}"
 EndProject
@@ -14,8 +14,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FE693C5D-685A-4BE2-B3C8-5F53C18AD389}"
 	ProjectSection(SolutionItems) = preProject
 		..\.editorconfig = ..\.editorconfig
-		analyzers.ruleset = analyzers.ruleset
-		analyzers.tests.ruleset = analyzers.tests.ruleset
 		Directory.build.props = Directory.build.props
 		Directory.build.targets = Directory.build.targets
 		global.json = global.json
