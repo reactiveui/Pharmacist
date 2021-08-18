@@ -18,6 +18,10 @@
 
 Builds observables from events.
 
+## Source Generator
+
+A source generator version is being worked on over here: https://github.com/reactivemarbles/ObservableEventsSourceGenerator
+
 ## NuGet Packages
 
 Install the following packages to start using Pharmacist.

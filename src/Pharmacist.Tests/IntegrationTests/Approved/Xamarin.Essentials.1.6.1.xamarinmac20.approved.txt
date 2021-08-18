@@ -29,6 +29,14 @@ namespace Xamarin.Essentials
             return Handler;
         }, x => global::Xamarin.Essentials.Accelerometer.ShakeDetected += x, x => global::Xamarin.Essentials.Accelerometer.ShakeDetected -= x);
         /// <summary>
+        /// Gets an observable which signals when the <see cref = "global::Xamarin.Essentials.AppActions.OnAppAction"/> event triggers.
+        /// </summary>
+        public static global::System.IObservable<global::Xamarin.Essentials.AppActionEventArgs> AppActionsOnAppAction => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Essentials.AppActionEventArgs>, global::Xamarin.Essentials.AppActionEventArgs>(eventHandler =>
+        {
+            void Handler(object sender, global::Xamarin.Essentials.AppActionEventArgs e) => eventHandler(e);
+            return Handler;
+        }, x => global::Xamarin.Essentials.AppActions.OnAppAction += x, x => global::Xamarin.Essentials.AppActions.OnAppAction -= x);
+        /// <summary>
         /// Gets an observable which signals when the <see cref = "global::Xamarin.Essentials.Barometer.ReadingChanged"/> event triggers.
         /// </summary>
         public static global::System.IObservable<global::Xamarin.Essentials.BarometerChangedEventArgs> BarometerReadingChanged => global::System.Reactive.Linq.Observable.FromEvent<global::System.EventHandler<global::Xamarin.Essentials.BarometerChangedEventArgs>, global::Xamarin.Essentials.BarometerChangedEventArgs>(eventHandler =>

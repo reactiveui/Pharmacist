@@ -84,7 +84,7 @@ namespace Pharmacist.Console
                     }
                     catch (Exception ex)
                     {
-                        LogHost.Default.Fatal(ex);
+                        LogHost.Default.Fatal(ex.ToString());
                         return ExitCode.Error;
                     }
                 },
@@ -122,7 +122,7 @@ namespace Pharmacist.Console
                     }
                     catch (Exception ex)
                     {
-                        LogHost.Default.Fatal(ex);
+                        LogHost.Default.Fatal(ex.ToString());
                         return ExitCode.Error;
                     }
                 },
@@ -150,7 +150,7 @@ namespace Pharmacist.Console
                     }
                     catch (Exception ex)
                     {
-                        LogHost.Default.Fatal(ex);
+                        LogHost.Default.Fatal(ex.ToString());
                         return ExitCode.Error;
                     }
                 },
