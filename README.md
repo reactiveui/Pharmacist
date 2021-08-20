@@ -1,13 +1,4 @@
 ![Build](https://github.com/reactiveui/Pharmacist/workflows/Build/badge.svg) [![Code Coverage](https://codecov.io/gh/reactiveui/pharmacist/branch/master/graph/badge.svg)](https://codecov.io/gh/reactiveui/pharmacist)
-<a href="#backers">
-        <img src="https://opencollective.com/reactiveui/backers/badge.svg">
-</a>
-<a href="#sponsors">
-        <img src="https://opencollective.com/reactiveui/sponsors/badge.svg">
-</a>
-<a href="https://reactiveui.net/slack">
-        <img src="https://img.shields.io/badge/chat-slack-blue.svg">
-</a>
 <br />
 <br />
 <a href="https://github.com/reactiveui/pharmacist">
@@ -111,7 +102,6 @@ So here's to you, lovely person who wants to join us — this is how you can sup
 
 * [Responding to questions on StackOverflow](https://stackoverflow.com/questions/tagged/reactiveui)
 * [Passing on knowledge and teaching the next generation of developers](http://ericsink.com/entries/dont_use_rxui.html)
-* [Donations](https://reactiveui.net/donate) and [Corporate Sponsorships](https://reactiveui.net/sponsorship)
 * [Asking your employer to reciprocate and contribute to open-source](https://github.com/github/balanced-employee-ip-agreement)
 * Submitting documentation updates where you see fit or lacking.
 * Making contributions to the code base.
