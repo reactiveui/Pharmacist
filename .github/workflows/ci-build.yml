@@ -18,9 +18,10 @@ jobs:
       nbgv: ${{ steps.nbgv.outputs.SemVer2 }}
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v2.3.4
       with:
         fetch-depth: 0
+        lfs: true
 
     - name: Install .NET Core
       uses: actions/setup-dotnet@v1
