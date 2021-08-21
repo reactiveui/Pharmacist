@@ -18,10 +18,9 @@ jobs:
       nbgv: ${{ steps.nbgv.outputs.SemVer2 }}
     steps:
     - name: Checkout
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v2
       with:
         fetch-depth: 0
-        lfs: true
 
     - name: Install .NET Core
       uses: actions/setup-dotnet@v1
@@ -80,39 +79,42 @@ jobs:
         path: '**/*.nupkg'
 
   release:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build
     if: contains(github.event.pull_request.labels.*.name, 'release') && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
     steps:
     - name: Checkout
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v2
       with:
         fetch-depth: 0
 
     - name: Download NuGet Packages
-      uses: actions/download-artifact@v2.0.9
+      uses: actions/download-artifact@v2
       with:
         name: nuget
 
-    - uses: nuget/setup-nuget@v1
-      name: Setup NuGet
+    - name: Save SignClient Configuration
+      run: 'echo "$SIGN_CLIENT_CONFIG" > SignPackages.json'
+      shell: bash
+      env:
+        SIGN_CLIENT_CONFIG: ${{secrets.SIGN_CLIENT_CONFIG}}
 
-    # Decode the base 64 encoded pfx and save the Signing_Certificate
-    - name: Sign NuGet packages
-      shell: pwsh
-      run: |
-        $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.SIGNING_CERTIFICATE }}")
-        [IO.File]::WriteAllBytes("GitHubActionsWorkflow.pfx", $pfx_cert_byte)
-        $secure_password = ConvertTo-SecureString ${{ secrets.SIGN_CERTIFICATE_PASSWORD }} –asplaintext –force
-        Import-PfxCertificate -FilePath GitHubActionsWorkflow.pfx -Password $secure_password -CertStoreLocation Cert:\CurrentUser\My
-        nuget sign -Timestamper http://timestamp.digicert.com -CertificateFingerprint ${{ secrets.SIGN_CERTIFICATE_HASH }} **/*.nupkg
+    - name: Sign NuGet Packages
+      uses: glennawatson/signclient@v1
+      with:
+        input-files: '**/*.nupkg'
+        sign-client-secret: ${{ secrets.SIGN_CLIENT_SECRET }}
+        sign-client-user: ${{ secrets.SIGN_CLIENT_USER_ID }}
+        project-name: reactiveui
+        description: reactiveui
+        config-file: SignPackages.json
 
     - name: Changelog
       uses: glennawatson/ChangeLog@v1
       id: changelog
 
     - name: Create Release
-      uses: actions/create-release@v1.1.4
+      uses: actions/create-release@v1
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
