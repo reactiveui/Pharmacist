@@ -15,7 +15,7 @@
     <PackageReference Include="NuGet.Protocol" Version="6.0.0" />
     <PackageReference Include="NuGet.LibraryModel" Version="6.0.0" />
     <PackageReference Include="polly" Version="7.2.2" />
-    <PackageReference Include="splat" Version="13.*" />
+    <PackageReference Include="splat" Version="14.*" />
   </ItemGroup>
 
   <ItemGroup>
