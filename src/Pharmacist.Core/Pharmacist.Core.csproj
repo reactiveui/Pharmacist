@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
     <PackageReference Include="NuGet.Protocol" Version="6.0.0" />
-    <PackageReference Include="NuGet.LibraryModel" Version="6.0.0" />
+    <PackageReference Include="NuGet.LibraryModel" Version="6.3.0" />
     <PackageReference Include="polly" Version="7.2.3" />
     <PackageReference Include="splat" Version="14.*" />
   </ItemGroup>
