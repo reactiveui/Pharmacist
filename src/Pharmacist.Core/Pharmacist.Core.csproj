@@ -1,6 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net5.0;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net6.0;net7.0;net462</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
     <Nullable>enable</Nullable>
@@ -12,8 +12,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" />
-    <PackageReference Include="NuGet.Protocol" Version="6.0.0" />
-    <PackageReference Include="NuGet.LibraryModel" Version="6.0.0" />
+    <PackageReference Include="NuGet.Protocol" Version="6.4.0" />
+    <PackageReference Include="NuGet.LibraryModel" Version="6.4.0" />
     <PackageReference Include="polly" Version="7.2.3" />
     <PackageReference Include="splat" Version="14.*" />
   </ItemGroup>

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);net461</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">$(TargetFrameworks);net462</TargetFrameworks>
     <PackageId>Pharmacist.MSBuild</PackageId>
     <AssemblyName>Pharmacist.MSBuild</AssemblyName>
     <!-- forces SDK to copy dependencies into build output to make packing easier -->
@@ -15,18 +15,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Condition="'$(TargetFramework)' == 'net461' " Include="Microsoft.Build.Tasks.Core" Version="17.0.0" PrivateAssets="all" />
-    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="17.0.0" PrivateAssets="all" />
-    <PackageReference Condition="'$(TargetFramework)' == 'net5.0' " Include="Microsoft.Build.Tasks.Core" Version="17.0.0" PrivateAssets="all" />
+    <PackageReference Condition="'$(TargetFramework)' == 'net462' " Include="Microsoft.Build.Tasks.Core" Version="17.4.0" PrivateAssets="all" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="17.4.0" PrivateAssets="all" />
+    <PackageReference Condition="'$(TargetFramework)' == 'net6.0' " Include="Microsoft.Build.Tasks.Core" Version="17.4.0" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="Package">
-    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\net461" Pack="true" />
-    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\net461" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\net462" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\net462" Pack="true" />
     <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\netstandard2.0" Pack="true" />
     <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\netstandard2.0" Pack="true" />
-    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\net5.0" Pack="true" />
-    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\net5.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\net6.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\net6.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="build\net7.0" Pack="true" />
+    <None Include="targets\Pharmacist.MSBuild.targets" PackagePath="buildTransitive\net7.0" Pack="true" />
   </ItemGroup>
 
   <Target Name="PackBuildOutputs">

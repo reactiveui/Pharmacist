@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>Pharmacist</AssemblyName>
     <LangVersion>latest</LangVersion>
     <PackAsTool>true</PackAsTool>
@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="commandlineparser" Version="2.8.0" />
+    <PackageReference Include="commandlineparser" Version="2.9.1" />
   </ItemGroup>
 
   <ItemGroup>
