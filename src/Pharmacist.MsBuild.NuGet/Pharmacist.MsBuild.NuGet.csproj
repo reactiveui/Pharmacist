@@ -15,9 +15,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Condition="'$(TargetFramework)' == 'net462' " Include="Microsoft.Build.Tasks.Core" Version="17.4.0" PrivateAssets="all" />
-    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="17.4.0" PrivateAssets="all" />
-    <PackageReference Condition="'$(TargetFramework)' == 'net6.0' " Include="Microsoft.Build.Tasks.Core" Version="17.4.0" PrivateAssets="all" />
+    <PackageReference Condition="'$(TargetFramework)' == 'net462' " Include="Microsoft.Build.Tasks.Core" Version="17.5.0" PrivateAssets="all" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard2.0' " Include="Microsoft.Build.Tasks.Core" Version="17.5.0" PrivateAssets="all" />
+    <PackageReference Condition="'$(TargetFramework)' == 'net6.0' " Include="Microsoft.Build.Tasks.Core" Version="17.5.0" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="Package">
